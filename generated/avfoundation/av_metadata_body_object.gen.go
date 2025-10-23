@@ -42,7 +42,6 @@ type IMetadataBodyObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataBodyObject
-
 type MetadataBodyObject struct {
 	MetadataObject
 }
@@ -93,7 +92,6 @@ func NewMetadataBodyObject() MetadataBodyObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatabodyobject/bodyid
-
 func (m_ MetadataBodyObject) BodyID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("bodyID"))
 	return rv
@@ -104,7 +102,6 @@ func (m_ MetadataBodyObject) BodyID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatabodyobject/bodyid
-
 func (m_ MetadataBodyObject) SetBodyID(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBodyID:"), value)
 }

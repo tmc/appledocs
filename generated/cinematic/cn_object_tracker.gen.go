@@ -42,7 +42,6 @@ type ICNObjectTracker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq
-
 type CNObjectTracker struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewCNObjectTracker() CNObjectTracker {
 
 
 
-
 // Creates a new detection track builder.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/initWithCommandQueue:
-
 func NewCNObjectTrackerWithCommandQueue(commandQueue objectivec.IObject) CNObjectTracker {
 	instance := getCNObjectTrackerClass().Alloc()
 	rv := objc.Send[CNObjectTracker](instance.ID, objc.Sel("initWithCommandQueue:"), commandQueue)
@@ -106,30 +103,25 @@ func NewCNObjectTrackerWithCommandQueue(commandQueue objectivec.IObject) CNObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/isSupported
-
 func (cc _CNObjectTrackerClass) IsSupported() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isSupported"))
 	return rv
 }
 
-
 // Finds the bounds of an object at the given point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/findObjectAtPoint:sourceImage:
-
 func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) CNBoundsPrediction {
 	rv := objc.Send[CNBoundsPrediction](c_.ID, objc.Sel("findObjectAtPoint:sourceImage:"), point, sourceImage)
 	return rv
 }
 
 
-
 // Finish constructing the detection track and return it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/finishDetectionTrack
-
 func (c_ CNObjectTracker) FinishDetectionTrack() CNDetectionTrack {
 	rv := objc.Send[CNDetectionTrack](c_.ID, objc.Sel("finishDetectionTrack"))
 	return rv
@@ -140,7 +132,6 @@ func (c_ CNObjectTracker) FinishDetectionTrack() CNDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/isSupported
-
 func (c_ CNObjectTracker) IsSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSupported"))
 	return rv

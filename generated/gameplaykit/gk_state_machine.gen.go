@@ -34,7 +34,7 @@ type IStateMachine interface {
 	CanEnterState(stateClass objc.Class) bool
 	EnterState(stateClass objc.Class) bool
 	StateForClass(stateClass objc.Class) State
-	UpdateWithDeltaTime(sec foundation.TimeInterval)
+	UpdateWithDeltaTime(sec foundation.ITimeInterval)
 	CurrentState() GKState
 }
 
@@ -47,7 +47,6 @@ type IStateMachine interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine
-
 type StateMachine struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewStateMachine() StateMachine {
 
 
 
-
 // Initializes a state machine with the specified states.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/init(states:)
-
 func NewStateMachineWithStates(states []State) StateMachine {
 	instance := getStateMachineClass().Alloc()
 	rv := objc.Send[StateMachine](instance.ID, objc.Sel("initWithStates:"), states)
@@ -111,56 +108,47 @@ func NewStateMachineWithStates(states []State) StateMachine {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:
-
 func (sc _StateMachineClass) StateMachineWithStates(states []State) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stateMachineWithStates:"), states)
 	return rv
 }
 
 
-
 // Returns a Boolean value indicating whether it is valid for the state machine to transition from its current state to a state of the specified class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/canEnterState(_:)
-
 func (s_ StateMachine) CanEnterState(stateClass objc.Class) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canEnterState:"), stateClass)
 	return rv
 }
 
 
-
 // Attempts to transition the state machine from its current state to a state of the specified class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/enter(_:)
-
 func (s_ StateMachine) EnterState(stateClass objc.Class) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enterState:"), stateClass)
 	return rv
 }
 
 
-
 // Returns the state object in the state machine corresponding to the specified class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateForClass:
-
 func (s_ StateMachine) StateForClass(stateClass objc.Class) State {
 	rv := objc.Send[State](s_.ID, objc.Sel("stateForClass:"), stateClass)
 	return rv
 }
 
 
-
 // Tells the current state object to perform per-frame updates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/update(deltaTime:)
-
-func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
+func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), sec)
 }
 
@@ -169,7 +157,6 @@ func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/currentState
-
 func (s_ StateMachine) CurrentState() GKState {
 	rv := objc.Send[GKState](s_.ID, objc.Sel("currentState"))
 	return rv

@@ -32,7 +32,7 @@ type _ModelClass struct {
 type IModel interface {
 	objectivec.IObject
 	NewState() State
-	ParameterValueForKeyError(key MLParameterKey, error_ unsafe.Pointer) objc.ID
+	ParameterValueForKeyError(key IMLParameterKey, error_ unsafe.Pointer) objc.ID
 	Prediction()
 	PredictionFromFeaturesError(input objectivec.IObject, error_ unsafe.Pointer) objc.ID
 	PredictionFromFeaturesOptionsError(input objectivec.IObject, options MLPredictionOptions, error_ unsafe.Pointer) objc.ID
@@ -56,7 +56,6 @@ type IModel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel
-
 type Model struct {
 	objectivec.Object
 }
@@ -101,24 +100,20 @@ func NewModel() Model {
 
 
 
-
 // Creates a Core ML model instance from a compiled model file and a custom configuration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-
 func NewModelWithContentsOfURLConfigurationError(url foundation.IURL, configuration IMLModelConfiguration, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
 
 
-
 // Creates a Core ML model instance from a compiled model file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-
 func NewModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
@@ -128,7 +123,6 @@ func NewModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)
-
 func (mc _ModelClass) CompileModel() {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("compileModel"))
 }
@@ -138,7 +132,6 @@ func (mc _ModelClass) CompileModel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-3nea
-
 func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.IURL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("compileModelAtURL:completionHandler:"), modelURL, handler)
 }
@@ -148,7 +141,6 @@ func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.IUR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-6442s
-
 func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.IURL, error_ unsafe.Pointer) foundation.URL {
 	rv := objc.Send[foundation.URL](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error_)
 	return rv
@@ -159,7 +151,6 @@ func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.IURL, error_ un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-
 func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
@@ -170,7 +161,6 @@ func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.IURL, error_ un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-
 func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url foundation.IURL, configuration IMLModelConfiguration, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
@@ -181,7 +171,6 @@ func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url foundation.IU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/load(_:configuration:completionHandler:)
-
 func (mc _ModelClass) LoadModelAssetConfigurationCompletionHandler(asset IMLModelAsset, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadModelAsset:configuration:completionHandler:"), asset, configuration, handler)
 }
@@ -191,7 +180,6 @@ func (mc _ModelClass) LoadModelAssetConfigurationCompletionHandler(asset IMLMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:
-
 func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.IURL, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
@@ -201,120 +189,99 @@ func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
-
 func (mc _ModelClass) AvailableComputeDevices() []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(mc.class), objc.Sel("availableComputeDevices"))
 	return rv
 }
 
-
 // Creates a new state object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/newState
-
 func (m_ Model) NewState() State {
 	rv := objc.Send[State](m_.ID, objc.Sel("newState"))
 	return rv
 }
 
 
-
 // Returns a model parameter value for a key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/parameterValue(for:)
-
-func (m_ Model) ParameterValueForKeyError(key MLParameterKey, error_ unsafe.Pointer) objc.ID {
+func (m_ Model) ParameterValueForKeyError(key IMLParameterKey, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("parameterValueForKey:error:"), key, error_)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/prediction(from:)
-
 func (m_ Model) Prediction() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("prediction"))
 }
-
 
 
 // Generates a prediction from the feature values within the input feature provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/prediction(from:)-9y2aa
-
 func (m_ Model) PredictionFromFeaturesError(input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:error:"), input, error_)
 	return rv
 }
 
 
-
 // Generates a prediction from the feature values within the input feature provider using the prediction options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/prediction(from:options:)-81mr6
-
 func (m_ Model) PredictionFromFeaturesOptionsError(input objectivec.IObject, options MLPredictionOptions, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:options:error:"), input, options, error_)
 	return rv
 }
 
 
-
 // Generates a prediction asynchronously from the feature values within the input feature provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictionFromFeatures:completionHandler:
-
 func (m_ Model) PredictionFromFeaturesCompletionHandler(input objectivec.IObject, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:completionHandler:"), input, completionHandler)
 }
-
 
 
 // Generates a prediction asynchronously from the feature values within the input feature provider using the prediction options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictionFromFeatures:options:completionHandler:
-
 func (m_ Model) PredictionFromFeaturesOptionsCompletionHandler(input objectivec.IObject, options MLPredictionOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:options:completionHandler:"), input, options, completionHandler)
 }
-
 
 
 // Run a stateful prediction asynchronously.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictionFromFeatures:usingState:options:completionHandler:
-
 func (m_ Model) PredictionFromFeaturesUsingStateOptionsCompletionHandler(inputFeatures objectivec.IObject, state MLState, options MLPredictionOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("predictionFromFeatures:usingState:options:completionHandler:"), inputFeatures, state, options, completionHandler)
 }
-
 
 
 // Generates a prediction for each input feature provider within the batch provider using the prediction options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictions(from:options:)
-
 func (m_ Model) PredictionsFromBatchOptionsError(inputBatch objectivec.IObject, options MLPredictionOptions, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:options:error:"), inputBatch, options, error_)
 	return rv
 }
 
 
-
 // Generates predictions for each input feature provider within the batch provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/predictions(fromBatch:)
-
 func (m_ Model) PredictionsFromBatchError(inputBatch objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("predictionsFromBatch:error:"), inputBatch, error_)
 	return rv
@@ -325,7 +292,6 @@ func (m_ Model) PredictionsFromBatchError(inputBatch objectivec.IObject, error_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
-
 func (m_ Model) AvailableComputeDevices() []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("availableComputeDevices"))
 	return rv
@@ -336,7 +302,6 @@ func (m_ Model) AvailableComputeDevices() []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/configuration
-
 func (m_ Model) Configuration() MLModelConfiguration {
 	rv := objc.Send[MLModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
@@ -347,7 +312,6 @@ func (m_ Model) Configuration() MLModelConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-
 func (m_ Model) ModelDescription() MLModelDescription {
 	rv := objc.Send[MLModelDescription](m_.ID, objc.Sel("modelDescription"))
 	return rv
@@ -358,7 +322,6 @@ func (m_ Model) ModelDescription() MLModelDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
-
 func (m_ Model) Metadata() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadata"))
 	return rv
@@ -369,7 +332,6 @@ func (m_ Model) Metadata() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
-
 func (m_ Model) SetMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
 }

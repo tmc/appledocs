@@ -36,7 +36,11 @@ type IINGetCarPowerLevelStatusIntent interface {
 // A request for the current power level of the user’s car.
 //
 // When asked for the car’s power level, Siri creates an object. This intent object can contain the name of the user’s car. Use this object to provide information about the car’s current power level. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results.
+
+
+// A request for the current power level of the user’s car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetCarPowerLevelStatusIntent
 type INGetCarPowerLevelStatusIntent struct {
 	INIntent
@@ -83,8 +87,10 @@ func NewINGetCarPowerLevelStatusIntent() INGetCarPowerLevelStatusIntent {
 }
 
 
+
 // A name that identifies the user’s car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent/carname
 func (i_ INGetCarPowerLevelStatusIntent) CarName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
@@ -92,10 +98,9 @@ func (i_ INGetCarPowerLevelStatusIntent) CarName() INSpeakableString {
 }
 
 
-// SetCarName sets the value of the carName property.
 // A name that identifies the user’s car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent/carname
 func (i_ INGetCarPowerLevelStatusIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)

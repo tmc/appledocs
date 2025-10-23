@@ -34,7 +34,11 @@ type IINListCarsIntent interface {
 // An intent for retrieving a list of the user’s electric vehicles.
 //
 // Maps creates instances of when it needs to display a list of the user’s electric vehicles, usually before or during route planning. To handle this intent, you create an object that conforms to the protocol. The object handles, and optionally confirms, the request by providing an instance of . The response contains an array of objects, one for each of the user’s electric vehicles. Maps requires that each vehicle responds to requests so that it can use the information the intent provides—current charge, battery capacity, distance remaining, and so forth—to more accurately plan the route.
+
+
+// An intent for retrieving a list of the user’s electric vehicles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INListCarsIntent
 type INListCarsIntent struct {
 	INIntent

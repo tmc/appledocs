@@ -38,7 +38,6 @@ type IHKHeartbeatSeriesBuilder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartbeatSeriesBuilder
-
 type HKHeartbeatSeriesBuilder struct {
 	HKSeriesBuilder
 }

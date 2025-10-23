@@ -41,7 +41,6 @@ type IModelStructurePipeline interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline
-
 type ModelStructurePipeline struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewModelStructurePipeline() ModelStructurePipeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline/subModelNames
-
 func (m_ ModelStructurePipeline) SubModelNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("subModelNames"))
 	return rv
@@ -101,7 +99,6 @@ func (m_ ModelStructurePipeline) SubModelNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline/subModels
-
 func (m_ ModelStructurePipeline) SubModels() []ModelStructure {
 	rv := objc.Send[[]ModelStructure](m_.ID, objc.Sel("subModels"))
 	return rv

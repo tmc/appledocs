@@ -54,7 +54,6 @@ type IMIDICIDeviceInfo interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceInfo
-
 type MIDICIDeviceInfo struct {
 	objectivec.Object
 }
@@ -103,7 +102,6 @@ func NewMIDICIDeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/family
-
 func (m_ MIDICIDeviceInfo) Family() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("family"))
 	return rv
@@ -114,7 +112,6 @@ func (m_ MIDICIDeviceInfo) Family() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/family
-
 func (m_ MIDICIDeviceInfo) SetFamily(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFamily:"), value)
 }
@@ -124,7 +121,6 @@ func (m_ MIDICIDeviceInfo) SetFamily(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
-
 func (m_ MIDICIDeviceInfo) ManufacturerID() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("manufacturerID"))
 	return rv
@@ -135,7 +131,6 @@ func (m_ MIDICIDeviceInfo) ManufacturerID() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
-
 func (m_ MIDICIDeviceInfo) SetManufacturerID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerID:"), value)
 }
@@ -145,7 +140,6 @@ func (m_ MIDICIDeviceInfo) SetManufacturerID(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
-
 func (m_ MIDICIDeviceInfo) MidiDestination() MIDIEndpointRef {
 	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("midiDestination"))
 	return rv
@@ -156,7 +150,6 @@ func (m_ MIDICIDeviceInfo) MidiDestination() MIDIEndpointRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
-
 func (m_ MIDICIDeviceInfo) SetMidiDestination(value IMIDIEndpointRef) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiDestination:"), value)
 }
@@ -166,7 +159,6 @@ func (m_ MIDICIDeviceInfo) SetMidiDestination(value IMIDIEndpointRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
-
 func (m_ MIDICIDeviceInfo) ModelNumber() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("modelNumber"))
 	return rv
@@ -177,7 +169,6 @@ func (m_ MIDICIDeviceInfo) ModelNumber() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
-
 func (m_ MIDICIDeviceInfo) SetModelNumber(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelNumber:"), value)
 }
@@ -187,7 +178,6 @@ func (m_ MIDICIDeviceInfo) SetModelNumber(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/revisionlevel
-
 func (m_ MIDICIDeviceInfo) RevisionLevel() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("revisionLevel"))
 	return rv
@@ -198,7 +188,6 @@ func (m_ MIDICIDeviceInfo) RevisionLevel() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/revisionlevel
-
 func (m_ MIDICIDeviceInfo) SetRevisionLevel(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevisionLevel:"), value)
 }
@@ -208,7 +197,6 @@ func (m_ MIDICIDeviceInfo) SetRevisionLevel(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-
 func (m_ MIDICIDeviceInfo) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
@@ -219,7 +207,6 @@ func (m_ MIDICIDeviceInfo) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-
 func (m_ MIDICIDeviceInfo) SetDeviceInfo(value IMIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
@@ -229,7 +216,6 @@ func (m_ MIDICIDeviceInfo) SetDeviceInfo(value IMIDICIDeviceInfo) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
-
 func (m_ MIDICIDeviceInfo) Initiators() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("initiators"))
 	return rv
@@ -240,7 +226,6 @@ func (m_ MIDICIDeviceInfo) Initiators() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
-
 func (m_ MIDICIDeviceInfo) SetInitiators(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInitiators:"), value)
 }

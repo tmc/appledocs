@@ -43,7 +43,6 @@ type ICKAsset interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset
-
 type CKAsset struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewCKAsset() CKAsset {
 
 
 
-
 // Creates an asset that references a file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/init(fileURL:)
-
 func NewCKAssetWithFileURL(fileURL foundation.IURL) CKAsset {
 	instance := getCKAssetClass().Alloc()
 	rv := objc.Send[CKAsset](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
@@ -107,7 +104,6 @@ func NewCKAssetWithFileURL(fileURL foundation.IURL) CKAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/fileURL
-
 func (c_ CKAsset) FileURL() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
 	return rv

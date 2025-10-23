@@ -40,7 +40,6 @@ type IHKDocumentType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDocumentType
-
 type HKDocumentType struct {
 	HKSampleType
 }

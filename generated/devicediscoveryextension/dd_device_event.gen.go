@@ -43,7 +43,6 @@ type IDDDeviceEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent
-
 type DDDeviceEvent struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewDDDeviceEvent() DDDeviceEvent {
 
 
 
-
 // Creates an event object that conveys status for a discovered device of interest.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)
-
 func NewDDDeviceEventWithEventTypeDevice(type_ DDEventType, device IDDDevice) DDDeviceEvent {
 	instance := getDDDeviceEventClass().Alloc()
 	rv := objc.Send[DDDeviceEvent](instance.ID, objc.Sel("initWithEventType:device:"), type_, device)
@@ -107,7 +104,6 @@ func NewDDDeviceEventWithEventTypeDevice(type_ DDEventType, device IDDDevice) DD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device
-
 func (d_ DDDeviceEvent) Device() DDDevice {
 	rv := objc.Send[DDDevice](d_.ID, objc.Sel("device"))
 	return rv
@@ -118,7 +114,6 @@ func (d_ DDDeviceEvent) Device() DDDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property
-
 func (d_ DDDeviceEvent) EventType() DDEventType {
 	rv := objc.Send[DDEventType](d_.ID, objc.Sel("eventType"))
 	return rv

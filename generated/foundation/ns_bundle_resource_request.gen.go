@@ -33,7 +33,7 @@ type IBundleResourceRequest interface {
 	BeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
 	ConditionallyBeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
 	EndAccessingResources()
-	Bundle() NSBundle
+	Bundle() IBundle
 	LoadingPriority() float64
 	SetLoadingPriority(value float64)
 	Progress() Progress
@@ -160,7 +160,7 @@ func (b_ BundleResourceRequest) EndAccessingResources() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/bundle
-func (b_ BundleResourceRequest) Bundle() NSBundle {
+func (b_ BundleResourceRequest) Bundle() IBundle {
 	rv := objc.Send[NSBundle](b_.ID, objc.Sel("bundle"))
 	return rv
 }

@@ -30,10 +30,10 @@ type _CharacterSetClass struct {
 // An interface definition for the [CharacterSet] class.
 type ICharacterSet interface {
 	objectivec.IObject
-	InvertedSet() NSCharacterSet
-	BitmapRepresentation() Data
+	InvertedSet() ICharacterSet
+	BitmapRepresentation() IData
 	SetBitmapRepresentation(value IData)
-	Inverted() CharacterSet
+	Inverted() ICharacterSet
 	SetInverted(value ICharacterSet)
 }
 
@@ -166,7 +166,7 @@ func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
-func (c_ CharacterSet) ControlCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) ControlCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("controlCharacterSet"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (c_ CharacterSet) ControlCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/illegalCharacters
-func (c_ CharacterSet) IllegalCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) IllegalCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("illegalCharacterSet"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (c_ CharacterSet) IllegalCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/inverted
-func (c_ CharacterSet) InvertedSet() NSCharacterSet {
+func (c_ CharacterSet) InvertedSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("invertedSet"))
 	return rv
 }
@@ -196,7 +196,7 @@ func (c_ CharacterSet) InvertedSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/nonBaseCharacters
-func (c_ CharacterSet) NonBaseCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) NonBaseCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("nonBaseCharacterSet"))
 	return rv
 }
@@ -206,7 +206,7 @@ func (c_ CharacterSet) NonBaseCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/symbols
-func (c_ CharacterSet) SymbolCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) SymbolCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("symbolCharacterSet"))
 	return rv
 }
@@ -216,7 +216,7 @@ func (c_ CharacterSet) SymbolCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlPathAllowed
-func (c_ CharacterSet) URLPathAllowedCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) URLPathAllowedCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("URLPathAllowedCharacterSet"))
 	return rv
 }
@@ -226,7 +226,7 @@ func (c_ CharacterSet) URLPathAllowedCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlQueryAllowed
-func (c_ CharacterSet) URLQueryAllowedCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) URLQueryAllowedCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("URLQueryAllowedCharacterSet"))
 	return rv
 }
@@ -236,7 +236,7 @@ func (c_ CharacterSet) URLQueryAllowedCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespaces
-func (c_ CharacterSet) WhitespaceCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) WhitespaceCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("whitespaceCharacterSet"))
 	return rv
 }
@@ -246,7 +246,7 @@ func (c_ CharacterSet) WhitespaceCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespacesAndNewlines
-func (c_ CharacterSet) WhitespaceAndNewlineCharacterSet() NSCharacterSet {
+func (c_ CharacterSet) WhitespaceAndNewlineCharacterSet() ICharacterSet {
 	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("whitespaceAndNewlineCharacterSet"))
 	return rv
 }
@@ -256,7 +256,7 @@ func (c_ CharacterSet) WhitespaceAndNewlineCharacterSet() NSCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
-func (c_ CharacterSet) BitmapRepresentation() Data {
+func (c_ CharacterSet) BitmapRepresentation() IData {
 	rv := objc.Send[Data](c_.ID, objc.Sel("bitmapRepresentation"))
 	return rv
 }
@@ -275,7 +275,7 @@ func (c_ CharacterSet) SetBitmapRepresentation(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/inverted
-func (c_ CharacterSet) Inverted() CharacterSet {
+func (c_ CharacterSet) Inverted() ICharacterSet {
 	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("inverted"))
 	return rv
 }

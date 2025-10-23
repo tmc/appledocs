@@ -36,7 +36,7 @@ type IImageCell interface {
 	ImageFrameStyle() unsafe.Pointer
 	SetImageFrameStyle(value unsafe.Pointer)
 	ImageScaling() ImageScaling
-	SetImageScaling(value ImageScaling)
+	SetImageScaling(value IImageScaling)
 }
 
 // An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
@@ -48,7 +48,6 @@ type IImageCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell
-
 type ImageCell struct {
 	Cell
 }
@@ -99,7 +98,6 @@ func NewImageCell() ImageCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/objectvalue
-
 func (i_ ImageCell) ObjectValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("objectValue"))
 	return rv
@@ -110,7 +108,6 @@ func (i_ ImageCell) ObjectValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/objectvalue
-
 func (i_ ImageCell) SetObjectValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setObjectValue:"), value)
 }
@@ -120,7 +117,6 @@ func (i_ ImageCell) SetObjectValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment
-
 func (i_ ImageCell) ImageAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAlignment"))
 	return rv
@@ -131,7 +127,6 @@ func (i_ ImageCell) ImageAlignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment
-
 func (i_ ImageCell) SetImageAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAlignment:"), value)
 }
@@ -141,7 +136,6 @@ func (i_ ImageCell) SetImageAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imageframestyle
-
 func (i_ ImageCell) ImageFrameStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageFrameStyle"))
 	return rv
@@ -152,7 +146,6 @@ func (i_ ImageCell) ImageFrameStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imageframestyle
-
 func (i_ ImageCell) SetImageFrameStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageFrameStyle:"), value)
 }
@@ -162,7 +155,6 @@ func (i_ ImageCell) SetImageFrameStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
-
 func (i_ ImageCell) ImageScaling() ImageScaling {
 	rv := objc.Send[ImageScaling](i_.ID, objc.Sel("imageScaling"))
 	return rv
@@ -173,8 +165,7 @@ func (i_ ImageCell) ImageScaling() ImageScaling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
-
-func (i_ ImageCell) SetImageScaling(value ImageScaling) {
+func (i_ ImageCell) SetImageScaling(value IImageScaling) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
 }
 

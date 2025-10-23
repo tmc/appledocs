@@ -51,7 +51,6 @@ type IABGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup
-
 type ABGroup struct {
 	ABRecord
 }
@@ -102,7 +101,6 @@ func NewABGroup() ABGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/addPropertiesAndTypes(_:)
-
 func (ac _ABGroupClass) AddPropertiesAndTypes(properties objectivec.IObject) int {
 	rv := objc.Send[int](objc.ID(ac.class), objc.Sel("addPropertiesAndTypes:"), properties)
 	return rv
@@ -113,7 +111,6 @@ func (ac _ABGroupClass) AddPropertiesAndTypes(properties objectivec.IObject) int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/properties()
-
 func (ac _ABGroupClass) Properties() foundation.Array {
 	rv := objc.Send[foundation.Array](objc.ID(ac.class), objc.Sel("properties"))
 	return rv
@@ -124,7 +121,6 @@ func (ac _ABGroupClass) Properties() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/removeProperties(_:)
-
 func (ac _ABGroupClass) RemoveProperties(properties objectivec.IObject) int {
 	rv := objc.Send[int](objc.ID(ac.class), objc.Sel("removeProperties:"), properties)
 	return rv
@@ -135,7 +131,6 @@ func (ac _ABGroupClass) RemoveProperties(properties objectivec.IObject) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/searchElement(forProperty:label:key:value:comparison:)
-
 func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
 	return rv
@@ -146,115 +141,96 @@ func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/type(ofProperty:)
-
 func (ac _ABGroupClass) TypeOfProperty(property string) ABPropertyType {
 	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), objc.String(property))
 	return rv
 }
 
 
-
 // Adds a person to a group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/addMember(_:)
-
 func (a_ ABGroup) AddMember(person IABPerson) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addMember:"), person)
 	return rv
 }
 
 
-
 // Adds a subgroup to another group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/addSubgroup(_:)
-
 func (a_ ABGroup) AddSubgroup(group IABGroup) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addSubgroup:"), group)
 	return rv
 }
 
 
-
 // Returns the distribution identifier for the given property and person.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/distributionIdentifier(forProperty:person:)
-
 func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property string, person IABPerson) foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), objc.String(property), person)
 	return rv
 }
 
 
-
 // Returns an array of persons in a group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/members()
-
 func (a_ ABGroup) Members() foundation.Array {
 	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("members"))
 	return rv
 }
 
 
-
 // Returns an array containing a group’s parents—that is, the groups that a group belongs to.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/parentGroups()
-
 func (a_ ABGroup) ParentGroups() foundation.Array {
 	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("parentGroups"))
 	return rv
 }
 
 
-
 // Removes a person from a group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/removeMember(_:)
-
 func (a_ ABGroup) RemoveMember(person IABPerson) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeMember:"), person)
 	return rv
 }
 
 
-
 // Removes a subgroup from a group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/removeSubgroup(_:)
-
 func (a_ ABGroup) RemoveSubgroup(group IABGroup) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeSubgroup:"), group)
 	return rv
 }
 
 
-
 // Assigns a specific distribution identifier for a person’s multivalue list property so that the group can be used as a distribution list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/setDistributionIdentifier(_:forProperty:person:)
-
 func (a_ ABGroup) SetDistributionIdentifierForPropertyPerson(identifier string, property string, person IABPerson) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setDistributionIdentifier:forProperty:person:"), objc.String(identifier), objc.String(property), person)
 	return rv
 }
 
 
-
 // Returns an array containing a group’s subgroups.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/subgroups()
-
 func (a_ ABGroup) Subgroups() foundation.Array {
 	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("subgroups"))
 	return rv

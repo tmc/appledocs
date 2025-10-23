@@ -205,6 +205,11 @@ type NSHelpBookName uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/ContextHelpKey
 // NSHelpManagerContextHelpKey has base type: NSString *
 type NSHelpManagerContextHelpKey uintptr
+// NSImageName - Named images, defined by the system or you, for use in your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/Name-swift.typealias
+// NSImageName has base type: NSString *
+type NSImageName uintptr
 // NSImageHintKey - Constants for the keys to include in a hints dictionary when drawing the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/HintKey
@@ -250,6 +255,26 @@ type NSPasteboardReadingOptionKey uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/AttributeKey
 // NSPrintInfoAttributeKey has base type: NSString *
 type NSPrintInfoAttributeKey uintptr
+// NSPrintJobDispositionValue - Constants that specify values for the print job disposition.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/JobDisposition-swift.struct
+// NSPrintJobDispositionValue has base type: NSString *
+type NSPrintJobDispositionValue uintptr
+// NSPrintInfoSettingKey - The type you use to specify a print info setting key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/SettingKey
+// NSPrintInfoSettingKey has base type: NSString *
+type NSPrintInfoSettingKey uintptr
+// NSPrintPanelJobStyleHint - Constants that specify job style hints for activating the simplified Print panel interface and setting the options to display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/JobStyleHint-swift.struct
+// NSPrintPanelJobStyleHint has base type: NSString *
+type NSPrintPanelJobStyleHint uintptr
+// NSPrinterPaperName - The type you use to specify the name of a type of paper.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/PaperName
+// NSPrinterPaperName has base type: NSString *
+type NSPrinterPaperName uintptr
 // NSRulerViewUnitName type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/UnitName
@@ -456,4 +481,19 @@ type NSWindowPersistableFrameDescriptor uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/TabbingIdentifier-swift.typealias
 // NSWindowTabbingIdentifier has base type: NSString *
 type NSWindowTabbingIdentifier uintptr
+// NSWorkspaceDesktopImageOptionKey - Keys that indicate how to display a new desktop image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/DesktopImageOptionKey
+// NSWorkspaceDesktopImageOptionKey has base type: NSString *
+type NSWorkspaceDesktopImageOptionKey uintptr
+// NSWorkspaceFileOperationName - Constants that define types of file operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/FileOperationName
+// NSWorkspaceFileOperationName has base type: NSString *
+type NSWorkspaceFileOperationName uintptr
+// NSWorkspaceLaunchConfigurationKey - The following keys can be used in the configuration dictionary of the   method.  Each key is optional, and if omitted, default behavior is applied.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/LaunchConfigurationKey
+// NSWorkspaceLaunchConfigurationKey has base type: NSString *
+type NSWorkspaceLaunchConfigurationKey uintptr
 

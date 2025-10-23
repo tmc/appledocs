@@ -32,8 +32,10 @@ type ImIncomingDataListenerRefCon interface {
 	objectivec.IObject
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mIncomingDataListenerRefCon
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mIncomingDataListenerRefCon
 type mIncomingDataListenerRefCon struct {
 	objectivec.Object
 }

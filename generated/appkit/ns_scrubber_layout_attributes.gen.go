@@ -50,7 +50,6 @@ type IScrubberLayoutAttributes interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes
-
 type ScrubberLayoutAttributes struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewScrubberLayoutAttributes() ScrubberLayoutAttributes {
 
 
 
-
 // Creates a new layout attributes object for the specified scrubber item index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/init(forItemAt:)
-
 func NewScrubberLayoutAttributesForItemAtIndex(index int) ScrubberLayoutAttributes {
 	rv := objc.Send[ScrubberLayoutAttributes](objc.ID(getScrubberLayoutAttributesClass().class), objc.Sel("layoutAttributesForItemAtIndex:"), index)
 	return rv
@@ -112,7 +109,6 @@ func NewScrubberLayoutAttributesForItemAtIndex(index int) ScrubberLayoutAttribut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/init(forItemAt:)
-
 func (sc _ScrubberLayoutAttributesClass) LayoutAttributesForItemAtIndex(index int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("layoutAttributesForItemAtIndex:"), index)
 	return rv
@@ -123,7 +119,6 @@ func (sc _ScrubberLayoutAttributesClass) LayoutAttributesForItemAtIndex(index in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/alpha
-
 func (s_ ScrubberLayoutAttributes) Alpha() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("alpha"))
 	return rv
@@ -134,7 +129,6 @@ func (s_ ScrubberLayoutAttributes) Alpha() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/alpha
-
 func (s_ ScrubberLayoutAttributes) SetAlpha(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlpha:"), value)
 }
@@ -144,7 +138,6 @@ func (s_ ScrubberLayoutAttributes) SetAlpha(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/frame
-
 func (s_ ScrubberLayoutAttributes) Frame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("frame"))
 	return rv
@@ -155,7 +148,6 @@ func (s_ ScrubberLayoutAttributes) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/frame
-
 func (s_ ScrubberLayoutAttributes) SetFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrame:"), value)
 }
@@ -165,7 +157,6 @@ func (s_ ScrubberLayoutAttributes) SetFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/itemIndex
-
 func (s_ ScrubberLayoutAttributes) ItemIndex() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("itemIndex"))
 	return rv
@@ -176,7 +167,6 @@ func (s_ ScrubberLayoutAttributes) ItemIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes/itemIndex
-
 func (s_ ScrubberLayoutAttributes) SetItemIndex(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemIndex:"), value)
 }
@@ -186,7 +176,6 @@ func (s_ ScrubberLayoutAttributes) SetItemIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-
 func (s_ ScrubberLayoutAttributes) Hash() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("hash"))
 	return rv
@@ -197,7 +186,6 @@ func (s_ ScrubberLayoutAttributes) Hash() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-
 func (s_ ScrubberLayoutAttributes) SetHash(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHash:"), value)
 }

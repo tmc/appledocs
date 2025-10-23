@@ -40,7 +40,7 @@ type IUserActivity interface {
 	ContextIdentifierPath() []string
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	ExpirationDate() NSDate
+	ExpirationDate() IDate
 	SetExpirationDate(value IDate)
 	ExternalMediaContentIdentifier() string
 	SetExternalMediaContentIdentifier(value string)
@@ -59,8 +59,8 @@ type IUserActivity interface {
 	NeedsSave() bool
 	SetNeedsSave(value bool)
 	PersistentIdentifier() UserActivityPersistentIdentifier
-	SetPersistentIdentifier(value IUserActivityPersistentIdentifier)
-	ReferrerURL() URL
+	SetPersistentIdentifier(value UserActivityPersistentIdentifier)
+	ReferrerURL() IURL
 	SetReferrerURL(value IURL)
 	RequiredUserInfoKeys() unsafe.Pointer
 	SetRequiredUserInfoKeys(value unsafe.Pointer)
@@ -76,7 +76,7 @@ type IUserActivity interface {
 	SetTitle(value string)
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
-	WebpageURL() URL
+	WebpageURL() IURL
 	SetWebpageURL(value IURL)
 	TVUserActivityTypeBrowsingChannelGuide() string
 	ActivityItemsConfiguration() unsafe.Pointer
@@ -288,7 +288,7 @@ func (u_ UserActivity) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
-func (u_ UserActivity) ExpirationDate() NSDate {
+func (u_ UserActivity) ExpirationDate() IDate {
 	rv := objc.Send[NSDate](u_.ID, objc.Sel("expirationDate"))
 	return rv
 }
@@ -470,7 +470,7 @@ func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-func (u_ UserActivity) SetPersistentIdentifier(value IUserActivityPersistentIdentifier) {
+func (u_ UserActivity) SetPersistentIdentifier(value UserActivityPersistentIdentifier) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPersistentIdentifier:"), value)
 }
 
@@ -479,7 +479,7 @@ func (u_ UserActivity) SetPersistentIdentifier(value IUserActivityPersistentIden
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
-func (u_ UserActivity) ReferrerURL() URL {
+func (u_ UserActivity) ReferrerURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("referrerURL"))
 	return rv
 }
@@ -631,7 +631,7 @@ func (u_ UserActivity) SetUserInfo(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
-func (u_ UserActivity) WebpageURL() URL {
+func (u_ UserActivity) WebpageURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("webpageURL"))
 	return rv
 }

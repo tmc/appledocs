@@ -49,7 +49,6 @@ type IAccessibilityCustomAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction
-
 type AccessibilityCustomAction struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewAccessibilityCustomAction() AccessibilityCustomAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/handler
-
 func (a_ AccessibilityCustomAction) Handler() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("handler"))
 	return rv
@@ -109,7 +107,6 @@ func (a_ AccessibilityCustomAction) Handler() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/handler
-
 func (a_ AccessibilityCustomAction) SetHandler(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHandler:"), value)
 }
@@ -119,7 +116,6 @@ func (a_ AccessibilityCustomAction) SetHandler(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/name
-
 func (a_ AccessibilityCustomAction) Name() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
@@ -130,7 +126,6 @@ func (a_ AccessibilityCustomAction) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/name
-
 func (a_ AccessibilityCustomAction) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -140,7 +135,6 @@ func (a_ AccessibilityCustomAction) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/selector
-
 func (a_ AccessibilityCustomAction) Selector() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selector"))
 	return rv
@@ -151,7 +145,6 @@ func (a_ AccessibilityCustomAction) Selector() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/selector
-
 func (a_ AccessibilityCustomAction) SetSelector(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelector:"), value)
 }
@@ -161,7 +154,6 @@ func (a_ AccessibilityCustomAction) SetSelector(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/target
-
 func (a_ AccessibilityCustomAction) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("target"))
 	return rv
@@ -172,7 +164,6 @@ func (a_ AccessibilityCustomAction) Target() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/target
-
 func (a_ AccessibilityCustomAction) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
 }

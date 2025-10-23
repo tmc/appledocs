@@ -63,7 +63,6 @@ type IEKEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent
-
 type EKEvent struct {
 	EKCalendarItem
 }
@@ -110,12 +109,10 @@ func NewEKEvent() EKEvent {
 
 
 
-
 // Creates and returns a new event belonging to a specified event store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/init(eventStore:)
-
 func NewEKEventWithEventStore(eventStore IEKEventStore) EKEvent {
 	rv := objc.Send[EKEvent](objc.ID(getEKEventClass().class), objc.Sel("eventWithEventStore:"), eventStore)
 	return rv
@@ -127,31 +124,26 @@ func NewEKEventWithEventStore(eventStore IEKEventStore) EKEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/init(eventStore:)
-
 func (ec _EKEventClass) EventWithEventStore(eventStore IEKEventStore) EKEvent {
 	rv := objc.Send[EKEvent](objc.ID(ec.class), objc.Sel("eventWithEventStore:"), eventStore)
 	return rv
 }
 
 
-
 // Compares the start date of the receiving event with the start date of another event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/compareStartDate(with:)
-
 func (e_ EKEvent) CompareStartDateWithEvent(other IEKEvent) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("compareStartDateWithEvent:"), other)
 	return rv
 }
 
 
-
 // Updates the event’s data with the current information in the Calendar database.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/refresh()
-
 func (e_ EKEvent) Refresh() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("refresh"))
 	return rv
@@ -162,7 +154,6 @@ func (e_ EKEvent) Refresh() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/availability
-
 func (e_ EKEvent) Availability() EKEventAvailability {
 	rv := objc.Send[EKEventAvailability](e_.ID, objc.Sel("availability"))
 	return rv
@@ -173,7 +164,6 @@ func (e_ EKEvent) Availability() EKEventAvailability {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/availability
-
 func (e_ EKEvent) SetAvailability(value IEKEventAvailability) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAvailability:"), value)
 }
@@ -183,7 +173,6 @@ func (e_ EKEvent) SetAvailability(value IEKEventAvailability) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayContactIdentifier
-
 func (e_ EKEvent) BirthdayContactIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("birthdayContactIdentifier"))
 	return rv
@@ -194,7 +183,6 @@ func (e_ EKEvent) BirthdayContactIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayPersonID
-
 func (e_ EKEvent) BirthdayPersonID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("birthdayPersonID"))
 	return rv
@@ -205,7 +193,6 @@ func (e_ EKEvent) BirthdayPersonID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayPersonUniqueID
-
 func (e_ EKEvent) BirthdayPersonUniqueID() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("birthdayPersonUniqueID"))
 	return rv
@@ -216,7 +203,6 @@ func (e_ EKEvent) BirthdayPersonUniqueID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/endDate
-
 func (e_ EKEvent) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("endDate"))
 	return rv
@@ -227,7 +213,6 @@ func (e_ EKEvent) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/endDate
-
 func (e_ EKEvent) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEndDate:"), value)
 }
@@ -237,7 +222,6 @@ func (e_ EKEvent) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/eventIdentifier
-
 func (e_ EKEvent) EventIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("eventIdentifier"))
 	return rv
@@ -248,7 +232,6 @@ func (e_ EKEvent) EventIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/isAllDay
-
 func (e_ EKEvent) AllDay() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("allDay"))
 	return rv
@@ -259,7 +242,6 @@ func (e_ EKEvent) AllDay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/isAllDay
-
 func (e_ EKEvent) SetAllDay(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAllDay:"), value)
 }
@@ -269,7 +251,6 @@ func (e_ EKEvent) SetAllDay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/isDetached
-
 func (e_ EKEvent) IsDetached() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDetached"))
 	return rv
@@ -280,7 +261,6 @@ func (e_ EKEvent) IsDetached() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/occurrenceDate
-
 func (e_ EKEvent) OccurrenceDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("occurrenceDate"))
 	return rv
@@ -291,7 +271,6 @@ func (e_ EKEvent) OccurrenceDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/organizer
-
 func (e_ EKEvent) Organizer() EKParticipant {
 	rv := objc.Send[EKParticipant](e_.ID, objc.Sel("organizer"))
 	return rv
@@ -302,7 +281,6 @@ func (e_ EKEvent) Organizer() EKParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/startDate
-
 func (e_ EKEvent) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("startDate"))
 	return rv
@@ -313,7 +291,6 @@ func (e_ EKEvent) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/startDate
-
 func (e_ EKEvent) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDate:"), value)
 }
@@ -323,7 +300,6 @@ func (e_ EKEvent) SetStartDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/status
-
 func (e_ EKEvent) Status() EKEventStatus {
 	rv := objc.Send[EKEventStatus](e_.ID, objc.Sel("status"))
 	return rv
@@ -334,7 +310,6 @@ func (e_ EKEvent) Status() EKEventStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/structuredLocation
-
 func (e_ EKEvent) StructuredLocation() EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](e_.ID, objc.Sel("structuredLocation"))
 	return rv
@@ -345,7 +320,6 @@ func (e_ EKEvent) StructuredLocation() EKStructuredLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/structuredLocation
-
 func (e_ EKEvent) SetStructuredLocation(value IEKStructuredLocation) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
 }
@@ -355,7 +329,6 @@ func (e_ EKEvent) SetStructuredLocation(value IEKStructuredLocation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekevent/isallday
-
 func (e_ EKEvent) IsAllDay() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isAllDay"))
 	return rv
@@ -366,7 +339,6 @@ func (e_ EKEvent) IsAllDay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekevent/isallday
-
 func (e_ EKEvent) SetIsAllDay(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsAllDay:"), value)
 }

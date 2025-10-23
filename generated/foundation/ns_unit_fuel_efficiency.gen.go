@@ -117,7 +117,7 @@ func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() UnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/litersPer100Kilometers
-func (u_ UnitFuelEfficiency) LitersPer100Kilometers() NSUnitFuelEfficiency {
+func (u_ UnitFuelEfficiency) LitersPer100Kilometers() IUnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("litersPer100Kilometers"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (u_ UnitFuelEfficiency) LitersPer100Kilometers() NSUnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
-func (u_ UnitFuelEfficiency) MilesPerGallon() NSUnitFuelEfficiency {
+func (u_ UnitFuelEfficiency) MilesPerGallon() IUnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerGallon"))
 	return rv
 }
@@ -137,7 +137,7 @@ func (u_ UnitFuelEfficiency) MilesPerGallon() NSUnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
-func (u_ UnitFuelEfficiency) MilesPerImperialGallon() NSUnitFuelEfficiency {
+func (u_ UnitFuelEfficiency) MilesPerImperialGallon() IUnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerImperialGallon"))
 	return rv
 }

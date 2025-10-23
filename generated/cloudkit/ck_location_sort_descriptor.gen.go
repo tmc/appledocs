@@ -43,7 +43,6 @@ type ICKLocationSortDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor
-
 type CKLocationSortDescriptor struct {
 	foundation.SortDescriptor
 }
@@ -90,12 +89,10 @@ func NewCKLocationSortDescriptor() CKLocationSortDescriptor {
 
 
 
-
 // Creates a location sort descriptor from a serialized instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(coder:)
-
 func NewCKLocationSortDescriptorWithCoder(aDecoder foundation.ICoder) CKLocationSortDescriptor {
 	instance := getCKLocationSortDescriptorClass().Alloc()
 	rv := objc.Send[CKLocationSortDescriptor](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -104,12 +101,10 @@ func NewCKLocationSortDescriptorWithCoder(aDecoder foundation.ICoder) CKLocation
 }
 
 
-
 // Creates a location sort descriptor using the specified key and relative location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(key:relativeLocation:)
-
 func NewCKLocationSortDescriptorWithKeyRelativeLocation(key string, relativeLocation corelocation.ILocation) CKLocationSortDescriptor {
 	instance := getCKLocationSortDescriptorClass().Alloc()
 	rv := objc.Send[CKLocationSortDescriptor](instance.ID, objc.Sel("initWithKey:relativeLocation:"), objc.String(key), relativeLocation)
@@ -123,7 +118,6 @@ func NewCKLocationSortDescriptorWithKeyRelativeLocation(key string, relativeLoca
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/relativeLocation
-
 func (c_ CKLocationSortDescriptor) RelativeLocation() corelocation.Location {
 	rv := objc.Send[corelocation.Location](c_.ID, objc.Sel("relativeLocation"))
 	return rv

@@ -41,7 +41,6 @@ type IDispatchConcurrentQueue interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchConcurrentQueue
-
 type DispatchConcurrentQueue struct {
 	objectivec.Object
 }

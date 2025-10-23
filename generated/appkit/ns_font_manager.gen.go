@@ -58,7 +58,6 @@ type IFontManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager
-
 type FontManager struct {
 	objectivec.Object
 }
@@ -103,12 +102,10 @@ func NewFontManager() FontManager {
 
 
 
-
 // Records the given menu as the application’s Font menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/setFontMenu(_:)
-
 func (f_ FontManager) SetFontMenu(newMenu IMenu) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFontMenu:"), newMenu)
 }
@@ -118,7 +115,6 @@ func (f_ FontManager) SetFontMenu(newMenu IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/action
-
 func (f_ FontManager) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("action"))
 	return rv
@@ -129,7 +125,6 @@ func (f_ FontManager) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/action
-
 func (f_ FontManager) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAction:"), value)
 }
@@ -139,7 +134,6 @@ func (f_ FontManager) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefontfamilies
-
 func (f_ FontManager) AvailableFontFamilies() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("availableFontFamilies"))
 	return rv
@@ -150,7 +144,6 @@ func (f_ FontManager) AvailableFontFamilies() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefontfamilies
-
 func (f_ FontManager) SetAvailableFontFamilies(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableFontFamilies:"), objc.String(value))
 }
@@ -160,7 +153,6 @@ func (f_ FontManager) SetAvailableFontFamilies(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefonts
-
 func (f_ FontManager) AvailableFonts() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("availableFonts"))
 	return rv
@@ -171,7 +163,6 @@ func (f_ FontManager) AvailableFonts() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefonts
-
 func (f_ FontManager) SetAvailableFonts(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableFonts:"), objc.String(value))
 }
@@ -181,7 +172,6 @@ func (f_ FontManager) SetAvailableFonts(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/currentfontaction
-
 func (f_ FontManager) CurrentFontAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("currentFontAction"))
 	return rv
@@ -192,7 +182,6 @@ func (f_ FontManager) CurrentFontAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/currentfontaction
-
 func (f_ FontManager) SetCurrentFontAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCurrentFontAction:"), value)
 }
@@ -202,7 +191,6 @@ func (f_ FontManager) SetCurrentFontAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/isenabled
-
 func (f_ FontManager) IsEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -213,7 +201,6 @@ func (f_ FontManager) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/isenabled
-
 func (f_ FontManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -223,7 +210,6 @@ func (f_ FontManager) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/ismultiple
-
 func (f_ FontManager) IsMultiple() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isMultiple"))
 	return rv
@@ -234,7 +220,6 @@ func (f_ FontManager) IsMultiple() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/ismultiple
-
 func (f_ FontManager) SetIsMultiple(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMultiple:"), value)
 }
@@ -244,7 +229,6 @@ func (f_ FontManager) SetIsMultiple(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/selectedfont
-
 func (f_ FontManager) SelectedFont() NSFont {
 	rv := objc.Send[NSFont](f_.ID, objc.Sel("selectedFont"))
 	return rv
@@ -255,7 +239,6 @@ func (f_ FontManager) SelectedFont() NSFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/selectedfont
-
 func (f_ FontManager) SetSelectedFont(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSelectedFont:"), value)
 }
@@ -265,7 +248,6 @@ func (f_ FontManager) SetSelectedFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/target
-
 func (f_ FontManager) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("target"))
 	return rv
@@ -276,7 +258,6 @@ func (f_ FontManager) Target() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/target
-
 func (f_ FontManager) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTarget:"), value)
 }

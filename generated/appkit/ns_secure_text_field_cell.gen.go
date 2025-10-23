@@ -42,7 +42,6 @@ type ISecureTextFieldCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextFieldCell
-
 type SecureTextFieldCell struct {
 	TextFieldCell
 }
@@ -93,7 +92,6 @@ func NewSecureTextFieldCell() SecureTextFieldCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssecuretextfieldcell/echosbullets
-
 func (s_ SecureTextFieldCell) EchosBullets() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("echosBullets"))
 	return rv
@@ -104,7 +102,6 @@ func (s_ SecureTextFieldCell) EchosBullets() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssecuretextfieldcell/echosbullets
-
 func (s_ SecureTextFieldCell) SetEchosBullets(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEchosBullets:"), value)
 }

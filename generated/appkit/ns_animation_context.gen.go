@@ -50,7 +50,6 @@ type IAnimationContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext
-
 type AnimationContext struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewAnimationContext() AnimationContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/endGrouping()
-
 func (ac _AnimationContextClass) EndGrouping() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("endGrouping"))
 }
@@ -109,7 +107,6 @@ func (ac _AnimationContextClass) EndGrouping() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/runAnimationGroup(_:completionHandler:)
-
 func (ac _AnimationContextClass) RunAnimationGroupCompletionHandler(changes unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runAnimationGroup:completionHandler:"), changes, completionHandler)
 }
@@ -119,7 +116,6 @@ func (ac _AnimationContextClass) RunAnimationGroupCompletionHandler(changes unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
-
 func (ac _AnimationContextClass) CurrentContext() AnimationContext {
 	rv := objc.Send[NSAnimationContext](objc.ID(ac.class), objc.Sel("currentContext"))
 	return rv
@@ -129,7 +125,6 @@ func (ac _AnimationContextClass) CurrentContext() AnimationContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
-
 func (a_ AnimationContext) CurrentContext() NSAnimationContext {
 	rv := objc.Send[NSAnimationContext](a_.ID, objc.Sel("currentContext"))
 	return rv
@@ -140,7 +135,6 @@ func (a_ AnimationContext) CurrentContext() NSAnimationContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/allowsimplicitanimation
-
 func (a_ AnimationContext) AllowsImplicitAnimation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsImplicitAnimation"))
 	return rv
@@ -151,7 +145,6 @@ func (a_ AnimationContext) AllowsImplicitAnimation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/allowsimplicitanimation
-
 func (a_ AnimationContext) SetAllowsImplicitAnimation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsImplicitAnimation:"), value)
 }
@@ -161,7 +154,6 @@ func (a_ AnimationContext) SetAllowsImplicitAnimation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/completionhandler
-
 func (a_ AnimationContext) CompletionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("completionHandler"))
 	return rv
@@ -172,7 +164,6 @@ func (a_ AnimationContext) CompletionHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/completionhandler
-
 func (a_ AnimationContext) SetCompletionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCompletionHandler:"), value)
 }
@@ -182,7 +173,6 @@ func (a_ AnimationContext) SetCompletionHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/duration
-
 func (a_ AnimationContext) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("duration"))
 	return rv
@@ -193,7 +183,6 @@ func (a_ AnimationContext) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/duration
-
 func (a_ AnimationContext) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
 }
@@ -203,7 +192,6 @@ func (a_ AnimationContext) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
-
 func (a_ AnimationContext) TimingFunction() quartzcore.MediaTimingFunction {
 	rv := objc.Send[quartzcore.MediaTimingFunction](a_.ID, objc.Sel("timingFunction"))
 	return rv
@@ -214,7 +202,6 @@ func (a_ AnimationContext) TimingFunction() quartzcore.MediaTimingFunction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
-
 func (a_ AnimationContext) SetTimingFunction(value quartzcore.IMediaTimingFunction) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimingFunction:"), value)
 }

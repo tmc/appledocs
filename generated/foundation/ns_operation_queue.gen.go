@@ -45,8 +45,8 @@ type IOperationQueue interface {
 	OperationCount() uint
 	Operations() []Operation
 	Progress() Progress
-	QualityOfService() QualityOfService
-	SetQualityOfService(value IQualityOfService)
+	QualityOfService() NSQualityOfService
+	SetQualityOfService(value NSQualityOfService)
 	UnderlyingQueue() unsafe.Pointer
 	SetUnderlyingQueue(value unsafe.Pointer)
 	IsReady() bool
@@ -186,7 +186,7 @@ func (o_ OperationQueue) WaitUntilAllOperationsAreFinished() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/current
-func (o_ OperationQueue) CurrentQueue() NSOperationQueue {
+func (o_ OperationQueue) CurrentQueue() IOperationQueue {
 	rv := objc.Send[NSOperationQueue](o_.ID, objc.Sel("currentQueue"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (o_ OperationQueue) SetSuspended(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/main
-func (o_ OperationQueue) MainQueue() NSOperationQueue {
+func (o_ OperationQueue) MainQueue() IOperationQueue {
 	rv := objc.Send[NSOperationQueue](o_.ID, objc.Sel("mainQueue"))
 	return rv
 }
@@ -293,7 +293,7 @@ func (o_ OperationQueue) Progress() Progress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/qualityOfService
-func (o_ OperationQueue) QualityOfService() QualityOfService {
+func (o_ OperationQueue) QualityOfService() NSQualityOfService {
 	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
@@ -303,7 +303,7 @@ func (o_ OperationQueue) QualityOfService() QualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/qualityOfService
-func (o_ OperationQueue) SetQualityOfService(value IQualityOfService) {
+func (o_ OperationQueue) SetQualityOfService(value NSQualityOfService) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
 

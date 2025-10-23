@@ -36,7 +36,6 @@ type IexceptionHangingMask interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/struct_(unnamed)/exceptionHangingMask
-
 type exceptionHangingMask struct {
 	objectivec.Object
 }

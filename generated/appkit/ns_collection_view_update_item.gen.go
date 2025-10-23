@@ -48,7 +48,6 @@ type ICollectionViewUpdateItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewUpdateItem
-
 type CollectionViewUpdateItem struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewCollectionViewUpdateItem() CollectionViewUpdateItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathafterupdate
-
 func (c_ CollectionViewUpdateItem) IndexPathAfterUpdate() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPathAfterUpdate"))
 	return rv
@@ -108,7 +106,6 @@ func (c_ CollectionViewUpdateItem) IndexPathAfterUpdate() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathafterupdate
-
 func (c_ CollectionViewUpdateItem) SetIndexPathAfterUpdate(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPathAfterUpdate:"), value)
 }
@@ -118,7 +115,6 @@ func (c_ CollectionViewUpdateItem) SetIndexPathAfterUpdate(value foundation.IInd
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathbeforeupdate
-
 func (c_ CollectionViewUpdateItem) IndexPathBeforeUpdate() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPathBeforeUpdate"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CollectionViewUpdateItem) IndexPathBeforeUpdate() foundation.IndexPath 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/indexpathbeforeupdate
-
 func (c_ CollectionViewUpdateItem) SetIndexPathBeforeUpdate(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPathBeforeUpdate:"), value)
 }
@@ -139,7 +134,6 @@ func (c_ CollectionViewUpdateItem) SetIndexPathBeforeUpdate(value foundation.IIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/updateaction
-
 func (c_ CollectionViewUpdateItem) UpdateAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("updateAction"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CollectionViewUpdateItem) UpdateAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem/updateaction
-
 func (c_ CollectionViewUpdateItem) SetUpdateAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUpdateAction:"), value)
 }

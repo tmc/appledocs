@@ -44,7 +44,6 @@ type IOpenGLPixelFormat interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat
-
 type OpenGLPixelFormat struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewOpenGLPixelFormat() OpenGLPixelFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/cglPixelFormatObj
-
 func (o_ OpenGLPixelFormat) CGLPixelFormatObj() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLPixelFormatObj"))
 	return rv
@@ -104,7 +102,6 @@ func (o_ OpenGLPixelFormat) CGLPixelFormatObj() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
-
 func (o_ OpenGLPixelFormat) NumberOfVirtualScreens() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("numberOfVirtualScreens"))
 	return rv
@@ -115,7 +112,6 @@ func (o_ OpenGLPixelFormat) NumberOfVirtualScreens() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
-
 func (o_ OpenGLPixelFormat) SetNumberOfVirtualScreens(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNumberOfVirtualScreens:"), value)
 }

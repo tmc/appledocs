@@ -42,7 +42,6 @@ type ICXCallAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction
-
 type CXCallAction struct {
 	CXAction
 }
@@ -89,12 +88,10 @@ func NewCXCallAction() CXCallAction {
 
 
 
-
 // Initializes a new action for a call identified by a given UUID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(call:)
-
 func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCallUUID:"), callUUID)
@@ -103,12 +100,10 @@ func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
 }
 
 
-
 // Creates a new action for a call with data in an unarchiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(coder:)
-
 func NewCXCallActionWithCoder(aDecoder foundation.ICoder) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -122,7 +117,6 @@ func NewCXCallActionWithCoder(aDecoder foundation.ICoder) CXCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/callUUID
-
 func (c_ CXCallAction) CallUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("callUUID"))
 	return rv

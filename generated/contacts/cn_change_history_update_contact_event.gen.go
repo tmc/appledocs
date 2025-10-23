@@ -39,7 +39,6 @@ type ICNChangeHistoryUpdateContactEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateContactEvent
-
 type CNChangeHistoryUpdateContactEvent struct {
 	CNChangeHistoryEvent
 }
@@ -90,7 +89,6 @@ func NewCNChangeHistoryUpdateContactEvent() CNChangeHistoryUpdateContactEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateContactEvent/contact
-
 func (c_ CNChangeHistoryUpdateContactEvent) Contact() CNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv

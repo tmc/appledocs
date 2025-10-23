@@ -40,7 +40,6 @@ type IHKWorkoutRouteQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutRouteQuery
-
 type HKWorkoutRouteQuery struct {
 	HKQuery
 }

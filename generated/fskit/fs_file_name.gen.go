@@ -45,7 +45,6 @@ type IFSFileName interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName
-
 type FSFileName struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewFSFileName() FSFileName {
 
 
 
-
 // Initializes a file name by copying a character sequence from a byte array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/initWithBytes:length:
-
 func NewFSFileNameWithBytesLength(bytes unsafe.Pointer, length uint) FSFileName {
 	instance := getFSFileNameClass().Alloc()
 	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithBytes:length:"), bytes, length)
@@ -104,12 +101,10 @@ func NewFSFileNameWithBytesLength(bytes unsafe.Pointer, length uint) FSFileName 
 }
 
 
-
 // Initializes a filename from a null-terminated character sequence.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/initWithCString:
-
 func NewFSFileNameWithCString(name unsafe.Pointer) FSFileName {
 	instance := getFSFileNameClass().Alloc()
 	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithCString:"), name)
@@ -118,12 +113,10 @@ func NewFSFileNameWithCString(name unsafe.Pointer) FSFileName {
 }
 
 
-
 // Creates a filename by copying a character sequence data object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(data:)
-
 func NewFSFileNameWithData(name foundation.IData) FSFileName {
 	instance := getFSFileNameClass().Alloc()
 	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithData:"), name)
@@ -132,12 +125,10 @@ func NewFSFileNameWithData(name foundation.IData) FSFileName {
 }
 
 
-
 // Creates a filename by copying a character sequence from a string instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(string:)
-
 func NewFSFileNameWithString(name string) FSFileName {
 	instance := getFSFileNameClass().Alloc()
 	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithString:"), objc.String(name))
@@ -151,7 +142,6 @@ func NewFSFileNameWithString(name string) FSFileName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithBytes:length:
-
 func (fc _FSFileNameClass) NameWithBytesLength(bytes unsafe.Pointer, length uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithBytes:length:"), bytes, length)
 	return rv
@@ -162,7 +152,6 @@ func (fc _FSFileNameClass) NameWithBytesLength(bytes unsafe.Pointer, length uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithCString:
-
 func (fc _FSFileNameClass) NameWithCString(name unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithCString:"), name)
 	return rv
@@ -173,7 +162,6 @@ func (fc _FSFileNameClass) NameWithCString(name unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithData:
-
 func (fc _FSFileNameClass) NameWithData(name foundation.IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithData:"), name)
 	return rv
@@ -184,7 +172,6 @@ func (fc _FSFileNameClass) NameWithData(name foundation.IData) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithString:
-
 func (fc _FSFileNameClass) NameWithString(name string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithString:"), objc.String(name))
 	return rv
@@ -195,7 +182,6 @@ func (fc _FSFileNameClass) NameWithString(name string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/data
-
 func (f_ FSFileName) Data() foundation.NSData {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("data"))
 	return rv
@@ -206,7 +192,6 @@ func (f_ FSFileName) Data() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/debugDescription
-
 func (f_ FSFileName) DebugDescription() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("debugDescription"))
 	return rv
@@ -217,7 +202,6 @@ func (f_ FSFileName) DebugDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/string
-
 func (f_ FSFileName) String() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("string"))
 	return rv

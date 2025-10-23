@@ -44,7 +44,6 @@ type ICircleObstacle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle
-
 type CircleObstacle struct {
 	Obstacle
 }
@@ -91,12 +90,10 @@ func NewCircleObstacle() CircleObstacle {
 
 
 
-
 // Initializes a circular obstacle with the specified radius.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/init(radius:)
-
 func NewCircleObstacleWithRadius(radius float32) CircleObstacle {
 	instance := getCircleObstacleClass().Alloc()
 	rv := objc.Send[CircleObstacle](instance.ID, objc.Sel("initWithRadius:"), radius)
@@ -110,7 +107,6 @@ func NewCircleObstacleWithRadius(radius float32) CircleObstacle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/obstacleWithRadius:
-
 func (cc _CircleObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("obstacleWithRadius:"), radius)
 	return rv
@@ -121,7 +117,6 @@ func (cc _CircleObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/position
-
 func (c_ CircleObstacle) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("position"))
 	return rv
@@ -132,7 +127,6 @@ func (c_ CircleObstacle) Position() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/position
-
 func (c_ CircleObstacle) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPosition:"), value)
 }
@@ -142,7 +136,6 @@ func (c_ CircleObstacle) SetPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
-
 func (c_ CircleObstacle) Radius() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("radius"))
 	return rv
@@ -153,7 +146,6 @@ func (c_ CircleObstacle) Radius() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
-
 func (c_ CircleObstacle) SetRadius(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }

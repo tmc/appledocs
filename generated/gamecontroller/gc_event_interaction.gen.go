@@ -47,7 +47,6 @@ type IGCEventInteraction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction
-
 type GCEventInteraction struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewGCEventInteraction() GCEventInteraction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-
 func (g_ GCEventInteraction) HandledEventTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("handledEventTypes"))
 	return rv
@@ -107,7 +105,6 @@ func (g_ GCEventInteraction) HandledEventTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-
 func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHandledEventTypes:"), value)
 }
@@ -117,7 +114,6 @@ func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/controllerpausedhandler
-
 func (g_ GCEventInteraction) ControllerPausedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controllerPausedHandler"))
 	return rv
@@ -128,7 +124,6 @@ func (g_ GCEventInteraction) ControllerPausedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/controllerpausedhandler
-
 func (g_ GCEventInteraction) SetControllerPausedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControllerPausedHandler:"), value)
 }
@@ -138,7 +133,6 @@ func (g_ GCEventInteraction) SetControllerPausedHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
-
 func (g_ GCEventInteraction) ReceivesEventsInView() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("receivesEventsInView"))
 	return rv
@@ -149,7 +143,6 @@ func (g_ GCEventInteraction) ReceivesEventsInView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gceventinteraction/receiveseventsinview
-
 func (g_ GCEventInteraction) SetReceivesEventsInView(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReceivesEventsInView:"), value)
 }

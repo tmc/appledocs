@@ -46,7 +46,6 @@ type ITKToken interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken
-
 type TKToken struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewTKToken() TKToken {
 
 
 
-
 // Initializes a token with the driver you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/init(tokenDriver:instanceID:)
-
 func NewTKTokenWithTokenDriverInstanceID(tokenDriver ITKTokenDriver, instanceID ITKTokenInstanceID) TKToken {
 	instance := getTKTokenClass().Alloc()
 	rv := objc.Send[TKToken](instance.ID, objc.Sel("initWithTokenDriver:instanceID:"), tokenDriver, instanceID)
@@ -110,7 +107,6 @@ func NewTKTokenWithTokenDriverInstanceID(tokenDriver ITKTokenDriver, instanceID 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/configuration-swift.property
-
 func (t_ TKToken) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("configuration"))
 	return rv
@@ -121,7 +117,6 @@ func (t_ TKToken) Configuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/delegate
-
 func (t_ TKToken) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -132,7 +127,6 @@ func (t_ TKToken) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/delegate
-
 func (t_ TKToken) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -142,7 +136,6 @@ func (t_ TKToken) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-
 func (t_ TKToken) KeychainContents() TKTokenKeychainContents {
 	rv := objc.Send[TKTokenKeychainContents](t_.ID, objc.Sel("keychainContents"))
 	return rv
@@ -153,7 +146,6 @@ func (t_ TKToken) KeychainContents() TKTokenKeychainContents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-
 func (t_ TKToken) SetKeychainContents(value ITKTokenKeychainContents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainContents:"), value)
 }
@@ -163,7 +155,6 @@ func (t_ TKToken) SetKeychainContents(value ITKTokenKeychainContents) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
-
 func (t_ TKToken) TokenDriver() TKTokenDriver {
 	rv := objc.Send[TKTokenDriver](t_.ID, objc.Sel("tokenDriver"))
 	return rv
@@ -174,7 +165,6 @@ func (t_ TKToken) TokenDriver() TKTokenDriver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
-
 func (t_ TKToken) SetTokenDriver(value ITKTokenDriver) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenDriver:"), value)
 }

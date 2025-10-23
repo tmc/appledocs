@@ -43,7 +43,6 @@ type IMutableAssetDownloadStorageManagementPolicy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAssetDownloadStorageManagementPolicy
-
 type MutableAssetDownloadStorageManagementPolicy struct {
 	AssetDownloadStorageManagementPolicy
 }
@@ -94,7 +93,6 @@ func NewMutableAssetDownloadStorageManagementPolicy() MutableAssetDownloadStorag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/expirationdate
-
 func (m_ MutableAssetDownloadStorageManagementPolicy) ExpirationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("expirationDate"))
 	return rv
@@ -105,7 +103,6 @@ func (m_ MutableAssetDownloadStorageManagementPolicy) ExpirationDate() foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/expirationdate
-
 func (m_ MutableAssetDownloadStorageManagementPolicy) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpirationDate:"), value)
 }
@@ -115,7 +112,6 @@ func (m_ MutableAssetDownloadStorageManagementPolicy) SetExpirationDate(value fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/priority
-
 func (m_ MutableAssetDownloadStorageManagementPolicy) Priority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("priority"))
 	return rv
@@ -126,7 +122,6 @@ func (m_ MutableAssetDownloadStorageManagementPolicy) Priority() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/priority
-
 func (m_ MutableAssetDownloadStorageManagementPolicy) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }

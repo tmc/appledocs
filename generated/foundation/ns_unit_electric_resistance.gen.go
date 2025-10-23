@@ -135,7 +135,7 @@ func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/kiloohms
-func (u_ UnitElectricResistance) Kiloohms() NSUnitElectricResistance {
+func (u_ UnitElectricResistance) Kiloohms() IUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("kiloohms"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (u_ UnitElectricResistance) Kiloohms() NSUnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/megaohms
-func (u_ UnitElectricResistance) Megaohms() NSUnitElectricResistance {
+func (u_ UnitElectricResistance) Megaohms() IUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("megaohms"))
 	return rv
 }
@@ -155,7 +155,7 @@ func (u_ UnitElectricResistance) Megaohms() NSUnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/microohms
-func (u_ UnitElectricResistance) Microohms() NSUnitElectricResistance {
+func (u_ UnitElectricResistance) Microohms() IUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("microohms"))
 	return rv
 }
@@ -165,7 +165,7 @@ func (u_ UnitElectricResistance) Microohms() NSUnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/milliohms
-func (u_ UnitElectricResistance) Milliohms() NSUnitElectricResistance {
+func (u_ UnitElectricResistance) Milliohms() IUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("milliohms"))
 	return rv
 }
@@ -175,7 +175,7 @@ func (u_ UnitElectricResistance) Milliohms() NSUnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
-func (u_ UnitElectricResistance) Ohms() NSUnitElectricResistance {
+func (u_ UnitElectricResistance) Ohms() IUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("ohms"))
 	return rv
 }

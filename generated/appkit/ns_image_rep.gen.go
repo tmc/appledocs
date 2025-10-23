@@ -63,7 +63,6 @@ type IImageRep interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep
-
 type ImageRep struct {
 	objectivec.Object
 }
@@ -108,12 +107,10 @@ func NewImageRep() ImageRep {
 
 
 
-
 // Creates and returns an image representation object from data in an unarchiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(coder:)
-
 func NewImageRepWithCoder(coder foundation.ICoder) ImageRep {
 	instance := getImageRepClass().Alloc()
 	rv := objc.Send[ImageRep](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -122,12 +119,10 @@ func NewImageRepWithCoder(coder foundation.ICoder) ImageRep {
 }
 
 
-
 // Creates and returns an image representation object using the contents of the specified pasteboard.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
-
 func NewImageRepWithPasteboard(pasteboard IPasteboard) ImageRep {
 	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
 	return rv
@@ -139,9 +134,18 @@ func NewImageRepWithPasteboard(pasteboard IPasteboard) ImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/class(for:)
-
 func (ic _ImageRepClass) ImageRepClassForData(data foundation.IData) objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForData:"), data)
+	return rv
+}
+
+
+// Returns the list of pasteboard types supported directly by the image representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/imageUnfilteredPasteboardTypes()
+func (ic _ImageRepClass) ImageUnfilteredPasteboardTypes() []string {
+	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imageUnfilteredPasteboardTypes"))
 	return rv
 }
 
@@ -150,55 +154,46 @@ func (ic _ImageRepClass) ImageRepClassForData(data foundation.IData) objc.Class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
-
 func (ic _ImageRepClass) ImageRepWithPasteboard(pasteboard IPasteboard) ImageRep {
 	rv := objc.Send[ImageRep](objc.ID(ic.class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
 	return rv
 }
 
 
-
 // Implemented by subclasses to draw the image in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw()
-
 func (i_ ImageRep) Draw() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("draw"))
 	return rv
 }
 
 
-
 // Draws the image representation’s image data at the specified point in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(at:)
-
 func (i_ ImageRep) DrawAtPoint(point coregraphics.CGPoint) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawAtPoint:"), point)
 	return rv
 }
 
 
-
 // Draws the image, scaling it (as needed) to fit the specified rectangle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(in:)
-
 func (i_ ImageRep) DrawInRect(rect coregraphics.CGRect) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:"), rect)
 	return rv
 }
 
 
-
 // Draws all or part of the image in the specified rectangle in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(in:from:operation:fraction:respectFlipped:hints:)
-
 func (i_ ImageRep) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
 	return rv
@@ -209,7 +204,6 @@ func (i_ ImageRep) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/bitspersample
-
 func (i_ ImageRep) BitsPerSample() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("bitsPerSample"))
 	return rv
@@ -220,7 +214,6 @@ func (i_ ImageRep) BitsPerSample() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/bitspersample
-
 func (i_ ImageRep) SetBitsPerSample(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBitsPerSample:"), value)
 }
@@ -230,7 +223,6 @@ func (i_ ImageRep) SetBitsPerSample(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/colorspacename
-
 func (i_ ImageRep) ColorSpaceName() ColorSpaceName {
 	rv := objc.Send[ColorSpaceName](i_.ID, objc.Sel("colorSpaceName"))
 	return rv
@@ -241,7 +233,6 @@ func (i_ ImageRep) ColorSpaceName() ColorSpaceName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/colorspacename
-
 func (i_ ImageRep) SetColorSpaceName(value IColorSpaceName) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setColorSpaceName:"), value)
 }
@@ -251,7 +242,6 @@ func (i_ ImageRep) SetColorSpaceName(value IColorSpaceName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/hasalpha
-
 func (i_ ImageRep) HasAlpha() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasAlpha"))
 	return rv
@@ -262,7 +252,6 @@ func (i_ ImageRep) HasAlpha() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/hasalpha
-
 func (i_ ImageRep) SetHasAlpha(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHasAlpha:"), value)
 }
@@ -272,7 +261,6 @@ func (i_ ImageRep) SetHasAlpha(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/isopaque
-
 func (i_ ImageRep) IsOpaque() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isOpaque"))
 	return rv
@@ -283,7 +271,6 @@ func (i_ ImageRep) IsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/isopaque
-
 func (i_ ImageRep) SetIsOpaque(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpaque:"), value)
 }
@@ -293,7 +280,6 @@ func (i_ ImageRep) SetIsOpaque(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/layoutdirection
-
 func (i_ ImageRep) LayoutDirection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("layoutDirection"))
 	return rv
@@ -304,7 +290,6 @@ func (i_ ImageRep) LayoutDirection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/layoutdirection
-
 func (i_ ImageRep) SetLayoutDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLayoutDirection:"), value)
 }
@@ -314,7 +299,6 @@ func (i_ ImageRep) SetLayoutDirection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/pixelshigh
-
 func (i_ ImageRep) PixelsHigh() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
@@ -325,7 +309,6 @@ func (i_ ImageRep) PixelsHigh() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/pixelshigh
-
 func (i_ ImageRep) SetPixelsHigh(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
 }
@@ -335,7 +318,6 @@ func (i_ ImageRep) SetPixelsHigh(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/pixelswide
-
 func (i_ ImageRep) PixelsWide() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
@@ -346,7 +328,6 @@ func (i_ ImageRep) PixelsWide() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/pixelswide
-
 func (i_ ImageRep) SetPixelsWide(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
 }
@@ -356,7 +337,6 @@ func (i_ ImageRep) SetPixelsWide(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/size
-
 func (i_ ImageRep) Size() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("size"))
 	return rv
@@ -367,7 +347,6 @@ func (i_ ImageRep) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/size
-
 func (i_ ImageRep) SetSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
 }

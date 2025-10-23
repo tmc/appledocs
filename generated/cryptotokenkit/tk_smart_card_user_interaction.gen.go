@@ -36,9 +36,9 @@ type ITKSmartCardUserInteraction interface {
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	InitialTimeout() foundation.TimeInterval
-	SetInitialTimeout(value foundation.TimeInterval)
+	SetInitialTimeout(value foundation.ITimeInterval)
 	InteractionTimeout() foundation.TimeInterval
-	SetInteractionTimeout(value foundation.TimeInterval)
+	SetInteractionTimeout(value foundation.ITimeInterval)
 }
 
 // The base class for encapsulating user interaction with a Smart Card reader.
@@ -50,7 +50,6 @@ type ITKSmartCardUserInteraction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction
-
 type TKSmartCardUserInteraction struct {
 	objectivec.Object
 }
@@ -95,24 +94,20 @@ func NewTKSmartCardUserInteraction() TKSmartCardUserInteraction {
 
 
 
-
 // Attempts to cancel an interaction started by calling . For certain interactions, cancellation may not be available.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/cancel()
-
 func (t_ TKSmartCardUserInteraction) Cancel() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("cancel"))
 	return rv
 }
 
 
-
 // Runs the user interaction and asynchronously receives a reply.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/run(reply:)
-
 func (t_ TKSmartCardUserInteraction) RunWithReply(reply unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("runWithReply:"), reply)
 }
@@ -122,7 +117,6 @@ func (t_ TKSmartCardUserInteraction) RunWithReply(reply unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/delegate
-
 func (t_ TKSmartCardUserInteraction) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -133,7 +127,6 @@ func (t_ TKSmartCardUserInteraction) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/delegate
-
 func (t_ TKSmartCardUserInteraction) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -143,7 +136,6 @@ func (t_ TKSmartCardUserInteraction) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
-
 func (t_ TKSmartCardUserInteraction) InitialTimeout() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](t_.ID, objc.Sel("initialTimeout"))
 	return rv
@@ -154,8 +146,7 @@ func (t_ TKSmartCardUserInteraction) InitialTimeout() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
-
-func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.TimeInterval) {
+func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInitialTimeout:"), value)
 }
 
@@ -164,7 +155,6 @@ func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.TimeInte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
-
 func (t_ TKSmartCardUserInteraction) InteractionTimeout() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](t_.ID, objc.Sel("interactionTimeout"))
 	return rv
@@ -175,8 +165,7 @@ func (t_ TKSmartCardUserInteraction) InteractionTimeout() foundation.TimeInterva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
-
-func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.TimeInterval) {
+func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInteractionTimeout:"), value)
 }
 

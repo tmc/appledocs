@@ -43,7 +43,11 @@ type IBluetoothObjectPushUIController interface {
 }
 
 // An NSWindowController subclass that supports the creation of an IOBluetoothObjectPushUIController object.
+
+
+// An NSWindowController subclass that supports the creation of an IOBluetoothObjectPushUIController object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController
 type BluetoothObjectPushUIController struct {
 	appkit.WindowController
@@ -91,9 +95,9 @@ func NewBluetoothObjectPushUIController() BluetoothObjectPushUIController {
 
 
 
-
 // Creates and returns a new IOBluetoothObjectPush object
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/init(objectPushWith:withFiles:delegate:)
 func NewBluetoothObjectPushUIControllerObjectPushWithBluetoothDeviceWithFilesDelegate(inDevice iobluetooth.IBluetoothDevice, inFiles objectivec.IObject, inDelegate objectivec.IObject) BluetoothObjectPushUIController {
 	instance := getBluetoothObjectPushUIControllerClass().Alloc()
@@ -103,54 +107,68 @@ func NewBluetoothObjectPushUIControllerObjectPushWithBluetoothDeviceWithFilesDel
 }
 
 
+
 // Runs the transfer UI as a sheet on the target window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/beginSheetModal(for:modalDelegate:didEnd:contextInfo:)
 func (b_ BluetoothObjectPushUIController) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow appkit.IWindow, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:"), sheetWindow, modalDelegate, didEndSelector, contextInfo)
 	return rv
 }
 
+
 // Gets the object representing the remote target device in the transfer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/getDevice()
 func (b_ BluetoothObjectPushUIController) GetDevice() iobluetooth.BluetoothDevice {
 	rv := objc.Send[iobluetooth.BluetoothDevice](b_.ID, objc.Sel("getDevice"))
 	return rv
 }
 
+
 // Returns the title of the transfer panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/getTitle()
 func (b_ BluetoothObjectPushUIController) GetTitle() foundation.String {
 	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getTitle"))
 	return rv
 }
 
+
 // Gets state of the transfer
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/isTransferInProgress()
 func (b_ BluetoothObjectPushUIController) IsTransferInProgress() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTransferInProgress"))
 	return rv
 }
 
+
 // Manually sets the icon used in the panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/setIconImage(_:)
 func (b_ BluetoothObjectPushUIController) SetIconImage(image appkit.IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIconImage:"), image)
 }
 
+
 // Sets the title of the panel when not run as a sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/setTitle(_:)
 func (b_ BluetoothObjectPushUIController) SetTitle(windowTitle string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(windowTitle))
 }
 
+
 // Stops the transfer UI
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/stop()
 func (b_ BluetoothObjectPushUIController) Stop() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("stop"))

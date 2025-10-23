@@ -46,7 +46,6 @@ type ICKShareRequestAccessOperation interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation
-
 type CKShareRequestAccessOperation struct {
 	CKOperation
 }
@@ -91,12 +90,10 @@ func NewCKShareRequestAccessOperation() CKShareRequestAccessOperation {
 
 
 
-
 // Creates a share request access operation configured with specified share URLs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/init(shareURLs:)
-
 func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.IURL) CKShareRequestAccessOperation {
 	instance := getCKShareRequestAccessOperationClass().Alloc()
 	rv := objc.Send[CKShareRequestAccessOperation](instance.ID, objc.Sel("initWithShareURLs:"), shareURLs)
@@ -110,7 +107,6 @@ func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.IURL) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/perShareAccessRequestCompletionBlock
-
 func (c_ CKShareRequestAccessOperation) PerShareAccessRequestCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareAccessRequestCompletionBlock"))
 	return rv
@@ -121,7 +117,6 @@ func (c_ CKShareRequestAccessOperation) PerShareAccessRequestCompletionBlock() u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/perShareAccessRequestCompletionBlock
-
 func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareAccessRequestCompletionBlock:"), value)
 }
@@ -131,7 +126,6 @@ func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestCompletionBlock(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareRequestAccessCompletionBlock
-
 func (c_ CKShareRequestAccessOperation) ShareRequestAccessCompletionBlock() func(error objc.ID) {
 	rv := objc.Send[func(error objc.ID)](c_.ID, objc.Sel("shareRequestAccessCompletionBlock"))
 	return rv
@@ -142,7 +136,6 @@ func (c_ CKShareRequestAccessOperation) ShareRequestAccessCompletionBlock() func
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareRequestAccessCompletionBlock
-
 func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(value func(error objc.ID)) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareRequestAccessCompletionBlock:"), value)
 }
@@ -152,7 +145,6 @@ func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-
 func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.URL {
 	rv := objc.Send[[]foundation.URL](c_.ID, objc.Sel("shareURLs"))
 	return rv
@@ -163,7 +155,6 @@ func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-
 func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.IURL) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -183,7 +174,6 @@ func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
-
 func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareAccessRequestResultBlock"))
 	return rv
@@ -194,7 +184,6 @@ func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
-
 func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareAccessRequestResultBlock:"), value)
 }
@@ -204,7 +193,6 @@ func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestResultBlock(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/shareaccessrequestresultblock
-
 func (c_ CKShareRequestAccessOperation) ShareAccessRequestResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shareAccessRequestResultBlock"))
 	return rv
@@ -215,7 +203,6 @@ func (c_ CKShareRequestAccessOperation) ShareAccessRequestResultBlock() unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/shareaccessrequestresultblock
-
 func (c_ CKShareRequestAccessOperation) SetShareAccessRequestResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareAccessRequestResultBlock:"), value)
 }

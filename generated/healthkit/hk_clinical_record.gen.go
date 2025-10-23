@@ -48,7 +48,6 @@ type IHKClinicalRecord interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord
-
 type HKClinicalRecord struct {
 	HKSample
 }
@@ -99,7 +98,6 @@ func NewHKClinicalRecord() HKClinicalRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/clinicalType
-
 func (h_ HKClinicalRecord) ClinicalType() HKClinicalType {
 	rv := objc.Send[HKClinicalType](h_.ID, objc.Sel("clinicalType"))
 	return rv
@@ -110,7 +108,6 @@ func (h_ HKClinicalRecord) ClinicalType() HKClinicalType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/displayName
-
 func (h_ HKClinicalRecord) DisplayName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("displayName"))
 	return rv
@@ -121,7 +118,6 @@ func (h_ HKClinicalRecord) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/fhirResource
-
 func (h_ HKClinicalRecord) FHIRResource() HKFHIRResource {
 	rv := objc.Send[HKFHIRResource](h_.ID, objc.Sel("FHIRResource"))
 	return rv
@@ -132,7 +128,6 @@ func (h_ HKClinicalRecord) FHIRResource() HKFHIRResource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
-
 func (h_ HKClinicalRecord) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
@@ -143,7 +138,6 @@ func (h_ HKClinicalRecord) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
-
 func (h_ HKClinicalRecord) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
@@ -153,7 +147,6 @@ func (h_ HKClinicalRecord) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
-
 func (h_ HKClinicalRecord) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
@@ -164,7 +157,6 @@ func (h_ HKClinicalRecord) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
-
 func (h_ HKClinicalRecord) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }

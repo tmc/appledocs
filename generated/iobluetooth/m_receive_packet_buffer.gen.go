@@ -32,7 +32,9 @@ type ImReceivePacketBuffer interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mReceivePacketBuffer
 type mReceivePacketBuffer struct {
 	objectivec.Object

@@ -32,7 +32,9 @@ type ImOBEXFilePut interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mOBEXFilePut
 type mOBEXFilePut struct {
 	objectivec.Object

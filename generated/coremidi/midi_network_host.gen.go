@@ -49,7 +49,6 @@ type IMIDINetworkHost interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost
-
 type MIDINetworkHost struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewMIDINetworkHost() MIDINetworkHost {
 
 
 
-
 // Creates a host with the specified name, net service name, and domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netServiceName:netServiceDomain:)
-
 func NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(name string, netServiceName string, netServiceDomain string) MIDINetworkHost {
 	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), objc.String(name), objc.String(netServiceName), objc.String(netServiceDomain))
 	return rv
@@ -111,7 +108,6 @@ func NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(name string, netSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netServiceName:netServiceDomain:)
-
 func (mc _MIDINetworkHostClass) HostWithNameNetServiceNameNetServiceDomain(name string, netServiceName string, netServiceDomain string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), objc.String(name), objc.String(netServiceName), objc.String(netServiceDomain))
 	return rv
@@ -122,7 +118,6 @@ func (mc _MIDINetworkHostClass) HostWithNameNetServiceNameNetServiceDomain(name 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/port
-
 func (m_ MIDINetworkHost) Port() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("port"))
 	return rv
@@ -133,7 +128,6 @@ func (m_ MIDINetworkHost) Port() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkbonjourservicetype
-
 func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkBonjourServiceType"))
 	return rv
@@ -144,7 +138,6 @@ func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/address
-
 func (m_ MIDINetworkHost) Address() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("address"))
 	return rv
@@ -155,7 +148,6 @@ func (m_ MIDINetworkHost) Address() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/address
-
 func (m_ MIDINetworkHost) SetAddress(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddress:"), objc.String(value))
 }
@@ -165,7 +157,6 @@ func (m_ MIDINetworkHost) SetAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/name
-
 func (m_ MIDINetworkHost) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -176,7 +167,6 @@ func (m_ MIDINetworkHost) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/name
-
 func (m_ MIDINetworkHost) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -186,7 +176,6 @@ func (m_ MIDINetworkHost) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicedomain
-
 func (m_ MIDINetworkHost) NetServiceDomain() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("netServiceDomain"))
 	return rv
@@ -197,7 +186,6 @@ func (m_ MIDINetworkHost) NetServiceDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicedomain
-
 func (m_ MIDINetworkHost) SetNetServiceDomain(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceDomain:"), objc.String(value))
 }
@@ -207,7 +195,6 @@ func (m_ MIDINetworkHost) SetNetServiceDomain(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicename
-
 func (m_ MIDINetworkHost) NetServiceName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("netServiceName"))
 	return rv
@@ -218,7 +205,6 @@ func (m_ MIDINetworkHost) NetServiceName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicename
-
 func (m_ MIDINetworkHost) SetNetServiceName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceName:"), objc.String(value))
 }

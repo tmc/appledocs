@@ -45,7 +45,6 @@ type IHKMedicationConcept interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept
-
 type HKMedicationConcept struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewHKMedicationConcept() HKMedicationConcept {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/displayText
-
 func (h_ HKMedicationConcept) DisplayText() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
 	return rv
@@ -105,7 +103,6 @@ func (h_ HKMedicationConcept) DisplayText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/generalForm
-
 func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
 	rv := objc.Send[HKMedicationGeneralForm](h_.ID, objc.Sel("generalForm"))
 	return rv
@@ -116,7 +113,6 @@ func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/identifier
-
 func (h_ HKMedicationConcept) Identifier() HKHealthConceptIdentifier {
 	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("identifier"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKMedicationConcept) Identifier() HKHealthConceptIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/relatedCodings
-
 func (h_ HKMedicationConcept) RelatedCodings() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("relatedCodings"))
 	return rv

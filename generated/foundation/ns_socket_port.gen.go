@@ -29,7 +29,7 @@ type _SocketPortClass struct {
 // An interface definition for the [SocketPort] class.
 type ISocketPort interface {
 	IPort
-	Address() NSData
+	Address() IData
 	Protocol() int
 	ProtocolFamily() int
 	Socket() SocketNativeHandle
@@ -156,7 +156,7 @@ func NewSocketPortWithTCPPort(port unsafe.Pointer) SocketPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/address
-func (s_ SocketPort) Address() NSData {
+func (s_ SocketPort) Address() IData {
 	rv := objc.Send[NSData](s_.ID, objc.Sel("address"))
 	return rv
 }

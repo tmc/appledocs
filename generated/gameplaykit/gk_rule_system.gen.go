@@ -61,7 +61,6 @@ type IRuleSystem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem
-
 type RuleSystem struct {
 	objectivec.Object
 }
@@ -107,136 +106,112 @@ func NewRuleSystem() RuleSystem {
 
 
 
-
 // Adds the specified rule to the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5
-
 func (r_ RuleSystem) AddRule(rule IGKRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRule:"), rule)
 }
-
 
 
 // Adds the specified list of rules to the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw
-
 func (r_ RuleSystem) AddRulesFromArray(rules []Rule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRulesFromArray:"), rules)
 }
-
 
 
 // Adds the specified fact to the fact set with a membership grade of 1.0, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:)
-
 func (r_ RuleSystem) AssertFact(fact objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:"), fact)
 }
-
 
 
 // Increases the membership grade of the specified fact by the specified amount, adding it to the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)
-
 func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:grade:"), fact, grade)
 }
-
 
 
 // Evaluates the rule system, executing the list of rules in its agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/evaluate()
-
 func (r_ RuleSystem) Evaluate() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("evaluate"))
 }
-
 
 
 // Returns the membership grade of the specified fact.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/grade(forFact:)
-
 func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("gradeForFact:"), fact)
 	return rv
 }
 
 
-
 // Returns the highest membership grade among the specified facts.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)
-
 func (r_ RuleSystem) MaximumGradeForFacts(facts objectivec.IObject) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("maximumGradeForFacts:"), facts)
 	return rv
 }
 
 
-
 // Returns the lowest membership grade among the specified facts.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)
-
 func (r_ RuleSystem) MinimumGradeForFacts(facts objectivec.IObject) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("minimumGradeForFacts:"), facts)
 	return rv
 }
 
 
-
 // Removes all rules from the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/removeAllRules()
-
 func (r_ RuleSystem) RemoveAllRules() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeAllRules"))
 }
-
 
 
 // Returns the rule system to its original agenda and clears all facts.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/reset()
-
 func (r_ RuleSystem) Reset() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("reset"))
 }
-
 
 
 // Removes the specified fact from the fact set, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:)
-
 func (r_ RuleSystem) RetractFact(fact objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:"), fact)
 }
-
 
 
 // Reduces the membership grade of the specified fact by the specified amount, removing it from the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)
-
 func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:grade:"), fact, grade)
 }
@@ -246,7 +221,6 @@ func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/agenda
-
 func (r_ RuleSystem) Agenda() []Rule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("agenda"))
 	return rv
@@ -257,7 +231,6 @@ func (r_ RuleSystem) Agenda() []Rule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/executed
-
 func (r_ RuleSystem) Executed() []Rule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("executed"))
 	return rv
@@ -268,7 +241,6 @@ func (r_ RuleSystem) Executed() []Rule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/facts
-
 func (r_ RuleSystem) Facts() objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("facts"))
 	return rv
@@ -279,7 +251,6 @@ func (r_ RuleSystem) Facts() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/rules
-
 func (r_ RuleSystem) Rules() []Rule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("rules"))
 	return rv
@@ -290,7 +261,6 @@ func (r_ RuleSystem) Rules() []Rule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/state
-
 func (r_ RuleSystem) State() foundation.MutableDictionary {
 	rv := objc.Send[foundation.MutableDictionary](r_.ID, objc.Sel("state"))
 	return rv
@@ -301,7 +271,6 @@ func (r_ RuleSystem) State() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
-
 func (r_ RuleSystem) Salience() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
 	return rv
@@ -312,7 +281,6 @@ func (r_ RuleSystem) Salience() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
-
 func (r_ RuleSystem) SetSalience(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
 }

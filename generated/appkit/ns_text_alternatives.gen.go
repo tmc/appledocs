@@ -44,7 +44,6 @@ type ITextAlternatives interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives
-
 type TextAlternatives struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewTextAlternatives() TextAlternatives {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/primaryString
-
 func (t_ TextAlternatives) PrimaryString() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("primaryString"))
 	return rv
@@ -104,7 +102,6 @@ func (t_ TextAlternatives) PrimaryString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
-
 func (t_ TextAlternatives) AlternativeStrings() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
@@ -115,7 +112,6 @@ func (t_ TextAlternatives) AlternativeStrings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
-
 func (t_ TextAlternatives) SetAlternativeStrings(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
 }

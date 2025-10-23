@@ -44,7 +44,6 @@ type IBackgroundExtensionView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView
-
 type BackgroundExtensionView struct {
 	View
 }
@@ -95,7 +94,6 @@ func NewBackgroundExtensionView() BackgroundExtensionView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
-
 func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("automaticallyPlacesContentView"))
 	return rv
@@ -106,7 +104,6 @@ func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
-
 func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAutomaticallyPlacesContentView:"), value)
 }
@@ -116,7 +113,6 @@ func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
-
 func (b_ BackgroundExtensionView) ContentView() NSView {
 	rv := objc.Send[NSView](b_.ID, objc.Sel("contentView"))
 	return rv
@@ -127,7 +123,6 @@ func (b_ BackgroundExtensionView) ContentView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
-
 func (b_ BackgroundExtensionView) SetContentView(value IView) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentView:"), value)
 }

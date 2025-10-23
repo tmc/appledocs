@@ -36,7 +36,11 @@ type IINStartAudioCallIntentResponse interface {
 // An app’s response to an intent to start an audio call.
 //
 // Use an object to specify whether your app is able to initiate an audio-based call. You create instances of this class when confirming and handling an object. When it’s time to call the user, SiriKit launches your app and delivers the object contained in this object. Use that user activity object to specify any additional information that would assist your app in placing the call. You create an object in the and methods of your start audio call handler object. For more information about implementing your handler object, see .
+
+
+// An app’s response to an intent to start an audio call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartAudioCallIntentResponse
 type INStartAudioCallIntentResponse struct {
 	INIntentResponse
@@ -83,8 +87,10 @@ func NewINStartAudioCallIntentResponse() INStartAudioCallIntentResponse {
 }
 
 
+
 // The code indicating whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintentresponse/code
 func (i_ INStartAudioCallIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -92,10 +98,9 @@ func (i_ INStartAudioCallIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code indicating whether you successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintentresponse/code
 func (i_ INStartAudioCallIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)

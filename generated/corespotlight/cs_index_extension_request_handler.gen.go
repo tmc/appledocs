@@ -41,7 +41,6 @@ type ICSIndexExtensionRequestHandler interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexExtensionRequestHandler
-
 type CSIndexExtensionRequestHandler struct {
 	objectivec.Object
 }

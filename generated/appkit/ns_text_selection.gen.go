@@ -46,7 +46,7 @@ type ITextSelection interface {
 	TextRanges() NSTextRange
 	SetTextRanges(value ITextRange)
 	TypingAttributes() coreml.Key
-	SetTypingAttributes(value coreml.Key)
+	SetTypingAttributes(value coreml.IKey)
 }
 
 // A class that represents a single logical selection context that corresponds to an insertion point.
@@ -56,7 +56,6 @@ type ITextSelection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection
-
 type TextSelection struct {
 	objectivec.Object
 }
@@ -105,7 +104,6 @@ func NewTextSelection() TextSelection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/affinity-swift.property
-
 func (t_ TextSelection) Affinity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("affinity"))
 	return rv
@@ -116,7 +114,6 @@ func (t_ TextSelection) Affinity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/affinity-swift.property
-
 func (t_ TextSelection) SetAffinity(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAffinity:"), value)
 }
@@ -126,7 +123,6 @@ func (t_ TextSelection) SetAffinity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/anchorpositionoffset
-
 func (t_ TextSelection) AnchorPositionOffset() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("anchorPositionOffset"))
 	return rv
@@ -137,7 +133,6 @@ func (t_ TextSelection) AnchorPositionOffset() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/anchorpositionoffset
-
 func (t_ TextSelection) SetAnchorPositionOffset(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAnchorPositionOffset:"), value)
 }
@@ -147,7 +142,6 @@ func (t_ TextSelection) SetAnchorPositionOffset(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/granularity-swift.property
-
 func (t_ TextSelection) Granularity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("granularity"))
 	return rv
@@ -158,7 +152,6 @@ func (t_ TextSelection) Granularity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/granularity-swift.property
-
 func (t_ TextSelection) SetGranularity(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGranularity:"), value)
 }
@@ -168,7 +161,6 @@ func (t_ TextSelection) SetGranularity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/islogical
-
 func (t_ TextSelection) IsLogical() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isLogical"))
 	return rv
@@ -179,7 +171,6 @@ func (t_ TextSelection) IsLogical() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/islogical
-
 func (t_ TextSelection) SetIsLogical(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsLogical:"), value)
 }
@@ -189,7 +180,6 @@ func (t_ TextSelection) SetIsLogical(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/istransient
-
 func (t_ TextSelection) IsTransient() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isTransient"))
 	return rv
@@ -200,7 +190,6 @@ func (t_ TextSelection) IsTransient() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/istransient
-
 func (t_ TextSelection) SetIsTransient(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsTransient:"), value)
 }
@@ -210,7 +199,6 @@ func (t_ TextSelection) SetIsTransient(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/secondaryselectionlocation
-
 func (t_ TextSelection) SecondarySelectionLocation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("secondarySelectionLocation"))
 	return rv
@@ -221,7 +209,6 @@ func (t_ TextSelection) SecondarySelectionLocation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/secondaryselectionlocation
-
 func (t_ TextSelection) SetSecondarySelectionLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondarySelectionLocation:"), value)
 }
@@ -231,7 +218,6 @@ func (t_ TextSelection) SetSecondarySelectionLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-
 func (t_ TextSelection) TextRanges() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("textRanges"))
 	return rv
@@ -242,7 +228,6 @@ func (t_ TextSelection) TextRanges() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-
 func (t_ TextSelection) SetTextRanges(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextRanges:"), value)
 }
@@ -252,7 +237,6 @@ func (t_ TextSelection) SetTextRanges(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-
 func (t_ TextSelection) TypingAttributes() coreml.Key {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("typingAttributes"))
 	return rv
@@ -263,8 +247,7 @@ func (t_ TextSelection) TypingAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-
-func (t_ TextSelection) SetTypingAttributes(value coreml.Key) {
+func (t_ TextSelection) SetTypingAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
 }
 

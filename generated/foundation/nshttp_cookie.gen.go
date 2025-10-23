@@ -32,11 +32,11 @@ type IHTTPCookie interface {
 	objectivec.IObject
 	Comment() string
 	SetComment(value string)
-	CommentURL() URL
+	CommentURL() IURL
 	SetCommentURL(value IURL)
 	Domain() string
 	SetDomain(value string)
-	ExpiresDate() Date
+	ExpiresDate() IDate
 	SetExpiresDate(value IDate)
 	IsHTTPOnly() bool
 	SetIsHTTPOnly(value bool)
@@ -48,7 +48,7 @@ type IHTTPCookie interface {
 	SetName(value string)
 	Path() string
 	SetPath(value string)
-	PortList() Number
+	PortList() INumber
 	SetPortList(value INumber)
 	Properties() unsafe.Pointer
 	SetProperties(value unsafe.Pointer)
@@ -136,7 +136,7 @@ func (h_ HTTPCookie) SetComment(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/commenturl
-func (h_ HTTPCookie) CommentURL() URL {
+func (h_ HTTPCookie) CommentURL() IURL {
 	rv := objc.Send[URL](h_.ID, objc.Sel("commentURL"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (h_ HTTPCookie) SetDomain(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/expiresdate
-func (h_ HTTPCookie) ExpiresDate() Date {
+func (h_ HTTPCookie) ExpiresDate() IDate {
 	rv := objc.Send[Date](h_.ID, objc.Sel("expiresDate"))
 	return rv
 }
@@ -288,7 +288,7 @@ func (h_ HTTPCookie) SetPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
-func (h_ HTTPCookie) PortList() Number {
+func (h_ HTTPCookie) PortList() INumber {
 	rv := objc.Send[Number](h_.ID, objc.Sel("portList"))
 	return rv
 }

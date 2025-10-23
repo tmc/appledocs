@@ -44,7 +44,6 @@ type IGCVirtualController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController
-
 type GCVirtualController struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewGCVirtualController() GCVirtualController {
 
 
 
-
 // Creates a new virtual controller using the configuration you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)
-
 func NewGCVirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
 	instance := getGCVirtualControllerClass().Alloc()
 	rv := objc.Send[GCVirtualController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
@@ -108,30 +105,25 @@ func NewGCVirtualControllerWithConfiguration(configuration IGCVirtualControllerC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:
-
 func (gc _GCVirtualControllerClass) VirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
 	rv := objc.Send[GCVirtualController](objc.ID(gc.class), objc.Sel("virtualControllerWithConfiguration:"), configuration)
 	return rv
 }
 
 
-
 // Connects the virtual controller to the device and displays it on the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/connect(replyHandler:)
-
 func (g_ GCVirtualController) ConnectWithReplyHandler(reply unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectWithReplyHandler:"), reply)
 }
-
 
 
 // Changes the value of a button element in the virtual controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)
-
 func (g_ GCVirtualController) SetValueForButtonElement(value float64, element string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, objc.String(element))
 }
@@ -141,7 +133,6 @@ func (g_ GCVirtualController) SetValueForButtonElement(value float64, element st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/controller
-
 func (g_ GCVirtualController) Controller() GCController {
 	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv

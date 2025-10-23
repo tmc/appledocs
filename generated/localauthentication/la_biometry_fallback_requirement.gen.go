@@ -33,7 +33,11 @@ type IBiometryFallbackRequirement interface {
 }
 
 // A set of requirements to fall back on if biometrics aren’t present.
+
+
+// A set of requirements to fall back on if biometrics aren’t present.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement
 type BiometryFallbackRequirement struct {
 	objectivec.Object
@@ -78,30 +82,38 @@ func NewBiometryFallbackRequirement() BiometryFallbackRequirement {
 }
 
 
+
 // The default biometric fallback requirement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/default
 func (bc _BiometryFallbackRequirementClass) DefaultRequirement() BiometryFallbackRequirement {
 	rv := objc.Send[LABiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("defaultRequirement"))
 	return rv
 }
+
 // The fallback requirement that requires entering the device passcode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/devicePasscode
 func (bc _BiometryFallbackRequirementClass) DevicePasscodeRequirement() BiometryFallbackRequirement {
 	rv := objc.Send[LABiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("devicePasscodeRequirement"))
 	return rv
 }
+
 // The default biometric fallback requirement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/default
 func (b_ BiometryFallbackRequirement) DefaultRequirement() LABiometryFallbackRequirement {
 	rv := objc.Send[LABiometryFallbackRequirement](b_.ID, objc.Sel("defaultRequirement"))
 	return rv
 }
 
+
 // The fallback requirement that requires entering the device passcode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/devicePasscode
 func (b_ BiometryFallbackRequirement) DevicePasscodeRequirement() LABiometryFallbackRequirement {
 	rv := objc.Send[LABiometryFallbackRequirement](b_.ID, objc.Sel("devicePasscodeRequirement"))

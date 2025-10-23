@@ -47,7 +47,6 @@ type IScrubberFlowLayout interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout
-
 type ScrubberFlowLayout struct {
 	ScrubberLayout
 }
@@ -94,12 +93,10 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 
 
 
-
 // Informs the scrubber that it should perform a new layout pass for the items at the specified indexes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
-
 func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
 }
@@ -109,7 +106,6 @@ func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
-
 func (s_ ScrubberFlowLayout) ItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("itemSize"))
 	return rv
@@ -120,7 +116,6 @@ func (s_ ScrubberFlowLayout) ItemSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
-
 func (s_ ScrubberFlowLayout) SetItemSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSize:"), value)
 }
@@ -130,7 +125,6 @@ func (s_ ScrubberFlowLayout) SetItemSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
-
 func (s_ ScrubberFlowLayout) ItemSpacing() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("itemSpacing"))
 	return rv
@@ -141,7 +135,6 @@ func (s_ ScrubberFlowLayout) ItemSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
-
 func (s_ ScrubberFlowLayout) SetItemSpacing(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSpacing:"), value)
 }

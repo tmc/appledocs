@@ -46,7 +46,6 @@ type IEKSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource
-
 type EKSource struct {
 	EKObject
 }
@@ -93,12 +92,10 @@ func NewEKSource() EKSource {
 
 
 
-
 // Returns the calendars that belong to this source object that support a particular entity type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/calendars(for:)
-
 func (e_ EKSource) CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendarsForEntityType:"), entityType)
 	return rv
@@ -109,7 +106,6 @@ func (e_ EKSource) CalendarsForEntityType(entityType EKEntityType) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/calendars
-
 func (e_ EKSource) Calendars() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendars"))
 	return rv
@@ -118,7 +114,6 @@ func (e_ EKSource) Calendars() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/isDelegate
-
 func (e_ EKSource) IsDelegate() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDelegate"))
 	return rv
@@ -129,7 +124,6 @@ func (e_ EKSource) IsDelegate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceIdentifier
-
 func (e_ EKSource) SourceIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("sourceIdentifier"))
 	return rv
@@ -140,7 +134,6 @@ func (e_ EKSource) SourceIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceType
-
 func (e_ EKSource) SourceType() EKSourceType {
 	rv := objc.Send[EKSourceType](e_.ID, objc.Sel("sourceType"))
 	return rv
@@ -151,7 +144,6 @@ func (e_ EKSource) SourceType() EKSourceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/title
-
 func (e_ EKSource) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv

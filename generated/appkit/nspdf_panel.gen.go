@@ -47,7 +47,6 @@ type IPDFPanel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel
-
 type PDFPanel struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewPDFPanel() PDFPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/panel
-
 func (pc _PDFPanelClass) Panel() PDFPanel {
 	rv := objc.Send[PDFPanel](objc.ID(pc.class), objc.Sel("panel"))
 	return rv
@@ -107,7 +105,6 @@ func (pc _PDFPanelClass) Panel() PDFPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
-
 func (p_ PDFPanel) AccessoryController() NSViewController {
 	rv := objc.Send[NSViewController](p_.ID, objc.Sel("accessoryController"))
 	return rv
@@ -118,7 +115,6 @@ func (p_ PDFPanel) AccessoryController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
-
 func (p_ PDFPanel) SetAccessoryController(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryController:"), value)
 }
@@ -128,7 +124,6 @@ func (p_ PDFPanel) SetAccessoryController(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/defaultfilename
-
 func (p_ PDFPanel) DefaultFileName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("defaultFileName"))
 	return rv
@@ -139,7 +134,6 @@ func (p_ PDFPanel) DefaultFileName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/defaultfilename
-
 func (p_ PDFPanel) SetDefaultFileName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultFileName:"), objc.String(value))
 }
@@ -149,7 +143,6 @@ func (p_ PDFPanel) SetDefaultFileName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.property
-
 func (p_ PDFPanel) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
 	return rv
@@ -160,7 +153,6 @@ func (p_ PDFPanel) Options() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.property
-
 func (p_ PDFPanel) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
 }

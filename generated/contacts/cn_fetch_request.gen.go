@@ -41,7 +41,6 @@ type ICNFetchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchRequest
-
 type CNFetchRequest struct {
 	objectivec.Object
 }

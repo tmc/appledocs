@@ -44,7 +44,6 @@ type IFSVolume interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume
-
 type FSVolume struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewFSVolume() FSVolume {
 
 
 
-
 // Creates a volume with the given identifier and name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/init(volumeID:volumeName:)
-
 func NewFSVolumeWithVolumeIDVolumeName(volumeID IFSVolumeIdentifier, volumeName IFSFileName) FSVolume {
 	instance := getFSVolumeClass().Alloc()
 	rv := objc.Send[FSVolume](instance.ID, objc.Sel("initWithVolumeID:volumeName:"), volumeID, volumeName)
@@ -108,7 +105,6 @@ func NewFSVolumeWithVolumeIDVolumeName(volumeID IFSVolumeIdentifier, volumeName 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/name
-
 func (f_ FSVolume) Name() FSFileName {
 	rv := objc.Send[FSFileName](f_.ID, objc.Sel("name"))
 	return rv
@@ -119,7 +115,6 @@ func (f_ FSVolume) Name() FSFileName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/name
-
 func (f_ FSVolume) SetName(value IFSFileName) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
@@ -129,7 +124,6 @@ func (f_ FSVolume) SetName(value IFSFileName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/volumeID
-
 func (f_ FSVolume) VolumeID() FSVolumeIdentifier {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeID"))
 	return rv

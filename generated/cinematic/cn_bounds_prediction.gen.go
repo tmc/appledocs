@@ -44,7 +44,6 @@ type ICNBoundsPrediction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class
-
 type CNBoundsPrediction struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewCNBoundsPrediction() CNBoundsPrediction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
-
 func (c_ CNBoundsPrediction) Confidence() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("confidence"))
 	return rv
@@ -104,7 +102,6 @@ func (c_ CNBoundsPrediction) Confidence() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
-
 func (c_ CNBoundsPrediction) SetConfidence(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
@@ -114,7 +111,6 @@ func (c_ CNBoundsPrediction) SetConfidence(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
-
 func (c_ CNBoundsPrediction) NormalizedBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("normalizedBounds"))
 	return rv
@@ -125,7 +121,6 @@ func (c_ CNBoundsPrediction) NormalizedBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
-
 func (c_ CNBoundsPrediction) SetNormalizedBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedBounds:"), value)
 }

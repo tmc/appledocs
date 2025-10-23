@@ -36,7 +36,6 @@ type Idrwh interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/struct_(unnamed)/drwh
-
 type drwh struct {
 	objectivec.Object
 }

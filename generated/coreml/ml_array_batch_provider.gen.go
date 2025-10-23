@@ -42,7 +42,6 @@ type IArrayBatchProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider
-
 type ArrayBatchProvider struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewArrayBatchProvider() ArrayBatchProvider {
 
 
 
-
 // Creates a batch provider based on feature names and their associated arrays of data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)
-
 func NewArrayBatchProviderWithDictionaryError(dictionary unsafe.Pointer, error_ unsafe.Pointer) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
@@ -101,12 +98,10 @@ func NewArrayBatchProviderWithDictionaryError(dictionary unsafe.Pointer, error_ 
 }
 
 
-
 // Creates the batch provider based on the array of feature providers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(array:)
-
 func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithFeatureProviderArray:"), array)
@@ -120,7 +115,6 @@ func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchPr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/array
-
 func (a_ ArrayBatchProvider) Array() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("array"))
 	return rv

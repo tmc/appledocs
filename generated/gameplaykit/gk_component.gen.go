@@ -32,7 +32,7 @@ type _ComponentClass struct {
 type IComponent interface {
 	objectivec.IObject
 	DidAddToEntity()
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	WillRemoveFromEntity()
 	Entity() GKEntity
 }
@@ -46,7 +46,6 @@ type IComponent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent
-
 type Component struct {
 	objectivec.Object
 }
@@ -91,34 +90,28 @@ func NewComponent() Component {
 
 
 
-
 // Notifies the component that it has been assigned to an entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/didAddToEntity()
-
 func (c_ Component) DidAddToEntity() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("didAddToEntity"))
 }
-
 
 
 // Performs any custom periodic actions defined by the component subclass.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/update(deltaTime:)
-
-func (c_ Component) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (c_ Component) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
-
 
 
 // Notifies the component that it has been removed from an entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/willRemoveFromEntity()
-
 func (c_ Component) WillRemoveFromEntity() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("willRemoveFromEntity"))
 }
@@ -128,7 +121,6 @@ func (c_ Component) WillRemoveFromEntity() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/entity
-
 func (c_ Component) Entity() GKEntity {
 	rv := objc.Send[GKEntity](c_.ID, objc.Sel("entity"))
 	return rv

@@ -57,7 +57,6 @@ type IVisualEffectView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView
-
 type VisualEffectView struct {
 	View
 }
@@ -104,23 +103,19 @@ func NewVisualEffectView() VisualEffectView {
 
 
 
-
 // Notifies the view that it moved to a new window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/viewDidMoveToWindow()
-
 func (v_ VisualEffectView) ViewDidMoveToWindow() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewDidMoveToWindow"))
 }
-
 
 
 // Notifies the view immediately before it moves to a new window (which may be ).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/viewWillMove(toWindow:)
-
 func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow IWindow) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillMoveToWindow:"), newWindow)
 }
@@ -130,7 +125,6 @@ func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-
 func (v_ VisualEffectView) BlendingMode() VisualEffectBlendingMode {
 	rv := objc.Send[VisualEffectBlendingMode](v_.ID, objc.Sel("blendingMode"))
 	return rv
@@ -141,7 +135,6 @@ func (v_ VisualEffectView) BlendingMode() VisualEffectBlendingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-
 func (v_ VisualEffectView) SetBlendingMode(value VisualEffectBlendingMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBlendingMode:"), value)
 }
@@ -151,7 +144,6 @@ func (v_ VisualEffectView) SetBlendingMode(value VisualEffectBlendingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/interiorBackgroundStyle
-
 func (v_ VisualEffectView) InteriorBackgroundStyle() BackgroundStyle {
 	rv := objc.Send[BackgroundStyle](v_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
@@ -162,7 +154,6 @@ func (v_ VisualEffectView) InteriorBackgroundStyle() BackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/isEmphasized
-
 func (v_ VisualEffectView) Emphasized() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("emphasized"))
 	return rv
@@ -173,7 +164,6 @@ func (v_ VisualEffectView) Emphasized() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/isEmphasized
-
 func (v_ VisualEffectView) SetEmphasized(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEmphasized:"), value)
 }
@@ -183,7 +173,6 @@ func (v_ VisualEffectView) SetEmphasized(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/maskImage
-
 func (v_ VisualEffectView) MaskImage() Image {
 	rv := objc.Send[Image](v_.ID, objc.Sel("maskImage"))
 	return rv
@@ -194,7 +183,6 @@ func (v_ VisualEffectView) MaskImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/maskImage
-
 func (v_ VisualEffectView) SetMaskImage(value IImage) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaskImage:"), value)
 }
@@ -204,7 +192,6 @@ func (v_ VisualEffectView) SetMaskImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-
 func (v_ VisualEffectView) Material() VisualEffectMaterial {
 	rv := objc.Send[VisualEffectMaterial](v_.ID, objc.Sel("material"))
 	return rv
@@ -215,7 +202,6 @@ func (v_ VisualEffectView) Material() VisualEffectMaterial {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-
 func (v_ VisualEffectView) SetMaterial(value IVisualEffectMaterial) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaterial:"), value)
 }
@@ -225,7 +211,6 @@ func (v_ VisualEffectView) SetMaterial(value IVisualEffectMaterial) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-
 func (v_ VisualEffectView) State() VisualEffectState {
 	rv := objc.Send[VisualEffectState](v_.ID, objc.Sel("state"))
 	return rv
@@ -236,7 +221,6 @@ func (v_ VisualEffectView) State() VisualEffectState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-
 func (v_ VisualEffectView) SetState(value VisualEffectState) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setState:"), value)
 }
@@ -246,7 +230,6 @@ func (v_ VisualEffectView) SetState(value VisualEffectState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy
-
 func (v_ VisualEffectView) AllowsVibrancy() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("allowsVibrancy"))
 	return rv
@@ -257,7 +240,6 @@ func (v_ VisualEffectView) AllowsVibrancy() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy
-
 func (v_ VisualEffectView) SetAllowsVibrancy(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAllowsVibrancy:"), value)
 }
@@ -267,7 +249,6 @@ func (v_ VisualEffectView) SetAllowsVibrancy(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsvisualeffectview/isemphasized
-
 func (v_ VisualEffectView) IsEmphasized() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isEmphasized"))
 	return rv
@@ -278,7 +259,6 @@ func (v_ VisualEffectView) IsEmphasized() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsvisualeffectview/isemphasized
-
 func (v_ VisualEffectView) SetIsEmphasized(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsEmphasized:"), value)
 }

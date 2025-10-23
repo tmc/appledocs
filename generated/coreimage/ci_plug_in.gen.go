@@ -42,7 +42,6 @@ type IPlugIn interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn
-
 type PlugIn struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewPlugIn() PlugIn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/load(_:allowExecutableCode:)
-
 func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url foundation.IURL, allowExecutableCode bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowExecutableCode:"), url, allowExecutableCode)
 }
@@ -101,7 +99,6 @@ func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url foundation.IURL, allowE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadAllPlugIns()
-
 func (pc _PlugInClass) LoadAllPlugIns() {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadAllPlugIns"))
 }
@@ -111,7 +108,6 @@ func (pc _PlugInClass) LoadAllPlugIns() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadNonExecutablePlugIn(_:)
-
 func (pc _PlugInClass) LoadNonExecutablePlugIn(url foundation.IURL) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadNonExecutablePlugIn:"), url)
 }
@@ -121,7 +117,6 @@ func (pc _PlugInClass) LoadNonExecutablePlugIn(url foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadNonExecutablePlugIns()
-
 func (pc _PlugInClass) LoadNonExecutablePlugIns() {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadNonExecutablePlugIns"))
 }
@@ -131,7 +126,6 @@ func (pc _PlugInClass) LoadNonExecutablePlugIns() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadPlugIn:allowNonExecutable:
-
 func (pc _PlugInClass) LoadPlugInAllowNonExecutable(url foundation.IURL, allowNonExecutable bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowNonExecutable:"), url, allowNonExecutable)
 }

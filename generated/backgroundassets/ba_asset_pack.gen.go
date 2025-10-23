@@ -48,7 +48,6 @@ type IBAAssetPack interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack
-
 type BAAssetPack struct {
 	objectivec.Object
 }
@@ -93,24 +92,20 @@ func NewBAAssetPack() BAAssetPack {
 
 
 
-
 // Creates a download object for the asset pack that you schedule using a download manager.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/download
-
 func (b_ BAAssetPack) Download() BADownload {
 	rv := objc.Send[BADownload](b_.ID, objc.Sel("download"))
 	return rv
 }
 
 
-
 // Creates a download object for the asset pack that you schedule using a download manager.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/downloadForContentRequest:
-
 func (b_ BAAssetPack) DownloadForContentRequest(contentRequest IBAContentRequest) BADownload {
 	rv := objc.Send[BADownload](b_.ID, objc.Sel("downloadForContentRequest:"), contentRequest)
 	return rv
@@ -121,7 +116,6 @@ func (b_ BAAssetPack) DownloadForContentRequest(contentRequest IBAContentRequest
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/downloadSize
-
 func (b_ BAAssetPack) DownloadSize() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("downloadSize"))
 	return rv
@@ -132,7 +126,6 @@ func (b_ BAAssetPack) DownloadSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/identifier
-
 func (b_ BAAssetPack) Identifier() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
@@ -143,7 +136,6 @@ func (b_ BAAssetPack) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/userInfo
-
 func (b_ BAAssetPack) UserInfo() foundation.NSData {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("userInfo"))
 	return rv
@@ -154,7 +146,6 @@ func (b_ BAAssetPack) UserInfo() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/version
-
 func (b_ BAAssetPack) Version() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("version"))
 	return rv

@@ -54,7 +54,6 @@ type IMenuItemCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell
-
 type MenuItemCell struct {
 	ButtonCell
 }
@@ -105,7 +104,6 @@ func NewMenuItemCell() MenuItemCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/imagewidth
-
 func (m_ MenuItemCell) ImageWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("imageWidth"))
 	return rv
@@ -116,7 +114,6 @@ func (m_ MenuItemCell) ImageWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/imagewidth
-
 func (m_ MenuItemCell) SetImageWidth(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageWidth:"), value)
 }
@@ -126,7 +123,6 @@ func (m_ MenuItemCell) SetImageWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/keyequivalentwidth
-
 func (m_ MenuItemCell) KeyEquivalentWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("keyEquivalentWidth"))
 	return rv
@@ -137,7 +133,6 @@ func (m_ MenuItemCell) KeyEquivalentWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/keyequivalentwidth
-
 func (m_ MenuItemCell) SetKeyEquivalentWidth(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalentWidth:"), value)
 }
@@ -147,7 +142,6 @@ func (m_ MenuItemCell) SetKeyEquivalentWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
-
 func (m_ MenuItemCell) MenuItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("menuItem"))
 	return rv
@@ -158,7 +152,6 @@ func (m_ MenuItemCell) MenuItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
-
 func (m_ MenuItemCell) SetMenuItem(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuItem:"), value)
 }
@@ -168,7 +161,6 @@ func (m_ MenuItemCell) SetMenuItem(value IMenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needsdisplay
-
 func (m_ MenuItemCell) NeedsDisplay() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("needsDisplay"))
 	return rv
@@ -179,7 +171,6 @@ func (m_ MenuItemCell) NeedsDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needsdisplay
-
 func (m_ MenuItemCell) SetNeedsDisplay(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeedsDisplay:"), value)
 }
@@ -189,7 +180,6 @@ func (m_ MenuItemCell) SetNeedsDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needssizing
-
 func (m_ MenuItemCell) NeedsSizing() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("needsSizing"))
 	return rv
@@ -200,7 +190,6 @@ func (m_ MenuItemCell) NeedsSizing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needssizing
-
 func (m_ MenuItemCell) SetNeedsSizing(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeedsSizing:"), value)
 }
@@ -210,7 +199,6 @@ func (m_ MenuItemCell) SetNeedsSizing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/stateimagewidth
-
 func (m_ MenuItemCell) StateImageWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("stateImageWidth"))
 	return rv
@@ -221,7 +209,6 @@ func (m_ MenuItemCell) StateImageWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/stateimagewidth
-
 func (m_ MenuItemCell) SetStateImageWidth(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStateImageWidth:"), value)
 }
@@ -231,7 +218,6 @@ func (m_ MenuItemCell) SetStateImageWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/tag
-
 func (m_ MenuItemCell) Tag() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("tag"))
 	return rv
@@ -242,7 +228,6 @@ func (m_ MenuItemCell) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/tag
-
 func (m_ MenuItemCell) SetTag(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
 }
@@ -252,7 +237,6 @@ func (m_ MenuItemCell) SetTag(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/titlewidth
-
 func (m_ MenuItemCell) TitleWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("titleWidth"))
 	return rv
@@ -263,7 +247,6 @@ func (m_ MenuItemCell) TitleWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/titlewidth
-
 func (m_ MenuItemCell) SetTitleWidth(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleWidth:"), value)
 }

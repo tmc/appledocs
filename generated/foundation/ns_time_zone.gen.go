@@ -30,19 +30,19 @@ type _TimeZoneClass struct {
 // An interface definition for the [TimeZone] class.
 type ITimeZone interface {
 	objectivec.IObject
-	AbbreviationForDate(aDate IDate) String
+	AbbreviationForDate(aDate IDate) IString
 	SecondsFromGMTForDate(aDate IDate) int
 	Abbreviation() string
-	Data() NSData
+	Data() IData
 	Name() string
 	SecondsFromGMT() int
 	DaylightSavingTimeOffset() TimeInterval
-	SetDaylightSavingTimeOffset(value ITimeInterval)
+	SetDaylightSavingTimeOffset(value TimeInterval)
 	Description() string
 	SetDescription(value string)
 	IsDaylightSavingTime() bool
 	SetIsDaylightSavingTime(value bool)
-	NextDaylightSavingTimeTransition() Date
+	NextDaylightSavingTimeTransition() IDate
 	SetNextDaylightSavingTimeTransition(value IDate)
 }
 
@@ -112,7 +112,7 @@ func (tc _TimeZoneClass) TimeZoneDataVersion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviation(for:)
-func (t_ TimeZone) AbbreviationForDate(aDate IDate) String {
+func (t_ TimeZone) AbbreviationForDate(aDate IDate) IString {
 	rv := objc.Send[String](t_.ID, objc.Sel("abbreviationForDate:"), aDate)
 	return rv
 }
@@ -142,7 +142,7 @@ func (t_ TimeZone) Abbreviation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/data
-func (t_ TimeZone) Data() NSData {
+func (t_ TimeZone) Data() IData {
 	rv := objc.Send[NSData](t_.ID, objc.Sel("data"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (t_ TimeZone) DaylightSavingTimeOffset() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
-func (t_ TimeZone) SetDaylightSavingTimeOffset(value ITimeInterval) {
+func (t_ TimeZone) SetDaylightSavingTimeOffset(value TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDaylightSavingTimeOffset:"), value)
 }
 
@@ -239,7 +239,7 @@ func (t_ TimeZone) SetIsDaylightSavingTime(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/nextdaylightsavingtimetransition
-func (t_ TimeZone) NextDaylightSavingTimeTransition() Date {
+func (t_ TimeZone) NextDaylightSavingTimeTransition() IDate {
 	rv := objc.Send[Date](t_.ID, objc.Sel("nextDaylightSavingTimeTransition"))
 	return rv
 }

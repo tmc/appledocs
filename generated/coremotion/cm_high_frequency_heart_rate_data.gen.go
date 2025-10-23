@@ -44,7 +44,6 @@ type IHighFrequencyHeartRateData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData
-
 type HighFrequencyHeartRateData struct {
 	LogItem
 }
@@ -95,7 +94,6 @@ func NewHighFrequencyHeartRateData() HighFrequencyHeartRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/confidence
-
 func (h_ HighFrequencyHeartRateData) Confidence() HighFrequencyHeartRateDataConfidence {
 	rv := objc.Send[HighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HighFrequencyHeartRateData) Confidence() HighFrequencyHeartRateDataConf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/date
-
 func (h_ HighFrequencyHeartRateData) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("date"))
 	return rv
@@ -117,7 +114,6 @@ func (h_ HighFrequencyHeartRateData) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/heartRate
-
 func (h_ HighFrequencyHeartRateData) HeartRate() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("heartRate"))
 	return rv

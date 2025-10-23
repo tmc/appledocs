@@ -53,7 +53,6 @@ type ICNChangeHistoryFetchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest
-
 type CNChangeHistoryFetchRequest struct {
 	CNFetchRequest
 }
@@ -104,7 +103,6 @@ func NewCNChangeHistoryFetchRequest() CNChangeHistoryFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/additionalContactKeyDescriptors
-
 func (c_ CNChangeHistoryFetchRequest) AdditionalContactKeyDescriptors() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("additionalContactKeyDescriptors"))
 	return rv
@@ -115,7 +113,6 @@ func (c_ CNChangeHistoryFetchRequest) AdditionalContactKeyDescriptors() []objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/additionalContactKeyDescriptors
-
 func (c_ CNChangeHistoryFetchRequest) SetAdditionalContactKeyDescriptors(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -135,7 +132,6 @@ func (c_ CNChangeHistoryFetchRequest) SetAdditionalContactKeyDescriptors(value [
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/excludedTransactionAuthors
-
 func (c_ CNChangeHistoryFetchRequest) ExcludedTransactionAuthors() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("excludedTransactionAuthors"))
 	return rv
@@ -146,7 +142,6 @@ func (c_ CNChangeHistoryFetchRequest) ExcludedTransactionAuthors() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/excludedTransactionAuthors
-
 func (c_ CNChangeHistoryFetchRequest) SetExcludedTransactionAuthors(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -166,7 +161,6 @@ func (c_ CNChangeHistoryFetchRequest) SetExcludedTransactionAuthors(value []stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/includeGroupChanges
-
 func (c_ CNChangeHistoryFetchRequest) IncludeGroupChanges() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("includeGroupChanges"))
 	return rv
@@ -177,7 +171,6 @@ func (c_ CNChangeHistoryFetchRequest) IncludeGroupChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/includeGroupChanges
-
 func (c_ CNChangeHistoryFetchRequest) SetIncludeGroupChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludeGroupChanges:"), value)
 }
@@ -187,7 +180,6 @@ func (c_ CNChangeHistoryFetchRequest) SetIncludeGroupChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/mutableObjects
-
 func (c_ CNChangeHistoryFetchRequest) MutableObjects() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("mutableObjects"))
 	return rv
@@ -198,7 +190,6 @@ func (c_ CNChangeHistoryFetchRequest) MutableObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/mutableObjects
-
 func (c_ CNChangeHistoryFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
@@ -208,7 +199,6 @@ func (c_ CNChangeHistoryFetchRequest) SetMutableObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/shouldUnifyResults
-
 func (c_ CNChangeHistoryFetchRequest) ShouldUnifyResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldUnifyResults"))
 	return rv
@@ -219,7 +209,6 @@ func (c_ CNChangeHistoryFetchRequest) ShouldUnifyResults() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/shouldUnifyResults
-
 func (c_ CNChangeHistoryFetchRequest) SetShouldUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldUnifyResults:"), value)
 }
@@ -229,7 +218,6 @@ func (c_ CNChangeHistoryFetchRequest) SetShouldUnifyResults(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
-
 func (c_ CNChangeHistoryFetchRequest) StartingToken() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("startingToken"))
 	return rv
@@ -240,7 +228,6 @@ func (c_ CNChangeHistoryFetchRequest) StartingToken() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
-
 func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStartingToken:"), value)
 }

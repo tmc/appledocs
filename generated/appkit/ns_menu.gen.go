@@ -103,7 +103,7 @@ type IMenu interface {
 	Title() string
 	SetTitle(value string)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
 	IsTornOff() bool
 	SetIsTornOff(value bool)
 	Items() NSMenuItem
@@ -117,7 +117,6 @@ type IMenu interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu
-
 type Menu struct {
 	objectivec.Object
 }
@@ -162,10 +161,8 @@ func NewMenu() Menu {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/init(coder:)
-
 func NewMenuWithCoder(coder foundation.ICoder) Menu {
 	instance := getMenuClass().Alloc()
 	rv := objc.Send[Menu](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -174,12 +171,10 @@ func NewMenuWithCoder(coder foundation.ICoder) Menu {
 }
 
 
-
 // Initializes and returns a menu having the specified title and with autoenabling of menu items turned on.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/init(title:)
-
 func NewMenuWithTitle(title string) Menu {
 	instance := getMenuClass().Alloc()
 	rv := objc.Send[Menu](instance.ID, objc.Sel("initWithTitle:"), objc.String(title))
@@ -193,7 +188,6 @@ func NewMenuWithTitle(title string) Menu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuBarVisible()
-
 func (mc _MenuClass) MenuBarVisible() bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("menuBarVisible"))
 	return rv
@@ -204,7 +198,6 @@ func (mc _MenuClass) MenuBarVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuZone()
-
 func (mc _MenuClass) MenuZone() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("menuZone"))
 	return rv
@@ -215,7 +208,6 @@ func (mc _MenuClass) MenuZone() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/paletteMenuWithColors:titles:selectionHandler:
-
 func (mc _MenuClass) PaletteMenuWithColorsTitlesSelectionHandler(colors []Color, itemTitles []string, onSelectionChange unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("paletteMenuWithColors:titles:selectionHandler:"), colors, itemTitles, onSelectionChange)
 	return rv
@@ -226,7 +218,6 @@ func (mc _MenuClass) PaletteMenuWithColorsTitlesSelectionHandler(colors []Color,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/paletteMenuWithColors:titles:templateImage:selectionHandler:
-
 func (mc _MenuClass) PaletteMenuWithColorsTitlesTemplateImageSelectionHandler(colors []Color, itemTitles []string, image IImage, onSelectionChange unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("paletteMenuWithColors:titles:templateImage:selectionHandler:"), colors, itemTitles, image, onSelectionChange)
 	return rv
@@ -237,7 +228,6 @@ func (mc _MenuClass) PaletteMenuWithColorsTitlesTemplateImageSelectionHandler(co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:)
-
 func (mc _MenuClass) PopUpContextMenuWithEventForView(menu IMenu, event IEvent, view IView) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("popUpContextMenu:withEvent:forView:"), menu, event, view)
 }
@@ -247,7 +237,6 @@ func (mc _MenuClass) PopUpContextMenuWithEventForView(menu IMenu, event IEvent, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:with:)
-
 func (mc _MenuClass) PopUpContextMenuWithEventForViewWithFont(menu IMenu, event IEvent, view IView, font IFont) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("popUpContextMenu:withEvent:forView:withFont:"), menu, event, view, font)
 }
@@ -257,7 +246,6 @@ func (mc _MenuClass) PopUpContextMenuWithEventForViewWithFont(menu IMenu, event 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/setMenuBarVisible(_:)
-
 func (mc _MenuClass) SetMenuBarVisible(visible bool) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("setMenuBarVisible:"), visible)
 }
@@ -267,422 +255,349 @@ func (mc _MenuClass) SetMenuBarVisible(visible bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/setMenuZone:
-
 func (mc _MenuClass) SetMenuZone(zone unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("setMenuZone:"), zone)
 }
-
 
 
 // Adds a menu item to the end of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/addItem(_:)
-
 func (m_ Menu) AddItem(newItem IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addItem:"), newItem)
 }
-
 
 
 // Creates a new menu item and adds it to the end of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/addItem(withTitle:action:keyEquivalent:)
-
 func (m_ Menu) AddItemWithTitleActionKeyEquivalent(string_ string, selector objc.SEL, charCode string) MenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("addItemWithTitle:action:keyEquivalent:"), objc.String(string_), selector, objc.String(charCode))
 	return rv
 }
 
 
-
 // Returns the menu currently attached to the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/attachedMenu
-
 func (m_ Menu) AttachedMenu() Menu {
 	rv := objc.Send[Menu](m_.ID, objc.Sel("attachedMenu"))
 	return rv
 }
 
 
-
 // Dismisses the menu and ends all menu tracking.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/cancelTracking()
-
 func (m_ Menu) CancelTracking() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelTracking"))
 }
-
 
 
 // Dismisses the menu and ends all menu tracking without displaying the associated animation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/cancelTrackingWithoutAnimation()
-
 func (m_ Menu) CancelTrackingWithoutAnimation() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelTrackingWithoutAnimation"))
 }
-
 
 
 // Deprecated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/contextMenuRepresentation
-
 func (m_ Menu) ContextMenuRepresentation() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("contextMenuRepresentation"))
 	return rv
 }
 
 
-
 // Overridden by subclasses to implement specialized context-sensitive help behavior.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/helpRequested(with:)
-
 func (m_ Menu) HelpRequested(eventPtr IEvent) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("helpRequested:"), eventPtr)
 }
-
 
 
 // Returns the index identifying the location of a specified menu item in the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/index(of:)
-
 func (m_ Menu) IndexOfItem(item IMenuItem) int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItem:"), item)
 	return rv
 }
 
 
-
 // Returns the index of the first menu item in the menu that has a given represented object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withRepresentedObject:)
-
 func (m_ Menu) IndexOfItemWithRepresentedObject(object objectivec.IObject) int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithRepresentedObject:"), object)
 	return rv
 }
 
 
-
 // Returns the index of the menu item in the menu with the given submenu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withSubmenu:)
-
 func (m_ Menu) IndexOfItemWithSubmenu(submenu IMenu) int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithSubmenu:"), submenu)
 	return rv
 }
 
 
-
 // Returns the index of the first menu item in the menu identified by a tag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withTag:)
-
 func (m_ Menu) IndexOfItemWithTag(tag int) int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithTag:"), tag)
 	return rv
 }
 
 
-
 // Returns the index of the first menu item in the menu that has a specified action and target.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withTarget:andAction:)
-
 func (m_ Menu) IndexOfItemWithTargetAndAction(target objectivec.IObject, actionSelector objc.SEL) int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithTarget:andAction:"), target, actionSelector)
 	return rv
 }
 
 
-
 // Returns the index of the first menu item in the menu that has a specified title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withTitle:)
-
 func (m_ Menu) IndexOfItemWithTitle(title string) int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithTitle:"), objc.String(title))
 	return rv
 }
 
 
-
 // Inserts a menu item into the menu at a specific location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/insertItem(_:at:)
-
 func (m_ Menu) InsertItemAtIndex(newItem IMenuItem, index int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertItem:atIndex:"), newItem, index)
 }
-
 
 
 // Creates and adds a menu item at a specified location in the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/insertItem(withTitle:action:keyEquivalent:at:)
-
 func (m_ Menu) InsertItemWithTitleActionKeyEquivalentAtIndex(string_ string, selector objc.SEL, charCode string, index int) MenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("insertItemWithTitle:action:keyEquivalent:atIndex:"), objc.String(string_), selector, objc.String(charCode), index)
 	return rv
 }
 
 
-
 // Returns a Boolean value that indicates whether the menu is currently attached to another menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/isAttached
-
 func (m_ Menu) IsAttached() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isAttached"))
 	return rv
 }
 
 
-
 // Returns the menu item at a specific location of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/item(at:)
-
 func (m_ Menu) ItemAtIndex(index int) MenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("itemAtIndex:"), index)
 	return rv
 }
 
 
-
 // Returns the first menu item in the menu with the specified tag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/item(withTag:)
-
 func (m_ Menu) ItemWithTag(tag int) MenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("itemWithTag:"), tag)
 	return rv
 }
 
 
-
 // Returns the first menu item in the menu with a specified title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/item(withTitle:)
-
 func (m_ Menu) ItemWithTitle(title string) MenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("itemWithTitle:"), objc.String(title))
 	return rv
 }
 
 
-
 // Invoked when a menu item is modified visually (for example, its title changes).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/itemChanged(_:)
-
 func (m_ Menu) ItemChanged(item IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("itemChanged:"), item)
 }
-
 
 
 // Returns the location in screen coordinates where the given submenu is displayed when opened as a submenu of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/locationForSubmenu:
-
 func (m_ Menu) LocationForSubmenu(submenu IMenu) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("locationForSubmenu:"), submenu)
 	return rv
 }
 
 
-
 // Deprecated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuRepresentation
-
 func (m_ Menu) MenuRepresentation() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("menuRepresentation"))
 	return rv
 }
 
 
-
 // Causes the application to send the action message of a specified menu item to its target.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/performActionForItem(at:)
-
 func (m_ Menu) PerformActionForItemAtIndex(index int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("performActionForItemAtIndex:"), index)
 }
-
 
 
 // Performs the action for the menu item that corresponds to the given key equivalent.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/performKeyEquivalent(with:)
-
 func (m_ Menu) PerformKeyEquivalent(event IEvent) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("performKeyEquivalent:"), event)
 	return rv
 }
 
 
-
 // Pops up the menu at the specified location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUp(positioning:at:in:)
-
 func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item IMenuItem, location coregraphics.CGPoint, view IView) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("popUpMenuPositioningItem:atLocation:inView:"), item, location, view)
 	return rv
 }
 
 
-
 // Removes all the menu items in the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/removeAllItems()
-
 func (m_ Menu) RemoveAllItems() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllItems"))
 }
-
 
 
 // Removes a menu item from the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/removeItem(_:)
-
 func (m_ Menu) RemoveItem(item IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeItem:"), item)
 }
-
 
 
 // Removes the menu item at a specified location in the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/removeItem(at:)
-
 func (m_ Menu) RemoveItemAtIndex(index int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeItemAtIndex:"), index)
 }
-
 
 
 // Deprecated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/setContextMenuRepresentation:
-
 func (m_ Menu) SetContextMenuRepresentation(menuRep objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContextMenuRepresentation:"), menuRep)
 }
-
 
 
 // Deprecated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/setMenuRepresentation:
-
 func (m_ Menu) SetMenuRepresentation(menuRep objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuRepresentation:"), menuRep)
 }
-
 
 
 // Assigns a menu to be a submenu of the menu controlled by a given menu item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/setSubmenu(_:for:)
-
 func (m_ Menu) SetSubmenuForItem(menu IMenu, item IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubmenu:forItem:"), menu, item)
 }
-
 
 
 // Deprecated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/setTearOffMenuRepresentation:
-
 func (m_ Menu) SetTearOffMenuRepresentation(menuRep objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTearOffMenuRepresentation:"), menuRep)
 }
-
 
 
 // Resizes the menu to exactly fit its items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/sizeToFit
-
 func (m_ Menu) SizeToFit() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sizeToFit"))
 }
-
 
 
 // The action method assigned to menu items that open submenus.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/submenuAction(_:)
-
 func (m_ Menu) SubmenuAction(sender objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("submenuAction:"), sender)
 }
-
 
 
 // Deprecated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/tearOffMenuRepresentation
-
 func (m_ Menu) TearOffMenuRepresentation() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("tearOffMenuRepresentation"))
 	return rv
 }
 
 
-
 // Enables or disables the menu items of the menu based on the NSMenuValidation informal protocol and sizes the menu to fit its current menu items if necessary.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/update()
-
 func (m_ Menu) Update() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("update"))
 }
@@ -692,7 +607,6 @@ func (m_ Menu) Update() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/allowsContextMenuPlugIns
-
 func (m_ Menu) AllowsContextMenuPlugIns() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsContextMenuPlugIns"))
 	return rv
@@ -703,7 +617,6 @@ func (m_ Menu) AllowsContextMenuPlugIns() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/allowsContextMenuPlugIns
-
 func (m_ Menu) SetAllowsContextMenuPlugIns(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsContextMenuPlugIns:"), value)
 }
@@ -713,7 +626,6 @@ func (m_ Menu) SetAllowsContextMenuPlugIns(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/autoenablesItems
-
 func (m_ Menu) AutoenablesItems() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("autoenablesItems"))
 	return rv
@@ -724,7 +636,6 @@ func (m_ Menu) AutoenablesItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/autoenablesItems
-
 func (m_ Menu) SetAutoenablesItems(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoenablesItems:"), value)
 }
@@ -732,7 +643,6 @@ func (m_ Menu) SetAutoenablesItems(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/automaticallyInsertsWritingToolsItems
-
 func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyInsertsWritingToolsItems"))
 	return rv
@@ -741,7 +651,6 @@ func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/automaticallyInsertsWritingToolsItems
-
 func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyInsertsWritingToolsItems:"), value)
 }
@@ -751,7 +660,6 @@ func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/delegate
-
 func (m_ Menu) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
 	return rv
@@ -762,7 +670,6 @@ func (m_ Menu) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/delegate
-
 func (m_ Menu) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -772,7 +679,6 @@ func (m_ Menu) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/font
-
 func (m_ Menu) Font() NSFont {
 	rv := objc.Send[NSFont](m_.ID, objc.Sel("font"))
 	return rv
@@ -783,7 +689,6 @@ func (m_ Menu) Font() NSFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/font
-
 func (m_ Menu) SetFont(value IFont) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFont:"), value)
 }
@@ -793,7 +698,6 @@ func (m_ Menu) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/highlightedItem
-
 func (m_ Menu) HighlightedItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("highlightedItem"))
 	return rv
@@ -804,7 +708,6 @@ func (m_ Menu) HighlightedItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/isTornOff
-
 func (m_ Menu) TornOff() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("tornOff"))
 	return rv
@@ -815,7 +718,6 @@ func (m_ Menu) TornOff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/items
-
 func (m_ Menu) ItemArray() []MenuItem {
 	rv := objc.Send[[]MenuItem](m_.ID, objc.Sel("itemArray"))
 	return rv
@@ -826,7 +728,6 @@ func (m_ Menu) ItemArray() []MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/items
-
 func (m_ Menu) SetItemArray(value []MenuItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -846,7 +747,6 @@ func (m_ Menu) SetItemArray(value []MenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuBarHeight
-
 func (m_ Menu) MenuBarHeight() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("menuBarHeight"))
 	return rv
@@ -857,7 +757,6 @@ func (m_ Menu) MenuBarHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuChangedMessagesEnabled
-
 func (m_ Menu) MenuChangedMessagesEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("menuChangedMessagesEnabled"))
 	return rv
@@ -868,7 +767,6 @@ func (m_ Menu) MenuChangedMessagesEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuChangedMessagesEnabled
-
 func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuChangedMessagesEnabled:"), value)
 }
@@ -878,7 +776,6 @@ func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/minimumWidth
-
 func (m_ Menu) MinimumWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("minimumWidth"))
 	return rv
@@ -889,7 +786,6 @@ func (m_ Menu) MinimumWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/minimumWidth
-
 func (m_ Menu) SetMinimumWidth(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumWidth:"), value)
 }
@@ -899,7 +795,6 @@ func (m_ Menu) SetMinimumWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/numberOfItems
-
 func (m_ Menu) NumberOfItems() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("numberOfItems"))
 	return rv
@@ -910,7 +805,6 @@ func (m_ Menu) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/presentationStyle-swift.property
-
 func (m_ Menu) PresentationStyle() MenuPresentationStyle {
 	rv := objc.Send[MenuPresentationStyle](m_.ID, objc.Sel("presentationStyle"))
 	return rv
@@ -921,7 +815,6 @@ func (m_ Menu) PresentationStyle() MenuPresentationStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/presentationStyle-swift.property
-
 func (m_ Menu) SetPresentationStyle(value MenuPresentationStyle) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresentationStyle:"), value)
 }
@@ -931,7 +824,6 @@ func (m_ Menu) SetPresentationStyle(value MenuPresentationStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/propertiesToUpdate
-
 func (m_ Menu) PropertiesToUpdate() MenuProperties {
 	rv := objc.Send[MenuProperties](m_.ID, objc.Sel("propertiesToUpdate"))
 	return rv
@@ -942,7 +834,6 @@ func (m_ Menu) PropertiesToUpdate() MenuProperties {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/selectedItems
-
 func (m_ Menu) SelectedItems() []MenuItem {
 	rv := objc.Send[[]MenuItem](m_.ID, objc.Sel("selectedItems"))
 	return rv
@@ -953,7 +844,6 @@ func (m_ Menu) SelectedItems() []MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/selectedItems
-
 func (m_ Menu) SetSelectedItems(value []MenuItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -973,7 +863,6 @@ func (m_ Menu) SetSelectedItems(value []MenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/selectionMode-swift.property
-
 func (m_ Menu) SelectionMode() MenuSelectionMode {
 	rv := objc.Send[MenuSelectionMode](m_.ID, objc.Sel("selectionMode"))
 	return rv
@@ -984,7 +873,6 @@ func (m_ Menu) SelectionMode() MenuSelectionMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/selectionMode-swift.property
-
 func (m_ Menu) SetSelectionMode(value MenuSelectionMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectionMode:"), value)
 }
@@ -994,7 +882,6 @@ func (m_ Menu) SetSelectionMode(value MenuSelectionMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/showsStateColumn
-
 func (m_ Menu) ShowsStateColumn() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsStateColumn"))
 	return rv
@@ -1005,7 +892,6 @@ func (m_ Menu) ShowsStateColumn() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/showsStateColumn
-
 func (m_ Menu) SetShowsStateColumn(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsStateColumn:"), value)
 }
@@ -1015,7 +901,6 @@ func (m_ Menu) SetShowsStateColumn(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/size
-
 func (m_ Menu) Size() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("size"))
 	return rv
@@ -1026,7 +911,6 @@ func (m_ Menu) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/supermenu
-
 func (m_ Menu) Supermenu() NSMenu {
 	rv := objc.Send[NSMenu](m_.ID, objc.Sel("supermenu"))
 	return rv
@@ -1037,7 +921,6 @@ func (m_ Menu) Supermenu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/supermenu
-
 func (m_ Menu) SetSupermenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupermenu:"), value)
 }
@@ -1047,7 +930,6 @@ func (m_ Menu) SetSupermenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/title
-
 func (m_ Menu) Title() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
@@ -1058,7 +940,6 @@ func (m_ Menu) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/title
-
 func (m_ Menu) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -1068,7 +949,6 @@ func (m_ Menu) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/userInterfaceLayoutDirection
-
 func (m_ Menu) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 	rv := objc.Send[UserInterfaceLayoutDirection](m_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
@@ -1079,8 +959,7 @@ func (m_ Menu) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/userInterfaceLayoutDirection
-
-func (m_ Menu) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
+func (m_ Menu) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 
@@ -1089,7 +968,6 @@ func (m_ Menu) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirectio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/istornoff
-
 func (m_ Menu) IsTornOff() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isTornOff"))
 	return rv
@@ -1100,7 +978,6 @@ func (m_ Menu) IsTornOff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/istornoff
-
 func (m_ Menu) SetIsTornOff(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTornOff:"), value)
 }
@@ -1110,7 +987,6 @@ func (m_ Menu) SetIsTornOff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
-
 func (m_ Menu) Items() NSMenuItem {
 	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("items"))
 	return rv
@@ -1121,7 +997,6 @@ func (m_ Menu) Items() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
-
 func (m_ Menu) SetItems(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
 }

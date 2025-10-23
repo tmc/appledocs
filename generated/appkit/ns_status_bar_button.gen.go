@@ -40,7 +40,6 @@ type IStatusBarButton interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton
-
 type StatusBarButton struct {
 	Button
 }
@@ -89,7 +88,6 @@ func NewStatusBarButton() StatusBarButton {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton/appearsDisabled
-
 func (s_ StatusBarButton) AppearsDisabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("appearsDisabled"))
 	return rv
@@ -98,7 +96,6 @@ func (s_ StatusBarButton) AppearsDisabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton/appearsDisabled
-
 func (s_ StatusBarButton) SetAppearsDisabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppearsDisabled:"), value)
 }

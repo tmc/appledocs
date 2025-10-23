@@ -41,7 +41,6 @@ type IEXAppExtensionBrowserViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXAppExtensionBrowserViewController
-
 type EXAppExtensionBrowserViewController struct {
 	appkit.ViewController
 }

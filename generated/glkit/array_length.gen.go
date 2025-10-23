@@ -36,7 +36,6 @@ type IarrayLength interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/arrayLength-c.ivar
-
 type arrayLength struct {
 	objectivec.Object
 }

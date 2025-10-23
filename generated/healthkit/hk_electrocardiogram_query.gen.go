@@ -40,7 +40,6 @@ type IHKElectrocardiogramQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogramQuery
-
 type HKElectrocardiogramQuery struct {
 	HKQuery
 }

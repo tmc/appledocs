@@ -7,10 +7,9 @@ import "github.com/ebitengine/purego/objc"
 // toolbarProtocol is the toolbar: protocol.
 //
 // Availability:
-//   - Mac Catalyst 16.0+
-//   - iOS 16.0+
-//   - iPadOS 16.0+
-//   - macOS 13.0+
+//   - Mac Catalyst 13.1+
+//   - iOS 13.0+
+//   - iPadOS 13.0+
 //
 // Use this protocol when registering custom classes that conform to toolbar:.
 var toolbarProtocol *objc.Protocol

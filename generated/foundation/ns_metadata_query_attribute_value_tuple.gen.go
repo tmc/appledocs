@@ -33,15 +33,15 @@ type IMetadataQueryAttributeValueTuple interface {
 	Attribute() string
 	Count() uint
 	Value() objc.ID
-	GroupedResults() NSMetadataQueryResultGroup
+	GroupedResults() IMetadataQueryResultGroup
 	SetGroupedResults(value IMetadataQueryResultGroup)
-	OperationQueue() NSOperationQueue
+	OperationQueue() IOperationQueue
 	SetOperationQueue(value IOperationQueue)
 	ResultCount() int
 	SetResultCount(value int)
 	Results() unsafe.Pointer
 	SetResults(value unsafe.Pointer)
-	ValueLists() NSMetadataQueryAttributeValueTuple
+	ValueLists() IMetadataQueryAttributeValueTuple
 	SetValueLists(value IMetadataQueryAttributeValueTuple)
 }
 
@@ -132,7 +132,7 @@ func (m_ MetadataQueryAttributeValueTuple) Value() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
-func (m_ MetadataQueryAttributeValueTuple) GroupedResults() NSMetadataQueryResultGroup {
+func (m_ MetadataQueryAttributeValueTuple) GroupedResults() IMetadataQueryResultGroup {
 	rv := objc.Send[NSMetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (m_ MetadataQueryAttributeValueTuple) SetGroupedResults(value IMetadataQuer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/operationqueue
-func (m_ MetadataQueryAttributeValueTuple) OperationQueue() NSOperationQueue {
+func (m_ MetadataQueryAttributeValueTuple) OperationQueue() IOperationQueue {
 	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
@@ -208,7 +208,7 @@ func (m_ MetadataQueryAttributeValueTuple) SetResults(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-func (m_ MetadataQueryAttributeValueTuple) ValueLists() NSMetadataQueryAttributeValueTuple {
+func (m_ MetadataQueryAttributeValueTuple) ValueLists() IMetadataQueryAttributeValueTuple {
 	rv := objc.Send[NSMetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
 	return rv
 }

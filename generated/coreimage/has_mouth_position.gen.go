@@ -36,7 +36,6 @@ type IhasMouthPosition interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasMouthPosition-c.ivar
-
 type hasMouthPosition struct {
 	objectivec.Object
 }

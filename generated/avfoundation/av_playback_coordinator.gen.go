@@ -32,10 +32,12 @@ type IPlaybackCoordinator interface {
 	objectivec.IObject
 	ParticipantLimitForWaitingOutSuspensionsWithReason(reason unsafe.Pointer) int
 	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer)
-	OtherParticipants() []CoordinatedPlaybackParticipant
-	SuspensionReasons() []string
+	OtherParticipants() IAVCoordinatedPlaybackParticipant
+	SetOtherParticipants(value IAVCoordinatedPlaybackParticipant)
 	PauseSnapsToMediaTimeOfOriginator() bool
 	SetPauseSnapsToMediaTimeOfOriginator(value bool)
+	SuspensionReasons() unsafe.Pointer
+	SetSuspensionReasons(value unsafe.Pointer)
 	SuspensionReasonsThatTriggerWaiting() unsafe.Pointer
 	SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer)
 }
@@ -49,7 +51,6 @@ type IPlaybackCoordinator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator
-
 type PlaybackCoordinator struct {
 	objectivec.Object
 }
@@ -94,24 +95,20 @@ func NewPlaybackCoordinator() PlaybackCoordinator {
 
 
 
-
 // Returns the limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/participantLimitForWaitingOutSuspensions(withReason:)
-
 func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason unsafe.Pointer) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("participantLimitForWaitingOutSuspensionsWithReason:"), reason)
 	return rv
 }
 
 
-
 // Sets a limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/setParticipantLimit(_:forWaitingOutSuspensionsWithReason:)
-
 func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParticipantLimit:forWaitingOutSuspensionsWithReason:"), participantLimit, reason)
 }
@@ -120,22 +117,19 @@ func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithRea
 // The identifiers of the other participants in a group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/otherParticipants
-
-func (p_ PlaybackCoordinator) OtherParticipants() []CoordinatedPlaybackParticipant {
-	rv := objc.Send[[]CoordinatedPlaybackParticipant](p_.ID, objc.Sel("otherParticipants"))
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
+func (p_ PlaybackCoordinator) OtherParticipants() IAVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](p_.ID, objc.Sel("otherParticipants"))
 	return rv
 }
 
 
-// The reasons a coordinator is currently unable to participate in a group playback activity.
+// The identifiers of the other participants in a group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/suspensionReasons
-
-func (p_ PlaybackCoordinator) SuspensionReasons() []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("suspensionReasons"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
+func (p_ PlaybackCoordinator) SetOtherParticipants(value IAVCoordinatedPlaybackParticipant) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOtherParticipants:"), value)
 }
 
 
@@ -143,7 +137,6 @@ func (p_ PlaybackCoordinator) SuspensionReasons() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/pausesnapstomediatimeoforiginator
-
 func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pauseSnapsToMediaTimeOfOriginator"))
 	return rv
@@ -154,9 +147,27 @@ func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/pausesnapstomediatimeoforiginator
-
 func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPauseSnapsToMediaTimeOfOriginator:"), value)
+}
+
+
+// The reasons a coordinator is currently unable to participate in a group playback activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasons
+func (p_ PlaybackCoordinator) SuspensionReasons() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("suspensionReasons"))
+	return rv
+}
+
+
+// The reasons a coordinator is currently unable to participate in a group playback activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasons
+func (p_ PlaybackCoordinator) SetSuspensionReasons(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSuspensionReasons:"), value)
 }
 
 
@@ -164,7 +175,6 @@ func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasonsthattriggerwaiting
-
 func (p_ PlaybackCoordinator) SuspensionReasonsThatTriggerWaiting() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("suspensionReasonsThatTriggerWaiting"))
 	return rv
@@ -175,7 +185,6 @@ func (p_ PlaybackCoordinator) SuspensionReasonsThatTriggerWaiting() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasonsthattriggerwaiting
-
 func (p_ PlaybackCoordinator) SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSuspensionReasonsThatTriggerWaiting:"), value)
 }

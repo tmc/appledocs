@@ -83,7 +83,6 @@ type IFSVolumeSupportedCapabilities interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/SupportedCapabilities
-
 type FSVolumeSupportedCapabilities struct {
 	objectivec.Object
 }
@@ -132,7 +131,6 @@ func NewFSVolumeSupportedCapabilities() FSVolumeSupportedCapabilities {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-
 func (f_ FSVolumeSupportedCapabilities) SupportedVolumeCapabilities() FSVolumeSupportedCapabilities {
 	rv := objc.Send[FSVolumeSupportedCapabilities](f_.ID, objc.Sel("supportedVolumeCapabilities"))
 	return rv
@@ -143,7 +141,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportedVolumeCapabilities() FSVolumeSu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedVolumeCapabilities:"), value)
 }
@@ -153,7 +150,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportedVolumeCapabilities(value IFS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-
 func (f_ FSVolumeSupportedCapabilities) VolumeStatistics() FSStatFSResult {
 	rv := objc.Send[FSStatFSResult](f_.ID, objc.Sel("volumeStatistics"))
 	return rv
@@ -164,7 +160,6 @@ func (f_ FSVolumeSupportedCapabilities) VolumeStatistics() FSStatFSResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-
 func (f_ FSVolumeSupportedCapabilities) SetVolumeStatistics(value IFSStatFSResult) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeStatistics:"), value)
 }
@@ -174,7 +169,6 @@ func (f_ FSVolumeSupportedCapabilities) SetVolumeStatistics(value IFSStatFSResul
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/caseformat
-
 func (f_ FSVolumeSupportedCapabilities) CaseFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("caseFormat"))
 	return rv
@@ -185,7 +179,6 @@ func (f_ FSVolumeSupportedCapabilities) CaseFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/caseformat
-
 func (f_ FSVolumeSupportedCapabilities) SetCaseFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCaseFormat:"), value)
 }
@@ -195,7 +188,6 @@ func (f_ FSVolumeSupportedCapabilities) SetCaseFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportimmutablefiles
-
 func (f_ FSVolumeSupportedCapabilities) DoesNotSupportImmutableFiles() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("doesNotSupportImmutableFiles"))
 	return rv
@@ -206,7 +198,6 @@ func (f_ FSVolumeSupportedCapabilities) DoesNotSupportImmutableFiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportimmutablefiles
-
 func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportImmutableFiles(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDoesNotSupportImmutableFiles:"), value)
 }
@@ -216,7 +207,6 @@ func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportImmutableFiles(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportroottimes
-
 func (f_ FSVolumeSupportedCapabilities) DoesNotSupportRootTimes() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("doesNotSupportRootTimes"))
 	return rv
@@ -227,7 +217,6 @@ func (f_ FSVolumeSupportedCapabilities) DoesNotSupportRootTimes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportroottimes
-
 func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportRootTimes(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDoesNotSupportRootTimes:"), value)
 }
@@ -237,7 +226,6 @@ func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportRootTimes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportsettingfilepermissions
-
 func (f_ FSVolumeSupportedCapabilities) DoesNotSupportSettingFilePermissions() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("doesNotSupportSettingFilePermissions"))
 	return rv
@@ -248,7 +236,6 @@ func (f_ FSVolumeSupportedCapabilities) DoesNotSupportSettingFilePermissions() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportsettingfilepermissions
-
 func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportSettingFilePermissions(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDoesNotSupportSettingFilePermissions:"), value)
 }
@@ -258,7 +245,6 @@ func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportSettingFilePermissions(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportvolumesizes
-
 func (f_ FSVolumeSupportedCapabilities) DoesNotSupportVolumeSizes() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("doesNotSupportVolumeSizes"))
 	return rv
@@ -269,7 +255,6 @@ func (f_ FSVolumeSupportedCapabilities) DoesNotSupportVolumeSizes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/doesnotsupportvolumesizes
-
 func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportVolumeSizes(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDoesNotSupportVolumeSizes:"), value)
 }
@@ -279,7 +264,6 @@ func (f_ FSVolumeSupportedCapabilities) SetDoesNotSupportVolumeSizes(value bool)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supports2tbfiles
-
 func (f_ FSVolumeSupportedCapabilities) Supports2TBFiles() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supports2TBFiles"))
 	return rv
@@ -290,7 +274,6 @@ func (f_ FSVolumeSupportedCapabilities) Supports2TBFiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supports2tbfiles
-
 func (f_ FSVolumeSupportedCapabilities) SetSupports2TBFiles(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupports2TBFiles:"), value)
 }
@@ -300,7 +283,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupports2TBFiles(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supports64bitobjectids
-
 func (f_ FSVolumeSupportedCapabilities) Supports64BitObjectIDs() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supports64BitObjectIDs"))
 	return rv
@@ -311,7 +293,6 @@ func (f_ FSVolumeSupportedCapabilities) Supports64BitObjectIDs() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supports64bitobjectids
-
 func (f_ FSVolumeSupportedCapabilities) SetSupports64BitObjectIDs(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupports64BitObjectIDs:"), value)
 }
@@ -321,7 +302,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupports64BitObjectIDs(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsactivejournal
-
 func (f_ FSVolumeSupportedCapabilities) SupportsActiveJournal() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsActiveJournal"))
 	return rv
@@ -332,7 +312,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsActiveJournal() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsactivejournal
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsActiveJournal(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsActiveJournal:"), value)
 }
@@ -342,7 +321,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsActiveJournal(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsdocumentid
-
 func (f_ FSVolumeSupportedCapabilities) SupportsDocumentID() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsDocumentID"))
 	return rv
@@ -353,7 +331,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsDocumentID() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsdocumentid
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsDocumentID(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsDocumentID:"), value)
 }
@@ -363,7 +340,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsDocumentID(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsfaststatfs
-
 func (f_ FSVolumeSupportedCapabilities) SupportsFastStatFS() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsFastStatFS"))
 	return rv
@@ -374,7 +350,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsFastStatFS() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsfaststatfs
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsFastStatFS(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsFastStatFS:"), value)
 }
@@ -384,7 +359,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsFastStatFS(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportshardlinks
-
 func (f_ FSVolumeSupportedCapabilities) SupportsHardLinks() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsHardLinks"))
 	return rv
@@ -395,7 +369,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsHardLinks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportshardlinks
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsHardLinks(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsHardLinks:"), value)
 }
@@ -405,7 +378,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsHardLinks(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportshiddenfiles
-
 func (f_ FSVolumeSupportedCapabilities) SupportsHiddenFiles() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsHiddenFiles"))
 	return rv
@@ -416,7 +388,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsHiddenFiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportshiddenfiles
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsHiddenFiles(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsHiddenFiles:"), value)
 }
@@ -426,7 +397,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsHiddenFiles(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsjournal
-
 func (f_ FSVolumeSupportedCapabilities) SupportsJournal() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsJournal"))
 	return rv
@@ -437,7 +407,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsJournal() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsjournal
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsJournal(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsJournal:"), value)
 }
@@ -447,7 +416,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsJournal(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsopendenymodes
-
 func (f_ FSVolumeSupportedCapabilities) SupportsOpenDenyModes() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsOpenDenyModes"))
 	return rv
@@ -458,7 +426,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsOpenDenyModes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsopendenymodes
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsOpenDenyModes(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsOpenDenyModes:"), value)
 }
@@ -468,7 +435,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsOpenDenyModes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportspersistentobjectids
-
 func (f_ FSVolumeSupportedCapabilities) SupportsPersistentObjectIDs() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsPersistentObjectIDs"))
 	return rv
@@ -479,7 +445,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsPersistentObjectIDs() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportspersistentobjectids
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsPersistentObjectIDs(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsPersistentObjectIDs:"), value)
 }
@@ -489,7 +454,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsPersistentObjectIDs(value boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportssharedspace
-
 func (f_ FSVolumeSupportedCapabilities) SupportsSharedSpace() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsSharedSpace"))
 	return rv
@@ -500,7 +464,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsSharedSpace() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportssharedspace
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsSharedSpace(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsSharedSpace:"), value)
 }
@@ -510,7 +473,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsSharedSpace(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportssparsefiles
-
 func (f_ FSVolumeSupportedCapabilities) SupportsSparseFiles() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsSparseFiles"))
 	return rv
@@ -521,7 +483,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsSparseFiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportssparsefiles
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsSparseFiles(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsSparseFiles:"), value)
 }
@@ -531,7 +492,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsSparseFiles(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportssymboliclinks
-
 func (f_ FSVolumeSupportedCapabilities) SupportsSymbolicLinks() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsSymbolicLinks"))
 	return rv
@@ -542,7 +502,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsSymbolicLinks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportssymboliclinks
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsSymbolicLinks(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsSymbolicLinks:"), value)
 }
@@ -552,7 +511,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsSymbolicLinks(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsvolumegroups
-
 func (f_ FSVolumeSupportedCapabilities) SupportsVolumeGroups() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsVolumeGroups"))
 	return rv
@@ -563,7 +521,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsVolumeGroups() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportsvolumegroups
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsVolumeGroups(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsVolumeGroups:"), value)
 }
@@ -573,7 +530,6 @@ func (f_ FSVolumeSupportedCapabilities) SetSupportsVolumeGroups(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportszeroruns
-
 func (f_ FSVolumeSupportedCapabilities) SupportsZeroRuns() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsZeroRuns"))
 	return rv
@@ -584,7 +540,6 @@ func (f_ FSVolumeSupportedCapabilities) SupportsZeroRuns() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities/supportszeroruns
-
 func (f_ FSVolumeSupportedCapabilities) SetSupportsZeroRuns(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsZeroRuns:"), value)
 }

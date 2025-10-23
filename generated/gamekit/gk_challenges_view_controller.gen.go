@@ -40,7 +40,6 @@ type IChallengesViewController interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController
-
 type ChallengesViewController struct {
 	appkit.ViewController
 }
@@ -87,7 +86,6 @@ func NewChallengesViewController() ChallengesViewController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController/challengeDelegate
-
 func (c_ ChallengesViewController) ChallengeDelegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("challengeDelegate"))
 	return rv
@@ -96,7 +94,6 @@ func (c_ ChallengesViewController) ChallengeDelegate() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengesViewController/challengeDelegate
-
 func (c_ ChallengesViewController) SetChallengeDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setChallengeDelegate:"), value)
 }
@@ -106,7 +103,6 @@ func (c_ ChallengesViewController) SetChallengeDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-
 func (c_ ChallengesViewController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -117,7 +113,6 @@ func (c_ ChallengesViewController) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-
 func (c_ ChallengesViewController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

@@ -48,7 +48,6 @@ type ITextTable interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable
-
 type TextTable struct {
 	TextBlock
 }
@@ -99,7 +98,6 @@ func NewTextTable() TextTable {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/collapsesborders
-
 func (t_ TextTable) CollapsesBorders() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("collapsesBorders"))
 	return rv
@@ -110,7 +108,6 @@ func (t_ TextTable) CollapsesBorders() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/collapsesborders
-
 func (t_ TextTable) SetCollapsesBorders(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCollapsesBorders:"), value)
 }
@@ -120,7 +117,6 @@ func (t_ TextTable) SetCollapsesBorders(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/hidesemptycells
-
 func (t_ TextTable) HidesEmptyCells() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hidesEmptyCells"))
 	return rv
@@ -131,7 +127,6 @@ func (t_ TextTable) HidesEmptyCells() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/hidesemptycells
-
 func (t_ TextTable) SetHidesEmptyCells(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHidesEmptyCells:"), value)
 }
@@ -141,7 +136,6 @@ func (t_ TextTable) SetHidesEmptyCells(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property
-
 func (t_ TextTable) LayoutAlgorithm() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutAlgorithm"))
 	return rv
@@ -152,7 +146,6 @@ func (t_ TextTable) LayoutAlgorithm() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property
-
 func (t_ TextTable) SetLayoutAlgorithm(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAlgorithm:"), value)
 }
@@ -162,7 +155,6 @@ func (t_ TextTable) SetLayoutAlgorithm(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/numberofcolumns
-
 func (t_ TextTable) NumberOfColumns() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfColumns"))
 	return rv
@@ -173,7 +165,6 @@ func (t_ TextTable) NumberOfColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/numberofcolumns
-
 func (t_ TextTable) SetNumberOfColumns(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfColumns:"), value)
 }

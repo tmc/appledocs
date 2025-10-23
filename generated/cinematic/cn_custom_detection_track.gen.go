@@ -39,7 +39,6 @@ type ICNCustomDetectionTrack interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc
-
 type CNCustomDetectionTrack struct {
 	CNDetectionTrack
 }
@@ -86,12 +85,10 @@ func NewCNCustomDetectionTrack() CNCustomDetectionTrack {
 
 
 
-
 // Initializes a custom detection track with an array of detections, optionally applying smoothing.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/initWithDetections:smooth:
-
 func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection, applySmoothing bool) CNCustomDetectionTrack {
 	instance := getCNCustomDetectionTrackClass().Alloc()
 	rv := objc.Send[CNCustomDetectionTrack](instance.ID, objc.Sel("initWithDetections:smooth:"), detections, applySmoothing)
@@ -105,7 +102,6 @@ func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection, app
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/allDetections
-
 func (c_ CNCustomDetectionTrack) AllDetections() []CNDetection {
 	rv := objc.Send[[]CNDetection](c_.ID, objc.Sel("allDetections"))
 	return rv

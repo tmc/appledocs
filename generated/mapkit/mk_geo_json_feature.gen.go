@@ -41,7 +41,11 @@ type IMKGeoJSONFeature interface {
 // The decoded representation of a GeoJSON feature.
 //
 // A feature is an object with associated geometry and optional properties in JSON that you define. MapKit exposes these optional properties, but treats them as opaque. is one of the classes that the GeoJSON decoder ( ) can return. See the GeoJSON standards specification for more information about objects.
+
+
+// The decoded representation of a GeoJSON feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature
 type MKGeoJSONFeature struct {
 	objectivec.Object
@@ -86,16 +90,20 @@ func NewMKGeoJSONFeature() MKGeoJSONFeature {
 }
 
 
+
 // An optional identifier the class returns as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature/identifier
 func (m_ MKGeoJSONFeature) Identifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The shape or shapes associated with the GeoJSON feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/geometry
 func (m_ MKGeoJSONFeature) Geometry() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("geometry"))
@@ -103,17 +111,18 @@ func (m_ MKGeoJSONFeature) Geometry() unsafe.Pointer {
 }
 
 
-// SetGeometry sets the value of the geometry property.
 // The shape or shapes associated with the GeoJSON feature.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/geometry
 func (m_ MKGeoJSONFeature) SetGeometry(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGeometry:"), value)
 }
 
+
 // Optional serialized JSON data that corresponds to the properties key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
 func (m_ MKGeoJSONFeature) Properties() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("properties"))
@@ -121,10 +130,9 @@ func (m_ MKGeoJSONFeature) Properties() foundation.Data {
 }
 
 
-// SetProperties sets the value of the properties property.
 // Optional serialized JSON data that corresponds to the properties key.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
 func (m_ MKGeoJSONFeature) SetProperties(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)

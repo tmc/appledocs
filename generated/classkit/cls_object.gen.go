@@ -42,7 +42,6 @@ type ISObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject
-
 type SObject struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewSObject() SObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject/dateCreated
-
 func (s_ SObject) DateCreated() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("dateCreated"))
 	return rv
@@ -102,7 +100,6 @@ func (s_ SObject) DateCreated() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject/dateLastModified
-
 func (s_ SObject) DateLastModified() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("dateLastModified"))
 	return rv

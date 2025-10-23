@@ -7,10 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // locationManagerProtocol is the locationManager: protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+ (Deprecated in 13.1)
-//   - iOS 7.0+ (Deprecated in 13.0)
-//   - iPadOS 7.0+ (Deprecated in 13.0)
-//   - macOS 10.15+ (Deprecated in 10.15)
+//   - Mac Catalyst 13.1+ (Deprecated in 14.0)
+//   - iOS 4.2+ (Deprecated in 14.0)
+//   - iPadOS 4.2+ (Deprecated in 14.0)
+//   - macOS 10.7+ (Deprecated in 11.0)
+//   - tvOS 9.0+ (Deprecated in 14.0)
+//   - watchOS 1.0+ (Deprecated in 7.0)
 //
 // Use this protocol when registering custom classes that conform to locationManager:.
 var locationManagerProtocol *objc.Protocol

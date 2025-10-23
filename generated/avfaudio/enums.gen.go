@@ -451,6 +451,11 @@ const (
 	AudioSessionSpatialExperienceHeadTracked AudioSessionSpatialExperience = 0
 )
 
+// AVSpeechBoundary - Specifies when to pause or stop speech.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechBoundary
+type SpeechBoundary uint
+
 // AVSpeechSynthesisVoiceTraits - Traits that describe a voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/Traits

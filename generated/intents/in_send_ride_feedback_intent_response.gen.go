@@ -36,7 +36,11 @@ type IINSendRideFeedbackIntentResponse interface {
 // Your app’s response to a send ride feedback intent.
 //
 // An object contains your app’s response to a request for feedback about a ride. After creating the response object, specify any feedback using the properties of this object. Siri and Maps display your response information to the user during the confirmation phase. You create an object in the and methods of your handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a send ride feedback intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntentResponse
 type INSendRideFeedbackIntentResponse struct {
 	INIntentResponse
@@ -83,8 +87,10 @@ func NewINSendRideFeedbackIntentResponse() INSendRideFeedbackIntentResponse {
 }
 
 
+
 // The code indicating whether your app successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintentresponse/code
 func (i_ INSendRideFeedbackIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -92,10 +98,9 @@ func (i_ INSendRideFeedbackIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code indicating whether your app successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintentresponse/code
 func (i_ INSendRideFeedbackIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)

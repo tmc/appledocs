@@ -42,7 +42,6 @@ type IGlassEffectContainerView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView
-
 type GlassEffectContainerView struct {
 	View
 }
@@ -93,7 +92,6 @@ func NewGlassEffectContainerView() GlassEffectContainerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
-
 func (g_ GlassEffectContainerView) ContentView() NSView {
 	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
@@ -104,7 +102,6 @@ func (g_ GlassEffectContainerView) ContentView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
-
 func (g_ GlassEffectContainerView) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
@@ -114,7 +111,6 @@ func (g_ GlassEffectContainerView) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
-
 func (g_ GlassEffectContainerView) Spacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("spacing"))
 	return rv
@@ -125,7 +121,6 @@ func (g_ GlassEffectContainerView) Spacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
-
 func (g_ GlassEffectContainerView) SetSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpacing:"), value)
 }

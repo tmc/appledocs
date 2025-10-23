@@ -31,10 +31,10 @@ type _AppleScriptClass struct {
 type IAppleScript interface {
 	objectivec.IObject
 	CompileAndReturnError(errorInfo IDictionary) bool
-	ExecuteAndReturnError(errorInfo IDictionary) AppleEventDescriptor
-	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) AppleEventDescriptor
+	ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDescriptor
+	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) IAppleEventDescriptor
 	Compiled() bool
-	RichTextSource() NSAttributedString
+	RichTextSource() IAttributedString
 	Source() string
 	IsCompiled() bool
 	SetIsCompiled(value bool)
@@ -132,7 +132,7 @@ func (a_ AppleScript) CompileAndReturnError(errorInfo IDictionary) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAndReturnError(_:)
-func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary) AppleEventDescriptor {
+func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAndReturnError:"), errorInfo)
 	return rv
 }
@@ -142,7 +142,7 @@ func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary) AppleEventDes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
-func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) AppleEventDescriptor {
+func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
 	return rv
 }
@@ -162,7 +162,7 @@ func (a_ AppleScript) Compiled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/richTextSource
-func (a_ AppleScript) RichTextSource() NSAttributedString {
+func (a_ AppleScript) RichTextSource() IAttributedString {
 	rv := objc.Send[NSAttributedString](a_.ID, objc.Sel("richTextSource"))
 	return rv
 }

@@ -41,7 +41,6 @@ type IHKBloodTypeObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBloodTypeObject
-
 type HKBloodTypeObject struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewHKBloodTypeObject() HKBloodTypeObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkbloodtypeobject/bloodtype
-
 func (h_ HKBloodTypeObject) BloodType() HKBloodType {
 	rv := objc.Send[HKBloodType](h_.ID, objc.Sel("bloodType"))
 	return rv
@@ -101,7 +99,6 @@ func (h_ HKBloodTypeObject) BloodType() HKBloodType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkbloodtypeobject/bloodtype
-
 func (h_ HKBloodTypeObject) SetBloodType(value HKBloodType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBloodType:"), value)
 }

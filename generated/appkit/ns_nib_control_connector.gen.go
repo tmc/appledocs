@@ -39,7 +39,6 @@ type INibControlConnector interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibControlConnector
-
 type NibControlConnector struct {
 	NibConnector
 }
@@ -86,10 +85,8 @@ func NewNibControlConnector() NibControlConnector {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibControlConnector/establishConnection
-
 func (n_ NibControlConnector) EstablishConnection() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
 }

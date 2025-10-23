@@ -46,7 +46,6 @@ type IHKQuantitySample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample
-
 type HKQuantitySample struct {
 	HKSample
 }
@@ -93,36 +92,30 @@ func NewHKQuantitySample() HKQuantitySample {
 
 
 
-
 // Returns a sample containing a numeric measurement.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:)
-
 func NewHKQuantitySampleWithTypeQuantityStartDateEndDate(quantityType HKQuantityType, quantity IHKQuantity, startDate foundation.IDate, endDate foundation.IDate) HKQuantitySample {
 	rv := objc.Send[HKQuantitySample](objc.ID(getHKQuantitySampleClass().class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:"), quantityType, quantity, startDate, endDate)
 	return rv
 }
 
 
-
 // Returns a sample containing a numeric measurement with the provided device and metadata.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:device:metadata:)
-
 func NewHKQuantitySampleWithTypeQuantityStartDateEndDateDeviceMetadata(quantityType HKQuantityType, quantity IHKQuantity, startDate foundation.IDate, endDate foundation.IDate, device IHKDevice, metadata unsafe.Pointer) HKQuantitySample {
 	rv := objc.Send[HKQuantitySample](objc.ID(getHKQuantitySampleClass().class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:device:metadata:"), quantityType, quantity, startDate, endDate, device, metadata)
 	return rv
 }
 
 
-
 // Returns a sample containing a numeric measurement with the provided metadata.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)
-
 func NewHKQuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType HKQuantityType, quantity IHKQuantity, startDate foundation.IDate, endDate foundation.IDate, metadata unsafe.Pointer) HKQuantitySample {
 	rv := objc.Send[HKQuantitySample](objc.ID(getHKQuantitySampleClass().class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:metadata:"), quantityType, quantity, startDate, endDate, metadata)
 	return rv
@@ -134,7 +127,6 @@ func NewHKQuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType HK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:)
-
 func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDate(quantityType HKQuantityType, quantity IHKQuantity, startDate foundation.IDate, endDate foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:"), quantityType, quantity, startDate, endDate)
 	return rv
@@ -145,7 +137,6 @@ func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDate(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:device:metadata:)
-
 func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateDeviceMetadata(quantityType HKQuantityType, quantity IHKQuantity, startDate foundation.IDate, endDate foundation.IDate, device IHKDevice, metadata unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:device:metadata:"), quantityType, quantity, startDate, endDate, device, metadata)
 	return rv
@@ -156,7 +147,6 @@ func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)
-
 func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType HKQuantityType, quantity IHKQuantity, startDate foundation.IDate, endDate foundation.IDate, metadata unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:metadata:"), quantityType, quantity, startDate, endDate, metadata)
 	return rv
@@ -167,7 +157,6 @@ func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/count
-
 func (h_ HKQuantitySample) Count() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("count"))
 	return rv
@@ -178,7 +167,6 @@ func (h_ HKQuantitySample) Count() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/quantity
-
 func (h_ HKQuantitySample) Quantity() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("quantity"))
 	return rv
@@ -189,7 +177,6 @@ func (h_ HKQuantitySample) Quantity() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/quantityType
-
 func (h_ HKQuantitySample) QuantityType() HKQuantityType {
 	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
@@ -200,7 +187,6 @@ func (h_ HKQuantitySample) QuantityType() HKQuantityType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount
-
 func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
 	return rv
@@ -211,7 +197,6 @@ func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity
-
 func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
 	return rv

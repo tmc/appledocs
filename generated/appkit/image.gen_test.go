@@ -9,6 +9,43 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewImage
 
+// ExampleNewImage demonstrates how to create a Image instance.
+func ExampleNewImage() {
+	_ = appkit.NewImage()
+	// Output:
+}
+// ExampleNewImageByReferencingFile demonstrates how to create a Image instance using NewImageByReferencingFile.
+// Initializes and returns an image object using the specified file.
+func ExampleNewImageByReferencingFile() {
+	_ = appkit.NewImageByReferencingFile(
+		"fileName", // fileName string
+	)
+	// Output:
+}
+// ExampleNewImageNamed demonstrates how to create a Image instance using NewImageNamed.
+// Returns the image object associated with the specified name.
+func ExampleNewImageNamed() {
+	_ = appkit.NewImageNamed(
+		appkit.ImageName{}, // name ImageName
+	)
+	// Output:
+}
+// ExampleNewImageWithContentsOfFile demonstrates how to create a Image instance using NewImageWithContentsOfFile.
+// Initializes and returns an image object with the contents of the specified file.
+func ExampleNewImageWithContentsOfFile() {
+	_ = appkit.NewImageWithContentsOfFile(
+		"fileName", // fileName string
+	)
+	// Output:
+}
+// ExampleNewImageWithPasteboard demonstrates how to create a Image instance using NewImageWithPasteboard.
+// Initializes and returns an image object with data from the specified pasteboard.
+func ExampleNewImageWithPasteboard() {
+	_ = appkit.NewImageWithPasteboard(
+		appkit.NSPasteboard{}, // pasteboard NSPasteboard
+	)
+	// Output:
+}
 // ExampleNewImageWithSymbolNameVariableValue demonstrates how to create a Image instance using NewImageWithSymbolNameVariableValue.
 // Creates a symbol image with the symbol name and variable value you specify.
 func ExampleNewImageWithSymbolNameVariableValue() {
@@ -23,6 +60,16 @@ func ExampleNewImageWithSymbolNameVariableValue() {
 func ExampleNewImageWithSystemSymbolNameAccessibilityDescription() {
 	_ = appkit.NewImageWithSystemSymbolNameAccessibilityDescription(
 		"name", // name string
+		"description", // description string
+	)
+	// Output:
+}
+// ExampleNewImageWithSystemSymbolNameVariableValueAccessibilityDescription demonstrates how to create a Image instance using NewImageWithSystemSymbolNameVariableValueAccessibilityDescription.
+// Creates a symbol image with the system symbol name and variable value you specify.
+func ExampleNewImageWithSystemSymbolNameVariableValueAccessibilityDescription() {
+	_ = appkit.NewImageWithSystemSymbolNameVariableValueAccessibilityDescription(
+		"name", // name string
+		0.0, // value float64
 		"description", // description string
 	)
 	// Output:

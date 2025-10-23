@@ -40,7 +40,6 @@ type IHKSourceQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSourceQuery
-
 type HKSourceQuery struct {
 	HKQuery
 }

@@ -53,7 +53,6 @@ type ICSUserQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery
-
 type CSUserQuery struct {
 	CSSearchQuery
 }
@@ -100,12 +99,10 @@ func NewCSUserQuery() CSUserQuery {
 
 
 
-
 // Creates a new user query that searches for the specified term.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/init(userQueryString:userQueryContext:)
-
 func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string, userQueryContext ICSUserQueryContext) CSUserQuery {
 	instance := getCSUserQueryClass().Alloc()
 	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), objc.String(userQueryString), userQueryContext)
@@ -119,7 +116,6 @@ func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string, u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/prepare()
-
 func (cc _CSUserQueryClass) Prepare() {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("prepare"))
 }
@@ -129,47 +125,38 @@ func (cc _CSUserQueryClass) Prepare() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/prepareProtectionClasses(_:)
-
 func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses []string) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("prepareProtectionClasses:"), protectionClasses)
 }
-
 
 
 // Cancels the current query operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/cancel()
-
 func (c_ CSUserQuery) Cancel() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("cancel"))
 }
-
 
 
 // Starts searching the index for items that match the current query string and parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/start()
-
 func (c_ CSUserQuery) Start() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("start"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithItem:visibleItems:userInteractionType:
-
 func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem, userInteractionType ICSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithItem:visibleItems:userInteractionType:"), item, visibleItems, userInteractionType)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithSuggestion:visibleSuggestions:userInteractionType:
-
 func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion, userInteractionType ICSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithSuggestion:visibleSuggestions:userInteractionType:"), suggestion, visibleSuggestions, userInteractionType)
 }
@@ -179,7 +166,6 @@ func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteraction
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount
-
 func (c_ CSUserQuery) FoundSuggestionCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("foundSuggestionCount"))
 	return rv
@@ -190,7 +176,6 @@ func (c_ CSUserQuery) FoundSuggestionCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler
-
 func (c_ CSUserQuery) FoundSuggestionsHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("foundSuggestionsHandler"))
 	return rv
@@ -201,7 +186,6 @@ func (c_ CSUserQuery) FoundSuggestionsHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler
-
 func (c_ CSUserQuery) SetFoundSuggestionsHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFoundSuggestionsHandler:"), value)
 }
@@ -211,7 +195,6 @@ func (c_ CSUserQuery) SetFoundSuggestionsHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler
-
 func (c_ CSUserQuery) FoundItemsHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("foundItemsHandler"))
 	return rv
@@ -222,7 +205,6 @@ func (c_ CSUserQuery) FoundItemsHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler
-
 func (c_ CSUserQuery) SetFoundItemsHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFoundItemsHandler:"), value)
 }
@@ -232,7 +214,6 @@ func (c_ CSUserQuery) SetFoundItemsHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csuserquery/responses-swift.property
-
 func (c_ CSUserQuery) Responses() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("responses"))
 	return rv
@@ -243,7 +224,6 @@ func (c_ CSUserQuery) Responses() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csuserquery/responses-swift.property
-
 func (c_ CSUserQuery) SetResponses(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResponses:"), value)
 }
@@ -253,7 +233,6 @@ func (c_ CSUserQuery) SetResponses(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csuserquery/suggestions-swift.property
-
 func (c_ CSUserQuery) Suggestions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("suggestions"))
 	return rv
@@ -264,7 +243,6 @@ func (c_ CSUserQuery) Suggestions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csuserquery/suggestions-swift.property
-
 func (c_ CSUserQuery) SetSuggestions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSuggestions:"), value)
 }

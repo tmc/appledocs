@@ -51,7 +51,6 @@ type IDictionaryConstraint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryConstraint
-
 type DictionaryConstraint struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewDictionaryConstraint() DictionaryConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mldictionaryconstraint/keytype
-
 func (d_ DictionaryConstraint) KeyType() FeatureType {
 	rv := objc.Send[FeatureType](d_.ID, objc.Sel("keyType"))
 	return rv
@@ -111,7 +109,6 @@ func (d_ DictionaryConstraint) KeyType() FeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mldictionaryconstraint/keytype
-
 func (d_ DictionaryConstraint) SetKeyType(value FeatureType) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKeyType:"), value)
 }
@@ -121,7 +118,6 @@ func (d_ DictionaryConstraint) SetKeyType(value FeatureType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-
 func (d_ DictionaryConstraint) DictionaryConstraint() MLDictionaryConstraint {
 	rv := objc.Send[MLDictionaryConstraint](d_.ID, objc.Sel("dictionaryConstraint"))
 	return rv
@@ -132,7 +128,6 @@ func (d_ DictionaryConstraint) DictionaryConstraint() MLDictionaryConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-
 func (d_ DictionaryConstraint) SetDictionaryConstraint(value IMLDictionaryConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDictionaryConstraint:"), value)
 }
@@ -142,7 +137,6 @@ func (d_ DictionaryConstraint) SetDictionaryConstraint(value IMLDictionaryConstr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-
 func (d_ DictionaryConstraint) ImageConstraint() MLImageConstraint {
 	rv := objc.Send[MLImageConstraint](d_.ID, objc.Sel("imageConstraint"))
 	return rv
@@ -153,7 +147,6 @@ func (d_ DictionaryConstraint) ImageConstraint() MLImageConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-
 func (d_ DictionaryConstraint) SetImageConstraint(value IMLImageConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageConstraint:"), value)
 }
@@ -163,7 +156,6 @@ func (d_ DictionaryConstraint) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-
 func (d_ DictionaryConstraint) MultiArrayConstraint() MLMultiArrayConstraint {
 	rv := objc.Send[MLMultiArrayConstraint](d_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
@@ -174,7 +166,6 @@ func (d_ DictionaryConstraint) MultiArrayConstraint() MLMultiArrayConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-
 func (d_ DictionaryConstraint) SetMultiArrayConstraint(value IMLMultiArrayConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMultiArrayConstraint:"), value)
 }
@@ -184,7 +175,6 @@ func (d_ DictionaryConstraint) SetMultiArrayConstraint(value IMLMultiArrayConstr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-
 func (d_ DictionaryConstraint) SequenceConstraint() MLSequenceConstraint {
 	rv := objc.Send[MLSequenceConstraint](d_.ID, objc.Sel("sequenceConstraint"))
 	return rv
@@ -195,7 +185,6 @@ func (d_ DictionaryConstraint) SequenceConstraint() MLSequenceConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-
 func (d_ DictionaryConstraint) SetSequenceConstraint(value IMLSequenceConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSequenceConstraint:"), value)
 }
@@ -205,7 +194,6 @@ func (d_ DictionaryConstraint) SetSequenceConstraint(value IMLSequenceConstraint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
-
 func (d_ DictionaryConstraint) StateConstraint() MLStateConstraint {
 	rv := objc.Send[MLStateConstraint](d_.ID, objc.Sel("stateConstraint"))
 	return rv
@@ -216,7 +204,6 @@ func (d_ DictionaryConstraint) StateConstraint() MLStateConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
-
 func (d_ DictionaryConstraint) SetStateConstraint(value IMLStateConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStateConstraint:"), value)
 }

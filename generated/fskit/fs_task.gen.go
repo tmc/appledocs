@@ -46,7 +46,6 @@ type IFSTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask
-
 type FSTask struct {
 	objectivec.Object
 }
@@ -91,23 +90,19 @@ func NewFSTask() FSTask {
 
 
 
-
 // Informs the client that the task completed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/didComplete(error:)
-
 func (f_ FSTask) DidCompleteWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("didCompleteWithError:"), error_)
 }
-
 
 
 // Logs the given string to the initiating client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/logMessage(_:)
-
 func (f_ FSTask) LogMessage(str string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), objc.String(str))
 }
@@ -115,7 +110,6 @@ func (f_ FSTask) LogMessage(str string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/cancellationHandler
-
 func (f_ FSTask) CancellationHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("cancellationHandler"))
 	return rv
@@ -124,7 +118,6 @@ func (f_ FSTask) CancellationHandler() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/cancellationHandler
-
 func (f_ FSTask) SetCancellationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCancellationHandler:"), value)
 }

@@ -30,7 +30,7 @@ type _StreamClass struct {
 // An interface definition for the [Stream] class.
 type IStream interface {
 	objectivec.IObject
-	StreamError() NSError
+	StreamError() IError
 	StreamStatus() unsafe.Pointer
 	NSStreamSOCKSErrorDomain() string
 	NSStreamSocketSSLErrorDomain() string
@@ -111,7 +111,7 @@ func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamError
-func (s_ Stream) StreamError() NSError {
+func (s_ Stream) StreamError() IError {
 	rv := objc.Send[NSError](s_.ID, objc.Sel("streamError"))
 	return rv
 }

@@ -40,7 +40,6 @@ type IAudioUnitMIDIInstrument interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitMIDIInstrument
-
 type AudioUnitMIDIInstrument struct {
 	AudioUnit
 }

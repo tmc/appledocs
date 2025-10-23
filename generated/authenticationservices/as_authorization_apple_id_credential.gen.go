@@ -53,7 +53,6 @@ type IAuthorizationAppleIDCredential interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential
-
 type AuthorizationAppleIDCredential struct {
 	objectivec.Object
 }
@@ -102,7 +101,6 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/email
-
 func (a_ AuthorizationAppleIDCredential) Email() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("email"))
 	return rv
@@ -113,7 +111,6 @@ func (a_ AuthorizationAppleIDCredential) Email() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/fullName
-
 func (a_ AuthorizationAppleIDCredential) FullName() foundation.PersonNameComponents {
 	rv := objc.Send[foundation.PersonNameComponents](a_.ID, objc.Sel("fullName"))
 	return rv
@@ -124,7 +121,6 @@ func (a_ AuthorizationAppleIDCredential) FullName() foundation.PersonNameCompone
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/realUserStatus
-
 func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus {
 	rv := objc.Send[UserDetectionStatus](a_.ID, objc.Sel("realUserStatus"))
 	return rv
@@ -135,7 +131,6 @@ func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/state
-
 func (a_ AuthorizationAppleIDCredential) State() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
@@ -146,7 +141,6 @@ func (a_ AuthorizationAppleIDCredential) State() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user
-
 func (a_ AuthorizationAppleIDCredential) User() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
@@ -157,7 +151,6 @@ func (a_ AuthorizationAppleIDCredential) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-
 func (a_ AuthorizationAppleIDCredential) AuthorizationCode() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("authorizationCode"))
 	return rv
@@ -168,7 +161,6 @@ func (a_ AuthorizationAppleIDCredential) AuthorizationCode() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-
 func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationCode:"), value)
 }
@@ -178,7 +170,6 @@ func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value foundation.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
-
 func (a_ AuthorizationAppleIDCredential) AuthorizedScopes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizedScopes"))
 	return rv
@@ -189,7 +180,6 @@ func (a_ AuthorizationAppleIDCredential) AuthorizedScopes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
-
 func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizedScopes:"), value)
 }
@@ -199,7 +189,6 @@ func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-
 func (a_ AuthorizationAppleIDCredential) IdentityToken() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
 	return rv
@@ -210,7 +199,6 @@ func (a_ AuthorizationAppleIDCredential) IdentityToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-
 func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
@@ -218,7 +206,6 @@ func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value foundation.IData
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-
 func (a_ AuthorizationAppleIDCredential) UserAgeRange() UserAgeRange {
 	rv := objc.Send[UserAgeRange](a_.ID, objc.Sel("userAgeRange"))
 	return rv
@@ -227,7 +214,6 @@ func (a_ AuthorizationAppleIDCredential) UserAgeRange() UserAgeRange {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-
 func (a_ AuthorizationAppleIDCredential) SetUserAgeRange(value IUserAgeRange) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserAgeRange:"), value)
 }

@@ -39,7 +39,6 @@ type INetworkBrowserWindowController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CANetworkBrowserWindowController
-
 type NetworkBrowserWindowController struct {
 	appkit.WindowController
 }
@@ -91,7 +90,6 @@ func NewNetworkBrowserWindowController() NetworkBrowserWindowController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CANetworkBrowserWindowController/isAVBSupported()
-
 func (nc _NetworkBrowserWindowControllerClass) IsAVBSupported() bool {
 	rv := objc.Send[bool](objc.ID(nc.class), objc.Sel("isAVBSupported"))
 	return rv

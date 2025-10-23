@@ -45,7 +45,6 @@ type ICKDatabaseSubscription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription
-
 type CKDatabaseSubscription struct {
 	CKSubscription
 }
@@ -92,12 +91,10 @@ func NewCKDatabaseSubscription() CKDatabaseSubscription {
 
 
 
-
 // Creates a database subscription from a serialized instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/init(coder:)
-
 func NewCKDatabaseSubscriptionWithCoder(aDecoder foundation.ICoder) CKDatabaseSubscription {
 	instance := getCKDatabaseSubscriptionClass().Alloc()
 	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -106,12 +103,10 @@ func NewCKDatabaseSubscriptionWithCoder(aDecoder foundation.ICoder) CKDatabaseSu
 }
 
 
-
 // Creates a named subscription for all records in a database.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/initWithSubscriptionID:
-
 func NewCKDatabaseSubscriptionWithSubscriptionID(subscriptionID unsafe.Pointer) CKDatabaseSubscription {
 	instance := getCKDatabaseSubscriptionClass().Alloc()
 	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithSubscriptionID:"), subscriptionID)
@@ -125,7 +120,6 @@ func NewCKDatabaseSubscriptionWithSubscriptionID(subscriptionID unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/recordType-1y7dv
-
 func (c_ CKDatabaseSubscription) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
@@ -136,7 +130,6 @@ func (c_ CKDatabaseSubscription) RecordType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/recordType-1y7dv
-
 func (c_ CKDatabaseSubscription) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
@@ -146,7 +139,6 @@ func (c_ CKDatabaseSubscription) SetRecordType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKDatabaseSubscription) NotificationInfo() CKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
@@ -157,7 +149,6 @@ func (c_ CKDatabaseSubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKDatabaseSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }

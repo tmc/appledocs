@@ -32,8 +32,10 @@ type ImMaxPacketLength interface {
 	objectivec.IObject
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mMaxPacketLength
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mMaxPacketLength
 type mMaxPacketLength struct {
 	objectivec.Object
 }

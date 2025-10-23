@@ -42,7 +42,6 @@ type ISaveChangesRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest
-
 type SaveChangesRequest struct {
 	PersistentStoreRequest
 }
@@ -89,12 +88,10 @@ func NewSaveChangesRequest() SaveChangesRequest {
 
 
 
-
 // Initializes a save changes request with collections of given changes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/init(inserted:updated:deleted:locked:)
-
 func NewSaveChangesRequestWithInsertedObjectsUpdatedObjectsDeletedObjectsLockedObjects(insertedObjects unsafe.Pointer, updatedObjects unsafe.Pointer, deletedObjects unsafe.Pointer, lockedObjects unsafe.Pointer) SaveChangesRequest {
 	instance := getSaveChangesRequestClass().Alloc()
 	rv := objc.Send[SaveChangesRequest](instance.ID, objc.Sel("initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:"), insertedObjects, updatedObjects, deletedObjects, lockedObjects)
@@ -108,7 +105,6 @@ func NewSaveChangesRequestWithInsertedObjectsUpdatedObjectsDeletedObjectsLockedO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/deletedObjects
-
 func (s_ SaveChangesRequest) DeletedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("deletedObjects"))
 	return rv
@@ -119,7 +115,6 @@ func (s_ SaveChangesRequest) DeletedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/insertedObjects
-
 func (s_ SaveChangesRequest) InsertedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("insertedObjects"))
 	return rv
@@ -130,7 +125,6 @@ func (s_ SaveChangesRequest) InsertedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/lockedObjects
-
 func (s_ SaveChangesRequest) LockedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lockedObjects"))
 	return rv
@@ -141,7 +135,6 @@ func (s_ SaveChangesRequest) LockedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/updatedObjects
-
 func (s_ SaveChangesRequest) UpdatedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("updatedObjects"))
 	return rv

@@ -42,7 +42,6 @@ type IPersistentStoreRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest
-
 type PersistentStoreRequest struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewPersistentStoreRequest() PersistentStoreRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
-
 func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
 	rv := objc.Send[[]PersistentStore](p_.ID, objc.Sel("affectedStores"))
 	return rv
@@ -102,7 +100,6 @@ func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
-
 func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -122,7 +119,6 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType
-
 func (p_ PersistentStoreRequest) RequestType() PersistentStoreRequestType {
 	rv := objc.Send[PersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
 	return rv

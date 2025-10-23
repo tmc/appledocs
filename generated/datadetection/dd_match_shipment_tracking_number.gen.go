@@ -42,7 +42,6 @@ type IDDMatchShipmentTrackingNumber interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber
-
 type DDMatchShipmentTrackingNumber struct {
 	DDMatch
 }
@@ -93,7 +92,6 @@ func NewDDMatchShipmentTrackingNumber() DDMatchShipmentTrackingNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/carrier
-
 func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("carrier"))
 	return rv
@@ -104,7 +102,6 @@ func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/trackingNumber
-
 func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("trackingNumber"))
 	return rv

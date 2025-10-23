@@ -63,7 +63,11 @@ type IICCameraDevice interface {
 }
 
 // An object that represents a camera.
+
+
+// An object that represents a camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice
 type ICCameraDevice struct {
 	mlcompute.ICDevice
@@ -110,22 +114,28 @@ func NewICCameraDevice() ICCameraDevice {
 }
 
 
+
 // Cancels the current delete operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice/cancelDelete()
 func (i_ ICCameraDevice) CancelDelete() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("cancelDelete"))
 }
 
+
 // Synchronizes the camera’s clock with the computer’s clock.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice/requestSyncClock()
 func (i_ ICCameraDevice) RequestSyncClock() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("requestSyncClock"))
 }
 
+
 // The battery charge level.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevel
 func (i_ ICCameraDevice) BatteryLevel() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("batteryLevel"))
@@ -133,17 +143,18 @@ func (i_ ICCameraDevice) BatteryLevel() int {
 }
 
 
-// SetBatteryLevel sets the value of the batteryLevel property.
 // The battery charge level.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevel
 func (i_ ICCameraDevice) SetBatteryLevel(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBatteryLevel:"), value)
 }
 
+
 // A Boolean value that indicates whether the battery charge level is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevelavailable
 func (i_ ICCameraDevice) BatteryLevelAvailable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("batteryLevelAvailable"))
@@ -151,17 +162,18 @@ func (i_ ICCameraDevice) BatteryLevelAvailable() bool {
 }
 
 
-// SetBatteryLevelAvailable sets the value of the batteryLevelAvailable property.
 // A Boolean value that indicates whether the battery charge level is available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevelavailable
 func (i_ ICCameraDevice) SetBatteryLevelAvailable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBatteryLevelAvailable:"), value)
 }
 
+
 // The percentage of the camera’s content that has been catalogued.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contentcatalogpercentcompleted
 func (i_ ICCameraDevice) ContentCatalogPercentCompleted() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("contentCatalogPercentCompleted"))
@@ -169,17 +181,18 @@ func (i_ ICCameraDevice) ContentCatalogPercentCompleted() int {
 }
 
 
-// SetContentCatalogPercentCompleted sets the value of the contentCatalogPercentCompleted property.
 // The percentage of the camera’s content that has been catalogued.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contentcatalogpercentcompleted
 func (i_ ICCameraDevice) SetContentCatalogPercentCompleted(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContentCatalogPercentCompleted:"), value)
 }
 
+
 // All image, movie, and audio files stored on the camera, in an order that reflects the camera’s storage folder structure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contents
 func (i_ ICCameraDevice) Contents() ICCameraItem {
 	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("contents"))
@@ -187,17 +200,18 @@ func (i_ ICCameraDevice) Contents() ICCameraItem {
 }
 
 
-// SetContents sets the value of the contents property.
 // All image, movie, and audio files stored on the camera, in an order that reflects the camera’s storage folder structure.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contents
 func (i_ ICCameraDevice) SetContents(value ICCameraItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContents:"), value)
 }
 
+
 // A Boolean value indicating whether the iCloud Photo Library is enabled on the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/icloudphotosenabled
 func (i_ ICCameraDevice) ICloudPhotosEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("iCloudPhotosEnabled"))
@@ -205,17 +219,18 @@ func (i_ ICCameraDevice) ICloudPhotosEnabled() bool {
 }
 
 
-// SetICloudPhotosEnabled sets the value of the iCloudPhotosEnabled property.
 // A Boolean value indicating whether the iCloud Photo Library is enabled on the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/icloudphotosenabled
 func (i_ ICCameraDevice) SetICloudPhotosEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setICloudPhotosEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the device is an Apple device, passcode-locked, and connected to an untrusted host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isaccessrestrictedappledevice
 func (i_ ICCameraDevice) IsAccessRestrictedAppleDevice() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isAccessRestrictedAppleDevice"))
@@ -223,17 +238,18 @@ func (i_ ICCameraDevice) IsAccessRestrictedAppleDevice() bool {
 }
 
 
-// SetIsAccessRestrictedAppleDevice sets the value of the isAccessRestrictedAppleDevice property.
 // A Boolean value indicating whether the device is an Apple device, passcode-locked, and connected to an untrusted host.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isaccessrestrictedappledevice
 func (i_ ICCameraDevice) SetIsAccessRestrictedAppleDevice(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAccessRestrictedAppleDevice:"), value)
 }
 
+
 // A Boolean value indicating whether the device can be ‘soft’ removed or disconnected.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isejectable
 func (i_ ICCameraDevice) IsEjectable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEjectable"))
@@ -241,17 +257,18 @@ func (i_ ICCameraDevice) IsEjectable() bool {
 }
 
 
-// SetIsEjectable sets the value of the isEjectable property.
 // A Boolean value indicating whether the device can be ‘soft’ removed or disconnected.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isejectable
 func (i_ ICCameraDevice) SetIsEjectable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEjectable:"), value)
 }
 
+
 // A Boolean value indicating whether the device is locked, preventing deletion of any asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/islocked
 func (i_ ICCameraDevice) IsLocked() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isLocked"))
@@ -259,17 +276,18 @@ func (i_ ICCameraDevice) IsLocked() bool {
 }
 
 
-// SetIsLocked sets the value of the isLocked property.
 // A Boolean value indicating whether the device is locked, preventing deletion of any asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/islocked
 func (i_ ICCameraDevice) SetIsLocked(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsLocked:"), value)
 }
 
+
 // All image, movie and audio files stored on the camera, without regard to the camera’s storage folder structure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediafiles
 func (i_ ICCameraDevice) MediaFiles() ICCameraItem {
 	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("mediaFiles"))
@@ -277,16 +295,16 @@ func (i_ ICCameraDevice) MediaFiles() ICCameraItem {
 }
 
 
-// SetMediaFiles sets the value of the mediaFiles property.
 // All image, movie and audio files stored on the camera, without regard to the camera’s storage folder structure.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediafiles
 func (i_ ICCameraDevice) SetMediaFiles(value ICCameraItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaFiles:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediapresentation
 func (i_ ICCameraDevice) MediaPresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaPresentation"))
@@ -294,15 +312,16 @@ func (i_ ICCameraDevice) MediaPresentation() unsafe.Pointer {
 }
 
 
-// SetMediaPresentation sets the value of the mediaPresentation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediapresentation
 func (i_ ICCameraDevice) SetMediaPresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaPresentation:"), value)
 }
 
+
 // The file system mount point for a camera using the mass storage transport type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
 func (i_ ICCameraDevice) MountPoint() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("mountPoint"))
@@ -310,17 +329,18 @@ func (i_ ICCameraDevice) MountPoint() string {
 }
 
 
-// SetMountPoint sets the value of the mountPoint property.
 // The file system mount point for a camera using the mass storage transport type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
 func (i_ ICCameraDevice) SetMountPoint(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMountPoint:"), objc.String(value))
 }
 
+
 // A closure for handling PTP event packets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/ptpeventhandler
 func (i_ ICCameraDevice) PtpEventHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("ptpEventHandler"))
@@ -328,17 +348,18 @@ func (i_ ICCameraDevice) PtpEventHandler() unsafe.Pointer {
 }
 
 
-// SetPtpEventHandler sets the value of the ptpEventHandler property.
 // A closure for handling PTP event packets.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/ptpeventhandler
 func (i_ ICCameraDevice) SetPtpEventHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPtpEventHandler:"), value)
 }
 
+
 // A Boolean value indicating whether tethered capture is enabled on the camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/tetheredcaptureenabled
 func (i_ ICCameraDevice) TetheredCaptureEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("tetheredCaptureEnabled"))
@@ -346,17 +367,18 @@ func (i_ ICCameraDevice) TetheredCaptureEnabled() bool {
 }
 
 
-// SetTetheredCaptureEnabled sets the value of the tetheredCaptureEnabled property.
 // A Boolean value indicating whether tethered capture is enabled on the camera.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/tetheredcaptureenabled
 func (i_ ICCameraDevice) SetTetheredCaptureEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTetheredCaptureEnabled:"), value)
 }
 
+
 // The time offset, in seconds, between the camera’s clock and the computer’s clock.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/timeoffset
 func (i_ ICCameraDevice) TimeOffset() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("timeOffset"))
@@ -364,10 +386,9 @@ func (i_ ICCameraDevice) TimeOffset() unsafe.Pointer {
 }
 
 
-// SetTimeOffset sets the value of the timeOffset property.
 // The time offset, in seconds, between the camera’s clock and the computer’s clock.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/timeoffset
 func (i_ ICCameraDevice) SetTimeOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeOffset:"), value)

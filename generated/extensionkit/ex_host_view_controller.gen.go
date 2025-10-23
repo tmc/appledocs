@@ -44,7 +44,6 @@ type IEXHostViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController
-
 type EXHostViewController struct {
 	appkit.ViewController
 }
@@ -91,12 +90,10 @@ func NewEXHostViewController() EXHostViewController {
 
 
 
-
 // Initiates an XPC connection to the app extension’s scene.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController/makeXPCConnection()
-
 func (e_ EXHostViewController) MakeXPCConnection() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("makeXPCConnection"))
 }
@@ -106,7 +103,6 @@ func (e_ EXHostViewController) MakeXPCConnection() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
-
 func (e_ EXHostViewController) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("configuration"))
 	return rv
@@ -117,7 +113,6 @@ func (e_ EXHostViewController) Configuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
-
 func (e_ EXHostViewController) SetConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConfiguration:"), value)
 }

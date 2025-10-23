@@ -2,11 +2,14 @@
 
 // Package iobluetooth provides Go bindings for the IOBluetooth framework.
 //
-// Gain user-space access to Bluetooth devices. [Full Topic]
+// Gain user-space access to Bluetooth devices.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IOBluetooth without requiring cgo.
+
+// Gain user-space access to Bluetooth devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth
 package iobluetooth
 

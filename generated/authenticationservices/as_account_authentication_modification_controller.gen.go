@@ -43,7 +43,6 @@ type IAccountAuthenticationModificationController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController
-
 type AccountAuthenticationModificationController struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewAccountAuthenticationModificationController() AccountAuthenticationModif
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/delegate
-
 func (a_ AccountAuthenticationModificationController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -103,7 +101,6 @@ func (a_ AccountAuthenticationModificationController) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/delegate
-
 func (a_ AccountAuthenticationModificationController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -113,7 +110,6 @@ func (a_ AccountAuthenticationModificationController) SetDelegate(value objc.ID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-
 func (a_ AccountAuthenticationModificationController) PresentationContextProvider() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationContextProvider"))
 	return rv
@@ -124,7 +120,6 @@ func (a_ AccountAuthenticationModificationController) PresentationContextProvide
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-
 func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }

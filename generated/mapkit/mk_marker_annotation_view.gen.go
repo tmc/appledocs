@@ -53,7 +53,11 @@ type IMKMarkerAnnotationView interface {
 // An annotation view that displays a balloon-shaped marker at the designated location.
 //
 // Return an instance of this class from the method of your map view delegate when you want to display the same types of markers used in the Maps app. The default for an instance of this class is .
+
+
+// An annotation view that displays a balloon-shaped marker at the designated location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView
 type MKMarkerAnnotationView struct {
 	MKAnnotationView
@@ -100,8 +104,10 @@ func NewMKMarkerAnnotationView() MKMarkerAnnotationView {
 }
 
 
+
 // An image to display in the marker balloon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
 func (m_ MKMarkerAnnotationView) GlyphImage() appkit.Image {
 	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("glyphImage"))
@@ -109,17 +115,18 @@ func (m_ MKMarkerAnnotationView) GlyphImage() appkit.Image {
 }
 
 
-// SetGlyphImage sets the value of the glyphImage property.
 // An image to display in the marker balloon.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
 func (m_ MKMarkerAnnotationView) SetGlyphImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphImage:"), value)
 }
 
+
 // The color to apply to the glyph text or image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
 func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
 	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("glyphTintColor"))
@@ -127,17 +134,18 @@ func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
 }
 
 
-// SetGlyphTintColor sets the value of the glyphTintColor property.
 // The color to apply to the glyph text or image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
 func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphTintColor:"), value)
 }
 
+
 // The background color of the marker balloon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
 func (m_ MKMarkerAnnotationView) MarkerTintColor() appkit.Color {
 	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("markerTintColor"))
@@ -145,17 +153,18 @@ func (m_ MKMarkerAnnotationView) MarkerTintColor() appkit.Color {
 }
 
 
-// SetMarkerTintColor sets the value of the markerTintColor property.
 // The background color of the marker balloon.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
 func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMarkerTintColor:"), value)
 }
 
+
 // The display priority of the annotation view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
 func (m_ MKMarkerAnnotationView) DisplayPriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("displayPriority"))
@@ -163,17 +172,18 @@ func (m_ MKMarkerAnnotationView) DisplayPriority() unsafe.Pointer {
 }
 
 
-// SetDisplayPriority sets the value of the displayPriority property.
 // The display priority of the annotation view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority
 func (m_ MKMarkerAnnotationView) SetDisplayPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayPriority:"), value)
 }
 
+
 // A Boolean that indicates whether the marker animates into position onscreen.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
 func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("animatesWhenAdded"))
@@ -181,17 +191,18 @@ func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool {
 }
 
 
-// SetAnimatesWhenAdded sets the value of the animatesWhenAdded property.
 // A Boolean that indicates whether the marker animates into position onscreen.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
 func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesWhenAdded:"), value)
 }
 
+
 // The text to display in the marker balloon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
 func (m_ MKMarkerAnnotationView) GlyphText() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("glyphText"))
@@ -199,17 +210,18 @@ func (m_ MKMarkerAnnotationView) GlyphText() string {
 }
 
 
-// SetGlyphText sets the value of the glyphText property.
 // The text to display in the marker balloon.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
 func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), objc.String(value))
 }
 
+
 // An image to display when the user selects the marker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
 func (m_ MKMarkerAnnotationView) SelectedGlyphImage() appkit.Image {
 	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("selectedGlyphImage"))
@@ -217,17 +229,18 @@ func (m_ MKMarkerAnnotationView) SelectedGlyphImage() appkit.Image {
 }
 
 
-// SetSelectedGlyphImage sets the value of the selectedGlyphImage property.
 // An image to display when the user selects the marker.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
 func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedGlyphImage:"), value)
 }
 
+
 // The visibility of the subtitle text rendered beneath the marker balloon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/subtitlevisibility
 func (m_ MKMarkerAnnotationView) SubtitleVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subtitleVisibility"))
@@ -235,17 +248,18 @@ func (m_ MKMarkerAnnotationView) SubtitleVisibility() unsafe.Pointer {
 }
 
 
-// SetSubtitleVisibility sets the value of the subtitleVisibility property.
 // The visibility of the subtitle text rendered beneath the marker balloon.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/subtitlevisibility
 func (m_ MKMarkerAnnotationView) SetSubtitleVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitleVisibility:"), value)
 }
 
+
 // The visibility of the title text rendered beneath the marker balloon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/titlevisibility
 func (m_ MKMarkerAnnotationView) TitleVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("titleVisibility"))
@@ -253,10 +267,9 @@ func (m_ MKMarkerAnnotationView) TitleVisibility() unsafe.Pointer {
 }
 
 
-// SetTitleVisibility sets the value of the titleVisibility property.
 // The visibility of the title text rendered beneath the marker balloon.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/titlevisibility
 func (m_ MKMarkerAnnotationView) SetTitleVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleVisibility:"), value)

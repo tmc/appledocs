@@ -7,8 +7,8 @@ import "github.com/ebitengine/purego/objc"
 // invalidateProtocol is the invalidate protocol.
 //
 // Availability:
-//   - iOS 16.0+
-//   - iPadOS 16.0+
+//   - iOS 11.0+
+//   - iPadOS 11.0+
 //   - macOS 11.0+
 //   - visionOS 1.0+
 //

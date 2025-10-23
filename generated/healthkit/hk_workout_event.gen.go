@@ -35,7 +35,7 @@ type IHKWorkoutEvent interface {
 	Date() foundation.Date
 	SetDate(value foundation.IDate)
 	DateInterval() foundation.DateInterval
-	SetDateInterval(value foundation.DateInterval)
+	SetDateInterval(value foundation.IDateInterval)
 	Metadata() string
 	SetMetadata(value string)
 	HKWorkoutTypeIdentifier() string
@@ -50,7 +50,6 @@ type IHKWorkoutEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent
-
 type HKWorkoutEvent struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewHKWorkoutEvent() HKWorkoutEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent/type
-
 func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
 	return rv
@@ -110,7 +108,6 @@ func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-
 func (h_ HKWorkoutEvent) Date() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("date"))
 	return rv
@@ -121,7 +118,6 @@ func (h_ HKWorkoutEvent) Date() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-
 func (h_ HKWorkoutEvent) SetDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
 }
@@ -131,7 +127,6 @@ func (h_ HKWorkoutEvent) SetDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
-
 func (h_ HKWorkoutEvent) DateInterval() foundation.DateInterval {
 	rv := objc.Send[foundation.DateInterval](h_.ID, objc.Sel("dateInterval"))
 	return rv
@@ -142,8 +137,7 @@ func (h_ HKWorkoutEvent) DateInterval() foundation.DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
-
-func (h_ HKWorkoutEvent) SetDateInterval(value foundation.DateInterval) {
+func (h_ HKWorkoutEvent) SetDateInterval(value foundation.IDateInterval) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateInterval:"), value)
 }
 
@@ -152,7 +146,6 @@ func (h_ HKWorkoutEvent) SetDateInterval(value foundation.DateInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
-
 func (h_ HKWorkoutEvent) Metadata() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
@@ -163,7 +156,6 @@ func (h_ HKWorkoutEvent) Metadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
-
 func (h_ HKWorkoutEvent) SetMetadata(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
@@ -173,7 +165,6 @@ func (h_ HKWorkoutEvent) SetMetadata(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-
 func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv

@@ -32,7 +32,9 @@ type IsortedAttributes interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/sortedAttributes-c.ivar
 type sortedAttributes struct {
 	objectivec.Object

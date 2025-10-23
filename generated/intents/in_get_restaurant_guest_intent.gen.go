@@ -34,7 +34,11 @@ type IINGetRestaurantGuestIntent interface {
 // A request for information about the guest who is making reservations.
 //
 // An object is a request for information about the person whose name should appear on reservations. Maps sends this intent to your Intents extension when it wants information about the person making reservations. Your response contains the identity of the person making the reservation. The response can also contain information about whether your service allows the user to modify the identity of the guest. For example, you can specify whether your service allows one user to book reservations on behalf of another user. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should create an object with information about the guest and your app’s preferences for modifying that guest’s identity.
+
+
+// A request for information about the guest who is making reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetRestaurantGuestIntent
 type INGetRestaurantGuestIntent struct {
 	INIntent

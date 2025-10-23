@@ -47,7 +47,6 @@ type IMergeConflict interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict
-
 type MergeConflict struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewMergeConflict() MergeConflict {
 
 
 
-
 // Initializes a merge conflict.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/init(source:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)
-
 func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapshot(srcObject IManagedObject, newvers uint, oldvers uint, cachesnap unsafe.Pointer, persnap unsafe.Pointer) MergeConflict {
 	instance := getMergeConflictClass().Alloc()
 	rv := objc.Send[MergeConflict](instance.ID, objc.Sel("initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:"), srcObject, newvers, oldvers, cachesnap, persnap)
@@ -111,7 +108,6 @@ func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapsh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/cachedSnapshot
-
 func (m_ MergeConflict) CachedSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cachedSnapshot"))
 	return rv
@@ -122,7 +118,6 @@ func (m_ MergeConflict) CachedSnapshot() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/newVersionNumber
-
 func (m_ MergeConflict) NewVersionNumber() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("newVersionNumber"))
 	return rv
@@ -133,7 +128,6 @@ func (m_ MergeConflict) NewVersionNumber() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/objectSnapshot
-
 func (m_ MergeConflict) ObjectSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectSnapshot"))
 	return rv
@@ -144,7 +138,6 @@ func (m_ MergeConflict) ObjectSnapshot() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/oldVersionNumber
-
 func (m_ MergeConflict) OldVersionNumber() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("oldVersionNumber"))
 	return rv
@@ -155,7 +148,6 @@ func (m_ MergeConflict) OldVersionNumber() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/persistedSnapshot
-
 func (m_ MergeConflict) PersistedSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistedSnapshot"))
 	return rv
@@ -166,7 +158,6 @@ func (m_ MergeConflict) PersistedSnapshot() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/sourceObject
-
 func (m_ MergeConflict) SourceObject() NSManagedObject {
 	rv := objc.Send[NSManagedObject](m_.ID, objc.Sel("sourceObject"))
 	return rv

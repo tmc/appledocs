@@ -39,7 +39,11 @@ type IBluetoothPairingController interface {
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
 //
 // Implementation of a window controller to handle pairing with a bluetooth device. This class will handle connecting to the Bluetooth Daemon for the purposes of searches, and displaying the results. When necessary this class will display a sheet asking the user for a PIN code. This window will not return anything to the caller if it is canceled or if pairing occurs.
+
+
+// A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController
 type BluetoothPairingController struct {
 	appkit.WindowController
@@ -86,24 +90,30 @@ func NewBluetoothPairingController() BluetoothPairingController {
 }
 
 
+
 // Returns the title of the default/select button in the device selector panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getPrompt()
 func (b_ BluetoothPairingController) GetPrompt() foundation.String {
 	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }
 
+
 // Returns the title of the device selector panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getTitle()
 func (b_ BluetoothPairingController) GetTitle() foundation.String {
 	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getTitle"))
 	return rv
 }
 
+
 // Sets the title of the default/select button in the device selector panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/setPrompt(_:)
 func (b_ BluetoothPairingController) SetPrompt(prompt string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPrompt:"), objc.String(prompt))

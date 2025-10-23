@@ -31,10 +31,10 @@ type _DateIntervalClass struct {
 type IDateInterval interface {
 	objectivec.IObject
 	Duration() TimeInterval
-	SetDuration(value ITimeInterval)
-	EndDate() Date
+	SetDuration(value TimeInterval)
+	EndDate() IDate
 	SetEndDate(value IDate)
-	StartDate() Date
+	StartDate() IDate
 	SetStartDate(value IDate)
 }
 
@@ -105,7 +105,7 @@ func (d_ DateInterval) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
-func (d_ DateInterval) SetDuration(value ITimeInterval) {
+func (d_ DateInterval) SetDuration(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -114,7 +114,7 @@ func (d_ DateInterval) SetDuration(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
-func (d_ DateInterval) EndDate() Date {
+func (d_ DateInterval) EndDate() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (d_ DateInterval) SetEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/startdate
-func (d_ DateInterval) StartDate() Date {
+func (d_ DateInterval) StartDate() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("startDate"))
 	return rv
 }

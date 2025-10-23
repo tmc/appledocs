@@ -40,7 +40,7 @@ type IOrderedSet interface {
 	SetFirstObject(value unsafe.Pointer)
 	LastObject() unsafe.Pointer
 	SetLastObject(value unsafe.Pointer)
-	Reversed() NSOrderedSet
+	Reversed() IOrderedSet
 	SetReversed(value IOrderedSet)
 	Set() unsafe.Pointer
 	SetSet(value unsafe.Pointer)
@@ -198,7 +198,7 @@ func (o_ OrderedSet) SetLastObject(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/reversed
-func (o_ OrderedSet) Reversed() NSOrderedSet {
+func (o_ OrderedSet) Reversed() IOrderedSet {
 	rv := objc.Send[NSOrderedSet](o_.ID, objc.Sel("reversed"))
 	return rv
 }

@@ -40,7 +40,6 @@ type IComputePlanCost interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanCost
-
 type ComputePlanCost struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewComputePlanCost() ComputePlanCost {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanCost/weight
-
 func (c_ ComputePlanCost) Weight() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("weight"))
 	return rv

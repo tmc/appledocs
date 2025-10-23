@@ -42,7 +42,7 @@ type IScrubber interface {
 	ReloadData()
 	ReloadItemsAtIndexes(indexes foundation.IIndexSet)
 	RemoveItemsAtIndexes(indexes foundation.IIndexSet)
-	ScrollItemAtIndexToAlignment(index int, alignment ScrubberAlignment)
+	ScrollItemAtIndexToAlignment(index int, alignment IScrubberAlignment)
 	BackgroundColor() NSColor
 	SetBackgroundColor(value IColor)
 	BackgroundView() NSView
@@ -57,7 +57,7 @@ type IScrubber interface {
 	Continuous() bool
 	SetContinuous(value bool)
 	ItemAlignment() ScrubberAlignment
-	SetItemAlignment(value ScrubberAlignment)
+	SetItemAlignment(value IScrubberAlignment)
 	Mode() ScrubberMode
 	SetMode(value ScrubberMode)
 	NumberOfItems() int
@@ -104,7 +104,6 @@ type IScrubber interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber
-
 type Scrubber struct {
 	View
 }
@@ -151,12 +150,10 @@ func NewScrubber() Scrubber {
 
 
 
-
 // Initializes and returns a newly allocated scrubber object from a storyboard or nib file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
-
 func NewScrubberWithCoder(coder foundation.ICoder) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -165,12 +162,10 @@ func NewScrubberWithCoder(coder foundation.ICoder) Scrubber {
 }
 
 
-
 // Initializes and returns a newly allocated scrubber object with the specified frame rectangle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
-
 func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
@@ -180,125 +175,103 @@ func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
 
 
 
-
 // Inserts new items at the specified indexes into the scrubber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/insertItems(at:)
-
 func (s_ Scrubber) InsertItemsAtIndexes(indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertItemsAtIndexes:"), indexes)
 }
-
 
 
 // Returns the view for the item at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemViewForItem(at:)
-
 func (s_ Scrubber) ItemViewForItemAtIndex(index int) ScrubberItemView {
 	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("itemViewForItemAtIndex:"), index)
 	return rv
 }
 
 
-
 // Creates or returns a reusable item object with the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/makeItem(withIdentifier:owner:)
-
 func (s_ Scrubber) MakeItemWithIdentifierOwner(itemIdentifier IUserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView {
 	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("makeItemWithIdentifier:owner:"), itemIdentifier, owner)
 	return rv
 }
 
 
-
 // Moves an item from one index to another in the scrubber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/moveItem(at:to:)
-
 func (s_ Scrubber) MoveItemAtIndexToIndex(oldIndex int, newIndex int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("moveItemAtIndex:toIndex:"), oldIndex, newIndex)
 }
-
 
 
 // Combines multiple scrubber content updates into a single action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/performSequentialBatchUpdates(_:)
-
 func (s_ Scrubber) PerformSequentialBatchUpdates(updateBlock unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("performSequentialBatchUpdates:"), updateBlock)
 }
-
 
 
 // Registers a class for the scrubber to use when it creates new items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/register(_:forItemIdentifier:)-2rb69
-
 func (s_ Scrubber) RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerClass:forItemIdentifier:"), itemViewClass, itemIdentifier)
 }
-
 
 
 // Registers a nib file for the scrubber to use when it creates new items in the scrubber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/register(_:forItemIdentifier:)-6jye0
-
 func (s_ Scrubber) RegisterNibForItemIdentifier(nib INib, itemIdentifier IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerNib:forItemIdentifier:"), nib, itemIdentifier)
 }
-
 
 
 // Reloads the content of the entire scrubber, and deselects the currently selected item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/reloadData()
-
 func (s_ Scrubber) ReloadData() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("reloadData"))
 }
-
 
 
 // Reloads the items at the specified indexes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/reloadItems(at:)
-
 func (s_ Scrubber) ReloadItemsAtIndexes(indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("reloadItemsAtIndexes:"), indexes)
 }
-
 
 
 // Removes the items at the specified indexes from the scrubber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/removeItems(at:)
-
 func (s_ Scrubber) RemoveItemsAtIndexes(indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeItemsAtIndexes:"), indexes)
 }
-
 
 
 // Scrolls an item to a specified alignment within the scrubber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrollItem(at:to:)
-
-func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment ScrubberAlignment) {
+func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment IScrubberAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scrollItemAtIndex:toAlignment:"), index, alignment)
 }
 
@@ -307,7 +280,6 @@ func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment ScrubberAli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundColor
-
 func (s_ Scrubber) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](s_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -318,7 +290,6 @@ func (s_ Scrubber) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundColor
-
 func (s_ Scrubber) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -328,7 +299,6 @@ func (s_ Scrubber) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundView
-
 func (s_ Scrubber) BackgroundView() NSView {
 	rv := objc.Send[NSView](s_.ID, objc.Sel("backgroundView"))
 	return rv
@@ -339,7 +309,6 @@ func (s_ Scrubber) BackgroundView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundView
-
 func (s_ Scrubber) SetBackgroundView(value IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundView:"), value)
 }
@@ -349,7 +318,6 @@ func (s_ Scrubber) SetBackgroundView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/dataSource
-
 func (s_ Scrubber) DataSource() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("dataSource"))
 	return rv
@@ -360,7 +328,6 @@ func (s_ Scrubber) DataSource() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/dataSource
-
 func (s_ Scrubber) SetDataSource(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDataSource:"), value)
 }
@@ -370,7 +337,6 @@ func (s_ Scrubber) SetDataSource(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/delegate
-
 func (s_ Scrubber) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -381,7 +347,6 @@ func (s_ Scrubber) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/delegate
-
 func (s_ Scrubber) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -391,7 +356,6 @@ func (s_ Scrubber) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/floatsSelectionViews
-
 func (s_ Scrubber) FloatsSelectionViews() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("floatsSelectionViews"))
 	return rv
@@ -402,7 +366,6 @@ func (s_ Scrubber) FloatsSelectionViews() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/floatsSelectionViews
-
 func (s_ Scrubber) SetFloatsSelectionViews(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFloatsSelectionViews:"), value)
 }
@@ -412,7 +375,6 @@ func (s_ Scrubber) SetFloatsSelectionViews(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/highlightedIndex
-
 func (s_ Scrubber) HighlightedIndex() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("highlightedIndex"))
 	return rv
@@ -423,7 +385,6 @@ func (s_ Scrubber) HighlightedIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/isContinuous
-
 func (s_ Scrubber) Continuous() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("continuous"))
 	return rv
@@ -434,7 +395,6 @@ func (s_ Scrubber) Continuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/isContinuous
-
 func (s_ Scrubber) SetContinuous(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContinuous:"), value)
 }
@@ -444,7 +404,6 @@ func (s_ Scrubber) SetContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
-
 func (s_ Scrubber) ItemAlignment() ScrubberAlignment {
 	rv := objc.Send[ScrubberAlignment](s_.ID, objc.Sel("itemAlignment"))
 	return rv
@@ -455,8 +414,7 @@ func (s_ Scrubber) ItemAlignment() ScrubberAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
-
-func (s_ Scrubber) SetItemAlignment(value ScrubberAlignment) {
+func (s_ Scrubber) SetItemAlignment(value IScrubberAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemAlignment:"), value)
 }
 
@@ -465,7 +423,6 @@ func (s_ Scrubber) SetItemAlignment(value ScrubberAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
-
 func (s_ Scrubber) Mode() ScrubberMode {
 	rv := objc.Send[ScrubberMode](s_.ID, objc.Sel("mode"))
 	return rv
@@ -476,7 +433,6 @@ func (s_ Scrubber) Mode() ScrubberMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
-
 func (s_ Scrubber) SetMode(value ScrubberMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMode:"), value)
 }
@@ -486,7 +442,6 @@ func (s_ Scrubber) SetMode(value ScrubberMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/numberOfItems
-
 func (s_ Scrubber) NumberOfItems() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("numberOfItems"))
 	return rv
@@ -497,7 +452,6 @@ func (s_ Scrubber) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrubberLayout
-
 func (s_ Scrubber) ScrubberLayout() NSScrubberLayout {
 	rv := objc.Send[NSScrubberLayout](s_.ID, objc.Sel("scrubberLayout"))
 	return rv
@@ -508,7 +462,6 @@ func (s_ Scrubber) ScrubberLayout() NSScrubberLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrubberLayout
-
 func (s_ Scrubber) SetScrubberLayout(value IScrubberLayout) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberLayout:"), value)
 }
@@ -518,7 +471,6 @@ func (s_ Scrubber) SetScrubberLayout(value IScrubberLayout) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectedIndex
-
 func (s_ Scrubber) SelectedIndex() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedIndex"))
 	return rv
@@ -529,7 +481,6 @@ func (s_ Scrubber) SelectedIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectedIndex
-
 func (s_ Scrubber) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedIndex:"), value)
 }
@@ -539,7 +490,6 @@ func (s_ Scrubber) SetSelectedIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
-
 func (s_ Scrubber) SelectionBackgroundStyle() NSScrubberSelectionStyle {
 	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("selectionBackgroundStyle"))
 	return rv
@@ -550,7 +500,6 @@ func (s_ Scrubber) SelectionBackgroundStyle() NSScrubberSelectionStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
-
 func (s_ Scrubber) SetSelectionBackgroundStyle(value NSScrubberSelectionStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionBackgroundStyle:"), value)
 }
@@ -560,7 +509,6 @@ func (s_ Scrubber) SetSelectionBackgroundStyle(value NSScrubberSelectionStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
-
 func (s_ Scrubber) SelectionOverlayStyle() NSScrubberSelectionStyle {
 	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("selectionOverlayStyle"))
 	return rv
@@ -571,7 +519,6 @@ func (s_ Scrubber) SelectionOverlayStyle() NSScrubberSelectionStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
-
 func (s_ Scrubber) SetSelectionOverlayStyle(value NSScrubberSelectionStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionOverlayStyle:"), value)
 }
@@ -581,7 +528,6 @@ func (s_ Scrubber) SetSelectionOverlayStyle(value NSScrubberSelectionStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/showsAdditionalContentIndicators
-
 func (s_ Scrubber) ShowsAdditionalContentIndicators() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsAdditionalContentIndicators"))
 	return rv
@@ -592,7 +538,6 @@ func (s_ Scrubber) ShowsAdditionalContentIndicators() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/showsAdditionalContentIndicators
-
 func (s_ Scrubber) SetShowsAdditionalContentIndicators(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsAdditionalContentIndicators:"), value)
 }
@@ -602,7 +547,6 @@ func (s_ Scrubber) SetShowsAdditionalContentIndicators(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/showsArrowButtons
-
 func (s_ Scrubber) ShowsArrowButtons() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsArrowButtons"))
 	return rv
@@ -613,7 +557,6 @@ func (s_ Scrubber) ShowsArrowButtons() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/showsArrowButtons
-
 func (s_ Scrubber) SetShowsArrowButtons(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsArrowButtons:"), value)
 }
@@ -623,7 +566,6 @@ func (s_ Scrubber) SetShowsArrowButtons(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubber/iscontinuous
-
 func (s_ Scrubber) IsContinuous() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isContinuous"))
 	return rv
@@ -634,7 +576,6 @@ func (s_ Scrubber) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubber/iscontinuous
-
 func (s_ Scrubber) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsContinuous:"), value)
 }
@@ -644,7 +585,6 @@ func (s_ Scrubber) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment
-
 func (s_ Scrubber) ImageAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageAlignment"))
 	return rv
@@ -655,7 +595,6 @@ func (s_ Scrubber) ImageAlignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment
-
 func (s_ Scrubber) SetImageAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageAlignment:"), value)
 }
@@ -665,7 +604,6 @@ func (s_ Scrubber) SetImageAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-
 func (s_ Scrubber) ImageView() NSImageView {
 	rv := objc.Send[NSImageView](s_.ID, objc.Sel("imageView"))
 	return rv
@@ -676,7 +614,6 @@ func (s_ Scrubber) ImageView() NSImageView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-
 func (s_ Scrubber) SetImageView(value IImageView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageView:"), value)
 }
@@ -686,7 +623,6 @@ func (s_ Scrubber) SetImageView(value IImageView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/scrubbercontentsize
-
 func (s_ Scrubber) ScrubberContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("scrubberContentSize"))
 	return rv
@@ -697,7 +633,6 @@ func (s_ Scrubber) ScrubberContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/scrubbercontentsize
-
 func (s_ Scrubber) SetScrubberContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberContentSize:"), value)
 }
@@ -707,7 +642,6 @@ func (s_ Scrubber) SetScrubberContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforhighlightchange
-
 func (s_ Scrubber) ShouldInvalidateLayoutForHighlightChange() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForHighlightChange"))
 	return rv
@@ -718,7 +652,6 @@ func (s_ Scrubber) ShouldInvalidateLayoutForHighlightChange() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforhighlightchange
-
 func (s_ Scrubber) SetShouldInvalidateLayoutForHighlightChange(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldInvalidateLayoutForHighlightChange:"), value)
 }
@@ -728,7 +661,6 @@ func (s_ Scrubber) SetShouldInvalidateLayoutForHighlightChange(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforselectionchange
-
 func (s_ Scrubber) ShouldInvalidateLayoutForSelectionChange() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("shouldInvalidateLayoutForSelectionChange"))
 	return rv
@@ -739,7 +671,6 @@ func (s_ Scrubber) ShouldInvalidateLayoutForSelectionChange() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/shouldinvalidatelayoutforselectionchange
-
 func (s_ Scrubber) SetShouldInvalidateLayoutForSelectionChange(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldInvalidateLayoutForSelectionChange:"), value)
 }
@@ -749,7 +680,6 @@ func (s_ Scrubber) SetShouldInvalidateLayoutForSelectionChange(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/alpha
-
 func (s_ Scrubber) Alpha() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("alpha"))
 	return rv
@@ -760,7 +690,6 @@ func (s_ Scrubber) Alpha() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/alpha
-
 func (s_ Scrubber) SetAlpha(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlpha:"), value)
 }
@@ -770,7 +699,6 @@ func (s_ Scrubber) SetAlpha(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/frame
-
 func (s_ Scrubber) Frame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("frame"))
 	return rv
@@ -781,7 +709,6 @@ func (s_ Scrubber) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/frame
-
 func (s_ Scrubber) SetFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrame:"), value)
 }
@@ -791,7 +718,6 @@ func (s_ Scrubber) SetFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/itemindex
-
 func (s_ Scrubber) ItemIndex() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("itemIndex"))
 	return rv
@@ -802,7 +728,6 @@ func (s_ Scrubber) ItemIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/itemindex
-
 func (s_ Scrubber) SetItemIndex(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemIndex:"), value)
 }
@@ -812,7 +737,6 @@ func (s_ Scrubber) SetItemIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-
 func (s_ Scrubber) TextField() NSTextField {
 	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
 	return rv
@@ -823,7 +747,6 @@ func (s_ Scrubber) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-
 func (s_ Scrubber) SetTextField(value ITextField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTextField:"), value)
 }

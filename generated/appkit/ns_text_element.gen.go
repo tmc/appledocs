@@ -49,7 +49,6 @@ type ITextElement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextElement
-
 type TextElement struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewTextElement() TextElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/childelements
-
 func (t_ TextElement) ChildElements() NSTextElement {
 	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("childElements"))
 	return rv
@@ -109,7 +107,6 @@ func (t_ TextElement) ChildElements() NSTextElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/childelements
-
 func (t_ TextElement) SetChildElements(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildElements:"), value)
 }
@@ -119,7 +116,6 @@ func (t_ TextElement) SetChildElements(value ITextElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/elementrange
-
 func (t_ TextElement) ElementRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("elementRange"))
 	return rv
@@ -130,7 +126,6 @@ func (t_ TextElement) ElementRange() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/elementrange
-
 func (t_ TextElement) SetElementRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setElementRange:"), value)
 }
@@ -140,7 +135,6 @@ func (t_ TextElement) SetElementRange(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/isrepresentedelement
-
 func (t_ TextElement) IsRepresentedElement() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRepresentedElement"))
 	return rv
@@ -151,7 +145,6 @@ func (t_ TextElement) IsRepresentedElement() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/isrepresentedelement
-
 func (t_ TextElement) SetIsRepresentedElement(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRepresentedElement:"), value)
 }
@@ -161,7 +154,6 @@ func (t_ TextElement) SetIsRepresentedElement(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/parent
-
 func (t_ TextElement) Parent() NSTextElement {
 	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("parent"))
 	return rv
@@ -172,7 +164,6 @@ func (t_ TextElement) Parent() NSTextElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/parent
-
 func (t_ TextElement) SetParent(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
 }
@@ -182,7 +173,6 @@ func (t_ TextElement) SetParent(value ITextElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/textcontentmanager
-
 func (t_ TextElement) TextContentManager() NSTextContentManager {
 	rv := objc.Send[NSTextContentManager](t_.ID, objc.Sel("textContentManager"))
 	return rv
@@ -193,7 +183,6 @@ func (t_ TextElement) TextContentManager() NSTextContentManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelement/textcontentmanager
-
 func (t_ TextElement) SetTextContentManager(value ITextContentManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContentManager:"), value)
 }

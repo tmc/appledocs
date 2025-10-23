@@ -38,7 +38,6 @@ type IAuthorizationPublicKeyCredentialPRFAssertionOutput interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionOutput-c.class
-
 type AuthorizationPublicKeyCredentialPRFAssertionOutput struct {
 	objectivec.Object
 }
@@ -83,7 +82,6 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionOutput() AuthorizationPublic
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionOutput-c.class/first
-
 func (a_ AuthorizationPublicKeyCredentialPRFAssertionOutput) First() foundation.NSData {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("first"))
 	return rv

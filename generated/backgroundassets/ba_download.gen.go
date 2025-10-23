@@ -45,7 +45,6 @@ type IBADownload interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload
-
 type BADownload struct {
 	objectivec.Object
 }
@@ -90,10 +89,8 @@ func NewBADownload() BADownload {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/removingEssential()
-
 func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("copyAsNonEssential"))
 	return rv
@@ -104,7 +101,6 @@ func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/identifier
-
 func (b_ BADownload) Identifier() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
@@ -113,7 +109,6 @@ func (b_ BADownload) Identifier() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/isEssential
-
 func (b_ BADownload) IsEssential() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isEssential"))
 	return rv
@@ -124,7 +119,6 @@ func (b_ BADownload) IsEssential() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/priority-swift.property
-
 func (b_ BADownload) Priority() BADownloaderPriority {
 	rv := objc.Send[BADownloaderPriority](b_.ID, objc.Sel("priority"))
 	return rv
@@ -135,7 +129,6 @@ func (b_ BADownload) Priority() BADownloaderPriority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/state-swift.property
-
 func (b_ BADownload) State() BADownloadState {
 	rv := objc.Send[BADownloadState](b_.ID, objc.Sel("state"))
 	return rv
@@ -146,7 +139,6 @@ func (b_ BADownload) State() BADownloadState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/uniqueIdentifier
-
 func (b_ BADownload) UniqueIdentifier() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("uniqueIdentifier"))
 	return rv

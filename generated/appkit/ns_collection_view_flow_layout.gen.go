@@ -64,7 +64,6 @@ type ICollectionViewFlowLayout interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewFlowLayout
-
 type CollectionViewFlowLayout struct {
 	CollectionViewLayout
 }
@@ -115,7 +114,6 @@ func NewCollectionViewFlowLayout() CollectionViewFlowLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/delegate
-
 func (c_ CollectionViewFlowLayout) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -126,7 +124,6 @@ func (c_ CollectionViewFlowLayout) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/delegate
-
 func (c_ CollectionViewFlowLayout) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -136,7 +133,6 @@ func (c_ CollectionViewFlowLayout) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/estimateditemsize
-
 func (c_ CollectionViewFlowLayout) EstimatedItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("estimatedItemSize"))
 	return rv
@@ -147,7 +143,6 @@ func (c_ CollectionViewFlowLayout) EstimatedItemSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/estimateditemsize
-
 func (c_ CollectionViewFlowLayout) SetEstimatedItemSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEstimatedItemSize:"), value)
 }
@@ -157,7 +152,6 @@ func (c_ CollectionViewFlowLayout) SetEstimatedItemSize(value coregraphics.CGSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/footerreferencesize
-
 func (c_ CollectionViewFlowLayout) FooterReferenceSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("footerReferenceSize"))
 	return rv
@@ -168,7 +162,6 @@ func (c_ CollectionViewFlowLayout) FooterReferenceSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/footerreferencesize
-
 func (c_ CollectionViewFlowLayout) SetFooterReferenceSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFooterReferenceSize:"), value)
 }
@@ -178,7 +171,6 @@ func (c_ CollectionViewFlowLayout) SetFooterReferenceSize(value coregraphics.CGS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/headerreferencesize
-
 func (c_ CollectionViewFlowLayout) HeaderReferenceSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("headerReferenceSize"))
 	return rv
@@ -189,7 +181,6 @@ func (c_ CollectionViewFlowLayout) HeaderReferenceSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/headerreferencesize
-
 func (c_ CollectionViewFlowLayout) SetHeaderReferenceSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHeaderReferenceSize:"), value)
 }
@@ -199,7 +190,6 @@ func (c_ CollectionViewFlowLayout) SetHeaderReferenceSize(value coregraphics.CGS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/itemsize
-
 func (c_ CollectionViewFlowLayout) ItemSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("itemSize"))
 	return rv
@@ -210,7 +200,6 @@ func (c_ CollectionViewFlowLayout) ItemSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/itemsize
-
 func (c_ CollectionViewFlowLayout) SetItemSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setItemSize:"), value)
 }
@@ -220,7 +209,6 @@ func (c_ CollectionViewFlowLayout) SetItemSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/minimuminteritemspacing
-
 func (c_ CollectionViewFlowLayout) MinimumInteritemSpacing() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("minimumInteritemSpacing"))
 	return rv
@@ -231,7 +219,6 @@ func (c_ CollectionViewFlowLayout) MinimumInteritemSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/minimuminteritemspacing
-
 func (c_ CollectionViewFlowLayout) SetMinimumInteritemSpacing(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumInteritemSpacing:"), value)
 }
@@ -241,7 +228,6 @@ func (c_ CollectionViewFlowLayout) SetMinimumInteritemSpacing(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/minimumlinespacing
-
 func (c_ CollectionViewFlowLayout) MinimumLineSpacing() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("minimumLineSpacing"))
 	return rv
@@ -252,7 +238,6 @@ func (c_ CollectionViewFlowLayout) MinimumLineSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/minimumlinespacing
-
 func (c_ CollectionViewFlowLayout) SetMinimumLineSpacing(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumLineSpacing:"), value)
 }
@@ -262,7 +247,6 @@ func (c_ CollectionViewFlowLayout) SetMinimumLineSpacing(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/scrolldirection
-
 func (c_ CollectionViewFlowLayout) ScrollDirection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scrollDirection"))
 	return rv
@@ -273,7 +257,6 @@ func (c_ CollectionViewFlowLayout) ScrollDirection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/scrolldirection
-
 func (c_ CollectionViewFlowLayout) SetScrollDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScrollDirection:"), value)
 }
@@ -281,7 +264,6 @@ func (c_ CollectionViewFlowLayout) SetScrollDirection(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/sectionfooterspintovisiblebounds
-
 func (c_ CollectionViewFlowLayout) SectionFootersPinToVisibleBounds() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sectionFootersPinToVisibleBounds"))
 	return rv
@@ -290,7 +272,6 @@ func (c_ CollectionViewFlowLayout) SectionFootersPinToVisibleBounds() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/sectionfooterspintovisiblebounds
-
 func (c_ CollectionViewFlowLayout) SetSectionFootersPinToVisibleBounds(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSectionFootersPinToVisibleBounds:"), value)
 }
@@ -298,7 +279,6 @@ func (c_ CollectionViewFlowLayout) SetSectionFootersPinToVisibleBounds(value boo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/sectionheaderspintovisiblebounds
-
 func (c_ CollectionViewFlowLayout) SectionHeadersPinToVisibleBounds() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sectionHeadersPinToVisibleBounds"))
 	return rv
@@ -307,7 +287,6 @@ func (c_ CollectionViewFlowLayout) SectionHeadersPinToVisibleBounds() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/sectionheaderspintovisiblebounds
-
 func (c_ CollectionViewFlowLayout) SetSectionHeadersPinToVisibleBounds(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSectionHeadersPinToVisibleBounds:"), value)
 }
@@ -317,7 +296,6 @@ func (c_ CollectionViewFlowLayout) SetSectionHeadersPinToVisibleBounds(value boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/sectioninset
-
 func (c_ CollectionViewFlowLayout) SectionInset() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sectionInset"))
 	return rv
@@ -328,7 +306,6 @@ func (c_ CollectionViewFlowLayout) SectionInset() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/sectioninset
-
 func (c_ CollectionViewFlowLayout) SetSectionInset(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSectionInset:"), value)
 }
@@ -338,7 +315,6 @@ func (c_ CollectionViewFlowLayout) SetSectionInset(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZeroSize
-
 func (c_ CollectionViewFlowLayout) NSZeroSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("NSZeroSize"))
 	return rv

@@ -42,7 +42,6 @@ type ICellularPlanProvisioning interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning
-
 type CellularPlanProvisioning struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewCellularPlanProvisioning() CellularPlanProvisioning {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/supportsEmbeddedSIM
-
 func (c_ CellularPlanProvisioning) SupportsEmbeddedSIM() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsEmbeddedSIM"))
 	return rv

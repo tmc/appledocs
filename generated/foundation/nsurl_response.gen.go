@@ -38,7 +38,7 @@ type IURLResponse interface {
 	SetSuggestedFilename(value string)
 	TextEncodingName() string
 	SetTextEncodingName(value string)
-	Url() URL
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -175,7 +175,7 @@ func (u_ URLResponse) SetTextEncodingName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/url
-func (u_ URLResponse) Url() URL {
+func (u_ URLResponse) Url() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("url"))
 	return rv
 }

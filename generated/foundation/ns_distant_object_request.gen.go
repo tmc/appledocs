@@ -31,9 +31,9 @@ type _DistantObjectRequestClass struct {
 type IDistantObjectRequest interface {
 	objectivec.IObject
 	ReplyWithException(exception IException)
-	Connection() NSConnection
+	Connection() IConnection
 	Conversation() objc.ID
-	Invocation() NSInvocation
+	Invocation() IInvocation
 }
 
 // An object used by the distributed objects system to help handle invocations between different processes.
@@ -102,7 +102,7 @@ func (d_ DistantObjectRequest) ReplyWithException(exception IException) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/connection
-func (d_ DistantObjectRequest) Connection() NSConnection {
+func (d_ DistantObjectRequest) Connection() IConnection {
 	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connection"))
 	return rv
 }
@@ -122,7 +122,7 @@ func (d_ DistantObjectRequest) Conversation() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/invocation
-func (d_ DistantObjectRequest) Invocation() NSInvocation {
+func (d_ DistantObjectRequest) Invocation() IInvocation {
 	rv := objc.Send[NSInvocation](d_.ID, objc.Sel("invocation"))
 	return rv
 }

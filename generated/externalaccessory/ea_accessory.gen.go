@@ -55,7 +55,6 @@ type IEAAccessory interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory
-
 type EAAccessory struct {
 	objectivec.Object
 }
@@ -104,7 +103,6 @@ func NewEAAccessory() EAAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/connectionID
-
 func (e_ EAAccessory) ConnectionID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("connectionID"))
 	return rv
@@ -113,7 +111,6 @@ func (e_ EAAccessory) ConnectionID() uint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/dockType
-
 func (e_ EAAccessory) DockType() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("dockType"))
 	return rv
@@ -124,7 +121,6 @@ func (e_ EAAccessory) DockType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/firmwareRevision
-
 func (e_ EAAccessory) FirmwareRevision() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("firmwareRevision"))
 	return rv
@@ -135,7 +131,6 @@ func (e_ EAAccessory) FirmwareRevision() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/hardwareRevision
-
 func (e_ EAAccessory) HardwareRevision() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("hardwareRevision"))
 	return rv
@@ -146,7 +141,6 @@ func (e_ EAAccessory) HardwareRevision() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/isConnected
-
 func (e_ EAAccessory) Connected() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("connected"))
 	return rv
@@ -157,7 +151,6 @@ func (e_ EAAccessory) Connected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/manufacturer
-
 func (e_ EAAccessory) Manufacturer() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
 	return rv
@@ -168,7 +161,6 @@ func (e_ EAAccessory) Manufacturer() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/modelNumber
-
 func (e_ EAAccessory) ModelNumber() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("modelNumber"))
 	return rv
@@ -179,7 +171,6 @@ func (e_ EAAccessory) ModelNumber() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/name
-
 func (e_ EAAccessory) Name() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
@@ -190,7 +181,6 @@ func (e_ EAAccessory) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/protocolStrings
-
 func (e_ EAAccessory) ProtocolStrings() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("protocolStrings"))
 	return rv
@@ -201,7 +191,6 @@ func (e_ EAAccessory) ProtocolStrings() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/serialNumber
-
 func (e_ EAAccessory) SerialNumber() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("serialNumber"))
 	return rv
@@ -212,7 +201,6 @@ func (e_ EAAccessory) SerialNumber() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/delegate
-
 func (e_ EAAccessory) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("delegate"))
 	return rv
@@ -223,7 +211,6 @@ func (e_ EAAccessory) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/delegate
-
 func (e_ EAAccessory) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -233,7 +220,6 @@ func (e_ EAAccessory) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
-
 func (e_ EAAccessory) IsConnected() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isConnected"))
 	return rv
@@ -244,7 +230,6 @@ func (e_ EAAccessory) IsConnected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
-
 func (e_ EAAccessory) SetIsConnected(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsConnected:"), value)
 }

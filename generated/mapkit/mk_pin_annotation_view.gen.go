@@ -41,7 +41,11 @@ type IMKPinAnnotationView interface {
 // An annotation view that displays a pin image on the map.
 //
 // Return instances of this class from the method of your map view delegate when you want to display a pin for one of your annotations. The pins displayed by this view are the same ones found in the Maps application. You can specify the type of pin you want to display and whether you want the pin to be animated into place.
+
+
+// An annotation view that displays a pin image on the map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPinAnnotationView
 type MKPinAnnotationView struct {
 	MKAnnotationView
@@ -88,8 +92,10 @@ func NewMKPinAnnotationView() MKPinAnnotationView {
 }
 
 
+
 // A Boolean value indicating whether the annotation view is animated onto the screen.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
 func (m_ MKPinAnnotationView) AnimatesDrop() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("animatesDrop"))
@@ -97,17 +103,18 @@ func (m_ MKPinAnnotationView) AnimatesDrop() bool {
 }
 
 
-// SetAnimatesDrop sets the value of the animatesDrop property.
 // A Boolean value indicating whether the annotation view is animated onto the screen.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
 func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesDrop:"), value)
 }
 
+
 // The color of the pin head.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pincolor
 func (m_ MKPinAnnotationView) PinColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinColor"))
@@ -115,17 +122,18 @@ func (m_ MKPinAnnotationView) PinColor() unsafe.Pointer {
 }
 
 
-// SetPinColor sets the value of the pinColor property.
 // The color of the pin head.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pincolor
 func (m_ MKPinAnnotationView) SetPinColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinColor:"), value)
 }
 
+
 // The color of the pin head.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
 func (m_ MKPinAnnotationView) PinTintColor() appkit.Color {
 	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("pinTintColor"))
@@ -133,10 +141,9 @@ func (m_ MKPinAnnotationView) PinTintColor() appkit.Color {
 }
 
 
-// SetPinTintColor sets the value of the pinTintColor property.
 // The color of the pin head.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
 func (m_ MKPinAnnotationView) SetPinTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinTintColor:"), value)

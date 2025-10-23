@@ -35,8 +35,7 @@ type ItopLeft interface {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topLeft-c.ivar
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/topLeft-c.ivar
 type topLeft struct {
 	objectivec.Object
 }

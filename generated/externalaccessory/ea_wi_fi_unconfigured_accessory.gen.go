@@ -45,7 +45,6 @@ type IEAWiFiUnconfiguredAccessory interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory
-
 type EAWiFiUnconfiguredAccessory struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewEAWiFiUnconfiguredAccessory() EAWiFiUnconfiguredAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/macAddress
-
 func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("macAddress"))
 	return rv
@@ -105,7 +103,6 @@ func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/manufacturer
-
 func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
 	return rv
@@ -116,7 +113,6 @@ func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/model
-
 func (e_ EAWiFiUnconfiguredAccessory) Model() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("model"))
 	return rv
@@ -127,7 +123,6 @@ func (e_ EAWiFiUnconfiguredAccessory) Model() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/name
-
 func (e_ EAWiFiUnconfiguredAccessory) Name() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
@@ -138,7 +133,6 @@ func (e_ EAWiFiUnconfiguredAccessory) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/properties
-
 func (e_ EAWiFiUnconfiguredAccessory) Properties() EAWiFiUnconfiguredAccessoryProperties {
 	rv := objc.Send[EAWiFiUnconfiguredAccessoryProperties](e_.ID, objc.Sel("properties"))
 	return rv
@@ -149,7 +143,6 @@ func (e_ EAWiFiUnconfiguredAccessory) Properties() EAWiFiUnconfiguredAccessoryPr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/ssid
-
 func (e_ EAWiFiUnconfiguredAccessory) Ssid() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("ssid"))
 	return rv

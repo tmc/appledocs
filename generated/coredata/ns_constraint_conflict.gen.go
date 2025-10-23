@@ -48,7 +48,6 @@ type IConstraintConflict interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict
-
 type ConstraintConflict struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewConstraintConflict() ConstraintConflict {
 
 
 
-
 // Initializes a constraint conflict.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/init(constraint:database:databaseSnapshot:conflicting:conflictingSnapshots:)
-
 func NewConstraintConflictWithConstraintDatabaseObjectDatabaseSnapshotConflictingObjectsConflictingSnapshots(contraint []string, databaseObject IManagedObject, databaseSnapshot objectivec.IObject, conflictingObjects []ManagedObject, conflictingSnapshots objectivec.IObject) ConstraintConflict {
 	instance := getConstraintConflictClass().Alloc()
 	rv := objc.Send[ConstraintConflict](instance.ID, objc.Sel("initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:"), contraint, databaseObject, databaseSnapshot, conflictingObjects, conflictingSnapshots)
@@ -112,7 +109,6 @@ func NewConstraintConflictWithConstraintDatabaseObjectDatabaseSnapshotConflictin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/conflictingObjects
-
 func (c_ ConstraintConflict) ConflictingObjects() []ManagedObject {
 	rv := objc.Send[[]ManagedObject](c_.ID, objc.Sel("conflictingObjects"))
 	return rv
@@ -123,7 +119,6 @@ func (c_ ConstraintConflict) ConflictingObjects() []ManagedObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/conflictingSnapshots
-
 func (c_ ConstraintConflict) ConflictingSnapshots() []foundation.Dictionary {
 	rv := objc.Send[[]foundation.Dictionary](c_.ID, objc.Sel("conflictingSnapshots"))
 	return rv
@@ -134,7 +129,6 @@ func (c_ ConstraintConflict) ConflictingSnapshots() []foundation.Dictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/constraint
-
 func (c_ ConstraintConflict) Constraint() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("constraint"))
 	return rv
@@ -145,7 +139,6 @@ func (c_ ConstraintConflict) Constraint() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/constraintValues
-
 func (c_ ConstraintConflict) ConstraintValues() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("constraintValues"))
 	return rv
@@ -156,7 +149,6 @@ func (c_ ConstraintConflict) ConstraintValues() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/databaseObject
-
 func (c_ ConstraintConflict) DatabaseObject() NSManagedObject {
 	rv := objc.Send[NSManagedObject](c_.ID, objc.Sel("databaseObject"))
 	return rv
@@ -167,7 +159,6 @@ func (c_ ConstraintConflict) DatabaseObject() NSManagedObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/databaseSnapshot
-
 func (c_ ConstraintConflict) DatabaseSnapshot() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseSnapshot"))
 	return rv

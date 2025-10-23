@@ -46,7 +46,7 @@ type IOutlineView interface {
 	StronglyReferencesItems() bool
 	SetStronglyReferencesItems(value bool)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
 }
 
 // A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
@@ -58,7 +58,6 @@ type IOutlineView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView
-
 type OutlineView struct {
 	TableView
 }
@@ -109,7 +108,6 @@ func NewOutlineView() OutlineView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationPerLevel
-
 func (o_ OutlineView) IndentationPerLevel() float64 {
 	rv := objc.Send[float64](o_.ID, objc.Sel("indentationPerLevel"))
 	return rv
@@ -120,7 +118,6 @@ func (o_ OutlineView) IndentationPerLevel() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationPerLevel
-
 func (o_ OutlineView) SetIndentationPerLevel(value float64) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationPerLevel:"), value)
 }
@@ -130,7 +127,6 @@ func (o_ OutlineView) SetIndentationPerLevel(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autoresizesoutlinecolumn
-
 func (o_ OutlineView) AutoresizesOutlineColumn() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("autoresizesOutlineColumn"))
 	return rv
@@ -141,7 +137,6 @@ func (o_ OutlineView) AutoresizesOutlineColumn() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autoresizesoutlinecolumn
-
 func (o_ OutlineView) SetAutoresizesOutlineColumn(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutoresizesOutlineColumn:"), value)
 }
@@ -151,7 +146,6 @@ func (o_ OutlineView) SetAutoresizesOutlineColumn(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autosaveexpandeditems
-
 func (o_ OutlineView) AutosaveExpandedItems() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("autosaveExpandedItems"))
 	return rv
@@ -162,7 +156,6 @@ func (o_ OutlineView) AutosaveExpandedItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autosaveexpandeditems
-
 func (o_ OutlineView) SetAutosaveExpandedItems(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutosaveExpandedItems:"), value)
 }
@@ -172,7 +165,6 @@ func (o_ OutlineView) SetAutosaveExpandedItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/datasource
-
 func (o_ OutlineView) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dataSource"))
 	return rv
@@ -183,7 +175,6 @@ func (o_ OutlineView) DataSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/datasource
-
 func (o_ OutlineView) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDataSource:"), value)
 }
@@ -193,7 +184,6 @@ func (o_ OutlineView) SetDataSource(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/delegate
-
 func (o_ OutlineView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("delegate"))
 	return rv
@@ -204,7 +194,6 @@ func (o_ OutlineView) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/delegate
-
 func (o_ OutlineView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -214,7 +203,6 @@ func (o_ OutlineView) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/indentationmarkerfollowscell
-
 func (o_ OutlineView) IndentationMarkerFollowsCell() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("indentationMarkerFollowsCell"))
 	return rv
@@ -225,7 +213,6 @@ func (o_ OutlineView) IndentationMarkerFollowsCell() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/indentationmarkerfollowscell
-
 func (o_ OutlineView) SetIndentationMarkerFollowsCell(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationMarkerFollowsCell:"), value)
 }
@@ -235,7 +222,6 @@ func (o_ OutlineView) SetIndentationMarkerFollowsCell(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
-
 func (o_ OutlineView) OutlineTableColumn() NSTableColumn {
 	rv := objc.Send[NSTableColumn](o_.ID, objc.Sel("outlineTableColumn"))
 	return rv
@@ -246,7 +232,6 @@ func (o_ OutlineView) OutlineTableColumn() NSTableColumn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
-
 func (o_ OutlineView) SetOutlineTableColumn(value ITableColumn) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutlineTableColumn:"), value)
 }
@@ -256,7 +241,6 @@ func (o_ OutlineView) SetOutlineTableColumn(value ITableColumn) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/stronglyreferencesitems
-
 func (o_ OutlineView) StronglyReferencesItems() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("stronglyReferencesItems"))
 	return rv
@@ -267,7 +251,6 @@ func (o_ OutlineView) StronglyReferencesItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/stronglyreferencesitems
-
 func (o_ OutlineView) SetStronglyReferencesItems(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setStronglyReferencesItems:"), value)
 }
@@ -277,7 +260,6 @@ func (o_ OutlineView) SetStronglyReferencesItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
-
 func (o_ OutlineView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 	rv := objc.Send[UserInterfaceLayoutDirection](o_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
@@ -288,8 +270,7 @@ func (o_ OutlineView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirectio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
-
-func (o_ OutlineView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
+func (o_ OutlineView) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

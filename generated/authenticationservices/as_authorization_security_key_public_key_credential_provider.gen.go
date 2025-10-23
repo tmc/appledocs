@@ -45,7 +45,6 @@ type IAuthorizationSecurityKeyPublicKeyCredentialProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider
-
 type AuthorizationSecurityKeyPublicKeyCredentialProvider struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialProvider() AuthorizationSecur
 
 
 
-
 // Creates an assertion request with a challenge, display name, and user ID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/createCredentialRegistrationRequest(challenge:displayName:name:userID:)
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName string, name string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
 	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest](a_.ID, objc.Sel("createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"), challenge, objc.String(displayName), objc.String(name), userID)
 	return rv
@@ -106,7 +103,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) CreateCredentialRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/relyingpartyidentifier
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
 	return rv
@@ -117,7 +113,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdenti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/relyingpartyidentifier
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
 }

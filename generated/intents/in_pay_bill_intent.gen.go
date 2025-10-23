@@ -48,7 +48,11 @@ type IINPayBillIntent interface {
 // A request to transfer money to facilitate payment of a bill.
 //
 // Siri creates an object when the user asks to pay a bill for a designated payee. A pay bill intent object includes the payment amount, the payment date, and the recipient of the payment. Use that information to validate the transaction and to schedule the payment. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of scheduling the bill payment. This intent object represents a financial transaction between the user and an entity (such as a utility company or credit card bill) defined in your app. You’re responsible for configuring and managing the entities that accept the payment of bills.
+
+
+// A request to transfer money to facilitate payment of a bill.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPayBillIntent
 type INPayBillIntent struct {
 	INIntent
@@ -95,8 +99,10 @@ func NewINPayBillIntent() INPayBillIntent {
 }
 
 
+
 // The recipient of the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billpayee
 func (i_ INPayBillIntent) BillPayee() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billPayee"))
@@ -104,17 +110,18 @@ func (i_ INPayBillIntent) BillPayee() unsafe.Pointer {
 }
 
 
-// SetBillPayee sets the value of the billPayee property.
 // The recipient of the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billpayee
 func (i_ INPayBillIntent) SetBillPayee(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBillPayee:"), value)
 }
 
+
 // The type of the bill.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billtype
 func (i_ INPayBillIntent) BillType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billType"))
@@ -122,17 +129,18 @@ func (i_ INPayBillIntent) BillType() unsafe.Pointer {
 }
 
 
-// SetBillType sets the value of the billType property.
 // The type of the bill.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/billtype
 func (i_ INPayBillIntent) SetBillType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBillType:"), value)
 }
 
+
 // The due date of the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/duedate
 func (i_ INPayBillIntent) DueDate() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dueDate"))
@@ -140,17 +148,18 @@ func (i_ INPayBillIntent) DueDate() INDateComponentsRange {
 }
 
 
-// SetDueDate sets the value of the dueDate property.
 // The due date of the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/duedate
 func (i_ INPayBillIntent) SetDueDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDueDate:"), value)
 }
 
+
 // The user account containing the funds for the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/fromaccount
 func (i_ INPayBillIntent) FromAccount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fromAccount"))
@@ -158,17 +167,18 @@ func (i_ INPayBillIntent) FromAccount() unsafe.Pointer {
 }
 
 
-// SetFromAccount sets the value of the fromAccount property.
 // The user account containing the funds for the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/fromaccount
 func (i_ INPayBillIntent) SetFromAccount(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFromAccount:"), value)
 }
 
+
 // The amount to transfer from the user to the payee.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionamount
 func (i_ INPayBillIntent) TransactionAmount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transactionAmount"))
@@ -176,17 +186,18 @@ func (i_ INPayBillIntent) TransactionAmount() unsafe.Pointer {
 }
 
 
-// SetTransactionAmount sets the value of the transactionAmount property.
 // The amount to transfer from the user to the payee.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionamount
 func (i_ INPayBillIntent) SetTransactionAmount(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionAmount:"), value)
 }
 
+
 // A note to associate with the payment transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
 func (i_ INPayBillIntent) TransactionNote() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
@@ -194,17 +205,18 @@ func (i_ INPayBillIntent) TransactionNote() string {
 }
 
 
-// SetTransactionNote sets the value of the transactionNote property.
 // A note to associate with the payment transaction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
 func (i_ INPayBillIntent) SetTransactionNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
 }
 
+
 // The scheduled date for the payment, as requested by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionscheduleddate
 func (i_ INPayBillIntent) TransactionScheduledDate() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("transactionScheduledDate"))
@@ -212,10 +224,9 @@ func (i_ INPayBillIntent) TransactionScheduledDate() INDateComponentsRange {
 }
 
 
-// SetTransactionScheduledDate sets the value of the transactionScheduledDate property.
 // The scheduled date for the payment, as requested by the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionscheduleddate
 func (i_ INPayBillIntent) SetTransactionScheduledDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionScheduledDate:"), value)

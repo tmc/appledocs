@@ -38,7 +38,11 @@ type ILPLinkView interface {
 // A rich visual representation of a link.
 //
 // presents a link based on its available metadata. Use it to show a link’s title and icon, associated images, inline audio, video playback, and maps in a familiar and consistent style.
+
+
+// A rich visual representation of a link.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView
 type LPLinkView struct {
 	appkit.View
@@ -86,9 +90,9 @@ func NewLPLinkView() LPLinkView {
 
 
 
-
 // Initializes a link view with specified metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(metadata:)
 func NewLPLinkViewWithMetadata(metadata ILPLinkMetadata) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
@@ -98,9 +102,9 @@ func NewLPLinkViewWithMetadata(metadata ILPLinkMetadata) LPLinkView {
 }
 
 
-
 // Initializes a placeholder link view without metadata for a given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(url:)
 func NewLPLinkViewWithURL(URL foundation.IURL) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
@@ -110,8 +114,10 @@ func NewLPLinkViewWithURL(URL foundation.IURL) LPLinkView {
 }
 
 
+
 // The metadata from which to generate a rich presentation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/metadata
 func (l_ LPLinkView) Metadata() LPLinkMetadata {
 	rv := objc.Send[LPLinkMetadata](l_.ID, objc.Sel("metadata"))
@@ -119,10 +125,9 @@ func (l_ LPLinkView) Metadata() LPLinkMetadata {
 }
 
 
-// SetMetadata sets the value of the metadata property.
 // The metadata from which to generate a rich presentation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/metadata
 func (l_ LPLinkView) SetMetadata(value ILPLinkMetadata) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMetadata:"), value)

@@ -52,7 +52,6 @@ type IMetadataObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject
-
 type MetadataObject struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewMetadataObject() MetadataObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/bounds
-
 func (m_ MetadataObject) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("bounds"))
 	return rv
@@ -112,7 +110,6 @@ func (m_ MetadataObject) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/cinematicVideoFocusMode
-
 func (m_ MetadataObject) CinematicVideoFocusMode() CaptureCinematicVideoFocusMode {
 	rv := objc.Send[CaptureCinematicVideoFocusMode](m_.ID, objc.Sel("cinematicVideoFocusMode"))
 	return rv
@@ -123,7 +120,6 @@ func (m_ MetadataObject) CinematicVideoFocusMode() CaptureCinematicVideoFocusMod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/duration
-
 func (m_ MetadataObject) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
 	return rv
@@ -134,7 +130,6 @@ func (m_ MetadataObject) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/groupID
-
 func (m_ MetadataObject) GroupID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("groupID"))
 	return rv
@@ -145,7 +140,6 @@ func (m_ MetadataObject) GroupID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/isFixedFocus
-
 func (m_ MetadataObject) FixedFocus() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("fixedFocus"))
 	return rv
@@ -156,7 +150,6 @@ func (m_ MetadataObject) FixedFocus() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/objectID
-
 func (m_ MetadataObject) ObjectID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("objectID"))
 	return rv
@@ -167,7 +160,6 @@ func (m_ MetadataObject) ObjectID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/time
-
 func (m_ MetadataObject) Time() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("time"))
 	return rv
@@ -178,7 +170,6 @@ func (m_ MetadataObject) Time() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/type
-
 func (m_ MetadataObject) Type() MetadataObjectType {
 	rv := objc.Send[MetadataObjectType](m_.ID, objc.Sel("type"))
 	return rv
@@ -189,7 +180,6 @@ func (m_ MetadataObject) Type() MetadataObjectType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataobject/isfixedfocus
-
 func (m_ MetadataObject) IsFixedFocus() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isFixedFocus"))
 	return rv
@@ -200,7 +190,6 @@ func (m_ MetadataObject) IsFixedFocus() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataobject/isfixedfocus
-
 func (m_ MetadataObject) SetIsFixedFocus(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFixedFocus:"), value)
 }

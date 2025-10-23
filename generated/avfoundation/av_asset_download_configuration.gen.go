@@ -32,7 +32,7 @@ type _AssetDownloadConfigurationClass struct {
 type IAssetDownloadConfiguration interface {
 	objectivec.IObject
 	ArtworkData() foundation.Data
-	SetArtworkData(value foundation.IData)
+	SetArtworkData(value foundation.Data)
 	AuxiliaryContentConfigurations() unsafe.Pointer
 	SetAuxiliaryContentConfigurations(value unsafe.Pointer)
 	OptimizesAuxiliaryContentConfigurations() bool
@@ -48,7 +48,6 @@ type IAssetDownloadConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadConfiguration
-
 type AssetDownloadConfiguration struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewAssetDownloadConfiguration() AssetDownloadConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
-
 func (a_ AssetDownloadConfiguration) ArtworkData() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("artworkData"))
 	return rv
@@ -108,8 +106,7 @@ func (a_ AssetDownloadConfiguration) ArtworkData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
-
-func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.IData) {
+func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.Data) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArtworkData:"), value)
 }
 
@@ -118,7 +115,6 @@ func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/auxiliarycontentconfigurations
-
 func (a_ AssetDownloadConfiguration) AuxiliaryContentConfigurations() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("auxiliaryContentConfigurations"))
 	return rv
@@ -129,7 +125,6 @@ func (a_ AssetDownloadConfiguration) AuxiliaryContentConfigurations() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/auxiliarycontentconfigurations
-
 func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuxiliaryContentConfigurations:"), value)
 }
@@ -139,7 +134,6 @@ func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
-
 func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("optimizesAuxiliaryContentConfigurations"))
 	return rv
@@ -150,7 +144,6 @@ func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
-
 func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOptimizesAuxiliaryContentConfigurations:"), value)
 }
@@ -160,7 +153,6 @@ func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/primarycontentconfiguration
-
 func (a_ AssetDownloadConfiguration) PrimaryContentConfiguration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primaryContentConfiguration"))
 	return rv
@@ -171,7 +163,6 @@ func (a_ AssetDownloadConfiguration) PrimaryContentConfiguration() unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/primarycontentconfiguration
-
 func (a_ AssetDownloadConfiguration) SetPrimaryContentConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimaryContentConfiguration:"), value)
 }

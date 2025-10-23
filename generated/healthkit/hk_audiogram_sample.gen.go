@@ -42,7 +42,6 @@ type IHKAudiogramSample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSample
-
 type HKAudiogramSample struct {
 	HKSample
 }
@@ -93,7 +92,6 @@ func NewHKAudiogramSample() HKAudiogramSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
-
 func (h_ HKAudiogramSample) SensitivityPoints() HKAudiogramSensitivityPoint {
 	rv := objc.Send[HKAudiogramSensitivityPoint](h_.ID, objc.Sel("sensitivityPoints"))
 	return rv
@@ -104,7 +102,6 @@ func (h_ HKAudiogramSample) SensitivityPoints() HKAudiogramSensitivityPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
-
 func (h_ HKAudiogramSample) SetSensitivityPoints(value IHKAudiogramSensitivityPoint) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSensitivityPoints:"), value)
 }

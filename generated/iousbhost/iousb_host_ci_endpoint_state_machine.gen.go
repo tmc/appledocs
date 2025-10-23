@@ -43,7 +43,9 @@ type IUSBHostCIEndpointStateMachine interface {
 	SetEndpointState(value unsafe.Pointer)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine
 type USBHostCIEndpointStateMachine struct {
 	objectivec.Object
@@ -86,28 +88,32 @@ func NewUSBHostCIEndpointStateMachine() USBHostCIEndpointStateMachine {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/inspectCommand(_:)
 func (u_ USBHostCIEndpointStateMachine) InspectCommandError(command unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("inspectCommand:error:"), command, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/processDoorbell(_:)
 func (u_ USBHostCIEndpointStateMachine) ProcessDoorbellError(doorbell IUSBHostCIDoorbell, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("processDoorbell:error:"), doorbell, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/controllerInterface
 func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControllerInterface {
 	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/currenttransfermessage
 func (u_ USBHostCIEndpointStateMachine) CurrentTransferMessage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("currentTransferMessage"))
@@ -115,14 +121,14 @@ func (u_ USBHostCIEndpointStateMachine) CurrentTransferMessage() unsafe.Pointer 
 }
 
 
-// SetCurrentTransferMessage sets the value of the currentTransferMessage property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/currenttransfermessage
 func (u_ USBHostCIEndpointStateMachine) SetCurrentTransferMessage(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentTransferMessage:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/deviceaddress
 func (u_ USBHostCIEndpointStateMachine) DeviceAddress() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("deviceAddress"))
@@ -130,14 +136,14 @@ func (u_ USBHostCIEndpointStateMachine) DeviceAddress() int {
 }
 
 
-// SetDeviceAddress sets the value of the deviceAddress property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/deviceaddress
 func (u_ USBHostCIEndpointStateMachine) SetDeviceAddress(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceAddress:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointaddress
 func (u_ USBHostCIEndpointStateMachine) EndpointAddress() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("endpointAddress"))
@@ -145,14 +151,14 @@ func (u_ USBHostCIEndpointStateMachine) EndpointAddress() int {
 }
 
 
-// SetEndpointAddress sets the value of the endpointAddress property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointaddress
 func (u_ USBHostCIEndpointStateMachine) SetEndpointAddress(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEndpointAddress:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointstate
 func (u_ USBHostCIEndpointStateMachine) EndpointState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("endpointState"))
@@ -160,8 +166,7 @@ func (u_ USBHostCIEndpointStateMachine) EndpointState() unsafe.Pointer {
 }
 
 
-// SetEndpointState sets the value of the endpointState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointstate
 func (u_ USBHostCIEndpointStateMachine) SetEndpointState(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEndpointState:"), value)

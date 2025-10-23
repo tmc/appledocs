@@ -32,7 +32,9 @@ type ImIOConnection interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObject/mIOConnection
 type mIOConnection struct {
 	objectivec.Object

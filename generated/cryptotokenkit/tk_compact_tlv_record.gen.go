@@ -40,7 +40,6 @@ type ITKCompactTLVRecord interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKCompactTLVRecord
-
 type TKCompactTLVRecord struct {
 	objectivec.Object
 }
@@ -85,12 +84,10 @@ func NewTKCompactTLVRecord() TKCompactTLVRecord {
 
 
 
-
 // Initializes a TLV record with the specified tag and value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKCompactTLVRecord/init(tag:value:)
-
 func NewTKCompactTLVRecordWithTagValue(tag unsafe.Pointer, value foundation.IData) TKCompactTLVRecord {
 	instance := getTKCompactTLVRecordClass().Alloc()
 	rv := objc.Send[TKCompactTLVRecord](instance.ID, objc.Sel("initWithTag:value:"), tag, value)

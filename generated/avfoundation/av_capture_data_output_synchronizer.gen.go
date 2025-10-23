@@ -46,7 +46,6 @@ type ICaptureDataOutputSynchronizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDataOutputSynchronizer
-
 type CaptureDataOutputSynchronizer struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewCaptureDataOutputSynchronizer() CaptureDataOutputSynchronizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDataOutputSynchronizer/delegateCallbackQueue
-
 func (c_ CaptureDataOutputSynchronizer) DelegateCallbackQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegateCallbackQueue"))
 	return rv
@@ -106,7 +104,6 @@ func (c_ CaptureDataOutputSynchronizer) DelegateCallbackQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
-
 func (c_ CaptureDataOutputSynchronizer) DataOutputs() AVCaptureOutput {
 	rv := objc.Send[AVCaptureOutput](c_.ID, objc.Sel("dataOutputs"))
 	return rv
@@ -117,7 +114,6 @@ func (c_ CaptureDataOutputSynchronizer) DataOutputs() AVCaptureOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
-
 func (c_ CaptureDataOutputSynchronizer) SetDataOutputs(value IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataOutputs:"), value)
 }
@@ -127,7 +123,6 @@ func (c_ CaptureDataOutputSynchronizer) SetDataOutputs(value IAVCaptureOutput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/delegate
-
 func (c_ CaptureDataOutputSynchronizer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -138,7 +133,6 @@ func (c_ CaptureDataOutputSynchronizer) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/delegate
-
 func (c_ CaptureDataOutputSynchronizer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

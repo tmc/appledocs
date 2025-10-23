@@ -37,8 +37,8 @@
 //   - Load template archive (templates.txtar)
 //   - Apply variant overlays if specified
 //   - Two-tier template function registration:
-//     * Core utilities (templateFuncs) - string manipulation, formatting
-//     * Generator methods (GeneratorFuncs.Funcs()) - state-dependent operations
+//   - Core utilities (templateFuncs) - string manipulation, formatting
+//   - Generator methods (GeneratorFuncs.Funcs()) - state-dependent operations
 //   - Single execution path via GenerateTxtarFromModule()
 //
 // # Type System

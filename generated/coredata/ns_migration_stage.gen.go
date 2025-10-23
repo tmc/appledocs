@@ -41,7 +41,6 @@ type IMigrationStage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage
-
 type MigrationStage struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewMigrationStage() MigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-
 func (m_ MigrationStage) Label() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
@@ -101,7 +99,6 @@ func (m_ MigrationStage) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-
 func (m_ MigrationStage) SetLabel(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }

@@ -44,7 +44,6 @@ type IARC4RandomSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource
-
 type ARC4RandomSource struct {
 	RandomSource
 }
@@ -91,12 +90,10 @@ func NewARC4RandomSource() ARC4RandomSource {
 
 
 
-
 // Initializes a random source with the specified seed data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/init(seed:)
-
 func NewARC4RandomSourceWithSeed(seed foundation.IData) ARC4RandomSource {
 	instance := getARC4RandomSourceClass().Alloc()
 	rv := objc.Send[ARC4RandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
@@ -106,12 +103,10 @@ func NewARC4RandomSourceWithSeed(seed foundation.IData) ARC4RandomSource {
 
 
 
-
 // Skips the specified number of values in the random sequence.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/dropValues(_:)
-
 func (c_ ARC4RandomSource) DropValuesWithCount(count uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("dropValuesWithCount:"), count)
 }
@@ -121,7 +116,6 @@ func (c_ ARC4RandomSource) DropValuesWithCount(count uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-
 func (c_ ARC4RandomSource) Seed() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("seed"))
 	return rv
@@ -132,7 +126,6 @@ func (c_ ARC4RandomSource) Seed() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-
 func (c_ ARC4RandomSource) SetSeed(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }

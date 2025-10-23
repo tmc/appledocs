@@ -34,7 +34,7 @@ type IEntity interface {
 	AddComponent(component IGKComponent)
 	ComponentForClass(componentClass objc.Class) Component
 	RemoveComponentForClass(componentClass objc.Class)
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	Components() []Component
 }
 
@@ -47,7 +47,6 @@ type IEntity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity
-
 type Entity struct {
 	objectivec.Object
 }
@@ -97,54 +96,45 @@ func NewEntity() Entity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/entity
-
 func (ec _EntityClass) Entity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("entity"))
 	return rv
 }
 
 
-
 // Adds a component to the entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/addComponent(_:)
-
 func (e_ Entity) AddComponent(component IGKComponent) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("addComponent:"), component)
 }
-
 
 
 // Returns the entity’s component for the specified component class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/componentForClass:
-
 func (e_ Entity) ComponentForClass(componentClass objc.Class) Component {
 	rv := objc.Send[Component](e_.ID, objc.Sel("componentForClass:"), componentClass)
 	return rv
 }
 
 
-
 // Removes the component of the specified class from the entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/removeComponentForClass:
-
 func (e_ Entity) RemoveComponentForClass(componentClass objc.Class) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("removeComponentForClass:"), componentClass)
 }
-
 
 
 // Performs periodic updates for each of the entity’s components.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/update(deltaTime:)
-
-func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (e_ Entity) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -153,7 +143,6 @@ func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/components
-
 func (e_ Entity) Components() []Component {
 	rv := objc.Send[[]Component](e_.ID, objc.Sel("components"))
 	return rv

@@ -35,7 +35,9 @@ type IMEEmailAddress interface {
 	SetRawString(value string)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress
 type MEEmailAddress struct {
 	objectivec.Object
@@ -78,7 +80,8 @@ func NewMEEmailAddress() MEEmailAddress {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/init(rawString:)
 func NewMEEmailAddressWithRawString(rawString string) MEEmailAddress {
 	instance := getMEEmailAddressClass().Alloc()
@@ -88,14 +91,16 @@ func NewMEEmailAddressWithRawString(rawString string) MEEmailAddress {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/addressString
 func (m_ MEEmailAddress) AddressString() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/meemailaddress/rawstring
 func (m_ MEEmailAddress) RawString() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("rawString"))
@@ -103,8 +108,7 @@ func (m_ MEEmailAddress) RawString() string {
 }
 
 
-// SetRawString sets the value of the rawString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/meemailaddress/rawstring
 func (m_ MEEmailAddress) SetRawString(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawString:"), objc.String(value))

@@ -44,7 +44,11 @@ type IMEDecodedMessage interface {
 // An object that contains the RFC 2822 data for a message, without encryption or digital signatures.
 //
 // When MailKit invokes your message security handler’s method, you decode the message data and return an instance of that contains unencrypted MIME data.
+
+
+// An object that contains the RFC 2822 data for a message, without encryption or digital signatures.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessage
 type MEDecodedMessage struct {
 	objectivec.Object
@@ -89,7 +93,8 @@ func NewMEDecodedMessage() MEDecodedMessage {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
 func (m_ MEDecodedMessage) Banner() MEDecodedMessageBanner {
 	rv := objc.Send[MEDecodedMessageBanner](m_.ID, objc.Sel("banner"))
@@ -97,14 +102,14 @@ func (m_ MEDecodedMessage) Banner() MEDecodedMessageBanner {
 }
 
 
-// SetBanner sets the value of the banner property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
 func (m_ MEDecodedMessage) SetBanner(value IMEDecodedMessageBanner) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBanner:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
 func (m_ MEDecodedMessage) Context() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("context"))
@@ -112,15 +117,16 @@ func (m_ MEDecodedMessage) Context() foundation.Data {
 }
 
 
-// SetContext sets the value of the context property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
 func (m_ MEDecodedMessage) SetContext(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContext:"), value)
 }
 
+
 // The decoded MIME data for a message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
 func (m_ MEDecodedMessage) RawData() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rawData"))
@@ -128,17 +134,18 @@ func (m_ MEDecodedMessage) RawData() foundation.Data {
 }
 
 
-// SetRawData sets the value of the rawData property.
 // The decoded MIME data for a message.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
 func (m_ MEDecodedMessage) SetRawData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 
+
 // An object that contains encryption and digital signature information about the message content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/securityinformation
 func (m_ MEDecodedMessage) SecurityInformation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("securityInformation"))
@@ -146,10 +153,9 @@ func (m_ MEDecodedMessage) SecurityInformation() unsafe.Pointer {
 }
 
 
-// SetSecurityInformation sets the value of the securityInformation property.
 // An object that contains encryption and digital signature information about the message content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/securityinformation
 func (m_ MEDecodedMessage) SetSecurityInformation(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurityInformation:"), value)

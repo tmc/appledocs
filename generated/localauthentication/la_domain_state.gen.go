@@ -36,7 +36,9 @@ type IDomainState interface {
 	StateHash() foundation.NSData
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState
 type DomainState struct {
 	objectivec.Object
@@ -79,24 +81,30 @@ func NewDomainState() DomainState {
 }
 
 
+
 // Contains biometric domain state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState/biometry
 func (d_ DomainState) Biometry() LADomainStateBiometry {
 	rv := objc.Send[LADomainStateBiometry](d_.ID, objc.Sel("biometry"))
 	return rv
 }
 
+
 // Contains companion domain state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState/companion
 func (d_ DomainState) Companion() LADomainStateCompanion {
 	rv := objc.Send[LADomainStateCompanion](d_.ID, objc.Sel("companion"))
 	return rv
 }
 
+
 // Contains combined state hash data for biometry and companion state hashes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState/stateHash
 func (d_ DomainState) StateHash() foundation.NSData {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))

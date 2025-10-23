@@ -35,7 +35,11 @@ type IMKSelectionAccessory interface {
 // The type of accessory to display for a selected annotation.
 //
 // Implement in your map view delegate to specify a selection accessory for annotation content.
+
+
+// The type of accessory to display for a selected annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKSelectionAccessory
 type MKSelectionAccessory struct {
 	objectivec.Object

@@ -54,7 +54,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)
-
 func DDDeviceCategoryToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceCategoryToString(inValue)
 	}
@@ -66,7 +65,6 @@ func DDDeviceCategoryToString(inValue unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)
-
 func DDDeviceMediaPlaybackStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceMediaPlaybackStateToString(inValue)
 	}
@@ -78,7 +76,6 @@ func DDDeviceMediaPlaybackStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)
-
 func DDDeviceProtocolToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceProtocolToString(inValue)
 	}
@@ -90,7 +87,6 @@ func DDDeviceProtocolToString(inValue unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)
-
 func DDDeviceStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceStateToString(inValue)
 	}
@@ -102,7 +98,6 @@ func DDDeviceStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)
-
 func DDEventTypeToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDEventTypeToString(inValue)
 	}

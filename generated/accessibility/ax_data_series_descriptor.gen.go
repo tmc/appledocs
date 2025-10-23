@@ -48,7 +48,6 @@ type IAXDataSeriesDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor
-
 type AXDataSeriesDescriptor struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewAXDataSeriesDescriptor() AXDataSeriesDescriptor {
 
 
 
-
 // Creates a data series with the specified attributed name, a Boolean value that indicates whether the series is continuous, and data points.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/init(attributedName:isContinuous:dataPoints:)
-
 func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attributedName foundation.IAttributedString, isContinuous bool, dataPoints []AXDataPoint) AXDataSeriesDescriptor {
 	instance := getAXDataSeriesDescriptorClass().Alloc()
 	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithAttributedName:isContinuous:dataPoints:"), attributedName, isContinuous, dataPoints)
@@ -107,12 +104,10 @@ func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attribute
 }
 
 
-
 // Creates a data series with the specified name, a Boolean value that indicates whether the series is continuous, and data points.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/init(name:isContinuous:dataPoints:)
-
 func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name string, isContinuous bool, dataPoints []AXDataPoint) AXDataSeriesDescriptor {
 	instance := getAXDataSeriesDescriptorClass().Alloc()
 	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithName:isContinuous:dataPoints:"), objc.String(name), isContinuous, dataPoints)
@@ -126,7 +121,6 @@ func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name string, isCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/attributedName
-
 func (a_ AXDataSeriesDescriptor) AttributedName() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedName"))
 	return rv
@@ -137,7 +131,6 @@ func (a_ AXDataSeriesDescriptor) AttributedName() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/attributedName
-
 func (a_ AXDataSeriesDescriptor) SetAttributedName(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedName:"), value)
 }
@@ -147,7 +140,6 @@ func (a_ AXDataSeriesDescriptor) SetAttributedName(value foundation.IAttributedS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/dataPoints
-
 func (a_ AXDataSeriesDescriptor) DataPoints() []AXDataPoint {
 	rv := objc.Send[[]AXDataPoint](a_.ID, objc.Sel("dataPoints"))
 	return rv
@@ -158,7 +150,6 @@ func (a_ AXDataSeriesDescriptor) DataPoints() []AXDataPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/dataPoints
-
 func (a_ AXDataSeriesDescriptor) SetDataPoints(value []AXDataPoint) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -178,7 +169,6 @@ func (a_ AXDataSeriesDescriptor) SetDataPoints(value []AXDataPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/isContinuous
-
 func (a_ AXDataSeriesDescriptor) IsContinuous() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isContinuous"))
 	return rv
@@ -189,7 +179,6 @@ func (a_ AXDataSeriesDescriptor) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/isContinuous
-
 func (a_ AXDataSeriesDescriptor) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsContinuous:"), value)
 }
@@ -199,7 +188,6 @@ func (a_ AXDataSeriesDescriptor) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
-
 func (a_ AXDataSeriesDescriptor) Name() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
@@ -210,7 +198,6 @@ func (a_ AXDataSeriesDescriptor) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
-
 func (a_ AXDataSeriesDescriptor) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }

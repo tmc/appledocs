@@ -69,7 +69,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXAnimatedImagesEnabled
-
 func AXAnimatedImagesEnabled() bool {
 	return _AXAnimatedImagesEnabled()
 	}
@@ -81,7 +80,6 @@ func AXAnimatedImagesEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMFiHearingDevice/pairedDeviceIdentifiers()
-
 func AXMFiHearingDevicePairedUUIDs() unsafe.Pointer {
 	return _AXMFiHearingDevicePairedUUIDs()
 	}
@@ -93,7 +91,6 @@ func AXMFiHearingDevicePairedUUIDs() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMFiHearingDevice/streamingEar()
-
 func AXMFiHearingDeviceStreamingEar() unsafe.Pointer {
 	return _AXMFiHearingDeviceStreamingEar()
 	}
@@ -105,7 +102,6 @@ func AXMFiHearingDeviceStreamingEar() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMFiHearingDevice/supportsBidirectionalStreaming()
-
 func AXSupportsBidirectionalAXMFiHearingDeviceStreaming() bool {
 	return _AXSupportsBidirectionalAXMFiHearingDeviceStreaming()
 	}
@@ -119,7 +115,6 @@ func AXSupportsBidirectionalAXMFiHearingDeviceStreaming() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNameFromColor(_:)
-
 func AXNameFromColor(color coregraphics.CGColorRef) unsafe.Pointer {
 	return _AXNameFromColor(color)
 	}
@@ -131,7 +126,6 @@ func AXNameFromColor(color coregraphics.CGColorRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXOpenSettingsFeature
-
 func AXOpenSettingsFeature(feature unsafe.Pointer) {
 	_AXOpenSettingsFeature(feature)
 	}
@@ -143,7 +137,6 @@ func AXOpenSettingsFeature(feature unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersActionSliderAlternative
-
 func AXPrefersActionSliderAlternative() bool {
 	return _AXPrefersActionSliderAlternative()
 	}
@@ -153,7 +146,6 @@ func AXPrefersActionSliderAlternative() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersHeadAnchorAlternative
-
 func AXPrefersHeadAnchorAlternative() bool {
 	return _AXPrefersHeadAnchorAlternative()
 	}
@@ -165,7 +157,6 @@ func AXPrefersHeadAnchorAlternative() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersHorizontalTextLayout
-
 func AXPrefersHorizontalTextLayout() bool {
 	return _AXPrefersHorizontalTextLayout()
 	}
@@ -177,7 +168,6 @@ func AXPrefersHorizontalTextLayout() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersNonBlinkingTextInsertionIndicator
-
 func AXPrefersNonBlinkingTextInsertionIndicator() bool {
 	return _AXPrefersNonBlinkingTextInsertionIndicator()
 	}
@@ -189,7 +179,6 @@ func AXPrefersNonBlinkingTextInsertionIndicator() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXShowBordersEnabled
-
 func AXShowBordersEnabled() bool {
 	return _AXShowBordersEnabled()
 	}
@@ -203,7 +192,6 @@ func AXShowBordersEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled
-
 func AXAssistiveAccessEnabled() bool {
 	return _AXAssistiveAccessEnabled()
 	}

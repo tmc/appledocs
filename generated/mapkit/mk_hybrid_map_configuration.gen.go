@@ -42,7 +42,11 @@ type IMKHybridMapConfiguration interface {
 }
 
 // The class that represents a satellite image of the area with road and road name information layers on top.
+
+
+// The class that represents a satellite image of the area with road and road name information layers on top.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration
 type MKHybridMapConfiguration struct {
 	MKMapConfiguration
@@ -90,8 +94,10 @@ func NewMKHybridMapConfiguration() MKHybridMapConfiguration {
 
 
 
+
 // The filter the framework uses to determine the points of interest to show on the map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
 func (m_ MKHybridMapConfiguration) PointOfInterestFilter() MKPointOfInterestFilter {
 	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
@@ -99,17 +105,18 @@ func (m_ MKHybridMapConfiguration) PointOfInterestFilter() MKPointOfInterestFilt
 }
 
 
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
 // The filter the framework uses to determine the points of interest to show on the map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
 func (m_ MKHybridMapConfiguration) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
+
 // A Boolean value that indicates whether the maps shows traffic conditions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration/showstraffic
 func (m_ MKHybridMapConfiguration) ShowsTraffic() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsTraffic"))
@@ -117,17 +124,18 @@ func (m_ MKHybridMapConfiguration) ShowsTraffic() bool {
 }
 
 
-// SetShowsTraffic sets the value of the showsTraffic property.
 // A Boolean value that indicates whether the maps shows traffic conditions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration/showstraffic
 func (m_ MKHybridMapConfiguration) SetShowsTraffic(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
 }
 
+
 // A value that indicates whether the map’s pitch button is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKHybridMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
@@ -135,17 +143,18 @@ func (m_ MKHybridMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 }
 
 
-// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
 // A value that indicates whether the map’s pitch button is visible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKHybridMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
 }
 
+
 // The characteristics of the map view, including the map type and features the map displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKHybridMapConfiguration) PreferredConfiguration() MKMapConfiguration {
 	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
@@ -153,17 +162,18 @@ func (m_ MKHybridMapConfiguration) PreferredConfiguration() MKMapConfiguration {
 }
 
 
-// SetPreferredConfiguration sets the value of the preferredConfiguration property.
 // The characteristics of the map view, including the map type and features the map displays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKHybridMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
+
 // A Boolean value that indicates whether the map displays the user tracking button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKHybridMapConfiguration) ShowsUserTrackingButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
@@ -171,10 +181,9 @@ func (m_ MKHybridMapConfiguration) ShowsUserTrackingButton() bool {
 }
 
 
-// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
 // A Boolean value that indicates whether the map displays the user tracking button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKHybridMapConfiguration) SetShowsUserTrackingButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)

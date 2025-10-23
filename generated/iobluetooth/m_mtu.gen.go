@@ -32,7 +32,9 @@ type ImMTU interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mMTU
 type mMTU struct {
 	objectivec.Object

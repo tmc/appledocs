@@ -41,7 +41,6 @@ type ISpatialAudioExperience interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASpatialAudioExperience
-
 type SpatialAudioExperience struct {
 	objectivec.Object
 }

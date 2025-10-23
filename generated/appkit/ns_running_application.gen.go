@@ -31,6 +31,7 @@ type _RunningApplicationClass struct {
 // An interface definition for the [RunningApplication] class.
 type IRunningApplication interface {
 	objectivec.IObject
+	Hide() bool
 	ActivationPolicy() unsafe.Pointer
 	SetActivationPolicy(value unsafe.Pointer)
 	BundleIdentifier() string
@@ -72,7 +73,6 @@ type IRunningApplication interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication
-
 type RunningApplication struct {
 	objectivec.Object
 }
@@ -117,11 +117,30 @@ func NewRunningApplication() RunningApplication {
 
 
 
+// Returns an array of currently running applications with the specified bundle identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)
+func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier string) []RunningApplication {
+	rv := objc.Send[[]RunningApplication](objc.ID(rc.class), objc.Sel("runningApplicationsWithBundleIdentifier:"), objc.String(bundleIdentifier))
+	return rv
+}
+
+
+// Attempts to hide or the application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/hide()
+func (r_ RunningApplication) Hide() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("hide"))
+	return rv
+}
+
+
 // Indicates the activation policy of the application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy
-
 func (r_ RunningApplication) ActivationPolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("activationPolicy"))
 	return rv
@@ -132,7 +151,6 @@ func (r_ RunningApplication) ActivationPolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy
-
 func (r_ RunningApplication) SetActivationPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setActivationPolicy:"), value)
 }
@@ -142,7 +160,6 @@ func (r_ RunningApplication) SetActivationPolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleidentifier
-
 func (r_ RunningApplication) BundleIdentifier() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("bundleIdentifier"))
 	return rv
@@ -153,7 +170,6 @@ func (r_ RunningApplication) BundleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleidentifier
-
 func (r_ RunningApplication) SetBundleIdentifier(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
@@ -163,7 +179,6 @@ func (r_ RunningApplication) SetBundleIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleurl
-
 func (r_ RunningApplication) BundleURL() foundation.URL {
 	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("bundleURL"))
 	return rv
@@ -174,7 +189,6 @@ func (r_ RunningApplication) BundleURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/bundleurl
-
 func (r_ RunningApplication) SetBundleURL(value foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBundleURL:"), value)
 }
@@ -184,7 +198,6 @@ func (r_ RunningApplication) SetBundleURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executablearchitecture
-
 func (r_ RunningApplication) ExecutableArchitecture() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("executableArchitecture"))
 	return rv
@@ -195,7 +208,6 @@ func (r_ RunningApplication) ExecutableArchitecture() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executablearchitecture
-
 func (r_ RunningApplication) SetExecutableArchitecture(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExecutableArchitecture:"), value)
 }
@@ -205,7 +217,6 @@ func (r_ RunningApplication) SetExecutableArchitecture(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executableurl
-
 func (r_ RunningApplication) ExecutableURL() foundation.URL {
 	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("executableURL"))
 	return rv
@@ -216,7 +227,6 @@ func (r_ RunningApplication) ExecutableURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/executableurl
-
 func (r_ RunningApplication) SetExecutableURL(value foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExecutableURL:"), value)
 }
@@ -226,7 +236,6 @@ func (r_ RunningApplication) SetExecutableURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/icon
-
 func (r_ RunningApplication) Icon() Image {
 	rv := objc.Send[Image](r_.ID, objc.Sel("icon"))
 	return rv
@@ -237,7 +246,6 @@ func (r_ RunningApplication) Icon() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/icon
-
 func (r_ RunningApplication) SetIcon(value IImage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIcon:"), value)
 }
@@ -247,7 +255,6 @@ func (r_ RunningApplication) SetIcon(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isactive
-
 func (r_ RunningApplication) IsActive() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isActive"))
 	return rv
@@ -258,7 +265,6 @@ func (r_ RunningApplication) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isactive
-
 func (r_ RunningApplication) SetIsActive(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsActive:"), value)
 }
@@ -268,7 +274,6 @@ func (r_ RunningApplication) SetIsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isfinishedlaunching
-
 func (r_ RunningApplication) IsFinishedLaunching() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isFinishedLaunching"))
 	return rv
@@ -279,7 +284,6 @@ func (r_ RunningApplication) IsFinishedLaunching() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isfinishedlaunching
-
 func (r_ RunningApplication) SetIsFinishedLaunching(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFinishedLaunching:"), value)
 }
@@ -289,7 +293,6 @@ func (r_ RunningApplication) SetIsFinishedLaunching(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ishidden
-
 func (r_ RunningApplication) IsHidden() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isHidden"))
 	return rv
@@ -300,7 +303,6 @@ func (r_ RunningApplication) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ishidden
-
 func (r_ RunningApplication) SetIsHidden(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -310,7 +312,6 @@ func (r_ RunningApplication) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isterminated
-
 func (r_ RunningApplication) IsTerminated() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isTerminated"))
 	return rv
@@ -321,7 +322,6 @@ func (r_ RunningApplication) IsTerminated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isterminated
-
 func (r_ RunningApplication) SetIsTerminated(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsTerminated:"), value)
 }
@@ -331,7 +331,6 @@ func (r_ RunningApplication) SetIsTerminated(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/launchdate
-
 func (r_ RunningApplication) LaunchDate() foundation.Date {
 	rv := objc.Send[foundation.Date](r_.ID, objc.Sel("launchDate"))
 	return rv
@@ -342,7 +341,6 @@ func (r_ RunningApplication) LaunchDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/launchdate
-
 func (r_ RunningApplication) SetLaunchDate(value foundation.IDate) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLaunchDate:"), value)
 }
@@ -352,7 +350,6 @@ func (r_ RunningApplication) SetLaunchDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/localizedname
-
 func (r_ RunningApplication) LocalizedName() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("localizedName"))
 	return rv
@@ -363,7 +360,6 @@ func (r_ RunningApplication) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/localizedname
-
 func (r_ RunningApplication) SetLocalizedName(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
@@ -373,7 +369,6 @@ func (r_ RunningApplication) SetLocalizedName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ownsmenubar
-
 func (r_ RunningApplication) OwnsMenuBar() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("ownsMenuBar"))
 	return rv
@@ -384,7 +379,6 @@ func (r_ RunningApplication) OwnsMenuBar() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ownsmenubar
-
 func (r_ RunningApplication) SetOwnsMenuBar(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOwnsMenuBar:"), value)
 }
@@ -394,7 +388,6 @@ func (r_ RunningApplication) SetOwnsMenuBar(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/processidentifier
-
 func (r_ RunningApplication) ProcessIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("processIdentifier"))
 	return rv
@@ -405,7 +398,6 @@ func (r_ RunningApplication) ProcessIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/processidentifier
-
 func (r_ RunningApplication) SetProcessIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setProcessIdentifier:"), value)
 }
@@ -415,7 +407,6 @@ func (r_ RunningApplication) SetProcessIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications
-
 func (r_ RunningApplication) RunningApplications() NSRunningApplication {
 	rv := objc.Send[NSRunningApplication](r_.ID, objc.Sel("runningApplications"))
 	return rv
@@ -426,7 +417,6 @@ func (r_ RunningApplication) RunningApplications() NSRunningApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications
-
 func (r_ RunningApplication) SetRunningApplications(value IRunningApplication) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRunningApplications:"), value)
 }

@@ -46,7 +46,6 @@ type ICaptureFraming interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming
-
 type CaptureFraming struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewCaptureFraming() CaptureFraming {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming/zoomFactor
-
 func (c_ CaptureFraming) ZoomFactor() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("zoomFactor"))
 	return rv
@@ -106,7 +104,6 @@ func (c_ CaptureFraming) ZoomFactor() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-
 func (c_ CaptureFraming) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
 	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
@@ -117,7 +114,6 @@ func (c_ CaptureFraming) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-
 func (c_ CaptureFraming) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
 }
@@ -127,7 +123,6 @@ func (c_ CaptureFraming) SetSmartFramingMonitor(value IAVCaptureSmartFramingMoni
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
-
 func (c_ CaptureFraming) AspectRatio() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("aspectRatio"))
 	return rv
@@ -138,7 +133,6 @@ func (c_ CaptureFraming) AspectRatio() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
-
 func (c_ CaptureFraming) SetAspectRatio(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAspectRatio:"), value)
 }

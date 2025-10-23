@@ -44,7 +44,6 @@ type IAXCategoricalDataAxisDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor
-
 type AXCategoricalDataAxisDescriptor struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewAXCategoricalDataAxisDescriptor() AXCategoricalDataAxisDescriptor {
 
 
 
-
 // Creates a categorical data axis with the specified attributed title and an array of categories in the specified order.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(attributedTitle:categoryOrder:)
-
 func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attributedTitle foundation.IAttributedString, categoryOrder []string) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:categoryOrder:"), attributedTitle, categoryOrder)
@@ -103,12 +100,10 @@ func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attribut
 }
 
 
-
 // Creates a categorical data axis with the specified title and an array of categories in the specified order.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(title:categoryOrder:)
-
 func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, categoryOrder []string) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), objc.String(title), categoryOrder)
@@ -122,7 +117,6 @@ func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, cate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/categoryOrder
-
 func (a_ AXCategoricalDataAxisDescriptor) CategoryOrder() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("categoryOrder"))
 	return rv
@@ -133,7 +127,6 @@ func (a_ AXCategoricalDataAxisDescriptor) CategoryOrder() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/categoryOrder
-
 func (a_ AXCategoricalDataAxisDescriptor) SetCategoryOrder(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

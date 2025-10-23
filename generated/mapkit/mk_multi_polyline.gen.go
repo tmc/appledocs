@@ -36,7 +36,11 @@ type IMKMultiPolyline interface {
 // A collection of multipolyline shapes, each consisting of one or more connected line segments.
 //
 // Use a object when you have multiple distinct polyline shapes that you intend to render using the same style.
+
+
+// A collection of multipolyline shapes, each consisting of one or more connected line segments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMultiPolyline
 type MKMultiPolyline struct {
 	MKShape
@@ -83,8 +87,10 @@ func NewMKMultiPolyline() MKMultiPolyline {
 }
 
 
+
 // An array containing the polyline objects that make up the multipolyline object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolyline/polylines
 func (m_ MKMultiPolyline) Polylines() MKPolyline {
 	rv := objc.Send[MKPolyline](m_.ID, objc.Sel("polylines"))
@@ -92,10 +98,9 @@ func (m_ MKMultiPolyline) Polylines() MKPolyline {
 }
 
 
-// SetPolylines sets the value of the polylines property.
 // An array containing the polyline objects that make up the multipolyline object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolyline/polylines
 func (m_ MKMultiPolyline) SetPolylines(value IMKPolyline) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPolylines:"), value)

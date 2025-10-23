@@ -36,7 +36,11 @@ type IMKMultiPoint interface {
 // An abstract class that defines the common behavior that open and closed polygon overlays share.
 //
 // Don’t create instances of this class directly. Instead, create instances of the or classes. However, you can use the methods and property of this class to access information about the specific points associated with the line or polygon.
+
+
+// An abstract class that defines the common behavior that open and closed polygon overlays share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMultiPoint
 type MKMultiPoint struct {
 	MKShape
@@ -83,8 +87,10 @@ func NewMKMultiPoint() MKMultiPoint {
 }
 
 
+
 // The number of points associated with the shape.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipoint/pointcount
 func (m_ MKMultiPoint) PointCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("pointCount"))
@@ -92,10 +98,9 @@ func (m_ MKMultiPoint) PointCount() int {
 }
 
 
-// SetPointCount sets the value of the pointCount property.
 // The number of points associated with the shape.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipoint/pointcount
 func (m_ MKMultiPoint) SetPointCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointCount:"), value)

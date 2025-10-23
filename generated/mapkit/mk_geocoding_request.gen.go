@@ -44,7 +44,11 @@ type IMKGeocodingRequest interface {
 }
 
 // A class that looks up a geographic coordinate using the provided string.
+
+
+// A class that looks up a geographic coordinate using the provided string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeocodingRequest
 type MKGeocodingRequest struct {
 	objectivec.Object
@@ -89,8 +93,10 @@ func NewMKGeocodingRequest() MKGeocodingRequest {
 }
 
 
+
 // The string used to initialize the geocoder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
 func (m_ MKGeocodingRequest) AddressString() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
@@ -98,17 +104,18 @@ func (m_ MKGeocodingRequest) AddressString() string {
 }
 
 
-// SetAddressString sets the value of the addressString property.
 // The string used to initialize the geocoder.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
 func (m_ MKGeocodingRequest) SetAddressString(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether the current geocoding request is in a cancelled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/iscancelled
 func (m_ MKGeocodingRequest) IsCancelled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
@@ -116,17 +123,18 @@ func (m_ MKGeocodingRequest) IsCancelled() bool {
 }
 
 
-// SetIsCancelled sets the value of the isCancelled property.
 // A Boolean value that indicates whether the current geocoding request is in a cancelled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/iscancelled
 func (m_ MKGeocodingRequest) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
+
 // A Boolean value that indicates whether the current geocoding request is in a loading state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/isloading
 func (m_ MKGeocodingRequest) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
@@ -134,17 +142,18 @@ func (m_ MKGeocodingRequest) IsLoading() bool {
 }
 
 
-// SetIsLoading sets the value of the isLoading property.
 // A Boolean value that indicates whether the current geocoding request is in a loading state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/isloading
 func (m_ MKGeocodingRequest) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 
+
 // A value that indicates the default locale the geocoder should use when processing requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
 func (m_ MKGeocodingRequest) PreferredLocale() foundation.Locale {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("preferredLocale"))
@@ -152,17 +161,18 @@ func (m_ MKGeocodingRequest) PreferredLocale() foundation.Locale {
 }
 
 
-// SetPreferredLocale sets the value of the preferredLocale property.
 // A value that indicates the default locale the geocoder should use when processing requests.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
 func (m_ MKGeocodingRequest) SetPreferredLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 
+
 // The geographic region for the framework to use as the bounds for the request; defaults to a region that covers the whole world.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/region
 func (m_ MKGeocodingRequest) Region() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("region"))
@@ -170,10 +180,9 @@ func (m_ MKGeocodingRequest) Region() unsafe.Pointer {
 }
 
 
-// SetRegion sets the value of the region property.
 // The geographic region for the framework to use as the bounds for the request; defaults to a region that covers the whole world.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/region
 func (m_ MKGeocodingRequest) SetRegion(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)

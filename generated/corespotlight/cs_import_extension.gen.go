@@ -43,7 +43,6 @@ type ICSImportExtension interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSImportExtension
-
 type CSImportExtension struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewCSImportExtension() CSImportExtension {
 
 
 
-
 // Provides searchable attributes for a file at the specified URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSImportExtension/update(_:forFileAt:)
-
 func (c_ CSImportExtension) UpdateAttributesForFileAtURLError(attributes ICSSearchableItemAttributeSet, contentURL foundation.IURL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("updateAttributes:forFileAtURL:error:"), attributes, contentURL, error_)
 	return rv

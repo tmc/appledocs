@@ -45,7 +45,6 @@ type IAccessibilityElement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class
-
 type AccessibilityElement struct {
 	objectivec.Object
 }
@@ -94,19 +93,16 @@ func NewAccessibilityElement() AccessibilityElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
-
 func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role IAccessibilityRole, frame coregraphics.CGRect, label string, parent objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, objc.String(label), parent)
 	return rv
 }
 
 
-
 // Adds a child to the accessibility element in the accessibility hierarchy.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)
-
 func (a_ AccessibilityElement) AccessibilityAddChildElement(childElement IAccessibilityElement) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("accessibilityAddChildElement:"), childElement)
 }
@@ -116,7 +112,6 @@ func (a_ AccessibilityElement) AccessibilityAddChildElement(childElement IAccess
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityFrameInParentSpace
-
 func (a_ AccessibilityElement) AccessibilityFrameInParentSpace() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("accessibilityFrameInParentSpace"))
 	return rv
@@ -127,7 +122,6 @@ func (a_ AccessibilityElement) AccessibilityFrameInParentSpace() coregraphics.CG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityFrameInParentSpace
-
 func (a_ AccessibilityElement) SetAccessibilityFrameInParentSpace(value coregraphics.CGRect) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessibilityFrameInParentSpace:"), value)
 }

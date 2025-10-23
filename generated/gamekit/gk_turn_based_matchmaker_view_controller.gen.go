@@ -47,7 +47,6 @@ type ITurnBasedMatchmakerViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController
-
 type TurnBasedMatchmakerViewController struct {
 	appkit.ViewController
 }
@@ -94,12 +93,10 @@ func NewTurnBasedMatchmakerViewController() TurnBasedMatchmakerViewController {
 
 
 
-
 // Creates a matchmaker view controller for the local player to start inviting other players to a turn-based game.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/init(matchRequest:)
-
 func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) TurnBasedMatchmakerViewController {
 	instance := getTurnBasedMatchmakerViewControllerClass().Alloc()
 	rv := objc.Send[TurnBasedMatchmakerViewController](instance.ID, objc.Sel("initWithMatchRequest:"), request)
@@ -113,7 +110,6 @@ func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchReques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
-
 func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("showExistingMatches"))
 	return rv
@@ -124,7 +120,6 @@ func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
-
 func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShowExistingMatches:"), value)
 }
@@ -134,7 +129,6 @@ func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/turnBasedMatchmakerDelegate
-
 func (t_ TurnBasedMatchmakerViewController) TurnBasedMatchmakerDelegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("turnBasedMatchmakerDelegate"))
 	return rv
@@ -145,7 +139,6 @@ func (t_ TurnBasedMatchmakerViewController) TurnBasedMatchmakerDelegate() objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/turnBasedMatchmakerDelegate
-
 func (t_ TurnBasedMatchmakerViewController) SetTurnBasedMatchmakerDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTurnBasedMatchmakerDelegate:"), value)
 }
@@ -155,7 +148,6 @@ func (t_ TurnBasedMatchmakerViewController) SetTurnBasedMatchmakerDelegate(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
-
 func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("matchmakingMode"))
 	return rv
@@ -166,7 +158,6 @@ func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
-
 func (t_ TurnBasedMatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchmakingMode:"), value)
 }

@@ -46,7 +46,6 @@ type IStringDrawingContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext
-
 type StringDrawingContext struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewStringDrawingContext() StringDrawingContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/actualScaleFactor
-
 func (s_ StringDrawingContext) ActualScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("actualScaleFactor"))
 	return rv
@@ -106,7 +104,6 @@ func (s_ StringDrawingContext) ActualScaleFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
-
 func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumScaleFactor"))
 	return rv
@@ -117,7 +114,6 @@ func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
-
 func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumScaleFactor:"), value)
 }
@@ -127,7 +123,6 @@ func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/totalBounds
-
 func (s_ StringDrawingContext) TotalBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("totalBounds"))
 	return rv

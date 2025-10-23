@@ -36,8 +36,8 @@ type IPositionalSpecifier interface {
 	InsertionIndex() int
 	InsertionKey() string
 	InsertionReplaces() bool
-	ObjectSpecifier() NSScriptObjectSpecifier
-	Position() InsertionPosition
+	ObjectSpecifier() IScriptObjectSpecifier
+	Position() NSInsertionPosition
 }
 
 // A specifier for an insertion point in a container relative to another object in the container.
@@ -168,7 +168,7 @@ func (p_ PositionalSpecifier) InsertionReplaces() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/objectSpecifier
-func (p_ PositionalSpecifier) ObjectSpecifier() NSScriptObjectSpecifier {
+func (p_ PositionalSpecifier) ObjectSpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](p_.ID, objc.Sel("objectSpecifier"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (p_ PositionalSpecifier) ObjectSpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/position
-func (p_ PositionalSpecifier) Position() InsertionPosition {
+func (p_ PositionalSpecifier) Position() NSInsertionPosition {
 	rv := objc.Send[InsertionPosition](p_.ID, objc.Sel("position"))
 	return rv
 }

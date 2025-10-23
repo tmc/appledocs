@@ -40,7 +40,11 @@ type IINRequestPaymentIntent interface {
 // An intent for requesting money from another user’s account.
 //
 // Siri creates an object when the current user requests a payment from another user. A request payment intent object includes the payment amount and the person receiving the request. This intent represents only a request for payment and shouldn’t initiate any payments. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of making the request.
+
+
+// An intent for requesting money from another user’s account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRequestPaymentIntent
 type INRequestPaymentIntent struct {
 	INIntent
@@ -87,8 +91,10 @@ func NewINRequestPaymentIntent() INRequestPaymentIntent {
 }
 
 
+
 // The amount of the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/currencyamount
 func (i_ INRequestPaymentIntent) CurrencyAmount() INCurrencyAmount {
 	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("currencyAmount"))
@@ -96,17 +102,18 @@ func (i_ INRequestPaymentIntent) CurrencyAmount() INCurrencyAmount {
 }
 
 
-// SetCurrencyAmount sets the value of the currencyAmount property.
 // The amount of the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/currencyamount
 func (i_ INRequestPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
 }
 
+
 // A note associated with the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
 func (i_ INRequestPaymentIntent) Note() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("note"))
@@ -114,17 +121,18 @@ func (i_ INRequestPaymentIntent) Note() string {
 }
 
 
-// SetNote sets the value of the note property.
 // A note associated with the request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
 func (i_ INRequestPaymentIntent) SetNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
 }
 
+
 // The recipient of the payment request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/payer
 func (i_ INRequestPaymentIntent) Payer() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("payer"))
@@ -132,10 +140,9 @@ func (i_ INRequestPaymentIntent) Payer() INPerson {
 }
 
 
-// SetPayer sets the value of the payer property.
 // The recipient of the payment request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/payer
 func (i_ INRequestPaymentIntent) SetPayer(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPayer:"), value)

@@ -41,7 +41,6 @@ type IAnchoringStrategy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAAnchoringStrategy
-
 type AnchoringStrategy struct {
 	objectivec.Object
 }

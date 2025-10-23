@@ -48,7 +48,6 @@ type IHKDocumentQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDocumentQuery
-
 type HKDocumentQuery struct {
 	HKQuery
 }
@@ -99,7 +98,6 @@ func NewHKDocumentQuery() HKDocumentQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
-
 func (h_ HKDocumentQuery) IncludeDocumentData() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("includeDocumentData"))
 	return rv
@@ -110,7 +108,6 @@ func (h_ HKDocumentQuery) IncludeDocumentData() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
-
 func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeDocumentData:"), value)
 }
@@ -120,7 +117,6 @@ func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-
 func (h_ HKDocumentQuery) Limit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
 	return rv
@@ -131,7 +127,6 @@ func (h_ HKDocumentQuery) Limit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-
 func (h_ HKDocumentQuery) SetLimit(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
@@ -141,7 +136,6 @@ func (h_ HKDocumentQuery) SetLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-
 func (h_ HKDocumentQuery) SortDescriptors() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -152,7 +146,6 @@ func (h_ HKDocumentQuery) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-
 func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
@@ -162,7 +155,6 @@ func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-
 func (h_ HKDocumentQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv

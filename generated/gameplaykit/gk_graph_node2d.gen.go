@@ -42,7 +42,6 @@ type IGraphNode2D interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode2D
-
 type GraphNode2D struct {
 	GraphNode
 }
@@ -89,12 +88,10 @@ func NewGraphNode2D() GraphNode2D {
 
 
 
-
 // Initializes a graph node with the specified point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode2D/init(point:)
-
 func NewGraphNode2DWithPoint(point unsafe.Pointer) GraphNode2D {
 	instance := getGraphNode2DClass().Alloc()
 	rv := objc.Send[GraphNode2D](instance.ID, objc.Sel("initWithPoint:"), point)
@@ -108,7 +105,6 @@ func NewGraphNode2DWithPoint(point unsafe.Pointer) GraphNode2D {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode2D/node(withPoint:)
-
 func (gc _GraphNode2DClass) NodeWithPoint(point unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithPoint:"), point)
 	return rv
@@ -119,7 +115,6 @@ func (gc _GraphNode2DClass) NodeWithPoint(point unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode2D/position
-
 func (g_ GraphNode2D) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("position"))
 	return rv
@@ -130,7 +125,6 @@ func (g_ GraphNode2D) Position() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode2D/position
-
 func (g_ GraphNode2D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPosition:"), value)
 }

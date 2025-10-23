@@ -30,7 +30,7 @@ type _InvocationOperationClass struct {
 // An interface definition for the [InvocationOperation] class.
 type IInvocationOperation interface {
 	IOperation
-	Invocation() NSInvocation
+	Invocation() IInvocation
 	Result() objc.ID
 }
 
@@ -118,7 +118,7 @@ func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/invocation
-func (i_ InvocationOperation) Invocation() NSInvocation {
+func (i_ InvocationOperation) Invocation() IInvocation {
 	rv := objc.Send[NSInvocation](i_.ID, objc.Sel("invocation"))
 	return rv
 }

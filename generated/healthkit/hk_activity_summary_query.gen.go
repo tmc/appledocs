@@ -43,7 +43,6 @@ type IHKActivitySummaryQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryQuery
-
 type HKActivitySummaryQuery struct {
 	HKQuery
 }
@@ -90,12 +89,10 @@ func NewHKActivitySummaryQuery() HKActivitySummaryQuery {
 
 
 
-
 // Initializes a new active summary query.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryQuery/init(predicate:resultsHandler:)
-
 func NewHKActivitySummaryQueryWithPredicateResultsHandler(predicate foundation.IPredicate, handler unsafe.Pointer) HKActivitySummaryQuery {
 	instance := getHKActivitySummaryQueryClass().Alloc()
 	rv := objc.Send[HKActivitySummaryQuery](instance.ID, objc.Sel("initWithPredicate:resultsHandler:"), predicate, handler)
@@ -109,7 +106,6 @@ func NewHKActivitySummaryQueryWithPredicateResultsHandler(predicate foundation.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery/updatehandler
-
 func (h_ HKActivitySummaryQuery) UpdateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("updateHandler"))
 	return rv
@@ -120,7 +116,6 @@ func (h_ HKActivitySummaryQuery) UpdateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery/updatehandler
-
 func (h_ HKActivitySummaryQuery) SetUpdateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUpdateHandler:"), value)
 }

@@ -35,7 +35,11 @@ type IINPauseWorkoutIntent interface {
 // A request to pause the current workout that also stops the gathering of workout data.
 //
 // SiriKit creates an object when the user asks to pause a currently running workout. Pausing a workout stops the gathering of workout data without clearing the current workout progress information. Use this intent object to validate workout parameters. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that indicates it’s possible to pause the workout. SiriKit launches your app and passes it an object that your app must then use to pause the workout.
+
+
+// A request to pause the current workout that also stops the gathering of workout data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPauseWorkoutIntent
 type INPauseWorkoutIntent struct {
 	INIntent
@@ -83,9 +87,9 @@ func NewINPauseWorkoutIntent() INPauseWorkoutIntent {
 
 
 
-
 // Initializes an intent object with the specified workout name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPauseWorkoutIntent/init(workoutName:)
 func NewINPauseWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INPauseWorkoutIntent {
 	instance := getINPauseWorkoutIntentClass().Alloc()
@@ -95,8 +99,10 @@ func NewINPauseWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INPau
 }
 
 
+
 // The name of the workout to pause.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPauseWorkoutIntent/workoutName
 func (i_ INPauseWorkoutIntent) WorkoutName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))

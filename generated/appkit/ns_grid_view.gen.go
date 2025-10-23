@@ -69,7 +69,6 @@ type IGridView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView
-
 type GridView struct {
 	View
 }
@@ -116,12 +115,10 @@ func NewGridView() GridView {
 
 
 
-
 // Creates a newly allocated grid view object from the coder.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-
 func NewGridViewWithCoder(coder foundation.ICoder) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -130,12 +127,10 @@ func NewGridViewWithCoder(coder foundation.ICoder) GridView {
 }
 
 
-
 // Creates a newly allocated grid view object with the specified frame rectangle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(frame:)
-
 func NewGridViewWithFrame(frameRect coregraphics.CGRect) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
@@ -144,24 +139,20 @@ func NewGridViewWithFrame(frameRect coregraphics.CGRect) GridView {
 }
 
 
-
 // Creates a newly allocated grid view object with the specified number of columns and rows.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(numberOfColumns:rows:)
-
 func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithNumberOfColumns:rows:"), columnCount, rowCount)
 	return rv
 }
 
 
-
 // Creates a newly allocated grid view object with the specified array of arrays of views.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-
 func NewGridViewWithViews(rows []foundation.IArray) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
@@ -173,7 +164,6 @@ func NewGridViewWithViews(rows []foundation.IArray) GridView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(numberOfColumns:rows:)
-
 func (gc _GridViewClass) GridViewWithNumberOfColumnsRows(columnCount int, rowCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gridViewWithNumberOfColumns:rows:"), columnCount, rowCount)
 	return rv
@@ -184,182 +174,151 @@ func (gc _GridViewClass) GridViewWithNumberOfColumnsRows(columnCount int, rowCou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-
 func (gc _GridViewClass) GridViewWithViews(rows []foundation.IArray) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
 
 
-
 // Adds a new column containing the array of views.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/addColumn(with:)
-
 func (g_ GridView) AddColumnWithViews(views []View) GridColumn {
 	rv := objc.Send[GridColumn](g_.ID, objc.Sel("addColumnWithViews:"), views)
 	return rv
 }
 
 
-
 // Adds an array of views to a new row.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/addRow(with:)
-
 func (g_ GridView) AddRowWithViews(views []View) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("addRowWithViews:"), views)
 	return rv
 }
 
 
-
 // Returns the grid cell object at the specified column and row index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/cell(atColumnIndex:rowIndex:)
-
 func (g_ GridView) CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) GridCell {
 	rv := objc.Send[GridCell](g_.ID, objc.Sel("cellAtColumnIndex:rowIndex:"), columnIndex, rowIndex)
 	return rv
 }
 
 
-
 // Returns the grid cell object that contains the given view or one of its ancestors.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/cell(for:)
-
 func (g_ GridView) CellForView(view IView) GridCell {
 	rv := objc.Send[GridCell](g_.ID, objc.Sel("cellForView:"), view)
 	return rv
 }
 
 
-
 // Returns the grid column object at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/column(at:)
-
 func (g_ GridView) ColumnAtIndex(index int) GridColumn {
 	rv := objc.Send[GridColumn](g_.ID, objc.Sel("columnAtIndex:"), index)
 	return rv
 }
 
 
-
 // Returns the index of the specified grid column.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/index(of:)-32sdd
-
 func (g_ GridView) IndexOfColumn(column IGridColumn) int {
 	rv := objc.Send[int](g_.ID, objc.Sel("indexOfColumn:"), column)
 	return rv
 }
 
 
-
 // Returns the index of the specified grid row.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/index(of:)-6zs2o
-
 func (g_ GridView) IndexOfRow(row unsafe.Pointer) int {
 	rv := objc.Send[int](g_.ID, objc.Sel("indexOfRow:"), row)
 	return rv
 }
 
 
-
 // Inserts the array of view objects at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/insertColumn(at:with:)
-
 func (g_ GridView) InsertColumnAtIndexWithViews(index int, views []View) GridColumn {
 	rv := objc.Send[GridColumn](g_.ID, objc.Sel("insertColumnAtIndex:withViews:"), index, views)
 	return rv
 }
 
 
-
 // Inserts the array of view objects into the grid view at the index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/insertRow(at:with:)
-
 func (g_ GridView) InsertRowAtIndexWithViews(index int, views []View) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("insertRowAtIndex:withViews:"), index, views)
 	return rv
 }
 
 
-
 // Expands the cell at the top-leading corner of the horizontal and vertical range to cover the entire area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/mergeCells(inHorizontalRange:verticalRange:)
-
 func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("mergeCellsInHorizontalRange:verticalRange:"), hRange, vRange)
 }
-
 
 
 // Moves the specified column to a new column location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/moveColumn(at:to:)
-
 func (g_ GridView) MoveColumnAtIndexToIndex(fromIndex int, toIndex int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("moveColumnAtIndex:toIndex:"), fromIndex, toIndex)
 }
-
 
 
 // Moves the specified row to the new row location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/moveRow(at:to:)
-
 func (g_ GridView) MoveRowAtIndexToIndex(fromIndex int, toIndex int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("moveRowAtIndex:toIndex:"), fromIndex, toIndex)
 }
-
 
 
 // Removes the column from the grid view at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/removeColumn(at:)
-
 func (g_ GridView) RemoveColumnAtIndex(index int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeColumnAtIndex:"), index)
 }
-
 
 
 // Removes the row from the grid view at the index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/removeRow(at:)
-
 func (g_ GridView) RemoveRowAtIndex(index int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeRowAtIndex:"), index)
 }
-
 
 
 // Returns the grid row object at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/row(at:)
-
 func (g_ GridView) RowAtIndex(index int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rowAtIndex:"), index)
 	return rv
@@ -370,7 +329,6 @@ func (g_ GridView) RowAtIndex(index int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/columnSpacing
-
 func (g_ GridView) ColumnSpacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("columnSpacing"))
 	return rv
@@ -381,7 +339,6 @@ func (g_ GridView) ColumnSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/columnSpacing
-
 func (g_ GridView) SetColumnSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColumnSpacing:"), value)
 }
@@ -391,7 +348,6 @@ func (g_ GridView) SetColumnSpacing(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/numberOfColumns
-
 func (g_ GridView) NumberOfColumns() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfColumns"))
 	return rv
@@ -402,7 +358,6 @@ func (g_ GridView) NumberOfColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/numberOfRows
-
 func (g_ GridView) NumberOfRows() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfRows"))
 	return rv
@@ -413,7 +368,6 @@ func (g_ GridView) NumberOfRows() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/rowAlignment
-
 func (g_ GridView) RowAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rowAlignment"))
 	return rv
@@ -424,7 +378,6 @@ func (g_ GridView) RowAlignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/rowAlignment
-
 func (g_ GridView) SetRowAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRowAlignment:"), value)
 }
@@ -434,7 +387,6 @@ func (g_ GridView) SetRowAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/rowSpacing
-
 func (g_ GridView) RowSpacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("rowSpacing"))
 	return rv
@@ -445,7 +397,6 @@ func (g_ GridView) RowSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/rowSpacing
-
 func (g_ GridView) SetRowSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRowSpacing:"), value)
 }
@@ -455,7 +406,6 @@ func (g_ GridView) SetRowSpacing(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/xPlacement
-
 func (g_ GridView) XPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xPlacement"))
 	return rv
@@ -466,7 +416,6 @@ func (g_ GridView) XPlacement() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/xPlacement
-
 func (g_ GridView) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
@@ -476,7 +425,6 @@ func (g_ GridView) SetXPlacement(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/yPlacement
-
 func (g_ GridView) YPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("yPlacement"))
 	return rv
@@ -487,7 +435,6 @@ func (g_ GridView) YPlacement() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/yPlacement
-
 func (g_ GridView) SetYPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYPlacement:"), value)
 }

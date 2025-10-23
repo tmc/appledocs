@@ -48,7 +48,6 @@ type IMetadataMachineReadableCodeObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataMachineReadableCodeObject
-
 type MetadataMachineReadableCodeObject struct {
 	MetadataObject
 }
@@ -99,7 +98,6 @@ func NewMetadataMachineReadableCodeObject() MetadataMachineReadableCodeObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/corners-58qbe
-
 func (m_ MetadataMachineReadableCodeObject) Corners() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("corners"))
 	return rv
@@ -110,7 +108,6 @@ func (m_ MetadataMachineReadableCodeObject) Corners() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/corners-58qbe
-
 func (m_ MetadataMachineReadableCodeObject) SetCorners(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCorners:"), value)
 }
@@ -120,7 +117,6 @@ func (m_ MetadataMachineReadableCodeObject) SetCorners(value coregraphics.CGPoin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
-
 func (m_ MetadataMachineReadableCodeObject) Descriptor() coreimage.BarcodeDescriptor {
 	rv := objc.Send[coreimage.BarcodeDescriptor](m_.ID, objc.Sel("descriptor"))
 	return rv
@@ -131,7 +127,6 @@ func (m_ MetadataMachineReadableCodeObject) Descriptor() coreimage.BarcodeDescri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
-
 func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value coreimage.IBarcodeDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptor:"), value)
 }
@@ -141,7 +136,6 @@ func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value coreimage.IBarco
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
-
 func (m_ MetadataMachineReadableCodeObject) StringValue() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
@@ -152,7 +146,6 @@ func (m_ MetadataMachineReadableCodeObject) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
-
 func (m_ MetadataMachineReadableCodeObject) SetStringValue(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }

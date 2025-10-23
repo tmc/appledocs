@@ -48,7 +48,6 @@ type ITextInsertionIndicator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator
-
 type TextInsertionIndicator struct {
 	View
 }
@@ -99,7 +98,6 @@ func NewTextInsertionIndicator() TextInsertionIndicator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
-
 func (t_ TextInsertionIndicator) AutomaticModeOptions() TextInsertionIndicatorAutomaticModeOptions {
 	rv := objc.Send[TextInsertionIndicatorAutomaticModeOptions](t_.ID, objc.Sel("automaticModeOptions"))
 	return rv
@@ -110,7 +108,6 @@ func (t_ TextInsertionIndicator) AutomaticModeOptions() TextInsertionIndicatorAu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
-
 func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value TextInsertionIndicatorAutomaticModeOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticModeOptions:"), value)
 }
@@ -120,7 +117,6 @@ func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value TextInsertionIndi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
-
 func (t_ TextInsertionIndicator) Color() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("color"))
 	return rv
@@ -131,7 +127,6 @@ func (t_ TextInsertionIndicator) Color() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
-
 func (t_ TextInsertionIndicator) SetColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
@@ -141,7 +136,6 @@ func (t_ TextInsertionIndicator) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
-
 func (t_ TextInsertionIndicator) DisplayMode() TextInsertionIndicatorDisplayMode {
 	rv := objc.Send[TextInsertionIndicatorDisplayMode](t_.ID, objc.Sel("displayMode"))
 	return rv
@@ -152,7 +146,6 @@ func (t_ TextInsertionIndicator) DisplayMode() TextInsertionIndicatorDisplayMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
-
 func (t_ TextInsertionIndicator) SetDisplayMode(value TextInsertionIndicatorDisplayMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
 }
@@ -162,7 +155,6 @@ func (t_ TextInsertionIndicator) SetDisplayMode(value TextInsertionIndicatorDisp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/effectsViewInserter
-
 func (t_ TextInsertionIndicator) EffectsViewInserter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("effectsViewInserter"))
 	return rv
@@ -173,7 +165,6 @@ func (t_ TextInsertionIndicator) EffectsViewInserter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/effectsViewInserter
-
 func (t_ TextInsertionIndicator) SetEffectsViewInserter(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEffectsViewInserter:"), value)
 }

@@ -45,7 +45,6 @@ type IFPUIActionExtensionViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController
-
 type FPUIActionExtensionViewController struct {
 	appkit.ViewController
 }
@@ -92,23 +91,19 @@ func NewFPUIActionExtensionViewController() FPUIActionExtensionViewController {
 
 
 
-
 // Performs any necessary setup or configuration for the specified action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)
-
 func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), objc.String(actionIdentifier), itemIdentifiers)
 }
-
 
 
 // Performs any necessary setup or configuration when an authentication error occurs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)
-
 func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForError:"), error_)
 }
@@ -118,7 +113,6 @@ func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.IE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/extensionContext
-
 func (f_ FPUIActionExtensionViewController) ExtensionContext() FPUIActionExtensionContext {
 	rv := objc.Send[FPUIActionExtensionContext](f_.ID, objc.Sel("extensionContext"))
 	return rv

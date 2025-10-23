@@ -45,7 +45,6 @@ type IAccelerometerData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData
-
 type AccelerometerData struct {
 	LogItem
 }
@@ -96,7 +95,6 @@ func NewAccelerometerData() AccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData/acceleration
-
 func (a_ AccelerometerData) Acceleration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("acceleration"))
 	return rv
@@ -107,7 +105,6 @@ func (a_ AccelerometerData) Acceleration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
-
 func (a_ AccelerometerData) Timestamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timestamp"))
 	return rv
@@ -118,7 +115,6 @@ func (a_ AccelerometerData) Timestamp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
-
 func (a_ AccelerometerData) SetTimestamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimestamp:"), value)
 }
@@ -128,7 +124,6 @@ func (a_ AccelerometerData) SetTimestamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
-
 func (a_ AccelerometerData) AccelerometerData() CMAccelerometerData {
 	rv := objc.Send[CMAccelerometerData](a_.ID, objc.Sel("accelerometerData"))
 	return rv
@@ -139,7 +134,6 @@ func (a_ AccelerometerData) AccelerometerData() CMAccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
-
 func (a_ AccelerometerData) SetAccelerometerData(value ICMAccelerometerData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccelerometerData:"), value)
 }

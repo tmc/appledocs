@@ -43,7 +43,6 @@ type IAltitudeData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData
-
 type AltitudeData struct {
 	LogItem
 }
@@ -94,7 +93,6 @@ func NewAltitudeData() AltitudeData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/pressure
-
 func (a_ AltitudeData) Pressure() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("pressure"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AltitudeData) Pressure() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/relativeAltitude
-
 func (a_ AltitudeData) RelativeAltitude() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("relativeAltitude"))
 	return rv

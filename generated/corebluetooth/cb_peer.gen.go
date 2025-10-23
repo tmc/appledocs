@@ -43,7 +43,6 @@ type ICBPeer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeer
-
 type CBPeer struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewCBPeer() CBPeer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeer/identifier
-
 func (c_ CBPeer) Identifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv

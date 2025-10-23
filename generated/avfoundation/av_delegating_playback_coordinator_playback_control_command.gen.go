@@ -45,7 +45,6 @@ type IDelegatingPlaybackCoordinatorPlaybackControlCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlaybackControlCommand
-
 type DelegatingPlaybackCoordinatorPlaybackControlCommand struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewDelegatingPlaybackCoordinatorPlaybackControlCommand() DelegatingPlayback
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/expectedcurrentitemidentifier
-
 func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) ExpectedCurrentItemIdentifier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("expectedCurrentItemIdentifier"))
 	return rv
@@ -105,7 +103,6 @@ func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) ExpectedCurrentIte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/expectedcurrentitemidentifier
-
 func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetExpectedCurrentItemIdentifier(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setExpectedCurrentItemIdentifier:"), objc.String(value))
 }
@@ -115,7 +112,6 @@ func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetExpectedCurrent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/originator
-
 func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) Originator() AVCoordinatedPlaybackParticipant {
 	rv := objc.Send[AVCoordinatedPlaybackParticipant](d_.ID, objc.Sel("originator"))
 	return rv
@@ -126,7 +122,6 @@ func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) Originator() AVCoo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/originator
-
 func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetOriginator(value IAVCoordinatedPlaybackParticipant) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginator:"), value)
 }

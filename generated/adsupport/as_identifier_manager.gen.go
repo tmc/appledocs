@@ -44,7 +44,6 @@ type IIdentifierManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager
-
 type IdentifierManager struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewIdentifierManager() IdentifierManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/shared()
-
 func (ic _IdentifierManagerClass) SharedManager() IdentifierManager {
 	rv := objc.Send[IdentifierManager](objc.ID(ic.class), objc.Sel("sharedManager"))
 	return rv
@@ -104,7 +102,6 @@ func (ic _IdentifierManagerClass) SharedManager() IdentifierManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier
-
 func (i_ IdentifierManager) AdvertisingIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](i_.ID, objc.Sel("advertisingIdentifier"))
 	return rv
@@ -115,7 +112,6 @@ func (i_ IdentifierManager) AdvertisingIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/isAdvertisingTrackingEnabled
-
 func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("advertisingTrackingEnabled"))
 	return rv
@@ -126,7 +122,6 @@ func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
-
 func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isAdvertisingTrackingEnabled"))
 	return rv
@@ -137,7 +132,6 @@ func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
-
 func (i_ IdentifierManager) SetIsAdvertisingTrackingEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAdvertisingTrackingEnabled:"), value)
 }

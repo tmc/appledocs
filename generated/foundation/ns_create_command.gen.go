@@ -29,7 +29,7 @@ type _CreateCommandClass struct {
 // An interface definition for the [CreateCommand] class.
 type ICreateCommand interface {
 	IScriptCommand
-	CreateClassDescription() NSScriptClassDescription
+	CreateClassDescription() IScriptClassDescription
 	ResolvedKeyDictionary() IDictionary
 }
 
@@ -92,7 +92,7 @@ func NewCreateCommand() CreateCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/createClassDescription
-func (c_ CreateCommand) CreateClassDescription() NSScriptClassDescription {
+func (c_ CreateCommand) CreateClassDescription() IScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](c_.ID, objc.Sel("createClassDescription"))
 	return rv
 }

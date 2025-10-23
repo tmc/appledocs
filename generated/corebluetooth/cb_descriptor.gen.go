@@ -48,7 +48,6 @@ type ICBDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor
-
 type CBDescriptor struct {
 	CBAttribute
 }
@@ -99,7 +98,6 @@ func NewCBDescriptor() CBDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor/characteristic
-
 func (c_ CBDescriptor) Characteristic() CBCharacteristic {
 	rv := objc.Send[CBCharacteristic](c_.ID, objc.Sel("characteristic"))
 	return rv
@@ -110,7 +108,6 @@ func (c_ CBDescriptor) Characteristic() CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor/value
-
 func (c_ CBDescriptor) Value() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("value"))
 	return rv
@@ -121,7 +118,6 @@ func (c_ CBDescriptor) Value() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicaggregateformatstring
-
 func (c_ CBDescriptor) CBUUIDCharacteristicAggregateFormatString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicAggregateFormatString"))
 	return rv
@@ -132,7 +128,6 @@ func (c_ CBDescriptor) CBUUIDCharacteristicAggregateFormatString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicextendedpropertiesstring
-
 func (c_ CBDescriptor) CBUUIDCharacteristicExtendedPropertiesString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicExtendedPropertiesString"))
 	return rv
@@ -143,7 +138,6 @@ func (c_ CBDescriptor) CBUUIDCharacteristicExtendedPropertiesString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
-
 func (c_ CBDescriptor) CBUUIDCharacteristicFormatString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
 	return rv
@@ -154,7 +148,6 @@ func (c_ CBDescriptor) CBUUIDCharacteristicFormatString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
-
 func (c_ CBDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
 	return rv
@@ -165,7 +158,6 @@ func (c_ CBDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidclientcharacteristicconfigurationstring
-
 func (c_ CBDescriptor) CBUUIDClientCharacteristicConfigurationString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDClientCharacteristicConfigurationString"))
 	return rv
@@ -176,7 +168,6 @@ func (c_ CBDescriptor) CBUUIDClientCharacteristicConfigurationString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidservercharacteristicconfigurationstring
-
 func (c_ CBDescriptor) CBUUIDServerCharacteristicConfigurationString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDServerCharacteristicConfigurationString"))
 	return rv

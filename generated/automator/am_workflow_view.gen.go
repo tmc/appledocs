@@ -49,7 +49,6 @@ type IAMWorkflowView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView
-
 type AMWorkflowView struct {
 	appkit.View
 }
@@ -100,7 +99,6 @@ func NewAMWorkflowView() AMWorkflowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
-
 func (a_ AMWorkflowView) Editable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editable"))
 	return rv
@@ -111,7 +109,6 @@ func (a_ AMWorkflowView) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
-
 func (a_ AMWorkflowView) SetEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditable:"), value)
 }
@@ -121,7 +118,6 @@ func (a_ AMWorkflowView) SetEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
-
 func (a_ AMWorkflowView) WorkflowController() AMWorkflowController {
 	rv := objc.Send[AMWorkflowController](a_.ID, objc.Sel("workflowController"))
 	return rv
@@ -132,7 +128,6 @@ func (a_ AMWorkflowView) WorkflowController() AMWorkflowController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
-
 func (a_ AMWorkflowView) SetWorkflowController(value IAMWorkflowController) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowController:"), value)
 }
@@ -142,7 +137,6 @@ func (a_ AMWorkflowView) SetWorkflowController(value IAMWorkflowController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
-
 func (a_ AMWorkflowView) WorkflowView() AMWorkflowView {
 	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("workflowView"))
 	return rv
@@ -153,7 +147,6 @@ func (a_ AMWorkflowView) WorkflowView() AMWorkflowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
-
 func (a_ AMWorkflowView) SetWorkflowView(value IAMWorkflowView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
 }
@@ -163,7 +156,6 @@ func (a_ AMWorkflowView) SetWorkflowView(value IAMWorkflowView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-
 func (a_ AMWorkflowView) IsEditable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEditable"))
 	return rv
@@ -174,7 +166,6 @@ func (a_ AMWorkflowView) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-
 func (a_ AMWorkflowView) SetIsEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEditable:"), value)
 }

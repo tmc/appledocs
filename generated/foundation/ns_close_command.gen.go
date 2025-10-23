@@ -29,7 +29,7 @@ type _CloseCommandClass struct {
 // An interface definition for the [CloseCommand] class.
 type ICloseCommand interface {
 	IScriptCommand
-	SaveOptions() SaveOptions
+	SaveOptions() NSSaveOptions
 }
 
 // A command that closes one or more scriptable objects.
@@ -91,7 +91,7 @@ func NewCloseCommand() CloseCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand/saveOptions
-func (c_ CloseCommand) SaveOptions() SaveOptions {
+func (c_ CloseCommand) SaveOptions() NSSaveOptions {
 	rv := objc.Send[SaveOptions](c_.ID, objc.Sel("saveOptions"))
 	return rv
 }

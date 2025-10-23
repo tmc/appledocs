@@ -44,7 +44,6 @@ type ICNScript interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn
-
 type CNScript struct {
 	objectivec.Object
 }
@@ -89,36 +88,30 @@ func NewCNScript() CNScript {
 
 
 
-
 // The decision that occurs before the given time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/decisionBeforeTime:
-
 func (c_ CNScript) DecisionBeforeTime(time unsafe.Pointer) CNDecision {
 	rv := objc.Send[CNDecision](c_.ID, objc.Sel("decisionBeforeTime:"), time)
 	return rv
 }
 
 
-
 // The primary decision that’s in effect at the specified time, unless it’s outside the time range of the Cinematic script.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/primaryDecisionAtTime:
-
 func (c_ CNScript) PrimaryDecisionAtTime(time unsafe.Pointer) CNDecision {
 	rv := objc.Send[CNDecision](c_.ID, objc.Sel("primaryDecisionAtTime:"), time)
 	return rv
 }
 
 
-
 // The time range during which the focus transitioned toward the given decision.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/timeRangeOfTransitionBeforeDecision:
-
 func (c_ CNScript) TimeRangeOfTransitionBeforeDecision(decision ICNDecision) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeRangeOfTransitionBeforeDecision:"), decision)
 	return rv

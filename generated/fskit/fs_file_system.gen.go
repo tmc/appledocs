@@ -41,7 +41,6 @@ type IFSFileSystem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileSystem
-
 type FSFileSystem struct {
 	objectivec.Object
 }

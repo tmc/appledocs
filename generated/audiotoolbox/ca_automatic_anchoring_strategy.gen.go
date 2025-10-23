@@ -38,7 +38,6 @@ type IAutomaticAnchoringStrategy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAAutomaticAnchoringStrategy
-
 type AutomaticAnchoringStrategy struct {
 	AnchoringStrategy
 }

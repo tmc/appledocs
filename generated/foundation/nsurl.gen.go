@@ -30,14 +30,14 @@ type _URLClass struct {
 // An interface definition for the [URL] class.
 type IURL interface {
 	objectivec.IObject
-	URLByAppendingPathComponent(pathComponent string) URL
-	URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) URL
-	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) URL
-	URLByAppendingPathExtension(pathExtension string) URL
-	URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
-	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data
+	URLByAppendingPathComponent(pathComponent string) IURL
+	URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) IURL
+	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) IURL
+	URLByAppendingPathExtension(pathExtension string) IURL
+	URLByAppendingPathExtensionForType(contentType unsafe.Pointer) IURL
+	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) IData
 	CheckResourceIsReachableAndReturnError(error_ IError) bool
-	FileReferenceURL() URL
+	FileReferenceURL() IURL
 	GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBufferLength uint) bool
 	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
 	IsFileReferenceURL() bool
@@ -50,11 +50,11 @@ type IURL interface {
 	StartAccessingSecurityScopedResource() bool
 	StopAccessingSecurityScopedResource()
 	AbsoluteString() string
-	AbsoluteURL() URL
-	BaseURL() URL
-	URLByDeletingLastPathComponent() URL
-	URLByDeletingPathExtension() URL
-	FilePathURL() URL
+	AbsoluteURL() IURL
+	BaseURL() IURL
+	URLByDeletingLastPathComponent() IURL
+	URLByDeletingPathExtension() IURL
+	FilePathURL() IURL
 	FileSystemRepresentation() unsafe.Pointer
 	Fragment() string
 	HasDirectoryPath() bool
@@ -66,31 +66,31 @@ type IURL interface {
 	Path() string
 	PathComponents() []string
 	PathExtension() string
-	Port() Number
+	Port() INumber
 	Query() string
 	RelativePath() string
 	RelativeString() string
-	URLByResolvingSymlinksInPath() URL
-	URLByStandardizingPath() URL
+	URLByResolvingSymlinksInPath() IURL
+	URLByStandardizingPath() IURL
 	CustomPlaygroundQuickLook() unsafe.Pointer
 	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
-	DataRepresentation() Data
+	DataRepresentation() IData
 	SetDataRepresentation(value IData)
-	DeletingLastPathComponent() URL
+	DeletingLastPathComponent() IURL
 	SetDeletingLastPathComponent(value IURL)
-	DeletingPathExtension() URL
+	DeletingPathExtension() IURL
 	SetDeletingPathExtension(value IURL)
 	IsFileURL() bool
 	SetIsFileURL(value bool)
-	ResolvingSymlinksInPath() URL
+	ResolvingSymlinksInPath() IURL
 	SetResolvingSymlinksInPath(value IURL)
 	ResourceSpecifier() string
 	SetResourceSpecifier(value string)
 	Scheme() string
 	SetScheme(value string)
-	Standardized() URL
+	Standardized() IURL
 	SetStandardized(value IURL)
-	StandardizingPath() URL
+	StandardizingPath() IURL
 	SetStandardizingPath(value IURL)
 	User() string
 	SetUser(value string)
@@ -308,7 +308,7 @@ func (uc _URLClass) URLWithStringRelativeToURL(URLString string, baseURL IURL) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/bookmarkData(withContentsOf:)
-func (uc _URLClass) BookmarkDataWithContentsOfURLError(bookmarkFileURL IURL, error_ IError) Data {
+func (uc _URLClass) BookmarkDataWithContentsOfURLError(bookmarkFileURL IURL, error_ IError) IData {
 	rv := objc.Send[Data](objc.ID(uc.class), objc.Sel("bookmarkDataWithContentsOfURL:error:"), bookmarkFileURL, error_)
 	return rv
 }
@@ -318,7 +318,7 @@ func (uc _URLClass) BookmarkDataWithContentsOfURLError(bookmarkFileURL IURL, err
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withFileSystemRepresentation:isDirectory:relativeTo:)
-func (uc _URLClass) FileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsafe.Pointer, isDir bool, baseURL IURL) URL {
+func (uc _URLClass) FileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsafe.Pointer, isDir bool, baseURL IURL) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:"), path, isDir, baseURL)
 	return rv
 }
@@ -328,7 +328,7 @@ func (uc _URLClass) FileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:)
-func (uc _URLClass) FileURLWithPath(path string) URL {
+func (uc _URLClass) FileURLWithPath(path string) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:"), objc.String(path))
 	return rv
 }
@@ -338,7 +338,7 @@ func (uc _URLClass) FileURLWithPath(path string) URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:)
-func (uc _URLClass) FileURLWithPathIsDirectory(path string, isDir bool) URL {
+func (uc _URLClass) FileURLWithPathIsDirectory(path string, isDir bool) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:"), objc.String(path), isDir)
 	return rv
 }
@@ -346,7 +346,7 @@ func (uc _URLClass) FileURLWithPathIsDirectory(path string, isDir bool) URL {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:relativeTo:)
-func (uc _URLClass) FileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL IURL) URL {
+func (uc _URLClass) FileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL IURL) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:relativeToURL:"), objc.String(path), isDir, baseURL)
 	return rv
 }
@@ -354,7 +354,7 @@ func (uc _URLClass) FileURLWithPathIsDirectoryRelativeToURL(path string, isDir b
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:relativeTo:)
-func (uc _URLClass) FileURLWithPathRelativeToURL(path string, baseURL IURL) URL {
+func (uc _URLClass) FileURLWithPathRelativeToURL(path string, baseURL IURL) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
 	return rv
 }
@@ -364,7 +364,7 @@ func (uc _URLClass) FileURLWithPathRelativeToURL(path string, baseURL IURL) URL 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPathComponents:)
-func (uc _URLClass) FileURLWithPathComponents(components []string) URL {
+func (uc _URLClass) FileURLWithPathComponents(components []string) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPathComponents:"), components)
 	return rv
 }
@@ -404,7 +404,7 @@ func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookm
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:)
-func (u_ URL) URLByAppendingPathComponent(pathComponent string) URL {
+func (u_ URL) URLByAppendingPathComponent(pathComponent string) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:"), objc.String(pathComponent))
 	return rv
 }
@@ -414,7 +414,7 @@ func (u_ URL) URLByAppendingPathComponent(pathComponent string) URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:conformingTo:)
-func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) URL {
+func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
@@ -424,7 +424,7 @@ func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:isDirectory:)
-func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) URL {
+func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:isDirectory:"), objc.String(pathComponent), isDirectory)
 	return rv
 }
@@ -434,7 +434,7 @@ func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent string, isDir
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathExtension(_:)
-func (u_ URL) URLByAppendingPathExtension(pathExtension string) URL {
+func (u_ URL) URLByAppendingPathExtension(pathExtension string) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathExtension:"), objc.String(pathExtension))
 	return rv
 }
@@ -444,7 +444,7 @@ func (u_ URL) URLByAppendingPathExtension(pathExtension string) URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathExtension(for:)
-func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL {
+func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathExtensionForType:"), contentType)
 	return rv
 }
@@ -454,7 +454,7 @@ func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) URL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/bookmarkData(options:includingResourceValuesForKeys:relativeTo:)
-func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) Data {
+func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), options, keys, relativeURL, error_)
 	return rv
 }
@@ -474,7 +474,7 @@ func (u_ URL) CheckResourceIsReachableAndReturnError(error_ IError) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileReferenceURL()
-func (u_ URL) FileReferenceURL() URL {
+func (u_ URL) FileReferenceURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("fileReferenceURL"))
 	return rv
 }
@@ -600,7 +600,7 @@ func (u_ URL) AbsoluteString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/absoluteURL
-func (u_ URL) AbsoluteURL() URL {
+func (u_ URL) AbsoluteURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("absoluteURL"))
 	return rv
 }
@@ -610,7 +610,7 @@ func (u_ URL) AbsoluteURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/baseURL
-func (u_ URL) BaseURL() URL {
+func (u_ URL) BaseURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("baseURL"))
 	return rv
 }
@@ -620,7 +620,7 @@ func (u_ URL) BaseURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/deletingLastPathComponent
-func (u_ URL) URLByDeletingLastPathComponent() URL {
+func (u_ URL) URLByDeletingLastPathComponent() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByDeletingLastPathComponent"))
 	return rv
 }
@@ -630,7 +630,7 @@ func (u_ URL) URLByDeletingLastPathComponent() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/deletingPathExtension
-func (u_ URL) URLByDeletingPathExtension() URL {
+func (u_ URL) URLByDeletingPathExtension() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByDeletingPathExtension"))
 	return rv
 }
@@ -640,7 +640,7 @@ func (u_ URL) URLByDeletingPathExtension() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/filePathURL
-func (u_ URL) FilePathURL() URL {
+func (u_ URL) FilePathURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("filePathURL"))
 	return rv
 }
@@ -760,7 +760,7 @@ func (u_ URL) PathExtension() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/port
-func (u_ URL) Port() Number {
+func (u_ URL) Port() INumber {
 	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
 	return rv
 }
@@ -800,7 +800,7 @@ func (u_ URL) RelativeString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/resolvingSymlinksInPath
-func (u_ URL) URLByResolvingSymlinksInPath() URL {
+func (u_ URL) URLByResolvingSymlinksInPath() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByResolvingSymlinksInPath"))
 	return rv
 }
@@ -810,7 +810,7 @@ func (u_ URL) URLByResolvingSymlinksInPath() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/standardizingPath
-func (u_ URL) URLByStandardizingPath() URL {
+func (u_ URL) URLByStandardizingPath() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByStandardizingPath"))
 	return rv
 }
@@ -833,7 +833,7 @@ func (u_ URL) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/datarepresentation
-func (u_ URL) DataRepresentation() Data {
+func (u_ URL) DataRepresentation() IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
@@ -850,7 +850,7 @@ func (u_ URL) SetDataRepresentation(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletinglastpathcomponent
-func (u_ URL) DeletingLastPathComponent() URL {
+func (u_ URL) DeletingLastPathComponent() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("deletingLastPathComponent"))
 	return rv
 }
@@ -869,7 +869,7 @@ func (u_ URL) SetDeletingLastPathComponent(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/deletingpathextension
-func (u_ URL) DeletingPathExtension() URL {
+func (u_ URL) DeletingPathExtension() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("deletingPathExtension"))
 	return rv
 }
@@ -907,7 +907,7 @@ func (u_ URL) SetIsFileURL(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/resolvingsymlinksinpath
-func (u_ URL) ResolvingSymlinksInPath() URL {
+func (u_ URL) ResolvingSymlinksInPath() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("resolvingSymlinksInPath"))
 	return rv
 }
@@ -964,7 +964,7 @@ func (u_ URL) SetScheme(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardized
-func (u_ URL) Standardized() URL {
+func (u_ URL) Standardized() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("standardized"))
 	return rv
 }
@@ -983,7 +983,7 @@ func (u_ URL) SetStandardized(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardizingpath
-func (u_ URL) StandardizingPath() URL {
+func (u_ URL) StandardizingPath() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("standardizingPath"))
 	return rv
 }

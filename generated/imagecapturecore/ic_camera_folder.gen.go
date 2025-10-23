@@ -33,7 +33,11 @@ type IICCameraFolder interface {
 }
 
 // An object that represents a folder on a camera.
+
+
+// An object that represents a folder on a camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFolder
 type ICCameraFolder struct {
 	ICCameraItem
@@ -80,8 +84,10 @@ func NewICCameraFolder() ICCameraFolder {
 }
 
 
+
 // A list of items that this folder contains.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFolder/contents
 func (i_ ICCameraFolder) Contents() []ICCameraItem {
 	rv := objc.Send[[]ICCameraItem](i_.ID, objc.Sel("contents"))

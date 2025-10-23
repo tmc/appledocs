@@ -30,15 +30,15 @@ type _URLAuthenticationChallengeClass struct {
 // An interface definition for the [URLAuthenticationChallenge] class.
 type IURLAuthenticationChallenge interface {
 	objectivec.IObject
-	Error() Error
+	Error() IError
 	SetError(value IError)
-	FailureResponse() NSURLResponse
+	FailureResponse() IURLResponse
 	SetFailureResponse(value IURLResponse)
 	PreviousFailureCount() int
 	SetPreviousFailureCount(value int)
-	ProposedCredential() NSURLCredential
+	ProposedCredential() IURLCredential
 	SetProposedCredential(value IURLCredential)
-	ProtectionSpace() NSURLProtectionSpace
+	ProtectionSpace() IURLProtectionSpace
 	SetProtectionSpace(value IURLProtectionSpace)
 	Sender() unsafe.Pointer
 	SetSender(value unsafe.Pointer)
@@ -101,7 +101,7 @@ func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
-func (u_ URLAuthenticationChallenge) Error() Error {
+func (u_ URLAuthenticationChallenge) Error() IError {
 	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
 	return rv
 }
@@ -120,7 +120,7 @@ func (u_ URLAuthenticationChallenge) SetError(value IError) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/failureresponse
-func (u_ URLAuthenticationChallenge) FailureResponse() NSURLResponse {
+func (u_ URLAuthenticationChallenge) FailureResponse() IURLResponse {
 	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("failureResponse"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (u_ URLAuthenticationChallenge) SetPreviousFailureCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/proposedcredential
-func (u_ URLAuthenticationChallenge) ProposedCredential() NSURLCredential {
+func (u_ URLAuthenticationChallenge) ProposedCredential() IURLCredential {
 	rv := objc.Send[NSURLCredential](u_.ID, objc.Sel("proposedCredential"))
 	return rv
 }
@@ -177,7 +177,7 @@ func (u_ URLAuthenticationChallenge) SetProposedCredential(value IURLCredential)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
-func (u_ URLAuthenticationChallenge) ProtectionSpace() NSURLProtectionSpace {
+func (u_ URLAuthenticationChallenge) ProtectionSpace() IURLProtectionSpace {
 	rv := objc.Send[NSURLProtectionSpace](u_.ID, objc.Sel("protectionSpace"))
 	return rv
 }

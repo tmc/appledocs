@@ -45,7 +45,6 @@ type IImageSize interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSize
-
 type ImageSize struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewImageSize() ImageSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelshigh
-
 func (i_ ImageSize) PixelsHigh() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
@@ -105,7 +103,6 @@ func (i_ ImageSize) PixelsHigh() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelshigh
-
 func (i_ ImageSize) SetPixelsHigh(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
 }
@@ -115,7 +112,6 @@ func (i_ ImageSize) SetPixelsHigh(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelswide
-
 func (i_ ImageSize) PixelsWide() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
@@ -126,7 +122,6 @@ func (i_ ImageSize) PixelsWide() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesize/pixelswide
-
 func (i_ ImageSize) SetPixelsWide(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
 }
@@ -136,7 +131,6 @@ func (i_ ImageSize) SetPixelsWide(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes
-
 func (i_ ImageSize) EnumeratedImageSizes() MLImageSize {
 	rv := objc.Send[MLImageSize](i_.ID, objc.Sel("enumeratedImageSizes"))
 	return rv
@@ -147,7 +141,6 @@ func (i_ ImageSize) EnumeratedImageSizes() MLImageSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes
-
 func (i_ ImageSize) SetEnumeratedImageSizes(value IMLImageSize) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnumeratedImageSizes:"), value)
 }

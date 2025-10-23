@@ -31,25 +31,25 @@ type _ScriptClassDescriptionClass struct {
 type IScriptClassDescription interface {
 	IClassDescription
 	AppleEventCodeForKey(key string) unsafe.Pointer
-	ClassDescriptionForKey(key string) ScriptClassDescription
+	ClassDescriptionForKey(key string) IScriptClassDescription
 	HasOrderedToManyRelationshipForKey(key string) bool
 	HasPropertyForKey(key string) bool
 	HasReadablePropertyForKey(key string) bool
 	HasWritablePropertyForKey(key string) bool
 	IsLocationRequiredToCreateForKey(toManyRelationshipKey string) bool
 	IsReadOnlyKey(key string) bool
-	KeyWithAppleEventCode(appleEventCode unsafe.Pointer) String
+	KeyWithAppleEventCode(appleEventCode unsafe.Pointer) IString
 	MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool
 	SelectorForCommand(commandDescription IScriptCommandDescription) objc.SEL
 	SupportsCommand(commandDescription IScriptCommandDescription) bool
-	TypeForKey(key string) String
+	TypeForKey(key string) IString
 	AppleEventCode() unsafe.Pointer
 	ClassName() string
 	DefaultSubcontainerAttributeKey() string
 	ImplementationClassName() string
 	SuiteName() string
-	SuperclassDescription() NSScriptClassDescription
-	Superclass() NSScriptClassDescription
+	SuperclassDescription() IScriptClassDescription
+	Superclass() IScriptClassDescription
 	SetSuperclass(value IScriptClassDescription)
 }
 
@@ -135,7 +135,7 @@ func NewScriptClassDescriptionWithSuiteNameClassNameDictionary(suiteName string,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(for:)
-func (sc _ScriptClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) ScriptClassDescription {
+func (sc _ScriptClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) IScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](objc.ID(sc.class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
 }
@@ -155,7 +155,7 @@ func (s_ ScriptClassDescription) AppleEventCodeForKey(key string) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/forKey(_:)
-func (s_ ScriptClassDescription) ClassDescriptionForKey(key string) ScriptClassDescription {
+func (s_ ScriptClassDescription) ClassDescriptionForKey(key string) IScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("classDescriptionForKey:"), objc.String(key))
 	return rv
 }
@@ -225,7 +225,7 @@ func (s_ ScriptClassDescription) IsReadOnlyKey(key string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/key(withAppleEventCode:)
-func (s_ ScriptClassDescription) KeyWithAppleEventCode(appleEventCode unsafe.Pointer) String {
+func (s_ ScriptClassDescription) KeyWithAppleEventCode(appleEventCode unsafe.Pointer) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("keyWithAppleEventCode:"), appleEventCode)
 	return rv
 }
@@ -265,7 +265,7 @@ func (s_ ScriptClassDescription) SupportsCommand(commandDescription IScriptComma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
-func (s_ ScriptClassDescription) TypeForKey(key string) String {
+func (s_ ScriptClassDescription) TypeForKey(key string) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
 	return rv
 }
@@ -325,7 +325,7 @@ func (s_ ScriptClassDescription) SuiteName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/superclass
-func (s_ ScriptClassDescription) SuperclassDescription() NSScriptClassDescription {
+func (s_ ScriptClassDescription) SuperclassDescription() IScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("superclassDescription"))
 	return rv
 }
@@ -335,7 +335,7 @@ func (s_ ScriptClassDescription) SuperclassDescription() NSScriptClassDescriptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) Superclass() NSScriptClassDescription {
+func (s_ ScriptClassDescription) Superclass() IScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("superclass"))
 	return rv
 }

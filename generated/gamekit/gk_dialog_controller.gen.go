@@ -45,7 +45,6 @@ type IDialogController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController
-
 type DialogController struct {
 	appkit.Responder
 }
@@ -92,12 +91,10 @@ func NewDialogController() DialogController {
 
 
 
-
 // Dismisses the dashboard.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController/dismiss(_:)
-
 func (d_ DialogController) Dismiss(sender objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("dismiss:"), sender)
 }
@@ -107,7 +104,6 @@ func (d_ DialogController) Dismiss(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-
 func (d_ DialogController) ParentWindow() appkit.Window {
 	rv := objc.Send[appkit.Window](d_.ID, objc.Sel("parentWindow"))
 	return rv
@@ -118,7 +114,6 @@ func (d_ DialogController) ParentWindow() appkit.Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-
 func (d_ DialogController) SetParentWindow(value appkit.IWindow) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }

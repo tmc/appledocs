@@ -45,7 +45,6 @@ type IHKGlassesPrescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGlassesPrescription
-
 type HKGlassesPrescription struct {
 	HKVisionPrescription
 }
@@ -96,7 +95,6 @@ func NewHKGlassesPrescription() HKGlassesPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
-
 func (h_ HKGlassesPrescription) LeftEye() HKGlassesLensSpecification {
 	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
@@ -107,7 +105,6 @@ func (h_ HKGlassesPrescription) LeftEye() HKGlassesLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
-
 func (h_ HKGlassesPrescription) SetLeftEye(value IHKGlassesLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
 }
@@ -117,7 +114,6 @@ func (h_ HKGlassesPrescription) SetLeftEye(value IHKGlassesLensSpecification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-
 func (h_ HKGlassesPrescription) RightEye() HKGlassesLensSpecification {
 	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
@@ -128,7 +124,6 @@ func (h_ HKGlassesPrescription) RightEye() HKGlassesLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-
 func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }
@@ -138,7 +133,6 @@ func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription
-
 func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
 	return rv

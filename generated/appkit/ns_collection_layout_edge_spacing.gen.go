@@ -49,7 +49,6 @@ type ICollectionLayoutEdgeSpacing interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing
-
 type CollectionLayoutEdgeSpacing struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewCollectionLayoutEdgeSpacing() CollectionLayoutEdgeSpacing {
 
 
 
-
 // Creates an edge spacing object with the specified leading, top, trailing, and bottom spacing.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/init(leading:top:trailing:bottom:)
-
 func NewCollectionLayoutEdgeSpacingForLeadingTopTrailingBottom(leading unsafe.Pointer, top unsafe.Pointer, trailing unsafe.Pointer, bottom unsafe.Pointer) CollectionLayoutEdgeSpacing {
 	rv := objc.Send[CollectionLayoutEdgeSpacing](objc.ID(getCollectionLayoutEdgeSpacingClass().class), objc.Sel("spacingForLeading:top:trailing:bottom:"), leading, top, trailing, bottom)
 	return rv
@@ -111,7 +108,6 @@ func NewCollectionLayoutEdgeSpacingForLeadingTopTrailingBottom(leading unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/init(leading:top:trailing:bottom:)
-
 func (cc _CollectionLayoutEdgeSpacingClass) SpacingForLeadingTopTrailingBottom(leading unsafe.Pointer, top unsafe.Pointer, trailing unsafe.Pointer, bottom unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("spacingForLeading:top:trailing:bottom:"), leading, top, trailing, bottom)
 	return rv
@@ -122,7 +118,6 @@ func (cc _CollectionLayoutEdgeSpacingClass) SpacingForLeadingTopTrailingBottom(l
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
-
 func (c_ CollectionLayoutEdgeSpacing) Bottom() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bottom"))
 	return rv
@@ -133,7 +128,6 @@ func (c_ CollectionLayoutEdgeSpacing) Bottom() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
-
 func (c_ CollectionLayoutEdgeSpacing) SetBottom(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBottom:"), value)
 }
@@ -143,7 +137,6 @@ func (c_ CollectionLayoutEdgeSpacing) SetBottom(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/leading
-
 func (c_ CollectionLayoutEdgeSpacing) Leading() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leading"))
 	return rv
@@ -154,7 +147,6 @@ func (c_ CollectionLayoutEdgeSpacing) Leading() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/leading
-
 func (c_ CollectionLayoutEdgeSpacing) SetLeading(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLeading:"), value)
 }
@@ -164,7 +156,6 @@ func (c_ CollectionLayoutEdgeSpacing) SetLeading(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/top
-
 func (c_ CollectionLayoutEdgeSpacing) Top() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("top"))
 	return rv
@@ -175,7 +166,6 @@ func (c_ CollectionLayoutEdgeSpacing) Top() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/top
-
 func (c_ CollectionLayoutEdgeSpacing) SetTop(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTop:"), value)
 }
@@ -185,7 +175,6 @@ func (c_ CollectionLayoutEdgeSpacing) SetTop(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/trailing
-
 func (c_ CollectionLayoutEdgeSpacing) Trailing() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("trailing"))
 	return rv
@@ -196,7 +185,6 @@ func (c_ CollectionLayoutEdgeSpacing) Trailing() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/trailing
-
 func (c_ CollectionLayoutEdgeSpacing) SetTrailing(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTrailing:"), value)
 }

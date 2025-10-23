@@ -31,7 +31,7 @@ type IXPCCoder interface {
 	ICoder
 	DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer
 	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string)
-	Connection() NSXPCConnection
+	Connection() IXPCConnection
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
 }
@@ -114,7 +114,7 @@ func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/connection
-func (x_ XPCCoder) Connection() NSXPCConnection {
+func (x_ XPCCoder) Connection() IXPCConnection {
 	rv := objc.Send[NSXPCConnection](x_.ID, objc.Sel("connection"))
 	return rv
 }

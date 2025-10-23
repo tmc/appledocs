@@ -91,7 +91,7 @@ func NewScriptCoercionHandler() ScriptCoercionHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler/shared()
-func (sc _ScriptCoercionHandlerClass) SharedCoercionHandler() ScriptCoercionHandler {
+func (sc _ScriptCoercionHandlerClass) SharedCoercionHandler() IScriptCoercionHandler {
 	rv := objc.Send[ScriptCoercionHandler](objc.ID(sc.class), objc.Sel("sharedCoercionHandler"))
 	return rv
 }

@@ -47,7 +47,6 @@ type IExceptionHandler interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler
-
 type ExceptionHandler struct {
 	objectivec.Object
 }
@@ -96,77 +95,64 @@ func NewExceptionHandler() ExceptionHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/default()
-
 func (ec _ExceptionHandlerClass) DefaultExceptionHandler() ExceptionHandler {
 	rv := objc.Send[ExceptionHandler](objc.ID(ec.class), objc.Sel("defaultExceptionHandler"))
 	return rv
 }
 
 
-
 // Returns the delegate of the object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/delegate()
-
 func (e_ ExceptionHandler) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-
 // Returns a bit mask representing the types of exceptions monitored by the receiver and its handling and logging behavior.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/exceptionHandlingMask()
-
 func (e_ ExceptionHandler) ExceptionHandlingMask() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("exceptionHandlingMask"))
 	return rv
 }
 
 
-
 // Returns a bit mask representing the types of exceptions that will halt execution for debugging.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/exceptionHangingMask()
-
 func (e_ ExceptionHandler) ExceptionHangingMask() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("exceptionHangingMask"))
 	return rv
 }
 
 
-
 // Sets the delegate of the object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/setDelegate(_:)
-
 func (e_ ExceptionHandler) SetDelegate(anObject objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), anObject)
 }
-
 
 
 // Sets the bit mask of constants specifying the types of exceptions monitored by the receiver and its handling and logging behavior.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/setExceptionHandlingMask(_:)
-
 func (e_ ExceptionHandler) SetExceptionHandlingMask(aMask uint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExceptionHandlingMask:"), aMask)
 }
-
 
 
 // Sets the bit mask of constants specifying the types of exceptions that will halt execution for debugging.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/setExceptionHangingMask(_:)
-
 func (e_ ExceptionHandler) SetExceptionHangingMask(aMask uint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExceptionHangingMask:"), aMask)
 }
@@ -176,7 +162,6 @@ func (e_ ExceptionHandler) SetExceptionHangingMask(aMask uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
-
 func (e_ ExceptionHandler) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
 	return rv
@@ -187,7 +172,6 @@ func (e_ ExceptionHandler) UserInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
-
 func (e_ ExceptionHandler) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
 }

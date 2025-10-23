@@ -38,7 +38,11 @@ type IINGetReservationDetailsIntentResponse interface {
 // Your app’s response to a request for reservation details.
 //
 // Use an object to specify the results of a user requesting reservation details in your app. After getting the reservation details action using the criteria specified in the object, create an instance of this class with the results of the action. Siri can then use this information for system integrations, such as populating the calendar with an event.
+
+
+// Your app’s response to a request for reservation details.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntentResponse
 type INGetReservationDetailsIntentResponse struct {
 	INIntentResponse
@@ -85,8 +89,10 @@ func NewINGetReservationDetailsIntentResponse() INGetReservationDetailsIntentRes
 }
 
 
+
 // The code that indicates whether your app successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/code
 func (i_ INGetReservationDetailsIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -94,17 +100,18 @@ func (i_ INGetReservationDetailsIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code that indicates whether your app successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/code
 func (i_ INGetReservationDetailsIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
 
+
 // An array containing reservations reqeusted by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/reservations
 func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation {
 	rv := objc.Send[INReservation](i_.ID, objc.Sel("reservations"))
@@ -112,10 +119,9 @@ func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation {
 }
 
 
-// SetReservations sets the value of the reservations property.
 // An array containing reservations reqeusted by the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/reservations
 func (i_ INGetReservationDetailsIntentResponse) SetReservations(value INReservation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservations:"), value)

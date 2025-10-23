@@ -33,13 +33,13 @@ type IComparisonPredicate interface {
 	SetComparisonPredicateModifier(value unsafe.Pointer)
 	CustomSelector() unsafe.Pointer
 	SetCustomSelector(value unsafe.Pointer)
-	LeftExpression() NSExpression
+	LeftExpression() IExpression
 	SetLeftExpression(value IExpression)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
 	PredicateOperatorType() unsafe.Pointer
 	SetPredicateOperatorType(value unsafe.Pointer)
-	RightExpression() NSExpression
+	RightExpression() IExpression
 	SetRightExpression(value IExpression)
 }
 
@@ -140,7 +140,7 @@ func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) LeftExpression() NSExpression {
+func (c_ ComparisonPredicate) LeftExpression() IExpression {
 	rv := objc.Send[NSExpression](c_.ID, objc.Sel("leftExpression"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/rightexpression
-func (c_ ComparisonPredicate) RightExpression() NSExpression {
+func (c_ ComparisonPredicate) RightExpression() IExpression {
 	rv := objc.Send[NSExpression](c_.ID, objc.Sel("rightExpression"))
 	return rv
 }

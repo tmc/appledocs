@@ -30,14 +30,14 @@ type _CollectionViewItemClass struct {
 type ICollectionViewItem interface {
 	IViewController
 	CollectionView() NSCollectionView
+	HighlightState() CollectionViewItemHighlightState
+	SetHighlightState(value CollectionViewItemHighlightState)
 	TextField() NSTextField
 	SetTextField(value ITextField)
 	ItemPrototype() NSCollectionViewItem
 	SetItemPrototype(value ICollectionViewItem)
 	DraggingImageComponents() NSDraggingImageComponent
 	SetDraggingImageComponents(value IDraggingImageComponent)
-	HighlightState() unsafe.Pointer
-	SetHighlightState(value unsafe.Pointer)
 	ImageView() NSImageView
 	SetImageView(value IImageView)
 	IsSelected() bool
@@ -55,7 +55,6 @@ type ICollectionViewItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem
-
 type CollectionViewItem struct {
 	ViewController
 }
@@ -106,10 +105,28 @@ func NewCollectionViewItem() CollectionViewItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/collectionView
-
 func (c_ CollectionViewItem) CollectionView() NSCollectionView {
 	rv := objc.Send[NSCollectionView](c_.ID, objc.Sel("collectionView"))
 	return rv
+}
+
+
+// The highlight state currently applied to the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/highlightState-swift.property
+func (c_ CollectionViewItem) HighlightState() CollectionViewItemHighlightState {
+	rv := objc.Send[CollectionViewItemHighlightState](c_.ID, objc.Sel("highlightState"))
+	return rv
+}
+
+
+// The highlight state currently applied to the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/highlightState-swift.property
+func (c_ CollectionViewItem) SetHighlightState(value CollectionViewItemHighlightState) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHighlightState:"), value)
 }
 
 
@@ -117,7 +134,6 @@ func (c_ CollectionViewItem) CollectionView() NSCollectionView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/textField
-
 func (c_ CollectionViewItem) TextField() NSTextField {
 	rv := objc.Send[NSTextField](c_.ID, objc.Sel("textField"))
 	return rv
@@ -128,7 +144,6 @@ func (c_ CollectionViewItem) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/textField
-
 func (c_ CollectionViewItem) SetTextField(value ITextField) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTextField:"), value)
 }
@@ -138,7 +153,6 @@ func (c_ CollectionViewItem) SetTextField(value ITextField) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
-
 func (c_ CollectionViewItem) ItemPrototype() NSCollectionViewItem {
 	rv := objc.Send[NSCollectionViewItem](c_.ID, objc.Sel("itemPrototype"))
 	return rv
@@ -149,7 +163,6 @@ func (c_ CollectionViewItem) ItemPrototype() NSCollectionViewItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
-
 func (c_ CollectionViewItem) SetItemPrototype(value ICollectionViewItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setItemPrototype:"), value)
 }
@@ -159,7 +172,6 @@ func (c_ CollectionViewItem) SetItemPrototype(value ICollectionViewItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
-
 func (c_ CollectionViewItem) DraggingImageComponents() NSDraggingImageComponent {
 	rv := objc.Send[NSDraggingImageComponent](c_.ID, objc.Sel("draggingImageComponents"))
 	return rv
@@ -170,30 +182,8 @@ func (c_ CollectionViewItem) DraggingImageComponents() NSDraggingImageComponent 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
-
 func (c_ CollectionViewItem) SetDraggingImageComponents(value IDraggingImageComponent) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDraggingImageComponents:"), value)
-}
-
-
-// The highlight state currently applied to the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.property
-
-func (c_ CollectionViewItem) HighlightState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("highlightState"))
-	return rv
-}
-
-
-// The highlight state currently applied to the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.property
-
-func (c_ CollectionViewItem) SetHighlightState(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHighlightState:"), value)
 }
 
 
@@ -201,7 +191,6 @@ func (c_ CollectionViewItem) SetHighlightState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
-
 func (c_ CollectionViewItem) ImageView() NSImageView {
 	rv := objc.Send[NSImageView](c_.ID, objc.Sel("imageView"))
 	return rv
@@ -212,7 +201,6 @@ func (c_ CollectionViewItem) ImageView() NSImageView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
-
 func (c_ CollectionViewItem) SetImageView(value IImageView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageView:"), value)
 }
@@ -222,7 +210,6 @@ func (c_ CollectionViewItem) SetImageView(value IImageView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/isselected
-
 func (c_ CollectionViewItem) IsSelected() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSelected"))
 	return rv
@@ -233,7 +220,6 @@ func (c_ CollectionViewItem) IsSelected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/isselected
-
 func (c_ CollectionViewItem) SetIsSelected(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelected:"), value)
 }
@@ -243,7 +229,6 @@ func (c_ CollectionViewItem) SetIsSelected(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
-
 func (c_ CollectionViewItem) View() NSView {
 	rv := objc.Send[NSView](c_.ID, objc.Sel("view"))
 	return rv
@@ -254,7 +239,6 @@ func (c_ CollectionViewItem) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
-
 func (c_ CollectionViewItem) SetView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
 }

@@ -141,7 +141,7 @@ func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
-func (n_ NotificationQueue) DefaultQueue() NSNotificationQueue {
+func (n_ NotificationQueue) DefaultQueue() INotificationQueue {
 	rv := objc.Send[NSNotificationQueue](n_.ID, objc.Sel("defaultQueue"))
 	return rv
 }

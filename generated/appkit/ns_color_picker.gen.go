@@ -50,7 +50,6 @@ type IColorPicker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker
-
 type ColorPicker struct {
 	objectivec.Object
 }
@@ -95,23 +94,19 @@ func NewColorPicker() ColorPicker {
 
 
 
-
 // Overriden to attach a color list to a color picker.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/attachColorList(_:)
-
 func (c_ ColorPicker) AttachColorList(colorList IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("attachColorList:"), colorList)
 }
-
 
 
 // Overriden to respond to a size change.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/viewSizeChanged(_:)
-
 func (c_ ColorPicker) ViewSizeChanged(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewSizeChanged:"), sender)
 }
@@ -121,7 +116,6 @@ func (c_ ColorPicker) ViewSizeChanged(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/colorPanel
-
 func (c_ ColorPicker) ColorPanel() NSColorPanel {
 	rv := objc.Send[NSColorPanel](c_.ID, objc.Sel("colorPanel"))
 	return rv
@@ -132,7 +126,6 @@ func (c_ ColorPicker) ColorPanel() NSColorPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/provideNewButtonImage
-
 func (c_ ColorPicker) ProvideNewButtonImage() Image {
 	rv := objc.Send[Image](c_.ID, objc.Sel("provideNewButtonImage"))
 	return rv
@@ -143,7 +136,6 @@ func (c_ ColorPicker) ProvideNewButtonImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
-
 func (c_ ColorPicker) ButtonToolTip() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("buttonToolTip"))
 	return rv
@@ -154,7 +146,6 @@ func (c_ ColorPicker) ButtonToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
-
 func (c_ ColorPicker) SetButtonToolTip(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonToolTip:"), objc.String(value))
 }
@@ -164,7 +155,6 @@ func (c_ ColorPicker) SetButtonToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
-
 func (c_ ColorPicker) MinContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("minContentSize"))
 	return rv
@@ -175,7 +165,6 @@ func (c_ ColorPicker) MinContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
-
 func (c_ ColorPicker) SetMinContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinContentSize:"), value)
 }

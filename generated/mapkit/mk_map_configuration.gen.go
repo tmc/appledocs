@@ -41,7 +41,11 @@ type IMKMapConfiguration interface {
 }
 
 // An abstract class that represents the shared elements of map configurations.
+
+
+// An abstract class that represents the shared elements of map configurations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapConfiguration
 type MKMapConfiguration struct {
 	objectivec.Object
@@ -86,8 +90,10 @@ func NewMKMapConfiguration() MKMapConfiguration {
 }
 
 
+
 // The value that indicates the map’s elevation style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.property
 func (m_ MKMapConfiguration) ElevationStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("elevationStyle"))
@@ -95,17 +101,18 @@ func (m_ MKMapConfiguration) ElevationStyle() unsafe.Pointer {
 }
 
 
-// SetElevationStyle sets the value of the elevationStyle property.
 // The value that indicates the map’s elevation style.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.property
 func (m_ MKMapConfiguration) SetElevationStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElevationStyle:"), value)
 }
 
+
 // A value that indicates whether the map’s pitch button is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
@@ -113,17 +120,18 @@ func (m_ MKMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 }
 
 
-// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
 // A value that indicates whether the map’s pitch button is visible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
 }
 
+
 // The characteristics of the map view, including the map type and features the map displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKMapConfiguration) PreferredConfiguration() MKMapConfiguration {
 	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
@@ -131,17 +139,18 @@ func (m_ MKMapConfiguration) PreferredConfiguration() MKMapConfiguration {
 }
 
 
-// SetPreferredConfiguration sets the value of the preferredConfiguration property.
 // The characteristics of the map view, including the map type and features the map displays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
+
 // A Boolean value that indicates whether the map displays the user tracking button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKMapConfiguration) ShowsUserTrackingButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
@@ -149,10 +158,9 @@ func (m_ MKMapConfiguration) ShowsUserTrackingButton() bool {
 }
 
 
-// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
 // A Boolean value that indicates whether the map displays the user tracking button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKMapConfiguration) SetShowsUserTrackingButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)

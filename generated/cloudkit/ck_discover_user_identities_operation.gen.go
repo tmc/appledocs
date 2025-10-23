@@ -52,7 +52,6 @@ type ICKDiscoverUserIdentitiesOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation
-
 type CKDiscoverUserIdentitiesOperation struct {
 	CKOperation
 }
@@ -99,12 +98,10 @@ func NewCKDiscoverUserIdentitiesOperation() CKDiscoverUserIdentitiesOperation {
 
 
 
-
 // Creates an operation for discovering the user identities of the specified lookup infos.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/init(userIdentityLookupInfos:)
-
 func NewCKDiscoverUserIdentitiesOperationWithUserIdentityLookupInfos(userIdentityLookupInfos []CKUserIdentityLookupInfo) CKDiscoverUserIdentitiesOperation {
 	instance := getCKDiscoverUserIdentitiesOperationClass().Alloc()
 	rv := objc.Send[CKDiscoverUserIdentitiesOperation](instance.ID, objc.Sel("initWithUserIdentityLookupInfos:"), userIdentityLookupInfos)
@@ -118,7 +115,6 @@ func NewCKDiscoverUserIdentitiesOperationWithUserIdentityLookupInfos(userIdentit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/discoverUserIdentitiesCompletionBlock
-
 func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverUserIdentitiesCompletionBlock"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesCompletionBloc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/discoverUserIdentitiesCompletionBlock
-
 func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesCompletionBlock:"), value)
 }
@@ -139,7 +134,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesCompletionB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityDiscoveredBlock
-
 func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentityDiscoveredBlock"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityDiscoveredBlock
-
 func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityDiscoveredBlock:"), value)
 }
@@ -160,7 +153,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
-
 func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityLookupInfos() []CKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](c_.ID, objc.Sel("userIdentityLookupInfos"))
 	return rv
@@ -171,7 +163,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityLookupInfos() []CKUserId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
-
 func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -189,7 +180,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value []C
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
-
 func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverUserIdentitiesResultBlock"))
 	return rv
@@ -198,7 +188,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesResultBlock() 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
-
 func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesResultBlock:"), value)
 }
@@ -208,7 +197,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesResultBlock
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKDiscoverUserIdentitiesOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -219,7 +207,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKDiscoverUserIdentitiesOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
@@ -229,7 +216,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) SetCompletionBlock(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-
 func (c_ CKDiscoverUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
 	return rv
@@ -240,7 +226,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-
 func (c_ CKDiscoverUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }

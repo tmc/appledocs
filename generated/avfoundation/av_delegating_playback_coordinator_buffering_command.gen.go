@@ -45,7 +45,6 @@ type IDelegatingPlaybackCoordinatorBufferingCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorBufferingCommand
-
 type DelegatingPlaybackCoordinatorBufferingCommand struct {
 	DelegatingPlaybackCoordinatorPlaybackControlCommand
 }
@@ -96,7 +95,6 @@ func NewDelegatingPlaybackCoordinatorBufferingCommand() DelegatingPlaybackCoordi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
-
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("anticipatedPlaybackRate"))
 	return rv
@@ -107,7 +105,6 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/anticipatedplaybackrate
-
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRate(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnticipatedPlaybackRate:"), value)
 }
@@ -117,7 +114,6 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
-
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("completionDueDate"))
 	return rv
@@ -128,7 +124,6 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
-
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetCompletionDueDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
 }

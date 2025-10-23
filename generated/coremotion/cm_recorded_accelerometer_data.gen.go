@@ -43,7 +43,6 @@ type IRecordedAccelerometerData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData
-
 type RecordedAccelerometerData struct {
 	AccelerometerData
 }
@@ -94,7 +93,6 @@ func NewRecordedAccelerometerData() RecordedAccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/identifier
-
 func (r_ RecordedAccelerometerData) Identifier() uint64 {
 	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
 	return rv
@@ -105,7 +103,6 @@ func (r_ RecordedAccelerometerData) Identifier() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/startDate
-
 func (r_ RecordedAccelerometerData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv

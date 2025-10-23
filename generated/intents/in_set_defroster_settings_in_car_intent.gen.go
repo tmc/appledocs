@@ -40,7 +40,11 @@ type IINSetDefrosterSettingsInCarIntent interface {
 // A request to change the defroster settings in a CarPlay-enabled vehicle.
 //
 // Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change the defroster settings for a vehicle, SiriKit creates an object and delivers it to the app’s Intents extension. You use the intent to identify which defroster the user wants to enable or disable and to communicate the changes directly to your vehicle’s systems. The object that handles this intent must adopt the protocol. Use this intent object to resolve the defroster details and to create an object indicating whether you were able to make the change successfully.
+
+
+// A request to change the defroster settings in a CarPlay-enabled vehicle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetDefrosterSettingsInCarIntent
 type INSetDefrosterSettingsInCarIntent struct {
 	INIntent
@@ -87,16 +91,20 @@ func NewINSetDefrosterSettingsInCarIntent() INSetDefrosterSettingsInCarIntent {
 }
 
 
+
 // A Boolean indicating whether to enable or disable the defroster.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetDefrosterSettingsInCarIntent/enable-8tf0i
 func (i_ INSetDefrosterSettingsInCarIntent) Enable() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("enable"))
 	return rv
 }
 
+
 // The name of the car you applied the settings to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
 func (i_ INSetDefrosterSettingsInCarIntent) CarName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
@@ -104,17 +112,18 @@ func (i_ INSetDefrosterSettingsInCarIntent) CarName() INSpeakableString {
 }
 
 
-// SetCarName sets the value of the carName property.
 // The name of the car you applied the settings to.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
 func (i_ INSetDefrosterSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
+
 // The defroster to enable or disable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/defroster
 func (i_ INSetDefrosterSettingsInCarIntent) Defroster() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("defroster"))
@@ -122,10 +131,9 @@ func (i_ INSetDefrosterSettingsInCarIntent) Defroster() unsafe.Pointer {
 }
 
 
-// SetDefroster sets the value of the defroster property.
 // The defroster to enable or disable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/defroster
 func (i_ INSetDefrosterSettingsInCarIntent) SetDefroster(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDefroster:"), value)

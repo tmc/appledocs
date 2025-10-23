@@ -56,7 +56,6 @@ type IScroller interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller
-
 type Scroller struct {
 	Control
 }
@@ -107,7 +106,6 @@ func NewScroller() Scroller {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
-
 func (sc _ScrollerClass) PreferredScrollerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("preferredScrollerStyle"))
 	return rv
@@ -117,7 +115,6 @@ func (sc _ScrollerClass) PreferredScrollerStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
-
 func (s_ Scroller) PreferredScrollerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preferredScrollerStyle"))
 	return rv
@@ -128,7 +125,6 @@ func (s_ Scroller) PreferredScrollerStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/arrowsposition
-
 func (s_ Scroller) ArrowsPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("arrowsPosition"))
 	return rv
@@ -139,7 +135,6 @@ func (s_ Scroller) ArrowsPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/arrowsposition
-
 func (s_ Scroller) SetArrowsPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArrowsPosition:"), value)
 }
@@ -149,7 +144,6 @@ func (s_ Scroller) SetArrowsPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
-
 func (s_ Scroller) ControlSize() ControlSize {
 	rv := objc.Send[ControlSize](s_.ID, objc.Sel("controlSize"))
 	return rv
@@ -160,7 +154,6 @@ func (s_ Scroller) ControlSize() ControlSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
-
 func (s_ Scroller) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlSize:"), value)
 }
@@ -170,7 +163,6 @@ func (s_ Scroller) SetControlSize(value IControlSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
-
 func (s_ Scroller) ControlTint() ControlTint {
 	rv := objc.Send[ControlTint](s_.ID, objc.Sel("controlTint"))
 	return rv
@@ -181,7 +173,6 @@ func (s_ Scroller) ControlTint() ControlTint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
-
 func (s_ Scroller) SetControlTint(value IControlTint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTint:"), value)
 }
@@ -191,7 +182,6 @@ func (s_ Scroller) SetControlTint(value IControlTint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/hitpart
-
 func (s_ Scroller) HitPart() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("hitPart"))
 	return rv
@@ -202,7 +192,6 @@ func (s_ Scroller) HitPart() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/hitpart
-
 func (s_ Scroller) SetHitPart(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHitPart:"), value)
 }
@@ -212,7 +201,6 @@ func (s_ Scroller) SetHitPart(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
-
 func (s_ Scroller) KnobProportion() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("knobProportion"))
 	return rv
@@ -223,7 +211,6 @@ func (s_ Scroller) KnobProportion() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
-
 func (s_ Scroller) SetKnobProportion(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobProportion:"), value)
 }
@@ -233,7 +220,6 @@ func (s_ Scroller) SetKnobProportion(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.property
-
 func (s_ Scroller) KnobStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("knobStyle"))
 	return rv
@@ -244,7 +230,6 @@ func (s_ Scroller) KnobStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.property
-
 func (s_ Scroller) SetKnobStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobStyle:"), value)
 }
@@ -254,7 +239,6 @@ func (s_ Scroller) SetKnobStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/scrollerstyle
-
 func (s_ Scroller) ScrollerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrollerStyle"))
 	return rv
@@ -265,7 +249,6 @@ func (s_ Scroller) ScrollerStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/scrollerstyle
-
 func (s_ Scroller) SetScrollerStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollerStyle:"), value)
 }
@@ -275,7 +258,6 @@ func (s_ Scroller) SetScrollerStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.property
-
 func (s_ Scroller) UsableParts() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("usableParts"))
 	return rv
@@ -286,7 +268,6 @@ func (s_ Scroller) UsableParts() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.property
-
 func (s_ Scroller) SetUsableParts(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUsableParts:"), value)
 }

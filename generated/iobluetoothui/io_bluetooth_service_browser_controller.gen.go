@@ -40,7 +40,11 @@ type IBluetoothServiceBrowserController interface {
 // A NSWindowController subclass to display a window to search for and perform SDP queries on bluetooth devices within range.
 //
 // This NSWindowController subclass will bring up a generic Bluetooth search and SDP browsing window allowing the user to find devices within range, perform SDP queries on a particular device, and select a SDP service to connect to. The client application can provide NSArrays of valid service UUIDs to allow, and an NSArray of valid device types to allow. The device type filter is not yet implemented.
+
+
+// A NSWindowController subclass to display a window to search for and perform SDP queries on bluetooth devices within range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController
 type BluetoothServiceBrowserController struct {
 	appkit.WindowController
@@ -87,31 +91,38 @@ func NewBluetoothServiceBrowserController() BluetoothServiceBrowserController {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/browseDevices:options:
 func (bc _BluetoothServiceBrowserControllerClass) BrowseDevicesOptions(outRecord unsafe.Pointer, inOptions BluetoothServiceBrowserControllerOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("browseDevices:options:"), outRecord, inOptions)
 	return rv
 }
 
+
 // Runs the service browser panel as a sheet on the target window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/beginSheetModal(for:modalDelegate:didEnd:contextInfo:)
 func (b_ BluetoothServiceBrowserController) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow appkit.IWindow, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:"), sheetWindow, modalDelegate, didEndSelector, contextInfo)
 	return rv
 }
 
+
 // Invoke an already created window controller to display, and run the modal dialog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/discoverWithDeviceAttributes:serviceList:serviceRecord:
 func (b_ BluetoothServiceBrowserController) DiscoverWithDeviceAttributesServiceListServiceRecord(deviceAttributes unsafe.Pointer, serviceArray objectivec.IObject, outRecord unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("discoverWithDeviceAttributes:serviceList:serviceRecord:"), deviceAttributes, serviceArray, outRecord)
 	return rv
 }
 
+
 // Returns the result of the user’s selection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/getResults()
 func (b_ BluetoothServiceBrowserController) GetResults() foundation.Array {
 	rv := objc.Send[foundation.Array](b_.ID, objc.Sel("getResults"))

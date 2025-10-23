@@ -63,7 +63,6 @@ type ISearchFieldCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell
-
 type SearchFieldCell struct {
 	TextFieldCell
 }
@@ -110,10 +109,8 @@ func NewSearchFieldCell() SearchFieldCell {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(textCell:)
-
 func NewSearchFieldCellTextCell(string_ string) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
 	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
@@ -122,10 +119,8 @@ func NewSearchFieldCellTextCell(string_ string) SearchFieldCell {
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(coder:)
-
 func NewSearchFieldCellWithCoder(coder foundation.ICoder) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
 	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -135,58 +130,48 @@ func NewSearchFieldCellWithCoder(coder foundation.ICoder) SearchFieldCell {
 
 
 
-
 // Modifies the bounding rectangle for the cancel button cell.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonRect(forBounds:)
-
 func (s_ SearchFieldCell) CancelButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("cancelButtonRectForBounds:"), rect)
 	return rv
 }
 
 
-
 // Resets the cancel button cell to its default attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/resetCancelButtonCell()
-
 func (s_ SearchFieldCell) ResetCancelButtonCell() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("resetCancelButtonCell"))
 }
-
 
 
 // Resets the search button cell to its default attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/resetSearchButtonCell()
-
 func (s_ SearchFieldCell) ResetSearchButtonCell() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("resetSearchButtonCell"))
 }
-
 
 
 // Modifies the bounding rectangle for the search button cell.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonRect(forBounds:)
-
 func (s_ SearchFieldCell) SearchButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchButtonRectForBounds:"), rect)
 	return rv
 }
 
 
-
 // Modifies the bounding rectangle for the search-text field cell.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchTextRect(forBounds:)
-
 func (s_ SearchFieldCell) SearchTextRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchTextRectForBounds:"), rect)
 	return rv
@@ -197,7 +182,6 @@ func (s_ SearchFieldCell) SearchTextRectForBounds(rect coregraphics.CGRect) core
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonCell
-
 func (s_ SearchFieldCell) CancelButtonCell() NSButtonCell {
 	rv := objc.Send[NSButtonCell](s_.ID, objc.Sel("cancelButtonCell"))
 	return rv
@@ -208,7 +192,6 @@ func (s_ SearchFieldCell) CancelButtonCell() NSButtonCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonCell
-
 func (s_ SearchFieldCell) SetCancelButtonCell(value IButtonCell) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCancelButtonCell:"), value)
 }
@@ -218,7 +201,6 @@ func (s_ SearchFieldCell) SetCancelButtonCell(value IButtonCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/maximumRecents
-
 func (s_ SearchFieldCell) MaximumRecents() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("maximumRecents"))
 	return rv
@@ -229,7 +211,6 @@ func (s_ SearchFieldCell) MaximumRecents() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/maximumRecents
-
 func (s_ SearchFieldCell) SetMaximumRecents(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRecents:"), value)
 }
@@ -239,7 +220,6 @@ func (s_ SearchFieldCell) SetMaximumRecents(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentSearches
-
 func (s_ SearchFieldCell) RecentSearches() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("recentSearches"))
 	return rv
@@ -250,7 +230,6 @@ func (s_ SearchFieldCell) RecentSearches() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentSearches
-
 func (s_ SearchFieldCell) SetRecentSearches(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -270,7 +249,6 @@ func (s_ SearchFieldCell) SetRecentSearches(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
-
 func (s_ SearchFieldCell) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
 	rv := objc.Send[SearchFieldRecentsAutosaveName](s_.ID, objc.Sel("recentsAutosaveName"))
 	return rv
@@ -281,7 +259,6 @@ func (s_ SearchFieldCell) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
-
 func (s_ SearchFieldCell) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
 }
@@ -291,7 +268,6 @@ func (s_ SearchFieldCell) SetRecentsAutosaveName(value ISearchFieldRecentsAutosa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
-
 func (s_ SearchFieldCell) SearchButtonCell() NSButtonCell {
 	rv := objc.Send[NSButtonCell](s_.ID, objc.Sel("searchButtonCell"))
 	return rv
@@ -302,7 +278,6 @@ func (s_ SearchFieldCell) SearchButtonCell() NSButtonCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
-
 func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchButtonCell:"), value)
 }
@@ -312,7 +287,6 @@ func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchMenuTemplate
-
 func (s_ SearchFieldCell) SearchMenuTemplate() NSMenu {
 	rv := objc.Send[NSMenu](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
@@ -323,7 +297,6 @@ func (s_ SearchFieldCell) SearchMenuTemplate() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchMenuTemplate
-
 func (s_ SearchFieldCell) SetSearchMenuTemplate(value IMenu) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchMenuTemplate:"), value)
 }
@@ -333,7 +306,6 @@ func (s_ SearchFieldCell) SetSearchMenuTemplate(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsSearchStringImmediately
-
 func (s_ SearchFieldCell) SendsSearchStringImmediately() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsSearchStringImmediately"))
 	return rv
@@ -344,7 +316,6 @@ func (s_ SearchFieldCell) SendsSearchStringImmediately() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsSearchStringImmediately
-
 func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsSearchStringImmediately:"), value)
 }
@@ -354,7 +325,6 @@ func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
-
 func (s_ SearchFieldCell) SendsWholeSearchString() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsWholeSearchString"))
 	return rv
@@ -365,7 +335,6 @@ func (s_ SearchFieldCell) SendsWholeSearchString() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
-
 func (s_ SearchFieldCell) SetSendsWholeSearchString(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsWholeSearchString:"), value)
 }

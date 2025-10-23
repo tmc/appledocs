@@ -44,7 +44,6 @@ type ICaptureAudioFileOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioFileOutput
-
 type CaptureAudioFileOutput struct {
 	CaptureFileOutput
 }
@@ -95,7 +94,6 @@ func NewCaptureAudioFileOutput() CaptureAudioFileOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
-
 func (c_ CaptureAudioFileOutput) AudioSettings() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
 	return rv
@@ -106,7 +104,6 @@ func (c_ CaptureAudioFileOutput) AudioSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/audiosettings
-
 func (c_ CaptureAudioFileOutput) SetAudioSettings(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
@@ -116,7 +113,6 @@ func (c_ CaptureAudioFileOutput) SetAudioSettings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/metadata
-
 func (c_ CaptureAudioFileOutput) Metadata() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
@@ -127,7 +123,6 @@ func (c_ CaptureAudioFileOutput) Metadata() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/metadata
-
 func (c_ CaptureAudioFileOutput) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }

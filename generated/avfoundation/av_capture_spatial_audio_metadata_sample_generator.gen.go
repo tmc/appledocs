@@ -30,8 +30,6 @@ type _CaptureSpatialAudioMetadataSampleGeneratorClass struct {
 // An interface definition for the [CaptureSpatialAudioMetadataSampleGenerator] class.
 type ICaptureSpatialAudioMetadataSampleGenerator interface {
 	objectivec.IObject
-	AnalyzeAudioSample(sbuf unsafe.Pointer) unsafe.Pointer
-	NewTimedMetadataSampleBufferAndResetAnalyzer() unsafe.Pointer
 	TimedMetadataSampleBufferFormatDescription() unsafe.Pointer
 	SetTimedMetadataSampleBufferFormatDescription(value unsafe.Pointer)
 }
@@ -43,7 +41,6 @@ type ICaptureSpatialAudioMetadataSampleGenerator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSpatialAudioMetadataSampleGenerator
-
 type CaptureSpatialAudioMetadataSampleGenerator struct {
 	objectivec.Object
 }
@@ -88,35 +85,10 @@ func NewCaptureSpatialAudioMetadataSampleGenerator() CaptureSpatialAudioMetadata
 
 
 
-
-// Analyzes the provided audio sample buffer for its contribution to the spatial audio timed metadata value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSpatialAudioMetadataSampleGenerator/analyzeAudioSample(_:)
-
-func (c_ CaptureSpatialAudioMetadataSampleGenerator) AnalyzeAudioSample(sbuf unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("analyzeAudioSample:"), sbuf)
-	return rv
-}
-
-
-
-// Creates a sample buffer containing a spatial audio timed metadata sample computed from all analyzed audio buffers, and resets the analyzer to its initial state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSpatialAudioMetadataSampleGenerator/newTimedMetadataSampleBufferAndResetAnalyzer()
-
-func (c_ CaptureSpatialAudioMetadataSampleGenerator) NewTimedMetadataSampleBufferAndResetAnalyzer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("newTimedMetadataSampleBufferAndResetAnalyzer"))
-	return rv
-}
-
-
 // Returns the format description of the sample buffer returned from the
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturespatialaudiometadatasamplegenerator/timedmetadatasamplebufferformatdescription
-
 func (c_ CaptureSpatialAudioMetadataSampleGenerator) TimedMetadataSampleBufferFormatDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timedMetadataSampleBufferFormatDescription"))
 	return rv
@@ -127,7 +99,6 @@ func (c_ CaptureSpatialAudioMetadataSampleGenerator) TimedMetadataSampleBufferFo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturespatialaudiometadatasamplegenerator/timedmetadatasamplebufferformatdescription
-
 func (c_ CaptureSpatialAudioMetadataSampleGenerator) SetTimedMetadataSampleBufferFormatDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimedMetadataSampleBufferFormatDescription:"), value)
 }

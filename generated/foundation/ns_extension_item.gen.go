@@ -32,9 +32,9 @@ type IExtensionItem interface {
 	objectivec.IObject
 	Attachments() []ItemProvider
 	SetAttachments(value []ItemProvider)
-	AttributedContentText() NSAttributedString
+	AttributedContentText() IAttributedString
 	SetAttributedContentText(value IAttributedString)
-	AttributedTitle() NSAttributedString
+	AttributedTitle() IAttributedString
 	SetAttributedTitle(value IAttributedString)
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
@@ -124,7 +124,7 @@ func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attributedContentText
-func (e_ ExtensionItem) AttributedContentText() NSAttributedString {
+func (e_ ExtensionItem) AttributedContentText() IAttributedString {
 	rv := objc.Send[NSAttributedString](e_.ID, objc.Sel("attributedContentText"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (e_ ExtensionItem) SetAttributedContentText(value IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attributedTitle
-func (e_ ExtensionItem) AttributedTitle() NSAttributedString {
+func (e_ ExtensionItem) AttributedTitle() IAttributedString {
 	rv := objc.Send[NSAttributedString](e_.ID, objc.Sel("attributedTitle"))
 	return rv
 }

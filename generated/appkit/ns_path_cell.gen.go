@@ -67,7 +67,6 @@ type IPathCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathCell
-
 type PathCell struct {
 	ActionCell
 }
@@ -118,7 +117,6 @@ func NewPathCell() PathCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlsize
-
 func (p_ PathCell) ControlSize() ControlSize {
 	rv := objc.Send[ControlSize](p_.ID, objc.Sel("controlSize"))
 	return rv
@@ -129,7 +127,6 @@ func (p_ PathCell) ControlSize() ControlSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlsize
-
 func (p_ PathCell) SetControlSize(value IControlSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlSize:"), value)
 }
@@ -139,7 +136,6 @@ func (p_ PathCell) SetControlSize(value IControlSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-
 func (p_ PathCell) IsEditable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
 	return rv
@@ -150,7 +146,6 @@ func (p_ PathCell) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-
 func (p_ PathCell) SetIsEditable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
 }
@@ -160,7 +155,6 @@ func (p_ PathCell) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-
 func (p_ PathCell) IsSelectable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isSelectable"))
 	return rv
@@ -171,7 +165,6 @@ func (p_ PathCell) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-
 func (p_ PathCell) SetIsSelectable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSelectable:"), value)
 }
@@ -181,7 +174,6 @@ func (p_ PathCell) SetIsSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
-
 func (p_ PathCell) AllowedTypes() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
 	return rv
@@ -192,7 +184,6 @@ func (p_ PathCell) AllowedTypes() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
-
 func (p_ PathCell) SetAllowedTypes(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
 }
@@ -202,7 +193,6 @@ func (p_ PathCell) SetAllowedTypes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/backgroundcolor
-
 func (p_ PathCell) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](p_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -213,7 +203,6 @@ func (p_ PathCell) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/backgroundcolor
-
 func (p_ PathCell) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -223,7 +212,6 @@ func (p_ PathCell) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell
-
 func (p_ PathCell) ClickedPathComponentCell() NSPathComponentCell {
 	rv := objc.Send[NSPathComponentCell](p_.ID, objc.Sel("clickedPathComponentCell"))
 	return rv
@@ -234,7 +222,6 @@ func (p_ PathCell) ClickedPathComponentCell() NSPathComponentCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell
-
 func (p_ PathCell) SetClickedPathComponentCell(value IPathComponentCell) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClickedPathComponentCell:"), value)
 }
@@ -244,7 +231,6 @@ func (p_ PathCell) SetClickedPathComponentCell(value IPathComponentCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/delegate
-
 func (p_ PathCell) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
@@ -255,7 +241,6 @@ func (p_ PathCell) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/delegate
-
 func (p_ PathCell) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -265,7 +250,6 @@ func (p_ PathCell) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/doubleaction
-
 func (p_ PathCell) DoubleAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("doubleAction"))
 	return rv
@@ -276,7 +260,6 @@ func (p_ PathCell) DoubleAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/doubleaction
-
 func (p_ PathCell) SetDoubleAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleAction:"), value)
 }
@@ -286,7 +269,6 @@ func (p_ PathCell) SetDoubleAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathcomponentcells
-
 func (p_ PathCell) PathComponentCells() NSPathComponentCell {
 	rv := objc.Send[NSPathComponentCell](p_.ID, objc.Sel("pathComponentCells"))
 	return rv
@@ -297,7 +279,6 @@ func (p_ PathCell) PathComponentCells() NSPathComponentCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathcomponentcells
-
 func (p_ PathCell) SetPathComponentCells(value IPathComponentCell) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPathComponentCells:"), value)
 }
@@ -307,7 +288,6 @@ func (p_ PathCell) SetPathComponentCells(value IPathComponentCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathstyle
-
 func (p_ PathCell) PathStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathStyle"))
 	return rv
@@ -318,7 +298,6 @@ func (p_ PathCell) PathStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathstyle
-
 func (p_ PathCell) SetPathStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPathStyle:"), value)
 }
@@ -328,7 +307,6 @@ func (p_ PathCell) SetPathStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
-
 func (p_ PathCell) PlaceholderAttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
@@ -339,7 +317,6 @@ func (p_ PathCell) PlaceholderAttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
-
 func (p_ PathCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
@@ -349,7 +326,6 @@ func (p_ PathCell) SetPlaceholderAttributedString(value foundation.IAttributedSt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
-
 func (p_ PathCell) PlaceholderString() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
 	return rv
@@ -360,7 +336,6 @@ func (p_ PathCell) PlaceholderString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
-
 func (p_ PathCell) SetPlaceholderString(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
@@ -370,7 +345,6 @@ func (p_ PathCell) SetPlaceholderString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
-
 func (p_ PathCell) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
@@ -381,7 +355,6 @@ func (p_ PathCell) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
-
 func (p_ PathCell) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }

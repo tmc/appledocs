@@ -44,7 +44,6 @@ type ICBMutableService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService
-
 type CBMutableService struct {
 	CBService
 }
@@ -91,12 +90,10 @@ func NewCBMutableService() CBMutableService {
 
 
 
-
 // Creates a newly initialized mutable service specified by UUID and service type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/init(type:primary:)
-
 func NewCBMutableServiceWithTypePrimary(UUID ICBUUID, isPrimary bool) CBMutableService {
 	instance := getCBMutableServiceClass().Alloc()
 	rv := objc.Send[CBMutableService](instance.ID, objc.Sel("initWithType:primary:"), UUID, isPrimary)
@@ -110,7 +107,6 @@ func NewCBMutableServiceWithTypePrimary(UUID ICBUUID, isPrimary bool) CBMutableS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/characteristics
-
 func (c_ CBMutableService) Characteristics() []CBCharacteristic {
 	rv := objc.Send[[]CBCharacteristic](c_.ID, objc.Sel("characteristics"))
 	return rv
@@ -121,7 +117,6 @@ func (c_ CBMutableService) Characteristics() []CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/characteristics
-
 func (c_ CBMutableService) SetCharacteristics(value []CBCharacteristic) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -141,7 +136,6 @@ func (c_ CBMutableService) SetCharacteristics(value []CBCharacteristic) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/includedServices
-
 func (c_ CBMutableService) IncludedServices() []CBService {
 	rv := objc.Send[[]CBService](c_.ID, objc.Sel("includedServices"))
 	return rv
@@ -152,7 +146,6 @@ func (c_ CBMutableService) IncludedServices() []CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/includedServices
-
 func (c_ CBMutableService) SetIncludedServices(value []CBService) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

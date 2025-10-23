@@ -49,7 +49,6 @@ type IHKLensSpecification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLensSpecification
-
 type HKLensSpecification struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewHKLensSpecification() HKLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
-
 func (h_ HKLensSpecification) AddPower() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("addPower"))
 	return rv
@@ -109,7 +107,6 @@ func (h_ HKLensSpecification) AddPower() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
-
 func (h_ HKLensSpecification) SetAddPower(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAddPower:"), value)
 }
@@ -119,7 +116,6 @@ func (h_ HKLensSpecification) SetAddPower(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
-
 func (h_ HKLensSpecification) Axis() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("axis"))
 	return rv
@@ -130,7 +126,6 @@ func (h_ HKLensSpecification) Axis() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
-
 func (h_ HKLensSpecification) SetAxis(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAxis:"), value)
 }
@@ -140,7 +135,6 @@ func (h_ HKLensSpecification) SetAxis(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-
 func (h_ HKLensSpecification) Cylinder() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("cylinder"))
 	return rv
@@ -151,7 +145,6 @@ func (h_ HKLensSpecification) Cylinder() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-
 func (h_ HKLensSpecification) SetCylinder(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCylinder:"), value)
 }
@@ -161,7 +154,6 @@ func (h_ HKLensSpecification) SetCylinder(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
-
 func (h_ HKLensSpecification) Sphere() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sphere"))
 	return rv
@@ -172,7 +164,6 @@ func (h_ HKLensSpecification) Sphere() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
-
 func (h_ HKLensSpecification) SetSphere(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSphere:"), value)
 }

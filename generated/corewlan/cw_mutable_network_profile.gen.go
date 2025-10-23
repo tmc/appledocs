@@ -47,7 +47,6 @@ type ICWMutableNetworkProfile interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile
-
 type CWMutableNetworkProfile struct {
 	CWNetworkProfile
 }
@@ -98,7 +97,6 @@ func NewCWMutableNetworkProfile() CWMutableNetworkProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
-
 func (c_ CWMutableNetworkProfile) Security() CWSecurity {
 	rv := objc.Send[CWSecurity](c_.ID, objc.Sel("security"))
 	return rv
@@ -109,7 +107,6 @@ func (c_ CWMutableNetworkProfile) Security() CWSecurity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
-
 func (c_ CWMutableNetworkProfile) SetSecurity(value ICWSecurity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurity:"), value)
 }
@@ -119,7 +116,6 @@ func (c_ CWMutableNetworkProfile) SetSecurity(value ICWSecurity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-
 func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
@@ -130,7 +126,6 @@ func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-
 func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
@@ -140,7 +135,6 @@ func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-
 func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
 	rv := objc.Send[foundation.OrderedSet](c_.ID, objc.Sel("networkProfiles"))
 	return rv
@@ -151,7 +145,6 @@ func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-
 func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value foundation.IOrderedSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }

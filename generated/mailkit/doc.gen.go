@@ -2,11 +2,14 @@
 
 // Package mailkit provides Go bindings for the MailKit framework.
 //
-// Secure, customize, and act on email messages that users send and receive. [Full Topic]
+// Secure, customize, and act on email messages that users send and receive.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MailKit without requiring cgo.
+
+// Secure, customize, and act on email messages that users send and receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit
 package mailkit
 

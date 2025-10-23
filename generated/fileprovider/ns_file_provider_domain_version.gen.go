@@ -43,7 +43,6 @@ type IFileProviderDomainVersion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomainVersion
-
 type FileProviderDomainVersion struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewFileProviderDomainVersion() FileProviderDomainVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
-
 func (f_ FileProviderDomainVersion) DomainVersion() NSFileProviderDomainVersion {
 	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
@@ -103,7 +101,6 @@ func (f_ FileProviderDomainVersion) DomainVersion() NSFileProviderDomainVersion 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
-
 func (f_ FileProviderDomainVersion) SetDomainVersion(value IFileProviderDomainVersion) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDomainVersion:"), value)
 }

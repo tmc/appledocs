@@ -51,7 +51,11 @@ type IJSContext interface {
 // A JavaScript execution environment.
 //
 // You create and use JavaScript contexts to evaluate JavaScript scripts from Objective-C or Swift code; to access values that JavaScript defines or calculates; and to make native objects, methods, or functions accessible to JavaScript.
+
+
+// A JavaScript execution environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext
 type JSContext struct {
 	objectivec.Object
@@ -96,32 +100,40 @@ func NewJSContext() JSContext {
 }
 
 
+
 // Returns the currently executing JavaScript function.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/currentCallee()
 func (jc _JSContextClass) CurrentCallee() JSValue {
 	rv := objc.Send[JSValue](objc.ID(jc.class), objc.Sel("currentCallee"))
 	return rv
 }
 
+
 // Executes the specified JavaScript code, treating the specified URL as its source location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/evaluateScript(_:withSourceURL:)
 func (j_ JSContext) EvaluateScriptWithSourceURL(script string, sourceURL foundation.IURL) JSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("evaluateScript:withSourceURL:"), objc.String(script), sourceURL)
 	return rv
 }
 
+
 // Returns the value of the specified JavaScript property in the context’s global object, allowing subscript getter syntax.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/objectForKeyedSubscript(_:)
 func (j_ JSContext) ObjectForKeyedSubscript(key objectivec.IObject) JSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("objectForKeyedSubscript:"), key)
 	return rv
 }
 
+
 // A JavaScript exception to be thrown in evaluation of the script.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
 func (j_ JSContext) Exception() JSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("exception"))
@@ -129,25 +141,28 @@ func (j_ JSContext) Exception() JSValue {
 }
 
 
-// SetException sets the value of the exception property.
 // A JavaScript exception to be thrown in evaluation of the script.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
 func (j_ JSContext) SetException(value IJSValue) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setException:"), value)
 }
 
+
 // The JavaScript virtual machine to which the context belongs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/virtualMachine
 func (j_ JSContext) VirtualMachine() JSVirtualMachine {
 	rv := objc.Send[JSVirtualMachine](j_.ID, objc.Sel("virtualMachine"))
 	return rv
 }
 
+
 // A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
 func (j_ JSContext) ExceptionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("exceptionHandler"))
@@ -155,17 +170,18 @@ func (j_ JSContext) ExceptionHandler() unsafe.Pointer {
 }
 
 
-// SetExceptionHandler sets the value of the exceptionHandler property.
 // A block to be invoked should evaluating a script result in a JavaScript exception being thrown.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exceptionhandler
 func (j_ JSContext) SetExceptionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setExceptionHandler:"), value)
 }
 
+
 // The JavaScript global object associated with the context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/globalobject
 func (j_ JSContext) GlobalObject() JSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("globalObject"))
@@ -173,17 +189,18 @@ func (j_ JSContext) GlobalObject() JSValue {
 }
 
 
-// SetGlobalObject sets the value of the globalObject property.
 // The JavaScript global object associated with the context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/globalobject
 func (j_ JSContext) SetGlobalObject(value IJSValue) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setGlobalObject:"), value)
 }
 
+
 // A Boolean value that indicates whether you can inspect the JavaScript context with Safari Web Inspector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
 func (j_ JSContext) IsInspectable() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isInspectable"))
@@ -191,17 +208,18 @@ func (j_ JSContext) IsInspectable() bool {
 }
 
 
-// SetIsInspectable sets the value of the isInspectable property.
 // A Boolean value that indicates whether you can inspect the JavaScript context with Safari Web Inspector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
 func (j_ JSContext) SetIsInspectable(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsInspectable:"), value)
 }
 
+
 // Returns the C representation of the JavaScript context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/jsglobalcontextref
 func (j_ JSContext) JsGlobalContextRef() JSGlobalContextRef {
 	rv := objc.Send[JSGlobalContextRef](j_.ID, objc.Sel("jsGlobalContextRef"))
@@ -209,17 +227,18 @@ func (j_ JSContext) JsGlobalContextRef() JSGlobalContextRef {
 }
 
 
-// SetJsGlobalContextRef sets the value of the jsGlobalContextRef property.
 // Returns the C representation of the JavaScript context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/jsglobalcontextref
 func (j_ JSContext) SetJsGlobalContextRef(value IJSGlobalContextRef) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setJsGlobalContextRef:"), value)
 }
 
+
 // A descriptive name for the context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
 func (j_ JSContext) Name() string {
 	rv := objc.Send[string](j_.ID, objc.Sel("name"))
@@ -227,10 +246,9 @@ func (j_ JSContext) Name() string {
 }
 
 
-// SetName sets the value of the name property.
 // A descriptive name for the context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
 func (j_ JSContext) SetName(value string) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))

@@ -36,7 +36,11 @@ type IINVoiceShortcutCenter interface {
 // Retrieve the user’s shortcuts and make shortcut suggestions.
 //
 // With Shortcut Center, your app can: Retrieve shortcuts associated with your app that the user added to Siri. Suggest shortcuts the user may want to add to Siri. Before you can retrieve or suggest shortcuts, get a reference to the Shortcut Center from the class property. To retrieve all shortcuts associated with your app, call . To retrieve a particular shortcut, use the method, passing in the shortcut’s identifier. These methods return shortcuts associated with your app that the user added to Siri using your app or the Settings app. To suggest shortcuts for actions that the user hasn’t performed in your app but may want to add to Siri, call , passing in a list of suggested shortcuts. The user views the suggestions in the Gallery of the Shortcuts app. For more information, see .
+
+
+// Retrieve the user’s shortcuts and make shortcut suggestions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter
 type INVoiceShortcutCenter struct {
 	objectivec.Object
@@ -81,22 +85,28 @@ func NewINVoiceShortcutCenter() INVoiceShortcutCenter {
 }
 
 
+
 // The shared shortcut center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter/shared
 func (ic _INVoiceShortcutCenterClass) SharedCenter() INVoiceShortcutCenter {
 	rv := objc.Send[INVoiceShortcutCenter](objc.ID(ic.class), objc.Sel("sharedCenter"))
 	return rv
 }
+
 // Suggests shortcuts the user may want to add to Siri.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)
 func (i_ INVoiceShortcutCenter) SetShortcutSuggestions(suggestions []INShortcut) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcutSuggestions:"), suggestions)
 }
 
+
 // The shared shortcut center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter/shared
 func (i_ INVoiceShortcutCenter) SharedCenter() INVoiceShortcutCenter {
 	rv := objc.Send[INVoiceShortcutCenter](i_.ID, objc.Sel("sharedCenter"))

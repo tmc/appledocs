@@ -32,29 +32,29 @@ type IScriptObjectSpecifier interface {
 	objectivec.IObject
 	IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count unsafe.Pointer) int
 	ObjectsByEvaluatingWithContainers(containers objectivec.IObject) objc.ID
-	ChildSpecifier() NSScriptObjectSpecifier
+	ChildSpecifier() IScriptObjectSpecifier
 	SetChildSpecifier(value IScriptObjectSpecifier)
-	ContainerSpecifier() NSScriptObjectSpecifier
+	ContainerSpecifier() IScriptObjectSpecifier
 	SetContainerSpecifier(value IScriptObjectSpecifier)
-	ContainerClassDescription() NSScriptClassDescription
+	ContainerClassDescription() IScriptClassDescription
 	SetContainerClassDescription(value IScriptClassDescription)
 	ContainerIsObjectBeingTested() bool
 	SetContainerIsObjectBeingTested(value bool)
 	ContainerIsRangeContainerObject() bool
 	SetContainerIsRangeContainerObject(value bool)
-	Descriptor() NSAppleEventDescriptor
-	EvaluationErrorSpecifier() NSScriptObjectSpecifier
+	Descriptor() IAppleEventDescriptor
+	EvaluationErrorSpecifier() IScriptObjectSpecifier
 	EvaluationErrorNumber() int
 	SetEvaluationErrorNumber(value int)
 	Key() string
 	SetKey(value string)
-	KeyClassDescription() NSScriptClassDescription
+	KeyClassDescription() IScriptClassDescription
 	ObjectsByEvaluatingSpecifier() objc.ID
-	Child() NSScriptObjectSpecifier
+	Child() IScriptObjectSpecifier
 	SetChild(value IScriptObjectSpecifier)
-	Container() NSScriptObjectSpecifier
+	Container() IScriptObjectSpecifier
 	SetContainer(value IScriptObjectSpecifier)
-	EvaluationError() NSScriptObjectSpecifier
+	EvaluationError() IScriptObjectSpecifier
 	SetEvaluationError(value IScriptObjectSpecifier)
 }
 
@@ -160,7 +160,7 @@ func NewScriptObjectSpecifierWithDescriptor(descriptor IAppleEventDescriptor) Sc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(descriptor:)
-func (sc _ScriptObjectSpecifierClass) ObjectSpecifierWithDescriptor(descriptor IAppleEventDescriptor) ScriptObjectSpecifier {
+func (sc _ScriptObjectSpecifierClass) ObjectSpecifierWithDescriptor(descriptor IAppleEventDescriptor) IScriptObjectSpecifier {
 	rv := objc.Send[ScriptObjectSpecifier](objc.ID(sc.class), objc.Sel("objectSpecifierWithDescriptor:"), descriptor)
 	return rv
 }
@@ -190,7 +190,7 @@ func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingWithContainers(containers obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/child
-func (s_ ScriptObjectSpecifier) ChildSpecifier() NSScriptObjectSpecifier {
+func (s_ ScriptObjectSpecifier) ChildSpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("childSpecifier"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (s_ ScriptObjectSpecifier) SetChildSpecifier(value IScriptObjectSpecifier) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/container
-func (s_ ScriptObjectSpecifier) ContainerSpecifier() NSScriptObjectSpecifier {
+func (s_ ScriptObjectSpecifier) ContainerSpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("containerSpecifier"))
 	return rv
 }
@@ -228,7 +228,7 @@ func (s_ ScriptObjectSpecifier) SetContainerSpecifier(value IScriptObjectSpecifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerClassDescription
-func (s_ ScriptObjectSpecifier) ContainerClassDescription() NSScriptClassDescription {
+func (s_ ScriptObjectSpecifier) ContainerClassDescription() IScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("containerClassDescription"))
 	return rv
 }
@@ -285,7 +285,7 @@ func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/descriptor
-func (s_ ScriptObjectSpecifier) Descriptor() NSAppleEventDescriptor {
+func (s_ ScriptObjectSpecifier) Descriptor() IAppleEventDescriptor {
 	rv := objc.Send[NSAppleEventDescriptor](s_.ID, objc.Sel("descriptor"))
 	return rv
 }
@@ -295,7 +295,7 @@ func (s_ ScriptObjectSpecifier) Descriptor() NSAppleEventDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/evaluationError
-func (s_ ScriptObjectSpecifier) EvaluationErrorSpecifier() NSScriptObjectSpecifier {
+func (s_ ScriptObjectSpecifier) EvaluationErrorSpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("evaluationErrorSpecifier"))
 	return rv
 }
@@ -343,7 +343,7 @@ func (s_ ScriptObjectSpecifier) SetKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/keyClassDescription
-func (s_ ScriptObjectSpecifier) KeyClassDescription() NSScriptClassDescription {
+func (s_ ScriptObjectSpecifier) KeyClassDescription() IScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("keyClassDescription"))
 	return rv
 }
@@ -363,7 +363,7 @@ func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingSpecifier() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/child
-func (s_ ScriptObjectSpecifier) Child() NSScriptObjectSpecifier {
+func (s_ ScriptObjectSpecifier) Child() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("child"))
 	return rv
 }
@@ -382,7 +382,7 @@ func (s_ ScriptObjectSpecifier) SetChild(value IScriptObjectSpecifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/container
-func (s_ ScriptObjectSpecifier) Container() NSScriptObjectSpecifier {
+func (s_ ScriptObjectSpecifier) Container() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("container"))
 	return rv
 }
@@ -401,7 +401,7 @@ func (s_ ScriptObjectSpecifier) SetContainer(value IScriptObjectSpecifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerror
-func (s_ ScriptObjectSpecifier) EvaluationError() NSScriptObjectSpecifier {
+func (s_ ScriptObjectSpecifier) EvaluationError() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("evaluationError"))
 	return rv
 }

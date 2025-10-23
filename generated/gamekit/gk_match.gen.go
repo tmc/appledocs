@@ -54,7 +54,6 @@ type IMatch interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch
-
 type Match struct {
 	objectivec.Object
 }
@@ -99,12 +98,10 @@ func NewMatch() Match {
 
 
 
-
 // Joins the local player to a voice channel.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/voiceChat(withName:)
-
 func (m_ Match) VoiceChatWithName(name string) VoiceChat {
 	rv := objc.Send[VoiceChat](m_.ID, objc.Sel("voiceChatWithName:"), objc.String(name))
 	return rv
@@ -115,7 +112,6 @@ func (m_ Match) VoiceChatWithName(name string) VoiceChat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
-
 func (m_ Match) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
 	return rv
@@ -126,7 +122,6 @@ func (m_ Match) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
-
 func (m_ Match) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -136,7 +131,6 @@ func (m_ Match) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-
 func (m_ Match) ExpectedPlayerCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
 	return rv
@@ -147,7 +141,6 @@ func (m_ Match) ExpectedPlayerCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-
 func (m_ Match) SetExpectedPlayerCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
 }
@@ -157,7 +150,6 @@ func (m_ Match) SetExpectedPlayerCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
-
 func (m_ Match) PlayerIDs() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("playerIDs"))
 	return rv
@@ -168,7 +160,6 @@ func (m_ Match) PlayerIDs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
-
 func (m_ Match) SetPlayerIDs(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
 }
@@ -178,7 +169,6 @@ func (m_ Match) SetPlayerIDs(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
-
 func (m_ Match) PlayerProperties() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("playerProperties"))
 	return rv
@@ -189,7 +179,6 @@ func (m_ Match) PlayerProperties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
-
 func (m_ Match) SetPlayerProperties(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerProperties:"), objc.String(value))
 }
@@ -199,7 +188,6 @@ func (m_ Match) SetPlayerProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
-
 func (m_ Match) Players() GKPlayer {
 	rv := objc.Send[GKPlayer](m_.ID, objc.Sel("players"))
 	return rv
@@ -210,7 +198,6 @@ func (m_ Match) Players() GKPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
-
 func (m_ Match) SetPlayers(value IGKPlayer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayers:"), value)
 }
@@ -220,7 +207,6 @@ func (m_ Match) SetPlayers(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
-
 func (m_ Match) Properties() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
 	return rv
@@ -231,7 +217,6 @@ func (m_ Match) Properties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
-
 func (m_ Match) SetProperties(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
 }

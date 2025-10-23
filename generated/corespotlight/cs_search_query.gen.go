@@ -57,7 +57,6 @@ type ICSSearchQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery
-
 type CSSearchQuery struct {
 	objectivec.Object
 }
@@ -102,12 +101,10 @@ func NewCSSearchQuery() CSSearchQuery {
 
 
 
-
 // Initializes and returns a query object with the specified query string and item attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/init(queryString:attributes:)
-
 func NewCSSearchQueryWithQueryStringAttributes(queryString string, attributes []string) CSSearchQuery {
 	instance := getCSSearchQueryClass().Alloc()
 	rv := objc.Send[CSSearchQuery](instance.ID, objc.Sel("initWithQueryString:attributes:"), objc.String(queryString), attributes)
@@ -116,12 +113,10 @@ func NewCSSearchQueryWithQueryStringAttributes(queryString string, attributes []
 }
 
 
-
 // Initializes and returns a query object with the specified query string and query context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/init(queryString:queryContext:)
-
 func NewCSSearchQueryWithQueryStringQueryContext(queryString string, queryContext ICSSearchQueryContext) CSSearchQuery {
 	instance := getCSSearchQueryClass().Alloc()
 	rv := objc.Send[CSSearchQuery](instance.ID, objc.Sel("initWithQueryString:queryContext:"), objc.String(queryString), queryContext)
@@ -131,23 +126,19 @@ func NewCSSearchQueryWithQueryStringQueryContext(queryString string, queryContex
 
 
 
-
 // Cancels the current query operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/cancel()
-
 func (c_ CSSearchQuery) Cancel() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("cancel"))
 }
-
 
 
 // Starts searching the index for items that match the current query string and parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/start()
-
 func (c_ CSSearchQuery) Start() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("start"))
 }
@@ -157,7 +148,6 @@ func (c_ CSSearchQuery) Start() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/completionHandler
-
 func (c_ CSSearchQuery) CompletionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionHandler"))
 	return rv
@@ -168,7 +158,6 @@ func (c_ CSSearchQuery) CompletionHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/completionHandler
-
 func (c_ CSSearchQuery) SetCompletionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionHandler:"), value)
 }
@@ -178,7 +167,6 @@ func (c_ CSSearchQuery) SetCompletionHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/foundItemCount
-
 func (c_ CSSearchQuery) FoundItemCount() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("foundItemCount"))
 	return rv
@@ -189,7 +177,6 @@ func (c_ CSSearchQuery) FoundItemCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/foundItemsHandler
-
 func (c_ CSSearchQuery) FoundItemsHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("foundItemsHandler"))
 	return rv
@@ -200,7 +187,6 @@ func (c_ CSSearchQuery) FoundItemsHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/foundItemsHandler
-
 func (c_ CSSearchQuery) SetFoundItemsHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFoundItemsHandler:"), value)
 }
@@ -210,7 +196,6 @@ func (c_ CSSearchQuery) SetFoundItemsHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/isCancelled
-
 func (c_ CSSearchQuery) Cancelled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("cancelled"))
 	return rv
@@ -221,7 +206,6 @@ func (c_ CSSearchQuery) Cancelled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/protectionClasses
-
 func (c_ CSSearchQuery) ProtectionClasses() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("protectionClasses"))
 	return rv
@@ -232,7 +216,6 @@ func (c_ CSSearchQuery) ProtectionClasses() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/protectionClasses
-
 func (c_ CSSearchQuery) SetProtectionClasses(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -252,7 +235,6 @@ func (c_ CSSearchQuery) SetProtectionClasses(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
-
 func (c_ CSSearchQuery) CSQueryContinuationActionType() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
 	return rv
@@ -263,7 +245,6 @@ func (c_ CSSearchQuery) CSQueryContinuationActionType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/iscancelled
-
 func (c_ CSSearchQuery) IsCancelled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCancelled"))
 	return rv
@@ -274,7 +255,6 @@ func (c_ CSSearchQuery) IsCancelled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/iscancelled
-
 func (c_ CSSearchQuery) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCancelled:"), value)
 }
@@ -284,7 +264,6 @@ func (c_ CSSearchQuery) SetIsCancelled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/results-swift.property
-
 func (c_ CSSearchQuery) Results() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("results"))
 	return rv
@@ -295,7 +274,6 @@ func (c_ CSSearchQuery) Results() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquery/results-swift.property
-
 func (c_ CSSearchQuery) SetResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
 }
@@ -305,7 +283,6 @@ func (c_ CSSearchQuery) SetResults(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
-
 func (c_ CSSearchQuery) CSSearchQueryString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
 	return rv

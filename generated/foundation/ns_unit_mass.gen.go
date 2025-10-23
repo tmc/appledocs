@@ -234,7 +234,7 @@ func (uc _UnitMassClass) Stones() UnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/carats
-func (u_ UnitMass) Carats() NSUnitMass {
+func (u_ UnitMass) Carats() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("carats"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (u_ UnitMass) Carats() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/centigrams
-func (u_ UnitMass) Centigrams() NSUnitMass {
+func (u_ UnitMass) Centigrams() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("centigrams"))
 	return rv
 }
@@ -254,7 +254,7 @@ func (u_ UnitMass) Centigrams() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/decigrams
-func (u_ UnitMass) Decigrams() NSUnitMass {
+func (u_ UnitMass) Decigrams() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("decigrams"))
 	return rv
 }
@@ -264,7 +264,7 @@ func (u_ UnitMass) Decigrams() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/grams
-func (u_ UnitMass) Grams() NSUnitMass {
+func (u_ UnitMass) Grams() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("grams"))
 	return rv
 }
@@ -274,7 +274,7 @@ func (u_ UnitMass) Grams() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
-func (u_ UnitMass) Kilograms() NSUnitMass {
+func (u_ UnitMass) Kilograms() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("kilograms"))
 	return rv
 }
@@ -284,7 +284,7 @@ func (u_ UnitMass) Kilograms() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/metricTons
-func (u_ UnitMass) MetricTons() NSUnitMass {
+func (u_ UnitMass) MetricTons() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("metricTons"))
 	return rv
 }
@@ -294,7 +294,7 @@ func (u_ UnitMass) MetricTons() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/micrograms
-func (u_ UnitMass) Micrograms() NSUnitMass {
+func (u_ UnitMass) Micrograms() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("micrograms"))
 	return rv
 }
@@ -304,7 +304,7 @@ func (u_ UnitMass) Micrograms() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/milligrams
-func (u_ UnitMass) Milligrams() NSUnitMass {
+func (u_ UnitMass) Milligrams() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("milligrams"))
 	return rv
 }
@@ -314,7 +314,7 @@ func (u_ UnitMass) Milligrams() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/nanograms
-func (u_ UnitMass) Nanograms() NSUnitMass {
+func (u_ UnitMass) Nanograms() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("nanograms"))
 	return rv
 }
@@ -324,7 +324,7 @@ func (u_ UnitMass) Nanograms() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/ounces
-func (u_ UnitMass) Ounces() NSUnitMass {
+func (u_ UnitMass) Ounces() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("ounces"))
 	return rv
 }
@@ -334,7 +334,7 @@ func (u_ UnitMass) Ounces() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/ouncesTroy
-func (u_ UnitMass) OuncesTroy() NSUnitMass {
+func (u_ UnitMass) OuncesTroy() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("ouncesTroy"))
 	return rv
 }
@@ -344,7 +344,7 @@ func (u_ UnitMass) OuncesTroy() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/picograms
-func (u_ UnitMass) Picograms() NSUnitMass {
+func (u_ UnitMass) Picograms() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("picograms"))
 	return rv
 }
@@ -354,7 +354,7 @@ func (u_ UnitMass) Picograms() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/pounds
-func (u_ UnitMass) PoundsMass() NSUnitMass {
+func (u_ UnitMass) PoundsMass() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("poundsMass"))
 	return rv
 }
@@ -364,7 +364,7 @@ func (u_ UnitMass) PoundsMass() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/shortTons
-func (u_ UnitMass) ShortTons() NSUnitMass {
+func (u_ UnitMass) ShortTons() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("shortTons"))
 	return rv
 }
@@ -374,7 +374,7 @@ func (u_ UnitMass) ShortTons() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/slugs
-func (u_ UnitMass) Slugs() NSUnitMass {
+func (u_ UnitMass) Slugs() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("slugs"))
 	return rv
 }
@@ -384,7 +384,7 @@ func (u_ UnitMass) Slugs() NSUnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/stones
-func (u_ UnitMass) Stones() NSUnitMass {
+func (u_ UnitMass) Stones() IUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("stones"))
 	return rv
 }

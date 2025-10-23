@@ -32,7 +32,9 @@ type ImLastServicesUpdate interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mLastServicesUpdate
 type mLastServicesUpdate struct {
 	objectivec.Object

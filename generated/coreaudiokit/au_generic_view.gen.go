@@ -43,7 +43,6 @@ type IGenericView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView
-
 type GenericView struct {
 	appkit.View
 }
@@ -90,12 +89,10 @@ func NewGenericView() GenericView {
 
 
 
-
 // Creates a generic view for an audio unit, setting all display flags.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/init(audioUnit:)
-
 func NewGenericViewWithAudioUnit(au audiotoolbox.IAudioUnit) GenericView {
 	instance := getGenericViewClass().Alloc()
 	rv := objc.Send[GenericView](instance.ID, objc.Sel("initWithAudioUnit:"), au)
@@ -104,12 +101,10 @@ func NewGenericViewWithAudioUnit(au audiotoolbox.IAudioUnit) GenericView {
 }
 
 
-
 // Initializes a generic view for an audio unit, setting specific display flags.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/init(audioUnit:displayFlags:)
-
 func NewGenericViewWithAudioUnitDisplayFlags(inAudioUnit audiotoolbox.IAudioUnit, inFlags GenericViewDisplayFlags) GenericView {
 	instance := getGenericViewClass().Alloc()
 	rv := objc.Send[GenericView](instance.ID, objc.Sel("initWithAudioUnit:displayFlags:"), inAudioUnit, inFlags)
@@ -123,7 +118,6 @@ func NewGenericViewWithAudioUnitDisplayFlags(inAudioUnit audiotoolbox.IAudioUnit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/audioUnit
-
 func (g_ GenericView) AudioUnit() audiotoolbox.AudioUnit {
 	rv := objc.Send[audiotoolbox.AudioUnit](g_.ID, objc.Sel("audioUnit"))
 	return rv
@@ -134,7 +128,6 @@ func (g_ GenericView) AudioUnit() audiotoolbox.AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/showsExpertParameters
-
 func (g_ GenericView) ShowsExpertParameters() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("showsExpertParameters"))
 	return rv
@@ -145,7 +138,6 @@ func (g_ GenericView) ShowsExpertParameters() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/showsExpertParameters
-
 func (g_ GenericView) SetShowsExpertParameters(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShowsExpertParameters:"), value)
 }

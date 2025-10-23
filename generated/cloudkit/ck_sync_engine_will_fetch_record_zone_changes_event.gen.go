@@ -39,7 +39,6 @@ type ICKSyncEngineWillFetchRecordZoneChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent
-
 type CKSyncEngineWillFetchRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }
@@ -90,7 +89,6 @@ func NewCKSyncEngineWillFetchRecordZoneChangesEvent() CKSyncEngineWillFetchRecor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent/zoneID
-
 func (c_ CKSyncEngineWillFetchRecordZoneChangesEvent) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv

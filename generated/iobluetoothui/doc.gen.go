@@ -2,11 +2,14 @@
 
 // Package iobluetoothui provides Go bindings for the IOBluetoothUI framework.
 //
-// Present an interface through which users can pair their devices with other Bluetooth devices. [Full Topic]
+// Present an interface through which users can pair their devices with other Bluetooth devices.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IOBluetoothUI without requiring cgo.
+
+// Present an interface through which users can pair their devices with other Bluetooth devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI
 package iobluetoothui
 

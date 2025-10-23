@@ -45,7 +45,6 @@ type IPropertyMapping interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping
-
 type PropertyMapping struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewPropertyMapping() PropertyMapping {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-
 func (p_ PropertyMapping) Name() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
@@ -105,7 +103,6 @@ func (p_ PropertyMapping) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-
 func (p_ PropertyMapping) SetName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -115,7 +112,6 @@ func (p_ PropertyMapping) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
-
 func (p_ PropertyMapping) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userInfo"))
 	return rv
@@ -126,7 +122,6 @@ func (p_ PropertyMapping) UserInfo() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
-
 func (p_ PropertyMapping) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
@@ -136,7 +131,6 @@ func (p_ PropertyMapping) SetUserInfo(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-
 func (p_ PropertyMapping) ValueExpression() Expression {
 	rv := objc.Send[Expression](p_.ID, objc.Sel("valueExpression"))
 	return rv
@@ -147,7 +141,6 @@ func (p_ PropertyMapping) ValueExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-
 func (p_ PropertyMapping) SetValueExpression(value IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }

@@ -40,7 +40,6 @@ type IFragmentedAssetTrack interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAssetTrack
-
 type FragmentedAssetTrack struct {
 	AssetTrack
 }

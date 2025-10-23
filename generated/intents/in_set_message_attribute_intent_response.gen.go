@@ -36,7 +36,11 @@ type IINSetMessageAttributeIntentResponse interface {
 // Your app’s response to a set message attribute intent.
 //
 // An object contains the status of modifying the specified messages. You create instances of this class when confirming or handling a set message attribute intent. You create an object in the and methods of your set message attribute handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a set message attribute intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetMessageAttributeIntentResponse
 type INSetMessageAttributeIntentResponse struct {
 	INIntentResponse
@@ -83,8 +87,10 @@ func NewINSetMessageAttributeIntentResponse() INSetMessageAttributeIntentRespons
 }
 
 
+
 // The code indicating whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse/code
 func (i_ INSetMessageAttributeIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -92,10 +98,9 @@ func (i_ INSetMessageAttributeIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code indicating whether you successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse/code
 func (i_ INSetMessageAttributeIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)

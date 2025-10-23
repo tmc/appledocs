@@ -60,7 +60,6 @@ type ICKShareParticipant interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant
-
 type CKShareParticipant struct {
 	objectivec.Object
 }
@@ -109,7 +108,6 @@ func NewCKShareParticipant() CKShareParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/acceptanceStatus-swift.property
-
 func (c_ CKShareParticipant) AcceptanceStatus() CKShareParticipantAcceptanceStatus {
 	rv := objc.Send[CKShareParticipantAcceptanceStatus](c_.ID, objc.Sel("acceptanceStatus"))
 	return rv
@@ -120,7 +118,6 @@ func (c_ CKShareParticipant) AcceptanceStatus() CKShareParticipantAcceptanceStat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/permission-swift.property
-
 func (c_ CKShareParticipant) Permission() CKShareParticipantPermission {
 	rv := objc.Send[CKShareParticipantPermission](c_.ID, objc.Sel("permission"))
 	return rv
@@ -131,7 +128,6 @@ func (c_ CKShareParticipant) Permission() CKShareParticipantPermission {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/permission-swift.property
-
 func (c_ CKShareParticipant) SetPermission(value ICKShareParticipantPermission) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPermission:"), value)
 }
@@ -141,7 +137,6 @@ func (c_ CKShareParticipant) SetPermission(value ICKShareParticipantPermission) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/role-swift.property
-
 func (c_ CKShareParticipant) Role() CKShareParticipantRole {
 	rv := objc.Send[CKShareParticipantRole](c_.ID, objc.Sel("role"))
 	return rv
@@ -152,7 +147,6 @@ func (c_ CKShareParticipant) Role() CKShareParticipantRole {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/role-swift.property
-
 func (c_ CKShareParticipant) SetRole(value ICKShareParticipantRole) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRole:"), value)
 }
@@ -162,7 +156,6 @@ func (c_ CKShareParticipant) SetRole(value ICKShareParticipantRole) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/type
-
 func (c_ CKShareParticipant) Type() CKShareParticipantType {
 	rv := objc.Send[CKShareParticipantType](c_.ID, objc.Sel("type"))
 	return rv
@@ -173,7 +166,6 @@ func (c_ CKShareParticipant) Type() CKShareParticipantType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/type
-
 func (c_ CKShareParticipant) SetType(value CKShareParticipantType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
@@ -183,7 +175,6 @@ func (c_ CKShareParticipant) SetType(value CKShareParticipantType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Participant/userIdentity
-
 func (c_ CKShareParticipant) UserIdentity() CKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
@@ -194,7 +185,6 @@ func (c_ CKShareParticipant) UserIdentity() CKUserIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/dateaddedtoshare
-
 func (c_ CKShareParticipant) DateAddedToShare() foundation.Date {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("dateAddedToShare"))
 	return rv
@@ -205,7 +195,6 @@ func (c_ CKShareParticipant) DateAddedToShare() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/dateaddedtoshare
-
 func (c_ CKShareParticipant) SetDateAddedToShare(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateAddedToShare:"), value)
 }
@@ -215,7 +204,6 @@ func (c_ CKShareParticipant) SetDateAddedToShare(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/isapprovedrequester
-
 func (c_ CKShareParticipant) IsApprovedRequester() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isApprovedRequester"))
 	return rv
@@ -226,7 +214,6 @@ func (c_ CKShareParticipant) IsApprovedRequester() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/isapprovedrequester
-
 func (c_ CKShareParticipant) SetIsApprovedRequester(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsApprovedRequester:"), value)
 }
@@ -234,7 +221,6 @@ func (c_ CKShareParticipant) SetIsApprovedRequester(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/participantid
-
 func (c_ CKShareParticipant) ParticipantID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("participantID"))
 	return rv
@@ -243,7 +229,6 @@ func (c_ CKShareParticipant) ParticipantID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/participantid
-
 func (c_ CKShareParticipant) SetParticipantID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParticipantID:"), value)
 }
@@ -253,7 +238,6 @@ func (c_ CKShareParticipant) SetParticipantID(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
-
 func (c_ CKShareParticipant) Participants() CKShareParticipant {
 	rv := objc.Send[CKShareParticipant](c_.ID, objc.Sel("participants"))
 	return rv
@@ -264,7 +248,6 @@ func (c_ CKShareParticipant) Participants() CKShareParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
-
 func (c_ CKShareParticipant) SetParticipants(value ICKShareParticipant) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParticipants:"), value)
 }
@@ -274,7 +257,6 @@ func (c_ CKShareParticipant) SetParticipants(value ICKShareParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/publicpermission
-
 func (c_ CKShareParticipant) PublicPermission() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("publicPermission"))
 	return rv
@@ -285,7 +267,6 @@ func (c_ CKShareParticipant) PublicPermission() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/publicpermission
-
 func (c_ CKShareParticipant) SetPublicPermission(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPublicPermission:"), value)
 }

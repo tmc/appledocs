@@ -46,7 +46,6 @@ type ICustomImageRep interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep
-
 type CustomImageRep struct {
 	ImageRep
 }
@@ -93,12 +92,10 @@ func NewCustomImageRep() CustomImageRep {
 
 
 
-
 // Returns a representation of an image initialized with the specified delegate information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/init(draw:delegate:)
-
 func NewCustomImageRepWithDrawSelectorDelegate(selector objc.SEL, delegate objectivec.IObject) CustomImageRep {
 	instance := getCustomImageRepClass().Alloc()
 	rv := objc.Send[CustomImageRep](instance.ID, objc.Sel("initWithDrawSelector:delegate:"), selector, delegate)
@@ -112,7 +109,6 @@ func NewCustomImageRepWithDrawSelectorDelegate(selector objc.SEL, delegate objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/delegate
-
 func (c_ CustomImageRep) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -123,7 +119,6 @@ func (c_ CustomImageRep) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawselector
-
 func (c_ CustomImageRep) DrawSelector() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("drawSelector"))
 	return rv
@@ -134,7 +129,6 @@ func (c_ CustomImageRep) DrawSelector() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawselector
-
 func (c_ CustomImageRep) SetDrawSelector(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawSelector:"), value)
 }
@@ -144,7 +138,6 @@ func (c_ CustomImageRep) SetDrawSelector(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-
 func (c_ CustomImageRep) DrawingHandler() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("drawingHandler"))
 	return rv
@@ -155,7 +148,6 @@ func (c_ CustomImageRep) DrawingHandler() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-
 func (c_ CustomImageRep) SetDrawingHandler(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingHandler:"), value)
 }

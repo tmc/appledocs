@@ -40,7 +40,6 @@ type ISecureTextField interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextField
-
 type SecureTextField struct {
 	TextField
 }

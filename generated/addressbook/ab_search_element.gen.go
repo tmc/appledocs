@@ -42,7 +42,6 @@ type IABSearchElement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement
-
 type ABSearchElement struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewABSearchElement() ABSearchElement {
 
 
 
-
 // Returns a compound search element, created by combining the search elements in an array with the given conjunction.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/init(forConjunction:children:)
-
 func NewABSearchElementForConjunctionChildren(conjuction IABSearchConjunction, children objectivec.IObject) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(getABSearchElementClass().class), objc.Sel("searchElementForConjunction:children:"), conjuction, children)
 	return rv
@@ -104,19 +101,16 @@ func NewABSearchElementForConjunctionChildren(conjuction IABSearchConjunction, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/init(forConjunction:children:)
-
 func (ac _ABSearchElementClass) SearchElementForConjunctionChildren(conjuction IABSearchConjunction, children objectivec.IObject) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForConjunction:children:"), conjuction, children)
 	return rv
 }
 
 
-
 // Tests whether or not a record matches a search element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/matchesRecord(_:)
-
 func (a_ ABSearchElement) MatchesRecord(record IABRecord) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("matchesRecord:"), record)
 	return rv

@@ -51,7 +51,6 @@ type IPedometerData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData
-
 type PedometerData struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewPedometerData() PedometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/averageActivePace
-
 func (p_ PedometerData) AverageActivePace() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("averageActivePace"))
 	return rv
@@ -111,7 +109,6 @@ func (p_ PedometerData) AverageActivePace() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentCadence
-
 func (p_ PedometerData) CurrentCadence() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentCadence"))
 	return rv
@@ -122,7 +119,6 @@ func (p_ PedometerData) CurrentCadence() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentPace
-
 func (p_ PedometerData) CurrentPace() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentPace"))
 	return rv
@@ -133,7 +129,6 @@ func (p_ PedometerData) CurrentPace() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/distance
-
 func (p_ PedometerData) Distance() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("distance"))
 	return rv
@@ -144,7 +139,6 @@ func (p_ PedometerData) Distance() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/endDate
-
 func (p_ PedometerData) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
@@ -155,7 +149,6 @@ func (p_ PedometerData) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsAscended
-
 func (p_ PedometerData) FloorsAscended() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsAscended"))
 	return rv
@@ -166,7 +159,6 @@ func (p_ PedometerData) FloorsAscended() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsDescended
-
 func (p_ PedometerData) FloorsDescended() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsDescended"))
 	return rv
@@ -177,7 +169,6 @@ func (p_ PedometerData) FloorsDescended() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/numberOfSteps
-
 func (p_ PedometerData) NumberOfSteps() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("numberOfSteps"))
 	return rv
@@ -188,7 +179,6 @@ func (p_ PedometerData) NumberOfSteps() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/startDate
-
 func (p_ PedometerData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv

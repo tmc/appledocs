@@ -40,7 +40,6 @@ type IBTMIDILocalPeripheralViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTMIDILocalPeripheralViewController
-
 type BTMIDILocalPeripheralViewController struct {
 	ViewController
 }

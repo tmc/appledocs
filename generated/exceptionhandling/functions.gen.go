@@ -46,7 +46,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandlerResume()
-
 func NSExceptionHandlerResume() {
 	_NSExceptionHandlerResume()
 	}

@@ -32,7 +32,9 @@ type ImFolderListingFileRef interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mFolderListingFileRef
 type mFolderListingFileRef struct {
 	objectivec.Object

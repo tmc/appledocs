@@ -56,7 +56,6 @@ type ICNPostalAddress interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress
-
 type CNPostalAddress struct {
 	objectivec.Object
 }
@@ -105,7 +104,6 @@ func NewCNPostalAddress() CNPostalAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/localizedString(forKey:)
-
 func (cc _CNPostalAddressClass) LocalizedStringForKey(key string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
 	return rv
@@ -116,7 +114,6 @@ func (cc _CNPostalAddressClass) LocalizedStringForKey(key string) foundation.Str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/city
-
 func (c_ CNPostalAddress) City() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("city"))
 	return rv
@@ -127,7 +124,6 @@ func (c_ CNPostalAddress) City() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/country
-
 func (c_ CNPostalAddress) Country() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("country"))
 	return rv
@@ -138,7 +134,6 @@ func (c_ CNPostalAddress) Country() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/isoCountryCode
-
 func (c_ CNPostalAddress) ISOCountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("ISOCountryCode"))
 	return rv
@@ -149,7 +144,6 @@ func (c_ CNPostalAddress) ISOCountryCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/postalCode
-
 func (c_ CNPostalAddress) PostalCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("postalCode"))
 	return rv
@@ -160,7 +154,6 @@ func (c_ CNPostalAddress) PostalCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/state
-
 func (c_ CNPostalAddress) State() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("state"))
 	return rv
@@ -171,7 +164,6 @@ func (c_ CNPostalAddress) State() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/street
-
 func (c_ CNPostalAddress) Street() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("street"))
 	return rv
@@ -182,7 +174,6 @@ func (c_ CNPostalAddress) Street() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/subAdministrativeArea
-
 func (c_ CNPostalAddress) SubAdministrativeArea() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subAdministrativeArea"))
 	return rv
@@ -193,7 +184,6 @@ func (c_ CNPostalAddress) SubAdministrativeArea() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddress/subLocality
-
 func (c_ CNPostalAddress) SubLocality() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subLocality"))
 	return rv
@@ -204,7 +194,6 @@ func (c_ CNPostalAddress) SubLocality() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
-
 func (c_ CNPostalAddress) CNPostalAddressCityKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
 	return rv
@@ -215,7 +204,6 @@ func (c_ CNPostalAddress) CNPostalAddressCityKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
-
 func (c_ CNPostalAddress) CNPostalAddressCountryKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
 	return rv
@@ -226,7 +214,6 @@ func (c_ CNPostalAddress) CNPostalAddressCountryKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey
-
 func (c_ CNPostalAddress) CNPostalAddressISOCountryCodeKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
 	return rv
@@ -237,7 +224,6 @@ func (c_ CNPostalAddress) CNPostalAddressISOCountryCodeKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey
-
 func (c_ CNPostalAddress) CNPostalAddressPostalCodeKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
 	return rv
@@ -248,7 +234,6 @@ func (c_ CNPostalAddress) CNPostalAddressPostalCodeKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
-
 func (c_ CNPostalAddress) CNPostalAddressStateKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
 	return rv
@@ -259,7 +244,6 @@ func (c_ CNPostalAddress) CNPostalAddressStateKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey
-
 func (c_ CNPostalAddress) CNPostalAddressStreetKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
 	return rv

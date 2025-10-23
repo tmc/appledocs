@@ -47,7 +47,11 @@ type IINObject interface {
 // A representation of a custom intent parameter or response property.
 //
 // Use to create custom parameters and response properties for intent data that doesn’t fit into one of the System Types, such as Boolean, Duration, or Location. Define custom types and associate them with your custom intents and responses in the Intent Definition file. Xcode uses the type defined in the Intent Definition file to generate a subclass of . Create an instance of this subclass to structure data in intents and intent responses.
+
+
+// A representation of a custom intent parameter or response property.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INObject
 type INObject struct {
 	objectivec.Object
@@ -92,8 +96,10 @@ func NewINObject() INObject {
 }
 
 
+
 // An array of alternative speakable strings that identify the object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/alternativespeakablematches
 func (i_ INObject) AlternativeSpeakableMatches() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("alternativeSpeakableMatches"))
@@ -101,17 +107,18 @@ func (i_ INObject) AlternativeSpeakableMatches() INSpeakableString {
 }
 
 
-// SetAlternativeSpeakableMatches sets the value of the alternativeSpeakableMatches property.
 // An array of alternative speakable strings that identify the object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/alternativespeakablematches
 func (i_ INObject) SetAlternativeSpeakableMatches(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlternativeSpeakableMatches:"), value)
 }
 
+
 // An image to display alongside the custom intent object’s text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displayimage
 func (i_ INObject) DisplayImage() INImage {
 	rv := objc.Send[INImage](i_.ID, objc.Sel("displayImage"))
@@ -119,17 +126,18 @@ func (i_ INObject) DisplayImage() INImage {
 }
 
 
-// SetDisplayImage sets the value of the displayImage property.
 // An image to display alongside the custom intent object’s text.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displayimage
 func (i_ INObject) SetDisplayImage(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayImage:"), value)
 }
 
+
 // A name or description for the custom intent object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displaystring
 func (i_ INObject) DisplayString() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("displayString"))
@@ -137,17 +145,18 @@ func (i_ INObject) DisplayString() string {
 }
 
 
-// SetDisplayString sets the value of the displayString property.
 // A name or description for the custom intent object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displaystring
 func (i_ INObject) SetDisplayString(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayString:"), objc.String(value))
 }
 
+
 // A string that identifies the custom intent object within your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/identifier
 func (i_ INObject) Identifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
@@ -155,17 +164,18 @@ func (i_ INObject) Identifier() string {
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // A string that identifies the custom intent object within your app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/identifier
 func (i_ INObject) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
+
 // A hint that describes how to pronounce the custom intent object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/pronunciationhint
 func (i_ INObject) PronunciationHint() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("pronunciationHint"))
@@ -173,17 +183,18 @@ func (i_ INObject) PronunciationHint() string {
 }
 
 
-// SetPronunciationHint sets the value of the pronunciationHint property.
 // A hint that describes how to pronounce the custom intent object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/pronunciationhint
 func (i_ INObject) SetPronunciationHint(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPronunciationHint:"), objc.String(value))
 }
 
+
 // Additional details about the custom intent object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/subtitlestring
 func (i_ INObject) SubtitleString() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("subtitleString"))
@@ -191,10 +202,9 @@ func (i_ INObject) SubtitleString() string {
 }
 
 
-// SetSubtitleString sets the value of the subtitleString property.
 // Additional details about the custom intent object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/subtitlestring
 func (i_ INObject) SetSubtitleString(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSubtitleString:"), objc.String(value))

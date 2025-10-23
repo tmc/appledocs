@@ -32,7 +32,9 @@ type ImClockOffset interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mClockOffset
 type mClockOffset struct {
 	objectivec.Object

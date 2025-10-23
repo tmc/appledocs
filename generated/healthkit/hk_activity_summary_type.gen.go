@@ -40,7 +40,6 @@ type IHKActivitySummaryType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryType
-
 type HKActivitySummaryType struct {
 	HKObjectType
 }

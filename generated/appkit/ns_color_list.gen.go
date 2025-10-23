@@ -50,7 +50,6 @@ type IColorList interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList
-
 type ColorList struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewColorList() ColorList {
 
 
 
-
 // Saves the color list to the file at the specified URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/write(to:)
-
 func (c_ ColorList) WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeToURL:error:"), url, errPtr)
 	return rv
@@ -111,7 +108,6 @@ func (c_ ColorList) WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/isEditable
-
 func (c_ ColorList) Editable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("editable"))
 	return rv
@@ -122,7 +118,6 @@ func (c_ ColorList) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/allkeys
-
 func (c_ ColorList) AllKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allKeys"))
 	return rv
@@ -133,7 +128,6 @@ func (c_ ColorList) AllKeys() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/allkeys
-
 func (c_ ColorList) SetAllKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllKeys:"), value)
 }
@@ -143,7 +137,6 @@ func (c_ ColorList) SetAllKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/iseditable
-
 func (c_ ColorList) IsEditable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEditable"))
 	return rv
@@ -154,7 +147,6 @@ func (c_ ColorList) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/iseditable
-
 func (c_ ColorList) SetIsEditable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditable:"), value)
 }
@@ -164,7 +156,6 @@ func (c_ ColorList) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/name-swift.property
-
 func (c_ ColorList) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("name"))
 	return rv
@@ -175,7 +166,6 @@ func (c_ ColorList) Name() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorlist/name-swift.property
-
 func (c_ ColorList) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }

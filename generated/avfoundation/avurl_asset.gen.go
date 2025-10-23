@@ -34,13 +34,13 @@ type IURLAsset interface {
 	AssetCache() unsafe.Pointer
 	SetAssetCache(value unsafe.Pointer)
 	HttpSessionIdentifier() foundation.UUID
-	SetHttpSessionIdentifier(value foundation.IUUID)
+	SetHttpSessionIdentifier(value foundation.UUID)
 	MayRequireContentKeysForMediaDataProcessing() bool
 	SetMayRequireContentKeysForMediaDataProcessing(value bool)
-	ResourceLoader() AVAssetResourceLoader
+	ResourceLoader() IAVAssetResourceLoader
 	SetResourceLoader(value IAVAssetResourceLoader)
 	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	SetUrl(value foundation.URL)
 	Variants() unsafe.Pointer
 	SetVariants(value unsafe.Pointer)
 }
@@ -54,7 +54,6 @@ type IURLAsset interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset
-
 type URLAsset struct {
 	Asset
 }
@@ -105,7 +104,6 @@ func NewURLAsset() URLAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/mediaExtensionProperties
-
 func (u_ URLAsset) MediaExtensionProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("mediaExtensionProperties"))
 	return rv
@@ -116,7 +114,6 @@ func (u_ URLAsset) MediaExtensionProperties() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/assetcache
-
 func (u_ URLAsset) AssetCache() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("assetCache"))
 	return rv
@@ -127,7 +124,6 @@ func (u_ URLAsset) AssetCache() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/assetcache
-
 func (u_ URLAsset) SetAssetCache(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAssetCache:"), value)
 }
@@ -137,7 +133,6 @@ func (u_ URLAsset) SetAssetCache(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/httpsessionidentifier
-
 func (u_ URLAsset) HttpSessionIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](u_.ID, objc.Sel("httpSessionIdentifier"))
 	return rv
@@ -148,8 +143,7 @@ func (u_ URLAsset) HttpSessionIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/httpsessionidentifier
-
-func (u_ URLAsset) SetHttpSessionIdentifier(value foundation.IUUID) {
+func (u_ URLAsset) SetHttpSessionIdentifier(value foundation.UUID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpSessionIdentifier:"), value)
 }
 
@@ -158,7 +152,6 @@ func (u_ URLAsset) SetHttpSessionIdentifier(value foundation.IUUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/mayrequirecontentkeysformediadataprocessing
-
 func (u_ URLAsset) MayRequireContentKeysForMediaDataProcessing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("mayRequireContentKeysForMediaDataProcessing"))
 	return rv
@@ -169,7 +162,6 @@ func (u_ URLAsset) MayRequireContentKeysForMediaDataProcessing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/mayrequirecontentkeysformediadataprocessing
-
 func (u_ URLAsset) SetMayRequireContentKeysForMediaDataProcessing(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMayRequireContentKeysForMediaDataProcessing:"), value)
 }
@@ -179,8 +171,7 @@ func (u_ URLAsset) SetMayRequireContentKeysForMediaDataProcessing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-
-func (u_ URLAsset) ResourceLoader() AVAssetResourceLoader {
+func (u_ URLAsset) ResourceLoader() IAVAssetResourceLoader {
 	rv := objc.Send[AVAssetResourceLoader](u_.ID, objc.Sel("resourceLoader"))
 	return rv
 }
@@ -190,7 +181,6 @@ func (u_ URLAsset) ResourceLoader() AVAssetResourceLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-
 func (u_ URLAsset) SetResourceLoader(value IAVAssetResourceLoader) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResourceLoader:"), value)
 }
@@ -200,7 +190,6 @@ func (u_ URLAsset) SetResourceLoader(value IAVAssetResourceLoader) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/url
-
 func (u_ URLAsset) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](u_.ID, objc.Sel("url"))
 	return rv
@@ -211,8 +200,7 @@ func (u_ URLAsset) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/url
-
-func (u_ URLAsset) SetUrl(value foundation.IURL) {
+func (u_ URLAsset) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -221,7 +209,6 @@ func (u_ URLAsset) SetUrl(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/variants
-
 func (u_ URLAsset) Variants() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("variants"))
 	return rv
@@ -232,10 +219,10 @@ func (u_ URLAsset) Variants() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/variants
-
 func (u_ URLAsset) SetVariants(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVariants:"), value)
 }
+
 
 
 

@@ -34,7 +34,7 @@ type IParameterKey interface {
 	ModelDescription() MLModelDescription
 	SetModelDescription(value IMLModelDescription)
 	Parameters() MLParameterKey
-	SetParameters(value MLParameterKey)
+	SetParameters(value IMLParameterKey)
 }
 
 // The keys for the parameter dictionary in a model configuration or a model update context.
@@ -46,7 +46,6 @@ type IParameterKey interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLParameterKey
-
 type ParameterKey struct {
 	Key
 }
@@ -97,7 +96,6 @@ func NewParameterKey() ParameterKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-
 func (p_ ParameterKey) Configuration() MLModelConfiguration {
 	rv := objc.Send[MLModelConfiguration](p_.ID, objc.Sel("configuration"))
 	return rv
@@ -108,7 +106,6 @@ func (p_ ParameterKey) Configuration() MLModelConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-
 func (p_ ParameterKey) SetConfiguration(value IMLModelConfiguration) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
 }
@@ -118,7 +115,6 @@ func (p_ ParameterKey) SetConfiguration(value IMLModelConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-
 func (p_ ParameterKey) ModelDescription() MLModelDescription {
 	rv := objc.Send[MLModelDescription](p_.ID, objc.Sel("modelDescription"))
 	return rv
@@ -129,7 +125,6 @@ func (p_ ParameterKey) ModelDescription() MLModelDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-
 func (p_ ParameterKey) SetModelDescription(value IMLModelDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
 }
@@ -139,7 +134,6 @@ func (p_ ParameterKey) SetModelDescription(value IMLModelDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
-
 func (p_ ParameterKey) Parameters() MLParameterKey {
 	rv := objc.Send[MLParameterKey](p_.ID, objc.Sel("parameters"))
 	return rv
@@ -150,8 +144,7 @@ func (p_ ParameterKey) Parameters() MLParameterKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
-
-func (p_ ParameterKey) SetParameters(value MLParameterKey) {
+func (p_ ParameterKey) SetParameters(value IMLParameterKey) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParameters:"), value)
 }
 

@@ -49,7 +49,6 @@ type IEAWiFiUnconfiguredAccessoryBrowser interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser
-
 type EAWiFiUnconfiguredAccessoryBrowser struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser 
 
 
 
-
 // Creates a browser object that scans for unconfigured accessories.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/init(delegate:queue:)
-
 func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
 	instance := getEAWiFiUnconfiguredAccessoryBrowserClass().Alloc()
 	rv := objc.Send[EAWiFiUnconfiguredAccessoryBrowser](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
@@ -109,34 +106,28 @@ func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objectivec.
 
 
 
-
 // Begins the configuration process for the specified accessory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/configureAccessory(_:withConfigurationUIOn:)
-
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) ConfigureAccessoryWithConfigurationUIOnViewController(accessory IEAWiFiUnconfiguredAccessory, viewController appkit.IViewController) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("configureAccessory:withConfigurationUIOnViewController:"), accessory, viewController)
 }
-
 
 
 // Starts the search for unconfigured accessories that match the specified predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/startSearchingForUnconfiguredAccessories(matching:)
-
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.IPredicate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("startSearchingForUnconfiguredAccessoriesMatchingPredicate:"), predicate)
 }
-
 
 
 // Stops the search for unconfigured accessories.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/stopSearchingForUnconfiguredAccessories()
-
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) StopSearchingForUnconfiguredAccessories() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("stopSearchingForUnconfiguredAccessories"))
 }
@@ -146,7 +137,6 @@ func (e_ EAWiFiUnconfiguredAccessoryBrowser) StopSearchingForUnconfiguredAccesso
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/delegate
-
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("delegate"))
 	return rv
@@ -157,7 +147,6 @@ func (e_ EAWiFiUnconfiguredAccessoryBrowser) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/delegate
-
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -167,7 +156,6 @@ func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/unconfiguredAccessories
-
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) UnconfiguredAccessories() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("unconfiguredAccessories"))
 	return rv

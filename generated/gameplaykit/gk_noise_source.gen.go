@@ -41,7 +41,6 @@ type INoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseSource
-
 type NoiseSource struct {
 	objectivec.Object
 }

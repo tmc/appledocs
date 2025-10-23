@@ -102,7 +102,6 @@ type IViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController
-
 type ViewController struct {
 	Responder
 }
@@ -149,10 +148,8 @@ func NewViewController() ViewController {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
-
 func NewViewControllerWithCoder(coder foundation.ICoder) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -161,12 +158,10 @@ func NewViewControllerWithCoder(coder foundation.ICoder) ViewController {
 }
 
 
-
 // Returns a view controller object initialized to the nib file in the specified bundle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
-
 func NewViewControllerWithNibNameBundle(nibNameOrNil INibName, nibBundleOrNil foundation.IBundle) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
@@ -176,302 +171,246 @@ func NewViewControllerWithNibNameBundle(nibNameOrNil INibName, nibBundleOrNil fo
 
 
 
-
 // A convenience method for adding a child view controller at the end of the array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/addChild(_:)
-
 func (v_ ViewController) AddChildViewController(childViewController IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addChildViewController:"), childViewController)
 }
-
 
 
 // Returns whether the receiver was able to commit any pending edits.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/commitEditing()
-
 func (v_ ViewController) CommitEditing() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("commitEditing"))
 	return rv
 }
 
 
-
 // Attempt to commit any currently edited results of the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/commitEditing(withDelegate:didCommit:contextInfo:)
-
 func (v_ ViewController) CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objectivec.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("commitEditingWithDelegate:didCommitSelector:contextInfo:"), delegate, didCommitSelector, contextInfo)
 }
-
 
 
 // Causes the receiver to discard any changes, restoring the previous values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/discardEditing()
-
 func (v_ ViewController) DiscardEditing() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("discardEditing"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/dismiss(_:)-3n76y
-
 func (v_ ViewController) DismissController(sender objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("dismissController:"), sender)
 }
-
 
 
 // Dismisses a presented view controller, using the same animator that presented it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/dismiss(_:)-91my5
-
 func (v_ ViewController) DismissViewController(viewController IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("dismissViewController:"), viewController)
 }
-
 
 
 // Inserts a specified child view controller into the array at a specified position.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/insertChild(_:at:)
-
 func (v_ ViewController) InsertChildViewControllerAtIndex(childViewController IViewController, index int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("insertChildViewController:atIndex:"), childViewController, index)
 }
-
 
 
 // Instantiates a view from a nib file and sets the value of the property.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/loadView()
-
 func (v_ ViewController) LoadView() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("loadView"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/loadViewIfNeeded()
-
 func (v_ ViewController) LoadViewIfNeeded() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("loadViewIfNeeded"))
 }
-
 
 
 // Called when there is a change in value of the property of a child view controller or a presented view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredContentSizeDidChange(for:)
-
 func (v_ ViewController) PreferredContentSizeDidChangeForViewController(viewController IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("preferredContentSizeDidChangeForViewController:"), viewController)
 }
-
 
 
 // Presents another view controller using a specified, custom animator for presentation and dismissal.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:animator:)
-
 func (v_ ViewController) PresentViewControllerAnimator(viewController IViewController, animator objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:animator:"), viewController, animator)
 }
-
 
 
 // Presents another view controller as a popover.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)
-
 func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior PopoverBehavior) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"), viewController, positioningRect, positioningView, preferredEdge, behavior)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)
-
 func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior PopoverBehavior, hasFullSizeContent bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(inWidget:)
-
 func (v_ ViewController) PresentViewControllerInWidget(viewController IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerInWidget:"), viewController)
 }
-
 
 
 // Presents another view controller as a modal window, also known as an alert.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentAsModalWindow(_:)
-
 func (v_ ViewController) PresentViewControllerAsModalWindow(viewController IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerAsModalWindow:"), viewController)
 }
-
 
 
 // Presents another view controller as a sheet.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentAsSheet(_:)
-
 func (v_ ViewController) PresentViewControllerAsSheet(viewController IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerAsSheet:"), viewController)
 }
-
 
 
 // Removes a specified child controller from the view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/removeChild(at:)
-
 func (v_ ViewController) RemoveChildViewControllerAtIndex(index int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeChildViewControllerAtIndex:"), index)
 }
-
 
 
 // Removes the called view controller from its parent view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/removeFromParent()
-
 func (v_ ViewController) RemoveFromParentViewController() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeFromParentViewController"))
 }
-
 
 
 // Performs a transition between two sibling child view controllers of the view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/transition(from:to:options:completionHandler:)
-
 func (v_ ViewController) TransitionFromViewControllerToViewControllerOptionsCompletionHandler(fromViewController IViewController, toViewController IViewController, options ViewControllerTransitionOptions, completion unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("transitionFromViewController:toViewController:options:completionHandler:"), fromViewController, toViewController, options, completion)
 }
-
 
 
 // Called during Auto Layout constraint updating to enable the view controller to mediate the process.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/updateViewConstraints()
-
 func (v_ ViewController) UpdateViewConstraints() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("updateViewConstraints"))
 }
-
 
 
 // Called when the view controller’s view is fully transitioned onto the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewDidAppear()
-
 func (v_ ViewController) ViewDidAppear() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewDidAppear"))
 }
-
 
 
 // Called after the view controller’s view is removed from the view hierarchy in a window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewDidDisappear()
-
 func (v_ ViewController) ViewDidDisappear() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewDidDisappear"))
 }
-
 
 
 // Called immediately after the method of the view controller’s view is called.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewDidLayout()
-
 func (v_ ViewController) ViewDidLayout() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewDidLayout"))
 }
-
 
 
 // Called after the view controller’s view has been loaded into memory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewDidLoad()
-
 func (v_ ViewController) ViewDidLoad() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewDidLoad"))
 }
-
 
 
 // Called after the view controller’s view has been loaded into memory is about to be added to the view hierarchy in the window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewWillAppear()
-
 func (v_ ViewController) ViewWillAppear() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillAppear"))
 }
-
 
 
 // Called when the view controller’s view is about to be removed from the view hierarchy in the window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewWillDisappear()
-
 func (v_ ViewController) ViewWillDisappear() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillDisappear"))
 }
-
 
 
 // Called just before the method of the view controller’s view is called.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewWillLayout()
-
 func (v_ ViewController) ViewWillLayout() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillLayout"))
 }
-
 
 
 // For a view controller that is part of an app extension, called when its view is about to be resized.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewWillTransition(to:)
-
 func (v_ ViewController) ViewWillTransitionToSize(newSize coregraphics.CGSize) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillTransitionToSize:"), newSize)
 }
@@ -481,7 +420,6 @@ func (v_ ViewController) ViewWillTransitionToSize(newSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/children
-
 func (v_ ViewController) ChildViewControllers() []ViewController {
 	rv := objc.Send[[]ViewController](v_.ID, objc.Sel("childViewControllers"))
 	return rv
@@ -492,7 +430,6 @@ func (v_ ViewController) ChildViewControllers() []ViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/children
-
 func (v_ ViewController) SetChildViewControllers(value []ViewController) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -512,7 +449,6 @@ func (v_ ViewController) SetChildViewControllers(value []ViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/extensionContext
-
 func (v_ ViewController) ExtensionContext() foundation.NSExtensionContext {
 	rv := objc.Send[foundation.NSExtensionContext](v_.ID, objc.Sel("extensionContext"))
 	return rv
@@ -523,7 +459,6 @@ func (v_ ViewController) ExtensionContext() foundation.NSExtensionContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/isViewLoaded
-
 func (v_ ViewController) ViewLoaded() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("viewLoaded"))
 	return rv
@@ -534,7 +469,6 @@ func (v_ ViewController) ViewLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/nibBundle
-
 func (v_ ViewController) NibBundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](v_.ID, objc.Sel("nibBundle"))
 	return rv
@@ -545,7 +479,6 @@ func (v_ ViewController) NibBundle() foundation.Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/nibName
-
 func (v_ ViewController) NibName() NibName {
 	rv := objc.Send[NibName](v_.ID, objc.Sel("nibName"))
 	return rv
@@ -556,7 +489,6 @@ func (v_ ViewController) NibName() NibName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/parent
-
 func (v_ ViewController) ParentViewController() NSViewController {
 	rv := objc.Send[NSViewController](v_.ID, objc.Sel("parentViewController"))
 	return rv
@@ -567,7 +499,6 @@ func (v_ ViewController) ParentViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredContentSize
-
 func (v_ ViewController) PreferredContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredContentSize"))
 	return rv
@@ -578,7 +509,6 @@ func (v_ ViewController) PreferredContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredContentSize
-
 func (v_ ViewController) SetPreferredContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredContentSize:"), value)
 }
@@ -588,7 +518,6 @@ func (v_ ViewController) SetPreferredContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredMaximumSize
-
 func (v_ ViewController) PreferredMaximumSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredMaximumSize"))
 	return rv
@@ -599,7 +528,6 @@ func (v_ ViewController) PreferredMaximumSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredMinimumSize
-
 func (v_ ViewController) PreferredMinimumSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredMinimumSize"))
 	return rv
@@ -610,7 +538,6 @@ func (v_ ViewController) PreferredMinimumSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredScreenOrigin
-
 func (v_ ViewController) PreferredScreenOrigin() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("preferredScreenOrigin"))
 	return rv
@@ -621,7 +548,6 @@ func (v_ ViewController) PreferredScreenOrigin() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredScreenOrigin
-
 func (v_ ViewController) SetPreferredScreenOrigin(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredScreenOrigin:"), value)
 }
@@ -631,7 +557,6 @@ func (v_ ViewController) SetPreferredScreenOrigin(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentedViewControllers
-
 func (v_ ViewController) PresentedViewControllers() []ViewController {
 	rv := objc.Send[[]ViewController](v_.ID, objc.Sel("presentedViewControllers"))
 	return rv
@@ -642,7 +567,6 @@ func (v_ ViewController) PresentedViewControllers() []ViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentingViewController
-
 func (v_ ViewController) PresentingViewController() NSViewController {
 	rv := objc.Send[NSViewController](v_.ID, objc.Sel("presentingViewController"))
 	return rv
@@ -653,7 +577,6 @@ func (v_ ViewController) PresentingViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/representedObject
-
 func (v_ ViewController) RepresentedObject() objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("representedObject"))
 	return rv
@@ -664,7 +587,6 @@ func (v_ ViewController) RepresentedObject() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/representedObject
-
 func (v_ ViewController) SetRepresentedObject(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRepresentedObject:"), value)
 }
@@ -672,7 +594,6 @@ func (v_ ViewController) SetRepresentedObject(value objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/sourceItemView
-
 func (v_ ViewController) SourceItemView() NSView {
 	rv := objc.Send[NSView](v_.ID, objc.Sel("sourceItemView"))
 	return rv
@@ -681,7 +602,6 @@ func (v_ ViewController) SourceItemView() NSView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/sourceItemView
-
 func (v_ ViewController) SetSourceItemView(value IView) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSourceItemView:"), value)
 }
@@ -691,7 +611,6 @@ func (v_ ViewController) SetSourceItemView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/storyboard
-
 func (v_ ViewController) Storyboard() NSStoryboard {
 	rv := objc.Send[NSStoryboard](v_.ID, objc.Sel("storyboard"))
 	return rv
@@ -702,7 +621,6 @@ func (v_ ViewController) Storyboard() NSStoryboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/title
-
 func (v_ ViewController) Title() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("title"))
 	return rv
@@ -713,7 +631,6 @@ func (v_ ViewController) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/title
-
 func (v_ ViewController) SetTitle(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -723,7 +640,6 @@ func (v_ ViewController) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/view
-
 func (v_ ViewController) View() NSView {
 	rv := objc.Send[NSView](v_.ID, objc.Sel("view"))
 	return rv
@@ -734,7 +650,6 @@ func (v_ ViewController) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/view
-
 func (v_ ViewController) SetView(value IView) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setView:"), value)
 }
@@ -742,7 +657,6 @@ func (v_ ViewController) SetView(value IView) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewIfLoaded
-
 func (v_ ViewController) ViewIfLoaded() NSView {
 	rv := objc.Send[NSView](v_.ID, objc.Sel("viewIfLoaded"))
 	return rv
@@ -753,7 +667,6 @@ func (v_ ViewController) ViewIfLoaded() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
-
 func (v_ ViewController) Children() NSViewController {
 	rv := objc.Send[NSViewController](v_.ID, objc.Sel("children"))
 	return rv
@@ -764,7 +677,6 @@ func (v_ ViewController) Children() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
-
 func (v_ ViewController) SetChildren(value IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setChildren:"), value)
 }
@@ -774,7 +686,6 @@ func (v_ ViewController) SetChildren(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/isviewloaded
-
 func (v_ ViewController) IsViewLoaded() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isViewLoaded"))
 	return rv
@@ -785,7 +696,6 @@ func (v_ ViewController) IsViewLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/isviewloaded
-
 func (v_ ViewController) SetIsViewLoaded(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsViewLoaded:"), value)
 }
@@ -795,7 +705,6 @@ func (v_ ViewController) SetIsViewLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/parent
-
 func (v_ ViewController) Parent() NSViewController {
 	rv := objc.Send[NSViewController](v_.ID, objc.Sel("parent"))
 	return rv
@@ -806,7 +715,6 @@ func (v_ ViewController) Parent() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/parent
-
 func (v_ ViewController) SetParent(value IViewController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setParent:"), value)
 }

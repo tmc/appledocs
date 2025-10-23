@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
@@ -30,11 +31,11 @@ type _SynchronizedLayerClass struct {
 // An interface definition for the [SynchronizedLayer] class.
 type ISynchronizedLayer interface {
 	quartzcore.ILayer
-	AVCoreAnimationBeginTimeAtZero() unsafe.Pointer
-	PlayerItem() AVPlayerItem
+	AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval
+	PlayerItem() IAVPlayerItem
 	SetPlayerItem(value IAVPlayerItem)
-	BeginTime() unsafe.Pointer
-	SetBeginTime(value unsafe.Pointer)
+	BeginTime() foundation.TimeInterval
+	SetBeginTime(value foundation.TimeInterval)
 }
 
 // A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.
@@ -46,7 +47,6 @@ type ISynchronizedLayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSynchronizedLayer
-
 type SynchronizedLayer struct {
 	quartzcore.Layer
 }
@@ -97,9 +97,8 @@ func NewSynchronizedLayer() SynchronizedLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero
-
-func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
+func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
 	return rv
 }
 
@@ -108,8 +107,7 @@ func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
-
-func (s_ SynchronizedLayer) PlayerItem() AVPlayerItem {
+func (s_ SynchronizedLayer) PlayerItem() IAVPlayerItem {
 	rv := objc.Send[AVPlayerItem](s_.ID, objc.Sel("playerItem"))
 	return rv
 }
@@ -119,7 +117,6 @@ func (s_ SynchronizedLayer) PlayerItem() AVPlayerItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
-
 func (s_ SynchronizedLayer) SetPlayerItem(value IAVPlayerItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPlayerItem:"), value)
 }
@@ -129,9 +126,8 @@ func (s_ SynchronizedLayer) SetPlayerItem(value IAVPlayerItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-
-func (s_ SynchronizedLayer) BeginTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("beginTime"))
+func (s_ SynchronizedLayer) BeginTime() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("beginTime"))
 	return rv
 }
 
@@ -140,8 +136,7 @@ func (s_ SynchronizedLayer) BeginTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-
-func (s_ SynchronizedLayer) SetBeginTime(value unsafe.Pointer) {
+func (s_ SynchronizedLayer) SetBeginTime(value foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBeginTime:"), value)
 }
 

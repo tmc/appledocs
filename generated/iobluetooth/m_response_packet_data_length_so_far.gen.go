@@ -32,7 +32,9 @@ type ImResponsePacketDataLengthSoFar interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mResponsePacketDataLengthSoFar
 type mResponsePacketDataLengthSoFar struct {
 	objectivec.Object

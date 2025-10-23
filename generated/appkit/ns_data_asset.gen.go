@@ -45,7 +45,6 @@ type IDataAsset interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset
-
 type DataAsset struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewDataAsset() DataAsset {
 
 
 
-
 // Initializes and returns an object with a reference to the named data asset in an asset catalog.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:)
-
 func NewDataAssetWithName(name IDataAssetName) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:"), name)
@@ -104,12 +101,10 @@ func NewDataAssetWithName(name IDataAssetName) DataAsset {
 }
 
 
-
 // Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
-
 func NewDataAssetWithNameBundle(name IDataAssetName, bundle foundation.IBundle) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
@@ -123,7 +118,6 @@ func NewDataAssetWithNameBundle(name IDataAssetName, bundle foundation.IBundle) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
-
 func (d_ DataAsset) Data() foundation.NSData {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
 	return rv
@@ -134,7 +128,6 @@ func (d_ DataAsset) Data() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/name-swift.property
-
 func (d_ DataAsset) Name() DataAssetName {
 	rv := objc.Send[DataAssetName](d_.ID, objc.Sel("name"))
 	return rv
@@ -145,7 +138,6 @@ func (d_ DataAsset) Name() DataAssetName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/typeIdentifier
-
 func (d_ DataAsset) TypeIdentifier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
 	return rv

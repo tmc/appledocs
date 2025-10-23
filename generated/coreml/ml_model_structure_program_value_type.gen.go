@@ -39,7 +39,6 @@ type IModelStructureProgramValueType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramValueType
-
 type ModelStructureProgramValueType struct {
 	objectivec.Object
 }

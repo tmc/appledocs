@@ -51,7 +51,11 @@ type IICDeviceBrowser interface {
 }
 
 // An object for finding digital cameras and scanners.
+
+
+// An object for finding digital cameras and scanners.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser
 type ICDeviceBrowser struct {
 	objectivec.Object
@@ -96,15 +100,19 @@ func NewICDeviceBrowser() ICDeviceBrowser {
 }
 
 
+
 // Tells the delegate to start looking for devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/start()
 func (i_ ICDeviceBrowser) Start() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("start"))
 }
 
+
 // A mask whose set bits indicate the type of devices being browsed after the delegate receives the start message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/browsedDeviceTypeMask
 func (i_ ICDeviceBrowser) BrowsedDeviceTypeMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("browsedDeviceTypeMask"))
@@ -112,17 +120,18 @@ func (i_ ICDeviceBrowser) BrowsedDeviceTypeMask() unsafe.Pointer {
 }
 
 
-// SetBrowsedDeviceTypeMask sets the value of the browsedDeviceTypeMask property.
 // A mask whose set bits indicate the type of devices being browsed after the delegate receives the start message.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/browsedDeviceTypeMask
 func (i_ ICDeviceBrowser) SetBrowsedDeviceTypeMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBrowsedDeviceTypeMask:"), value)
 }
 
+
 // The object that acts as the delegate of the device browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/delegate
 func (i_ ICDeviceBrowser) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
@@ -130,16 +139,16 @@ func (i_ ICDeviceBrowser) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that acts as the delegate of the device browser.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/delegate
 func (i_ ICDeviceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/contentsauthorizationstatus
 func (i_ ICDeviceBrowser) ContentsAuthorizationStatus() ICAuthorizationStatus {
 	rv := objc.Send[ICAuthorizationStatus](i_.ID, objc.Sel("contentsAuthorizationStatus"))
@@ -147,14 +156,14 @@ func (i_ ICDeviceBrowser) ContentsAuthorizationStatus() ICAuthorizationStatus {
 }
 
 
-// SetContentsAuthorizationStatus sets the value of the contentsAuthorizationStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/contentsauthorizationstatus
 func (i_ ICDeviceBrowser) SetContentsAuthorizationStatus(value ICAuthorizationStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContentsAuthorizationStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
 func (i_ ICDeviceBrowser) ControlAuthorizationStatus() ICAuthorizationStatus {
 	rv := objc.Send[ICAuthorizationStatus](i_.ID, objc.Sel("controlAuthorizationStatus"))
@@ -162,15 +171,16 @@ func (i_ ICDeviceBrowser) ControlAuthorizationStatus() ICAuthorizationStatus {
 }
 
 
-// SetControlAuthorizationStatus sets the value of the controlAuthorizationStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
 func (i_ ICDeviceBrowser) SetControlAuthorizationStatus(value ICAuthorizationStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setControlAuthorizationStatus:"), value)
 }
 
+
 // All devices found by the browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/devices
 func (i_ ICDeviceBrowser) Devices() mlcompute.ICDevice {
 	rv := objc.Send[mlcompute.ICDevice](i_.ID, objc.Sel("devices"))
@@ -178,17 +188,18 @@ func (i_ ICDeviceBrowser) Devices() mlcompute.ICDevice {
 }
 
 
-// SetDevices sets the value of the devices property.
 // All devices found by the browser.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/devices
 func (i_ ICDeviceBrowser) SetDevices(value mlcompute.ICDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDevices:"), value)
 }
 
+
 // A Boolean value indicating whether the device browser is browsing for devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/isbrowsing
 func (i_ ICDeviceBrowser) IsBrowsing() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isBrowsing"))
@@ -196,16 +207,16 @@ func (i_ ICDeviceBrowser) IsBrowsing() bool {
 }
 
 
-// SetIsBrowsing sets the value of the isBrowsing property.
 // A Boolean value indicating whether the device browser is browsing for devices.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/isbrowsing
 func (i_ ICDeviceBrowser) SetIsBrowsing(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsBrowsing:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/issuspended
 func (i_ ICDeviceBrowser) IsSuspended() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isSuspended"))
@@ -213,15 +224,16 @@ func (i_ ICDeviceBrowser) IsSuspended() bool {
 }
 
 
-// SetIsSuspended sets the value of the isSuspended property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/issuspended
 func (i_ ICDeviceBrowser) SetIsSuspended(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsSuspended:"), value)
 }
 
+
 // Returns a device object that the client application should select when it launches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/preferreddevice
 func (i_ ICDeviceBrowser) PreferredDevice() mlcompute.ICDevice {
 	rv := objc.Send[mlcompute.ICDevice](i_.ID, objc.Sel("preferredDevice"))
@@ -229,10 +241,9 @@ func (i_ ICDeviceBrowser) PreferredDevice() mlcompute.ICDevice {
 }
 
 
-// SetPreferredDevice sets the value of the preferredDevice property.
 // Returns a device object that the client application should select when it launches.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/preferreddevice
 func (i_ ICDeviceBrowser) SetPreferredDevice(value mlcompute.ICDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredDevice:"), value)

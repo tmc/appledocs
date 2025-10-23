@@ -38,7 +38,6 @@ type IAuthorizationPasswordRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPasswordRequest
-
 type AuthorizationPasswordRequest struct {
 	AuthorizationRequest
 }

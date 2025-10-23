@@ -43,7 +43,6 @@ type IAudioRoutingArbiter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter
-
 type AudioRoutingArbiter struct {
 	objectivec.Object
 }
@@ -92,29 +91,24 @@ func NewAudioRoutingArbiter() AudioRoutingArbiter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
-
 func (ac _AudioRoutingArbiterClass) SharedRoutingArbiter() AudioRoutingArbiter {
 	rv := objc.Send[AVAudioRoutingArbiter](objc.ID(ac.class), objc.Sel("sharedRoutingArbiter"))
 	return rv
 }
 
-
 // Begins routing arbitration to take ownership of a nearby Bluetooth audio route.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)
-
 func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(category IAudioRoutingArbitrationCategory, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginArbitrationWithCategory:completionHandler:"), category, handler)
 }
-
 
 
 // Stops an app’s participation in audio routing arbitration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/leave()
-
 func (a_ AudioRoutingArbiter) LeaveArbitration() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("leaveArbitration"))
 }
@@ -124,7 +118,6 @@ func (a_ AudioRoutingArbiter) LeaveArbitration() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
-
 func (a_ AudioRoutingArbiter) SharedRoutingArbiter() AVAudioRoutingArbiter {
 	rv := objc.Send[AVAudioRoutingArbiter](a_.ID, objc.Sel("sharedRoutingArbiter"))
 	return rv

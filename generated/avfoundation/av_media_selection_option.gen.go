@@ -56,7 +56,6 @@ type IMediaSelectionOption interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelectionOption
-
 type MediaSelectionOption struct {
 	objectivec.Object
 }
@@ -105,7 +104,6 @@ func NewMediaSelectionOption() MediaSelectionOption {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/availablemetadataformats
-
 func (m_ MediaSelectionOption) AvailableMetadataFormats() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
@@ -116,7 +114,6 @@ func (m_ MediaSelectionOption) AvailableMetadataFormats() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/availablemetadataformats
-
 func (m_ MediaSelectionOption) SetAvailableMetadataFormats(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAvailableMetadataFormats:"), objc.String(value))
 }
@@ -126,7 +123,6 @@ func (m_ MediaSelectionOption) SetAvailableMetadataFormats(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/commonmetadata
-
 func (m_ MediaSelectionOption) CommonMetadata() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("commonMetadata"))
 	return rv
@@ -137,7 +133,6 @@ func (m_ MediaSelectionOption) CommonMetadata() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/commonmetadata
-
 func (m_ MediaSelectionOption) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonMetadata:"), value)
 }
@@ -147,7 +142,6 @@ func (m_ MediaSelectionOption) SetCommonMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/displayname
-
 func (m_ MediaSelectionOption) DisplayName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("displayName"))
 	return rv
@@ -158,7 +152,6 @@ func (m_ MediaSelectionOption) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/displayname
-
 func (m_ MediaSelectionOption) SetDisplayName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
@@ -168,7 +161,6 @@ func (m_ MediaSelectionOption) SetDisplayName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/extendedlanguagetag
-
 func (m_ MediaSelectionOption) ExtendedLanguageTag() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
@@ -179,7 +171,6 @@ func (m_ MediaSelectionOption) ExtendedLanguageTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/extendedlanguagetag
-
 func (m_ MediaSelectionOption) SetExtendedLanguageTag(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
@@ -189,7 +180,6 @@ func (m_ MediaSelectionOption) SetExtendedLanguageTag(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/isplayable
-
 func (m_ MediaSelectionOption) IsPlayable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPlayable"))
 	return rv
@@ -200,7 +190,6 @@ func (m_ MediaSelectionOption) IsPlayable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/isplayable
-
 func (m_ MediaSelectionOption) SetIsPlayable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlayable:"), value)
 }
@@ -210,7 +199,6 @@ func (m_ MediaSelectionOption) SetIsPlayable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-
 func (m_ MediaSelectionOption) Locale() foundation.Locale {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
@@ -221,7 +209,6 @@ func (m_ MediaSelectionOption) Locale() foundation.Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-
 func (m_ MediaSelectionOption) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
@@ -231,7 +218,6 @@ func (m_ MediaSelectionOption) SetLocale(value foundation.ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-
 func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mediaSubTypes"))
 	return rv
@@ -242,7 +228,6 @@ func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-
 func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSubTypes:"), value)
 }
@@ -252,7 +237,6 @@ func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
-
 func (m_ MediaSelectionOption) MediaType() MediaType {
 	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaType"))
 	return rv
@@ -263,7 +247,6 @@ func (m_ MediaSelectionOption) MediaType() MediaType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
-
 func (m_ MediaSelectionOption) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
 }

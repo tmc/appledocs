@@ -37,7 +37,11 @@ type IINUpcomingMediaManager interface {
 // The manager object you use to suggest media to the user.
 //
 // Use this class to provide Siri a list of media intents for content that the user hasn’t listened to or watched, but might be interested in. For example, a podcast app may provide the latest episodes of the podcast, or a video app may provide the most recent episodes of TV shows, or suggest new movies.
+
+
+// The manager object you use to suggest media to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager
 type INUpcomingMediaManager struct {
 	objectivec.Object
@@ -82,29 +86,37 @@ func NewINUpcomingMediaManager() INUpcomingMediaManager {
 }
 
 
+
 // The shared upcoming media manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/shared
 func (ic _INUpcomingMediaManagerClass) SharedManager() INUpcomingMediaManager {
 	rv := objc.Send[INUpcomingMediaManager](objc.ID(ic.class), objc.Sel("sharedManager"))
 	return rv
 }
+
 // Suggests how Siri should predict media intent shortcuts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/setPredictionMode(_:for:)
 func (i_ INUpcomingMediaManager) SetPredictionModeForType(mode INUpcomingMediaPredictionMode, type_ unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPredictionMode:forType:"), mode, type_)
 }
 
+
 // Provides Siri with a list of media intents to suggest to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/setSuggestedMediaIntents(_:)
 func (i_ INUpcomingMediaManager) SetSuggestedMediaIntents(intents unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedMediaIntents:"), intents)
 }
 
+
 // The shared upcoming media manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/shared
 func (i_ INUpcomingMediaManager) SharedManager() INUpcomingMediaManager {
 	rv := objc.Send[INUpcomingMediaManager](i_.ID, objc.Sel("sharedManager"))

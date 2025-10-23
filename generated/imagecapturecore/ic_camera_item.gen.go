@@ -72,7 +72,11 @@ type IICCameraItem interface {
 // An abstract class that represents a camera item.
 //
 // The ImageCaptureCore framework defines two concrete subclasses of camera items: and .
+
+
+// An abstract class that represents a camera item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem
 type ICCameraItem struct {
 	objectivec.Object
@@ -117,40 +121,50 @@ func NewICCameraItem() ICCameraItem {
 }
 
 
+
 // A Boolean value indicating whether the item is a raw image file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/isRaw
 func (i_ ICCameraItem) Raw() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("raw"))
 	return rv
 }
 
+
 // The item’s modification date, usually the same as its modification date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/modificationDate
 func (i_ ICCameraItem) ModificationDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
+
 // The item’s thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/thumbnail
 func (i_ ICCameraItem) Thumbnail() coregraphics.CGImageRef {
 	rv := objc.Send[coregraphics.CGImageRef](i_.ID, objc.Sel("thumbnail"))
 	return rv
 }
 
+
 // The item’s uniform type identifier (UTI) string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/uti
 func (i_ ICCameraItem) UTI() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("UTI"))
 	return rv
 }
 
+
 // The item’s creation date, usually the same as its
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/creationdate
 func (i_ ICCameraItem) CreationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("creationDate"))
@@ -158,17 +172,18 @@ func (i_ ICCameraItem) CreationDate() foundation.Date {
 }
 
 
-// SetCreationDate sets the value of the creationDate property.
 // The item’s creation date, usually the same as its
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/creationdate
 func (i_ ICCameraItem) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCreationDate:"), value)
 }
 
+
 // The item’s parent device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/device
 func (i_ ICCameraItem) Device() ICCameraDevice {
 	rv := objc.Send[ICCameraDevice](i_.ID, objc.Sel("device"))
@@ -176,17 +191,18 @@ func (i_ ICCameraItem) Device() ICCameraDevice {
 }
 
 
-// SetDevice sets the value of the device property.
 // The item’s parent device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/device
 func (i_ ICCameraItem) SetDevice(value ICCameraDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDevice:"), value)
 }
 
+
 // The item’s file system path on a camera using the mass storage transport type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/filesystempath
 func (i_ ICCameraItem) FileSystemPath() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("fileSystemPath"))
@@ -194,17 +210,18 @@ func (i_ ICCameraItem) FileSystemPath() string {
 }
 
 
-// SetFileSystemPath sets the value of the fileSystemPath property.
 // The item’s file system path on a camera using the mass storage transport type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/filesystempath
 func (i_ ICCameraItem) SetFileSystemPath(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFileSystemPath:"), objc.String(value))
 }
 
+
 // A Boolean value that indicates whether this item is in a temporary store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/isintemporarystore
 func (i_ ICCameraItem) IsInTemporaryStore() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isInTemporaryStore"))
@@ -212,17 +229,18 @@ func (i_ ICCameraItem) IsInTemporaryStore() bool {
 }
 
 
-// SetIsInTemporaryStore sets the value of the isInTemporaryStore property.
 // A Boolean value that indicates whether this item is in a temporary store.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/isintemporarystore
 func (i_ ICCameraItem) SetIsInTemporaryStore(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsInTemporaryStore:"), value)
 }
 
+
 // A Boolean value that indicates whether the storage card in the camera is locked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/islocked
 func (i_ ICCameraItem) IsLocked() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isLocked"))
@@ -230,17 +248,18 @@ func (i_ ICCameraItem) IsLocked() bool {
 }
 
 
-// SetIsLocked sets the value of the isLocked property.
 // A Boolean value that indicates whether the storage card in the camera is locked.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/islocked
 func (i_ ICCameraItem) SetIsLocked(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsLocked:"), value)
 }
 
+
 // A Boolean value indicating whether the item is a raw image file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/israw
 func (i_ ICCameraItem) IsRaw() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isRaw"))
@@ -248,17 +267,18 @@ func (i_ ICCameraItem) IsRaw() bool {
 }
 
 
-// SetIsRaw sets the value of the isRaw property.
 // A Boolean value indicating whether the item is a raw image file.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/israw
 func (i_ ICCameraItem) SetIsRaw(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsRaw:"), value)
 }
 
+
 // A large thumbnail for the item if one is readily available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/largethumbnailifavailable
 func (i_ ICCameraItem) LargeThumbnailIfAvailable() appkit.Image {
 	rv := objc.Send[appkit.Image](i_.ID, objc.Sel("largeThumbnailIfAvailable"))
@@ -266,17 +286,18 @@ func (i_ ICCameraItem) LargeThumbnailIfAvailable() appkit.Image {
 }
 
 
-// SetLargeThumbnailIfAvailable sets the value of the largeThumbnailIfAvailable property.
 // A large thumbnail for the item if one is readily available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/largethumbnailifavailable
 func (i_ ICCameraItem) SetLargeThumbnailIfAvailable(value appkit.IImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLargeThumbnailIfAvailable:"), value)
 }
 
+
 // The item’s metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadata
 func (i_ ICCameraItem) Metadata() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("metadata"))
@@ -284,17 +305,18 @@ func (i_ ICCameraItem) Metadata() unsafe.Pointer {
 }
 
 
-// SetMetadata sets the value of the metadata property.
 // The item’s metadata.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadata
 func (i_ ICCameraItem) SetMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMetadata:"), value)
 }
 
+
 // The item’s metadata if it is readily available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadataifavailable
 func (i_ ICCameraItem) MetadataIfAvailable() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("metadataIfAvailable"))
@@ -302,17 +324,18 @@ func (i_ ICCameraItem) MetadataIfAvailable() string {
 }
 
 
-// SetMetadataIfAvailable sets the value of the metadataIfAvailable property.
 // The item’s metadata if it is readily available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadataifavailable
 func (i_ ICCameraItem) SetMetadataIfAvailable(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMetadataIfAvailable:"), objc.String(value))
 }
 
+
 // The item’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/name
 func (i_ ICCameraItem) Name() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("name"))
@@ -320,17 +343,18 @@ func (i_ ICCameraItem) Name() string {
 }
 
 
-// SetName sets the value of the name property.
 // The item’s name.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/name
 func (i_ ICCameraItem) SetName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
+
 // This item’s parent folder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/parentfolder
 func (i_ ICCameraItem) ParentFolder() ICCameraFolder {
 	rv := objc.Send[ICCameraFolder](i_.ID, objc.Sel("parentFolder"))
@@ -338,17 +362,18 @@ func (i_ ICCameraItem) ParentFolder() ICCameraFolder {
 }
 
 
-// SetParentFolder sets the value of the parentFolder property.
 // This item’s parent folder.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/parentfolder
 func (i_ ICCameraItem) SetParentFolder(value ICCameraFolder) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParentFolder:"), value)
 }
 
+
 // The item’s
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/ptpobjecthandle
 func (i_ ICCameraItem) PtpObjectHandle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("ptpObjectHandle"))
@@ -356,17 +381,18 @@ func (i_ ICCameraItem) PtpObjectHandle() unsafe.Pointer {
 }
 
 
-// SetPtpObjectHandle sets the value of the ptpObjectHandle property.
 // The item’s
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/ptpobjecthandle
 func (i_ ICCameraItem) SetPtpObjectHandle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPtpObjectHandle:"), value)
 }
 
+
 // The item’s thumbnail if it is readily available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnailifavailable
 func (i_ ICCameraItem) ThumbnailIfAvailable() appkit.Image {
 	rv := objc.Send[appkit.Image](i_.ID, objc.Sel("thumbnailIfAvailable"))
@@ -374,17 +400,18 @@ func (i_ ICCameraItem) ThumbnailIfAvailable() appkit.Image {
 }
 
 
-// SetThumbnailIfAvailable sets the value of the thumbnailIfAvailable property.
 // The item’s thumbnail if it is readily available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnailifavailable
 func (i_ ICCameraItem) SetThumbnailIfAvailable(value appkit.IImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThumbnailIfAvailable:"), value)
 }
 
+
 // A mutable dictionary to store arbitrary key-value pairs associated with a camera item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/userdata
 func (i_ ICCameraItem) UserData() foundation.MutableDictionary {
 	rv := objc.Send[foundation.MutableDictionary](i_.ID, objc.Sel("userData"))
@@ -392,17 +419,18 @@ func (i_ ICCameraItem) UserData() foundation.MutableDictionary {
 }
 
 
-// SetUserData sets the value of the userData property.
 // A mutable dictionary to store arbitrary key-value pairs associated with a camera item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/userdata
 func (i_ ICCameraItem) SetUserData(value foundation.IMutableDictionary) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserData:"), value)
 }
 
+
 // A Boolean value indicating whether the item was captured on the camera after the camera’s content had been fully enumerated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/wasaddedaftercontentcatalogcompleted
 func (i_ ICCameraItem) WasAddedAfterContentCatalogCompleted() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("wasAddedAfterContentCatalogCompleted"))
@@ -410,10 +438,9 @@ func (i_ ICCameraItem) WasAddedAfterContentCatalogCompleted() bool {
 }
 
 
-// SetWasAddedAfterContentCatalogCompleted sets the value of the wasAddedAfterContentCatalogCompleted property.
 // A Boolean value indicating whether the item was captured on the camera after the camera’s content had been fully enumerated.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/wasaddedaftercontentcatalogcompleted
 func (i_ ICCameraItem) SetWasAddedAfterContentCatalogCompleted(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWasAddedAfterContentCatalogCompleted:"), value)

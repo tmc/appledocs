@@ -59,7 +59,6 @@ type IAttributeDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription
-
 type AttributeDescription struct {
 	PropertyDescription
 }
@@ -110,7 +109,6 @@ func NewAttributeDescription() AttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-
 func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsCloudEncryption"))
 	return rv
@@ -121,7 +119,6 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-
 func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
 }
@@ -131,7 +128,6 @@ func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
-
 func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
 	return rv
@@ -142,7 +138,6 @@ func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
-
 func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
 }
@@ -152,7 +147,6 @@ func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-
 func (a_ AttributeDescription) AttributeType() AttributeType {
 	rv := objc.Send[AttributeType](a_.ID, objc.Sel("attributeType"))
 	return rv
@@ -163,7 +157,6 @@ func (a_ AttributeDescription) AttributeType() AttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-
 func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
 }
@@ -173,7 +166,6 @@ func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-
 func (a_ AttributeDescription) AttributeValueClassName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("attributeValueClassName"))
 	return rv
@@ -184,7 +176,6 @@ func (a_ AttributeDescription) AttributeValueClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-
 func (a_ AttributeDescription) SetAttributeValueClassName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), objc.String(value))
 }
@@ -194,7 +185,6 @@ func (a_ AttributeDescription) SetAttributeValueClassName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/defaultvalue
-
 func (a_ AttributeDescription) DefaultValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("defaultValue"))
 	return rv
@@ -205,7 +195,6 @@ func (a_ AttributeDescription) DefaultValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/defaultvalue
-
 func (a_ AttributeDescription) SetDefaultValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDefaultValue:"), value)
 }
@@ -215,7 +204,6 @@ func (a_ AttributeDescription) SetDefaultValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/preservesvalueinhistoryondeletion
-
 func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preservesValueInHistoryOnDeletion"))
 	return rv
@@ -226,7 +214,6 @@ func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/preservesvalueinhistoryondeletion
-
 func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
 }
@@ -236,7 +223,6 @@ func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-
 func (a_ AttributeDescription) Type() AttributeType {
 	rv := objc.Send[AttributeType](a_.ID, objc.Sel("type"))
 	return rv
@@ -247,7 +233,6 @@ func (a_ AttributeDescription) Type() AttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-
 func (a_ AttributeDescription) SetType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
@@ -257,7 +242,6 @@ func (a_ AttributeDescription) SetType(value AttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-
 func (a_ AttributeDescription) ValueTransformerName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
 	return rv
@@ -268,7 +252,6 @@ func (a_ AttributeDescription) ValueTransformerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-
 func (a_ AttributeDescription) SetValueTransformerName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
 }
@@ -278,7 +261,6 @@ func (a_ AttributeDescription) SetValueTransformerName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-
 func (a_ AttributeDescription) VersionHash() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("versionHash"))
 	return rv
@@ -289,7 +271,6 @@ func (a_ AttributeDescription) VersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-
 func (a_ AttributeDescription) SetVersionHash(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
 }

@@ -91,7 +91,6 @@ type IPlayerView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView
-
 type PlayerView struct {
 	appkit.View
 }
@@ -138,45 +137,37 @@ func NewPlayerView() PlayerView {
 
 
 
-
 // Puts the player view into trimming mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/beginTrimming(completionHandler:)
-
 func (p_ PlayerView) BeginTrimmingWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("beginTrimmingWithCompletionHandler:"), handler)
 }
-
 
 
 // Displays the chapter number and title in the player view for a brief moment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/flashChapterNumber(_:chapterTitle:)
-
 func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, objc.String(chapterTitle))
 }
-
 
 
 // Selects a specified playback speed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/selectSpeed(_:)
-
 func (p_ PlayerView) SelectSpeed(speed IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectSpeed:"), speed)
 }
-
 
 
 // Scales the video’s view by a specified factor, and centers the result on a specified point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/setMagnification(_:centeredAt:)
-
 func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMagnification:centeredAtPoint:"), magnification, point)
 }
@@ -186,7 +177,6 @@ func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64, poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
-
 func (p_ PlayerView) ActionPopUpButtonMenu() appkit.Menu {
 	rv := objc.Send[appkit.Menu](p_.ID, objc.Sel("actionPopUpButtonMenu"))
 	return rv
@@ -197,7 +187,6 @@ func (p_ PlayerView) ActionPopUpButtonMenu() appkit.Menu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
-
 func (p_ PlayerView) SetActionPopUpButtonMenu(value appkit.IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionPopUpButtonMenu:"), value)
 }
@@ -207,7 +196,6 @@ func (p_ PlayerView) SetActionPopUpButtonMenu(value appkit.IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsMagnification
-
 func (p_ PlayerView) AllowsMagnification() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsMagnification"))
 	return rv
@@ -218,7 +206,6 @@ func (p_ PlayerView) AllowsMagnification() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsMagnification
-
 func (p_ PlayerView) SetAllowsMagnification(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsMagnification:"), value)
 }
@@ -228,7 +215,6 @@ func (p_ PlayerView) SetAllowsMagnification(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsPictureInPicturePlayback
-
 func (p_ PlayerView) AllowsPictureInPicturePlayback() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsPictureInPicturePlayback"))
 	return rv
@@ -239,7 +225,6 @@ func (p_ PlayerView) AllowsPictureInPicturePlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsPictureInPicturePlayback
-
 func (p_ PlayerView) SetAllowsPictureInPicturePlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsPictureInPicturePlayback:"), value)
 }
@@ -249,7 +234,6 @@ func (p_ PlayerView) SetAllowsPictureInPicturePlayback(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsVideoFrameAnalysis
-
 func (p_ PlayerView) AllowsVideoFrameAnalysis() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsVideoFrameAnalysis"))
 	return rv
@@ -260,7 +244,6 @@ func (p_ PlayerView) AllowsVideoFrameAnalysis() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsVideoFrameAnalysis
-
 func (p_ PlayerView) SetAllowsVideoFrameAnalysis(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsVideoFrameAnalysis:"), value)
 }
@@ -270,7 +253,6 @@ func (p_ PlayerView) SetAllowsVideoFrameAnalysis(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/canBeginTrimming
-
 func (p_ PlayerView) CanBeginTrimming() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canBeginTrimming"))
 	return rv
@@ -281,7 +263,6 @@ func (p_ PlayerView) CanBeginTrimming() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/contentOverlayView
-
 func (p_ PlayerView) ContentOverlayView() appkit.View {
 	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
@@ -292,7 +273,6 @@ func (p_ PlayerView) ContentOverlayView() appkit.View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/controlsStyle
-
 func (p_ PlayerView) ControlsStyle() PlayerViewControlsStyle {
 	rv := objc.Send[PlayerViewControlsStyle](p_.ID, objc.Sel("controlsStyle"))
 	return rv
@@ -303,7 +283,6 @@ func (p_ PlayerView) ControlsStyle() PlayerViewControlsStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/controlsStyle
-
 func (p_ PlayerView) SetControlsStyle(value PlayerViewControlsStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlsStyle:"), value)
 }
@@ -313,7 +292,6 @@ func (p_ PlayerView) SetControlsStyle(value PlayerViewControlsStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/delegate
-
 func (p_ PlayerView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
 	return rv
@@ -324,7 +302,6 @@ func (p_ PlayerView) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/delegate
-
 func (p_ PlayerView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -334,7 +311,6 @@ func (p_ PlayerView) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/isReadyForDisplay
-
 func (p_ PlayerView) ReadyForDisplay() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("readyForDisplay"))
 	return rv
@@ -345,7 +321,6 @@ func (p_ PlayerView) ReadyForDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/magnification
-
 func (p_ PlayerView) Magnification() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("magnification"))
 	return rv
@@ -356,7 +331,6 @@ func (p_ PlayerView) Magnification() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/magnification
-
 func (p_ PlayerView) SetMagnification(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMagnification:"), value)
 }
@@ -366,7 +340,6 @@ func (p_ PlayerView) SetMagnification(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/pictureInPictureDelegate
-
 func (p_ PlayerView) PictureInPictureDelegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("pictureInPictureDelegate"))
 	return rv
@@ -377,7 +350,6 @@ func (p_ PlayerView) PictureInPictureDelegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/pictureInPictureDelegate
-
 func (p_ PlayerView) SetPictureInPictureDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPictureInPictureDelegate:"), value)
 }
@@ -387,7 +359,6 @@ func (p_ PlayerView) SetPictureInPictureDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
-
 func (p_ PlayerView) Player() avfoundation.Player {
 	rv := objc.Send[avfoundation.Player](p_.ID, objc.Sel("player"))
 	return rv
@@ -398,7 +369,6 @@ func (p_ PlayerView) Player() avfoundation.Player {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
-
 func (p_ PlayerView) SetPlayer(value avfoundation.IPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
@@ -408,7 +378,6 @@ func (p_ PlayerView) SetPlayer(value avfoundation.IPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
-
 func (p_ PlayerView) PreferredDisplayDynamicRange() DisplayDynamicRange {
 	rv := objc.Send[DisplayDynamicRange](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
 	return rv
@@ -419,7 +388,6 @@ func (p_ PlayerView) PreferredDisplayDynamicRange() DisplayDynamicRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
-
 func (p_ PlayerView) SetPreferredDisplayDynamicRange(value IDisplayDynamicRange) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredDisplayDynamicRange:"), value)
 }
@@ -429,7 +397,6 @@ func (p_ PlayerView) SetPreferredDisplayDynamicRange(value IDisplayDynamicRange)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/selectedSpeed
-
 func (p_ PlayerView) SelectedSpeed() AVPlaybackSpeed {
 	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
 	return rv
@@ -440,7 +407,6 @@ func (p_ PlayerView) SelectedSpeed() AVPlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFrameSteppingButtons
-
 func (p_ PlayerView) ShowsFrameSteppingButtons() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsFrameSteppingButtons"))
 	return rv
@@ -451,7 +417,6 @@ func (p_ PlayerView) ShowsFrameSteppingButtons() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFrameSteppingButtons
-
 func (p_ PlayerView) SetShowsFrameSteppingButtons(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsFrameSteppingButtons:"), value)
 }
@@ -461,7 +426,6 @@ func (p_ PlayerView) SetShowsFrameSteppingButtons(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFullScreenToggleButton
-
 func (p_ PlayerView) ShowsFullScreenToggleButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsFullScreenToggleButton"))
 	return rv
@@ -472,7 +436,6 @@ func (p_ PlayerView) ShowsFullScreenToggleButton() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFullScreenToggleButton
-
 func (p_ PlayerView) SetShowsFullScreenToggleButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsFullScreenToggleButton:"), value)
 }
@@ -482,7 +445,6 @@ func (p_ PlayerView) SetShowsFullScreenToggleButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsSharingServiceButton
-
 func (p_ PlayerView) ShowsSharingServiceButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsSharingServiceButton"))
 	return rv
@@ -493,7 +455,6 @@ func (p_ PlayerView) ShowsSharingServiceButton() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsSharingServiceButton
-
 func (p_ PlayerView) SetShowsSharingServiceButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsSharingServiceButton:"), value)
 }
@@ -503,7 +464,6 @@ func (p_ PlayerView) SetShowsSharingServiceButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsTimecodes
-
 func (p_ PlayerView) ShowsTimecodes() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsTimecodes"))
 	return rv
@@ -514,7 +474,6 @@ func (p_ PlayerView) ShowsTimecodes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsTimecodes
-
 func (p_ PlayerView) SetShowsTimecodes(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsTimecodes:"), value)
 }
@@ -524,7 +483,6 @@ func (p_ PlayerView) SetShowsTimecodes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/speeds
-
 func (p_ PlayerView) Speeds() []PlaybackSpeed {
 	rv := objc.Send[[]PlaybackSpeed](p_.ID, objc.Sel("speeds"))
 	return rv
@@ -535,7 +493,6 @@ func (p_ PlayerView) Speeds() []PlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/speeds
-
 func (p_ PlayerView) SetSpeeds(value []PlaybackSpeed) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -555,7 +512,6 @@ func (p_ PlayerView) SetSpeeds(value []PlaybackSpeed) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/updatesNowPlayingInfoCenter
-
 func (p_ PlayerView) UpdatesNowPlayingInfoCenter() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("updatesNowPlayingInfoCenter"))
 	return rv
@@ -566,7 +522,6 @@ func (p_ PlayerView) UpdatesNowPlayingInfoCenter() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/updatesNowPlayingInfoCenter
-
 func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUpdatesNowPlayingInfoCenter:"), value)
 }
@@ -576,7 +531,6 @@ func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoBounds
-
 func (p_ PlayerView) VideoBounds() foundation.Rect {
 	rv := objc.Send[foundation.Rect](p_.ID, objc.Sel("videoBounds"))
 	return rv
@@ -585,7 +539,6 @@ func (p_ PlayerView) VideoBounds() foundation.Rect {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoFrameAnalysisTypes
-
 func (p_ PlayerView) VideoFrameAnalysisTypes() VideoFrameAnalysisType {
 	rv := objc.Send[VideoFrameAnalysisType](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
 	return rv
@@ -594,7 +547,6 @@ func (p_ PlayerView) VideoFrameAnalysisTypes() VideoFrameAnalysisType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoFrameAnalysisTypes
-
 func (p_ PlayerView) SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFrameAnalysisTypes:"), value)
 }
@@ -604,7 +556,6 @@ func (p_ PlayerView) SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoGravity
-
 func (p_ PlayerView) VideoGravity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoGravity"))
 	return rv
@@ -615,7 +566,6 @@ func (p_ PlayerView) VideoGravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoGravity
-
 func (p_ PlayerView) SetVideoGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
@@ -625,7 +575,6 @@ func (p_ PlayerView) SetVideoGravity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
-
 func (p_ PlayerView) IsReadyForDisplay() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
@@ -636,7 +585,6 @@ func (p_ PlayerView) IsReadyForDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
-
 func (p_ PlayerView) SetIsReadyForDisplay(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }

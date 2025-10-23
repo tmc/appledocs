@@ -32,8 +32,10 @@ type ImIncomingDataQueue interface {
 	objectivec.IObject
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mIncomingDataQueue
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mIncomingDataQueue
 type mIncomingDataQueue struct {
 	objectivec.Object
 }

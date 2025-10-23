@@ -34,7 +34,7 @@ type IHTTPCookieStorage interface {
 	SetIsSessionOnly(value bool)
 	CookieAcceptPolicy() unsafe.Pointer
 	SetCookieAcceptPolicy(value unsafe.Pointer)
-	Cookies() NSHTTPCookie
+	Cookies() IHTTPCookie
 	SetCookies(value IHTTPCookie)
 }
 
@@ -104,7 +104,7 @@ func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() HTTPCookieStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
-func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() NSHTTPCookieStorage {
+func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() IHTTPCookieStorage {
 	rv := objc.Send[NSHTTPCookieStorage](h_.ID, objc.Sel("sharedHTTPCookieStorage"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (h_ HTTPCookieStorage) SetCookieAcceptPolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies
-func (h_ HTTPCookieStorage) Cookies() NSHTTPCookie {
+func (h_ HTTPCookieStorage) Cookies() IHTTPCookie {
 	rv := objc.Send[NSHTTPCookie](h_.ID, objc.Sel("cookies"))
 	return rv
 }

@@ -31,12 +31,12 @@ type _AssetDownloadTaskClass struct {
 type IAssetDownloadTask interface {
 	foundation.IURLSessionTask
 	DestinationURL() foundation.URL
-	SetDestinationURL(value foundation.IURL)
+	SetDestinationURL(value foundation.URL)
 	LoadedTimeRanges() foundation.Value
-	SetLoadedTimeRanges(value foundation.IValue)
+	SetLoadedTimeRanges(value foundation.Value)
 	Options() string
 	SetOptions(value string)
-	UrlAsset() AVURLAsset
+	UrlAsset() IAVURLAsset
 	SetUrlAsset(value IAVURLAsset)
 }
 
@@ -49,7 +49,6 @@ type IAssetDownloadTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
-
 type AssetDownloadTask struct {
 	foundation.URLSessionTask
 }
@@ -100,7 +99,6 @@ func NewAssetDownloadTask() AssetDownloadTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-
 func (a_ AssetDownloadTask) DestinationURL() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("destinationURL"))
 	return rv
@@ -111,8 +109,7 @@ func (a_ AssetDownloadTask) DestinationURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-
-func (a_ AssetDownloadTask) SetDestinationURL(value foundation.IURL) {
+func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDestinationURL:"), value)
 }
 
@@ -121,7 +118,6 @@ func (a_ AssetDownloadTask) SetDestinationURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-
 func (a_ AssetDownloadTask) LoadedTimeRanges() foundation.Value {
 	rv := objc.Send[foundation.Value](a_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
@@ -132,8 +128,7 @@ func (a_ AssetDownloadTask) LoadedTimeRanges() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-
-func (a_ AssetDownloadTask) SetLoadedTimeRanges(value foundation.IValue) {
+func (a_ AssetDownloadTask) SetLoadedTimeRanges(value foundation.Value) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoadedTimeRanges:"), value)
 }
 
@@ -142,7 +137,6 @@ func (a_ AssetDownloadTask) SetLoadedTimeRanges(value foundation.IValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-
 func (a_ AssetDownloadTask) Options() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("options"))
 	return rv
@@ -153,7 +147,6 @@ func (a_ AssetDownloadTask) Options() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-
 func (a_ AssetDownloadTask) SetOptions(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), objc.String(value))
 }
@@ -163,8 +156,7 @@ func (a_ AssetDownloadTask) SetOptions(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
-
-func (a_ AssetDownloadTask) UrlAsset() AVURLAsset {
+func (a_ AssetDownloadTask) UrlAsset() IAVURLAsset {
 	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("urlAsset"))
 	return rv
 }
@@ -174,7 +166,6 @@ func (a_ AssetDownloadTask) UrlAsset() AVURLAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
-
 func (a_ AssetDownloadTask) SetUrlAsset(value IAVURLAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUrlAsset:"), value)
 }

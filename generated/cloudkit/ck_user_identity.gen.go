@@ -47,7 +47,6 @@ type ICKUserIdentity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity
-
 type CKUserIdentity struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewCKUserIdentity() CKUserIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/contactIdentifiers
-
 func (c_ CKUserIdentity) ContactIdentifiers() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("contactIdentifiers"))
 	return rv
@@ -107,7 +105,6 @@ func (c_ CKUserIdentity) ContactIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/hasiCloudAccount
-
 func (c_ CKUserIdentity) HasiCloudAccount() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
 	return rv
@@ -118,7 +115,6 @@ func (c_ CKUserIdentity) HasiCloudAccount() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/lookupInfo-swift.property
-
 func (c_ CKUserIdentity) LookupInfo() CKUserIdentityLookupInfo {
 	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("lookupInfo"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CKUserIdentity) LookupInfo() CKUserIdentityLookupInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/nameComponents
-
 func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
 	rv := objc.Send[foundation.PersonNameComponents](c_.ID, objc.Sel("nameComponents"))
 	return rv
@@ -140,7 +135,6 @@ func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/userRecordID
-
 func (c_ CKUserIdentity) UserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv

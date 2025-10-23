@@ -42,7 +42,6 @@ type ICXAnswerCallAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction
-
 type CXAnswerCallAction struct {
 	CXCallAction
 }
@@ -89,12 +88,10 @@ func NewCXAnswerCallAction() CXAnswerCallAction {
 
 
 
-
 // Reports the successful execution of the action at the specified time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction/fulfill(withDateConnected:)
-
 func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateConnected:"), dateConnected)
 }

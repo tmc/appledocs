@@ -41,7 +41,6 @@ type ICachedImageRep interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep
-
 type CachedImageRep struct {
 	ImageRep
 }
@@ -88,12 +87,10 @@ func NewCachedImageRep() CachedImageRep {
 
 
 
-
 // Returns the window where the representation is cached.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep/window
-
 func (c_ CachedImageRep) Window() Window {
 	rv := objc.Send[Window](c_.ID, objc.Sel("window"))
 	return rv

@@ -35,7 +35,6 @@ type IHKWorkoutEffortRelationshipQuery interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEffortRelationshipQuery
-
 type HKWorkoutEffortRelationshipQuery struct {
 	HKQuery
 }

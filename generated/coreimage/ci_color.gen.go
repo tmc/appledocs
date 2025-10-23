@@ -50,7 +50,6 @@ type IColor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor
-
 type Color struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewColor() Color {
 
 
 
-
 // Create a Core Image color object with a Core Graphics color object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
-
 func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
@@ -109,10 +106,8 @@ func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
-
 func NewColorWithColor(color IColor) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
@@ -121,12 +116,10 @@ func NewColorWithColor(color IColor) Color {
 }
 
 
-
 // Initialize a Core Image color object in the sRGB color space with the specified red, green, and blue component values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/initWithRed:green:blue:
-
 func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:"), red, green, blue)
@@ -135,12 +128,10 @@ func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
 }
 
 
-
 // Initialize a Core Image color object in the sRGB color space with the specified red, green, blue, and alpha component values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:)
-
 func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alpha float64) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:"), red, green, blue, alpha)
@@ -149,12 +140,10 @@ func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alp
 }
 
 
-
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
-
 func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
@@ -163,12 +152,10 @@ func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue fl
 }
 
 
-
 // Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
-
 func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace coregraphics.CGColorSpaceRef) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
@@ -177,12 +164,10 @@ func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64
 }
 
 
-
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-
 func NewColorWithString(representation string) Color {
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
 	return rv
@@ -194,7 +179,6 @@ func NewColorWithString(representation string) Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithCGColor:
-
 func (cc _ColorClass) ColorWithCGColor(color coregraphics.CGColorRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithCGColor:"), color)
 	return rv
@@ -205,7 +189,6 @@ func (cc _ColorClass) ColorWithCGColor(color coregraphics.CGColorRef) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:
-
 func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alpha float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:"), red, green, blue, alpha)
 	return rv
@@ -216,7 +199,6 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64, green float64, blu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:colorSpace:
-
 func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	return rv
@@ -227,7 +209,6 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:colorSpace:
-
 func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	return rv
@@ -238,7 +219,6 @@ func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64, green float64
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:)
-
 func (cc _ColorClass) ColorWithRedGreenBlue(red float64, green float64, blue float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:"), red, green, blue)
 	return rv
@@ -249,7 +229,6 @@ func (cc _ColorClass) ColorWithRedGreenBlue(red float64, green float64, blue flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-
 func (cc _ColorClass) ColorWithString(representation string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), objc.String(representation))
 	return rv
@@ -260,7 +239,6 @@ func (cc _ColorClass) ColorWithString(representation string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/black
-
 func (cc _ColorClass) BlackColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("blackColor"))
 	return rv
@@ -270,7 +248,6 @@ func (cc _ColorClass) BlackColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.type.property
-
 func (cc _ColorClass) BlueColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("blueColor"))
 	return rv
@@ -280,7 +257,6 @@ func (cc _ColorClass) BlueColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/clear
-
 func (cc _ColorClass) ClearColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("clearColor"))
 	return rv
@@ -290,7 +266,6 @@ func (cc _ColorClass) ClearColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/cyan
-
 func (cc _ColorClass) CyanColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("cyanColor"))
 	return rv
@@ -300,7 +275,6 @@ func (cc _ColorClass) CyanColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/gray
-
 func (cc _ColorClass) GrayColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("grayColor"))
 	return rv
@@ -310,7 +284,6 @@ func (cc _ColorClass) GrayColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.type.property
-
 func (cc _ColorClass) GreenColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("greenColor"))
 	return rv
@@ -320,7 +293,6 @@ func (cc _ColorClass) GreenColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/magenta
-
 func (cc _ColorClass) MagentaColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("magentaColor"))
 	return rv
@@ -330,7 +302,6 @@ func (cc _ColorClass) MagentaColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.type.property
-
 func (cc _ColorClass) RedColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("redColor"))
 	return rv
@@ -340,7 +311,6 @@ func (cc _ColorClass) RedColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/white
-
 func (cc _ColorClass) WhiteColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("whiteColor"))
 	return rv
@@ -350,7 +320,6 @@ func (cc _ColorClass) WhiteColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/yellow
-
 func (cc _ColorClass) YellowColor() Color {
 	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("yellowColor"))
 	return rv
@@ -360,7 +329,6 @@ func (cc _ColorClass) YellowColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/alpha
-
 func (c_ Color) Alpha() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("alpha"))
 	return rv
@@ -371,7 +339,6 @@ func (c_ Color) Alpha() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/black
-
 func (c_ Color) BlackColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("blackColor"))
 	return rv
@@ -382,7 +349,6 @@ func (c_ Color) BlackColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.property
-
 func (c_ Color) Blue() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("blue"))
 	return rv
@@ -393,7 +359,6 @@ func (c_ Color) Blue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.type.property
-
 func (c_ Color) BlueColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("blueColor"))
 	return rv
@@ -404,7 +369,6 @@ func (c_ Color) BlueColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/clear
-
 func (c_ Color) ClearColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("clearColor"))
 	return rv
@@ -415,7 +379,6 @@ func (c_ Color) ClearColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorSpace
-
 func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
 	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("colorSpace"))
 	return rv
@@ -426,7 +389,6 @@ func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/components
-
 func (c_ Color) Components() coregraphics.float64 {
 	rv := objc.Send[coregraphics.float64](c_.ID, objc.Sel("components"))
 	return rv
@@ -437,7 +399,6 @@ func (c_ Color) Components() coregraphics.float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/cyan
-
 func (c_ Color) CyanColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("cyanColor"))
 	return rv
@@ -448,7 +409,6 @@ func (c_ Color) CyanColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/gray
-
 func (c_ Color) GrayColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("grayColor"))
 	return rv
@@ -459,7 +419,6 @@ func (c_ Color) GrayColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.property
-
 func (c_ Color) Green() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("green"))
 	return rv
@@ -470,7 +429,6 @@ func (c_ Color) Green() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.type.property
-
 func (c_ Color) GreenColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("greenColor"))
 	return rv
@@ -481,7 +439,6 @@ func (c_ Color) GreenColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/magenta
-
 func (c_ Color) MagentaColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("magentaColor"))
 	return rv
@@ -492,7 +449,6 @@ func (c_ Color) MagentaColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/numberOfComponents
-
 func (c_ Color) NumberOfComponents() uintptr {
 	rv := objc.Send[uintptr](c_.ID, objc.Sel("numberOfComponents"))
 	return rv
@@ -503,7 +459,6 @@ func (c_ Color) NumberOfComponents() uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.property
-
 func (c_ Color) Red() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("red"))
 	return rv
@@ -514,7 +469,6 @@ func (c_ Color) Red() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.type.property
-
 func (c_ Color) RedColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("redColor"))
 	return rv
@@ -525,7 +479,6 @@ func (c_ Color) RedColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/stringRepresentation
-
 func (c_ Color) StringRepresentation() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("stringRepresentation"))
 	return rv
@@ -536,7 +489,6 @@ func (c_ Color) StringRepresentation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/white
-
 func (c_ Color) WhiteColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("whiteColor"))
 	return rv
@@ -547,7 +499,6 @@ func (c_ Color) WhiteColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/yellow
-
 func (c_ Color) YellowColor() CIColor {
 	rv := objc.Send[CIColor](c_.ID, objc.Sel("yellowColor"))
 	return rv

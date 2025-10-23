@@ -50,9 +50,9 @@ type IURLRequest interface {
 	SetCachePolicy(value unsafe.Pointer)
 	CookiePartitionIdentifier() string
 	SetCookiePartitionIdentifier(value string)
-	HttpBody() Data
+	HttpBody() IData
 	SetHttpBody(value IData)
-	HttpBodyStream() NSInputStream
+	HttpBodyStream() IInputStream
 	SetHttpBodyStream(value IInputStream)
 	HttpMethod() string
 	SetHttpMethod(value string)
@@ -60,15 +60,15 @@ type IURLRequest interface {
 	SetHttpShouldHandleCookies(value bool)
 	HttpShouldUsePipelining() bool
 	SetHttpShouldUsePipelining(value bool)
-	MainDocumentURL() URL
+	MainDocumentURL() IURL
 	SetMainDocumentURL(value IURL)
 	NetworkServiceType() unsafe.Pointer
 	SetNetworkServiceType(value unsafe.Pointer)
 	RequiresDNSSECValidation() bool
 	SetRequiresDNSSECValidation(value bool)
 	TimeoutInterval() TimeInterval
-	SetTimeoutInterval(value ITimeInterval)
-	Url() URL
+	SetTimeoutInterval(value TimeInterval)
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -303,7 +303,7 @@ func (u_ URLRequest) SetCookiePartitionIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbody
-func (u_ URLRequest) HttpBody() Data {
+func (u_ URLRequest) HttpBody() IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("httpBody"))
 	return rv
 }
@@ -322,7 +322,7 @@ func (u_ URLRequest) SetHttpBody(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-func (u_ URLRequest) HttpBodyStream() NSInputStream {
+func (u_ URLRequest) HttpBodyStream() IInputStream {
 	rv := objc.Send[NSInputStream](u_.ID, objc.Sel("httpBodyStream"))
 	return rv
 }
@@ -398,7 +398,7 @@ func (u_ URLRequest) SetHttpShouldUsePipelining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
-func (u_ URLRequest) MainDocumentURL() URL {
+func (u_ URLRequest) MainDocumentURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("mainDocumentURL"))
 	return rv
 }
@@ -461,7 +461,7 @@ func (u_ URLRequest) TimeoutInterval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) SetTimeoutInterval(value ITimeInterval) {
+func (u_ URLRequest) SetTimeoutInterval(value TimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutInterval:"), value)
 }
 
@@ -470,7 +470,7 @@ func (u_ URLRequest) SetTimeoutInterval(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
-func (u_ URLRequest) Url() URL {
+func (u_ URLRequest) Url() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("url"))
 	return rv
 }

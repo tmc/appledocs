@@ -30,9 +30,8 @@ type _SampleBufferVideoRendererClass struct {
 // An interface definition for the [SampleBufferVideoRenderer] class.
 type ISampleBufferVideoRenderer interface {
 	objectivec.IObject
-	CopyDisplayedPixelBuffer() unsafe.Pointer
-	Error() Error
-	SetError(value IError)
+	Error() AVError
+	SetError(value AVError)
 	PresentationTimeExpectation() unsafe.Pointer
 	SetPresentationTimeExpectation(value unsafe.Pointer)
 	RecommendedPixelBufferAttributes() unsafe.Pointer
@@ -50,7 +49,6 @@ type ISampleBufferVideoRenderer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer
-
 type SampleBufferVideoRenderer struct {
 	objectivec.Object
 }
@@ -95,22 +93,11 @@ func NewSampleBufferVideoRenderer() SampleBufferVideoRenderer {
 
 
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/displayedPixelBuffer()
-
-func (s_ SampleBufferVideoRenderer) CopyDisplayedPixelBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("copyDisplayedPixelBuffer"))
-	return rv
-}
-
-
 // An object the describes the error that caused the rendering failure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-
-func (s_ SampleBufferVideoRenderer) Error() Error {
+func (s_ SampleBufferVideoRenderer) Error() AVError {
 	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
 }
@@ -120,15 +107,13 @@ func (s_ SampleBufferVideoRenderer) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-
-func (s_ SampleBufferVideoRenderer) SetError(value IError) {
+func (s_ SampleBufferVideoRenderer) SetError(value AVError) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
-
 func (s_ SampleBufferVideoRenderer) PresentationTimeExpectation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("presentationTimeExpectation"))
 	return rv
@@ -137,7 +122,6 @@ func (s_ SampleBufferVideoRenderer) PresentationTimeExpectation() unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
-
 func (s_ SampleBufferVideoRenderer) SetPresentationTimeExpectation(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPresentationTimeExpectation:"), value)
 }
@@ -147,7 +131,6 @@ func (s_ SampleBufferVideoRenderer) SetPresentationTimeExpectation(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
-
 func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("recommendedPixelBufferAttributes"))
 	return rv
@@ -158,7 +141,6 @@ func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
-
 func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecommendedPixelBufferAttributes:"), value)
 }
@@ -168,7 +150,6 @@ func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-
 func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("requiresFlushToResumeDecoding"))
 	return rv
@@ -179,7 +160,6 @@ func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-
 func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresFlushToResumeDecoding:"), value)
 }
@@ -189,7 +169,6 @@ func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
-
 func (s_ SampleBufferVideoRenderer) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("status"))
 	return rv
@@ -200,7 +179,6 @@ func (s_ SampleBufferVideoRenderer) Status() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
-
 func (s_ SampleBufferVideoRenderer) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStatus:"), value)
 }

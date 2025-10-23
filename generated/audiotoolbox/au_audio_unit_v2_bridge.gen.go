@@ -40,7 +40,6 @@ type IAudioUnitV2Bridge interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitV2Bridge
-
 type AudioUnitV2Bridge struct {
 	AudioUnit
 }

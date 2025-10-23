@@ -43,7 +43,6 @@ type ICKSyncEngineSendChangesContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext
-
 type CKSyncEngineSendChangesContext struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewCKSyncEngineSendChangesContext() CKSyncEngineSendChangesContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext/options
-
 func (c_ CKSyncEngineSendChangesContext) Options() CKSyncEngineSendChangesOptions {
 	rv := objc.Send[CKSyncEngineSendChangesOptions](c_.ID, objc.Sel("options"))
 	return rv
@@ -103,7 +101,6 @@ func (c_ CKSyncEngineSendChangesContext) Options() CKSyncEngineSendChangesOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext/reason
-
 func (c_ CKSyncEngineSendChangesContext) Reason() CKSyncEngineSyncReason {
 	rv := objc.Send[CKSyncEngineSyncReason](c_.ID, objc.Sel("reason"))
 	return rv

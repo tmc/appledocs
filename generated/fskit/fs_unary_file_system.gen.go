@@ -41,7 +41,6 @@ type IFSUnaryFileSystem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSUnaryFileSystem
-
 type FSUnaryFileSystem struct {
 	objectivec.Object
 }

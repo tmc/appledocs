@@ -40,7 +40,6 @@ type IModelStructureNeuralNetwork interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetwork
-
 type ModelStructureNeuralNetwork struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewModelStructureNeuralNetwork() ModelStructureNeuralNetwork {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetwork/layers
-
 func (m_ ModelStructureNeuralNetwork) Layers() []ModelStructureNeuralNetworkLayer {
 	rv := objc.Send[[]ModelStructureNeuralNetworkLayer](m_.ID, objc.Sel("layers"))
 	return rv

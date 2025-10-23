@@ -39,7 +39,11 @@ type IINRestaurantReservation interface {
 }
 
 // The information that describes a restaurant reservation.
+
+
+// The information that describes a restaurant reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation
 type INRestaurantReservation struct {
 	INReservation
@@ -87,9 +91,9 @@ func NewINRestaurantReservation() INRestaurantReservation {
 
 
 
-
 // Creates a new restaurant reservation with the provided information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:
 func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference INSpeakableString, reservationNumber string, bookingTime foundation.IDate, reservationStatus INReservationStatus, reservationHolderName string, actions []INReservationAction, reservationDuration INDateComponentsRange, partySize foundation.INumber, restaurantLocation corelocation.IPlacemark) INRestaurantReservation {
 	instance := getINRestaurantReservationClass().Alloc()
@@ -99,16 +103,20 @@ func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeRese
 }
 
 
+
 // The name and location of the restaurant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/restaurantLocation
 func (i_ INRestaurantReservation) RestaurantLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("restaurantLocation"))
 	return rv
 }
 
+
 // The number of people in the party.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/partysize-9ux0p
 func (i_ INRestaurantReservation) PartySize() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
@@ -116,17 +124,18 @@ func (i_ INRestaurantReservation) PartySize() int {
 }
 
 
-// SetPartySize sets the value of the partySize property.
 // The number of people in the party.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/partysize-9ux0p
 func (i_ INRestaurantReservation) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
 
+
 // The date and time range that defines beginning and end of the restaurant reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
 func (i_ INRestaurantReservation) ReservationDuration() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("reservationDuration"))
@@ -134,10 +143,9 @@ func (i_ INRestaurantReservation) ReservationDuration() INDateComponentsRange {
 }
 
 
-// SetReservationDuration sets the value of the reservationDuration property.
 // The date and time range that defines beginning and end of the restaurant reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
 func (i_ INRestaurantReservation) SetReservationDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)

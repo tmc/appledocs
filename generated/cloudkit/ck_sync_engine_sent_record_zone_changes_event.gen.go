@@ -40,7 +40,6 @@ type ICKSyncEngineSentRecordZoneChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent
-
 type CKSyncEngineSentRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }
@@ -91,7 +90,6 @@ func NewCKSyncEngineSentRecordZoneChangesEvent() CKSyncEngineSentRecordZoneChang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent/failedRecordDeletes
-
 func (c_ CKSyncEngineSentRecordZoneChangesEvent) FailedRecordDeletes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("failedRecordDeletes"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CKSyncEngineSentRecordZoneChangesEvent) FailedRecordDeletes() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent/savedRecords
-
 func (c_ CKSyncEngineSentRecordZoneChangesEvent) SavedRecords() []CKRecord {
 	rv := objc.Send[[]CKRecord](c_.ID, objc.Sel("savedRecords"))
 	return rv

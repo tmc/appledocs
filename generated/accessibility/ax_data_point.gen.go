@@ -50,7 +50,6 @@ type IAXDataPoint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint
-
 type AXDataPoint struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewAXDataPoint() AXDataPoint {
 
 
 
-
 // Creates a data point with the specified x- and y-values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:
-
 func NewAXDataPointWithXY(xValue IAXDataPointValue, yValue IAXDataPointValue) AXDataPoint {
 	instance := getAXDataPointClass().Alloc()
 	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:"), xValue, yValue)
@@ -109,12 +106,10 @@ func NewAXDataPointWithXY(xValue IAXDataPointValue, yValue IAXDataPointValue) AX
 }
 
 
-
 // Creates a data point with the specified x-value, y-value, and additional values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:
-
 func NewAXDataPointWithXYAdditionalValues(xValue IAXDataPointValue, yValue IAXDataPointValue, additionalValues []AXDataPointValue) AXDataPoint {
 	instance := getAXDataPointClass().Alloc()
 	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:"), xValue, yValue, additionalValues)
@@ -123,12 +118,10 @@ func NewAXDataPointWithXYAdditionalValues(xValue IAXDataPointValue, yValue IAXDa
 }
 
 
-
 // Creates a data point with the specified x-value, y-value, additional values, and label.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:label:
-
 func NewAXDataPointWithXYAdditionalValuesLabel(xValue IAXDataPointValue, yValue IAXDataPointValue, additionalValues []AXDataPointValue, label string) AXDataPoint {
 	instance := getAXDataPointClass().Alloc()
 	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:label:"), xValue, yValue, additionalValues, objc.String(label))
@@ -142,7 +135,6 @@ func NewAXDataPointWithXYAdditionalValuesLabel(xValue IAXDataPointValue, yValue 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/additionalValues
-
 func (a_ AXDataPoint) AdditionalValues() []AXDataPointValue {
 	rv := objc.Send[[]AXDataPointValue](a_.ID, objc.Sel("additionalValues"))
 	return rv
@@ -153,7 +145,6 @@ func (a_ AXDataPoint) AdditionalValues() []AXDataPointValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/additionalValues
-
 func (a_ AXDataPoint) SetAdditionalValues(value []AXDataPointValue) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -173,7 +164,6 @@ func (a_ AXDataPoint) SetAdditionalValues(value []AXDataPointValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/attributedLabel
-
 func (a_ AXDataPoint) AttributedLabel() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
@@ -184,7 +174,6 @@ func (a_ AXDataPoint) AttributedLabel() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/attributedLabel
-
 func (a_ AXDataPoint) SetAttributedLabel(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedLabel:"), value)
 }
@@ -194,7 +183,6 @@ func (a_ AXDataPoint) SetAttributedLabel(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-
 func (a_ AXDataPoint) Label() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
@@ -205,7 +193,6 @@ func (a_ AXDataPoint) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-
 func (a_ AXDataPoint) SetLabel(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -215,7 +202,6 @@ func (a_ AXDataPoint) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/xValue
-
 func (a_ AXDataPoint) XValue() AXDataPointValue {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("xValue"))
 	return rv
@@ -226,7 +212,6 @@ func (a_ AXDataPoint) XValue() AXDataPointValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/xValue
-
 func (a_ AXDataPoint) SetXValue(value IAXDataPointValue) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setXValue:"), value)
 }
@@ -236,7 +221,6 @@ func (a_ AXDataPoint) SetXValue(value IAXDataPointValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/yValue
-
 func (a_ AXDataPoint) YValue() AXDataPointValue {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("yValue"))
 	return rv
@@ -247,7 +231,6 @@ func (a_ AXDataPoint) YValue() AXDataPointValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/yValue
-
 func (a_ AXDataPoint) SetYValue(value IAXDataPointValue) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setYValue:"), value)
 }

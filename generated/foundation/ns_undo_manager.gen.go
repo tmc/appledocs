@@ -38,7 +38,7 @@ type IUndoManager interface {
 	PrepareWithInvocationTarget(target objectivec.IObject) objc.ID
 	Redo()
 	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
-	RedoMenuTitleForUndoActionName(actionName string) String
+	RedoMenuTitleForUndoActionName(actionName string) IString
 	RegisterUndoWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, object objectivec.IObject)
 	RemoveAllActions()
 	RemoveAllActionsWithTarget(target objectivec.IObject)
@@ -47,7 +47,7 @@ type IUndoManager interface {
 	SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey)
 	Undo()
 	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
-	UndoMenuTitleForUndoActionName(actionName string) String
+	UndoMenuTitleForUndoActionName(actionName string) IString
 	UndoNestedGroup()
 	CanRedo() bool
 	CanUndo() bool
@@ -210,7 +210,7 @@ func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoMenuTitle(forUndoActionName:)
-func (u_ UndoManager) RedoMenuTitleForUndoActionName(actionName string) String {
+func (u_ UndoManager) RedoMenuTitleForUndoActionName(actionName string) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("redoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }
@@ -293,7 +293,7 @@ func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoMenuTitle(forUndoActionName:)
-func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) String {
+func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }

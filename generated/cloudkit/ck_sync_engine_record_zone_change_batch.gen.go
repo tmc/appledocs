@@ -39,7 +39,6 @@ type ICKSyncEngineRecordZoneChangeBatch interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineRecordZoneChangeBatch
-
 type CKSyncEngineRecordZoneChangeBatch struct {
 	objectivec.Object
 }

@@ -30,11 +30,11 @@ type _UserUnixTaskClass struct {
 type IUserUnixTask interface {
 	IUserScriptTask
 	ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer)
-	StandardError() NSFileHandle
+	StandardError() IFileHandle
 	SetStandardError(value IFileHandle)
-	StandardInput() NSFileHandle
+	StandardInput() IFileHandle
 	SetStandardInput(value IFileHandle)
-	StandardOutput() NSFileHandle
+	StandardOutput() IFileHandle
 	SetStandardOutput(value IFileHandle)
 }
 
@@ -106,7 +106,7 @@ func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments []string,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardError
-func (u_ UserUnixTask) StandardError() NSFileHandle {
+func (u_ UserUnixTask) StandardError() IFileHandle {
 	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardError"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (u_ UserUnixTask) SetStandardError(value IFileHandle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
-func (u_ UserUnixTask) StandardInput() NSFileHandle {
+func (u_ UserUnixTask) StandardInput() IFileHandle {
 	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardInput"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (u_ UserUnixTask) SetStandardInput(value IFileHandle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
-func (u_ UserUnixTask) StandardOutput() NSFileHandle {
+func (u_ UserUnixTask) StandardOutput() IFileHandle {
 	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardOutput"))
 	return rv
 }

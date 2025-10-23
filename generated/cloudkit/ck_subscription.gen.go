@@ -47,7 +47,6 @@ type ICKSubscription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription
-
 type CKSubscription struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewCKSubscription() CKSubscription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
-
 func (c_ CKSubscription) NotificationInfo() CKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
@@ -107,7 +105,6 @@ func (c_ CKSubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
-
 func (c_ CKSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
@@ -117,7 +114,6 @@ func (c_ CKSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionID-12vxy
-
 func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionID"))
 	return rv
@@ -128,7 +124,6 @@ func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionType-swift.property
-
 func (c_ CKSubscription) SubscriptionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionType"))
 	return rv
@@ -139,7 +134,6 @@ func (c_ CKSubscription) SubscriptionType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
-
 func (c_ CKSubscription) DesiredKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CKSubscription) DesiredKeys() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
-
 func (c_ CKSubscription) SetDesiredKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
 }

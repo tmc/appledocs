@@ -44,7 +44,6 @@ type IPredicateEditor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor
-
 type PredicateEditor struct {
 	RuleEditor
 }
@@ -95,7 +94,6 @@ func NewPredicateEditor() PredicateEditor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-
 func (p_ PredicateEditor) RowTemplates() []PredicateEditorRowTemplate {
 	rv := objc.Send[[]PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
@@ -106,7 +104,6 @@ func (p_ PredicateEditor) RowTemplates() []PredicateEditorRowTemplate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-
 func (p_ PredicateEditor) SetRowTemplates(value []PredicateEditorRowTemplate) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -126,7 +123,6 @@ func (p_ PredicateEditor) SetRowTemplates(value []PredicateEditorRowTemplate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-
 func (p_ PredicateEditor) ObjectValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectValue"))
 	return rv
@@ -137,7 +133,6 @@ func (p_ PredicateEditor) ObjectValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-
 func (p_ PredicateEditor) SetObjectValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectValue:"), value)
 }

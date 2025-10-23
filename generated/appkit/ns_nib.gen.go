@@ -45,7 +45,6 @@ type INib interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib
-
 type Nib struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewNib() Nib {
 
 
 
-
 // Returns an object initialized to the nib file at the specified URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/initWithContentsOfURL:
-
 func NewNibWithContentsOfURL(nibFileURL foundation.IURL) Nib {
 	instance := getNibClass().Alloc()
 	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithContentsOfURL:"), nibFileURL)
@@ -104,12 +101,10 @@ func NewNibWithContentsOfURL(nibFileURL foundation.IURL) Nib {
 }
 
 
-
 // Initializes an instance with nib data and specified bundle for locating resources.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/init(nibData:bundle:)
-
 func NewNibWithNibDataBundle(nibData foundation.IData, bundle foundation.IBundle) Nib {
 	instance := getNibClass().Alloc()
 	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithNibData:bundle:"), nibData, bundle)
@@ -118,12 +113,10 @@ func NewNibWithNibDataBundle(nibData foundation.IData, bundle foundation.IBundle
 }
 
 
-
 // Returns an object initialized to the nib file in the specified bundle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/init(nibNamed:bundle:)
-
 func NewNibWithNibNamedBundle(nibName INibName, bundle foundation.IBundle) Nib {
 	instance := getNibClass().Alloc()
 	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithNibNamed:bundle:"), nibName, bundle)
@@ -133,36 +126,30 @@ func NewNibWithNibNamedBundle(nibName INibName, bundle foundation.IBundle) Nib {
 
 
 
-
 // Instantiates objects in the nib file with the specified owner.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)
-
 func (n_ Nib) InstantiateWithOwnerTopLevelObjects(owner objectivec.IObject, topLevelObjects objectivec.IObject) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("instantiateWithOwner:topLevelObjects:"), owner, topLevelObjects)
 	return rv
 }
 
 
-
 // Unarchives and instantiates the in-memory contents of the receiver’s nib file, creating a distinct object tree and top level objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/instantiateNibWithExternalNameTable:
-
 func (n_ Nib) InstantiateNibWithExternalNameTable(externalNameTable objectivec.IObject) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("instantiateNibWithExternalNameTable:"), externalNameTable)
 	return rv
 }
 
 
-
 // Unarchives and instantiates the in-memory contents of the receiver’s nib file, creating a distinct object tree and set of top level objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/instantiateNibWithOwner:topLevelObjects:
-
 func (n_ Nib) InstantiateNibWithOwnerTopLevelObjects(owner objectivec.IObject, topLevelObjects objectivec.IObject) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("instantiateNibWithOwner:topLevelObjects:"), owner, topLevelObjects)
 	return rv

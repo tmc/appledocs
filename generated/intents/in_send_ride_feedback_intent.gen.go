@@ -40,7 +40,11 @@ type IINSendRideFeedbackIntent interface {
 // An intent indicating that the user provided feedback for a completed ride.
 //
 // When the user provides feedback for a completed ride, SiriKit sends an object to your handler. SiriKit populates this intent object with the ride identifier and the feedback, including a possible driver rating and tip. Upon receiving this intent, validate the provided information and forward it along to your service. SiriKit guarantees that it provides at least one piece of feedback. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the status of the task.
+
+
+// An intent indicating that the user provided feedback for a completed ride.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent
 type INSendRideFeedbackIntent struct {
 	INIntent
@@ -87,16 +91,20 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 }
 
 
+
 // The unique identifier that you assigned to the ride.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent/rideIdentifier
 func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 
+
 // The user-supplied rating for the driver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/rating
 func (i_ INSendRideFeedbackIntent) Rating() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("rating"))
@@ -104,17 +112,18 @@ func (i_ INSendRideFeedbackIntent) Rating() foundation.Number {
 }
 
 
-// SetRating sets the value of the rating property.
 // The user-supplied rating for the driver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/rating
 func (i_ INSendRideFeedbackIntent) SetRating(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRating:"), value)
 }
 
+
 // The tip for the driver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
 func (i_ INSendRideFeedbackIntent) Tip() INCurrencyAmount {
 	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("tip"))
@@ -122,10 +131,9 @@ func (i_ INSendRideFeedbackIntent) Tip() INCurrencyAmount {
 }
 
 
-// SetTip sets the value of the tip property.
 // The tip for the driver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
 func (i_ INSendRideFeedbackIntent) SetTip(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTip:"), value)

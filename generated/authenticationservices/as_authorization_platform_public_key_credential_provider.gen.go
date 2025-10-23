@@ -43,7 +43,6 @@ type IAuthorizationPlatformPublicKeyCredentialProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider
-
 type AuthorizationPlatformPublicKeyCredentialProvider struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewAuthorizationPlatformPublicKeyCredentialProvider() AuthorizationPlatform
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
-
 func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
 	return rv
@@ -103,7 +101,6 @@ func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
-
 func (a_ AuthorizationPlatformPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
 }

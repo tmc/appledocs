@@ -105,7 +105,6 @@ type ITextField interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField
-
 type TextField struct {
 	Control
 }
@@ -152,12 +151,10 @@ func NewTextField() TextField {
 
 
 
-
 // Creates a text field for use as a static label that displays styled text, doesn’t wrap, and doesn’t have selectable text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
-
 func NewTextFieldLabelWithAttributedString(attributedStringValue foundation.IAttributedString) TextField {
 	rv := objc.Send[TextField](objc.ID(getTextFieldClass().class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
@@ -169,30 +166,25 @@ func NewTextFieldLabelWithAttributedString(attributedStringValue foundation.IAtt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/init(labelWithAttributedString:)
-
 func (tc _TextFieldClass) LabelWithAttributedString(attributedStringValue foundation.IAttributedString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("labelWithAttributedString:"), attributedStringValue)
 	return rv
 }
 
 
-
 // Posts a notification to the default notification center that the text is about to go into edit mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/textDidBeginEditing(_:)
-
 func (t_ TextField) TextDidBeginEditing(notification foundation.INotification) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("textDidBeginEditing:"), notification)
 }
-
 
 
 // Performs validation on the text field’s new value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/textShouldEndEditing(_:)
-
 func (t_ TextField) TextShouldEndEditing(textObject IText) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("textShouldEndEditing:"), textObject)
 	return rv
@@ -203,7 +195,6 @@ func (t_ TextField) TextShouldEndEditing(textObject IText) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/allowsDefaultTighteningForTruncation
-
 func (t_ TextField) AllowsDefaultTighteningForTruncation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsDefaultTighteningForTruncation"))
 	return rv
@@ -214,7 +205,6 @@ func (t_ TextField) AllowsDefaultTighteningForTruncation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/allowsDefaultTighteningForTruncation
-
 func (t_ TextField) SetAllowsDefaultTighteningForTruncation(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsDefaultTighteningForTruncation:"), value)
 }
@@ -224,7 +214,6 @@ func (t_ TextField) SetAllowsDefaultTighteningForTruncation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/allowsEditingTextAttributes
-
 func (t_ TextField) AllowsEditingTextAttributes() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsEditingTextAttributes"))
 	return rv
@@ -235,7 +224,6 @@ func (t_ TextField) AllowsEditingTextAttributes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/allowsEditingTextAttributes
-
 func (t_ TextField) SetAllowsEditingTextAttributes(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsEditingTextAttributes:"), value)
 }
@@ -245,7 +233,6 @@ func (t_ TextField) SetAllowsEditingTextAttributes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/delegate
-
 func (t_ TextField) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -256,7 +243,6 @@ func (t_ TextField) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/delegate
-
 func (t_ TextField) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -266,7 +252,6 @@ func (t_ TextField) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/drawsBackground
-
 func (t_ TextField) DrawsBackground() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
@@ -277,7 +262,6 @@ func (t_ TextField) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/drawsBackground
-
 func (t_ TextField) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
 }
@@ -287,7 +271,6 @@ func (t_ TextField) SetDrawsBackground(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/importsGraphics
-
 func (t_ TextField) ImportsGraphics() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("importsGraphics"))
 	return rv
@@ -298,7 +281,6 @@ func (t_ TextField) ImportsGraphics() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/importsGraphics
-
 func (t_ TextField) SetImportsGraphics(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImportsGraphics:"), value)
 }
@@ -308,7 +290,6 @@ func (t_ TextField) SetImportsGraphics(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/isAutomaticTextCompletionEnabled
-
 func (t_ TextField) AutomaticTextCompletionEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticTextCompletionEnabled"))
 	return rv
@@ -319,7 +300,6 @@ func (t_ TextField) AutomaticTextCompletionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/isAutomaticTextCompletionEnabled
-
 func (t_ TextField) SetAutomaticTextCompletionEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticTextCompletionEnabled:"), value)
 }
@@ -329,7 +309,6 @@ func (t_ TextField) SetAutomaticTextCompletionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/isBezeled
-
 func (t_ TextField) Bezeled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("bezeled"))
 	return rv
@@ -340,7 +319,6 @@ func (t_ TextField) Bezeled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/isBezeled
-
 func (t_ TextField) SetBezeled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezeled:"), value)
 }
@@ -350,7 +328,6 @@ func (t_ TextField) SetBezeled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/isEditable
-
 func (t_ TextField) Editable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
@@ -361,7 +338,6 @@ func (t_ TextField) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/isEditable
-
 func (t_ TextField) SetEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
@@ -371,7 +347,6 @@ func (t_ TextField) SetEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderAttributedString
-
 func (t_ TextField) PlaceholderAttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
@@ -382,7 +357,6 @@ func (t_ TextField) PlaceholderAttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderAttributedString
-
 func (t_ TextField) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
@@ -390,7 +364,6 @@ func (t_ TextField) SetPlaceholderAttributedString(value foundation.IAttributedS
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderStrings
-
 func (t_ TextField) PlaceholderStrings() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("placeholderStrings"))
 	return rv
@@ -399,7 +372,6 @@ func (t_ TextField) PlaceholderStrings() []string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/placeholderStrings
-
 func (t_ TextField) SetPlaceholderStrings(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -419,7 +391,6 @@ func (t_ TextField) SetPlaceholderStrings(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/preferredMaxLayoutWidth
-
 func (t_ TextField) PreferredMaxLayoutWidth() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("preferredMaxLayoutWidth"))
 	return rv
@@ -430,7 +401,6 @@ func (t_ TextField) PreferredMaxLayoutWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/preferredMaxLayoutWidth
-
 func (t_ TextField) SetPreferredMaxLayoutWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreferredMaxLayoutWidth:"), value)
 }
@@ -440,7 +410,6 @@ func (t_ TextField) SetPreferredMaxLayoutWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-
 func (t_ TextField) DoubleValue() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("doubleValue"))
 	return rv
@@ -451,7 +420,6 @@ func (t_ TextField) DoubleValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-
 func (t_ TextField) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDoubleValue:"), value)
 }
@@ -461,7 +429,6 @@ func (t_ TextField) SetDoubleValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
-
 func (t_ TextField) StringValue() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("stringValue"))
 	return rv
@@ -472,7 +439,6 @@ func (t_ TextField) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
-
 func (t_ TextField) SetStringValue(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
@@ -482,7 +448,6 @@ func (t_ TextField) SetStringValue(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/acceptsfirstresponder
-
 func (t_ TextField) AcceptsFirstResponder() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsFirstResponder"))
 	return rv
@@ -493,7 +458,6 @@ func (t_ TextField) AcceptsFirstResponder() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/acceptsfirstresponder
-
 func (t_ TextField) SetAcceptsFirstResponder(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsFirstResponder:"), value)
 }
@@ -503,7 +467,6 @@ func (t_ TextField) SetAcceptsFirstResponder(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowscharacterpickertouchbaritem
-
 func (t_ TextField) AllowsCharacterPickerTouchBarItem() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsCharacterPickerTouchBarItem"))
 	return rv
@@ -514,7 +477,6 @@ func (t_ TextField) AllowsCharacterPickerTouchBarItem() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowscharacterpickertouchbaritem
-
 func (t_ TextField) SetAllowsCharacterPickerTouchBarItem(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsCharacterPickerTouchBarItem:"), value)
 }
@@ -522,7 +484,6 @@ func (t_ TextField) SetAllowsCharacterPickerTouchBarItem(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtools
-
 func (t_ TextField) AllowsWritingTools() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsWritingTools"))
 	return rv
@@ -531,7 +492,6 @@ func (t_ TextField) AllowsWritingTools() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtools
-
 func (t_ TextField) SetAllowsWritingTools(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsWritingTools:"), value)
 }
@@ -539,7 +499,6 @@ func (t_ TextField) SetAllowsWritingTools(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtoolsaffordance
-
 func (t_ TextField) AllowsWritingToolsAffordance() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsWritingToolsAffordance"))
 	return rv
@@ -548,7 +507,6 @@ func (t_ TextField) AllowsWritingToolsAffordance() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/allowswritingtoolsaffordance
-
 func (t_ TextField) SetAllowsWritingToolsAffordance(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsWritingToolsAffordance:"), value)
 }
@@ -558,7 +516,6 @@ func (t_ TextField) SetAllowsWritingToolsAffordance(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/backgroundcolor
-
 func (t_ TextField) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -569,7 +526,6 @@ func (t_ TextField) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/backgroundcolor
-
 func (t_ TextField) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -579,7 +535,6 @@ func (t_ TextField) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.property
-
 func (t_ TextField) BezelStyle() BezelStyle {
 	rv := objc.Send[BezelStyle](t_.ID, objc.Sel("bezelStyle"))
 	return rv
@@ -590,7 +545,6 @@ func (t_ TextField) BezelStyle() BezelStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.property
-
 func (t_ TextField) SetBezelStyle(value BezelStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelStyle:"), value)
 }
@@ -600,7 +554,6 @@ func (t_ TextField) SetBezelStyle(value BezelStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isautomatictextcompletionenabled
-
 func (t_ TextField) IsAutomaticTextCompletionEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticTextCompletionEnabled"))
 	return rv
@@ -611,7 +564,6 @@ func (t_ TextField) IsAutomaticTextCompletionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isautomatictextcompletionenabled
-
 func (t_ TextField) SetIsAutomaticTextCompletionEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticTextCompletionEnabled:"), value)
 }
@@ -621,7 +573,6 @@ func (t_ TextField) SetIsAutomaticTextCompletionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbezeled
-
 func (t_ TextField) IsBezeled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isBezeled"))
 	return rv
@@ -632,7 +583,6 @@ func (t_ TextField) IsBezeled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbezeled
-
 func (t_ TextField) SetIsBezeled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBezeled:"), value)
 }
@@ -642,7 +592,6 @@ func (t_ TextField) SetIsBezeled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbordered
-
 func (t_ TextField) IsBordered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isBordered"))
 	return rv
@@ -653,7 +602,6 @@ func (t_ TextField) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isbordered
-
 func (t_ TextField) SetIsBordered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBordered:"), value)
 }
@@ -663,7 +611,6 @@ func (t_ TextField) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/iseditable
-
 func (t_ TextField) IsEditable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
 	return rv
@@ -674,7 +621,6 @@ func (t_ TextField) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/iseditable
-
 func (t_ TextField) SetIsEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
 }
@@ -684,7 +630,6 @@ func (t_ TextField) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isselectable
-
 func (t_ TextField) IsSelectable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
 	return rv
@@ -695,7 +640,6 @@ func (t_ TextField) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/isselectable
-
 func (t_ TextField) SetIsSelectable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
 }
@@ -705,7 +649,6 @@ func (t_ TextField) SetIsSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/linebreakstrategy
-
 func (t_ TextField) LineBreakStrategy() LineBreakStrategy {
 	rv := objc.Send[LineBreakStrategy](t_.ID, objc.Sel("lineBreakStrategy"))
 	return rv
@@ -716,7 +659,6 @@ func (t_ TextField) LineBreakStrategy() LineBreakStrategy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/linebreakstrategy
-
 func (t_ TextField) SetLineBreakStrategy(value LineBreakStrategy) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineBreakStrategy:"), value)
 }
@@ -726,7 +668,6 @@ func (t_ TextField) SetLineBreakStrategy(value LineBreakStrategy) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/maximumnumberoflines
-
 func (t_ TextField) MaximumNumberOfLines() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("maximumNumberOfLines"))
 	return rv
@@ -737,7 +678,6 @@ func (t_ TextField) MaximumNumberOfLines() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/maximumnumberoflines
-
 func (t_ TextField) SetMaximumNumberOfLines(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaximumNumberOfLines:"), value)
 }
@@ -745,7 +685,6 @@ func (t_ TextField) SetMaximumNumberOfLines(value int) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
-
 func (t_ TextField) PlaceholderAttributedStrings() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedStrings"))
 	return rv
@@ -754,7 +693,6 @@ func (t_ TextField) PlaceholderAttributedStrings() foundation.AttributedString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderattributedstrings
-
 func (t_ TextField) SetPlaceholderAttributedStrings(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedStrings:"), value)
 }
@@ -764,7 +702,6 @@ func (t_ TextField) SetPlaceholderAttributedStrings(value foundation.IAttributed
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderstring
-
 func (t_ TextField) PlaceholderString() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("placeholderString"))
 	return rv
@@ -775,7 +712,6 @@ func (t_ TextField) PlaceholderString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/placeholderstring
-
 func (t_ TextField) SetPlaceholderString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
@@ -785,7 +721,6 @@ func (t_ TextField) SetPlaceholderString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/resolvesnaturalalignmentwithbasewritingdirection
-
 func (t_ TextField) ResolvesNaturalAlignmentWithBaseWritingDirection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resolvesNaturalAlignmentWithBaseWritingDirection"))
 	return rv
@@ -796,7 +731,6 @@ func (t_ TextField) ResolvesNaturalAlignmentWithBaseWritingDirection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/resolvesnaturalalignmentwithbasewritingdirection
-
 func (t_ TextField) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResolvesNaturalAlignmentWithBaseWritingDirection:"), value)
 }
@@ -806,7 +740,6 @@ func (t_ TextField) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/suggestionsdelegate
-
 func (t_ TextField) SuggestionsDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("suggestionsDelegate"))
 	return rv
@@ -817,7 +750,6 @@ func (t_ TextField) SuggestionsDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/suggestionsdelegate
-
 func (t_ TextField) SetSuggestionsDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSuggestionsDelegate:"), value)
 }
@@ -827,7 +759,6 @@ func (t_ TextField) SetSuggestionsDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/textcolor
-
 func (t_ TextField) TextColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("textColor"))
 	return rv
@@ -838,7 +769,6 @@ func (t_ TextField) TextColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfield/textcolor
-
 func (t_ TextField) SetTextColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }

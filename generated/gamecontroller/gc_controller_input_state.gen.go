@@ -36,7 +36,6 @@ type IGCControllerInputState interface {
 
 
 // A parent class referenced by other GameController classes. [Full Topic]
-
 type GCControllerInputState struct {
 	objectivec.Object
 }

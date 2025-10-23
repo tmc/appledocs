@@ -43,7 +43,6 @@ type IModelStructureProgramBinding interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding
-
 type ModelStructureProgramBinding struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
-
 func (m_ ModelStructureProgramBinding) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ ModelStructureProgramBinding) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/value
-
 func (m_ ModelStructureProgramBinding) Value() MLModelStructureProgramValue {
 	rv := objc.Send[MLModelStructureProgramValue](m_.ID, objc.Sel("value"))
 	return rv

@@ -53,7 +53,6 @@ type IGCControllerTouchpad interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad
-
 type GCControllerTouchpad struct {
 	GCControllerElement
 }
@@ -104,7 +103,6 @@ func NewGCControllerTouchpad() GCControllerTouchpad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/button
-
 func (g_ GCControllerTouchpad) Button() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("button"))
 	return rv
@@ -115,7 +113,6 @@ func (g_ GCControllerTouchpad) Button() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/touchMoved
-
 func (g_ GCControllerTouchpad) TouchMoved() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchMoved"))
 	return rv
@@ -126,7 +123,6 @@ func (g_ GCControllerTouchpad) TouchMoved() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/touchMoved
-
 func (g_ GCControllerTouchpad) SetTouchMoved(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchMoved:"), value)
 }
@@ -136,7 +132,6 @@ func (g_ GCControllerTouchpad) SetTouchMoved(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/reportsabsolutetouchsurfacevalues
-
 func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reportsAbsoluteTouchSurfaceValues"))
 	return rv
@@ -147,7 +142,6 @@ func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/reportsabsolutetouchsurfacevalues
-
 func (g_ GCControllerTouchpad) SetReportsAbsoluteTouchSurfaceValues(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReportsAbsoluteTouchSurfaceValues:"), value)
 }
@@ -157,7 +151,6 @@ func (g_ GCControllerTouchpad) SetReportsAbsoluteTouchSurfaceValues(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchdown
-
 func (g_ GCControllerTouchpad) TouchDown() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchDown"))
 	return rv
@@ -168,7 +161,6 @@ func (g_ GCControllerTouchpad) TouchDown() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchdown
-
 func (g_ GCControllerTouchpad) SetTouchDown(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchDown:"), value)
 }
@@ -178,7 +170,6 @@ func (g_ GCControllerTouchpad) SetTouchDown(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.property
-
 func (g_ GCControllerTouchpad) TouchState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchState"))
 	return rv
@@ -189,7 +180,6 @@ func (g_ GCControllerTouchpad) TouchState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.property
-
 func (g_ GCControllerTouchpad) SetTouchState(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchState:"), value)
 }
@@ -199,7 +189,6 @@ func (g_ GCControllerTouchpad) SetTouchState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-
 func (g_ GCControllerTouchpad) TouchSurface() GCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("touchSurface"))
 	return rv
@@ -210,7 +199,6 @@ func (g_ GCControllerTouchpad) TouchSurface() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-
 func (g_ GCControllerTouchpad) SetTouchSurface(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchSurface:"), value)
 }
@@ -220,7 +208,6 @@ func (g_ GCControllerTouchpad) SetTouchSurface(value IGCControllerDirectionPad) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchup
-
 func (g_ GCControllerTouchpad) TouchUp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchUp"))
 	return rv
@@ -231,7 +218,6 @@ func (g_ GCControllerTouchpad) TouchUp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchup
-
 func (g_ GCControllerTouchpad) SetTouchUp(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchUp:"), value)
 }

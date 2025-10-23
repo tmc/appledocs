@@ -40,7 +40,6 @@ type IHKPrescriptionType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKPrescriptionType
-
 type HKPrescriptionType struct {
 	HKSampleType
 }

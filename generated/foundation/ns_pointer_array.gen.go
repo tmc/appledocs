@@ -39,7 +39,7 @@ type IPointerArray interface {
 	AllObjects() objc.ID
 	Count() uint
 	SetCount(value uint)
-	PointerFunctions() NSPointerFunctions
+	PointerFunctions() IPointerFunctions
 }
 
 // A collection similar to an array, but with a broader range of available memory semantics.
@@ -124,7 +124,7 @@ func NewPointerArrayWithPointerFunctions(functions IPointerFunctions) PointerArr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithOptions:
-func (pc _PointerArrayClass) PointerArrayWithOptions(options NSPointerFunctionsOptions) PointerArray {
+func (pc _PointerArrayClass) PointerArrayWithOptions(options NSPointerFunctionsOptions) IPointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithOptions:"), options)
 	return rv
 }
@@ -134,7 +134,7 @@ func (pc _PointerArrayClass) PointerArrayWithOptions(options NSPointerFunctionsO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithPointerFunctions:
-func (pc _PointerArrayClass) PointerArrayWithPointerFunctions(functions IPointerFunctions) PointerArray {
+func (pc _PointerArrayClass) PointerArrayWithPointerFunctions(functions IPointerFunctions) IPointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithPointerFunctions:"), functions)
 	return rv
 }
@@ -164,7 +164,7 @@ func (pc _PointerArrayClass) PointerArrayWithWeakObjects() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/strongObjects()
-func (pc _PointerArrayClass) StrongObjectsPointerArray() PointerArray {
+func (pc _PointerArrayClass) StrongObjectsPointerArray() IPointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("strongObjectsPointerArray"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (pc _PointerArrayClass) StrongObjectsPointerArray() PointerArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/weakObjects()
-func (pc _PointerArrayClass) WeakObjectsPointerArray() PointerArray {
+func (pc _PointerArrayClass) WeakObjectsPointerArray() IPointerArray {
 	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("weakObjectsPointerArray"))
 	return rv
 }
@@ -267,7 +267,7 @@ func (p_ PointerArray) SetCount(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerFunctions
-func (p_ PointerArray) PointerFunctions() NSPointerFunctions {
+func (p_ PointerArray) PointerFunctions() IPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }

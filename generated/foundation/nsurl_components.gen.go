@@ -30,7 +30,7 @@ type _URLComponentsClass struct {
 // An interface definition for the [URLComponents] class.
 type IURLComponents interface {
 	objectivec.IObject
-	URL() URL
+	URL() IURL
 	EncodedHost() string
 	SetEncodedHost(value string)
 	Fragment() string
@@ -51,15 +51,15 @@ type IURLComponents interface {
 	SetPercentEncodedPath(value string)
 	PercentEncodedQuery() string
 	SetPercentEncodedQuery(value string)
-	PercentEncodedQueryItems() URLQueryItem
+	PercentEncodedQueryItems() IURLQueryItem
 	SetPercentEncodedQueryItems(value IURLQueryItem)
 	PercentEncodedUser() string
 	SetPercentEncodedUser(value string)
-	Port() Number
+	Port() INumber
 	SetPort(value INumber)
 	Query() string
 	SetQuery(value string)
-	QueryItems() URLQueryItem
+	QueryItems() IURLQueryItem
 	SetQueryItems(value IURLQueryItem)
 	RangeOfFragment() Range
 	SetRangeOfFragment(value Range)
@@ -143,7 +143,7 @@ func NewURLComponents() URLComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/url
-func (u_ URLComponents) URL() URL {
+func (u_ URLComponents) URL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
 	return rv
 }
@@ -341,7 +341,7 @@ func (u_ URLComponents) SetPercentEncodedQuery(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
-func (u_ URLComponents) PercentEncodedQueryItems() URLQueryItem {
+func (u_ URLComponents) PercentEncodedQueryItems() IURLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("percentEncodedQueryItems"))
 	return rv
 }
@@ -377,7 +377,7 @@ func (u_ URLComponents) SetPercentEncodedUser(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
-func (u_ URLComponents) Port() Number {
+func (u_ URLComponents) Port() INumber {
 	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
 	return rv
 }
@@ -415,7 +415,7 @@ func (u_ URLComponents) SetQuery(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-func (u_ URLComponents) QueryItems() URLQueryItem {
+func (u_ URLComponents) QueryItems() IURLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
 }

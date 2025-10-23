@@ -60,7 +60,6 @@ type IColorPanel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel
-
 type ColorPanel struct {
 	Panel
 }
@@ -111,7 +110,6 @@ func NewColorPanel() ColorPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/dragColor(_:with:from:)
-
 func (cc _ColorPanelClass) DragColorWithEventFromView(color IColor, event IEvent, sourceView IView) bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("dragColor:withEvent:fromView:"), color, event, sourceView)
 	return rv
@@ -122,7 +120,6 @@ func (cc _ColorPanelClass) DragColorWithEventFromView(color IColor, event IEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setPickerMask(_:)
-
 func (cc _ColorPanelClass) SetPickerMask(mask ColorPanelOptions) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setPickerMask:"), mask)
 }
@@ -132,7 +129,6 @@ func (cc _ColorPanelClass) SetPickerMask(mask ColorPanelOptions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setPickerMode(_:)
-
 func (cc _ColorPanelClass) SetPickerMode(mode ColorPanelMode) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setPickerMode:"), mode)
 }
@@ -142,7 +138,6 @@ func (cc _ColorPanelClass) SetPickerMode(mode ColorPanelMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
-
 func (cc _ColorPanelClass) SharedColorPanel() ColorPanel {
 	rv := objc.Send[NSColorPanel](objc.ID(cc.class), objc.Sel("sharedColorPanel"))
 	return rv
@@ -152,51 +147,42 @@ func (cc _ColorPanelClass) SharedColorPanel() ColorPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/sharedColorPanelExists
-
 func (cc _ColorPanelClass) SharedColorPanelExists() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("sharedColorPanelExists"))
 	return rv
 }
 
-
 // Adds the list of objects specified to all the color pickers in the receiver that display color lists by invoking on all color pickers in the application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/attachColorList(_:)
-
 func (c_ ColorPanel) AttachColorList(colorList IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("attachColorList:"), colorList)
 }
-
 
 
 // Removes the list of colors from all the color pickers in the receiver that display color lists by invoking on all color pickers in the application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/detachColorList(_:)
-
 func (c_ ColorPanel) DetachColorList(colorList IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("detachColorList:"), colorList)
 }
-
 
 
 // Sets the color panel’s action message.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setAction(_:)
-
 func (c_ ColorPanel) SetAction(selector objc.SEL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), selector)
 }
-
 
 
 // Sets the target of the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setTarget(_:)
-
 func (c_ ColorPanel) SetTarget(target objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), target)
 }
@@ -206,7 +192,6 @@ func (c_ ColorPanel) SetTarget(target objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/accessoryView
-
 func (c_ ColorPanel) AccessoryView() NSView {
 	rv := objc.Send[NSView](c_.ID, objc.Sel("accessoryView"))
 	return rv
@@ -217,7 +202,6 @@ func (c_ ColorPanel) AccessoryView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/accessoryView
-
 func (c_ ColorPanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAccessoryView:"), value)
 }
@@ -227,7 +211,6 @@ func (c_ ColorPanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/alpha
-
 func (c_ ColorPanel) Alpha() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("alpha"))
 	return rv
@@ -238,7 +221,6 @@ func (c_ ColorPanel) Alpha() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/color
-
 func (c_ ColorPanel) Color() NSColor {
 	rv := objc.Send[NSColor](c_.ID, objc.Sel("color"))
 	return rv
@@ -249,7 +231,6 @@ func (c_ ColorPanel) Color() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/color
-
 func (c_ ColorPanel) SetColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
 }
@@ -259,7 +240,6 @@ func (c_ ColorPanel) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/isContinuous
-
 func (c_ ColorPanel) Continuous() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
 	return rv
@@ -270,7 +250,6 @@ func (c_ ColorPanel) Continuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/isContinuous
-
 func (c_ ColorPanel) SetContinuous(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContinuous:"), value)
 }
@@ -280,7 +259,6 @@ func (c_ ColorPanel) SetContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/maximumLinearExposure
-
 func (c_ ColorPanel) MaximumLinearExposure() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("maximumLinearExposure"))
 	return rv
@@ -291,7 +269,6 @@ func (c_ ColorPanel) MaximumLinearExposure() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/maximumLinearExposure
-
 func (c_ ColorPanel) SetMaximumLinearExposure(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumLinearExposure:"), value)
 }
@@ -301,7 +278,6 @@ func (c_ ColorPanel) SetMaximumLinearExposure(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/mode-swift.property
-
 func (c_ ColorPanel) Mode() ColorPanelMode {
 	rv := objc.Send[ColorPanelMode](c_.ID, objc.Sel("mode"))
 	return rv
@@ -312,7 +288,6 @@ func (c_ ColorPanel) Mode() ColorPanelMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/mode-swift.property
-
 func (c_ ColorPanel) SetMode(value ColorPanelMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMode:"), value)
 }
@@ -322,7 +297,6 @@ func (c_ ColorPanel) SetMode(value ColorPanelMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/shared
-
 func (c_ ColorPanel) SharedColorPanel() NSColorPanel {
 	rv := objc.Send[NSColorPanel](c_.ID, objc.Sel("sharedColorPanel"))
 	return rv
@@ -333,7 +307,6 @@ func (c_ ColorPanel) SharedColorPanel() NSColorPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/sharedColorPanelExists
-
 func (c_ ColorPanel) SharedColorPanelExists() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sharedColorPanelExists"))
 	return rv
@@ -344,7 +317,6 @@ func (c_ ColorPanel) SharedColorPanelExists() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/showsAlpha
-
 func (c_ ColorPanel) ShowsAlpha() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("showsAlpha"))
 	return rv
@@ -355,7 +327,6 @@ func (c_ ColorPanel) ShowsAlpha() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/showsAlpha
-
 func (c_ ColorPanel) SetShowsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
@@ -365,7 +336,6 @@ func (c_ ColorPanel) SetShowsAlpha(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/iscontinuous
-
 func (c_ ColorPanel) IsContinuous() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
 	return rv
@@ -376,7 +346,6 @@ func (c_ ColorPanel) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/iscontinuous
-
 func (c_ ColorPanel) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
 }

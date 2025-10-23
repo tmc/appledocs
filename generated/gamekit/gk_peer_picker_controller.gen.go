@@ -50,7 +50,6 @@ type IPeerPickerController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController
-
 type PeerPickerController struct {
 	objectivec.Object
 }
@@ -95,23 +94,19 @@ func NewPeerPickerController() PeerPickerController {
 
 
 
-
 // Hides the peer picker dialog.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/dismiss()
-
 func (p_ PeerPickerController) Dismiss() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("dismiss"))
 }
-
 
 
 // Displays the peer picker dialog to the user.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/show()
-
 func (p_ PeerPickerController) Show() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("show"))
 }
@@ -121,7 +116,6 @@ func (p_ PeerPickerController) Show() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
-
 func (p_ PeerPickerController) ConnectionTypesMask() PeerPickerConnectionType {
 	rv := objc.Send[PeerPickerConnectionType](p_.ID, objc.Sel("connectionTypesMask"))
 	return rv
@@ -132,7 +126,6 @@ func (p_ PeerPickerController) ConnectionTypesMask() PeerPickerConnectionType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
-
 func (p_ PeerPickerController) SetConnectionTypesMask(value PeerPickerConnectionType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConnectionTypesMask:"), value)
 }
@@ -142,7 +135,6 @@ func (p_ PeerPickerController) SetConnectionTypesMask(value PeerPickerConnection
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/delegate
-
 func (p_ PeerPickerController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
 	return rv
@@ -153,7 +145,6 @@ func (p_ PeerPickerController) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/delegate
-
 func (p_ PeerPickerController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -163,7 +154,6 @@ func (p_ PeerPickerController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/isVisible
-
 func (p_ PeerPickerController) Visible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("visible"))
 	return rv
@@ -174,7 +164,6 @@ func (p_ PeerPickerController) Visible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
-
 func (p_ PeerPickerController) IsVisible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isVisible"))
 	return rv
@@ -185,7 +174,6 @@ func (p_ PeerPickerController) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkpeerpickercontroller/isvisible
-
 func (p_ PeerPickerController) SetIsVisible(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsVisible:"), value)
 }

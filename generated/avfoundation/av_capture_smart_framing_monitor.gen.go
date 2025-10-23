@@ -52,7 +52,6 @@ type ICaptureSmartFramingMonitor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSmartFramingMonitor
-
 type CaptureSmartFramingMonitor struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewCaptureSmartFramingMonitor() CaptureSmartFramingMonitor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSmartFramingMonitor/recommendedFraming
-
 func (c_ CaptureSmartFramingMonitor) RecommendedFraming() AVCaptureFraming {
 	rv := objc.Send[AVCaptureFraming](c_.ID, objc.Sel("recommendedFraming"))
 	return rv
@@ -112,7 +110,6 @@ func (c_ CaptureSmartFramingMonitor) RecommendedFraming() AVCaptureFraming {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-
 func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
 	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
@@ -123,7 +120,6 @@ func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() AVCaptureSmartFraming
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-
 func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
 }
@@ -133,7 +129,6 @@ func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-
 func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoZoomFactor"))
 	return rv
@@ -144,7 +139,6 @@ func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-
 func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoZoomFactor:"), value)
 }
@@ -154,7 +148,6 @@ func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-
 func (c_ CaptureSmartFramingMonitor) EnabledFramings() AVCaptureFraming {
 	rv := objc.Send[AVCaptureFraming](c_.ID, objc.Sel("enabledFramings"))
 	return rv
@@ -165,7 +158,6 @@ func (c_ CaptureSmartFramingMonitor) EnabledFramings() AVCaptureFraming {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-
 func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value IAVCaptureFraming) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledFramings:"), value)
 }
@@ -175,7 +167,6 @@ func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value IAVCaptureFraming)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
-
 func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMonitoring"))
 	return rv
@@ -186,7 +177,6 @@ func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
-
 func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMonitoring:"), value)
 }
@@ -196,7 +186,6 @@ func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-
 func (c_ CaptureSmartFramingMonitor) SupportedFramings() AVCaptureFraming {
 	rv := objc.Send[AVCaptureFraming](c_.ID, objc.Sel("supportedFramings"))
 	return rv
@@ -207,7 +196,6 @@ func (c_ CaptureSmartFramingMonitor) SupportedFramings() AVCaptureFraming {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-
 func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value IAVCaptureFraming) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFramings:"), value)
 }

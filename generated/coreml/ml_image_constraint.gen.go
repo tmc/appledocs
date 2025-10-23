@@ -49,7 +49,6 @@ type IImageConstraint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint
-
 type ImageConstraint struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewImageConstraint() ImageConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelFormatType
-
 func (i_ ImageConstraint) PixelFormatType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pixelFormatType"))
 	return rv
@@ -109,7 +107,6 @@ func (i_ ImageConstraint) PixelFormatType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelsHigh
-
 func (i_ ImageConstraint) PixelsHigh() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
@@ -120,7 +117,6 @@ func (i_ ImageConstraint) PixelsHigh() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelsWide
-
 func (i_ ImageConstraint) PixelsWide() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
@@ -131,7 +127,6 @@ func (i_ ImageConstraint) PixelsWide() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/sizeConstraint
-
 func (i_ ImageConstraint) SizeConstraint() MLImageSizeConstraint {
 	rv := objc.Send[MLImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
 	return rv
@@ -142,7 +137,6 @@ func (i_ ImageConstraint) SizeConstraint() MLImageSizeConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-
 func (i_ ImageConstraint) ImageConstraint() MLImageConstraint {
 	rv := objc.Send[MLImageConstraint](i_.ID, objc.Sel("imageConstraint"))
 	return rv
@@ -153,7 +147,6 @@ func (i_ ImageConstraint) ImageConstraint() MLImageConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-
 func (i_ ImageConstraint) SetImageConstraint(value IMLImageConstraint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageConstraint:"), value)
 }
@@ -163,7 +156,6 @@ func (i_ ImageConstraint) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-
 func (i_ ImageConstraint) Type() FeatureType {
 	rv := objc.Send[FeatureType](i_.ID, objc.Sel("type"))
 	return rv
@@ -174,7 +166,6 @@ func (i_ ImageConstraint) Type() FeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-
 func (i_ ImageConstraint) SetType(value FeatureType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }

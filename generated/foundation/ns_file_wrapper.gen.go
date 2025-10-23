@@ -32,7 +32,7 @@ type IFileWrapper interface {
 	objectivec.IObject
 	FileAttributes() string
 	SetFileAttributes(value string)
-	FileWrappers() NSFileWrapper
+	FileWrappers() IFileWrapper
 	SetFileWrappers(value IFileWrapper)
 	Filename() string
 	SetFilename(value string)
@@ -44,11 +44,11 @@ type IFileWrapper interface {
 	SetIsSymbolicLink(value bool)
 	PreferredFilename() string
 	SetPreferredFilename(value string)
-	RegularFileContents() Data
+	RegularFileContents() IData
 	SetRegularFileContents(value IData)
-	SerializedRepresentation() Data
+	SerializedRepresentation() IData
 	SetSerializedRepresentation(value IData)
-	SymbolicLinkDestinationURL() URL
+	SymbolicLinkDestinationURL() IURL
 	SetSymbolicLinkDestinationURL(value IURL)
 }
 
@@ -128,7 +128,7 @@ func (f_ FileWrapper) SetFileAttributes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
-func (f_ FileWrapper) FileWrappers() NSFileWrapper {
+func (f_ FileWrapper) FileWrappers() IFileWrapper {
 	rv := objc.Send[NSFileWrapper](f_.ID, objc.Sel("fileWrappers"))
 	return rv
 }
@@ -242,7 +242,7 @@ func (f_ FileWrapper) SetPreferredFilename(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents
-func (f_ FileWrapper) RegularFileContents() Data {
+func (f_ FileWrapper) RegularFileContents() IData {
 	rv := objc.Send[Data](f_.ID, objc.Sel("regularFileContents"))
 	return rv
 }
@@ -261,7 +261,7 @@ func (f_ FileWrapper) SetRegularFileContents(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/serializedrepresentation
-func (f_ FileWrapper) SerializedRepresentation() Data {
+func (f_ FileWrapper) SerializedRepresentation() IData {
 	rv := objc.Send[Data](f_.ID, objc.Sel("serializedRepresentation"))
 	return rv
 }
@@ -280,7 +280,7 @@ func (f_ FileWrapper) SetSerializedRepresentation(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl
-func (f_ FileWrapper) SymbolicLinkDestinationURL() URL {
+func (f_ FileWrapper) SymbolicLinkDestinationURL() IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("symbolicLinkDestinationURL"))
 	return rv
 }

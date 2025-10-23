@@ -40,7 +40,6 @@ type IShuffledDistribution interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKShuffledDistribution
-
 type ShuffledDistribution struct {
 	RandomDistribution
 }

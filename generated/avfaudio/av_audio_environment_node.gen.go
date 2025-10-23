@@ -74,7 +74,6 @@ type IAudioEnvironmentNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode
-
 type AudioEnvironmentNode struct {
 	AudioNode
 }
@@ -126,7 +125,6 @@ func NewAudioEnvironmentNode() AudioEnvironmentNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/applicableRenderingAlgorithms
-
 func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("applicableRenderingAlgorithms"))
 	return rv
@@ -137,7 +135,6 @@ func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() []foundation.Numb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/isListenerHeadTrackingEnabled
-
 func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("listenerHeadTrackingEnabled"))
 	return rv
@@ -148,7 +145,6 @@ func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/isListenerHeadTrackingEnabled
-
 func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerHeadTrackingEnabled:"), value)
 }
@@ -158,7 +154,6 @@ func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
-
 func (a_ AudioEnvironmentNode) ListenerAngularOrientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerAngularOrientation"))
 	return rv
@@ -169,7 +164,6 @@ func (a_ AudioEnvironmentNode) ListenerAngularOrientation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
-
 func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerAngularOrientation:"), value)
 }
@@ -179,7 +173,6 @@ func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/distanceattenuationparameters
-
 func (a_ AudioEnvironmentNode) DistanceAttenuationParameters() AVAudioEnvironmentDistanceAttenuationParameters {
 	rv := objc.Send[AVAudioEnvironmentDistanceAttenuationParameters](a_.ID, objc.Sel("distanceAttenuationParameters"))
 	return rv
@@ -190,7 +183,6 @@ func (a_ AudioEnvironmentNode) DistanceAttenuationParameters() AVAudioEnvironmen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/distanceattenuationparameters
-
 func (a_ AudioEnvironmentNode) SetDistanceAttenuationParameters(value IAVAudioEnvironmentDistanceAttenuationParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDistanceAttenuationParameters:"), value)
 }
@@ -200,7 +192,6 @@ func (a_ AudioEnvironmentNode) SetDistanceAttenuationParameters(value IAVAudioEn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/islistenerheadtrackingenabled
-
 func (a_ AudioEnvironmentNode) IsListenerHeadTrackingEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isListenerHeadTrackingEnabled"))
 	return rv
@@ -211,7 +202,6 @@ func (a_ AudioEnvironmentNode) IsListenerHeadTrackingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/islistenerheadtrackingenabled
-
 func (a_ AudioEnvironmentNode) SetIsListenerHeadTrackingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsListenerHeadTrackingEnabled:"), value)
 }
@@ -221,7 +211,6 @@ func (a_ AudioEnvironmentNode) SetIsListenerHeadTrackingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerposition
-
 func (a_ AudioEnvironmentNode) ListenerPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerPosition"))
 	return rv
@@ -232,7 +221,6 @@ func (a_ AudioEnvironmentNode) ListenerPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerposition
-
 func (a_ AudioEnvironmentNode) SetListenerPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerPosition:"), value)
 }
@@ -242,7 +230,6 @@ func (a_ AudioEnvironmentNode) SetListenerPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenervectororientation
-
 func (a_ AudioEnvironmentNode) ListenerVectorOrientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerVectorOrientation"))
 	return rv
@@ -253,7 +240,6 @@ func (a_ AudioEnvironmentNode) ListenerVectorOrientation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenervectororientation
-
 func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerVectorOrientation:"), value)
 }
@@ -263,7 +249,6 @@ func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
-
 func (a_ AudioEnvironmentNode) NextAvailableInputBus() AudioNodeBus {
 	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
@@ -274,7 +259,6 @@ func (a_ AudioEnvironmentNode) NextAvailableInputBus() AudioNodeBus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
-
 func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value IAudioNodeBus) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNextAvailableInputBus:"), value)
 }
@@ -284,7 +268,6 @@ func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value IAudioNodeBus) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
-
 func (a_ AudioEnvironmentNode) OutputType() AudioEnvironmentOutputType {
 	rv := objc.Send[AudioEnvironmentOutputType](a_.ID, objc.Sel("outputType"))
 	return rv
@@ -295,7 +278,6 @@ func (a_ AudioEnvironmentNode) OutputType() AudioEnvironmentOutputType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
-
 func (a_ AudioEnvironmentNode) SetOutputType(value AudioEnvironmentOutputType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputType:"), value)
 }
@@ -305,7 +287,6 @@ func (a_ AudioEnvironmentNode) SetOutputType(value AudioEnvironmentOutputType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
-
 func (a_ AudioEnvironmentNode) OutputVolume() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
@@ -316,7 +297,6 @@ func (a_ AudioEnvironmentNode) OutputVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
-
 func (a_ AudioEnvironmentNode) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
@@ -326,7 +306,6 @@ func (a_ AudioEnvironmentNode) SetOutputVolume(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/reverbparameters
-
 func (a_ AudioEnvironmentNode) ReverbParameters() AVAudioEnvironmentReverbParameters {
 	rv := objc.Send[AVAudioEnvironmentReverbParameters](a_.ID, objc.Sel("reverbParameters"))
 	return rv
@@ -337,7 +316,6 @@ func (a_ AudioEnvironmentNode) ReverbParameters() AVAudioEnvironmentReverbParame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/reverbparameters
-
 func (a_ AudioEnvironmentNode) SetReverbParameters(value IAVAudioEnvironmentReverbParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReverbParameters:"), value)
 }
@@ -347,7 +325,6 @@ func (a_ AudioEnvironmentNode) SetReverbParameters(value IAVAudioEnvironmentReve
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_4
-
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_4() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_4"))
 	return rv
@@ -358,7 +335,6 @@ func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_4() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_4
-
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_4(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_4:"), value)
 }
@@ -368,7 +344,6 @@ func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_4(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_5_0
-
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_5_0() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_5_0"))
 	return rv
@@ -379,7 +354,6 @@ func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_5_0() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_5_0
-
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_5_0(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_5_0:"), value)
 }
@@ -389,7 +363,6 @@ func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_5_0(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_6_0
-
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_6_0() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_6_0"))
 	return rv
@@ -400,7 +373,6 @@ func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_6_0() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_6_0
-
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_6_0(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_6_0:"), value)
 }
@@ -410,7 +382,6 @@ func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_6_0(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0
-
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_7_0() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_7_0"))
 	return rv
@@ -421,7 +392,6 @@ func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_7_0() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0
-
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_7_0(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_7_0:"), value)
 }
@@ -431,7 +401,6 @@ func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_7_0(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0_Front
-
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_7_0_Front() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_7_0_Front"))
 	return rv
@@ -442,7 +411,6 @@ func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_7_0_Front() unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_7_0_Front
-
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_7_0_Front(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_7_0_Front:"), value)
 }
@@ -452,7 +420,6 @@ func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_7_0_Front(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_8
-
 func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_8() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kAudioChannelLayoutTag_AudioUnit_8"))
 	return rv
@@ -463,7 +430,6 @@ func (a_ AudioEnvironmentNode) KAudioChannelLayoutTag_AudioUnit_8() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/kAudioChannelLayoutTag_AudioUnit_8
-
 func (a_ AudioEnvironmentNode) SetKAudioChannelLayoutTag_AudioUnit_8(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAudioChannelLayoutTag_AudioUnit_8:"), value)
 }

@@ -27,10 +27,10 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "NSPoint", GoType: "Point", Framework: "Foundation"},
 	{ObjCType: "NSRange", GoType: "Range", Framework: "Foundation"},
 	// Foundation enum/typedef types that conflict with other frameworks
-	{ObjCType: "NSFormattingContext", GoType: "int", Framework: "Foundation"},  // Enum - use int to avoid coreimage.Context conflict
-	{ObjCType: "FormattingContext", GoType: "int", Framework: "Foundation"},    // Stripped version
-	{ObjCType: "Formatter.Context", GoType: "int", Framework: "Foundation"},    // Nested type (from Swift docs)
-	{ObjCType: "Context", GoType: "int", Framework: "Foundation"},              // Bare Context in Foundation = FormattingContext
+	{ObjCType: "NSFormattingContext", GoType: "int", Framework: "Foundation"}, // Enum - use int to avoid coreimage.Context conflict
+	{ObjCType: "FormattingContext", GoType: "int", Framework: "Foundation"},   // Stripped version
+	{ObjCType: "Formatter.Context", GoType: "int", Framework: "Foundation"},   // Nested type (from Swift docs)
+	{ObjCType: "Context", GoType: "int", Framework: "Foundation"},             // Bare Context in Foundation = FormattingContext
 	// CG geometry types in Foundation - cross-reference to CoreGraphics
 	{ObjCType: "CGRect", GoType: "coregraphics.CGRect", Framework: "Foundation"},
 	{ObjCType: "CGSize", GoType: "coregraphics.CGSize", Framework: "Foundation"},
@@ -159,9 +159,9 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "NSCellImagePosition", GoType: "CellImagePosition", Framework: "AppKit"},
 	{ObjCType: "NSImageScaling", GoType: "ImageScaling", Framework: "AppKit"},
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
-	{ObjCType: "WindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},      // Go name
+	{ObjCType: "WindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"}, // Go name
 	{ObjCType: "NSBackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"},
-	{ObjCType: "BackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"},    // Go name
+	{ObjCType: "BackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"}, // Go name
 	{ObjCType: "NSWindowOrderingMode", GoType: "WindowOrderingMode", Framework: "AppKit"},
 	{ObjCType: "NSWindowLevel", GoType: "WindowLevel", Framework: "AppKit"},
 

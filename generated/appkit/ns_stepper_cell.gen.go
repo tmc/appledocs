@@ -48,7 +48,6 @@ type IStepperCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell
-
 type StepperCell struct {
 	ActionCell
 }
@@ -99,7 +98,6 @@ func NewStepperCell() StepperCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/autorepeat
-
 func (s_ StepperCell) Autorepeat() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("autorepeat"))
 	return rv
@@ -110,7 +108,6 @@ func (s_ StepperCell) Autorepeat() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/autorepeat
-
 func (s_ StepperCell) SetAutorepeat(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutorepeat:"), value)
 }
@@ -120,7 +117,6 @@ func (s_ StepperCell) SetAutorepeat(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/increment
-
 func (s_ StepperCell) Increment() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("increment"))
 	return rv
@@ -131,7 +127,6 @@ func (s_ StepperCell) Increment() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/increment
-
 func (s_ StepperCell) SetIncrement(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
 }
@@ -141,7 +136,6 @@ func (s_ StepperCell) SetIncrement(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/maxvalue
-
 func (s_ StepperCell) MaxValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
 	return rv
@@ -152,7 +146,6 @@ func (s_ StepperCell) MaxValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/maxvalue
-
 func (s_ StepperCell) SetMaxValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
@@ -162,7 +155,6 @@ func (s_ StepperCell) SetMaxValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/minvalue
-
 func (s_ StepperCell) MinValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
 	return rv
@@ -173,7 +165,6 @@ func (s_ StepperCell) MinValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/minvalue
-
 func (s_ StepperCell) SetMinValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
@@ -183,7 +174,6 @@ func (s_ StepperCell) SetMinValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/valuewraps
-
 func (s_ StepperCell) ValueWraps() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("valueWraps"))
 	return rv
@@ -194,7 +184,6 @@ func (s_ StepperCell) ValueWraps() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/valuewraps
-
 func (s_ StepperCell) SetValueWraps(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValueWraps:"), value)
 }

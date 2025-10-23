@@ -100,7 +100,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/GSSCreateName(_:_:_:)
-
 func GSSCreateName(name unsafe.Pointer, name_type unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _GSSCreateName(name, name_type, error_)
 	}
@@ -114,7 +113,6 @@ func GSSCreateName(name unsafe.Pointer, name_type unsafe.Pointer, error_ unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/GSSCredentialCopyUUID(_:)
-
 func GSSCredentialCopyUUID(credential unsafe.Pointer) unsafe.Pointer {
 	return _GSSCredentialCopyUUID(credential)
 	}
@@ -128,7 +126,6 @@ func GSSCredentialCopyUUID(credential unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/GSSNameCreateDisplayString(_:)
-
 func GSSNameCreateDisplayString(name unsafe.Pointer) unsafe.Pointer {
 	return _GSSNameCreateDisplayString(name)
 	}
@@ -142,7 +139,6 @@ func GSSNameCreateDisplayString(name unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_aapl_initial_cred(_:_:_:_:_:)
-
 func gss_aapl_initial_cred(desired_name unsafe.Pointer, desired_mech unsafe.Pointer, attributes unsafe.Pointer, output_cred_handle unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _gss_aapl_initial_cred(desired_name, desired_mech, attributes, output_cred_handle, error_)
 	}
@@ -156,7 +152,6 @@ func gss_aapl_initial_cred(desired_name unsafe.Pointer, desired_mech unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)
-
 func gss_accept_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, acceptor_cred_handle unsafe.Pointer, input_token unsafe.Pointer, input_chan_bindings unsafe.Pointer, src_name unsafe.Pointer, mech_type unsafe.Pointer, output_token unsafe.Pointer, ret_flags unsafe.Pointer, time_rec unsafe.Pointer, delegated_cred_handle unsafe.Pointer) unsafe.Pointer {
 	return _gss_accept_sec_context(minor_status, context_handle, acceptor_cred_handle, input_token, input_chan_bindings, src_name, mech_type, output_token, ret_flags, time_rec, delegated_cred_handle)
 	}
@@ -170,7 +165,6 @@ func gss_accept_sec_context(minor_status unsafe.Pointer, context_handle unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_compare_name(_:_:_:_:)
-
 func gss_compare_name(minor_status unsafe.Pointer, name1_arg unsafe.Pointer, name2_arg unsafe.Pointer, name_equal unsafe.Pointer) unsafe.Pointer {
 	return _gss_compare_name(minor_status, name1_arg, name2_arg, name_equal)
 	}
@@ -184,7 +178,6 @@ func gss_compare_name(minor_status unsafe.Pointer, name1_arg unsafe.Pointer, nam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_create_empty_buffer_set(_:_:)
-
 func gss_create_empty_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.Pointer) unsafe.Pointer {
 	return _gss_create_empty_buffer_set(minor_status, buffer_set)
 	}
@@ -198,7 +191,6 @@ func gss_create_empty_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_create_empty_oid_set(_:_:)
-
 func gss_create_empty_oid_set(minor_status unsafe.Pointer, oid_set unsafe.Pointer) unsafe.Pointer {
 	return _gss_create_empty_oid_set(minor_status, oid_set)
 	}
@@ -210,7 +202,6 @@ func gss_create_empty_oid_set(minor_status unsafe.Pointer, oid_set unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_duplicate_oid(_:_:_:)
-
 func gss_duplicate_oid(minor_status unsafe.Pointer, src_oid unsafe.Pointer, dest_oid unsafe.Pointer) unsafe.Pointer {
 	return _gss_duplicate_oid(minor_status, src_oid, dest_oid)
 	}
@@ -224,7 +215,6 @@ func gss_duplicate_oid(minor_status unsafe.Pointer, src_oid unsafe.Pointer, dest
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_export_name(_:_:_:)
-
 func gss_export_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, exported_name unsafe.Pointer) unsafe.Pointer {
 	return _gss_export_name(minor_status, input_name, exported_name)
 	}
@@ -238,7 +228,6 @@ func gss_export_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, exp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_get_mic(_:_:_:_:_:)
-
 func gss_get_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, qop_req unsafe.Pointer, message_buffer unsafe.Pointer, message_token unsafe.Pointer) unsafe.Pointer {
 	return _gss_get_mic(minor_status, context_handle, qop_req, message_buffer, message_token)
 	}
@@ -252,7 +241,6 @@ func gss_get_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, qop
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)
-
 func gss_init_sec_context(minor_status unsafe.Pointer, initiator_cred_handle unsafe.Pointer, context_handle unsafe.Pointer, target_name unsafe.Pointer, input_mech_type unsafe.Pointer, req_flags unsafe.Pointer, time_req unsafe.Pointer, input_chan_bindings unsafe.Pointer, input_token unsafe.Pointer, actual_mech_type unsafe.Pointer, output_token unsafe.Pointer, ret_flags unsafe.Pointer, time_rec unsafe.Pointer) unsafe.Pointer {
 	return _gss_init_sec_context(minor_status, initiator_cred_handle, context_handle, target_name, input_mech_type, req_flags, time_req, input_chan_bindings, input_token, actual_mech_type, output_token, ret_flags, time_rec)
 	}
@@ -266,7 +254,6 @@ func gss_init_sec_context(minor_status unsafe.Pointer, initiator_cred_handle uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_inquire_mechs_for_name(_:_:_:)
-
 func gss_inquire_mechs_for_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, mech_types unsafe.Pointer) unsafe.Pointer {
 	return _gss_inquire_mechs_for_name(minor_status, input_name, mech_types)
 	}
@@ -280,7 +267,6 @@ func gss_inquire_mechs_for_name(minor_status unsafe.Pointer, input_name unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_krb5_export_lucid_sec_context(_:_:_:_:)
-
 func gss_krb5_export_lucid_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, version unsafe.Pointer, rctx unsafe.Pointer) unsafe.Pointer {
 	return _gss_krb5_export_lucid_sec_context(minor_status, context_handle, version, rctx)
 	}
@@ -294,7 +280,6 @@ func gss_krb5_export_lucid_sec_context(minor_status unsafe.Pointer, context_hand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_krb5_free_lucid_sec_context(_:_:)
-
 func gss_krb5_free_lucid_sec_context(minor_status unsafe.Pointer, c unsafe.Pointer) unsafe.Pointer {
 	return _gss_krb5_free_lucid_sec_context(minor_status, c)
 	}
@@ -308,7 +293,6 @@ func gss_krb5_free_lucid_sec_context(minor_status unsafe.Pointer, c unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_oid_equal(_:_:)
-
 func gss_oid_equal(a unsafe.Pointer, b unsafe.Pointer) int {
 	return _gss_oid_equal(a, b)
 	}
@@ -322,7 +306,6 @@ func gss_oid_equal(a unsafe.Pointer, b unsafe.Pointer) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_oid_to_str(_:_:_:)
-
 func gss_oid_to_str(minor_status unsafe.Pointer, oid unsafe.Pointer, oid_str unsafe.Pointer) unsafe.Pointer {
 	return _gss_oid_to_str(minor_status, oid, oid_str)
 	}
@@ -336,7 +319,6 @@ func gss_oid_to_str(minor_status unsafe.Pointer, oid unsafe.Pointer, oid_str uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_release_buffer_set(_:_:)
-
 func gss_release_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.Pointer) unsafe.Pointer {
 	return _gss_release_buffer_set(minor_status, buffer_set)
 	}
@@ -350,7 +332,6 @@ func gss_release_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_release_name(_:_:)
-
 func gss_release_name(minor_status unsafe.Pointer, input_name unsafe.Pointer) unsafe.Pointer {
 	return _gss_release_name(minor_status, input_name)
 	}
@@ -362,7 +343,6 @@ func gss_release_name(minor_status unsafe.Pointer, input_name unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_seal(_:_:_:_:_:_:_:)
-
 func gss_seal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag int, qop_req int, input_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, output_message_buffer unsafe.Pointer) unsafe.Pointer {
 	return _gss_seal(minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer)
 	}
@@ -376,7 +356,6 @@ func gss_seal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_test_oid_set_member(_:_:_:_:)
-
 func gss_test_oid_set_member(minor_status unsafe.Pointer, member unsafe.Pointer, set unsafe.Pointer, present unsafe.Pointer) unsafe.Pointer {
 	return _gss_test_oid_set_member(minor_status, member, set, present)
 	}
@@ -388,7 +367,6 @@ func gss_test_oid_set_member(minor_status unsafe.Pointer, member unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_unseal(_:_:_:_:_:_:)
-
 func gss_unseal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, input_message_buffer unsafe.Pointer, output_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, qop_state unsafe.Pointer) unsafe.Pointer {
 	return _gss_unseal(minor_status, context_handle, input_message_buffer, output_message_buffer, conf_state, qop_state)
 	}
@@ -400,7 +378,6 @@ func gss_unseal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, inpu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_verify(_:_:_:_:_:)
-
 func gss_verify(minor_status unsafe.Pointer, context_handle unsafe.Pointer, message_buffer unsafe.Pointer, token_buffer unsafe.Pointer, qop_state unsafe.Pointer) unsafe.Pointer {
 	return _gss_verify(minor_status, context_handle, message_buffer, token_buffer, qop_state)
 	}
@@ -414,7 +391,6 @@ func gss_verify(minor_status unsafe.Pointer, context_handle unsafe.Pointer, mess
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_verify_mic(_:_:_:_:_:)
-
 func gss_verify_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, message_buffer unsafe.Pointer, token_buffer unsafe.Pointer, qop_state unsafe.Pointer) unsafe.Pointer {
 	return _gss_verify_mic(minor_status, context_handle, message_buffer, token_buffer, qop_state)
 	}
@@ -428,7 +404,6 @@ func gss_verify_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_wrap(_:_:_:_:_:_:_:)
-
 func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag int, qop_req unsafe.Pointer, input_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, output_message_buffer unsafe.Pointer) unsafe.Pointer {
 	return _gss_wrap(minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer)
 	}
@@ -442,7 +417,6 @@ func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gsskrb5_extract_authz_data_from_sec_context(_:_:_:_:)
-
 func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, ad_type int, ad_data unsafe.Pointer) unsafe.Pointer {
 	return _gsskrb5_extract_authz_data_from_sec_context(minor_status, context_handle, ad_type, ad_data)
 	}
@@ -456,7 +430,6 @@ func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gsskrb5_register_acceptor_identity(_:)
-
 func gsskrb5_register_acceptor_identity(identity unsafe.Pointer) unsafe.Pointer {
 	return _gsskrb5_register_acceptor_identity(identity)
 	}

@@ -42,7 +42,6 @@ type ICKDatabaseOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseOperation
-
 type CKDatabaseOperation struct {
 	CKOperation
 }
@@ -93,7 +92,6 @@ func NewCKDatabaseOperation() CKDatabaseOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
-
 func (c_ CKDatabaseOperation) Database() CKDatabase {
 	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("database"))
 	return rv
@@ -104,7 +102,6 @@ func (c_ CKDatabaseOperation) Database() CKDatabase {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
-
 func (c_ CKDatabaseOperation) SetDatabase(value ICKDatabase) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabase:"), value)
 }

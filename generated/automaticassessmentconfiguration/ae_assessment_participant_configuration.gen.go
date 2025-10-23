@@ -53,7 +53,6 @@ type IAEAssessmentParticipantConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration
-
 type AEAssessmentParticipantConfiguration struct {
 	objectivec.Object
 }
@@ -103,7 +102,6 @@ func NewAEAssessmentParticipantConfiguration() AEAssessmentParticipantConfigurat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/allowsNetworkAccess
-
 func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsNetworkAccess"))
 	return rv
@@ -114,7 +112,6 @@ func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/allowsNetworkAccess
-
 func (a_ AEAssessmentParticipantConfiguration) SetAllowsNetworkAccess(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsNetworkAccess:"), value)
 }
@@ -122,7 +119,6 @@ func (a_ AEAssessmentParticipantConfiguration) SetAllowsNetworkAccess(value bool
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/configurationInfo
-
 func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configurationInfo"))
 	return rv
@@ -131,7 +127,6 @@ func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/configurationInfo
-
 func (a_ AEAssessmentParticipantConfiguration) SetConfigurationInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationInfo:"), value)
 }
@@ -139,7 +134,6 @@ func (a_ AEAssessmentParticipantConfiguration) SetConfigurationInfo(value unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/isRequired
-
 func (a_ AEAssessmentParticipantConfiguration) Required() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("required"))
 	return rv
@@ -148,7 +142,6 @@ func (a_ AEAssessmentParticipantConfiguration) Required() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration/isRequired
-
 func (a_ AEAssessmentParticipantConfiguration) SetRequired(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequired:"), value)
 }
@@ -158,7 +151,6 @@ func (a_ AEAssessmentParticipantConfiguration) SetRequired(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-
 func (a_ AEAssessmentParticipantConfiguration) ConfigurationsByApplication() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
@@ -169,7 +161,6 @@ func (a_ AEAssessmentParticipantConfiguration) ConfigurationsByApplication() AEA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-
 func (a_ AEAssessmentParticipantConfiguration) SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationsByApplication:"), value)
 }
@@ -179,7 +170,6 @@ func (a_ AEAssessmentParticipantConfiguration) SetConfigurationsByApplication(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-
 func (a_ AEAssessmentParticipantConfiguration) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
@@ -190,7 +180,6 @@ func (a_ AEAssessmentParticipantConfiguration) MainParticipantConfiguration() AE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-
 func (a_ AEAssessmentParticipantConfiguration) SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMainParticipantConfiguration:"), value)
 }
@@ -198,7 +187,6 @@ func (a_ AEAssessmentParticipantConfiguration) SetMainParticipantConfiguration(v
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/isrequired
-
 func (a_ AEAssessmentParticipantConfiguration) IsRequired() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRequired"))
 	return rv
@@ -207,7 +195,6 @@ func (a_ AEAssessmentParticipantConfiguration) IsRequired() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/isrequired
-
 func (a_ AEAssessmentParticipantConfiguration) SetIsRequired(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRequired:"), value)
 }

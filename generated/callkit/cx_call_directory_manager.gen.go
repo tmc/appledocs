@@ -43,7 +43,6 @@ type ICXCallDirectoryManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager
-
 type CXCallDirectoryManager struct {
 	objectivec.Object
 }
@@ -92,40 +91,33 @@ func NewCXCallDirectoryManager() CXCallDirectoryManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
-
 func (cc _CXCallDirectoryManagerClass) SharedInstance() CXCallDirectoryManager {
 	rv := objc.Send[CXCallDirectoryManager](objc.ID(cc.class), objc.Sel("sharedInstance"))
 	return rv
 }
 
-
 // Asynchronously returns the enabled status of the extension with the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/getEnabledStatusForExtension(withIdentifier:completionHandler:)
-
 func (c_ CXCallDirectoryManager) GetEnabledStatusForExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEnabledStatusForExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completion)
 }
-
 
 
 // Opens the iOS Settings app and shows the Call Blocking & Identification settings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/openSettings(completionHandler:)
-
 func (c_ CXCallDirectoryManager) OpenSettingsWithCompletionHandler(completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("openSettingsWithCompletionHandler:"), completion)
 }
-
 
 
 // Asynchronously reloads the extension with the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/reloadExtension(withIdentifier:completionHandler:)
-
 func (c_ CXCallDirectoryManager) ReloadExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completion)
 }
@@ -135,7 +127,6 @@ func (c_ CXCallDirectoryManager) ReloadExtensionWithIdentifierCompletionHandler(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
-
 func (c_ CXCallDirectoryManager) SharedInstance() CXCallDirectoryManager {
 	rv := objc.Send[CXCallDirectoryManager](c_.ID, objc.Sel("sharedInstance"))
 	return rv
@@ -146,7 +137,6 @@ func (c_ CXCallDirectoryManager) SharedInstance() CXCallDirectoryManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomaincalldirectorymanager
-
 func (c_ CXCallDirectoryManager) CXErrorDomainCallDirectoryManager() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainCallDirectoryManager"))
 	return rv

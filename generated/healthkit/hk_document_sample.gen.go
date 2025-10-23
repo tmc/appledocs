@@ -42,7 +42,6 @@ type IHKDocumentSample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDocumentSample
-
 type HKDocumentSample struct {
 	HKSample
 }
@@ -93,7 +92,6 @@ func NewHKDocumentSample() HKDocumentSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
-
 func (h_ HKDocumentSample) DocumentType() HKDocumentType {
 	rv := objc.Send[HKDocumentType](h_.ID, objc.Sel("documentType"))
 	return rv
@@ -104,7 +102,6 @@ func (h_ HKDocumentSample) DocumentType() HKDocumentType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
-
 func (h_ HKDocumentSample) SetDocumentType(value HKDocumentType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDocumentType:"), value)
 }

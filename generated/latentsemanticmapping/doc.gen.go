@@ -2,11 +2,14 @@
 
 // Package latentsemanticmapping provides Go bindings for the LatentSemanticMapping framework.
 //
-// Classify text and other token-based content into developer-defined categories. [Full Topic]
+// Classify text and other token-based content into developer-defined categories.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LatentSemanticMapping without requiring cgo.
+
+// Classify text and other token-based content into developer-defined categories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping
 package latentsemanticmapping
 

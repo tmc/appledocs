@@ -47,7 +47,6 @@ type IMIDIUMPFunctionBlock interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock
-
 type MIDIUMPFunctionBlock struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewMIDIUMPFunctionBlock() MIDIUMPFunctionBlock {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/direction
-
 func (m_ MIDIUMPFunctionBlock) Direction() MIDIUMPFunctionBlockDirection {
 	rv := objc.Send[MIDIUMPFunctionBlockDirection](m_.ID, objc.Sel("direction"))
 	return rv
@@ -101,7 +99,6 @@ func (m_ MIDIUMPFunctionBlock) Direction() MIDIUMPFunctionBlockDirection {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/firstGroup
-
 func (m_ MIDIUMPFunctionBlock) FirstGroup() MIDIUMPGroupNumber {
 	rv := objc.Send[MIDIUMPGroupNumber](m_.ID, objc.Sel("firstGroup"))
 	return rv
@@ -110,7 +107,6 @@ func (m_ MIDIUMPFunctionBlock) FirstGroup() MIDIUMPGroupNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/functionBlockID
-
 func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID {
 	rv := objc.Send[MIDIUMPFunctionBlockID](m_.ID, objc.Sel("functionBlockID"))
 	return rv
@@ -119,7 +115,6 @@ func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/isEnabled
-
 func (m_ MIDIUMPFunctionBlock) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -128,7 +123,6 @@ func (m_ MIDIUMPFunctionBlock) IsEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/maxSysEx8Streams
-
 func (m_ MIDIUMPFunctionBlock) MaxSysEx8Streams() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("maxSysEx8Streams"))
 	return rv
@@ -137,7 +131,6 @@ func (m_ MIDIUMPFunctionBlock) MaxSysEx8Streams() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/midi1Info
-
 func (m_ MIDIUMPFunctionBlock) MIDI1Info() MIDIUMPFunctionBlockMIDI1Info {
 	rv := objc.Send[MIDIUMPFunctionBlockMIDI1Info](m_.ID, objc.Sel("MIDI1Info"))
 	return rv
@@ -146,7 +139,6 @@ func (m_ MIDIUMPFunctionBlock) MIDI1Info() MIDIUMPFunctionBlockMIDI1Info {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/midiCIDevice
-
 func (m_ MIDIUMPFunctionBlock) MidiCIDevice() MIDICIDevice {
 	rv := objc.Send[MIDICIDevice](m_.ID, objc.Sel("midiCIDevice"))
 	return rv
@@ -155,7 +147,6 @@ func (m_ MIDIUMPFunctionBlock) MidiCIDevice() MIDICIDevice {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/name
-
 func (m_ MIDIUMPFunctionBlock) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -164,7 +155,6 @@ func (m_ MIDIUMPFunctionBlock) Name() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/totalGroupsSpanned
-
 func (m_ MIDIUMPFunctionBlock) TotalGroupsSpanned() MIDIUInteger7 {
 	rv := objc.Send[MIDIUInteger7](m_.ID, objc.Sel("totalGroupsSpanned"))
 	return rv
@@ -173,7 +163,6 @@ func (m_ MIDIUMPFunctionBlock) TotalGroupsSpanned() MIDIUInteger7 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/uiHint
-
 func (m_ MIDIUMPFunctionBlock) UIHint() MIDIUMPFunctionBlockUIHint {
 	rv := objc.Send[MIDIUMPFunctionBlockUIHint](m_.ID, objc.Sel("UIHint"))
 	return rv
@@ -182,7 +171,6 @@ func (m_ MIDIUMPFunctionBlock) UIHint() MIDIUMPFunctionBlockUIHint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/umpEndpoint
-
 func (m_ MIDIUMPFunctionBlock) UMPEndpoint() MIDIUMPEndpoint {
 	rv := objc.Send[MIDIUMPEndpoint](m_.ID, objc.Sel("UMPEndpoint"))
 	return rv

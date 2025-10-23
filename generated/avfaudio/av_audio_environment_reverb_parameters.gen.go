@@ -46,7 +46,6 @@ type IAudioEnvironmentReverbParameters interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters
-
 type AudioEnvironmentReverbParameters struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewAudioEnvironmentReverbParameters() AudioEnvironmentReverbParameters {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable
-
 func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enable"))
 	return rv
@@ -106,7 +104,6 @@ func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable
-
 func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnable:"), value)
 }
@@ -116,7 +113,6 @@ func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/filterParameters
-
 func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("filterParameters"))
 	return rv
@@ -127,7 +123,6 @@ func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-
 func (a_ AudioEnvironmentReverbParameters) Level() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("level"))
 	return rv
@@ -138,7 +133,6 @@ func (a_ AudioEnvironmentReverbParameters) Level() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-
 func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLevel:"), value)
 }

@@ -40,7 +40,6 @@ type IHKBiologicalSexObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSexObject
-
 type HKBiologicalSexObject struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewHKBiologicalSexObject() HKBiologicalSexObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSexObject/biologicalSex
-
 func (h_ HKBiologicalSexObject) BiologicalSex() HKBiologicalSex {
 	rv := objc.Send[HKBiologicalSex](h_.ID, objc.Sel("biologicalSex"))
 	return rv

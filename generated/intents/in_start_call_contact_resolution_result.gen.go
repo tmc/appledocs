@@ -35,7 +35,11 @@ type IINStartCallContactResolutionResult interface {
 // A resolution result for the contact for the call.
 //
 // You return an object when resolving parameters containing an value. Use the creation method that best reflects your ability to resolve the parameter successfully. The resolved value can be different than the original . This flexibility allows app extensions to apply business logic constraints. For additional resolution operators, see .
+
+
+// A resolution result for the contact for the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallContactResolutionResult
 type INStartCallContactResolutionResult struct {
 	objectivec.Object

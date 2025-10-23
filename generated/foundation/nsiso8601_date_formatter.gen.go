@@ -29,11 +29,11 @@ type _ISO8601DateFormatterClass struct {
 // An interface definition for the [ISO8601DateFormatter] class.
 type IISO8601DateFormatter interface {
 	IFormatter
-	DateFromString(string_ string) Date
-	StringFromDate(date IDate) String
+	DateFromString(string_ string) IDate
+	StringFromDate(date IDate) IString
 	FormatOptions() ISO8601DateFormatOptions
 	SetFormatOptions(value ISO8601DateFormatOptions)
-	TimeZone() NSTimeZone
+	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 }
 
@@ -97,7 +97,7 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) String {
+func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) IString {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
 }
@@ -107,7 +107,7 @@ func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/date(from:)
-func (i_ ISO8601DateFormatter) DateFromString(string_ string) Date {
+func (i_ ISO8601DateFormatter) DateFromString(string_ string) IDate {
 	rv := objc.Send[Date](i_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
@@ -117,7 +117,7 @@ func (i_ ISO8601DateFormatter) DateFromString(string_ string) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:)
-func (i_ ISO8601DateFormatter) StringFromDate(date IDate) String {
+func (i_ ISO8601DateFormatter) StringFromDate(date IDate) IString {
 	rv := objc.Send[String](i_.ID, objc.Sel("stringFromDate:"), date)
 	return rv
 }
@@ -146,7 +146,7 @@ func (i_ ISO8601DateFormatter) SetFormatOptions(value ISO8601DateFormatOptions) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/timeZone
-func (i_ ISO8601DateFormatter) TimeZone() NSTimeZone {
+func (i_ ISO8601DateFormatter) TimeZone() ITimeZone {
 	rv := objc.Send[NSTimeZone](i_.ID, objc.Sel("timeZone"))
 	return rv
 }

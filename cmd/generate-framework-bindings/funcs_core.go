@@ -62,12 +62,12 @@ var templateFuncs = template.FuncMap{
 	"isPropertySetter":        isPropertySetter,
 
 	// DarwinKit class generation helpers
-	"classFileName":                       classFileName,
-	"classTestFileName":                   classTestFileName,
-	"protocolFileName":                    protocolFileName,
-	"receiverName":                        receiverName,
-	"selectorToGoName":                    selectorToGoName,
-	"mapObjCTypeToGo":                     mapObjCTypeToGo,
+	"classFileName":     classFileName,
+	"classTestFileName": classTestFileName,
+	"protocolFileName":  protocolFileName,
+	"receiverName":      receiverName,
+	"selectorToGoName":  selectorToGoName,
+	"mapObjCTypeToGo":   mapObjCTypeToGo,
 	// formatMethodParams is provided by GeneratorFuncs.Funcs() at runtime,
 	// but we need a stub here for template parsing in init()
 	"formatMethodParams":                  formatMethodParamsStub,
@@ -259,4 +259,3 @@ func isValidGoIdentifier(s string) bool {
 
 	return true
 }
-

@@ -45,7 +45,6 @@ type IAssetSegmentReport interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetSegmentReport
-
 type AssetSegmentReport struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewAssetSegmentReport() AssetSegmentReport {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/segmenttype
-
 func (a_ AssetSegmentReport) SegmentType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("segmentType"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AssetSegmentReport) SegmentType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/segmenttype
-
 func (a_ AssetSegmentReport) SetSegmentType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentType:"), value)
 }
@@ -115,7 +112,6 @@ func (a_ AssetSegmentReport) SetSegmentType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/trackreports
-
 func (a_ AssetSegmentReport) TrackReports() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackReports"))
 	return rv
@@ -126,7 +122,6 @@ func (a_ AssetSegmentReport) TrackReports() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmentreport/trackreports
-
 func (a_ AssetSegmentReport) SetTrackReports(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackReports:"), value)
 }

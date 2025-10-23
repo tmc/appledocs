@@ -44,7 +44,11 @@ type IMKStandardMapConfiguration interface {
 }
 
 // The class that represents the default map presentation, which is a street map that shows the position of all roads and some road names.
+
+
+// The class that represents the default map presentation, which is a street map that shows the position of all roads and some road names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration
 type MKStandardMapConfiguration struct {
 	MKMapConfiguration
@@ -92,9 +96,9 @@ func NewMKStandardMapConfiguration() MKStandardMapConfiguration {
 
 
 
-
 // Creates a standard map configuration with the specified emphasis style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/init(emphasisStyle:)
 func NewMKStandardMapConfigurationWithEmphasisStyle(emphasisStyle unsafe.Pointer) MKStandardMapConfiguration {
 	instance := getMKStandardMapConfigurationClass().Alloc()
@@ -104,8 +108,10 @@ func NewMKStandardMapConfigurationWithEmphasisStyle(emphasisStyle unsafe.Pointer
 }
 
 
+
 // The filter used to determine the points of interest shown on the map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
 func (m_ MKStandardMapConfiguration) PointOfInterestFilter() MKPointOfInterestFilter {
 	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
@@ -113,17 +119,18 @@ func (m_ MKStandardMapConfiguration) PointOfInterestFilter() MKPointOfInterestFi
 }
 
 
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
 // The filter used to determine the points of interest shown on the map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
 func (m_ MKStandardMapConfiguration) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
+
 // A value that indicates whether the map’s pitch button is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKStandardMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
@@ -131,17 +138,18 @@ func (m_ MKStandardMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 }
 
 
-// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
 // A value that indicates whether the map’s pitch button is visible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKStandardMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
 }
 
+
 // The characteristics of the map view, including the map type and features the map displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKStandardMapConfiguration) PreferredConfiguration() MKMapConfiguration {
 	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
@@ -149,17 +157,18 @@ func (m_ MKStandardMapConfiguration) PreferredConfiguration() MKMapConfiguration
 }
 
 
-// SetPreferredConfiguration sets the value of the preferredConfiguration property.
 // The characteristics of the map view, including the map type and features the map displays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKStandardMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
+
 // A Boolean value that indicates whether the map displays the user tracking button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKStandardMapConfiguration) ShowsUserTrackingButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
@@ -167,17 +176,18 @@ func (m_ MKStandardMapConfiguration) ShowsUserTrackingButton() bool {
 }
 
 
-// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
 // A Boolean value that indicates whether the map displays the user tracking button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKStandardMapConfiguration) SetShowsUserTrackingButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
 }
 
+
 // The value that indicates how the framework emphasizes map features.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
 func (m_ MKStandardMapConfiguration) EmphasisStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("emphasisStyle"))
@@ -185,17 +195,18 @@ func (m_ MKStandardMapConfiguration) EmphasisStyle() unsafe.Pointer {
 }
 
 
-// SetEmphasisStyle sets the value of the emphasisStyle property.
 // The value that indicates how the framework emphasizes map features.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.property
 func (m_ MKStandardMapConfiguration) SetEmphasisStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEmphasisStyle:"), value)
 }
 
+
 // A Boolean value that controls whether the map displays traffic conditions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/showstraffic
 func (m_ MKStandardMapConfiguration) ShowsTraffic() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsTraffic"))
@@ -203,10 +214,9 @@ func (m_ MKStandardMapConfiguration) ShowsTraffic() bool {
 }
 
 
-// SetShowsTraffic sets the value of the showsTraffic property.
 // A Boolean value that controls whether the map displays traffic conditions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/showstraffic
 func (m_ MKStandardMapConfiguration) SetShowsTraffic(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)

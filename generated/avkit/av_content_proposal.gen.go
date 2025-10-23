@@ -64,7 +64,6 @@ type IContentProposal interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal
-
 type ContentProposal struct {
 	objectivec.Object
 }
@@ -113,7 +112,6 @@ func NewContentProposal() ContentProposal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/contentTimeForTransition
-
 func (c_ ContentProposal) ContentTimeForTransition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentTimeForTransition"))
 	return rv
@@ -124,7 +122,6 @@ func (c_ ContentProposal) ContentTimeForTransition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/automaticacceptanceinterval
-
 func (c_ ContentProposal) AutomaticAcceptanceInterval() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("automaticAcceptanceInterval"))
 	return rv
@@ -135,7 +132,6 @@ func (c_ ContentProposal) AutomaticAcceptanceInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/automaticacceptanceinterval
-
 func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticAcceptanceInterval:"), value)
 }
@@ -145,7 +141,6 @@ func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/metadata
-
 func (c_ ContentProposal) Metadata() avfoundation.MetadataItem {
 	rv := objc.Send[avfoundation.MetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
@@ -156,7 +151,6 @@ func (c_ ContentProposal) Metadata() avfoundation.MetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/metadata
-
 func (c_ ContentProposal) SetMetadata(value avfoundation.IMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
@@ -166,7 +160,6 @@ func (c_ ContentProposal) SetMetadata(value avfoundation.IMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/previewimage
-
 func (c_ ContentProposal) PreviewImage() appkit.Image {
 	rv := objc.Send[appkit.Image](c_.ID, objc.Sel("previewImage"))
 	return rv
@@ -177,7 +170,6 @@ func (c_ ContentProposal) PreviewImage() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/previewimage
-
 func (c_ ContentProposal) SetPreviewImage(value appkit.IImage) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewImage:"), value)
 }
@@ -187,7 +179,6 @@ func (c_ ContentProposal) SetPreviewImage(value appkit.IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
-
 func (c_ ContentProposal) Title() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
@@ -198,7 +189,6 @@ func (c_ ContentProposal) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
-
 func (c_ ContentProposal) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -208,7 +198,6 @@ func (c_ ContentProposal) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/url
-
 func (c_ ContentProposal) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
 	return rv
@@ -219,7 +208,6 @@ func (c_ ContentProposal) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/url
-
 func (c_ ContentProposal) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
@@ -229,7 +217,6 @@ func (c_ ContentProposal) SetUrl(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/contentproposal
-
 func (c_ ContentProposal) ContentProposal() AVContentProposal {
 	rv := objc.Send[AVContentProposal](c_.ID, objc.Sel("contentProposal"))
 	return rv
@@ -240,7 +227,6 @@ func (c_ ContentProposal) ContentProposal() AVContentProposal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/contentproposal
-
 func (c_ ContentProposal) SetContentProposal(value IAVContentProposal) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentProposal:"), value)
 }
@@ -250,7 +236,6 @@ func (c_ ContentProposal) SetContentProposal(value IAVContentProposal) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
-
 func (c_ ContentProposal) DateOfAutomaticAcceptance() foundation.Date {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
 	return rv
@@ -261,7 +246,6 @@ func (c_ ContentProposal) DateOfAutomaticAcceptance() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
-
 func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
@@ -271,7 +255,6 @@ func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
-
 func (c_ ContentProposal) PlayerLayoutGuide() appkit.LayoutGuide {
 	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
@@ -282,7 +265,6 @@ func (c_ ContentProposal) PlayerLayoutGuide() appkit.LayoutGuide {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
-
 func (c_ ContentProposal) SetPlayerLayoutGuide(value appkit.ILayoutGuide) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlayerLayoutGuide:"), value)
 }
@@ -292,7 +274,6 @@ func (c_ ContentProposal) SetPlayerLayoutGuide(value appkit.ILayoutGuide) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/preferredplayerviewframe
-
 func (c_ ContentProposal) PreferredPlayerViewFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
 	return rv
@@ -303,7 +284,6 @@ func (c_ ContentProposal) PreferredPlayerViewFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/preferredplayerviewframe
-
 func (c_ ContentProposal) SetPreferredPlayerViewFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredPlayerViewFrame:"), value)
 }

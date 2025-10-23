@@ -37,7 +37,11 @@ type IINSpeakableString interface {
 // A custom phrase to be resolved by an Intents extension.
 //
 // When creating your Intents extension, you can define custom vocabulary for some types of intents. For example, a workout app may provide a custom file with the names of standard workouts that are shared by all users of the app. In places where those terms might be used, the intent object contains an object. Use the contents of an object to resolve the specified term during the handling of an intent. If the user spoke a term that is defined in your file, Siri includes the identifier of that term in the string’s property. For unrecognized terms, the identifier is .
+
+
+// A custom phrase to be resolved by an Intents extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSpeakableString
 type INSpeakableString struct {
 	objectivec.Object
@@ -82,8 +86,10 @@ func NewINSpeakableString() INSpeakableString {
 }
 
 
+
 // The identifier associated with the string in your app’s custom vocabulary file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
 func (i_ INSpeakableString) Identifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
@@ -91,10 +97,9 @@ func (i_ INSpeakableString) Identifier() string {
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // The identifier associated with the string in your app’s custom vocabulary file.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
 func (i_ INSpeakableString) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))

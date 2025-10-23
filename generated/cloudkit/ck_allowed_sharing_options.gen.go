@@ -32,8 +32,8 @@ type ICKAllowedSharingOptions interface {
 	objectivec.IObject
 	AllowedParticipantAccessOptions() unsafe.Pointer
 	SetAllowedParticipantAccessOptions(value unsafe.Pointer)
-	AllowedParticipantPermissionOptions() unsafe.Pointer
-	SetAllowedParticipantPermissionOptions(value unsafe.Pointer)
+	AllowedParticipantPermissionOptions() CKSharingParticipantPermissionOption
+	SetAllowedParticipantPermissionOptions(value ICKSharingParticipantPermissionOption)
 	AllowsAccessRequests() bool
 	SetAllowsAccessRequests(value bool)
 	AllowsParticipantsToInviteOthers() bool
@@ -49,7 +49,6 @@ type ICKAllowedSharingOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAllowedSharingOptions
-
 type CKAllowedSharingOptions struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewCKAllowedSharingOptions() CKAllowedSharingOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantaccessoptions
-
 func (c_ CKAllowedSharingOptions) AllowedParticipantAccessOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedParticipantAccessOptions"))
 	return rv
@@ -109,7 +107,6 @@ func (c_ CKAllowedSharingOptions) AllowedParticipantAccessOptions() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantaccessoptions
-
 func (c_ CKAllowedSharingOptions) SetAllowedParticipantAccessOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantAccessOptions:"), value)
 }
@@ -119,9 +116,8 @@ func (c_ CKAllowedSharingOptions) SetAllowedParticipantAccessOptions(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
-
-func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedParticipantPermissionOptions"))
+func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() CKSharingParticipantPermissionOption {
+	rv := objc.Send[CKSharingParticipantPermissionOption](c_.ID, objc.Sel("allowedParticipantPermissionOptions"))
 	return rv
 }
 
@@ -130,8 +126,7 @@ func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
-
-func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value unsafe.Pointer) {
+func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value ICKSharingParticipantPermissionOption) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantPermissionOptions:"), value)
 }
 
@@ -140,7 +135,6 @@ func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsaccessrequests
-
 func (c_ CKAllowedSharingOptions) AllowsAccessRequests() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsAccessRequests"))
 	return rv
@@ -151,7 +145,6 @@ func (c_ CKAllowedSharingOptions) AllowsAccessRequests() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsaccessrequests
-
 func (c_ CKAllowedSharingOptions) SetAllowsAccessRequests(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsAccessRequests:"), value)
 }
@@ -161,7 +154,6 @@ func (c_ CKAllowedSharingOptions) SetAllowsAccessRequests(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
-
 func (c_ CKAllowedSharingOptions) AllowsParticipantsToInviteOthers() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsParticipantsToInviteOthers"))
 	return rv
@@ -172,7 +164,6 @@ func (c_ CKAllowedSharingOptions) AllowsParticipantsToInviteOthers() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowsparticipantstoinviteothers
-
 func (c_ CKAllowedSharingOptions) SetAllowsParticipantsToInviteOthers(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsParticipantsToInviteOthers:"), value)
 }

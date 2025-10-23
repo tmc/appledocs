@@ -45,7 +45,6 @@ type IRoutingPlaybackArbiter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter
-
 type RoutingPlaybackArbiter struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewRoutingPlaybackArbiter() RoutingPlaybackArbiter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/shared()
-
 func (rc _RoutingPlaybackArbiterClass) SharedRoutingPlaybackArbiter() RoutingPlaybackArbiter {
 	rv := objc.Send[RoutingPlaybackArbiter](objc.ID(rc.class), objc.Sel("sharedRoutingPlaybackArbiter"))
 	return rv
@@ -105,7 +103,6 @@ func (rc _RoutingPlaybackArbiterClass) SharedRoutingPlaybackArbiter() RoutingPla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForExternalPlayback
-
 func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("preferredParticipantForExternalPlayback"))
 	return rv
@@ -116,7 +113,6 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForExternalPlayback
-
 func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
 }
@@ -126,7 +122,6 @@ func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForNonMixableAudioRoutes
-
 func (r_ RoutingPlaybackArbiter) PreferredParticipantForNonMixableAudioRoutes() objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("preferredParticipantForNonMixableAudioRoutes"))
 	return rv
@@ -137,7 +132,6 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForNonMixableAudioRoutes() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForNonMixableAudioRoutes
-
 func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForNonMixableAudioRoutes:"), value)
 }

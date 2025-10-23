@@ -45,7 +45,6 @@ type ITKSmartCardSlotManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager
-
 type TKSmartCardSlotManager struct {
 	objectivec.Object
 }
@@ -94,41 +93,34 @@ func NewTKSmartCardSlotManager() TKSmartCardSlotManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
-
 func (tc _TKSmartCardSlotManagerClass) DefaultManager() TKSmartCardSlotManager {
 	rv := objc.Send[TKSmartCardSlotManager](objc.ID(tc.class), objc.Sel("defaultManager"))
 	return rv
 }
 
-
 // Creates an NFC smart card slot using the device’s hardware and presents a system UI.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/createNFCSlot(message:completion:)
-
 func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), objc.String(message), completion)
 }
-
 
 
 // Determines whether NFC (Near Field Communication) is supported on this device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/isNFCSupported()
-
 func (t_ TKSmartCardSlotManager) IsNFCSupported() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isNFCSupported"))
 	return rv
 }
 
 
-
 // Returns the Smart Card slot with a given name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNamed(_:)
-
 func (t_ TKSmartCardSlotManager) SlotNamed(name string) TKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), objc.String(name))
 	return rv
@@ -139,7 +131,6 @@ func (t_ TKSmartCardSlotManager) SlotNamed(name string) TKSmartCardSlot {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
-
 func (t_ TKSmartCardSlotManager) DefaultManager() TKSmartCardSlotManager {
 	rv := objc.Send[TKSmartCardSlotManager](t_.ID, objc.Sel("defaultManager"))
 	return rv
@@ -150,7 +141,6 @@ func (t_ TKSmartCardSlotManager) DefaultManager() TKSmartCardSlotManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNames
-
 func (t_ TKSmartCardSlotManager) SlotNames() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("slotNames"))
 	return rv

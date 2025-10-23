@@ -35,8 +35,8 @@ type IURLConnection interface {
 	SetDelegateQueue(queue IOperationQueue)
 	Start()
 	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	CurrentRequest() NSURLRequest
-	OriginalRequest() NSURLRequest
+	CurrentRequest() IURLRequest
+	OriginalRequest() IURLRequest
 }
 
 // An object that enables you to start and stop URL requests.
@@ -131,7 +131,7 @@ func (uc _URLConnectionClass) CanHandleRequest(request IURLRequest) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/connectionWithRequest:delegate:
-func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLConnection {
+func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) IURLConnection {
 	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("connectionWithRequest:delegate:"), request, delegate)
 	return rv
 }
@@ -150,7 +150,7 @@ func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(requ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendSynchronousRequest(_:returning:)
-func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request IURLRequest, response IURLResponse, error_ IError) Data {
+func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request IURLRequest, response IURLResponse, error_ IError) IData {
 	rv := objc.Send[Data](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error_)
 	return rv
 }
@@ -205,7 +205,7 @@ func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode Run
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/currentRequest
-func (u_ URLConnection) CurrentRequest() NSURLRequest {
+func (u_ URLConnection) CurrentRequest() IURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (u_ URLConnection) CurrentRequest() NSURLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/originalRequest
-func (u_ URLConnection) OriginalRequest() NSURLRequest {
+func (u_ URLConnection) OriginalRequest() IURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }

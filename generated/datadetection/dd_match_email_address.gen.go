@@ -42,7 +42,6 @@ type IDDMatchEmailAddress interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress
-
 type DDMatchEmailAddress struct {
 	DDMatch
 }
@@ -93,7 +92,6 @@ func NewDDMatchEmailAddress() DDMatchEmailAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/emailAddress
-
 func (d_ DDMatchEmailAddress) EmailAddress() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("emailAddress"))
 	return rv
@@ -104,7 +102,6 @@ func (d_ DDMatchEmailAddress) EmailAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/label
-
 func (d_ DDMatchEmailAddress) Label() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv

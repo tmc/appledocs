@@ -35,7 +35,9 @@ type IEnvironmentMechanism interface {
 	LocalizedName() string
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism
 type EnvironmentMechanism struct {
 	objectivec.Object
@@ -78,23 +80,28 @@ func NewEnvironmentMechanism() EnvironmentMechanism {
 }
 
 
+
 // Name of the SF Symbol representing this authentication mechanism.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/iconSystemName
 func (e_ EnvironmentMechanism) IconSystemName() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("iconSystemName"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/isUsable
 func (e_ EnvironmentMechanism) IsUsable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isUsable"))
 	return rv
 }
 
+
 // The localized name of the authentication mechanism, e.g. “Touch ID”, “Face ID” etc.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/localizedName
 func (e_ EnvironmentMechanism) LocalizedName() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedName"))

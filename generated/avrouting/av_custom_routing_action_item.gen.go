@@ -45,7 +45,6 @@ type ICustomRoutingActionItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem
-
 type CustomRoutingActionItem struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewCustomRoutingActionItem() CustomRoutingActionItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-
 func (c_ CustomRoutingActionItem) OverrideTitle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("overrideTitle"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ CustomRoutingActionItem) OverrideTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-
 func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
 }
@@ -115,7 +112,6 @@ func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-
 func (c_ CustomRoutingActionItem) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ CustomRoutingActionItem) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-
 func (c_ CustomRoutingActionItem) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }

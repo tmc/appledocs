@@ -52,7 +52,6 @@ type ICaptureExternalDisplayConfigurator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureExternalDisplayConfigurator
-
 type CaptureExternalDisplayConfigurator struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewCaptureExternalDisplayConfigurator() CaptureExternalDisplayConfigurator 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
-
 func (c_ CaptureExternalDisplayConfigurator) ActiveFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeFormat"))
 	return rv
@@ -112,7 +110,6 @@ func (c_ CaptureExternalDisplayConfigurator) ActiveFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
-
 func (c_ CaptureExternalDisplayConfigurator) SetActiveFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
 }
@@ -122,7 +119,6 @@ func (c_ CaptureExternalDisplayConfigurator) SetActiveFormat(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/activeexternaldisplayframerate
-
 func (c_ CaptureExternalDisplayConfigurator) ActiveExternalDisplayFrameRate() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("activeExternalDisplayFrameRate"))
 	return rv
@@ -133,7 +129,6 @@ func (c_ CaptureExternalDisplayConfigurator) ActiveExternalDisplayFrameRate() fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/activeexternaldisplayframerate
-
 func (c_ CaptureExternalDisplayConfigurator) SetActiveExternalDisplayFrameRate(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveExternalDisplayFrameRate:"), value)
 }
@@ -143,7 +138,6 @@ func (c_ CaptureExternalDisplayConfigurator) SetActiveExternalDisplayFrameRate(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/device
-
 func (c_ CaptureExternalDisplayConfigurator) Device() AVCaptureDevice {
 	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
@@ -154,7 +148,6 @@ func (c_ CaptureExternalDisplayConfigurator) Device() AVCaptureDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/device
-
 func (c_ CaptureExternalDisplayConfigurator) SetDevice(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
 }
@@ -164,7 +157,6 @@ func (c_ CaptureExternalDisplayConfigurator) SetDevice(value IAVCaptureDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/isactive
-
 func (c_ CaptureExternalDisplayConfigurator) IsActive() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
 	return rv
@@ -175,7 +167,6 @@ func (c_ CaptureExternalDisplayConfigurator) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/isactive
-
 func (c_ CaptureExternalDisplayConfigurator) SetIsActive(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
 }
@@ -185,7 +176,6 @@ func (c_ CaptureExternalDisplayConfigurator) SetIsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-
 func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() quartzcore.Layer {
 	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
@@ -196,7 +186,6 @@ func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() quartzcore.Layer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-
 func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value quartzcore.ILayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }

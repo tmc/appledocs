@@ -47,7 +47,6 @@ type ICompositionTrackSegment interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCompositionTrackSegment
-
 type CompositionTrackSegment struct {
 	AssetTrackSegment
 }
@@ -98,7 +97,6 @@ func NewCompositionTrackSegment() CompositionTrackSegment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/isempty
-
 func (c_ CompositionTrackSegment) IsEmpty() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEmpty"))
 	return rv
@@ -109,7 +107,6 @@ func (c_ CompositionTrackSegment) IsEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/isempty
-
 func (c_ CompositionTrackSegment) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEmpty:"), value)
 }
@@ -119,7 +116,6 @@ func (c_ CompositionTrackSegment) SetIsEmpty(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourcetrackid
-
 func (c_ CompositionTrackSegment) SourceTrackID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceTrackID"))
 	return rv
@@ -130,7 +126,6 @@ func (c_ CompositionTrackSegment) SourceTrackID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourcetrackid
-
 func (c_ CompositionTrackSegment) SetSourceTrackID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceTrackID:"), value)
 }
@@ -140,7 +135,6 @@ func (c_ CompositionTrackSegment) SetSourceTrackID(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourceurl
-
 func (c_ CompositionTrackSegment) SourceURL() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("sourceURL"))
 	return rv
@@ -151,7 +145,6 @@ func (c_ CompositionTrackSegment) SourceURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourceurl
-
 func (c_ CompositionTrackSegment) SetSourceURL(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceURL:"), value)
 }

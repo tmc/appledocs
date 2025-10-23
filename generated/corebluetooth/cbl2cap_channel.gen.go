@@ -48,7 +48,6 @@ type ICBL2CAPChannel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBL2CAPChannel
-
 type CBL2CAPChannel struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewCBL2CAPChannel() CBL2CAPChannel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-
 func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
 	rv := objc.Send[foundation.InputStream](c_.ID, objc.Sel("inputStream"))
 	return rv
@@ -108,7 +106,6 @@ func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-
 func (c_ CBL2CAPChannel) SetInputStream(value foundation.IInputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
 }
@@ -118,7 +115,6 @@ func (c_ CBL2CAPChannel) SetInputStream(value foundation.IInputStream) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-
 func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
 	rv := objc.Send[foundation.OutputStream](c_.ID, objc.Sel("outputStream"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-
 func (c_ CBL2CAPChannel) SetOutputStream(value foundation.IOutputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputStream:"), value)
 }
@@ -139,7 +134,6 @@ func (c_ CBL2CAPChannel) SetOutputStream(value foundation.IOutputStream) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
-
 func (c_ CBL2CAPChannel) Peer() CBPeer {
 	rv := objc.Send[CBPeer](c_.ID, objc.Sel("peer"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CBL2CAPChannel) Peer() CBPeer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
-
 func (c_ CBL2CAPChannel) SetPeer(value ICBPeer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeer:"), value)
 }
@@ -160,7 +153,6 @@ func (c_ CBL2CAPChannel) SetPeer(value ICBPeer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-
 func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
 	rv := objc.Send[CBL2CAPPSM](c_.ID, objc.Sel("psm"))
 	return rv
@@ -171,7 +163,6 @@ func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-
 func (c_ CBL2CAPChannel) SetPsm(value ICBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }

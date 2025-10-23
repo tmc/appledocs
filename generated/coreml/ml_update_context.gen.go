@@ -44,7 +44,6 @@ type IUpdateContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext
-
 type UpdateContext struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewUpdateContext() UpdateContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/event
-
 func (u_ UpdateContext) Event() UpdateProgressEvent {
 	rv := objc.Send[UpdateProgressEvent](u_.ID, objc.Sel("event"))
 	return rv
@@ -104,7 +102,6 @@ func (u_ UpdateContext) Event() UpdateProgressEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/metrics
-
 func (u_ UpdateContext) Metrics() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("metrics"))
 	return rv
@@ -115,7 +112,6 @@ func (u_ UpdateContext) Metrics() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/model
-
 func (u_ UpdateContext) Model() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("model"))
 	return rv
@@ -126,7 +122,6 @@ func (u_ UpdateContext) Model() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/parameters
-
 func (u_ UpdateContext) Parameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("parameters"))
 	return rv
@@ -137,7 +132,6 @@ func (u_ UpdateContext) Parameters() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/task
-
 func (u_ UpdateContext) Task() MLUpdateTask {
 	rv := objc.Send[MLUpdateTask](u_.ID, objc.Sel("task"))
 	return rv

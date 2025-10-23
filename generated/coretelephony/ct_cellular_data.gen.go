@@ -45,7 +45,6 @@ type ICellularData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularData
-
 type CellularData struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewCellularData() CellularData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/cellulardatarestrictiondidupdatenotifier
-
 func (c_ CellularData) CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cellularDataRestrictionDidUpdateNotifier"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ CellularData) CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/cellulardatarestrictiondidupdatenotifier
-
 func (c_ CellularData) SetCellularDataRestrictionDidUpdateNotifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCellularDataRestrictionDidUpdateNotifier:"), value)
 }
@@ -115,7 +112,6 @@ func (c_ CellularData) SetCellularDataRestrictionDidUpdateNotifier(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-
 func (c_ CellularData) RestrictedState() CellularDataRestrictedState {
 	rv := objc.Send[CellularDataRestrictedState](c_.ID, objc.Sel("restrictedState"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ CellularData) RestrictedState() CellularDataRestrictedState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-
 func (c_ CellularData) SetRestrictedState(value CellularDataRestrictedState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRestrictedState:"), value)
 }

@@ -32,7 +32,9 @@ type ImLastNameUpdate interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mLastNameUpdate
 type mLastNameUpdate struct {
 	objectivec.Object

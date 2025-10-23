@@ -56,7 +56,6 @@ type IAchievement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement
-
 type Achievement struct {
 	objectivec.Object
 }
@@ -101,12 +100,10 @@ func NewAchievement() Achievement {
 
 
 
-
 // Provides a challenge compose view controller with preselected player identifiers and a message.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement/challengeComposeController(withPlayers:message:completionHandler:)
-
 func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message string, completionHandler unsafe.Pointer) appkit.ViewController {
 	rv := objc.Send[appkit.ViewController](a_.ID, objc.Sel("challengeComposeControllerWithPlayers:message:completionHandler:"), playerIDs, objc.String(message), completionHandler)
 	return rv
@@ -117,7 +114,6 @@ func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-
 func (a_ Achievement) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
@@ -128,7 +124,6 @@ func (a_ Achievement) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-
 func (a_ Achievement) SetIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -138,7 +133,6 @@ func (a_ Achievement) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/iscompleted
-
 func (a_ Achievement) IsCompleted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompleted"))
 	return rv
@@ -149,7 +143,6 @@ func (a_ Achievement) IsCompleted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/iscompleted
-
 func (a_ Achievement) SetIsCompleted(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompleted:"), value)
 }
@@ -159,7 +152,6 @@ func (a_ Achievement) SetIsCompleted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-
 func (a_ Achievement) LastReportedDate() foundation.Date {
 	rv := objc.Send[foundation.Date](a_.ID, objc.Sel("lastReportedDate"))
 	return rv
@@ -170,7 +162,6 @@ func (a_ Achievement) LastReportedDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-
 func (a_ Achievement) SetLastReportedDate(value foundation.IDate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLastReportedDate:"), value)
 }
@@ -180,7 +171,6 @@ func (a_ Achievement) SetLastReportedDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete
-
 func (a_ Achievement) PercentComplete() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("percentComplete"))
 	return rv
@@ -191,7 +181,6 @@ func (a_ Achievement) PercentComplete() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete
-
 func (a_ Achievement) SetPercentComplete(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPercentComplete:"), value)
 }
@@ -201,7 +190,6 @@ func (a_ Achievement) SetPercentComplete(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/player
-
 func (a_ Achievement) Player() GKPlayer {
 	rv := objc.Send[GKPlayer](a_.ID, objc.Sel("player"))
 	return rv
@@ -212,7 +200,6 @@ func (a_ Achievement) Player() GKPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/player
-
 func (a_ Achievement) SetPlayer(value IGKPlayer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPlayer:"), value)
 }
@@ -222,7 +209,6 @@ func (a_ Achievement) SetPlayer(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/showscompletionbanner
-
 func (a_ Achievement) ShowsCompletionBanner() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("showsCompletionBanner"))
 	return rv
@@ -233,7 +219,6 @@ func (a_ Achievement) ShowsCompletionBanner() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/showscompletionbanner
-
 func (a_ Achievement) SetShowsCompletionBanner(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShowsCompletionBanner:"), value)
 }

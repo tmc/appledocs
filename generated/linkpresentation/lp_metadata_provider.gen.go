@@ -43,7 +43,11 @@ type ILPMetadataProvider interface {
 // An object that retrieves metadata for a URL.
 //
 // Use to fetch metadata for a URL, including its title, icon, and image or video links. All properties on the resulting instance are optional.
+
+
+// An object that retrieves metadata for a URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider
 type LPMetadataProvider struct {
 	objectivec.Object
@@ -88,29 +92,37 @@ func NewLPMetadataProvider() LPMetadataProvider {
 }
 
 
+
 // Cancels a metadata request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/cancel()
 func (l_ LPMetadataProvider) Cancel() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("cancel"))
 }
 
+
 // Fetches metadata for the given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-54z5i
 func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForURL:completionHandler:"), URL, completionHandler)
 }
 
+
 // Fetches metadata for the given .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8
 func (l_ LPMetadataProvider) StartFetchingMetadataForRequestCompletionHandler(request foundation.IURLRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForRequest:completionHandler:"), request, completionHandler)
 }
 
+
 // A Boolean value indicating whether to download subresources specified by the metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/shouldFetchSubresources
 func (l_ LPMetadataProvider) ShouldFetchSubresources() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("shouldFetchSubresources"))
@@ -118,17 +130,18 @@ func (l_ LPMetadataProvider) ShouldFetchSubresources() bool {
 }
 
 
-// SetShouldFetchSubresources sets the value of the shouldFetchSubresources property.
 // A Boolean value indicating whether to download subresources specified by the metadata.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/shouldFetchSubresources
 func (l_ LPMetadataProvider) SetShouldFetchSubresources(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldFetchSubresources:"), value)
 }
 
+
 // The time interval after which the request automatically fails if it hasn’t already completed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
 func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timeout"))
@@ -136,10 +149,9 @@ func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval {
 }
 
 
-// SetTimeout sets the value of the timeout property.
 // The time interval after which the request automatically fails if it hasn’t already completed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
 func (l_ LPMetadataProvider) SetTimeout(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimeout:"), value)

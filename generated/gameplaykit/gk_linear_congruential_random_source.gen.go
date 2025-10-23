@@ -42,7 +42,6 @@ type ILinearCongruentialRandomSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource
-
 type LinearCongruentialRandomSource struct {
 	RandomSource
 }
@@ -89,12 +88,10 @@ func NewLinearCongruentialRandomSource() LinearCongruentialRandomSource {
 
 
 
-
 // Initializes a random source with the specified seed value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/init(seed:)
-
 func NewLinearCongruentialRandomSourceWithSeed(seed uint64) LinearCongruentialRandomSource {
 	instance := getLinearCongruentialRandomSourceClass().Alloc()
 	rv := objc.Send[LinearCongruentialRandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
@@ -108,7 +105,6 @@ func NewLinearCongruentialRandomSourceWithSeed(seed uint64) LinearCongruentialRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/seed
-
 func (l_ LinearCongruentialRandomSource) Seed() uint64 {
 	rv := objc.Send[uint64](l_.ID, objc.Sel("seed"))
 	return rv
@@ -119,7 +115,6 @@ func (l_ LinearCongruentialRandomSource) Seed() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/seed
-
 func (l_ LinearCongruentialRandomSource) SetSeed(value uint64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSeed:"), value)
 }

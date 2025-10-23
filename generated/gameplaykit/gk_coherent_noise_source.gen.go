@@ -48,7 +48,6 @@ type ICoherentNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource
-
 type CoherentNoiseSource struct {
 	NoiseSource
 }
@@ -99,7 +98,6 @@ func NewCoherentNoiseSource() CoherentNoiseSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/frequency
-
 func (c_ CoherentNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("frequency"))
 	return rv
@@ -110,7 +108,6 @@ func (c_ CoherentNoiseSource) Frequency() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/frequency
-
 func (c_ CoherentNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }
@@ -120,7 +117,6 @@ func (c_ CoherentNoiseSource) SetFrequency(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
-
 func (c_ CoherentNoiseSource) Lacunarity() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("lacunarity"))
 	return rv
@@ -131,7 +127,6 @@ func (c_ CoherentNoiseSource) Lacunarity() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
-
 func (c_ CoherentNoiseSource) SetLacunarity(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLacunarity:"), value)
 }
@@ -141,7 +136,6 @@ func (c_ CoherentNoiseSource) SetLacunarity(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/octaveCount
-
 func (c_ CoherentNoiseSource) OctaveCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("octaveCount"))
 	return rv
@@ -152,7 +146,6 @@ func (c_ CoherentNoiseSource) OctaveCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/octaveCount
-
 func (c_ CoherentNoiseSource) SetOctaveCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOctaveCount:"), value)
 }
@@ -162,7 +155,6 @@ func (c_ CoherentNoiseSource) SetOctaveCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/seed
-
 func (c_ CoherentNoiseSource) Seed() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("seed"))
 	return rv
@@ -173,7 +165,6 @@ func (c_ CoherentNoiseSource) Seed() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/seed
-
 func (c_ CoherentNoiseSource) SetSeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }

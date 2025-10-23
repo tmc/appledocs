@@ -53,7 +53,6 @@ type IGCControllerButtonInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput
-
 type GCControllerButtonInput struct {
 	GCControllerElement
 }
@@ -104,7 +103,6 @@ func NewGCControllerButtonInput() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/isTouched
-
 func (g_ GCControllerButtonInput) Touched() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("touched"))
 	return rv
@@ -115,7 +113,6 @@ func (g_ GCControllerButtonInput) Touched() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/touchedChangedHandler
-
 func (g_ GCControllerButtonInput) TouchedChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchedChangedHandler"))
 	return rv
@@ -126,7 +123,6 @@ func (g_ GCControllerButtonInput) TouchedChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/touchedChangedHandler
-
 func (g_ GCControllerButtonInput) SetTouchedChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchedChangedHandler:"), value)
 }
@@ -136,7 +132,6 @@ func (g_ GCControllerButtonInput) SetTouchedChangedHandler(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/valueChangedHandler
-
 func (g_ GCControllerButtonInput) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
@@ -147,7 +142,6 @@ func (g_ GCControllerButtonInput) ValueChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerButtonInput/valueChangedHandler
-
 func (g_ GCControllerButtonInput) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }
@@ -157,7 +151,6 @@ func (g_ GCControllerButtonInput) SetValueChangedHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/ispressed
-
 func (g_ GCControllerButtonInput) IsPressed() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isPressed"))
 	return rv
@@ -168,7 +161,6 @@ func (g_ GCControllerButtonInput) IsPressed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/ispressed
-
 func (g_ GCControllerButtonInput) SetIsPressed(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPressed:"), value)
 }
@@ -178,7 +170,6 @@ func (g_ GCControllerButtonInput) SetIsPressed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/istouched
-
 func (g_ GCControllerButtonInput) IsTouched() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isTouched"))
 	return rv
@@ -189,7 +180,6 @@ func (g_ GCControllerButtonInput) IsTouched() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/istouched
-
 func (g_ GCControllerButtonInput) SetIsTouched(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsTouched:"), value)
 }
@@ -199,7 +189,6 @@ func (g_ GCControllerButtonInput) SetIsTouched(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/pressedchangedhandler
-
 func (g_ GCControllerButtonInput) PressedChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("pressedChangedHandler"))
 	return rv
@@ -210,7 +199,6 @@ func (g_ GCControllerButtonInput) PressedChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/pressedchangedhandler
-
 func (g_ GCControllerButtonInput) SetPressedChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPressedChangedHandler:"), value)
 }
@@ -220,7 +208,6 @@ func (g_ GCControllerButtonInput) SetPressedChangedHandler(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
-
 func (g_ GCControllerButtonInput) Value() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("value"))
 	return rv
@@ -231,7 +218,6 @@ func (g_ GCControllerButtonInput) Value() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
-
 func (g_ GCControllerButtonInput) SetValue(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:"), value)
 }

@@ -37,7 +37,6 @@ type IHKScoredAssessment interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKScoredAssessment
-
 type HKScoredAssessment struct {
 	HKSample
 }
@@ -84,7 +83,6 @@ func NewHKScoredAssessment() HKScoredAssessment {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkscoredassessment/score
-
 func (h_ HKScoredAssessment) Score() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("score"))
 	return rv
@@ -93,7 +91,6 @@ func (h_ HKScoredAssessment) Score() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkscoredassessment/score
-
 func (h_ HKScoredAssessment) SetScore(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setScore:"), value)
 }

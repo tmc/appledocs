@@ -50,7 +50,6 @@ type IHKLiveWorkoutBuilder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder
-
 type HKLiveWorkoutBuilder struct {
 	HKWorkoutBuilder
 }
@@ -101,7 +100,6 @@ func NewHKLiveWorkoutBuilder() HKLiveWorkoutBuilder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/currentWorkoutActivity
-
 func (h_ HKLiveWorkoutBuilder) CurrentWorkoutActivity() HKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("currentWorkoutActivity"))
 	return rv
@@ -112,7 +110,6 @@ func (h_ HKLiveWorkoutBuilder) CurrentWorkoutActivity() HKWorkoutActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/dataSource
-
 func (h_ HKLiveWorkoutBuilder) DataSource() HKLiveWorkoutDataSource {
 	rv := objc.Send[HKLiveWorkoutDataSource](h_.ID, objc.Sel("dataSource"))
 	return rv
@@ -123,7 +120,6 @@ func (h_ HKLiveWorkoutBuilder) DataSource() HKLiveWorkoutDataSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/dataSource
-
 func (h_ HKLiveWorkoutBuilder) SetDataSource(value IHKLiveWorkoutDataSource) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDataSource:"), value)
 }
@@ -133,7 +129,6 @@ func (h_ HKLiveWorkoutBuilder) SetDataSource(value IHKLiveWorkoutDataSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/delegate
-
 func (h_ HKLiveWorkoutBuilder) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](h_.ID, objc.Sel("delegate"))
 	return rv
@@ -144,7 +139,6 @@ func (h_ HKLiveWorkoutBuilder) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/delegate
-
 func (h_ HKLiveWorkoutBuilder) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -154,7 +148,6 @@ func (h_ HKLiveWorkoutBuilder) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/elapsedTime
-
 func (h_ HKLiveWorkoutBuilder) ElapsedTime() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](h_.ID, objc.Sel("elapsedTime"))
 	return rv
@@ -165,7 +158,6 @@ func (h_ HKLiveWorkoutBuilder) ElapsedTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/shouldCollectWorkoutEvents
-
 func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("shouldCollectWorkoutEvents"))
 	return rv
@@ -176,7 +168,6 @@ func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/shouldCollectWorkoutEvents
-
 func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setShouldCollectWorkoutEvents:"), value)
 }
@@ -186,7 +177,6 @@ func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/workoutSession
-
 func (h_ HKLiveWorkoutBuilder) WorkoutSession() HKWorkoutSession {
 	rv := objc.Send[HKWorkoutSession](h_.ID, objc.Sel("workoutSession"))
 	return rv

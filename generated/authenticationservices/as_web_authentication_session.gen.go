@@ -52,7 +52,6 @@ type IWebAuthenticationSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession
-
 type WebAuthenticationSession struct {
 	objectivec.Object
 }
@@ -97,10 +96,8 @@ func NewWebAuthenticationSession() WebAuthenticationSession {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callback:completionHandler:)
-
 func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.IURL, callback IASWebAuthenticationSessionCallback, completionHandler unsafe.Pointer) WebAuthenticationSession {
 	instance := getWebAuthenticationSessionClass().Alloc()
 	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callback:completionHandler:"), URL, callback, completionHandler)
@@ -110,23 +107,19 @@ func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.
 
 
 
-
 // Cancels a web authentication session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/cancel()
-
 func (w_ WebAuthenticationSession) Cancel() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("cancel"))
 }
-
 
 
 // Starts a web authentication session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/start()
-
 func (w_ WebAuthenticationSession) Start() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("start"))
 	return rv
@@ -135,7 +128,6 @@ func (w_ WebAuthenticationSession) Start() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
-
 func (w_ WebAuthenticationSession) AdditionalHeaderFields() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("additionalHeaderFields"))
 	return rv
@@ -144,7 +136,6 @@ func (w_ WebAuthenticationSession) AdditionalHeaderFields() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
-
 func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAdditionalHeaderFields:"), value)
 }
@@ -154,7 +145,6 @@ func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/canStart
-
 func (w_ WebAuthenticationSession) CanStart() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canStart"))
 	return rv
@@ -165,7 +155,6 @@ func (w_ WebAuthenticationSession) CanStart() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession
-
 func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("prefersEphemeralWebBrowserSession"))
 	return rv
@@ -176,7 +165,6 @@ func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession
-
 func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPrefersEphemeralWebBrowserSession:"), value)
 }
@@ -186,7 +174,6 @@ func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
-
 func (w_ WebAuthenticationSession) PresentationContextProvider() objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("presentationContextProvider"))
 	return rv
@@ -197,7 +184,6 @@ func (w_ WebAuthenticationSession) PresentationContextProvider() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
-
 func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
@@ -207,7 +193,6 @@ func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
-
 func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
 	return rv

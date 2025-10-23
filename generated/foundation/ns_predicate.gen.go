@@ -145,7 +145,7 @@ func NewPredicateWithValue(value bool) Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
-func (pc _PredicateClass) PredicateWithBlock(block IDictionary) Predicate {
+func (pc _PredicateClass) PredicateWithBlock(block IDictionary) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
@@ -155,7 +155,7 @@ func (pc _PredicateClass) PredicateWithBlock(block IDictionary) Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
-func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string, arguments objectivec.IObject) Predicate {
+func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string, arguments objectivec.IObject) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
@@ -165,7 +165,7 @@ func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
-func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
+func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
@@ -175,7 +175,7 @@ func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
-func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) Predicate {
+func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
@@ -185,7 +185,7 @@ func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
-func (pc _PredicateClass) PredicateWithValue(value bool) Predicate {
+func (pc _PredicateClass) PredicateWithValue(value bool) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
@@ -195,7 +195,7 @@ func (pc _PredicateClass) PredicateWithValue(value bool) Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateWithFormat:
-func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) Predicate {
+func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:"), objc.String(predicateFormat))
 	return rv
 }

@@ -40,7 +40,11 @@ type IINAddMediaIntent interface {
 // A request to add a media item.
 //
 // Siri creates an object when the user asks to add a media item. The intents object contains the media to add. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that contains the media to add.
+
+
+// A request to add a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INAddMediaIntent
 type INAddMediaIntent struct {
 	INIntent
@@ -87,8 +91,10 @@ func NewINAddMediaIntent() INAddMediaIntent {
 }
 
 
+
 // The location for the media to add.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediadestination
 func (i_ INAddMediaIntent) MediaDestination() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaDestination"))
@@ -96,17 +102,18 @@ func (i_ INAddMediaIntent) MediaDestination() unsafe.Pointer {
 }
 
 
-// SetMediaDestination sets the value of the mediaDestination property.
 // The location for the media to add.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediadestination
 func (i_ INAddMediaIntent) SetMediaDestination(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaDestination:"), value)
 }
 
+
 // The media content to add.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
 func (i_ INAddMediaIntent) MediaItems() INMediaItem {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
@@ -114,17 +121,18 @@ func (i_ INAddMediaIntent) MediaItems() INMediaItem {
 }
 
 
-// SetMediaItems sets the value of the mediaItems property.
 // The media content to add.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
 func (i_ INAddMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
+
 // The location to search for the media item to add.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
 func (i_ INAddMediaIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
@@ -132,10 +140,9 @@ func (i_ INAddMediaIntent) MediaSearch() INMediaSearch {
 }
 
 
-// SetMediaSearch sets the value of the mediaSearch property.
 // The location to search for the media item to add.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
 func (i_ INAddMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)

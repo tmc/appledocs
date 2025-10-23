@@ -54,7 +54,6 @@ type ICKModifyRecordZonesOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation
-
 type CKModifyRecordZonesOperation struct {
 	CKDatabaseOperation
 }
@@ -101,12 +100,10 @@ func NewCKModifyRecordZonesOperation() CKModifyRecordZonesOperation {
 
 
 
-
 // Creates an operation for modifying the specified record zones.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/initWithRecordZonesToSave:recordZoneIDsToDelete:
-
 func NewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave []CKRecordZone, recordZoneIDsToDelete []CKRecordZoneID) CKModifyRecordZonesOperation {
 	instance := getCKModifyRecordZonesOperationClass().Alloc()
 	rv := objc.Send[CKModifyRecordZonesOperation](instance.ID, objc.Sel("initWithRecordZonesToSave:recordZoneIDsToDelete:"), recordZonesToSave, recordZoneIDsToDelete)
@@ -120,7 +117,6 @@ func NewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete(r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/modifyRecordZonesCompletionBlock
-
 func (c_ CKModifyRecordZonesOperation) ModifyRecordZonesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordZonesCompletionBlock"))
 	return rv
@@ -131,7 +127,6 @@ func (c_ CKModifyRecordZonesOperation) ModifyRecordZonesCompletionBlock() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/modifyRecordZonesCompletionBlock
-
 func (c_ CKModifyRecordZonesOperation) SetModifyRecordZonesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordZonesCompletionBlock:"), value)
 }
@@ -139,7 +134,6 @@ func (c_ CKModifyRecordZonesOperation) SetModifyRecordZonesCompletionBlock(value
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/perRecordZoneDeleteBlock-27i5g
-
 func (c_ CKModifyRecordZonesOperation) PerRecordZoneDeleteBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneDeleteBlock"))
 	return rv
@@ -148,7 +142,6 @@ func (c_ CKModifyRecordZonesOperation) PerRecordZoneDeleteBlock() unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/perRecordZoneDeleteBlock-27i5g
-
 func (c_ CKModifyRecordZonesOperation) SetPerRecordZoneDeleteBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneDeleteBlock:"), value)
 }
@@ -156,7 +149,6 @@ func (c_ CKModifyRecordZonesOperation) SetPerRecordZoneDeleteBlock(value unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/perRecordZoneSaveBlock-3txst
-
 func (c_ CKModifyRecordZonesOperation) PerRecordZoneSaveBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneSaveBlock"))
 	return rv
@@ -165,7 +157,6 @@ func (c_ CKModifyRecordZonesOperation) PerRecordZoneSaveBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/perRecordZoneSaveBlock-3txst
-
 func (c_ CKModifyRecordZonesOperation) SetPerRecordZoneSaveBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneSaveBlock:"), value)
 }
@@ -175,7 +166,6 @@ func (c_ CKModifyRecordZonesOperation) SetPerRecordZoneSaveBlock(value unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZoneIDsToDelete
-
 func (c_ CKModifyRecordZonesOperation) RecordZoneIDsToDelete() []CKRecordZoneID {
 	rv := objc.Send[[]CKRecordZoneID](c_.ID, objc.Sel("recordZoneIDsToDelete"))
 	return rv
@@ -186,7 +176,6 @@ func (c_ CKModifyRecordZonesOperation) RecordZoneIDsToDelete() []CKRecordZoneID 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZoneIDsToDelete
-
 func (c_ CKModifyRecordZonesOperation) SetRecordZoneIDsToDelete(value []CKRecordZoneID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -206,7 +195,6 @@ func (c_ CKModifyRecordZonesOperation) SetRecordZoneIDsToDelete(value []CKRecord
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZonesToSave
-
 func (c_ CKModifyRecordZonesOperation) RecordZonesToSave() []CKRecordZone {
 	rv := objc.Send[[]CKRecordZone](c_.ID, objc.Sel("recordZonesToSave"))
 	return rv
@@ -217,7 +205,6 @@ func (c_ CKModifyRecordZonesOperation) RecordZonesToSave() []CKRecordZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/recordZonesToSave
-
 func (c_ CKModifyRecordZonesOperation) SetRecordZonesToSave(value []CKRecordZone) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -235,7 +222,6 @@ func (c_ CKModifyRecordZonesOperation) SetRecordZonesToSave(value []CKRecordZone
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordzonesoperation/modifyrecordzonesresultblock
-
 func (c_ CKModifyRecordZonesOperation) ModifyRecordZonesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordZonesResultBlock"))
 	return rv
@@ -244,7 +230,6 @@ func (c_ CKModifyRecordZonesOperation) ModifyRecordZonesResultBlock() unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordzonesoperation/modifyrecordzonesresultblock
-
 func (c_ CKModifyRecordZonesOperation) SetModifyRecordZonesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordZonesResultBlock:"), value)
 }
@@ -254,7 +239,6 @@ func (c_ CKModifyRecordZonesOperation) SetModifyRecordZonesResultBlock(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKModifyRecordZonesOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -265,7 +249,6 @@ func (c_ CKModifyRecordZonesOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKModifyRecordZonesOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

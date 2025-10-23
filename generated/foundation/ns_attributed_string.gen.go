@@ -33,22 +33,22 @@ type IAttributedString interface {
 	objectivec.IObject
 	AttributeAtIndexEffectiveRange(attrName AttributedStringKey, location uint, range_ unsafe.Pointer) objc.ID
 	AttributeAtIndexLongestEffectiveRangeInRange(attrName AttributedStringKey, location uint, range_ unsafe.Pointer, rangeLimit Range) objc.ID
-	AttributedSubstringFromRange(range_ Range) AttributedString
+	AttributedSubstringFromRange(range_ Range) IAttributedString
 	AttributesAtIndexEffectiveRange(location uint, range_ unsafe.Pointer) IDictionary
 	AttributesAtIndexLongestEffectiveRangeInRange(location uint, range_ unsafe.Pointer, rangeLimit Range) IDictionary
 	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options NSStringDrawingOptions, context objectivec.IObject) coregraphics.CGRect
 	ContainsAttachmentsInRange(range_ Range) bool
-	DataFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) Data
-	DocFormatFromRangeDocumentAttributes(range_ Range, dict IDictionary) Data
+	DataFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) IData
+	DocFormatFromRangeDocumentAttributes(range_ Range, dict IDictionary) IData
 	DoubleClickAtIndex(location uint) Range
 	DrawAtPoint(point coregraphics.CGPoint)
 	DrawInRect(rect coregraphics.CGRect)
 	DrawWithRectOptionsContext(rect coregraphics.CGRect, options NSStringDrawingOptions, context objectivec.IObject)
 	EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey, enumerationRange Range, opts NSAttributedStringEnumerationOptions, block unsafe.Pointer)
 	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range, opts NSAttributedStringEnumerationOptions, block IDictionary)
-	FileWrapperFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) FileWrapper
+	FileWrapperFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) IFileWrapper
 	FontAttributesInRange(range_ Range) IDictionary
-	AttributedStringByInflectingString() AttributedString
+	AttributedStringByInflectingString() IAttributedString
 	IsEqualToAttributedString(other IAttributedString) bool
 	ItemNumberInTextListAtIndex(list objectivec.IObject, location uint) int
 	LineBreakBeforeIndexWithinRange(location uint, aRange Range) uint
@@ -58,9 +58,9 @@ type IAttributedString interface {
 	RangeOfTextBlockAtIndex(block objectivec.IObject, location uint) Range
 	RangeOfTextTableAtIndex(table objectivec.IObject, location uint) Range
 	RangeOfTextListAtIndex(list objectivec.IObject, location uint) Range
-	RTFFromRangeDocumentAttributes(range_ Range, dict IDictionary) Data
-	RTFDFromRangeDocumentAttributes(range_ Range, dict IDictionary) Data
-	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range, dict IDictionary) FileWrapper
+	RTFFromRangeDocumentAttributes(range_ Range, dict IDictionary) IData
+	RTFDFromRangeDocumentAttributes(range_ Range, dict IDictionary) IData
+	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range, dict IDictionary) IFileWrapper
 	RulerAttributesInRange(range_ Range) IDictionary
 	Size() coregraphics.CGSize
 	Length() uint
@@ -185,7 +185,7 @@ func (a_ AttributedString) AttributeAtIndexLongestEffectiveRangeInRange(attrName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attributedSubstring(from:)
-func (a_ AttributedString) AttributedSubstringFromRange(range_ Range) AttributedString {
+func (a_ AttributedString) AttributedSubstringFromRange(range_ Range) IAttributedString {
 	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedSubstringFromRange:"), range_)
 	return rv
 }
@@ -235,7 +235,7 @@ func (a_ AttributedString) ContainsAttachmentsInRange(range_ Range) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/data(from:documentAttributes:)
-func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) Data {
+func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("dataFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
@@ -245,7 +245,7 @@ func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range, di
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/docFormat(from:documentAttributes:)
-func (a_ AttributedString) DocFormatFromRangeDocumentAttributes(range_ Range, dict IDictionary) Data {
+func (a_ AttributedString) DocFormatFromRangeDocumentAttributes(range_ Range, dict IDictionary) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("docFormatFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -310,7 +310,7 @@ func (a_ AttributedString) EnumerateAttributesInRangeOptionsUsingBlock(enumerati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/fileWrapper(from:documentAttributes:)
-func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) FileWrapper {
+func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range, dict IDictionary, error_ IError) IFileWrapper {
 	rv := objc.Send[FileWrapper](a_.ID, objc.Sel("fileWrapperFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
@@ -328,7 +328,7 @@ func (a_ AttributedString) FontAttributesInRange(range_ Range) IDictionary {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/inflecting()
-func (a_ AttributedString) AttributedStringByInflectingString() AttributedString {
+func (a_ AttributedString) AttributedStringByInflectingString() IAttributedString {
 	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedStringByInflectingString"))
 	return rv
 }
@@ -428,7 +428,7 @@ func (a_ AttributedString) RangeOfTextListAtIndex(list objectivec.IObject, locat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtf(from:documentAttributes:)
-func (a_ AttributedString) RTFFromRangeDocumentAttributes(range_ Range, dict IDictionary) Data {
+func (a_ AttributedString) RTFFromRangeDocumentAttributes(range_ Range, dict IDictionary) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("RTFFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -438,7 +438,7 @@ func (a_ AttributedString) RTFFromRangeDocumentAttributes(range_ Range, dict IDi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtfd(from:documentAttributes:)
-func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range, dict IDictionary) Data {
+func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range, dict IDictionary) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("RTFDFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -448,7 +448,7 @@ func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range, dict ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtfdFileWrapper(from:documentAttributes:)
-func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Range, dict IDictionary) FileWrapper {
+func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Range, dict IDictionary) IFileWrapper {
 	rv := objc.Send[FileWrapper](a_.ID, objc.Sel("RTFDFileWrapperFromRange:documentAttributes:"), range_, dict)
 	return rv
 }

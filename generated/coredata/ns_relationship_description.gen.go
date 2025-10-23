@@ -57,7 +57,6 @@ type IRelationshipDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription
-
 type RelationshipDescription struct {
 	PropertyDescription
 }
@@ -108,7 +107,6 @@ func NewRelationshipDescription() RelationshipDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
-
 func (r_ RelationshipDescription) DeleteRule() DeleteRule {
 	rv := objc.Send[DeleteRule](r_.ID, objc.Sel("deleteRule"))
 	return rv
@@ -119,7 +117,6 @@ func (r_ RelationshipDescription) DeleteRule() DeleteRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
-
 func (r_ RelationshipDescription) SetDeleteRule(value IDeleteRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDeleteRule:"), value)
 }
@@ -129,7 +126,6 @@ func (r_ RelationshipDescription) SetDeleteRule(value IDeleteRule) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
-
 func (r_ RelationshipDescription) DestinationEntity() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](r_.ID, objc.Sel("destinationEntity"))
 	return rv
@@ -140,7 +136,6 @@ func (r_ RelationshipDescription) DestinationEntity() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
-
 func (r_ RelationshipDescription) SetDestinationEntity(value IEntityDescription) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDestinationEntity:"), value)
 }
@@ -150,7 +145,6 @@ func (r_ RelationshipDescription) SetDestinationEntity(value IEntityDescription)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
-
 func (r_ RelationshipDescription) InverseRelationship() NSRelationshipDescription {
 	rv := objc.Send[NSRelationshipDescription](r_.ID, objc.Sel("inverseRelationship"))
 	return rv
@@ -161,7 +155,6 @@ func (r_ RelationshipDescription) InverseRelationship() NSRelationshipDescriptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
-
 func (r_ RelationshipDescription) SetInverseRelationship(value IRelationshipDescription) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInverseRelationship:"), value)
 }
@@ -171,7 +164,6 @@ func (r_ RelationshipDescription) SetInverseRelationship(value IRelationshipDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
-
 func (r_ RelationshipDescription) IsOrdered() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isOrdered"))
 	return rv
@@ -182,7 +174,6 @@ func (r_ RelationshipDescription) IsOrdered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
-
 func (r_ RelationshipDescription) SetIsOrdered(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsOrdered:"), value)
 }
@@ -192,7 +183,6 @@ func (r_ RelationshipDescription) SetIsOrdered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
-
 func (r_ RelationshipDescription) IsToMany() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isToMany"))
 	return rv
@@ -203,7 +193,6 @@ func (r_ RelationshipDescription) IsToMany() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
-
 func (r_ RelationshipDescription) SetIsToMany(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsToMany:"), value)
 }
@@ -213,7 +202,6 @@ func (r_ RelationshipDescription) SetIsToMany(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
-
 func (r_ RelationshipDescription) MaxCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("maxCount"))
 	return rv
@@ -224,7 +212,6 @@ func (r_ RelationshipDescription) MaxCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
-
 func (r_ RelationshipDescription) SetMaxCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxCount:"), value)
 }
@@ -234,7 +221,6 @@ func (r_ RelationshipDescription) SetMaxCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
-
 func (r_ RelationshipDescription) MinCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("minCount"))
 	return rv
@@ -245,7 +231,6 @@ func (r_ RelationshipDescription) MinCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
-
 func (r_ RelationshipDescription) SetMinCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinCount:"), value)
 }
@@ -255,7 +240,6 @@ func (r_ RelationshipDescription) SetMinCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-
 func (r_ RelationshipDescription) VersionHash() foundation.Data {
 	rv := objc.Send[foundation.Data](r_.ID, objc.Sel("versionHash"))
 	return rv
@@ -266,7 +250,6 @@ func (r_ RelationshipDescription) VersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-
 func (r_ RelationshipDescription) SetVersionHash(value foundation.IData) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVersionHash:"), value)
 }

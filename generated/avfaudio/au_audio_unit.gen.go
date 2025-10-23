@@ -36,7 +36,6 @@ type IAudioUnit interface {
 
 
 // A parent class referenced by other AVFAudio classes. [Full Topic]
-
 type AudioUnit struct {
 	objectivec.Object
 }

@@ -36,7 +36,11 @@ type IINSendMessageAttachment interface {
 // A file to include in a message.
 //
 // When the type of a message is , the intent includes the audio recording as an .
+
+
+// A file to include in a message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageAttachment
 type INSendMessageAttachment struct {
 	objectivec.Object
@@ -82,9 +86,9 @@ func NewINSendMessageAttachment() INSendMessageAttachment {
 
 
 
-
 // Creates a message attachment with an audio file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageAttachment/init(audioMessageFile:)
 func NewINSendMessageAttachmentWithAudioMessageFile(audioMessageFile unsafe.Pointer) INSendMessageAttachment {
 	rv := objc.Send[INSendMessageAttachment](objc.ID(getINSendMessageAttachmentClass().class), objc.Sel("attachmentWithAudioMessageFile:"), audioMessageFile)
@@ -92,16 +96,20 @@ func NewINSendMessageAttachmentWithAudioMessageFile(audioMessageFile unsafe.Poin
 }
 
 
+
 // Creates a message attachment with an audio file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageAttachment/init(audioMessageFile:)
 func (ic _INSendMessageAttachmentClass) AttachmentWithAudioMessageFile(audioMessageFile unsafe.Pointer) INSendMessageAttachment {
 	rv := objc.Send[INSendMessageAttachment](objc.ID(ic.class), objc.Sel("attachmentWithAudioMessageFile:"), audioMessageFile)
 	return rv
 }
 
+
 // The attachment’s recorded message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageAttachment/audioMessageFile
 func (i_ INSendMessageAttachment) AudioMessageFile() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioMessageFile"))

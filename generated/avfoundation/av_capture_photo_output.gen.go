@@ -152,7 +152,6 @@ type ICapturePhotoOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput
-
 type CapturePhotoOutput struct {
 	CaptureOutput
 }
@@ -199,12 +198,10 @@ func NewCapturePhotoOutput() CapturePhotoOutput {
 
 
 
-
 // Initiates a photo capture using the specified settings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)
-
 func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("capturePhotoWithSettings:delegate:"), settings, delegate)
 }
@@ -214,7 +211,6 @@ func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings IAVCaptur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isConstantColorEnabled
-
 func (c_ CapturePhotoOutput) ConstantColorEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("constantColorEnabled"))
 	return rv
@@ -225,7 +221,6 @@ func (c_ CapturePhotoOutput) ConstantColorEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isConstantColorEnabled
-
 func (c_ CapturePhotoOutput) SetConstantColorEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantColorEnabled:"), value)
 }
@@ -235,7 +230,6 @@ func (c_ CapturePhotoOutput) SetConstantColorEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activecolorspace
-
 func (c_ CapturePhotoOutput) ActiveColorSpace() CaptureColorSpace {
 	rv := objc.Send[CaptureColorSpace](c_.ID, objc.Sel("activeColorSpace"))
 	return rv
@@ -246,7 +240,6 @@ func (c_ CapturePhotoOutput) ActiveColorSpace() CaptureColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activecolorspace
-
 func (c_ CapturePhotoOutput) SetActiveColorSpace(value ICaptureColorSpace) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveColorSpace:"), value)
 }
@@ -256,7 +249,6 @@ func (c_ CapturePhotoOutput) SetActiveColorSpace(value ICaptureColorSpace) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-
 func (c_ CapturePhotoOutput) PortraitEffectsMatte() AVPortraitEffectsMatte {
 	rv := objc.Send[AVPortraitEffectsMatte](c_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
@@ -267,7 +259,6 @@ func (c_ CapturePhotoOutput) PortraitEffectsMatte() AVPortraitEffectsMatte {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-
 func (c_ CapturePhotoOutput) SetPortraitEffectsMatte(value IAVPortraitEffectsMatte) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPortraitEffectsMatte:"), value)
 }
@@ -277,7 +268,6 @@ func (c_ CapturePhotoOutput) SetPortraitEffectsMatte(value IAVPortraitEffectsMat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
-
 func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() VideoCodecType {
 	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableLivePhotoVideoCodecTypes"))
 	return rv
@@ -288,7 +278,6 @@ func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() VideoCodecType 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
-
 func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableLivePhotoVideoCodecTypes:"), value)
 }
@@ -298,7 +287,6 @@ func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value VideoCod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
-
 func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() VideoCodecType {
 	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availablePhotoCodecTypes"))
 	return rv
@@ -309,7 +297,6 @@ func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() VideoCodecType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
-
 func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoCodecTypes:"), value)
 }
@@ -319,7 +306,6 @@ func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value VideoCodecType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
-
 func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() FileType {
 	rv := objc.Send[FileType](c_.ID, objc.Sel("availablePhotoFileTypes"))
 	return rv
@@ -330,7 +316,6 @@ func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() FileType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
-
 func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoFileTypes:"), value)
 }
@@ -340,7 +325,6 @@ func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value FileType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotopixelformattypes-3ydgm
-
 func (c_ CapturePhotoOutput) AvailablePhotoPixelFormatTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availablePhotoPixelFormatTypes"))
 	return rv
@@ -351,7 +335,6 @@ func (c_ CapturePhotoOutput) AvailablePhotoPixelFormatTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotopixelformattypes-3ydgm
-
 func (c_ CapturePhotoOutput) SetAvailablePhotoPixelFormatTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoPixelFormatTypes:"), value)
 }
@@ -359,7 +342,6 @@ func (c_ CapturePhotoOutput) SetAvailablePhotoPixelFormatTypes(value unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
-
 func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() VideoCodecType {
 	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableRawPhotoCodecTypes"))
 	return rv
@@ -368,7 +350,6 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() VideoCodecType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
-
 func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoCodecTypes:"), value)
 }
@@ -378,7 +359,6 @@ func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value VideoCodecType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
-
 func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() FileType {
 	rv := objc.Send[FileType](c_.ID, objc.Sel("availableRawPhotoFileTypes"))
 	return rv
@@ -389,7 +369,6 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() FileType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
-
 func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoFileTypes:"), value)
 }
@@ -399,7 +378,6 @@ func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value FileType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotopixelformattypes-9t9k5
-
 func (c_ CapturePhotoOutput) AvailableRawPhotoPixelFormatTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableRawPhotoPixelFormatTypes"))
 	return rv
@@ -410,7 +388,6 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoPixelFormatTypes() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotopixelformattypes-9t9k5
-
 func (c_ CapturePhotoOutput) SetAvailableRawPhotoPixelFormatTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoPixelFormatTypes:"), value)
 }
@@ -420,7 +397,6 @@ func (c_ CapturePhotoOutput) SetAvailableRawPhotoPixelFormatTypes(value unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablesemanticsegmentationmattetypes
-
 func (c_ CapturePhotoOutput) AvailableSemanticSegmentationMatteTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableSemanticSegmentationMatteTypes"))
 	return rv
@@ -431,7 +407,6 @@ func (c_ CapturePhotoOutput) AvailableSemanticSegmentationMatteTypes() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablesemanticsegmentationmattetypes
-
 func (c_ CapturePhotoOutput) SetAvailableSemanticSegmentationMatteTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableSemanticSegmentationMatteTypes:"), value)
 }
@@ -441,7 +416,6 @@ func (c_ CapturePhotoOutput) SetAvailableSemanticSegmentationMatteTypes(value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
-
 func (c_ CapturePhotoOutput) CaptureReadiness() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("captureReadiness"))
 	return rv
@@ -452,7 +426,6 @@ func (c_ CapturePhotoOutput) CaptureReadiness() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
-
 func (c_ CapturePhotoOutput) SetCaptureReadiness(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCaptureReadiness:"), value)
 }
@@ -462,7 +435,6 @@ func (c_ CapturePhotoOutput) SetCaptureReadiness(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/enabledsemanticsegmentationmattetypes
-
 func (c_ CapturePhotoOutput) EnabledSemanticSegmentationMatteTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("enabledSemanticSegmentationMatteTypes"))
 	return rv
@@ -473,7 +445,6 @@ func (c_ CapturePhotoOutput) EnabledSemanticSegmentationMatteTypes() unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/enabledsemanticsegmentationmattetypes
-
 func (c_ CapturePhotoOutput) SetEnabledSemanticSegmentationMatteTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledSemanticSegmentationMatteTypes:"), value)
 }
@@ -483,7 +454,6 @@ func (c_ CapturePhotoOutput) SetEnabledSemanticSegmentationMatteTypes(value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isappleprorawenabled
-
 func (c_ CapturePhotoOutput) IsAppleProRAWEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAppleProRAWEnabled"))
 	return rv
@@ -494,7 +464,6 @@ func (c_ CapturePhotoOutput) IsAppleProRAWEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isappleprorawenabled
-
 func (c_ CapturePhotoOutput) SetIsAppleProRAWEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAppleProRAWEnabled:"), value)
 }
@@ -504,7 +473,6 @@ func (c_ CapturePhotoOutput) SetIsAppleProRAWEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isappleprorawsupported
-
 func (c_ CapturePhotoOutput) IsAppleProRAWSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAppleProRAWSupported"))
 	return rv
@@ -515,7 +483,6 @@ func (c_ CapturePhotoOutput) IsAppleProRAWSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isappleprorawsupported
-
 func (c_ CapturePhotoOutput) SetIsAppleProRAWSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAppleProRAWSupported:"), value)
 }
@@ -525,7 +492,6 @@ func (c_ CapturePhotoOutput) SetIsAppleProRAWSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautodeferredphotodeliveryenabled
-
 func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoDeferredPhotoDeliveryEnabled"))
 	return rv
@@ -536,7 +502,6 @@ func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliveryEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautodeferredphotodeliveryenabled
-
 func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoDeferredPhotoDeliveryEnabled:"), value)
 }
@@ -546,7 +511,6 @@ func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliveryEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautodeferredphotodeliverysupported
-
 func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoDeferredPhotoDeliverySupported"))
 	return rv
@@ -557,7 +521,6 @@ func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliverySupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautodeferredphotodeliverysupported
-
 func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoDeferredPhotoDeliverySupported:"), value)
 }
@@ -567,7 +530,6 @@ func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliverySupported(value bool)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautoredeyereductionsupported
-
 func (c_ CapturePhotoOutput) IsAutoRedEyeReductionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoRedEyeReductionSupported"))
 	return rv
@@ -578,7 +540,6 @@ func (c_ CapturePhotoOutput) IsAutoRedEyeReductionSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautoredeyereductionsupported
-
 func (c_ CapturePhotoOutput) SetIsAutoRedEyeReductionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoRedEyeReductionSupported:"), value)
 }
@@ -588,7 +549,6 @@ func (c_ CapturePhotoOutput) SetIsAutoRedEyeReductionSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscameracalibrationdatadeliverysupported
-
 func (c_ CapturePhotoOutput) IsCameraCalibrationDataDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraCalibrationDataDeliverySupported"))
 	return rv
@@ -599,7 +559,6 @@ func (c_ CapturePhotoOutput) IsCameraCalibrationDataDeliverySupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscameracalibrationdatadeliverysupported
-
 func (c_ CapturePhotoOutput) SetIsCameraCalibrationDataDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraCalibrationDataDeliverySupported:"), value)
 }
@@ -607,7 +566,6 @@ func (c_ CapturePhotoOutput) SetIsCameraCalibrationDataDeliverySupported(value b
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscamerasensororientationcompensationenabled
-
 func (c_ CapturePhotoOutput) IsCameraSensorOrientationCompensationEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraSensorOrientationCompensationEnabled"))
 	return rv
@@ -616,7 +574,6 @@ func (c_ CapturePhotoOutput) IsCameraSensorOrientationCompensationEnabled() bool
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscamerasensororientationcompensationenabled
-
 func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraSensorOrientationCompensationEnabled:"), value)
 }
@@ -624,7 +581,6 @@ func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationEnabled(val
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscamerasensororientationcompensationsupported
-
 func (c_ CapturePhotoOutput) IsCameraSensorOrientationCompensationSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraSensorOrientationCompensationSupported"))
 	return rv
@@ -633,7 +589,6 @@ func (c_ CapturePhotoOutput) IsCameraSensorOrientationCompensationSupported() bo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscamerasensororientationcompensationsupported
-
 func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraSensorOrientationCompensationSupported:"), value)
 }
@@ -643,7 +598,6 @@ func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationSupported(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isconstantcolorenabled
-
 func (c_ CapturePhotoOutput) IsConstantColorEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConstantColorEnabled"))
 	return rv
@@ -654,7 +608,6 @@ func (c_ CapturePhotoOutput) IsConstantColorEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isconstantcolorenabled
-
 func (c_ CapturePhotoOutput) SetIsConstantColorEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConstantColorEnabled:"), value)
 }
@@ -664,7 +617,6 @@ func (c_ CapturePhotoOutput) SetIsConstantColorEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isconstantcolorsupported
-
 func (c_ CapturePhotoOutput) IsConstantColorSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConstantColorSupported"))
 	return rv
@@ -675,7 +627,6 @@ func (c_ CapturePhotoOutput) IsConstantColorSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isconstantcolorsupported
-
 func (c_ CapturePhotoOutput) SetIsConstantColorSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConstantColorSupported:"), value)
 }
@@ -685,7 +636,6 @@ func (c_ CapturePhotoOutput) SetIsConstantColorSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscontentawaredistortioncorrectionenabled
-
 func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContentAwareDistortionCorrectionEnabled"))
 	return rv
@@ -696,7 +646,6 @@ func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscontentawaredistortioncorrectionenabled
-
 func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContentAwareDistortionCorrectionEnabled:"), value)
 }
@@ -706,7 +655,6 @@ func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionEnabled(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscontentawaredistortioncorrectionsupported
-
 func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContentAwareDistortionCorrectionSupported"))
 	return rv
@@ -717,7 +665,6 @@ func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionSupported() bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscontentawaredistortioncorrectionsupported
-
 func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContentAwareDistortionCorrectionSupported:"), value)
 }
@@ -727,7 +674,6 @@ func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionSupported(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isdepthdatadeliveryenabled
-
 func (c_ CapturePhotoOutput) IsDepthDataDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDepthDataDeliveryEnabled"))
 	return rv
@@ -738,7 +684,6 @@ func (c_ CapturePhotoOutput) IsDepthDataDeliveryEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isdepthdatadeliveryenabled
-
 func (c_ CapturePhotoOutput) SetIsDepthDataDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDepthDataDeliveryEnabled:"), value)
 }
@@ -748,7 +693,6 @@ func (c_ CapturePhotoOutput) SetIsDepthDataDeliveryEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isdepthdatadeliverysupported
-
 func (c_ CapturePhotoOutput) IsDepthDataDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDepthDataDeliverySupported"))
 	return rv
@@ -759,7 +703,6 @@ func (c_ CapturePhotoOutput) IsDepthDataDeliverySupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isdepthdatadeliverysupported
-
 func (c_ CapturePhotoOutput) SetIsDepthDataDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDepthDataDeliverySupported:"), value)
 }
@@ -769,7 +712,6 @@ func (c_ CapturePhotoOutput) SetIsDepthDataDeliverySupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isfastcaptureprioritizationenabled
-
 func (c_ CapturePhotoOutput) IsFastCapturePrioritizationEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFastCapturePrioritizationEnabled"))
 	return rv
@@ -780,7 +722,6 @@ func (c_ CapturePhotoOutput) IsFastCapturePrioritizationEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isfastcaptureprioritizationenabled
-
 func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFastCapturePrioritizationEnabled:"), value)
 }
@@ -790,7 +731,6 @@ func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isfastcaptureprioritizationsupported
-
 func (c_ CapturePhotoOutput) IsFastCapturePrioritizationSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFastCapturePrioritizationSupported"))
 	return rv
@@ -801,7 +741,6 @@ func (c_ CapturePhotoOutput) IsFastCapturePrioritizationSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isfastcaptureprioritizationsupported
-
 func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFastCapturePrioritizationSupported:"), value)
 }
@@ -811,7 +750,6 @@ func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationSupported(value bool)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isflashscene
-
 func (c_ CapturePhotoOutput) IsFlashScene() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFlashScene"))
 	return rv
@@ -822,7 +760,6 @@ func (c_ CapturePhotoOutput) IsFlashScene() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isflashscene
-
 func (c_ CapturePhotoOutput) SetIsFlashScene(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFlashScene:"), value)
 }
@@ -832,7 +769,6 @@ func (c_ CapturePhotoOutput) SetIsFlashScene(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/ishighresolutioncaptureenabled
-
 func (c_ CapturePhotoOutput) IsHighResolutionCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighResolutionCaptureEnabled"))
 	return rv
@@ -843,7 +779,6 @@ func (c_ CapturePhotoOutput) IsHighResolutionCaptureEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/ishighresolutioncaptureenabled
-
 func (c_ CapturePhotoOutput) SetIsHighResolutionCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighResolutionCaptureEnabled:"), value)
 }
@@ -853,7 +788,6 @@ func (c_ CapturePhotoOutput) SetIsHighResolutionCaptureEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islensstabilizationduringbracketedcapturesupported
-
 func (c_ CapturePhotoOutput) IsLensStabilizationDuringBracketedCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLensStabilizationDuringBracketedCaptureSupported"))
 	return rv
@@ -864,7 +798,6 @@ func (c_ CapturePhotoOutput) IsLensStabilizationDuringBracketedCaptureSupported(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islensstabilizationduringbracketedcapturesupported
-
 func (c_ CapturePhotoOutput) SetIsLensStabilizationDuringBracketedCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLensStabilizationDuringBracketedCaptureSupported:"), value)
 }
@@ -874,7 +807,6 @@ func (c_ CapturePhotoOutput) SetIsLensStabilizationDuringBracketedCaptureSupport
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotoautotrimmingenabled
-
 func (c_ CapturePhotoOutput) IsLivePhotoAutoTrimmingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoAutoTrimmingEnabled"))
 	return rv
@@ -885,7 +817,6 @@ func (c_ CapturePhotoOutput) IsLivePhotoAutoTrimmingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotoautotrimmingenabled
-
 func (c_ CapturePhotoOutput) SetIsLivePhotoAutoTrimmingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoAutoTrimmingEnabled:"), value)
 }
@@ -895,7 +826,6 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoAutoTrimmingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocaptureenabled
-
 func (c_ CapturePhotoOutput) IsLivePhotoCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoCaptureEnabled"))
 	return rv
@@ -906,7 +836,6 @@ func (c_ CapturePhotoOutput) IsLivePhotoCaptureEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocaptureenabled
-
 func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoCaptureEnabled:"), value)
 }
@@ -916,7 +845,6 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesupported
-
 func (c_ CapturePhotoOutput) IsLivePhotoCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoCaptureSupported"))
 	return rv
@@ -927,7 +855,6 @@ func (c_ CapturePhotoOutput) IsLivePhotoCaptureSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesupported
-
 func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoCaptureSupported:"), value)
 }
@@ -937,7 +864,6 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesuspended
-
 func (c_ CapturePhotoOutput) IsLivePhotoCaptureSuspended() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoCaptureSuspended"))
 	return rv
@@ -948,7 +874,6 @@ func (c_ CapturePhotoOutput) IsLivePhotoCaptureSuspended() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesuspended
-
 func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSuspended(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoCaptureSuspended:"), value)
 }
@@ -958,7 +883,6 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSuspended(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isportraiteffectsmattedeliveryenabled
-
 func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPortraitEffectsMatteDeliveryEnabled"))
 	return rv
@@ -969,7 +893,6 @@ func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliveryEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isportraiteffectsmattedeliveryenabled
-
 func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPortraitEffectsMatteDeliveryEnabled:"), value)
 }
@@ -979,7 +902,6 @@ func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliveryEnabled(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isportraiteffectsmattedeliverysupported
-
 func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPortraitEffectsMatteDeliverySupported"))
 	return rv
@@ -990,7 +912,6 @@ func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliverySupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isportraiteffectsmattedeliverysupported
-
 func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPortraitEffectsMatteDeliverySupported:"), value)
 }
@@ -1000,7 +921,6 @@ func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliverySupported(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isresponsivecaptureenabled
-
 func (c_ CapturePhotoOutput) IsResponsiveCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isResponsiveCaptureEnabled"))
 	return rv
@@ -1011,7 +931,6 @@ func (c_ CapturePhotoOutput) IsResponsiveCaptureEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isresponsivecaptureenabled
-
 func (c_ CapturePhotoOutput) SetIsResponsiveCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsResponsiveCaptureEnabled:"), value)
 }
@@ -1021,7 +940,6 @@ func (c_ CapturePhotoOutput) SetIsResponsiveCaptureEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isresponsivecapturesupported
-
 func (c_ CapturePhotoOutput) IsResponsiveCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isResponsiveCaptureSupported"))
 	return rv
@@ -1032,7 +950,6 @@ func (c_ CapturePhotoOutput) IsResponsiveCaptureSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isresponsivecapturesupported
-
 func (c_ CapturePhotoOutput) SetIsResponsiveCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsResponsiveCaptureSupported:"), value)
 }
@@ -1042,7 +959,6 @@ func (c_ CapturePhotoOutput) SetIsResponsiveCaptureSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isshuttersoundsuppressionsupported
-
 func (c_ CapturePhotoOutput) IsShutterSoundSuppressionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isShutterSoundSuppressionSupported"))
 	return rv
@@ -1053,7 +969,6 @@ func (c_ CapturePhotoOutput) IsShutterSoundSuppressionSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isshuttersoundsuppressionsupported
-
 func (c_ CapturePhotoOutput) SetIsShutterSoundSuppressionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsShutterSoundSuppressionSupported:"), value)
 }
@@ -1063,7 +978,6 @@ func (c_ CapturePhotoOutput) SetIsShutterSoundSuppressionSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliveryenabled
-
 func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDeviceConstituentPhotoDeliveryEnabled"))
 	return rv
@@ -1074,7 +988,6 @@ func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliveryEnabled() bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliveryenabled
-
 func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDeviceConstituentPhotoDeliveryEnabled:"), value)
 }
@@ -1084,7 +997,6 @@ func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliveryEnabled(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliverysupported
-
 func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDeviceConstituentPhotoDeliverySupported"))
 	return rv
@@ -1095,7 +1007,6 @@ func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliverySupported() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliverysupported
-
 func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDeviceConstituentPhotoDeliverySupported:"), value)
 }
@@ -1105,7 +1016,6 @@ func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliverySupported
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdevicefusionsupported
-
 func (c_ CapturePhotoOutput) IsVirtualDeviceFusionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDeviceFusionSupported"))
 	return rv
@@ -1116,7 +1026,6 @@ func (c_ CapturePhotoOutput) IsVirtualDeviceFusionSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdevicefusionsupported
-
 func (c_ CapturePhotoOutput) SetIsVirtualDeviceFusionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDeviceFusionSupported:"), value)
 }
@@ -1126,7 +1035,6 @@ func (c_ CapturePhotoOutput) SetIsVirtualDeviceFusionSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iszeroshutterlagenabled
-
 func (c_ CapturePhotoOutput) IsZeroShutterLagEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isZeroShutterLagEnabled"))
 	return rv
@@ -1137,7 +1045,6 @@ func (c_ CapturePhotoOutput) IsZeroShutterLagEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iszeroshutterlagenabled
-
 func (c_ CapturePhotoOutput) SetIsZeroShutterLagEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsZeroShutterLagEnabled:"), value)
 }
@@ -1147,7 +1054,6 @@ func (c_ CapturePhotoOutput) SetIsZeroShutterLagEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iszeroshutterlagsupported
-
 func (c_ CapturePhotoOutput) IsZeroShutterLagSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isZeroShutterLagSupported"))
 	return rv
@@ -1158,7 +1064,6 @@ func (c_ CapturePhotoOutput) IsZeroShutterLagSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iszeroshutterlagsupported
-
 func (c_ CapturePhotoOutput) SetIsZeroShutterLagSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsZeroShutterLagSupported:"), value)
 }
@@ -1168,7 +1073,6 @@ func (c_ CapturePhotoOutput) SetIsZeroShutterLagSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxbracketedcapturephotocount
-
 func (c_ CapturePhotoOutput) MaxBracketedCapturePhotoCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxBracketedCapturePhotoCount"))
 	return rv
@@ -1179,7 +1083,6 @@ func (c_ CapturePhotoOutput) MaxBracketedCapturePhotoCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxbracketedcapturephotocount
-
 func (c_ CapturePhotoOutput) SetMaxBracketedCapturePhotoCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBracketedCapturePhotoCount:"), value)
 }
@@ -1189,7 +1092,6 @@ func (c_ CapturePhotoOutput) SetMaxBracketedCapturePhotoCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotodimensions
-
 func (c_ CapturePhotoOutput) MaxPhotoDimensions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxPhotoDimensions"))
 	return rv
@@ -1200,7 +1102,6 @@ func (c_ CapturePhotoOutput) MaxPhotoDimensions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotodimensions
-
 func (c_ CapturePhotoOutput) SetMaxPhotoDimensions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxPhotoDimensions:"), value)
 }
@@ -1210,7 +1111,6 @@ func (c_ CapturePhotoOutput) SetMaxPhotoDimensions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotoqualityprioritization
-
 func (c_ CapturePhotoOutput) MaxPhotoQualityPrioritization() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxPhotoQualityPrioritization"))
 	return rv
@@ -1221,7 +1121,6 @@ func (c_ CapturePhotoOutput) MaxPhotoQualityPrioritization() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotoqualityprioritization
-
 func (c_ CapturePhotoOutput) SetMaxPhotoQualityPrioritization(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxPhotoQualityPrioritization:"), value)
 }
@@ -1231,7 +1130,6 @@ func (c_ CapturePhotoOutput) SetMaxPhotoQualityPrioritization(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/photosettingsforscenemonitoring
-
 func (c_ CapturePhotoOutput) PhotoSettingsForSceneMonitoring() AVCapturePhotoSettings {
 	rv := objc.Send[AVCapturePhotoSettings](c_.ID, objc.Sel("photoSettingsForSceneMonitoring"))
 	return rv
@@ -1242,7 +1140,6 @@ func (c_ CapturePhotoOutput) PhotoSettingsForSceneMonitoring() AVCapturePhotoSet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/photosettingsforscenemonitoring
-
 func (c_ CapturePhotoOutput) SetPhotoSettingsForSceneMonitoring(value IAVCapturePhotoSettings) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPhotoSettingsForSceneMonitoring:"), value)
 }
@@ -1252,7 +1149,6 @@ func (c_ CapturePhotoOutput) SetPhotoSettingsForSceneMonitoring(value IAVCapture
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preparedphotosettingsarray
-
 func (c_ CapturePhotoOutput) PreparedPhotoSettingsArray() AVCapturePhotoSettings {
 	rv := objc.Send[AVCapturePhotoSettings](c_.ID, objc.Sel("preparedPhotoSettingsArray"))
 	return rv
@@ -1263,7 +1159,6 @@ func (c_ CapturePhotoOutput) PreparedPhotoSettingsArray() AVCapturePhotoSettings
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preparedphotosettingsarray
-
 func (c_ CapturePhotoOutput) SetPreparedPhotoSettingsArray(value IAVCapturePhotoSettings) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparedPhotoSettingsArray:"), value)
 }
@@ -1273,7 +1168,6 @@ func (c_ CapturePhotoOutput) SetPreparedPhotoSettingsArray(value IAVCapturePhoto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preserveslivephotocapturesuspendedonsessionstop
-
 func (c_ CapturePhotoOutput) PreservesLivePhotoCaptureSuspendedOnSessionStop() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("preservesLivePhotoCaptureSuspendedOnSessionStop"))
 	return rv
@@ -1284,7 +1178,6 @@ func (c_ CapturePhotoOutput) PreservesLivePhotoCaptureSuspendedOnSessionStop() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preserveslivephotocapturesuspendedonsessionstop
-
 func (c_ CapturePhotoOutput) SetPreservesLivePhotoCaptureSuspendedOnSessionStop(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesLivePhotoCaptureSuspendedOnSessionStop:"), value)
 }
@@ -1294,7 +1187,6 @@ func (c_ CapturePhotoOutput) SetPreservesLivePhotoCaptureSuspendedOnSessionStop(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/supportedflashmodes-1n6nm
-
 func (c_ CapturePhotoOutput) SupportedFlashModes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedFlashModes"))
 	return rv
@@ -1305,7 +1197,6 @@ func (c_ CapturePhotoOutput) SupportedFlashModes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/supportedflashmodes-1n6nm
-
 func (c_ CapturePhotoOutput) SetSupportedFlashModes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFlashModes:"), value)
 }
@@ -1315,7 +1206,6 @@ func (c_ CapturePhotoOutput) SetSupportedFlashModes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode
-
 func (c_ CapturePhotoOutput) FlashMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("flashMode"))
 	return rv
@@ -1326,7 +1216,6 @@ func (c_ CapturePhotoOutput) FlashMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode
-
 func (c_ CapturePhotoOutput) SetFlashMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFlashMode:"), value)
 }
@@ -1336,7 +1225,6 @@ func (c_ CapturePhotoOutput) SetFlashMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid
-
 func (c_ CapturePhotoOutput) UniqueID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("uniqueID"))
 	return rv
@@ -1347,7 +1235,6 @@ func (c_ CapturePhotoOutput) UniqueID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid
-
 func (c_ CapturePhotoOutput) SetUniqueID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueID:"), value)
 }

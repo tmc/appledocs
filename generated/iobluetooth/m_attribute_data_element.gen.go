@@ -32,7 +32,9 @@ type ImAttributeDataElement interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/mAttributeDataElement
 type mAttributeDataElement struct {
 	objectivec.Object

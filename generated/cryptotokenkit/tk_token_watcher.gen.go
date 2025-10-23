@@ -45,7 +45,6 @@ type ITKTokenWatcher interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher
-
 type TKTokenWatcher struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewTKTokenWatcher() TKTokenWatcher {
 
 
 
-
 // Initializes a token watcher with the specified insertion handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/init(insertionHandler:)
-
 func NewTKTokenWatcherWithInsertionHandler(insertionHandler unsafe.Pointer) TKTokenWatcher {
 	instance := getTKTokenWatcherClass().Alloc()
 	rv := objc.Send[TKTokenWatcher](instance.ID, objc.Sel("initWithInsertionHandler:"), insertionHandler)
@@ -105,23 +102,19 @@ func NewTKTokenWatcherWithInsertionHandler(insertionHandler unsafe.Pointer) TKTo
 
 
 
-
 // Adds a removal handler for the specified token ID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/addRemovalHandler(_:forTokenID:)
-
 func (t_ TKTokenWatcher) AddRemovalHandlerForTokenID(removalHandler unsafe.Pointer, tokenID string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("addRemovalHandler:forTokenID:"), removalHandler, objc.String(tokenID))
 }
-
 
 
 // Sets an insertion handler closure to be called when a new token is inserted into the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/setInsertionHandler(_:)
-
 func (t_ TKTokenWatcher) SetInsertionHandler(insertionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInsertionHandler:"), insertionHandler)
 }
@@ -131,7 +124,6 @@ func (t_ TKTokenWatcher) SetInsertionHandler(insertionHandler unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
-
 func (t_ TKTokenWatcher) TokenIDs() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("tokenIDs"))
 	return rv
@@ -142,7 +134,6 @@ func (t_ TKTokenWatcher) TokenIDs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
-
 func (t_ TKTokenWatcher) SetTokenIDs(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenIDs:"), objc.String(value))
 }

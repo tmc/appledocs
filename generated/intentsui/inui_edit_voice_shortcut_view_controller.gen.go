@@ -38,7 +38,11 @@ type IINUIEditVoiceShortcutViewController interface {
 // A view controller that lets the user edit or remove an existing shortcut.
 //
 // To let the user edit or remove a shortcut, create an instance of with the . Then present the view controller to the user. To receive notifications of changes made to the shortcut, set the controller’s to an object that conforms to the protocol.
+
+
+// A view controller that lets the user edit or remove an existing shortcut.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController
 type INUIEditVoiceShortcutViewController struct {
 	appkit.ViewController
@@ -86,9 +90,9 @@ func NewINUIEditVoiceShortcutViewController() INUIEditVoiceShortcutViewControlle
 
 
 
-
 // Creates a view controller with the shortcut to edit or remove.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController/init(voiceShortcut:)
 func NewINUIEditVoiceShortcutViewControllerWithVoiceShortcut(voiceShortcut intents.INVoiceShortcut) INUIEditVoiceShortcutViewController {
 	instance := getINUIEditVoiceShortcutViewControllerClass().Alloc()
@@ -98,8 +102,10 @@ func NewINUIEditVoiceShortcutViewControllerWithVoiceShortcut(voiceShortcut inten
 }
 
 
+
 // The object that retrieves notifications from the view controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController/delegate
 func (i_ INUIEditVoiceShortcutViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
@@ -107,10 +113,9 @@ func (i_ INUIEditVoiceShortcutViewController) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that retrieves notifications from the view controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController/delegate
 func (i_ INUIEditVoiceShortcutViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)

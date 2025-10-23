@@ -38,7 +38,11 @@ type IINSetAudioSourceInCarIntent interface {
 // A request to change the source of audio playback in a CarPlay-enabled vehicle.
 //
 // Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change the audio source of the vehicle, SiriKit creates an object and delivers it to your app’s Intents extension. You use the intent to identify which audio source the user wants to use and to communicate the new audio source information directly to your vehicle’s systems. Users may select audio sources by name or by asking for the next or previous audio source that’s available. When the user asks for an audio source by name, Siri populates the property of this intent object with the specific requested source. When the user asks for the next or previous audio source, Siri places the appropriate value in the property so that you can determine which audio source to select. Only one of these properties contains usable information; Siri sets the other to a constant indicating an unknown status for the value. The object that handles this intent must adopt the protocol. Use this intent object to resolve the audio source details and to create an object indicating the results of changing the audio source.
+
+
+// A request to change the source of audio playback in a CarPlay-enabled vehicle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetAudioSourceInCarIntent
 type INSetAudioSourceInCarIntent struct {
 	INIntent
@@ -85,8 +89,10 @@ func NewINSetAudioSourceInCarIntent() INSetAudioSourceInCarIntent {
 }
 
 
+
 // The audio source to select.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/audiosource
 func (i_ INSetAudioSourceInCarIntent) AudioSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioSource"))
@@ -94,17 +100,18 @@ func (i_ INSetAudioSourceInCarIntent) AudioSource() unsafe.Pointer {
 }
 
 
-// SetAudioSource sets the value of the audioSource property.
 // The audio source to select.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/audiosource
 func (i_ INSetAudioSourceInCarIntent) SetAudioSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSource:"), value)
 }
 
+
 // The relative audio source to select.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/relativeaudiosourcereference
 func (i_ INSetAudioSourceInCarIntent) RelativeAudioSourceReference() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeAudioSourceReference"))
@@ -112,10 +119,9 @@ func (i_ INSetAudioSourceInCarIntent) RelativeAudioSourceReference() unsafe.Poin
 }
 
 
-// SetRelativeAudioSourceReference sets the value of the relativeAudioSourceReference property.
 // The relative audio source to select.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetaudiosourceincarintent/relativeaudiosourcereference
 func (i_ INSetAudioSourceInCarIntent) SetRelativeAudioSourceReference(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeAudioSourceReference:"), value)

@@ -44,7 +44,6 @@ type ISProgressReportingCapability interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability
-
 type SProgressReportingCapability struct {
 	SObject
 }
@@ -91,12 +90,10 @@ func NewSProgressReportingCapability() SProgressReportingCapability {
 
 
 
-
 // Creates a new progress reporting capability of the given type with a descriptive string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/init(kind:details:)
-
 func NewSProgressReportingCapabilityWithKindDetails(kind SProgressReportingCapabilityKind, details string) SProgressReportingCapability {
 	instance := getSProgressReportingCapabilityClass().Alloc()
 	rv := objc.Send[SProgressReportingCapability](instance.ID, objc.Sel("initWithKind:details:"), kind, objc.String(details))
@@ -110,7 +107,6 @@ func NewSProgressReportingCapabilityWithKindDetails(kind SProgressReportingCapab
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/details
-
 func (s_ SProgressReportingCapability) Details() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("details"))
 	return rv
@@ -121,7 +117,6 @@ func (s_ SProgressReportingCapability) Details() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/kind-swift.property
-
 func (s_ SProgressReportingCapability) Kind() SProgressReportingCapabilityKind {
 	rv := objc.Send[SProgressReportingCapabilityKind](s_.ID, objc.Sel("kind"))
 	return rv
@@ -132,7 +127,6 @@ func (s_ SProgressReportingCapability) Kind() SProgressReportingCapabilityKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/progressreportingcapabilities
-
 func (s_ SProgressReportingCapability) ProgressReportingCapabilities() CLSProgressReportingCapability {
 	rv := objc.Send[CLSProgressReportingCapability](s_.ID, objc.Sel("progressReportingCapabilities"))
 	return rv
@@ -143,7 +137,6 @@ func (s_ SProgressReportingCapability) ProgressReportingCapabilities() CLSProgre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/progressreportingcapabilities
-
 func (s_ SProgressReportingCapability) SetProgressReportingCapabilities(value ICLSProgressReportingCapability) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgressReportingCapabilities:"), value)
 }

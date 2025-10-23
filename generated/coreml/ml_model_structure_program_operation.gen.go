@@ -43,7 +43,6 @@ type IModelStructureProgramOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation
-
 type ModelStructureProgramOperation struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewModelStructureProgramOperation() ModelStructureProgramOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/blocks
-
 func (m_ ModelStructureProgramOperation) Blocks() []ModelStructureProgramBlock {
 	rv := objc.Send[[]ModelStructureProgramBlock](m_.ID, objc.Sel("blocks"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ ModelStructureProgramOperation) Blocks() []ModelStructureProgramBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/inputs
-
 func (m_ ModelStructureProgramOperation) Inputs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inputs"))
 	return rv
@@ -114,7 +111,6 @@ func (m_ ModelStructureProgramOperation) Inputs() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/operatorName
-
 func (m_ ModelStructureProgramOperation) OperatorName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
 	return rv
@@ -125,7 +121,6 @@ func (m_ ModelStructureProgramOperation) OperatorName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/outputs
-
 func (m_ ModelStructureProgramOperation) Outputs() []ModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("outputs"))
 	return rv

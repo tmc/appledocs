@@ -44,7 +44,6 @@ type IEKVirtualConferenceDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor
-
 type EKVirtualConferenceDescriptor struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewEKVirtualConferenceDescriptor() EKVirtualConferenceDescriptor {
 
 
 
-
 // Creates an object that describes a virtual conference, including a name and URL to join the conference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/init(title:urlDescriptors:conferenceDetails:)
-
 func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title string, URLDescriptors []EKVirtualConferenceURLDescriptor, conferenceDetails string) EKVirtualConferenceDescriptor {
 	instance := getEKVirtualConferenceDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceDescriptor](instance.ID, objc.Sel("initWithTitle:URLDescriptors:conferenceDetails:"), objc.String(title), URLDescriptors, objc.String(conferenceDetails))
@@ -108,7 +105,6 @@ func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(ti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/conferenceDetails
-
 func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
@@ -119,7 +115,6 @@ func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/title
-
 func (e_ EKVirtualConferenceDescriptor) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
@@ -130,7 +125,6 @@ func (e_ EKVirtualConferenceDescriptor) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/urlDescriptors
-
 func (e_ EKVirtualConferenceDescriptor) URLDescriptors() []EKVirtualConferenceURLDescriptor {
 	rv := objc.Send[[]EKVirtualConferenceURLDescriptor](e_.ID, objc.Sel("URLDescriptors"))
 	return rv

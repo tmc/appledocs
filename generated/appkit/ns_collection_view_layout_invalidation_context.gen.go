@@ -57,7 +57,6 @@ type ICollectionViewLayoutInvalidationContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext
-
 type CollectionViewLayoutInvalidationContext struct {
 	objectivec.Object
 }
@@ -106,7 +105,6 @@ func NewCollectionViewLayoutInvalidationContext() CollectionViewLayoutInvalidati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentoffsetadjustment
-
 func (c_ CollectionViewLayoutInvalidationContext) ContentOffsetAdjustment() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("contentOffsetAdjustment"))
 	return rv
@@ -117,7 +115,6 @@ func (c_ CollectionViewLayoutInvalidationContext) ContentOffsetAdjustment() core
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentoffsetadjustment
-
 func (c_ CollectionViewLayoutInvalidationContext) SetContentOffsetAdjustment(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentOffsetAdjustment:"), value)
 }
@@ -127,7 +124,6 @@ func (c_ CollectionViewLayoutInvalidationContext) SetContentOffsetAdjustment(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentsizeadjustment
-
 func (c_ CollectionViewLayoutInvalidationContext) ContentSizeAdjustment() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("contentSizeAdjustment"))
 	return rv
@@ -138,7 +134,6 @@ func (c_ CollectionViewLayoutInvalidationContext) ContentSizeAdjustment() coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentsizeadjustment
-
 func (c_ CollectionViewLayoutInvalidationContext) SetContentSizeAdjustment(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentSizeAdjustment:"), value)
 }
@@ -148,7 +143,6 @@ func (c_ CollectionViewLayoutInvalidationContext) SetContentSizeAdjustment(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedatasourcecounts
-
 func (c_ CollectionViewLayoutInvalidationContext) InvalidateDataSourceCounts() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("invalidateDataSourceCounts"))
 	return rv
@@ -159,7 +153,6 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidateDataSourceCounts() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedatasourcecounts
-
 func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateDataSourceCounts(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidateDataSourceCounts:"), value)
 }
@@ -169,7 +162,6 @@ func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateDataSourceCounts(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateeverything
-
 func (c_ CollectionViewLayoutInvalidationContext) InvalidateEverything() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("invalidateEverything"))
 	return rv
@@ -180,7 +172,6 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidateEverything() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateeverything
-
 func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateEverything(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidateEverything:"), value)
 }
@@ -190,7 +181,6 @@ func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateEverything(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths
-
 func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPaths() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedDecorationIndexPaths"))
 	return rv
@@ -201,7 +191,6 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPath
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths
-
 func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedDecorationIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedDecorationIndexPaths:"), value)
 }
@@ -211,7 +200,6 @@ func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedDecorationIndexP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateditemindexpaths
-
 func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedItemIndexPaths"))
 	return rv
@@ -222,7 +210,6 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateditemindexpaths
-
 func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedItemIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedItemIndexPaths:"), value)
 }
@@ -232,7 +219,6 @@ func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedItemIndexPaths(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths
-
 func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexPaths() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedSupplementaryIndexPaths"))
 	return rv
@@ -243,7 +229,6 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths
-
 func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedSupplementaryIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedSupplementaryIndexPaths:"), value)
 }

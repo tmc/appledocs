@@ -32,7 +32,9 @@ type IINIntentDonationMetadata interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntentDonationMetadata
 type INIntentDonationMetadata struct {
 	objectivec.Object

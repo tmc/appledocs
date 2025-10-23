@@ -122,7 +122,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionCreate
-
 func DAApprovalSessionCreate(allocator unsafe.Pointer) unsafe.Pointer {
 	return _DAApprovalSessionCreate(allocator)
 	}
@@ -134,7 +133,6 @@ func DAApprovalSessionCreate(allocator unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionGetTypeID
-
 func DAApprovalSessionGetTypeID() unsafe.Pointer {
 	return _DAApprovalSessionGetTypeID()
 	}
@@ -146,7 +144,6 @@ func DAApprovalSessionGetTypeID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionScheduleWithRunLoop
-
 func DAApprovalSessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DAApprovalSessionScheduleWithRunLoop(session, runLoop, runLoopMode)
 	}
@@ -158,7 +155,6 @@ func DAApprovalSessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionUnscheduleFromRunLoop
-
 func DAApprovalSessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DAApprovalSessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
 	}
@@ -172,7 +168,6 @@ func DAApprovalSessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskClaim(_:_:_:_:_:_:)
-
 func DADiskClaim(disk unsafe.Pointer, options unsafe.Pointer, release unsafe.Pointer, releaseContext unsafe.Pointer, callback unsafe.Pointer, callbackContext unsafe.Pointer) {
 	_DADiskClaim(disk, options, release, releaseContext, callback, callbackContext)
 	}
@@ -186,7 +181,6 @@ func DADiskClaim(disk unsafe.Pointer, options unsafe.Pointer, release unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyDescription(_:)
-
 func DADiskCopyDescription(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCopyDescription(disk)
 	}
@@ -200,7 +194,6 @@ func DADiskCopyDescription(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyIOMedia(_:)
-
 func DADiskCopyIOMedia(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCopyIOMedia(disk)
 	}
@@ -214,7 +207,6 @@ func DADiskCopyIOMedia(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCopyWholeDisk(_:)
-
 func DADiskCopyWholeDisk(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCopyWholeDisk(disk)
 	}
@@ -228,7 +220,6 @@ func DADiskCopyWholeDisk(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromBSDName(_:_:_:)
-
 func DADiskCreateFromBSDName(allocator unsafe.Pointer, session unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromBSDName(allocator, session, name)
 	}
@@ -242,7 +233,6 @@ func DADiskCreateFromBSDName(allocator unsafe.Pointer, session unsafe.Pointer, n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromIOMedia(_:_:_:)
-
 func DADiskCreateFromIOMedia(allocator unsafe.Pointer, session unsafe.Pointer, media unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromIOMedia(allocator, session, media)
 	}
@@ -256,7 +246,6 @@ func DADiskCreateFromIOMedia(allocator unsafe.Pointer, session unsafe.Pointer, m
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromVolumePath(_:_:_:)
-
 func DADiskCreateFromVolumePath(allocator unsafe.Pointer, session unsafe.Pointer, path unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromVolumePath(allocator, session, path)
 	}
@@ -270,7 +259,6 @@ func DADiskCreateFromVolumePath(allocator unsafe.Pointer, session unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskEject(_:_:_:_:)
-
 func DADiskEject(disk unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskEject(disk, options, callback, context)
 	}
@@ -284,7 +272,6 @@ func DADiskEject(disk unsafe.Pointer, options unsafe.Pointer, callback unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetBSDName(_:)
-
 func DADiskGetBSDName(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskGetBSDName(disk)
 	}
@@ -298,7 +285,6 @@ func DADiskGetBSDName(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetOptions(_:)
-
 func DADiskGetOptions(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskGetOptions(disk)
 	}
@@ -312,7 +298,6 @@ func DADiskGetOptions(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskGetTypeID()
-
 func DADiskGetTypeID() unsafe.Pointer {
 	return _DADiskGetTypeID()
 	}
@@ -326,7 +311,6 @@ func DADiskGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskIsClaimed(_:)
-
 func DADiskIsClaimed(disk unsafe.Pointer) unsafe.Pointer {
 	return _DADiskIsClaimed(disk)
 	}
@@ -340,7 +324,6 @@ func DADiskIsClaimed(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskMount(_:_:_:_:_:)
-
 func DADiskMount(disk unsafe.Pointer, path unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskMount(disk, path, options, callback, context)
 	}
@@ -354,7 +337,6 @@ func DADiskMount(disk unsafe.Pointer, path unsafe.Pointer, options unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskMountWithArguments(_:_:_:_:_:_:)
-
 func DADiskMountWithArguments(disk unsafe.Pointer, path unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer, arguments unsafe.Pointer) {
 	_DADiskMountWithArguments(disk, path, options, callback, context, arguments)
 	}
@@ -368,7 +350,6 @@ func DADiskMountWithArguments(disk unsafe.Pointer, path unsafe.Pointer, options 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskRename(_:_:_:_:_:)
-
 func DADiskRename(disk unsafe.Pointer, name unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskRename(disk, name, options, callback, context)
 	}
@@ -382,7 +363,6 @@ func DADiskRename(disk unsafe.Pointer, name unsafe.Pointer, options unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskSetOptions(_:_:_:)
-
 func DADiskSetOptions(disk unsafe.Pointer, options unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _DADiskSetOptions(disk, options, value)
 	}
@@ -396,7 +376,6 @@ func DADiskSetOptions(disk unsafe.Pointer, options unsafe.Pointer, value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskUnclaim(_:)
-
 func DADiskUnclaim(disk unsafe.Pointer) {
 	_DADiskUnclaim(disk)
 	}
@@ -410,7 +389,6 @@ func DADiskUnclaim(disk unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskUnmount(_:_:_:_:)
-
 func DADiskUnmount(disk unsafe.Pointer, options unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DADiskUnmount(disk, options, callback, context)
 	}
@@ -424,7 +402,6 @@ func DADiskUnmount(disk unsafe.Pointer, options unsafe.Pointer, callback unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterCreate(_:_:_:)
-
 func DADissenterCreate(allocator unsafe.Pointer, status unsafe.Pointer, string_ unsafe.Pointer) unsafe.Pointer {
 	return _DADissenterCreate(allocator, status, string_)
 	}
@@ -438,7 +415,6 @@ func DADissenterCreate(allocator unsafe.Pointer, status unsafe.Pointer, string_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterGetStatus(_:)
-
 func DADissenterGetStatus(dissenter unsafe.Pointer) unsafe.Pointer {
 	return _DADissenterGetStatus(dissenter)
 	}
@@ -452,7 +428,6 @@ func DADissenterGetStatus(dissenter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADissenterGetStatusString(_:)
-
 func DADissenterGetStatusString(dissenter unsafe.Pointer) unsafe.Pointer {
 	return _DADissenterGetStatusString(dissenter)
 	}
@@ -466,7 +441,6 @@ func DADissenterGetStatusString(dissenter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskAppearedCallback(_:_:_:_:)
-
 func DARegisterDiskAppearedCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskAppearedCallback(session, match, callback, context)
 	}
@@ -480,7 +454,6 @@ func DARegisterDiskAppearedCallback(session unsafe.Pointer, match unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskDescriptionChangedCallback(_:_:_:_:_:)
-
 func DARegisterDiskDescriptionChangedCallback(session unsafe.Pointer, match unsafe.Pointer, watch unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskDescriptionChangedCallback(session, match, watch, callback, context)
 	}
@@ -494,7 +467,6 @@ func DARegisterDiskDescriptionChangedCallback(session unsafe.Pointer, match unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskDisappearedCallback(_:_:_:_:)
-
 func DARegisterDiskDisappearedCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskDisappearedCallback(session, match, callback, context)
 	}
@@ -508,7 +480,6 @@ func DARegisterDiskDisappearedCallback(session unsafe.Pointer, match unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskEjectApprovalCallback(_:_:_:_:)
-
 func DARegisterDiskEjectApprovalCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskEjectApprovalCallback(session, match, callback, context)
 	}
@@ -522,7 +493,6 @@ func DARegisterDiskEjectApprovalCallback(session unsafe.Pointer, match unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskMountApprovalCallback(_:_:_:_:)
-
 func DARegisterDiskMountApprovalCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskMountApprovalCallback(session, match, callback, context)
 	}
@@ -536,7 +506,6 @@ func DARegisterDiskMountApprovalCallback(session unsafe.Pointer, match unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskPeekCallback(_:_:_:_:_:)
-
 func DARegisterDiskPeekCallback(session unsafe.Pointer, match unsafe.Pointer, order unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskPeekCallback(session, match, order, callback, context)
 	}
@@ -550,7 +519,6 @@ func DARegisterDiskPeekCallback(session unsafe.Pointer, match unsafe.Pointer, or
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DARegisterDiskUnmountApprovalCallback(_:_:_:_:)
-
 func DARegisterDiskUnmountApprovalCallback(session unsafe.Pointer, match unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DARegisterDiskUnmountApprovalCallback(session, match, callback, context)
 	}
@@ -564,7 +532,6 @@ func DARegisterDiskUnmountApprovalCallback(session unsafe.Pointer, match unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionCreate(_:)
-
 func DASessionCreate(allocator unsafe.Pointer) unsafe.Pointer {
 	return _DASessionCreate(allocator)
 	}
@@ -578,7 +545,6 @@ func DASessionCreate(allocator unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionGetTypeID()
-
 func DASessionGetTypeID() unsafe.Pointer {
 	return _DASessionGetTypeID()
 	}
@@ -592,7 +558,6 @@ func DASessionGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionScheduleWithRunLoop(_:_:_:)
-
 func DASessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DASessionScheduleWithRunLoop(session, runLoop, runLoopMode)
 	}
@@ -606,7 +571,6 @@ func DASessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionSetDispatchQueue(_:_:)
-
 func DASessionSetDispatchQueue(session unsafe.Pointer, queue unsafe.Pointer) {
 	_DASessionSetDispatchQueue(session, queue)
 	}
@@ -620,7 +584,6 @@ func DASessionSetDispatchQueue(session unsafe.Pointer, queue unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionUnscheduleFromRunLoop(_:_:_:)
-
 func DASessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DASessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
 	}
@@ -634,7 +597,6 @@ func DASessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAUnregisterApprovalCallback
-
 func DAUnregisterApprovalCallback(session unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DAUnregisterApprovalCallback(session, callback, context)
 	}
@@ -648,7 +610,6 @@ func DAUnregisterApprovalCallback(session unsafe.Pointer, callback unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAUnregisterCallback(_:_:_:)
-
 func DAUnregisterCallback(session unsafe.Pointer, callback unsafe.Pointer, context unsafe.Pointer) {
 	_DAUnregisterCallback(session, callback, context)
 	}

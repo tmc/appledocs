@@ -43,7 +43,6 @@ type IChallengeEventHandler interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeEventHandler
-
 type ChallengeEventHandler struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewChallengeEventHandler() ChallengeEventHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeEventHandler/challengeEventHandler
-
 func (cc _ChallengeEventHandlerClass) ChallengeEventHandler() ChallengeEventHandler {
 	rv := objc.Send[ChallengeEventHandler](objc.ID(cc.class), objc.Sel("challengeEventHandler"))
 	return rv
@@ -103,7 +101,6 @@ func (cc _ChallengeEventHandlerClass) ChallengeEventHandler() ChallengeEventHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate
-
 func (c_ ChallengeEventHandler) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -114,7 +111,6 @@ func (c_ ChallengeEventHandler) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate
-
 func (c_ ChallengeEventHandler) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

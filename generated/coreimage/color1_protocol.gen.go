@@ -7,10 +7,10 @@ import "github.com/ebitengine/purego/objc"
 // color1Protocol is the color1 protocol.
 //
 // Availability:
-//   - iOS 13.0+
-//   - iPadOS 13.0+
-//   - macOS 10.15+
-//   - tvOS 13.0+
+//   - Mac Catalyst 13.1+
+//   - iOS 5.0+
+//   - iPadOS 5.0+
+//   - macOS 10.4+
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to color1.

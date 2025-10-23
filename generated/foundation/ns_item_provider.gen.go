@@ -58,8 +58,8 @@ type IItemProvider interface {
 	ContainerFrame() Rect
 	PreferredPresentationSize() coregraphics.CGSize
 	SetPreferredPresentationSize(value coregraphics.CGSize)
-	PreferredPresentationStyle() PreferredPresentationStyle
-	SetPreferredPresentationStyle(value PreferredPresentationStyle)
+	PreferredPresentationStyle() UIPreferredPresentationStyle
+	SetPreferredPresentationStyle(value UIPreferredPresentationStyle)
 	PreviewImageHandler() unsafe.Pointer
 	SetPreviewImageHandler(value unsafe.Pointer)
 	RegisteredContentTypes() []UTType
@@ -68,9 +68,9 @@ type IItemProvider interface {
 	SourceFrame() Rect
 	SuggestedName() string
 	SetSuggestedName(value string)
-	TeamData() NSData
+	TeamData() IData
 	SetTeamData(value IData)
-	Attachments() NSItemProvider
+	Attachments() IItemProvider
 	SetAttachments(value IItemProvider)
 }
 
@@ -436,7 +436,7 @@ func (i_ ItemProvider) SetPreferredPresentationSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
-func (i_ ItemProvider) PreferredPresentationStyle() PreferredPresentationStyle {
+func (i_ ItemProvider) PreferredPresentationStyle() UIPreferredPresentationStyle {
 	rv := objc.Send[PreferredPresentationStyle](i_.ID, objc.Sel("preferredPresentationStyle"))
 	return rv
 }
@@ -446,7 +446,7 @@ func (i_ ItemProvider) PreferredPresentationStyle() PreferredPresentationStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/preferredPresentationStyle-swift.property
-func (i_ ItemProvider) SetPreferredPresentationStyle(value PreferredPresentationStyle) {
+func (i_ ItemProvider) SetPreferredPresentationStyle(value UIPreferredPresentationStyle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
 }
 
@@ -533,7 +533,7 @@ func (i_ ItemProvider) SetSuggestedName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/teamData
-func (i_ ItemProvider) TeamData() NSData {
+func (i_ ItemProvider) TeamData() IData {
 	rv := objc.Send[NSData](i_.ID, objc.Sel("teamData"))
 	return rv
 }
@@ -552,7 +552,7 @@ func (i_ ItemProvider) SetTeamData(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
-func (i_ ItemProvider) Attachments() NSItemProvider {
+func (i_ ItemProvider) Attachments() IItemProvider {
 	rv := objc.Send[NSItemProvider](i_.ID, objc.Sel("attachments"))
 	return rv
 }

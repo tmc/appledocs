@@ -45,7 +45,6 @@ type IKey interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLKey
-
 type Key struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewKey() Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
-
 func (k_ Key) Name() string {
 	rv := objc.Send[string](k_.ID, objc.Sel("name"))
 	return rv
@@ -105,7 +103,6 @@ func (k_ Key) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
-
 func (k_ Key) SetName(value string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -115,7 +112,6 @@ func (k_ Key) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-
 func (k_ Key) Scope() string {
 	rv := objc.Send[string](k_.ID, objc.Sel("scope"))
 	return rv
@@ -126,7 +122,6 @@ func (k_ Key) Scope() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-
 func (k_ Key) SetScope(value string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), objc.String(value))
 }

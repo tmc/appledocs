@@ -40,7 +40,6 @@ type IPasskeyAssertionCredentialExtensionInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionInput-c.class
-
 type PasskeyAssertionCredentialExtensionInput struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewPasskeyAssertionCredentialExtensionInput() PasskeyAssertionCredentialExt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionInput-c.class/largeBlob
-
 func (p_ PasskeyAssertionCredentialExtensionInput) LargeBlob() ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput](p_.ID, objc.Sel("largeBlob"))
 	return rv

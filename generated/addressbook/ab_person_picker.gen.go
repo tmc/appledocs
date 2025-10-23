@@ -47,7 +47,6 @@ type IABPersonPicker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker
-
 type ABPersonPicker struct {
 	objectivec.Object
 }
@@ -92,23 +91,19 @@ func NewABPersonPicker() ABPersonPicker {
 
 
 
-
 // Closes the picker.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/close
-
 func (a_ ABPersonPicker) Close() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("close"))
 }
-
 
 
 // Shows the picker in a popover relative to a view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/showRelativeToRect:ofView:preferredEdge:
-
 func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
@@ -118,7 +113,6 @@ func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/delegate
-
 func (a_ ABPersonPicker) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -129,7 +123,6 @@ func (a_ ABPersonPicker) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/delegate
-
 func (a_ ABPersonPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -139,7 +132,6 @@ func (a_ ABPersonPicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
-
 func (a_ ABPersonPicker) Properties() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("properties"))
 	return rv
@@ -150,7 +142,6 @@ func (a_ ABPersonPicker) Properties() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
-
 func (a_ ABPersonPicker) SetProperties(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProperties:"), value)
 }

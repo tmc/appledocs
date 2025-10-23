@@ -51,7 +51,6 @@ type ITextInputContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext
-
 type TextInputContext struct {
 	objectivec.Object
 }
@@ -96,12 +95,10 @@ func NewTextInputContext() TextInputContext {
 
 
 
-
 // The designated initializer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/init(client:)
-
 func NewTextInputContextWithClient(client objectivec.IObject) TextInputContext {
 	instance := getTextInputContextClass().Alloc()
 	rv := objc.Send[TextInputContext](instance.ID, objc.Sel("initWithClient:"), client)
@@ -115,7 +112,6 @@ func NewTextInputContextWithClient(client objectivec.IObject) TextInputContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
-
 func (t_ TextInputContext) AcceptsGlyphInfo() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsGlyphInfo"))
 	return rv
@@ -126,7 +122,6 @@ func (t_ TextInputContext) AcceptsGlyphInfo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
-
 func (t_ TextInputContext) SetAcceptsGlyphInfo(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsGlyphInfo:"), value)
 }
@@ -136,7 +131,6 @@ func (t_ TextInputContext) SetAcceptsGlyphInfo(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/allowedinputsourcelocales
-
 func (t_ TextInputContext) AllowedInputSourceLocales() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
@@ -147,7 +141,6 @@ func (t_ TextInputContext) AllowedInputSourceLocales() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/allowedinputsourcelocales
-
 func (t_ TextInputContext) SetAllowedInputSourceLocales(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), objc.String(value))
 }
@@ -157,7 +150,6 @@ func (t_ TextInputContext) SetAllowedInputSourceLocales(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/client
-
 func (t_ TextInputContext) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("client"))
 	return rv
@@ -168,7 +160,6 @@ func (t_ TextInputContext) Client() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/client
-
 func (t_ TextInputContext) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
 }
@@ -178,7 +169,6 @@ func (t_ TextInputContext) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardinputsources
-
 func (t_ TextInputContext) KeyboardInputSources() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keyboardInputSources"))
 	return rv
@@ -189,7 +179,6 @@ func (t_ TextInputContext) KeyboardInputSources() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardinputsources
-
 func (t_ TextInputContext) SetKeyboardInputSources(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeyboardInputSources:"), value)
 }
@@ -199,7 +188,6 @@ func (t_ TextInputContext) SetKeyboardInputSources(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/selectedkeyboardinputsource
-
 func (t_ TextInputContext) SelectedKeyboardInputSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedKeyboardInputSource"))
 	return rv
@@ -210,7 +198,6 @@ func (t_ TextInputContext) SelectedKeyboardInputSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/selectedkeyboardinputsource
-
 func (t_ TextInputContext) SetSelectedKeyboardInputSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedKeyboardInputSource:"), value)
 }

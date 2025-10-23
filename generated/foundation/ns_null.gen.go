@@ -90,7 +90,7 @@ func NewNull() Null {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull/null
-func (nc _NullClass) Null() Null {
+func (nc _NullClass) Null() INull {
 	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("null"))
 	return rv
 }

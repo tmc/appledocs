@@ -44,7 +44,6 @@ type IWaterSubmersionManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager
-
 type WaterSubmersionManager struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewWaterSubmersionManager() WaterSubmersionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-
 func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
 	return rv
@@ -103,7 +101,6 @@ func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable
-
 func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("waterSubmersionAvailable"))
 	return rv
@@ -113,7 +110,6 @@ func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-
 func (w_ WaterSubmersionManager) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
 	return rv
@@ -124,7 +120,6 @@ func (w_ WaterSubmersionManager) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/delegate
-
 func (w_ WaterSubmersionManager) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("delegate"))
 	return rv
@@ -135,7 +130,6 @@ func (w_ WaterSubmersionManager) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/delegate
-
 func (w_ WaterSubmersionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -145,7 +139,6 @@ func (w_ WaterSubmersionManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/maximumDepth
-
 func (w_ WaterSubmersionManager) MaximumDepth() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("maximumDepth"))
 	return rv
@@ -156,7 +149,6 @@ func (w_ WaterSubmersionManager) MaximumDepth() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable
-
 func (w_ WaterSubmersionManager) WaterSubmersionAvailable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("waterSubmersionAvailable"))
 	return rv

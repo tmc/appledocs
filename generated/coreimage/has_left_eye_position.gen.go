@@ -36,7 +36,6 @@ type IhasLeftEyePosition interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasLeftEyePosition-c.ivar
-
 type hasLeftEyePosition struct {
 	objectivec.Object
 }

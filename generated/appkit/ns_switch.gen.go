@@ -48,7 +48,6 @@ type ISwitch interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSwitch
-
 type Switch struct {
 	Control
 }
@@ -99,7 +98,6 @@ func NewSwitch() Switch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
-
 func (s_ Switch) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
 	return rv
@@ -110,7 +108,6 @@ func (s_ Switch) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
-
 func (s_ Switch) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
 }
@@ -120,7 +117,6 @@ func (s_ Switch) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/cell
-
 func (s_ Switch) Cell() NSCell {
 	rv := objc.Send[NSCell](s_.ID, objc.Sel("cell"))
 	return rv
@@ -131,7 +127,6 @@ func (s_ Switch) Cell() NSCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/cell
-
 func (s_ Switch) SetCell(value ICell) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCell:"), value)
 }
@@ -141,7 +136,6 @@ func (s_ Switch) SetCell(value ICell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
-
 func (s_ Switch) IsContinuous() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isContinuous"))
 	return rv
@@ -152,7 +146,6 @@ func (s_ Switch) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
-
 func (s_ Switch) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsContinuous:"), value)
 }
@@ -162,7 +155,6 @@ func (s_ Switch) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsswitch/state
-
 func (s_ Switch) State() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("state"))
 	return rv
@@ -173,7 +165,6 @@ func (s_ Switch) State() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsswitch/state
-
 func (s_ Switch) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setState:"), value)
 }

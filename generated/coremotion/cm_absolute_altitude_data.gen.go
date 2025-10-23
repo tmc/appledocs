@@ -43,7 +43,6 @@ type IAbsoluteAltitudeData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData
-
 type AbsoluteAltitudeData struct {
 	LogItem
 }
@@ -94,7 +93,6 @@ func NewAbsoluteAltitudeData() AbsoluteAltitudeData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/accuracy
-
 func (a_ AbsoluteAltitudeData) Accuracy() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("accuracy"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AbsoluteAltitudeData) Accuracy() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/altitude
-
 func (a_ AbsoluteAltitudeData) Altitude() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("altitude"))
 	return rv
@@ -116,7 +113,6 @@ func (a_ AbsoluteAltitudeData) Altitude() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/precision
-
 func (a_ AbsoluteAltitudeData) Precision() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("precision"))
 	return rv

@@ -49,7 +49,6 @@ type ISemanticSegmentationMatte interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte
-
 type SemanticSegmentationMatte struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewSemanticSegmentationMatte() SemanticSegmentationMatte {
 
 
 
-
 // Returns a dictionary of primitive map information to use when writing an image file with a semantic segmentation matte.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/dictionaryRepresentation(forAuxiliaryDataType:)
-
 func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType(outAuxDataType string) foundation.Dictionary {
 	rv := objc.Send[foundation.Dictionary](s_.ID, objc.Sel("dictionaryRepresentationForAuxiliaryDataType:"), objc.String(outAuxDataType))
 	return rv
@@ -110,7 +107,6 @@ func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/matteType-swift.property
-
 func (s_ SemanticSegmentationMatte) MatteType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("matteType"))
 	return rv
@@ -121,7 +117,6 @@ func (s_ SemanticSegmentationMatte) MatteType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/pixelFormatType
-
 func (s_ SemanticSegmentationMatte) PixelFormatType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pixelFormatType"))
 	return rv
@@ -132,7 +127,6 @@ func (s_ SemanticSegmentationMatte) PixelFormatType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattingimage
-
 func (s_ SemanticSegmentationMatte) MattingImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mattingImage"))
 	return rv
@@ -143,7 +137,6 @@ func (s_ SemanticSegmentationMatte) MattingImage() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattingimage
-
 func (s_ SemanticSegmentationMatte) SetMattingImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMattingImage:"), value)
 }
@@ -153,7 +146,6 @@ func (s_ SemanticSegmentationMatte) SetMattingImage(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_OneComponent8
-
 func (s_ SemanticSegmentationMatte) KCVPixelFormatType_OneComponent8() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("kCVPixelFormatType_OneComponent8"))
 	return rv
@@ -164,7 +156,6 @@ func (s_ SemanticSegmentationMatte) KCVPixelFormatType_OneComponent8() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_OneComponent8
-
 func (s_ SemanticSegmentationMatte) SetKCVPixelFormatType_OneComponent8(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKCVPixelFormatType_OneComponent8:"), value)
 }

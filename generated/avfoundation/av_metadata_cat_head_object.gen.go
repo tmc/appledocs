@@ -40,7 +40,6 @@ type IMetadataCatHeadObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataCatHeadObject
-
 type MetadataCatHeadObject struct {
 	MetadataObject
 }

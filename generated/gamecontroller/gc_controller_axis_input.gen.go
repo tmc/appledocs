@@ -43,7 +43,6 @@ type IGCControllerAxisInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput
-
 type GCControllerAxisInput struct {
 	GCControllerElement
 }
@@ -94,7 +93,6 @@ func NewGCControllerAxisInput() GCControllerAxisInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/value
-
 func (g_ GCControllerAxisInput) Value() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("value"))
 	return rv
@@ -105,7 +103,6 @@ func (g_ GCControllerAxisInput) Value() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/valueChangedHandler
-
 func (g_ GCControllerAxisInput) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
@@ -116,7 +113,6 @@ func (g_ GCControllerAxisInput) ValueChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/valueChangedHandler
-
 func (g_ GCControllerAxisInput) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }

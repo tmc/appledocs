@@ -45,7 +45,6 @@ type ICWConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration
-
 type CWConfiguration struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewCWConfiguration() CWConfiguration {
 
 
 
-
 // Creates and returns a CWConfiguration object initialized with the given CWConfiguration object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/init(configuration:)
-
 func NewCWConfigurationWithConfiguration(configuration ICWConfiguration) CWConfiguration {
 	instance := getCWConfigurationClass().Alloc()
 	rv := objc.Send[CWConfiguration](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
@@ -109,7 +106,6 @@ func NewCWConfigurationWithConfiguration(configuration ICWConfiguration) CWConfi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/configuration
-
 func (cc _CWConfigurationClass) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("configuration"))
 	return rv
@@ -120,19 +116,16 @@ func (cc _CWConfigurationClass) Configuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/configurationWithConfiguration:
-
 func (cc _CWConfigurationClass) ConfigurationWithConfiguration(configuration ICWConfiguration) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("configurationWithConfiguration:"), configuration)
 	return rv
 }
 
 
-
 // Determine CWConfiguration object equality.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/isEqual(to:)
-
 func (c_ CWConfiguration) IsEqualToConfiguration(configuration ICWConfiguration) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToConfiguration:"), configuration)
 	return rv
@@ -143,7 +136,6 @@ func (c_ CWConfiguration) IsEqualToConfiguration(configuration ICWConfiguration)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/networkProfiles
-
 func (c_ CWConfiguration) NetworkProfiles() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkProfiles"))
 	return rv
@@ -154,7 +146,6 @@ func (c_ CWConfiguration) NetworkProfiles() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/rememberJoinedNetworks
-
 func (c_ CWConfiguration) RememberJoinedNetworks() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rememberJoinedNetworks"))
 	return rv
@@ -165,7 +156,6 @@ func (c_ CWConfiguration) RememberJoinedNetworks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForAssociation
-
 func (c_ CWConfiguration) RequireAdministratorForAssociation() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForAssociation"))
 	return rv
@@ -176,7 +166,6 @@ func (c_ CWConfiguration) RequireAdministratorForAssociation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForIBSSMode
-
 func (c_ CWConfiguration) RequireAdministratorForIBSSMode() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForIBSSMode"))
 	return rv
@@ -187,7 +176,6 @@ func (c_ CWConfiguration) RequireAdministratorForIBSSMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForPower
-
 func (c_ CWConfiguration) RequireAdministratorForPower() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForPower"))
 	return rv

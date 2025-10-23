@@ -35,8 +35,7 @@ type IbottomLeft interface {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-c.ivar
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomLeft-c.ivar
 type bottomLeft struct {
 	objectivec.Object
 }

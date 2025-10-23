@@ -38,7 +38,11 @@ type IINSearchForMediaIntent interface {
 // A request to search for a media item.
 //
 // The system creates an object when the user asks Siri to search for a media item, or searches for a musician or band in Spotlight. To handle this intent, provide a handler that conforms to the protocol. Your handler should confirm the request and create an object with the media to search for.
+
+
+// A request to search for a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMediaIntent
 type INSearchForMediaIntent struct {
 	INIntent
@@ -85,8 +89,10 @@ func NewINSearchForMediaIntent() INSearchForMediaIntent {
 }
 
 
+
 // The media items for which to search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediaitems
 func (i_ INSearchForMediaIntent) MediaItems() INMediaItem {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
@@ -94,17 +100,18 @@ func (i_ INSearchForMediaIntent) MediaItems() INMediaItem {
 }
 
 
-// SetMediaItems sets the value of the mediaItems property.
 // The media items for which to search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediaitems
 func (i_ INSearchForMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
+
 // The location to search for the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediasearch
 func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
@@ -112,10 +119,9 @@ func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch {
 }
 
 
-// SetMediaSearch sets the value of the mediaSearch property.
 // The location to search for the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediasearch
 func (i_ INSearchForMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)

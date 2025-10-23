@@ -57,7 +57,6 @@ type IFaceFeature interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature
-
 type FaceFeature struct {
 	Feature
 }
@@ -108,7 +107,6 @@ func NewFaceFeature() FaceFeature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/bounds-swift.property
-
 func (f_ FaceFeature) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
@@ -119,7 +117,6 @@ func (f_ FaceFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/faceAngle-swift.property
-
 func (f_ FaceFeature) FaceAngle() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("faceAngle"))
 	return rv
@@ -130,7 +127,6 @@ func (f_ FaceFeature) FaceAngle() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasFaceAngle-swift.property
-
 func (f_ FaceFeature) HasFaceAngle() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasFaceAngle"))
 	return rv
@@ -141,7 +137,6 @@ func (f_ FaceFeature) HasFaceAngle() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasLeftEyePosition-swift.property
-
 func (f_ FaceFeature) HasLeftEyePosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLeftEyePosition"))
 	return rv
@@ -152,7 +147,6 @@ func (f_ FaceFeature) HasLeftEyePosition() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasMouthPosition-swift.property
-
 func (f_ FaceFeature) HasMouthPosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasMouthPosition"))
 	return rv
@@ -163,7 +157,6 @@ func (f_ FaceFeature) HasMouthPosition() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasRightEyePosition-swift.property
-
 func (f_ FaceFeature) HasRightEyePosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasRightEyePosition"))
 	return rv
@@ -174,7 +167,6 @@ func (f_ FaceFeature) HasRightEyePosition() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasSmile-swift.property
-
 func (f_ FaceFeature) HasSmile() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasSmile"))
 	return rv
@@ -185,7 +177,6 @@ func (f_ FaceFeature) HasSmile() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingFrameCount-swift.property
-
 func (f_ FaceFeature) HasTrackingFrameCount() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingFrameCount"))
 	return rv
@@ -196,7 +187,6 @@ func (f_ FaceFeature) HasTrackingFrameCount() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingID-swift.property
-
 func (f_ FaceFeature) HasTrackingID() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingID"))
 	return rv
@@ -207,7 +197,6 @@ func (f_ FaceFeature) HasTrackingID() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-swift.property
-
 func (f_ FaceFeature) LeftEyeClosed() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("leftEyeClosed"))
 	return rv
@@ -218,7 +207,6 @@ func (f_ FaceFeature) LeftEyeClosed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyePosition-swift.property
-
 func (f_ FaceFeature) LeftEyePosition() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](f_.ID, objc.Sel("leftEyePosition"))
 	return rv
@@ -229,7 +217,6 @@ func (f_ FaceFeature) LeftEyePosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/mouthPosition-swift.property
-
 func (f_ FaceFeature) MouthPosition() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](f_.ID, objc.Sel("mouthPosition"))
 	return rv
@@ -240,7 +227,6 @@ func (f_ FaceFeature) MouthPosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyeClosed-swift.property
-
 func (f_ FaceFeature) RightEyeClosed() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("rightEyeClosed"))
 	return rv
@@ -251,7 +237,6 @@ func (f_ FaceFeature) RightEyeClosed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyePosition-swift.property
-
 func (f_ FaceFeature) RightEyePosition() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](f_.ID, objc.Sel("rightEyePosition"))
 	return rv
@@ -262,7 +247,6 @@ func (f_ FaceFeature) RightEyePosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingFrameCount-swift.property
-
 func (f_ FaceFeature) TrackingFrameCount() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("trackingFrameCount"))
 	return rv
@@ -273,7 +257,6 @@ func (f_ FaceFeature) TrackingFrameCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingID-swift.property
-
 func (f_ FaceFeature) TrackingID() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("trackingID"))
 	return rv

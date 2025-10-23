@@ -49,7 +49,6 @@ type ICXAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction
-
 type CXAction struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewCXAction() CXAction {
 
 
 
-
 // Creates a new telephony action with data in an unarchiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/init(coder:)
-
 func NewCXActionWithCoder(aDecoder foundation.ICoder) CXAction {
 	instance := getCXActionClass().Alloc()
 	rv := objc.Send[CXAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -109,23 +106,19 @@ func NewCXActionWithCoder(aDecoder foundation.ICoder) CXAction {
 
 
 
-
 // Reports the failed execution of the action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/fail()
-
 func (c_ CXAction) Fail() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fail"))
 }
-
 
 
 // Reports the successful execution of the action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/fulfill()
-
 func (c_ CXAction) Fulfill() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfill"))
 }
@@ -135,7 +128,6 @@ func (c_ CXAction) Fulfill() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/isComplete
-
 func (c_ CXAction) Complete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))
 	return rv
@@ -146,7 +138,6 @@ func (c_ CXAction) Complete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/timeoutDate
-
 func (c_ CXAction) TimeoutDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("timeoutDate"))
 	return rv
@@ -157,7 +148,6 @@ func (c_ CXAction) TimeoutDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/uuid
-
 func (c_ CXAction) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
@@ -168,7 +158,6 @@ func (c_ CXAction) UUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
-
 func (c_ CXAction) IsComplete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
 	return rv
@@ -179,7 +168,6 @@ func (c_ CXAction) IsComplete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
-
 func (c_ CXAction) SetIsComplete(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
 }

@@ -68,7 +68,6 @@ type ITextLayoutFragment interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment
-
 type TextLayoutFragment struct {
 	objectivec.Object
 }
@@ -117,7 +116,6 @@ func NewTextLayoutFragment() TextLayoutFragment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/bottommargin
-
 func (t_ TextLayoutFragment) BottomMargin() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("bottomMargin"))
 	return rv
@@ -128,7 +126,6 @@ func (t_ TextLayoutFragment) BottomMargin() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/bottommargin
-
 func (t_ TextLayoutFragment) SetBottomMargin(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBottomMargin:"), value)
 }
@@ -138,7 +135,6 @@ func (t_ TextLayoutFragment) SetBottomMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutfragmentframe
-
 func (t_ TextLayoutFragment) LayoutFragmentFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("layoutFragmentFrame"))
 	return rv
@@ -149,7 +145,6 @@ func (t_ TextLayoutFragment) LayoutFragmentFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutfragmentframe
-
 func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutFragmentFrame:"), value)
 }
@@ -159,7 +154,6 @@ func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-
 func (t_ TextLayoutFragment) LayoutQueue() foundation.OperationQueue {
 	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
@@ -170,7 +164,6 @@ func (t_ TextLayoutFragment) LayoutQueue() foundation.OperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-
 func (t_ TextLayoutFragment) SetLayoutQueue(value foundation.IOperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
@@ -180,7 +173,6 @@ func (t_ TextLayoutFragment) SetLayoutQueue(value foundation.IOperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/leadingpadding
-
 func (t_ TextLayoutFragment) LeadingPadding() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("leadingPadding"))
 	return rv
@@ -191,7 +183,6 @@ func (t_ TextLayoutFragment) LeadingPadding() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/leadingpadding
-
 func (t_ TextLayoutFragment) SetLeadingPadding(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLeadingPadding:"), value)
 }
@@ -201,7 +192,6 @@ func (t_ TextLayoutFragment) SetLeadingPadding(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
-
 func (t_ TextLayoutFragment) RangeInElement() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("rangeInElement"))
 	return rv
@@ -212,7 +202,6 @@ func (t_ TextLayoutFragment) RangeInElement() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
-
 func (t_ TextLayoutFragment) SetRangeInElement(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeInElement:"), value)
 }
@@ -222,7 +211,6 @@ func (t_ TextLayoutFragment) SetRangeInElement(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/renderingsurfacebounds
-
 func (t_ TextLayoutFragment) RenderingSurfaceBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("renderingSurfaceBounds"))
 	return rv
@@ -233,7 +221,6 @@ func (t_ TextLayoutFragment) RenderingSurfaceBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/renderingsurfacebounds
-
 func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingSurfaceBounds:"), value)
 }
@@ -243,7 +230,6 @@ func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value coregraphics.CGRect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
-
 func (t_ TextLayoutFragment) State() coreml.State {
 	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
 	return rv
@@ -254,7 +240,6 @@ func (t_ TextLayoutFragment) State() coreml.State {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
-
 func (t_ TextLayoutFragment) SetState(value coreml.State) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
 }
@@ -264,7 +249,6 @@ func (t_ TextLayoutFragment) SetState(value coreml.State) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
-
 func (t_ TextLayoutFragment) TextAttachmentViewProviders() NSTextAttachmentViewProvider {
 	rv := objc.Send[NSTextAttachmentViewProvider](t_.ID, objc.Sel("textAttachmentViewProviders"))
 	return rv
@@ -275,7 +259,6 @@ func (t_ TextLayoutFragment) TextAttachmentViewProviders() NSTextAttachmentViewP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
-
 func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value ITextAttachmentViewProvider) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachmentViewProviders:"), value)
 }
@@ -285,7 +268,6 @@ func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value ITextAttachmen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
-
 func (t_ TextLayoutFragment) TextElement() NSTextElement {
 	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("textElement"))
 	return rv
@@ -296,7 +278,6 @@ func (t_ TextLayoutFragment) TextElement() NSTextElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
-
 func (t_ TextLayoutFragment) SetTextElement(value ITextElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextElement:"), value)
 }
@@ -306,7 +287,6 @@ func (t_ TextLayoutFragment) SetTextElement(value ITextElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
-
 func (t_ TextLayoutFragment) TextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
@@ -317,7 +297,6 @@ func (t_ TextLayoutFragment) TextLayoutManager() NSTextLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
-
 func (t_ TextLayoutFragment) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
@@ -327,7 +306,6 @@ func (t_ TextLayoutFragment) SetTextLayoutManager(value ITextLayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
-
 func (t_ TextLayoutFragment) TextLineFragments() NSTextLineFragment {
 	rv := objc.Send[NSTextLineFragment](t_.ID, objc.Sel("textLineFragments"))
 	return rv
@@ -338,7 +316,6 @@ func (t_ TextLayoutFragment) TextLineFragments() NSTextLineFragment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
-
 func (t_ TextLayoutFragment) SetTextLineFragments(value ITextLineFragment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLineFragments:"), value)
 }
@@ -348,7 +325,6 @@ func (t_ TextLayoutFragment) SetTextLineFragments(value ITextLineFragment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/topmargin
-
 func (t_ TextLayoutFragment) TopMargin() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("topMargin"))
 	return rv
@@ -359,7 +335,6 @@ func (t_ TextLayoutFragment) TopMargin() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/topmargin
-
 func (t_ TextLayoutFragment) SetTopMargin(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTopMargin:"), value)
 }
@@ -369,7 +344,6 @@ func (t_ TextLayoutFragment) SetTopMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/trailingpadding
-
 func (t_ TextLayoutFragment) TrailingPadding() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("trailingPadding"))
 	return rv
@@ -380,7 +354,6 @@ func (t_ TextLayoutFragment) TrailingPadding() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/trailingpadding
-
 func (t_ TextLayoutFragment) SetTrailingPadding(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrailingPadding:"), value)
 }

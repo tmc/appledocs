@@ -32,7 +32,9 @@ type ImActionCommand interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mActionCommand
 type mActionCommand struct {
 	objectivec.Object

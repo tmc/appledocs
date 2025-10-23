@@ -45,7 +45,6 @@ type ICapturePhotoOutputReadinessCoordinator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator
-
 type CapturePhotoOutputReadinessCoordinator struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewCapturePhotoOutputReadinessCoordinator() CapturePhotoOutputReadinessCoor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator/delegate
-
 func (c_ CapturePhotoOutputReadinessCoordinator) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ CapturePhotoOutputReadinessCoordinator) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator/delegate
-
 func (c_ CapturePhotoOutputReadinessCoordinator) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -115,7 +112,6 @@ func (c_ CapturePhotoOutputReadinessCoordinator) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
-
 func (c_ CapturePhotoOutputReadinessCoordinator) CaptureReadiness() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("captureReadiness"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ CapturePhotoOutputReadinessCoordinator) CaptureReadiness() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
-
 func (c_ CapturePhotoOutputReadinessCoordinator) SetCaptureReadiness(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCaptureReadiness:"), value)
 }

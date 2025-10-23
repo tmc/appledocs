@@ -79,7 +79,6 @@ type IFetchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest
-
 type FetchRequest struct {
 	PersistentStoreRequest
 }
@@ -126,12 +125,10 @@ func NewFetchRequest() FetchRequest {
 
 
 
-
 // Initializes a fetch request configured with a given entity name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
-
 func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 	instance := getFetchRequestClass().Alloc()
 	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
@@ -145,19 +142,16 @@ func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchRequestWithEntityName:
-
 func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
 
 
-
 // Executes the fetch request against the managed object context that is associated with the current queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/execute()
-
 func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("execute:"), error_)
 	return rv
@@ -168,7 +162,6 @@ func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/affectedStores
-
 func (f_ FetchRequest) AffectedStores() []PersistentStore {
 	rv := objc.Send[[]PersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
@@ -179,7 +172,6 @@ func (f_ FetchRequest) AffectedStores() []PersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/affectedStores
-
 func (f_ FetchRequest) SetAffectedStores(value []PersistentStore) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -199,7 +191,6 @@ func (f_ FetchRequest) SetAffectedStores(value []PersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entity
-
 func (f_ FetchRequest) Entity() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](f_.ID, objc.Sel("entity"))
 	return rv
@@ -210,7 +201,6 @@ func (f_ FetchRequest) Entity() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entity
-
 func (f_ FetchRequest) SetEntity(value IEntityDescription) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEntity:"), value)
 }
@@ -220,7 +210,6 @@ func (f_ FetchRequest) SetEntity(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entityName
-
 func (f_ FetchRequest) EntityName() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("entityName"))
 	return rv
@@ -231,7 +220,6 @@ func (f_ FetchRequest) EntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchBatchSize
-
 func (f_ FetchRequest) FetchBatchSize() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
@@ -242,7 +230,6 @@ func (f_ FetchRequest) FetchBatchSize() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchBatchSize
-
 func (f_ FetchRequest) SetFetchBatchSize(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
@@ -252,7 +239,6 @@ func (f_ FetchRequest) SetFetchBatchSize(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchLimit
-
 func (f_ FetchRequest) FetchLimit() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchLimit"))
 	return rv
@@ -263,7 +249,6 @@ func (f_ FetchRequest) FetchLimit() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchLimit
-
 func (f_ FetchRequest) SetFetchLimit(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
@@ -273,7 +258,6 @@ func (f_ FetchRequest) SetFetchLimit(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchOffset
-
 func (f_ FetchRequest) FetchOffset() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchOffset"))
 	return rv
@@ -284,7 +268,6 @@ func (f_ FetchRequest) FetchOffset() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchOffset
-
 func (f_ FetchRequest) SetFetchOffset(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
@@ -294,7 +277,6 @@ func (f_ FetchRequest) SetFetchOffset(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-
 func (f_ FetchRequest) HavingPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("havingPredicate"))
 	return rv
@@ -305,7 +287,6 @@ func (f_ FetchRequest) HavingPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-
 func (f_ FetchRequest) SetHavingPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHavingPredicate:"), value)
 }
@@ -315,7 +296,6 @@ func (f_ FetchRequest) SetHavingPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPendingChanges
-
 func (f_ FetchRequest) IncludesPendingChanges() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesPendingChanges"))
 	return rv
@@ -326,7 +306,6 @@ func (f_ FetchRequest) IncludesPendingChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPendingChanges
-
 func (f_ FetchRequest) SetIncludesPendingChanges(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesPendingChanges:"), value)
 }
@@ -336,7 +315,6 @@ func (f_ FetchRequest) SetIncludesPendingChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPropertyValues
-
 func (f_ FetchRequest) IncludesPropertyValues() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesPropertyValues"))
 	return rv
@@ -347,7 +325,6 @@ func (f_ FetchRequest) IncludesPropertyValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPropertyValues
-
 func (f_ FetchRequest) SetIncludesPropertyValues(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesPropertyValues:"), value)
 }
@@ -357,7 +334,6 @@ func (f_ FetchRequest) SetIncludesPropertyValues(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesSubentities
-
 func (f_ FetchRequest) IncludesSubentities() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesSubentities"))
 	return rv
@@ -368,7 +344,6 @@ func (f_ FetchRequest) IncludesSubentities() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesSubentities
-
 func (f_ FetchRequest) SetIncludesSubentities(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
@@ -378,7 +353,6 @@ func (f_ FetchRequest) SetIncludesSubentities(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-
 func (f_ FetchRequest) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
@@ -389,7 +363,6 @@ func (f_ FetchRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-
 func (f_ FetchRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
@@ -399,7 +372,6 @@ func (f_ FetchRequest) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToFetch
-
 func (f_ FetchRequest) PropertiesToFetch() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("propertiesToFetch"))
 	return rv
@@ -410,7 +382,6 @@ func (f_ FetchRequest) PropertiesToFetch() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToFetch
-
 func (f_ FetchRequest) SetPropertiesToFetch(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertiesToFetch:"), value)
 }
@@ -420,7 +391,6 @@ func (f_ FetchRequest) SetPropertiesToFetch(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToGroupBy
-
 func (f_ FetchRequest) PropertiesToGroupBy() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("propertiesToGroupBy"))
 	return rv
@@ -431,7 +401,6 @@ func (f_ FetchRequest) PropertiesToGroupBy() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToGroupBy
-
 func (f_ FetchRequest) SetPropertiesToGroupBy(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertiesToGroupBy:"), value)
 }
@@ -441,7 +410,6 @@ func (f_ FetchRequest) SetPropertiesToGroupBy(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/relationshipKeyPathsForPrefetching
-
 func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("relationshipKeyPathsForPrefetching"))
 	return rv
@@ -452,7 +420,6 @@ func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/relationshipKeyPathsForPrefetching
-
 func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -472,7 +439,6 @@ func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-
 func (f_ FetchRequest) ResultType() FetchRequestResultType {
 	rv := objc.Send[FetchRequestResultType](f_.ID, objc.Sel("resultType"))
 	return rv
@@ -483,7 +449,6 @@ func (f_ FetchRequest) ResultType() FetchRequestResultType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-
 func (f_ FetchRequest) SetResultType(value FetchRequestResultType) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResultType:"), value)
 }
@@ -493,7 +458,6 @@ func (f_ FetchRequest) SetResultType(value FetchRequestResultType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsDistinctResults
-
 func (f_ FetchRequest) ReturnsDistinctResults() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("returnsDistinctResults"))
 	return rv
@@ -504,7 +468,6 @@ func (f_ FetchRequest) ReturnsDistinctResults() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsDistinctResults
-
 func (f_ FetchRequest) SetReturnsDistinctResults(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReturnsDistinctResults:"), value)
 }
@@ -514,7 +477,6 @@ func (f_ FetchRequest) SetReturnsDistinctResults(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsObjectsAsFaults
-
 func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("returnsObjectsAsFaults"))
 	return rv
@@ -525,7 +487,6 @@ func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsObjectsAsFaults
-
 func (f_ FetchRequest) SetReturnsObjectsAsFaults(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReturnsObjectsAsFaults:"), value)
 }
@@ -535,7 +496,6 @@ func (f_ FetchRequest) SetReturnsObjectsAsFaults(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/shouldRefreshRefetchedObjects
-
 func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("shouldRefreshRefetchedObjects"))
 	return rv
@@ -546,7 +506,6 @@ func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/shouldRefreshRefetchedObjects
-
 func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldRefreshRefetchedObjects:"), value)
 }
@@ -556,7 +515,6 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-
 func (f_ FetchRequest) SortDescriptors() []foundation.SortDescriptor {
 	rv := objc.Send[[]foundation.SortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -567,7 +525,6 @@ func (f_ FetchRequest) SortDescriptors() []foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-
 func (f_ FetchRequest) SetSortDescriptors(value []foundation.ISortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

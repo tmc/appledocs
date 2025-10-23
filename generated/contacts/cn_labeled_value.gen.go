@@ -279,7 +279,6 @@ type ICNLabeledValue interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue
-
 type CNLabeledValue struct {
 	objectivec.Object
 }
@@ -324,12 +323,10 @@ func NewCNLabeledValue() CNLabeledValue {
 
 
 
-
 // Returns a new labeled value identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/init(label:value:)
-
 func NewCNLabeledValueWithLabelValue(label string, value unsafe.Pointer) CNLabeledValue {
 	instance := getCNLabeledValueClass().Alloc()
 	rv := objc.Send[CNLabeledValue](instance.ID, objc.Sel("initWithLabel:value:"), objc.String(label), value)
@@ -343,7 +340,6 @@ func NewCNLabeledValueWithLabelValue(label string, value unsafe.Pointer) CNLabel
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/labeledValueWithLabel:value:
-
 func (cc _CNLabeledValueClass) LabeledValueWithLabelValue(label string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("labeledValueWithLabel:value:"), objc.String(label), value)
 	return rv
@@ -354,43 +350,36 @@ func (cc _CNLabeledValueClass) LabeledValueWithLabelValue(label string, value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/localizedString(forLabel:)
-
 func (cc _CNLabeledValueClass) LocalizedStringForLabel(label string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForLabel:"), objc.String(label))
 	return rv
 }
 
 
-
 // Returns a labeled value object with an existing value and identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/settingLabel(_:)
-
 func (c_ CNLabeledValue) LabeledValueBySettingLabel(label string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labeledValueBySettingLabel:"), objc.String(label))
 	return rv
 }
 
 
-
 // Returns a labeled value object with the specified label and value with the existing identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/settingLabel(_:value:)
-
 func (c_ CNLabeledValue) LabeledValueBySettingLabelValue(label string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labeledValueBySettingLabel:value:"), objc.String(label), value)
 	return rv
 }
 
 
-
 // Returns a new value for an existing label and identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/settingValue(_:)
-
 func (c_ CNLabeledValue) LabeledValueBySettingValue(value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labeledValueBySettingValue:"), value)
 	return rv
@@ -401,7 +390,6 @@ func (c_ CNLabeledValue) LabeledValueBySettingValue(value unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/identifier
-
 func (c_ CNLabeledValue) Identifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
@@ -412,7 +400,6 @@ func (c_ CNLabeledValue) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/label
-
 func (c_ CNLabeledValue) Label() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
@@ -423,7 +410,6 @@ func (c_ CNLabeledValue) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/value
-
 func (c_ CNLabeledValue) Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
 	return rv
@@ -434,7 +420,6 @@ func (c_ CNLabeledValue) Value() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationassistant
-
 func (c_ CNLabeledValue) CNLabelContactRelationAssistant() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAssistant"))
 	return rv
@@ -445,7 +430,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAssistant() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationaunt
-
 func (c_ CNLabeledValue) CNLabelContactRelationAunt() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAunt"))
 	return rv
@@ -456,7 +440,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAunt() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfathersbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntFathersBrothersWife"))
 	return rv
@@ -467,7 +450,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersBrothersWife() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfatherselderbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersElderBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntFathersElderBrothersWife"))
 	return rv
@@ -478,7 +460,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersElderBrothersWife() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfatherseldersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersElderSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntFathersElderSister"))
 	return rv
@@ -489,7 +470,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersElderSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfatherssister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntFathersSister"))
 	return rv
@@ -500,7 +480,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfathersyoungerbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersYoungerBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntFathersYoungerBrothersWife"))
 	return rv
@@ -511,7 +490,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersYoungerBrothersWife() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntfathersyoungersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersYoungerSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntFathersYoungerSister"))
 	return rv
@@ -522,7 +500,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntFathersYoungerSister() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmothersbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntMothersBrothersWife"))
 	return rv
@@ -533,7 +510,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersBrothersWife() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmotherseldersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersElderSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntMothersElderSister"))
 	return rv
@@ -544,7 +520,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersElderSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmotherssister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntMothersSister"))
 	return rv
@@ -555,7 +530,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntmothersyoungersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersYoungerSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntMothersYoungerSister"))
 	return rv
@@ -566,7 +540,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntMothersYoungerSister() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntparentseldersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntParentsElderSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntParentsElderSister"))
 	return rv
@@ -577,7 +550,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntParentsElderSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntparentssister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntParentsSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntParentsSister"))
 	return rv
@@ -588,7 +560,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntParentsSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationauntparentsyoungersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationAuntParentsYoungerSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAuntParentsYoungerSister"))
 	return rv
@@ -599,7 +570,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationAuntParentsYoungerSister() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationboyfriend
-
 func (c_ CNLabeledValue) CNLabelContactRelationBoyfriend() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBoyfriend"))
 	return rv
@@ -610,7 +580,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBoyfriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrother"))
 	return rv
@@ -621,7 +590,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLaw"))
 	return rv
@@ -632,7 +600,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlaweldersistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawElderSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawElderSistersHusband"))
 	return rv
@@ -643,7 +610,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawElderSistersHusband()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawhusbandsbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawHusbandsBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawHusbandsBrother"))
 	return rv
@@ -654,7 +620,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawHusbandsBrother() str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawhusbandssistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawHusbandsSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawHusbandsSistersHusband"))
 	return rv
@@ -665,7 +630,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawHusbandsSistersHusban
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawsistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawSistersHusband"))
 	return rv
@@ -676,7 +640,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawSistersHusband() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawspousesbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawSpousesBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawSpousesBrother"))
 	return rv
@@ -687,7 +650,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawSpousesBrother() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawwifesbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawWifesBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawWifesBrother"))
 	return rv
@@ -698,7 +660,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawWifesBrother() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawwifessistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawWifesSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawWifesSistersHusband"))
 	return rv
@@ -709,7 +670,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawWifesSistersHusband()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrotherinlawyoungersistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawYoungerSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrotherInLawYoungerSistersHusband"))
 	return rv
@@ -720,7 +680,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationBrotherInLawYoungerSistersHusband
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchild
-
 func (c_ CNLabeledValue) CNLabelContactRelationChild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationChild"))
 	return rv
@@ -731,7 +690,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationChild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchildinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationChildInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationChildInLaw"))
 	return rv
@@ -742,7 +700,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationChildInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcobrotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationCoBrotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCoBrotherInLaw"))
 	return rv
@@ -753,7 +710,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCoBrotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcofatherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationCoFatherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCoFatherInLaw"))
 	return rv
@@ -764,7 +720,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCoFatherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcomotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationCoMotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCoMotherInLaw"))
 	return rv
@@ -775,7 +730,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCoMotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcoparentinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationCoParentInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCoParentInLaw"))
 	return rv
@@ -786,7 +740,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCoParentInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcosiblinginlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationCoSiblingInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCoSiblingInLaw"))
 	return rv
@@ -797,7 +750,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCoSiblingInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcosisterinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationCoSisterInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCoSisterInLaw"))
 	return rv
@@ -808,7 +760,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCoSisterInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcolleague
-
 func (c_ CNLabeledValue) CNLabelContactRelationColleague() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationColleague"))
 	return rv
@@ -819,7 +770,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationColleague() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousin"))
 	return rv
@@ -830,7 +780,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfathersbrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinFathersBrothersDaughter"))
 	return rv
@@ -841,7 +790,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersBrothersDaughter() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfathersbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinFathersBrothersSon"))
 	return rv
@@ -852,7 +800,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersBrothersSon() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfatherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinFathersSistersDaughter"))
 	return rv
@@ -863,7 +810,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersSistersDaughter() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinfatherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinFathersSistersSon"))
 	return rv
@@ -874,7 +820,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinFathersSistersSon() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousingrandparentssiblingschild
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinGrandparentsSiblingsChild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinGrandparentsSiblingsChild"))
 	return rv
@@ -885,7 +830,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinGrandparentsSiblingsChild()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousingrandparentssiblingsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinGrandparentsSiblingsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinGrandparentsSiblingsDaughter"))
 	return rv
@@ -896,7 +840,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinGrandparentsSiblingsDaughte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousingrandparentssiblingsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinGrandparentsSiblingsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinGrandparentsSiblingsSon"))
 	return rv
@@ -907,7 +850,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinGrandparentsSiblingsSon() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmothersbrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinMothersBrothersDaughter"))
 	return rv
@@ -918,7 +860,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersBrothersDaughter() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmothersbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinMothersBrothersSon"))
 	return rv
@@ -929,7 +870,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersBrothersSon() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmotherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinMothersSistersDaughter"))
 	return rv
@@ -940,7 +880,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersSistersDaughter() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinmotherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinMothersSistersSon"))
 	return rv
@@ -951,7 +890,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinMothersSistersSon() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinorsiblingschild
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinOrSiblingsChild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinOrSiblingsChild"))
 	return rv
@@ -962,7 +900,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinOrSiblingsChild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinparentssiblingschild
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinParentsSiblingsChild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinParentsSiblingsChild"))
 	return rv
@@ -973,7 +910,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinParentsSiblingsChild() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinparentssiblingsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinParentsSiblingsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinParentsSiblingsDaughter"))
 	return rv
@@ -984,7 +920,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinParentsSiblingsDaughter() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationcousinparentssiblingsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationCousinParentsSiblingsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationCousinParentsSiblingsSon"))
 	return rv
@@ -995,7 +930,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationCousinParentsSiblingsSon() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughter"))
 	return rv
@@ -1006,7 +940,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationDaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughterinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationDaughterInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughterInLaw"))
 	return rv
@@ -1017,7 +950,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationDaughterInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughterinlaworsisterinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationDaughterInLawOrSisterInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughterInLawOrSisterInLaw"))
 	return rv
@@ -1028,7 +960,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationDaughterInLawOrSisterInLaw() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughterinlaworstepdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationDaughterInLawOrStepdaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughterInLawOrStepdaughter"))
 	return rv
@@ -1039,7 +970,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationDaughterInLawOrStepdaughter() str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationelderbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderBrother"))
 	return rv
@@ -1050,7 +980,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationelderbrotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderBrotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderBrotherInLaw"))
 	return rv
@@ -1061,7 +990,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderBrotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousin"))
 	return rv
@@ -1072,7 +1000,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfathersbrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinFathersBrothersDaughter"))
 	return rv
@@ -1083,7 +1010,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersBrothersDaughte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfathersbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinFathersBrothersSon"))
 	return rv
@@ -1094,7 +1020,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersBrothersSon() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfatherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinFathersSistersDaughter"))
 	return rv
@@ -1105,7 +1030,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersSistersDaughter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinfatherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinFathersSistersSon"))
 	return rv
@@ -1116,7 +1040,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinFathersSistersSon() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmothersbrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinMothersBrothersDaughter"))
 	return rv
@@ -1127,7 +1050,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersBrothersDaughte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmothersbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinMothersBrothersSon"))
 	return rv
@@ -1138,7 +1060,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersBrothersSon() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssiblingsdaughterorfatherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter"))
 	return rv
@@ -1149,7 +1070,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSiblingsDaughte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssiblingssonorfatherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon"))
 	return rv
@@ -1160,7 +1080,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSiblingsSonOrFa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinMothersSistersDaughter"))
 	return rv
@@ -1171,7 +1090,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSistersDaughter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinmotherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinMothersSistersSon"))
 	return rv
@@ -1182,7 +1100,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinMothersSistersSon() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinparentssiblingsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinParentsSiblingsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinParentsSiblingsDaughter"))
 	return rv
@@ -1193,7 +1110,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinParentsSiblingsDaughte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldercousinparentssiblingsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderCousinParentsSiblingsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderCousinParentsSiblingsSon"))
 	return rv
@@ -1204,7 +1120,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderCousinParentsSiblingsSon() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderSibling"))
 	return rv
@@ -1215,7 +1130,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderSibling() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersiblinginlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderSiblingInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderSiblingInLaw"))
 	return rv
@@ -1226,7 +1140,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderSiblingInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderSister"))
 	return rv
@@ -1237,7 +1150,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldersisterinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationElderSisterInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationElderSisterInLaw"))
 	return rv
@@ -1248,7 +1160,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationElderSisterInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldestbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationEldestBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationEldestBrother"))
 	return rv
@@ -1259,7 +1170,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationEldestBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationeldestsister
-
 func (c_ CNLabeledValue) CNLabelContactRelationEldestSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationEldestSister"))
 	return rv
@@ -1270,7 +1180,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationEldestSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationFather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFather"))
 	return rv
@@ -1281,7 +1190,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFather() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationFatherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFatherInLaw"))
 	return rv
@@ -1292,7 +1200,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFatherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlawhusbandsfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationFatherInLawHusbandsFather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFatherInLawHusbandsFather"))
 	return rv
@@ -1303,7 +1210,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFatherInLawHusbandsFather() strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlaworstepfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationFatherInLawOrStepfather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFatherInLawOrStepfather"))
 	return rv
@@ -1314,7 +1220,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFatherInLawOrStepfather() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfatherinlawwifesfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationFatherInLawWifesFather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFatherInLawWifesFather"))
 	return rv
@@ -1325,7 +1230,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFatherInLawWifesFather() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfemalecousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationFemaleCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFemaleCousin"))
 	return rv
@@ -1336,7 +1240,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFemaleCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfemalefriend
-
 func (c_ CNLabeledValue) CNLabelContactRelationFemaleFriend() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFemaleFriend"))
 	return rv
@@ -1347,7 +1250,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFemaleFriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfemalepartner
-
 func (c_ CNLabeledValue) CNLabelContactRelationFemalePartner() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFemalePartner"))
 	return rv
@@ -1358,7 +1260,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFemalePartner() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfriend
-
 func (c_ CNLabeledValue) CNLabelContactRelationFriend() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFriend"))
 	return rv
@@ -1369,7 +1270,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationFriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgirlfriend
-
 func (c_ CNLabeledValue) CNLabelContactRelationGirlfriend() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGirlfriend"))
 	return rv
@@ -1380,7 +1280,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGirlfriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgirlfriendorboyfriend
-
 func (c_ CNLabeledValue) CNLabelContactRelationGirlfriendOrBoyfriend() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGirlfriendOrBoyfriend"))
 	return rv
@@ -1391,7 +1290,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGirlfriendOrBoyfriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandaunt
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandaunt() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandaunt"))
 	return rv
@@ -1402,7 +1300,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandaunt() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandchild
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandchild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandchild"))
 	return rv
@@ -1413,7 +1310,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandchild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandchildorsiblingschild
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandchildOrSiblingsChild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandchildOrSiblingsChild"))
 	return rv
@@ -1424,7 +1320,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandchildOrSiblingsChild() strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationGranddaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGranddaughter"))
 	return rv
@@ -1435,7 +1330,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGranddaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughterdaughtersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationGranddaughterDaughtersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGranddaughterDaughtersDaughter"))
 	return rv
@@ -1446,7 +1340,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGranddaughterDaughtersDaughter() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughterorniece
-
 func (c_ CNLabeledValue) CNLabelContactRelationGranddaughterOrNiece() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGranddaughterOrNiece"))
 	return rv
@@ -1457,7 +1350,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGranddaughterOrNiece() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranddaughtersonsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationGranddaughterSonsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGranddaughterSonsDaughter"))
 	return rv
@@ -1468,7 +1360,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGranddaughterSonsDaughter() strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandfather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandfather"))
 	return rv
@@ -1479,7 +1370,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandfather() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandfatherfathersfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandfatherFathersFather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandfatherFathersFather"))
 	return rv
@@ -1490,7 +1380,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandfatherFathersFather() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandfathermothersfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandfatherMothersFather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandfatherMothersFather"))
 	return rv
@@ -1501,7 +1390,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandfatherMothersFather() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandmother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandmother"))
 	return rv
@@ -1512,7 +1400,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandmother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandmotherfathersmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandmotherFathersMother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandmotherFathersMother"))
 	return rv
@@ -1523,7 +1410,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandmotherFathersMother() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandmothermothersmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandmotherMothersMother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandmotherMothersMother"))
 	return rv
@@ -1534,7 +1420,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandmotherMothersMother() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandnephew
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandnephew() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandnephew"))
 	return rv
@@ -1545,7 +1430,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandnephew() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandnephewbrothersgrandson
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandnephewBrothersGrandson() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandnephewBrothersGrandson"))
 	return rv
@@ -1556,7 +1440,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandnephewBrothersGrandson() str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandnephewsistersgrandson
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandnephewSistersGrandson() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandnephewSistersGrandson"))
 	return rv
@@ -1567,7 +1450,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandnephewSistersGrandson() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandniece
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandniece() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandniece"))
 	return rv
@@ -1578,7 +1460,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandniece() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandniecebrothersgranddaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandnieceBrothersGranddaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandnieceBrothersGranddaughter"))
 	return rv
@@ -1589,7 +1470,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandnieceBrothersGranddaughter()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandniecesistersgranddaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandnieceSistersGranddaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandnieceSistersGranddaughter"))
 	return rv
@@ -1600,7 +1480,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandnieceSistersGranddaughter() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandparent
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandparent() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandparent"))
 	return rv
@@ -1611,7 +1490,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandparent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandson
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandson() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandson"))
 	return rv
@@ -1622,7 +1500,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandson() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandsondaughtersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandsonDaughtersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandsonDaughtersSon"))
 	return rv
@@ -1633,7 +1510,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandsonDaughtersSon() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandsonornephew
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandsonOrNephew() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandsonOrNephew"))
 	return rv
@@ -1644,7 +1520,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandsonOrNephew() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgrandsonsonsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationGrandsonSonsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGrandsonSonsSon"))
 	return rv
@@ -1655,7 +1530,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGrandsonSonsSon() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgranduncle
-
 func (c_ CNLabeledValue) CNLabelContactRelationGranduncle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGranduncle"))
 	return rv
@@ -1666,7 +1540,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGranduncle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandchild
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandchild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGrandchild"))
 	return rv
@@ -1677,7 +1550,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandchild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandchildorsiblingsgrandchild
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild"))
 	return rv
@@ -1688,7 +1560,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandchildOrSiblingsGrandchi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgranddaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGranddaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGranddaughter"))
 	return rv
@@ -1699,7 +1570,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGranddaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandfather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGrandfather"))
 	return rv
@@ -1710,7 +1580,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandfather() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandmother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGrandmother"))
 	return rv
@@ -1721,7 +1590,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandmother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandparent
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandparent() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGrandparent"))
 	return rv
@@ -1732,7 +1600,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandparent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationgreatgrandson
-
 func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandson() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationGreatGrandson"))
 	return rv
@@ -1743,7 +1610,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationGreatGrandson() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationhusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationHusband"))
 	return rv
@@ -1754,7 +1620,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationHusband() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmalecousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationMaleCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMaleCousin"))
 	return rv
@@ -1765,7 +1630,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMaleCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmalefriend
-
 func (c_ CNLabeledValue) CNLabelContactRelationMaleFriend() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMaleFriend"))
 	return rv
@@ -1776,7 +1640,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMaleFriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmalepartner
-
 func (c_ CNLabeledValue) CNLabelContactRelationMalePartner() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMalePartner"))
 	return rv
@@ -1787,7 +1650,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMalePartner() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmanager
-
 func (c_ CNLabeledValue) CNLabelContactRelationManager() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationManager"))
 	return rv
@@ -1798,7 +1660,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationManager() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationMother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMother"))
 	return rv
@@ -1809,7 +1670,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationMotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMotherInLaw"))
 	return rv
@@ -1820,7 +1680,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlawhusbandsmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationMotherInLawHusbandsMother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMotherInLawHusbandsMother"))
 	return rv
@@ -1831,7 +1690,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMotherInLawHusbandsMother() strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlaworstepmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationMotherInLawOrStepmother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMotherInLawOrStepmother"))
 	return rv
@@ -1842,7 +1700,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMotherInLawOrStepmother() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmotherinlawwifesmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationMotherInLawWifesMother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMotherInLawWifesMother"))
 	return rv
@@ -1853,7 +1710,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationMotherInLawWifesMother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephew
-
 func (c_ CNLabeledValue) CNLabelContactRelationNephew() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNephew"))
 	return rv
@@ -1864,7 +1720,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNephew() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationNephewBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNephewBrothersSon"))
 	return rv
@@ -1875,7 +1730,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNephewBrothersSon() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewbrotherssonorhusbandssiblingsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon"))
 	return rv
@@ -1886,7 +1740,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNephewBrothersSonOrHusbandsSiblin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnepheworcousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationNephewOrCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNephewOrCousin"))
 	return rv
@@ -1897,7 +1750,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNephewOrCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewsistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationNephewSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNephewSistersSon"))
 	return rv
@@ -1908,7 +1760,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNephewSistersSon() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnephewsisterssonorwifessiblingsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon"))
 	return rv
@@ -1919,7 +1770,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNephewSistersSonOrWifesSiblingsSo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniece
-
 func (c_ CNLabeledValue) CNLabelContactRelationNiece() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNiece"))
 	return rv
@@ -1930,7 +1780,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNiece() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecebrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationNieceBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNieceBrothersDaughter"))
 	return rv
@@ -1941,7 +1790,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNieceBrothersDaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecebrothersdaughterorhusbandssiblingsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter"))
 	return rv
@@ -1952,7 +1800,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNieceBrothersDaughterOrHusbandsSi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationnieceorcousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationNieceOrCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNieceOrCousin"))
 	return rv
@@ -1963,7 +1810,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNieceOrCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecesistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationNieceSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNieceSistersDaughter"))
 	return rv
@@ -1974,7 +1820,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNieceSistersDaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationniecesistersdaughterorwifessiblingsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter"))
 	return rv
@@ -1985,7 +1830,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationNieceSistersDaughterOrWifesSiblin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparent
-
 func (c_ CNLabeledValue) CNLabelContactRelationParent() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParent"))
 	return rv
@@ -1996,7 +1840,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentInLaw"))
 	return rv
@@ -2007,7 +1850,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentseldersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsElderSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsElderSibling"))
 	return rv
@@ -2018,7 +1860,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsElderSibling() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSibling"))
 	return rv
@@ -2029,7 +1870,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSibling() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingfatherseldersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingFathersElderSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSiblingFathersElderSibling"))
 	return rv
@@ -2040,7 +1880,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingFathersElderSibling
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingfatherssibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingFathersSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSiblingFathersSibling"))
 	return rv
@@ -2051,7 +1890,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingFathersSibling() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingfathersyoungersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingFathersYoungerSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSiblingFathersYoungerSibling"))
 	return rv
@@ -2062,7 +1900,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingFathersYoungerSibli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingmotherseldersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingMothersElderSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSiblingMothersElderSibling"))
 	return rv
@@ -2073,7 +1910,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingMothersElderSibling
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingmotherssibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingMothersSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSiblingMothersSibling"))
 	return rv
@@ -2084,7 +1920,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingMothersSibling() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentssiblingmothersyoungersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingMothersYoungerSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsSiblingMothersYoungerSibling"))
 	return rv
@@ -2095,7 +1930,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsSiblingMothersYoungerSibli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparentsyoungersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationParentsYoungerSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParentsYoungerSibling"))
 	return rv
@@ -2106,7 +1940,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationParentsYoungerSibling() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationpartner
-
 func (c_ CNLabeledValue) CNLabelContactRelationPartner() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationPartner"))
 	return rv
@@ -2117,7 +1950,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationPartner() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSibling"))
 	return rv
@@ -2128,7 +1960,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSibling() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsiblinginlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationSiblingInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSiblingInLaw"))
 	return rv
@@ -2139,7 +1970,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSiblingInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsiblingschild
-
 func (c_ CNLabeledValue) CNLabelContactRelationSiblingsChild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSiblingsChild"))
 	return rv
@@ -2150,7 +1980,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSiblingsChild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsister
-
 func (c_ CNLabeledValue) CNLabelContactRelationSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSister"))
 	return rv
@@ -2161,7 +1990,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLaw"))
 	return rv
@@ -2172,7 +2000,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawBrothersWife"))
 	return rv
@@ -2183,7 +2010,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawBrothersWife() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawelderbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawElderBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawElderBrothersWife"))
 	return rv
@@ -2194,7 +2020,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawElderBrothersWife() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawhusbandsbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawHusbandsBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawHusbandsBrothersWife"))
 	return rv
@@ -2205,7 +2030,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawHusbandsBrothersWife()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawhusbandssister
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawHusbandsSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawHusbandsSister"))
 	return rv
@@ -2216,7 +2040,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawHusbandsSister() strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawspousessister
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawSpousesSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawSpousesSister"))
 	return rv
@@ -2227,7 +2050,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawSpousesSister() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawwifesbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawWifesBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawWifesBrothersWife"))
 	return rv
@@ -2238,7 +2060,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawWifesBrothersWife() st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawwifessister
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawWifesSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawWifesSister"))
 	return rv
@@ -2249,7 +2070,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawWifesSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsisterinlawyoungerbrotherswife
-
 func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawYoungerBrothersWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSisterInLawYoungerBrothersWife"))
 	return rv
@@ -2260,7 +2080,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSisterInLawYoungerBrothersWife() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationson
-
 func (c_ CNLabeledValue) CNLabelContactRelationSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSon"))
 	return rv
@@ -2271,7 +2090,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSon() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsoninlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationSonInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSonInLaw"))
 	return rv
@@ -2282,7 +2100,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSonInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsoninlaworbrotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationSonInLawOrBrotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSonInLawOrBrotherInLaw"))
 	return rv
@@ -2293,7 +2110,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSonInLawOrBrotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsoninlaworstepson
-
 func (c_ CNLabeledValue) CNLabelContactRelationSonInLawOrStepson() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSonInLawOrStepson"))
 	return rv
@@ -2304,7 +2120,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSonInLawOrStepson() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationspouse
-
 func (c_ CNLabeledValue) CNLabelContactRelationSpouse() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSpouse"))
 	return rv
@@ -2315,7 +2130,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationSpouse() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepbrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepbrother"))
 	return rv
@@ -2326,7 +2140,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepbrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepchild
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepchild() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepchild"))
 	return rv
@@ -2337,7 +2150,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepchild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepdaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepdaughter"))
 	return rv
@@ -2348,7 +2160,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepdaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepfather
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepfather() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepfather"))
 	return rv
@@ -2359,7 +2170,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepfather() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepmother
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepmother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepmother"))
 	return rv
@@ -2370,7 +2180,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepmother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepparent
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepparent() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepparent"))
 	return rv
@@ -2381,7 +2190,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepparent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepsister
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepsister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepsister"))
 	return rv
@@ -2392,7 +2200,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepsister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationstepson
-
 func (c_ CNLabeledValue) CNLabelContactRelationStepson() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationStepson"))
 	return rv
@@ -2403,7 +2210,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationStepson() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationteacher
-
 func (c_ CNLabeledValue) CNLabelContactRelationTeacher() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationTeacher"))
 	return rv
@@ -2414,7 +2220,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationTeacher() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncle
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncle"))
 	return rv
@@ -2425,7 +2230,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefathersbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleFathersBrother"))
 	return rv
@@ -2436,7 +2240,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefatherselderbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersElderBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleFathersElderBrother"))
 	return rv
@@ -2447,7 +2250,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersElderBrother() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefatherseldersistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersElderSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleFathersElderSistersHusband"))
 	return rv
@@ -2458,7 +2260,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersElderSistersHusband()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefatherssistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleFathersSistersHusband"))
 	return rv
@@ -2469,7 +2270,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersSistersHusband() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefathersyoungerbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersYoungerBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleFathersYoungerBrother"))
 	return rv
@@ -2480,7 +2280,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersYoungerBrother() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclefathersyoungersistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersYoungerSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleFathersYoungerSistersHusband"))
 	return rv
@@ -2491,7 +2290,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleFathersYoungerSistersHusband
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemothersbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleMothersBrother"))
 	return rv
@@ -2502,7 +2300,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemotherselderbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersElderBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleMothersElderBrother"))
 	return rv
@@ -2513,7 +2310,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersElderBrother() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemotherssistershusband
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersSistersHusband() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleMothersSistersHusband"))
 	return rv
@@ -2524,7 +2320,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersSistersHusband() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationunclemothersyoungerbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersYoungerBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleMothersYoungerBrother"))
 	return rv
@@ -2535,7 +2330,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleMothersYoungerBrother() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncleparentsbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleParentsBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleParentsBrother"))
 	return rv
@@ -2546,7 +2340,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleParentsBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncleparentselderbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleParentsElderBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleParentsElderBrother"))
 	return rv
@@ -2557,7 +2350,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleParentsElderBrother() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationuncleparentsyoungerbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationUncleParentsYoungerBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationUncleParentsYoungerBrother"))
 	return rv
@@ -2568,7 +2360,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationUncleParentsYoungerBrother() stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationwife
-
 func (c_ CNLabeledValue) CNLabelContactRelationWife() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationWife"))
 	return rv
@@ -2579,7 +2370,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationWife() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungerbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerBrother"))
 	return rv
@@ -2590,7 +2380,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungerbrotherinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerBrotherInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerBrotherInLaw"))
 	return rv
@@ -2601,7 +2390,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerBrotherInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousin
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousin() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousin"))
 	return rv
@@ -2612,7 +2400,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfathersbrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinFathersBrothersDaughter"))
 	return rv
@@ -2623,7 +2410,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersBrothersDaugh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfathersbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinFathersBrothersSon"))
 	return rv
@@ -2634,7 +2420,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersBrothersSon()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfatherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinFathersSistersDaughter"))
 	return rv
@@ -2645,7 +2430,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersSistersDaught
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinfatherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinFathersSistersSon"))
 	return rv
@@ -2656,7 +2440,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinFathersSistersSon() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmothersbrothersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersBrothersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinMothersBrothersDaughter"))
 	return rv
@@ -2667,7 +2450,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersBrothersDaugh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmothersbrothersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersBrothersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinMothersBrothersSon"))
 	return rv
@@ -2678,7 +2460,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersBrothersSon()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssiblingsdaughterorfatherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter"))
 	return rv
@@ -2689,7 +2470,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSiblingsDaugh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssiblingssonorfatherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon"))
 	return rv
@@ -2700,7 +2480,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSiblingsSonOr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssistersdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSistersDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinMothersSistersDaughter"))
 	return rv
@@ -2711,7 +2490,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSistersDaught
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinmotherssistersson
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSistersSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinMothersSistersSon"))
 	return rv
@@ -2722,7 +2500,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinMothersSistersSon() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinparentssiblingsdaughter
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinParentsSiblingsDaughter() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinParentsSiblingsDaughter"))
 	return rv
@@ -2733,7 +2510,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinParentsSiblingsDaugh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungercousinparentssiblingsson
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinParentsSiblingsSon() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerCousinParentsSiblingsSon"))
 	return rv
@@ -2744,7 +2520,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerCousinParentsSiblingsSon()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersibling
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerSibling() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerSibling"))
 	return rv
@@ -2755,7 +2530,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerSibling() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersiblinginlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerSiblingInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerSiblingInLaw"))
 	return rv
@@ -2766,7 +2540,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerSiblingInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersister
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerSister"))
 	return rv
@@ -2777,7 +2550,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungersisterinlaw
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungerSisterInLaw() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungerSisterInLaw"))
 	return rv
@@ -2788,7 +2560,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungerSisterInLaw() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungestbrother
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungestBrother() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungestBrother"))
 	return rv
@@ -2799,7 +2570,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungestBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationyoungestsister
-
 func (c_ CNLabeledValue) CNLabelContactRelationYoungestSister() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationYoungestSister"))
 	return rv
@@ -2810,7 +2580,6 @@ func (c_ CNLabeledValue) CNLabelContactRelationYoungestSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeldateanniversary
-
 func (c_ CNLabeledValue) CNLabelDateAnniversary() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelDateAnniversary"))
 	return rv
@@ -2821,7 +2590,6 @@ func (c_ CNLabeledValue) CNLabelDateAnniversary() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelemailicloud
-
 func (c_ CNLabeledValue) CNLabelEmailiCloud() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelEmailiCloud"))
 	return rv
@@ -2832,7 +2600,6 @@ func (c_ CNLabeledValue) CNLabelEmailiCloud() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelhome
-
 func (c_ CNLabeledValue) CNLabelHome() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelHome"))
 	return rv
@@ -2843,7 +2610,6 @@ func (c_ CNLabeledValue) CNLabelHome() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelother
-
 func (c_ CNLabeledValue) CNLabelOther() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelOther"))
 	return rv
@@ -2854,7 +2620,6 @@ func (c_ CNLabeledValue) CNLabelOther() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumberapplewatch
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberAppleWatch() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberAppleWatch"))
 	return rv
@@ -2865,7 +2630,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberAppleWatch() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumberhomefax
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberHomeFax() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberHomeFax"))
 	return rv
@@ -2876,7 +2640,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberHomeFax() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumbermain
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberMain() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberMain"))
 	return rv
@@ -2887,7 +2650,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberMain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumbermobile
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberMobile() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberMobile"))
 	return rv
@@ -2898,7 +2660,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberMobile() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumberotherfax
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberOtherFax() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberOtherFax"))
 	return rv
@@ -2909,7 +2670,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberOtherFax() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumberpager
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberPager() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberPager"))
 	return rv
@@ -2920,7 +2680,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberPager() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumberworkfax
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberWorkFax() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberWorkFax"))
 	return rv
@@ -2931,7 +2690,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberWorkFax() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelphonenumberiphone
-
 func (c_ CNLabeledValue) CNLabelPhoneNumberiPhone() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelPhoneNumberiPhone"))
 	return rv
@@ -2942,7 +2700,6 @@ func (c_ CNLabeledValue) CNLabelPhoneNumberiPhone() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelschool
-
 func (c_ CNLabeledValue) CNLabelSchool() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelSchool"))
 	return rv
@@ -2953,7 +2710,6 @@ func (c_ CNLabeledValue) CNLabelSchool() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelurladdresshomepage
-
 func (c_ CNLabeledValue) CNLabelURLAddressHomePage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelURLAddressHomePage"))
 	return rv
@@ -2964,7 +2720,6 @@ func (c_ CNLabeledValue) CNLabelURLAddressHomePage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelwork
-
 func (c_ CNLabeledValue) CNLabelWork() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelWork"))
 	return rv

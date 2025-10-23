@@ -36,7 +36,11 @@ type IMKMultiPolygon interface {
 // A collection of multiple closed polygon overlays.
 //
 // Use a when you have multiple distinct polygon shapes that you intend to render using the same style.
+
+
+// A collection of multiple closed polygon overlays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMultiPolygon
 type MKMultiPolygon struct {
 	MKShape
@@ -83,8 +87,10 @@ func NewMKMultiPolygon() MKMultiPolygon {
 }
 
 
+
 // An array containing the polygons that make up the multipolygon object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolygon/polygons
 func (m_ MKMultiPolygon) Polygons() MKPolygon {
 	rv := objc.Send[MKPolygon](m_.ID, objc.Sel("polygons"))
@@ -92,10 +98,9 @@ func (m_ MKMultiPolygon) Polygons() MKPolygon {
 }
 
 
-// SetPolygons sets the value of the polygons property.
 // An array containing the polygons that make up the multipolygon object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolygon/polygons
 func (m_ MKMultiPolygon) SetPolygons(value IMKPolygon) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPolygons:"), value)

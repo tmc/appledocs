@@ -39,7 +39,6 @@ type ICKShareBlockedIdentity interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity
-
 type CKShareBlockedIdentity struct {
 	objectivec.Object
 }
@@ -86,7 +85,6 @@ func NewCKShareBlockedIdentity() CKShareBlockedIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/contact
-
 func (c_ CKShareBlockedIdentity) Contact() contacts.CNContact {
 	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
@@ -97,7 +95,6 @@ func (c_ CKShareBlockedIdentity) Contact() contacts.CNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/userIdentity
-
 func (c_ CKShareBlockedIdentity) UserIdentity() CKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv

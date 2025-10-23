@@ -62,7 +62,6 @@ type IHKFHIRVersion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRVersion
-
 type HKFHIRVersion struct {
 	objectivec.Object
 }
@@ -111,7 +110,6 @@ func NewHKFHIRVersion() HKFHIRVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-
 func (h_ HKFHIRVersion) Data() foundation.Data {
 	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("data"))
 	return rv
@@ -122,7 +120,6 @@ func (h_ HKFHIRVersion) Data() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-
 func (h_ HKFHIRVersion) SetData(value foundation.IData) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setData:"), value)
 }
@@ -132,7 +129,6 @@ func (h_ HKFHIRVersion) SetData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
-
 func (h_ HKFHIRVersion) FhirVersion() HKFHIRVersion {
 	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("fhirVersion"))
 	return rv
@@ -143,7 +139,6 @@ func (h_ HKFHIRVersion) FhirVersion() HKFHIRVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
-
 func (h_ HKFHIRVersion) SetFhirVersion(value IHKFHIRVersion) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFhirVersion:"), value)
 }
@@ -153,7 +148,6 @@ func (h_ HKFHIRVersion) SetFhirVersion(value IHKFHIRVersion) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-
 func (h_ HKFHIRVersion) Identifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
@@ -164,7 +158,6 @@ func (h_ HKFHIRVersion) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-
 func (h_ HKFHIRVersion) SetIdentifier(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -174,7 +167,6 @@ func (h_ HKFHIRVersion) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
-
 func (h_ HKFHIRVersion) ResourceType() HKFHIRResourceType {
 	rv := objc.Send[HKFHIRResourceType](h_.ID, objc.Sel("resourceType"))
 	return rv
@@ -185,7 +177,6 @@ func (h_ HKFHIRVersion) ResourceType() HKFHIRResourceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
-
 func (h_ HKFHIRVersion) SetResourceType(value HKFHIRResourceType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setResourceType:"), value)
 }
@@ -195,7 +186,6 @@ func (h_ HKFHIRVersion) SetResourceType(value HKFHIRResourceType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-
 func (h_ HKFHIRVersion) SourceURL() foundation.URL {
 	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
 	return rv
@@ -206,7 +196,6 @@ func (h_ HKFHIRVersion) SourceURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-
 func (h_ HKFHIRVersion) SetSourceURL(value foundation.IURL) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceURL:"), value)
 }
@@ -216,7 +205,6 @@ func (h_ HKFHIRVersion) SetSourceURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/fhirrelease
-
 func (h_ HKFHIRVersion) FhirRelease() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("fhirRelease"))
 	return rv
@@ -227,7 +215,6 @@ func (h_ HKFHIRVersion) FhirRelease() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/fhirrelease
-
 func (h_ HKFHIRVersion) SetFhirRelease(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFhirRelease:"), value)
 }
@@ -237,7 +224,6 @@ func (h_ HKFHIRVersion) SetFhirRelease(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/majorversion
-
 func (h_ HKFHIRVersion) MajorVersion() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("majorVersion"))
 	return rv
@@ -248,7 +234,6 @@ func (h_ HKFHIRVersion) MajorVersion() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/majorversion
-
 func (h_ HKFHIRVersion) SetMajorVersion(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMajorVersion:"), value)
 }
@@ -258,7 +243,6 @@ func (h_ HKFHIRVersion) SetMajorVersion(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/minorversion
-
 func (h_ HKFHIRVersion) MinorVersion() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("minorVersion"))
 	return rv
@@ -269,7 +253,6 @@ func (h_ HKFHIRVersion) MinorVersion() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/minorversion
-
 func (h_ HKFHIRVersion) SetMinorVersion(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMinorVersion:"), value)
 }
@@ -279,7 +262,6 @@ func (h_ HKFHIRVersion) SetMinorVersion(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/patchversion
-
 func (h_ HKFHIRVersion) PatchVersion() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("patchVersion"))
 	return rv
@@ -290,7 +272,6 @@ func (h_ HKFHIRVersion) PatchVersion() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/patchversion
-
 func (h_ HKFHIRVersion) SetPatchVersion(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPatchVersion:"), value)
 }
@@ -300,7 +281,6 @@ func (h_ HKFHIRVersion) SetPatchVersion(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/stringrepresentation
-
 func (h_ HKFHIRVersion) StringRepresentation() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("stringRepresentation"))
 	return rv
@@ -311,7 +291,6 @@ func (h_ HKFHIRVersion) StringRepresentation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/stringrepresentation
-
 func (h_ HKFHIRVersion) SetStringRepresentation(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStringRepresentation:"), objc.String(value))
 }

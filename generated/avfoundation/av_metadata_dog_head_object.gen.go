@@ -40,7 +40,6 @@ type IMetadataDogHeadObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataDogHeadObject
-
 type MetadataDogHeadObject struct {
 	MetadataObject
 }

@@ -32,7 +32,9 @@ type ImAbortedByOwner interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mAbortedByOwner
 type mAbortedByOwner struct {
 	objectivec.Object

@@ -44,7 +44,6 @@ type ICBUserIdentity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity
-
 type CBUserIdentity struct {
 	CBIdentity
 }
@@ -91,12 +90,10 @@ func NewCBUserIdentity() CBUserIdentity {
 
 
 
-
 // Returns a Boolean value indicating whether the given password is correct for the identity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/authenticate(withPassword:)
-
 func (c_ CBUserIdentity) AuthenticateWithPassword(password string) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("authenticateWithPassword:"), objc.String(password))
 	return rv
@@ -107,7 +104,6 @@ func (c_ CBUserIdentity) AuthenticateWithPassword(password string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/certificate
-
 func (c_ CBUserIdentity) Certificate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("certificate"))
 	return rv
@@ -118,7 +114,6 @@ func (c_ CBUserIdentity) Certificate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/isEnabled
-
 func (c_ CBUserIdentity) Enabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
@@ -129,7 +124,6 @@ func (c_ CBUserIdentity) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/posixUID
-
 func (c_ CBUserIdentity) PosixUID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("posixUID"))
 	return rv
@@ -140,7 +134,6 @@ func (c_ CBUserIdentity) PosixUID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
-
 func (c_ CBUserIdentity) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -151,7 +144,6 @@ func (c_ CBUserIdentity) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
-
 func (c_ CBUserIdentity) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }

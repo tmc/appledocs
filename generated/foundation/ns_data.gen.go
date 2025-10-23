@@ -30,9 +30,9 @@ type _DataClass struct {
 // An interface definition for the [Data] class.
 type IData interface {
 	objectivec.IObject
-	Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions) Data
-	Base64EncodedStringWithOptions(options NSDataBase64EncodingOptions) String
-	Base64Encoding() String
+	Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions) IData
+	Base64EncodedStringWithOptions(options NSDataBase64EncodingOptions) IString
+	Base64Encoding() IString
 	CompressedDataUsingAlgorithmError(algorithm NSDataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	DecompressedDataUsingAlgorithmError(algorithm NSDataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
@@ -41,7 +41,7 @@ type IData interface {
 	GetBytesRange(buffer unsafe.Pointer, range_ Range)
 	IsEqualToData(other IData) bool
 	RangeOfDataOptionsRange(dataToFind IData, mask NSDataSearchOptions, searchRange Range) Range
-	SubdataWithRange(range_ Range) Data
+	SubdataWithRange(range_ Range) IData
 	WriteToURLAtomically(url IURL, atomically bool) bool
 	WriteToURLOptionsError(url IURL, writeOptionsMask NSDataWritingOptions, errorPtr IError) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
@@ -373,7 +373,7 @@ func (dc _DataClass) DataWithContentsOfURLOptionsError(url IURL, readOptionsMask
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64EncodedData(options:)
-func (d_ Data) Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions) Data {
+func (d_ Data) Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions) IData {
 	rv := objc.Send[Data](d_.ID, objc.Sel("base64EncodedDataWithOptions:"), options)
 	return rv
 }
@@ -383,7 +383,7 @@ func (d_ Data) Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64EncodedString(options:)
-func (d_ Data) Base64EncodedStringWithOptions(options NSDataBase64EncodingOptions) String {
+func (d_ Data) Base64EncodedStringWithOptions(options NSDataBase64EncodingOptions) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("base64EncodedStringWithOptions:"), options)
 	return rv
 }
@@ -393,7 +393,7 @@ func (d_ Data) Base64EncodedStringWithOptions(options NSDataBase64EncodingOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64Encoding()
-func (d_ Data) Base64Encoding() String {
+func (d_ Data) Base64Encoding() IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("base64Encoding"))
 	return rv
 }
@@ -479,7 +479,7 @@ func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask NSDataSearchOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/subdata(with:)
-func (d_ Data) SubdataWithRange(range_ Range) Data {
+func (d_ Data) SubdataWithRange(range_ Range) IData {
 	rv := objc.Send[Data](d_.ID, objc.Sel("subdataWithRange:"), range_)
 	return rv
 }

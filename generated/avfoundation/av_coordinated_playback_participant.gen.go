@@ -32,12 +32,12 @@ type _CoordinatedPlaybackParticipantClass struct {
 type ICoordinatedPlaybackParticipant interface {
 	objectivec.IObject
 	Identifier() foundation.UUID
-	SetIdentifier(value foundation.IUUID)
+	SetIdentifier(value foundation.UUID)
 	IsReadyToPlay() bool
 	SetIsReadyToPlay(value bool)
 	SuspensionReasons() unsafe.Pointer
 	SetSuspensionReasons(value unsafe.Pointer)
-	OtherParticipants() AVCoordinatedPlaybackParticipant
+	OtherParticipants() IAVCoordinatedPlaybackParticipant
 	SetOtherParticipants(value IAVCoordinatedPlaybackParticipant)
 }
 
@@ -50,7 +50,6 @@ type ICoordinatedPlaybackParticipant interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCoordinatedPlaybackParticipant
-
 type CoordinatedPlaybackParticipant struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-
 func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv
@@ -110,8 +108,7 @@ func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-
-func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.IUUID) {
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -120,7 +117,6 @@ func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.IUUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
-
 func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isReadyToPlay"))
 	return rv
@@ -131,7 +127,6 @@ func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
-
 func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsReadyToPlay:"), value)
 }
@@ -141,7 +136,6 @@ func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/suspensionreasons
-
 func (c_ CoordinatedPlaybackParticipant) SuspensionReasons() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("suspensionReasons"))
 	return rv
@@ -152,7 +146,6 @@ func (c_ CoordinatedPlaybackParticipant) SuspensionReasons() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/suspensionreasons
-
 func (c_ CoordinatedPlaybackParticipant) SetSuspensionReasons(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSuspensionReasons:"), value)
 }
@@ -162,8 +155,7 @@ func (c_ CoordinatedPlaybackParticipant) SetSuspensionReasons(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
-
-func (c_ CoordinatedPlaybackParticipant) OtherParticipants() AVCoordinatedPlaybackParticipant {
+func (c_ CoordinatedPlaybackParticipant) OtherParticipants() IAVCoordinatedPlaybackParticipant {
 	rv := objc.Send[AVCoordinatedPlaybackParticipant](c_.ID, objc.Sel("otherParticipants"))
 	return rv
 }
@@ -173,7 +165,6 @@ func (c_ CoordinatedPlaybackParticipant) OtherParticipants() AVCoordinatedPlayba
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
-
 func (c_ CoordinatedPlaybackParticipant) SetOtherParticipants(value IAVCoordinatedPlaybackParticipant) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOtherParticipants:"), value)
 }

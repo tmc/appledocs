@@ -45,7 +45,6 @@ type IFSItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem
-
 type FSItem struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewFSItem() FSItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
-
 func (f_ FSItem) WantedAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("wantedAttributes"))
 	return rv
@@ -105,7 +103,6 @@ func (f_ FSItem) WantedAttributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
-
 func (f_ FSItem) SetWantedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWantedAttributes:"), value)
 }
@@ -115,7 +112,6 @@ func (f_ FSItem) SetWantedAttributes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest/consumedattributes
-
 func (f_ FSItem) ConsumedAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("consumedAttributes"))
 	return rv
@@ -126,7 +122,6 @@ func (f_ FSItem) ConsumedAttributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest/consumedattributes
-
 func (f_ FSItem) SetConsumedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setConsumedAttributes:"), value)
 }

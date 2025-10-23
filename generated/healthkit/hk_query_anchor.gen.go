@@ -41,7 +41,6 @@ type IHKQueryAnchor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryAnchor
-
 type HKQueryAnchor struct {
 	objectivec.Object
 }

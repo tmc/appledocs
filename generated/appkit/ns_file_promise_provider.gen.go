@@ -47,7 +47,6 @@ type IFilePromiseProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider
-
 type FilePromiseProvider struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewFilePromiseProvider() FilePromiseProvider {
 
 
 
-
 // Initializes a file promise provider for a certain file type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/init(fileType:delegate:)
-
 func NewFilePromiseProviderWithFileTypeDelegate(fileType string, delegate objectivec.IObject) FilePromiseProvider {
 	instance := getFilePromiseProviderClass().Alloc()
 	rv := objc.Send[FilePromiseProvider](instance.ID, objc.Sel("initWithFileType:delegate:"), objc.String(fileType), delegate)
@@ -109,7 +106,6 @@ func NewFilePromiseProviderWithFileTypeDelegate(fileType string, delegate object
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/delegate
-
 func (f_ FilePromiseProvider) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
 	return rv
@@ -118,7 +114,6 @@ func (f_ FilePromiseProvider) Delegate() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/delegate
-
 func (f_ FilePromiseProvider) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -128,7 +123,6 @@ func (f_ FilePromiseProvider) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/fileType
-
 func (f_ FilePromiseProvider) FileType() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("fileType"))
 	return rv
@@ -139,7 +133,6 @@ func (f_ FilePromiseProvider) FileType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/fileType
-
 func (f_ FilePromiseProvider) SetFileType(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileType:"), objc.String(value))
 }
@@ -149,7 +142,6 @@ func (f_ FilePromiseProvider) SetFileType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/userInfo
-
 func (f_ FilePromiseProvider) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("userInfo"))
 	return rv
@@ -160,7 +152,6 @@ func (f_ FilePromiseProvider) UserInfo() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/userInfo
-
 func (f_ FilePromiseProvider) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUserInfo:"), value)
 }

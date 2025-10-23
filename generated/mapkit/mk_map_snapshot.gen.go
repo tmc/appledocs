@@ -43,7 +43,11 @@ type IMKMapSnapshot interface {
 // An image that a snapshotter object generates.
 //
 // You don’t create instances of this class directly. Instead, you use an object to capture the map contents asynchronously. An object contains the image that the snapshotter generates from the map contents. Snapshot images don’t include any custom overlays or annotations that your app adds to the map view. If you want your annotations and overlays to appear on the final image, you need to draw them yourself. To position those items correctly on the image, use the method of this class to translate the overlay or annotation coordinate value to an appropriate location inside the image’s coordinate space.
+
+
+// An image that a snapshotter object generates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot
 type MKMapSnapshot struct {
 	objectivec.Object
@@ -88,24 +92,30 @@ func NewMKMapSnapshot() MKMapSnapshot {
 }
 
 
+
 // Converts the specified map coordinate to a point in the coordinate space of the image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/point(for:)
 func (m_ MKMapSnapshot) PointForCoordinate(coordinate unsafe.Pointer) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("pointForCoordinate:"), coordinate)
 	return rv
 }
 
+
 // The visual style that MapKit uses when rendering the snapshot.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/appearance
 func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
 	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
+
 // The image of the map’s content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
 func (m_ MKMapSnapshot) Image() appkit.Image {
 	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
@@ -113,17 +123,18 @@ func (m_ MKMapSnapshot) Image() appkit.Image {
 }
 
 
-// SetImage sets the value of the image property.
 // The image of the map’s content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
 func (m_ MKMapSnapshot) SetImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
 }
 
+
 // Traits to use when creating the snapshot.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
 func (m_ MKMapSnapshot) TraitCollection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("traitCollection"))
@@ -131,10 +142,9 @@ func (m_ MKMapSnapshot) TraitCollection() unsafe.Pointer {
 }
 
 
-// SetTraitCollection sets the value of the traitCollection property.
 // Traits to use when creating the snapshot.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
 func (m_ MKMapSnapshot) SetTraitCollection(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTraitCollection:"), value)

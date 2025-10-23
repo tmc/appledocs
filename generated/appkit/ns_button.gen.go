@@ -67,9 +67,9 @@ type IButton interface {
 	ImageHugsTitle() bool
 	SetImageHugsTitle(value bool)
 	ImagePosition() CellImagePosition
-	SetImagePosition(value CellImagePosition)
+	SetImagePosition(value ICellImagePosition)
 	ImageScaling() ImageScaling
-	SetImageScaling(value ImageScaling)
+	SetImageScaling(value IImageScaling)
 	Bordered() bool
 	SetBordered(value bool)
 	SpringLoaded() bool
@@ -111,7 +111,6 @@ type IButton interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton
-
 type Button struct {
 	Control
 }
@@ -158,60 +157,50 @@ func NewButton() Button {
 
 
 
-
 // Creates a standard checkbox with the title you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
-
 func NewButtonCheckboxWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
 
 
-
 // Creates a standard radio button with the title you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(radioButtonWithTitle:target:action:)
-
 func NewButtonRadioButtonWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("radioButtonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
 
 
-
 // Creates a standard push button with the image you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(image:target:action:)
-
 func NewButtonWithImageTargetAction(image IImage, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithImage:target:action:"), image, target, action)
 	return rv
 }
 
 
-
 // Creates a standard push button with a title and image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
-
 func NewButtonWithTitleImageTargetAction(title string, image IImage, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
 
 
-
 // Creates a standard push button with the title you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-
 func NewButtonWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
@@ -223,7 +212,6 @@ func NewButtonWithTitleTargetAction(title string, target objectivec.IObject, act
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
-
 func (bc _ButtonClass) CheckboxWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
@@ -234,7 +222,6 @@ func (bc _ButtonClass) CheckboxWithTitleTargetAction(title string, target object
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(image:target:action:)
-
 func (bc _ButtonClass) ButtonWithImageTargetAction(image IImage, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithImage:target:action:"), image, target, action)
 	return rv
@@ -245,7 +232,6 @@ func (bc _ButtonClass) ButtonWithImageTargetAction(image IImage, target objectiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(radioButtonWithTitle:target:action:)
-
 func (bc _ButtonClass) RadioButtonWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("radioButtonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
@@ -256,7 +242,6 @@ func (bc _ButtonClass) RadioButtonWithTitleTargetAction(title string, target obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
-
 func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title string, image IImage, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
@@ -267,109 +252,90 @@ func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title string, image IIma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-
 func (bc _ButtonClass) ButtonWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
 
 
-
 // Sets the priority compression options for this button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)
-
 func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("compressWithPrioritizedCompressionOptions:"), prioritizedOptions)
 }
-
 
 
 // Returns by reference the delay and interval periods for a continuous button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/getPeriodicDelay(_:interval:)
-
 func (b_ Button) GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getPeriodicDelay:interval:"), delay, interval)
 }
-
 
 
 // Highlights (or unhighlights) the button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/highlight(_:)
-
 func (b_ Button) Highlight(flag bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("highlight:"), flag)
 }
-
 
 
 // Returns the minimum size of the button by using the compression options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/minimumSize(withPrioritizedCompressionOptions:)
-
 func (b_ Button) MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](b_.ID, objc.Sel("minimumSizeWithPrioritizedCompressionOptions:"), prioritizedOptions)
 	return rv
 }
 
 
-
 // Checks the button’s key equivalent against the specified event and, if they match, simulates the button being clicked.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/performKeyEquivalent(with:)
-
 func (b_ Button) PerformKeyEquivalent(key IEvent) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("performKeyEquivalent:"), key)
 	return rv
 }
 
 
-
 // Sets the button’s type, which affects its user interface and behavior when clicked.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setButtonType(_:)
-
 func (b_ Button) SetButtonType(type_ ButtonType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setButtonType:"), type_)
 }
-
 
 
 // Sets the button to its next state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setNextState()
-
 func (b_ Button) SetNextState() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNextState"))
 }
-
 
 
 // Sets the message delay and interval periods for a continuous button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)
-
 func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
-
 
 
 // Sets the title of a button with a character denoting an access key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setTitleWithMnemonic:
-
 func (b_ Button) SetTitleWithMnemonic(stringWithAmpersand string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
 }
@@ -379,7 +345,6 @@ func (b_ Button) SetTitleWithMnemonic(stringWithAmpersand string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/activeCompressionOptions
-
 func (b_ Button) ActiveCompressionOptions() NSUserInterfaceCompressionOptions {
 	rv := objc.Send[NSUserInterfaceCompressionOptions](b_.ID, objc.Sel("activeCompressionOptions"))
 	return rv
@@ -390,7 +355,6 @@ func (b_ Button) ActiveCompressionOptions() NSUserInterfaceCompressionOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/allowsMixedState
-
 func (b_ Button) AllowsMixedState() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsMixedState"))
 	return rv
@@ -401,7 +365,6 @@ func (b_ Button) AllowsMixedState() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/allowsMixedState
-
 func (b_ Button) SetAllowsMixedState(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsMixedState:"), value)
 }
@@ -411,7 +374,6 @@ func (b_ Button) SetAllowsMixedState(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/alternateImage
-
 func (b_ Button) AlternateImage() Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("alternateImage"))
 	return rv
@@ -422,7 +384,6 @@ func (b_ Button) AlternateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/alternateImage
-
 func (b_ Button) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateImage:"), value)
 }
@@ -432,7 +393,6 @@ func (b_ Button) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/alternateTitle
-
 func (b_ Button) AlternateTitle() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("alternateTitle"))
 	return rv
@@ -443,7 +403,6 @@ func (b_ Button) AlternateTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/alternateTitle
-
 func (b_ Button) SetAlternateTitle(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateTitle:"), objc.String(value))
 }
@@ -453,7 +412,6 @@ func (b_ Button) SetAlternateTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
-
 func (b_ Button) AttributedAlternateTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
 	return rv
@@ -464,7 +422,6 @@ func (b_ Button) AttributedAlternateTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
-
 func (b_ Button) SetAttributedAlternateTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedAlternateTitle:"), value)
 }
@@ -474,7 +431,6 @@ func (b_ Button) SetAttributedAlternateTitle(value foundation.IAttributedString)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
-
 func (b_ Button) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedTitle"))
 	return rv
@@ -485,7 +441,6 @@ func (b_ Button) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
-
 func (b_ Button) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedTitle:"), value)
 }
@@ -495,7 +450,6 @@ func (b_ Button) SetAttributedTitle(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/bezelColor
-
 func (b_ Button) BezelColor() NSColor {
 	rv := objc.Send[NSColor](b_.ID, objc.Sel("bezelColor"))
 	return rv
@@ -506,7 +460,6 @@ func (b_ Button) BezelColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/bezelColor
-
 func (b_ Button) SetBezelColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelColor:"), value)
 }
@@ -516,7 +469,6 @@ func (b_ Button) SetBezelColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/bezelStyle-swift.property
-
 func (b_ Button) BezelStyle() BezelStyle {
 	rv := objc.Send[BezelStyle](b_.ID, objc.Sel("bezelStyle"))
 	return rv
@@ -527,7 +479,6 @@ func (b_ Button) BezelStyle() BezelStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/bezelStyle-swift.property
-
 func (b_ Button) SetBezelStyle(value BezelStyle) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelStyle:"), value)
 }
@@ -535,7 +486,6 @@ func (b_ Button) SetBezelStyle(value BezelStyle) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/borderShape
-
 func (b_ Button) BorderShape() ControlBorderShape {
 	rv := objc.Send[ControlBorderShape](b_.ID, objc.Sel("borderShape"))
 	return rv
@@ -544,7 +494,6 @@ func (b_ Button) BorderShape() ControlBorderShape {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/borderShape
-
 func (b_ Button) SetBorderShape(value IControlBorderShape) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderShape:"), value)
 }
@@ -554,7 +503,6 @@ func (b_ Button) SetBorderShape(value IControlBorderShape) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/contentTintColor
-
 func (b_ Button) ContentTintColor() NSColor {
 	rv := objc.Send[NSColor](b_.ID, objc.Sel("contentTintColor"))
 	return rv
@@ -565,7 +513,6 @@ func (b_ Button) ContentTintColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/contentTintColor
-
 func (b_ Button) SetContentTintColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentTintColor:"), value)
 }
@@ -575,7 +522,6 @@ func (b_ Button) SetContentTintColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/hasDestructiveAction
-
 func (b_ Button) HasDestructiveAction() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("hasDestructiveAction"))
 	return rv
@@ -586,7 +532,6 @@ func (b_ Button) HasDestructiveAction() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/hasDestructiveAction
-
 func (b_ Button) SetHasDestructiveAction(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setHasDestructiveAction:"), value)
 }
@@ -596,7 +541,6 @@ func (b_ Button) SetHasDestructiveAction(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/image
-
 func (b_ Button) Image() Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("image"))
 	return rv
@@ -607,7 +551,6 @@ func (b_ Button) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/image
-
 func (b_ Button) SetImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
 }
@@ -617,7 +560,6 @@ func (b_ Button) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/imageHugsTitle
-
 func (b_ Button) ImageHugsTitle() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("imageHugsTitle"))
 	return rv
@@ -628,7 +570,6 @@ func (b_ Button) ImageHugsTitle() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/imageHugsTitle
-
 func (b_ Button) SetImageHugsTitle(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImageHugsTitle:"), value)
 }
@@ -638,7 +579,6 @@ func (b_ Button) SetImageHugsTitle(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/imagePosition
-
 func (b_ Button) ImagePosition() CellImagePosition {
 	rv := objc.Send[CellImagePosition](b_.ID, objc.Sel("imagePosition"))
 	return rv
@@ -649,8 +589,7 @@ func (b_ Button) ImagePosition() CellImagePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/imagePosition
-
-func (b_ Button) SetImagePosition(value CellImagePosition) {
+func (b_ Button) SetImagePosition(value ICellImagePosition) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImagePosition:"), value)
 }
 
@@ -659,7 +598,6 @@ func (b_ Button) SetImagePosition(value CellImagePosition) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/imageScaling
-
 func (b_ Button) ImageScaling() ImageScaling {
 	rv := objc.Send[ImageScaling](b_.ID, objc.Sel("imageScaling"))
 	return rv
@@ -670,8 +608,7 @@ func (b_ Button) ImageScaling() ImageScaling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/imageScaling
-
-func (b_ Button) SetImageScaling(value ImageScaling) {
+func (b_ Button) SetImageScaling(value IImageScaling) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImageScaling:"), value)
 }
 
@@ -680,7 +617,6 @@ func (b_ Button) SetImageScaling(value ImageScaling) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
-
 func (b_ Button) Bordered() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("bordered"))
 	return rv
@@ -691,7 +627,6 @@ func (b_ Button) Bordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
-
 func (b_ Button) SetBordered(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBordered:"), value)
 }
@@ -701,7 +636,6 @@ func (b_ Button) SetBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isSpringLoaded
-
 func (b_ Button) SpringLoaded() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("springLoaded"))
 	return rv
@@ -712,7 +646,6 @@ func (b_ Button) SpringLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isSpringLoaded
-
 func (b_ Button) SetSpringLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSpringLoaded:"), value)
 }
@@ -722,7 +655,6 @@ func (b_ Button) SetSpringLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
-
 func (b_ Button) Transparent() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("transparent"))
 	return rv
@@ -733,7 +665,6 @@ func (b_ Button) Transparent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
-
 func (b_ Button) SetTransparent(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTransparent:"), value)
 }
@@ -743,7 +674,6 @@ func (b_ Button) SetTransparent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalent
-
 func (b_ Button) KeyEquivalent() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("keyEquivalent"))
 	return rv
@@ -754,7 +684,6 @@ func (b_ Button) KeyEquivalent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalent
-
 func (b_ Button) SetKeyEquivalent(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
 }
@@ -764,7 +693,6 @@ func (b_ Button) SetKeyEquivalent(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalentModifierMask
-
 func (b_ Button) KeyEquivalentModifierMask() EventModifierFlags {
 	rv := objc.Send[EventModifierFlags](b_.ID, objc.Sel("keyEquivalentModifierMask"))
 	return rv
@@ -775,7 +703,6 @@ func (b_ Button) KeyEquivalentModifierMask() EventModifierFlags {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalentModifierMask
-
 func (b_ Button) SetKeyEquivalentModifierMask(value EventModifierFlags) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalentModifierMask:"), value)
 }
@@ -785,7 +712,6 @@ func (b_ Button) SetKeyEquivalentModifierMask(value EventModifierFlags) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/maxAcceleratorLevel
-
 func (b_ Button) MaxAcceleratorLevel() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("maxAcceleratorLevel"))
 	return rv
@@ -796,7 +722,6 @@ func (b_ Button) MaxAcceleratorLevel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/maxAcceleratorLevel
-
 func (b_ Button) SetMaxAcceleratorLevel(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMaxAcceleratorLevel:"), value)
 }
@@ -806,7 +731,6 @@ func (b_ Button) SetMaxAcceleratorLevel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside
-
 func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("showsBorderOnlyWhileMouseInside"))
 	return rv
@@ -817,7 +741,6 @@ func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside
-
 func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setShowsBorderOnlyWhileMouseInside:"), value)
 }
@@ -827,7 +750,6 @@ func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/sound
-
 func (b_ Button) Sound() NSSound {
 	rv := objc.Send[NSSound](b_.ID, objc.Sel("sound"))
 	return rv
@@ -838,7 +760,6 @@ func (b_ Button) Sound() NSSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/sound
-
 func (b_ Button) SetSound(value ISound) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSound:"), value)
 }
@@ -848,7 +769,6 @@ func (b_ Button) SetSound(value ISound) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/state
-
 func (b_ Button) State() ControlStateValue {
 	rv := objc.Send[ControlStateValue](b_.ID, objc.Sel("state"))
 	return rv
@@ -859,7 +779,6 @@ func (b_ Button) State() ControlStateValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/state
-
 func (b_ Button) SetState(value IControlStateValue) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setState:"), value)
 }
@@ -869,7 +788,6 @@ func (b_ Button) SetState(value IControlStateValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/symbolConfiguration
-
 func (b_ Button) SymbolConfiguration() ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](b_.ID, objc.Sel("symbolConfiguration"))
 	return rv
@@ -880,7 +798,6 @@ func (b_ Button) SymbolConfiguration() ImageSymbolConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/symbolConfiguration
-
 func (b_ Button) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSymbolConfiguration:"), value)
 }
@@ -890,7 +807,6 @@ func (b_ Button) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/tintProminence
-
 func (b_ Button) TintProminence() TintProminence {
 	rv := objc.Send[TintProminence](b_.ID, objc.Sel("tintProminence"))
 	return rv
@@ -901,7 +817,6 @@ func (b_ Button) TintProminence() TintProminence {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/tintProminence
-
 func (b_ Button) SetTintProminence(value ITintProminence) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTintProminence:"), value)
 }
@@ -911,7 +826,6 @@ func (b_ Button) SetTintProminence(value ITintProminence) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/title
-
 func (b_ Button) Title() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("title"))
 	return rv
@@ -922,7 +836,6 @@ func (b_ Button) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/title
-
 func (b_ Button) SetTitle(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -932,7 +845,6 @@ func (b_ Button) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
-
 func (b_ Button) IsBordered() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isBordered"))
 	return rv
@@ -943,7 +855,6 @@ func (b_ Button) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
-
 func (b_ Button) SetIsBordered(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsBordered:"), value)
 }
@@ -953,7 +864,6 @@ func (b_ Button) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
-
 func (b_ Button) IsSpringLoaded() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isSpringLoaded"))
 	return rv
@@ -964,7 +874,6 @@ func (b_ Button) IsSpringLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
-
 func (b_ Button) SetIsSpringLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
@@ -974,7 +883,6 @@ func (b_ Button) SetIsSpringLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
-
 func (b_ Button) IsTransparent() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTransparent"))
 	return rv
@@ -985,7 +893,6 @@ func (b_ Button) IsTransparent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
-
 func (b_ Button) SetIsTransparent(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTransparent:"), value)
 }

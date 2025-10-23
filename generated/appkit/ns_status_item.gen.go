@@ -84,7 +84,6 @@ type IStatusItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem
-
 type StatusItem struct {
 	objectivec.Object
 }
@@ -129,34 +128,28 @@ func NewStatusItem() StatusItem {
 
 
 
-
 // Draws the menu background pattern for a custom status-bar item in regular or highlight pattern.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/drawStatusBarBackground(in:withHighlight:)
-
 func (s_ StatusItem) DrawStatusBarBackgroundInRectWithHighlight(rect coregraphics.CGRect, highlight bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawStatusBarBackgroundInRect:withHighlight:"), rect, highlight)
 }
-
 
 
 // Displays a menu under a custom status bar item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/popUpMenu(_:)
-
 func (s_ StatusItem) PopUpStatusItemMenu(menu IMenu) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("popUpStatusItemMenu:"), menu)
 }
-
 
 
 // Sets the conditions on which the status item sends action messages to its target.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/sendAction(on:)
-
 func (s_ StatusItem) SendActionOn(mask EventMask) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("sendActionOn:"), mask)
 	return rv
@@ -167,7 +160,6 @@ func (s_ StatusItem) SendActionOn(mask EventMask) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/action
-
 func (s_ StatusItem) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("action"))
 	return rv
@@ -178,7 +170,6 @@ func (s_ StatusItem) Action() objc.SEL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/action
-
 func (s_ StatusItem) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
 }
@@ -188,7 +179,6 @@ func (s_ StatusItem) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/alternateImage
-
 func (s_ StatusItem) AlternateImage() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("alternateImage"))
 	return rv
@@ -199,7 +189,6 @@ func (s_ StatusItem) AlternateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/alternateImage
-
 func (s_ StatusItem) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
 }
@@ -209,7 +198,6 @@ func (s_ StatusItem) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/attributedTitle
-
 func (s_ StatusItem) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](s_.ID, objc.Sel("attributedTitle"))
 	return rv
@@ -220,7 +208,6 @@ func (s_ StatusItem) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/attributedTitle
-
 func (s_ StatusItem) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttributedTitle:"), value)
 }
@@ -230,7 +217,6 @@ func (s_ StatusItem) SetAttributedTitle(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/autosaveName-swift.property
-
 func (s_ StatusItem) AutosaveName() StatusItemAutosaveName {
 	rv := objc.Send[StatusItemAutosaveName](s_.ID, objc.Sel("autosaveName"))
 	return rv
@@ -241,7 +227,6 @@ func (s_ StatusItem) AutosaveName() StatusItemAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/autosaveName-swift.property
-
 func (s_ StatusItem) SetAutosaveName(value IStatusItemAutosaveName) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutosaveName:"), value)
 }
@@ -251,7 +236,6 @@ func (s_ StatusItem) SetAutosaveName(value IStatusItemAutosaveName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/behavior-swift.property
-
 func (s_ StatusItem) Behavior() StatusItemBehavior {
 	rv := objc.Send[StatusItemBehavior](s_.ID, objc.Sel("behavior"))
 	return rv
@@ -262,7 +246,6 @@ func (s_ StatusItem) Behavior() StatusItemBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/behavior-swift.property
-
 func (s_ StatusItem) SetBehavior(value StatusItemBehavior) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBehavior:"), value)
 }
@@ -272,7 +255,6 @@ func (s_ StatusItem) SetBehavior(value StatusItemBehavior) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/button
-
 func (s_ StatusItem) Button() NSStatusBarButton {
 	rv := objc.Send[NSStatusBarButton](s_.ID, objc.Sel("button"))
 	return rv
@@ -283,7 +265,6 @@ func (s_ StatusItem) Button() NSStatusBarButton {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/doubleAction
-
 func (s_ StatusItem) DoubleAction() objc.SEL {
 	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("doubleAction"))
 	return rv
@@ -294,7 +275,6 @@ func (s_ StatusItem) DoubleAction() objc.SEL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/doubleAction
-
 func (s_ StatusItem) SetDoubleAction(value objc.SEL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleAction:"), value)
 }
@@ -304,7 +284,6 @@ func (s_ StatusItem) SetDoubleAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/highlightMode
-
 func (s_ StatusItem) HighlightMode() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("highlightMode"))
 	return rv
@@ -315,7 +294,6 @@ func (s_ StatusItem) HighlightMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/highlightMode
-
 func (s_ StatusItem) SetHighlightMode(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHighlightMode:"), value)
 }
@@ -325,7 +303,6 @@ func (s_ StatusItem) SetHighlightMode(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/image
-
 func (s_ StatusItem) Image() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
@@ -336,7 +313,6 @@ func (s_ StatusItem) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/image
-
 func (s_ StatusItem) SetImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }
@@ -346,7 +322,6 @@ func (s_ StatusItem) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/isEnabled
-
 func (s_ StatusItem) Enabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
 	return rv
@@ -357,7 +332,6 @@ func (s_ StatusItem) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/isEnabled
-
 func (s_ StatusItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -367,7 +341,6 @@ func (s_ StatusItem) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/isVisible
-
 func (s_ StatusItem) Visible() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("visible"))
 	return rv
@@ -378,7 +351,6 @@ func (s_ StatusItem) Visible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/isVisible
-
 func (s_ StatusItem) SetVisible(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVisible:"), value)
 }
@@ -388,7 +360,6 @@ func (s_ StatusItem) SetVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/length
-
 func (s_ StatusItem) Length() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("length"))
 	return rv
@@ -399,7 +370,6 @@ func (s_ StatusItem) Length() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/length
-
 func (s_ StatusItem) SetLength(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLength:"), value)
 }
@@ -409,7 +379,6 @@ func (s_ StatusItem) SetLength(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/menu
-
 func (s_ StatusItem) Menu() NSMenu {
 	rv := objc.Send[NSMenu](s_.ID, objc.Sel("menu"))
 	return rv
@@ -420,7 +389,6 @@ func (s_ StatusItem) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/menu
-
 func (s_ StatusItem) SetMenu(value IMenu) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMenu:"), value)
 }
@@ -430,7 +398,6 @@ func (s_ StatusItem) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/statusBar
-
 func (s_ StatusItem) StatusBar() NSStatusBar {
 	rv := objc.Send[NSStatusBar](s_.ID, objc.Sel("statusBar"))
 	return rv
@@ -441,7 +408,6 @@ func (s_ StatusItem) StatusBar() NSStatusBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/target
-
 func (s_ StatusItem) Target() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("target"))
 	return rv
@@ -452,7 +418,6 @@ func (s_ StatusItem) Target() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/target
-
 func (s_ StatusItem) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTarget:"), value)
 }
@@ -462,7 +427,6 @@ func (s_ StatusItem) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/title
-
 func (s_ StatusItem) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
@@ -473,7 +437,6 @@ func (s_ StatusItem) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/title
-
 func (s_ StatusItem) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -483,7 +446,6 @@ func (s_ StatusItem) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/toolTip
-
 func (s_ StatusItem) ToolTip() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("toolTip"))
 	return rv
@@ -494,7 +456,6 @@ func (s_ StatusItem) ToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/toolTip
-
 func (s_ StatusItem) SetToolTip(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
@@ -504,7 +465,6 @@ func (s_ StatusItem) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/view
-
 func (s_ StatusItem) View() NSView {
 	rv := objc.Send[NSView](s_.ID, objc.Sel("view"))
 	return rv
@@ -515,7 +475,6 @@ func (s_ StatusItem) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/view
-
 func (s_ StatusItem) SetView(value IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setView:"), value)
 }
@@ -525,7 +484,6 @@ func (s_ StatusItem) SetView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/isenabled
-
 func (s_ StatusItem) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -536,7 +494,6 @@ func (s_ StatusItem) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/isenabled
-
 func (s_ StatusItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -546,7 +503,6 @@ func (s_ StatusItem) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/isvisible
-
 func (s_ StatusItem) IsVisible() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVisible"))
 	return rv
@@ -557,7 +513,6 @@ func (s_ StatusItem) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/isvisible
-
 func (s_ StatusItem) SetIsVisible(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVisible:"), value)
 }

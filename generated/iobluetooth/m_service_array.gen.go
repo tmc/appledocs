@@ -32,7 +32,9 @@ type ImServiceArray interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mServiceArray
 type mServiceArray struct {
 	objectivec.Object

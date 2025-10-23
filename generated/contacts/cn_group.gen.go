@@ -46,7 +46,6 @@ type ICNGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup
-
 type CNGroup struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewCNGroup() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForGroups(withIdentifiers:)
-
 func (cc _CNGroupClass) PredicateForGroupsWithIdentifiers(identifiers []string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForGroupsWithIdentifiers:"), identifiers)
 	return rv
@@ -106,7 +104,6 @@ func (cc _CNGroupClass) PredicateForGroupsWithIdentifiers(identifiers []string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForGroupsInContainer(withIdentifier:)
-
 func (cc _CNGroupClass) PredicateForGroupsInContainerWithIdentifier(containerIdentifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForGroupsInContainerWithIdentifier:"), objc.String(containerIdentifier))
 	return rv
@@ -117,7 +114,6 @@ func (cc _CNGroupClass) PredicateForGroupsInContainerWithIdentifier(containerIde
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForSubgroupsInGroup(withIdentifier:)
-
 func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupIdentifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForSubgroupsInGroupWithIdentifier:"), objc.String(parentGroupIdentifier))
 	return rv
@@ -128,7 +124,6 @@ func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/identifier
-
 func (c_ CNGroup) Identifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
@@ -139,7 +134,6 @@ func (c_ CNGroup) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/name
-
 func (c_ CNGroup) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CNGroup) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
-
 func (c_ CNGroup) CNGroupIdentifierKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
 	return rv
@@ -161,7 +154,6 @@ func (c_ CNGroup) CNGroupIdentifierKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
-
 func (c_ CNGroup) CNGroupNameKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
 	return rv

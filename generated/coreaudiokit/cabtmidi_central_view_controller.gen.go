@@ -41,7 +41,6 @@ type IBTMIDICentralViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTMIDICentralViewController
-
 type BTMIDICentralViewController struct {
 	objectivec.Object
 }

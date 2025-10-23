@@ -2,11 +2,14 @@
 
 // Package healthkitui provides Go bindings for the HealthKitUI framework.
 //
-// Display user interface that enables a person to view and interact with their health data. [Full Topic]
+// Display user interface that enables a person to view and interact with their health data.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to HealthKitUI without requiring cgo.
+
+// Display user interface that enables a person to view and interact with their health data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKitUI
 package healthkitui
 

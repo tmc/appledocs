@@ -30,14 +30,12 @@ type _AssetReaderClass struct {
 // An interface definition for the [AssetReader] class.
 type IAssetReader interface {
 	objectivec.IObject
-	CanAddOutput(output IAVAssetReaderOutput) bool
-	StartReading() bool
-	Asset() AVAsset
+	Asset() IAVAsset
 	SetAsset(value IAVAsset)
-	Error() Error
-	SetError(value IError)
-	Outputs() AVAssetReaderOutput
-	SetOutputs(value IAVAssetReaderOutput)
+	Error() AVError
+	SetError(value AVError)
+	Outputs() AssetReaderOutput
+	SetOutputs(value AssetReaderOutput)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
 	TimeRange() unsafe.Pointer
@@ -53,7 +51,6 @@ type IAssetReader interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader
-
 type AssetReader struct {
 	objectivec.Object
 }
@@ -98,36 +95,11 @@ func NewAssetReader() AssetReader {
 
 
 
-
-// Determines whether you can add the output to the asset reader.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader/canAdd(_:)
-
-func (a_ AssetReader) CanAddOutput(output IAVAssetReaderOutput) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("canAddOutput:"), output)
-	return rv
-}
-
-
-
-// Prepares the asset reader to start reading sample buffers from the asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader/startReading()
-
-func (a_ AssetReader) StartReading() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("startReading"))
-	return rv
-}
-
-
 // The asset from which to read media data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
-
-func (a_ AssetReader) Asset() AVAsset {
+func (a_ AssetReader) Asset() IAVAsset {
 	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
 	return rv
 }
@@ -137,7 +109,6 @@ func (a_ AssetReader) Asset() AVAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
-
 func (a_ AssetReader) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
 }
@@ -147,8 +118,7 @@ func (a_ AssetReader) SetAsset(value IAVAsset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-
-func (a_ AssetReader) Error() Error {
+func (a_ AssetReader) Error() AVError {
 	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
@@ -158,8 +128,7 @@ func (a_ AssetReader) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-
-func (a_ AssetReader) SetError(value IError) {
+func (a_ AssetReader) SetError(value AVError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
@@ -168,9 +137,8 @@ func (a_ AssetReader) SetError(value IError) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-
-func (a_ AssetReader) Outputs() AVAssetReaderOutput {
-	rv := objc.Send[AVAssetReaderOutput](a_.ID, objc.Sel("outputs"))
+func (a_ AssetReader) Outputs() AssetReaderOutput {
+	rv := objc.Send[AssetReaderOutput](a_.ID, objc.Sel("outputs"))
 	return rv
 }
 
@@ -179,8 +147,7 @@ func (a_ AssetReader) Outputs() AVAssetReaderOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-
-func (a_ AssetReader) SetOutputs(value IAVAssetReaderOutput) {
+func (a_ AssetReader) SetOutputs(value AssetReaderOutput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 
@@ -189,7 +156,6 @@ func (a_ AssetReader) SetOutputs(value IAVAssetReaderOutput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property
-
 func (a_ AssetReader) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
 	return rv
@@ -200,7 +166,6 @@ func (a_ AssetReader) Status() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property
-
 func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
 }
@@ -210,7 +175,6 @@ func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-
 func (a_ AssetReader) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeRange"))
 	return rv
@@ -221,7 +185,6 @@ func (a_ AssetReader) TimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-
 func (a_ AssetReader) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }

@@ -30,9 +30,9 @@ type _PipeClass struct {
 // An interface definition for the [Pipe] class.
 type IPipe interface {
 	objectivec.IObject
-	FileHandleForReading() NSFileHandle
+	FileHandleForReading() IFileHandle
 	SetFileHandleForReading(value IFileHandle)
-	FileHandleForWriting() NSFileHandle
+	FileHandleForWriting() IFileHandle
 	SetFileHandleForWriting(value IFileHandle)
 }
 
@@ -93,7 +93,7 @@ func NewPipe() Pipe {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforreading
-func (p_ Pipe) FileHandleForReading() NSFileHandle {
+func (p_ Pipe) FileHandleForReading() IFileHandle {
 	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForReading"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (p_ Pipe) SetFileHandleForReading(value IFileHandle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforwriting
-func (p_ Pipe) FileHandleForWriting() NSFileHandle {
+func (p_ Pipe) FileHandleForWriting() IFileHandle {
 	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }

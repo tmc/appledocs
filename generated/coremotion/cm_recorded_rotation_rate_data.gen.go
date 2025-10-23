@@ -42,7 +42,6 @@ type IRecordedRotationRateData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData
-
 type RecordedRotationRateData struct {
 	RotationRateData
 }
@@ -93,7 +92,6 @@ func NewRecordedRotationRateData() RecordedRotationRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
-
 func (r_ RecordedRotationRateData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
@@ -104,7 +102,6 @@ func (r_ RecordedRotationRateData) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-
 func (r_ RecordedRotationRateData) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rotationRate"))
 	return rv
@@ -115,7 +112,6 @@ func (r_ RecordedRotationRateData) RotationRate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-
 func (r_ RecordedRotationRateData) SetRotationRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
 }

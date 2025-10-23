@@ -36,7 +36,6 @@ type IViewLayoutRegion interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion
-
 type ViewLayoutRegion struct {
 	objectivec.Object
 }
@@ -81,7 +80,6 @@ func NewViewLayoutRegion() ViewLayoutRegion {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/marginsLayoutRegionWithCornerAdaptation:
-
 func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptivityAxis IViewLayoutRegionAdaptivityAxis) ViewLayoutRegion {
 	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("marginsLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
 	return rv
@@ -90,7 +88,6 @@ func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptiv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/safeAreaLayoutRegionWithCornerAdaptation:
-
 func (vc _ViewLayoutRegionClass) SafeAreaLayoutRegionWithCornerAdaptation(adaptivityAxis IViewLayoutRegionAdaptivityAxis) ViewLayoutRegion {
 	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("safeAreaLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
 	return rv

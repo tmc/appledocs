@@ -46,7 +46,6 @@ type IDateRangeMetadataGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup
-
 type DateRangeMetadataGroup struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewDateRangeMetadataGroup() DateRangeMetadataGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
-
 func (d_ DateRangeMetadataGroup) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("endDate"))
 	return rv
@@ -106,7 +104,6 @@ func (d_ DateRangeMetadataGroup) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
-
 func (d_ DateRangeMetadataGroup) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
 }
@@ -116,7 +113,6 @@ func (d_ DateRangeMetadataGroup) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
-
 func (d_ DateRangeMetadataGroup) Items() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](d_.ID, objc.Sel("items"))
 	return rv
@@ -127,7 +123,6 @@ func (d_ DateRangeMetadataGroup) Items() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
-
 func (d_ DateRangeMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItems:"), value)
 }
@@ -137,7 +132,6 @@ func (d_ DateRangeMetadataGroup) SetItems(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
-
 func (d_ DateRangeMetadataGroup) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("startDate"))
 	return rv
@@ -148,7 +142,6 @@ func (d_ DateRangeMetadataGroup) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
-
 func (d_ DateRangeMetadataGroup) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStartDate:"), value)
 }

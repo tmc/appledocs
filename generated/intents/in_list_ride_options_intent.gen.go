@@ -39,7 +39,11 @@ type IINListRideOptionsIntent interface {
 // An intent for getting the types of rides available from a ride-booking service.
 //
 // Maps creates an object when it needs to display the types of vehicles that your service offers. Use the information in this intent to identify the possible vehicles that you can provide to the user right now. The intent contains information about the user’s pickup and drop-off locations, which you can use to determine ride availability, pricing, and estimated pickup times. This intent object represents a request for information and is not a commitment from the user to book any of the specified rides. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm the request parameters and create an object with the list of options.
+
+
+// An intent for getting the types of rides available from a ride-booking service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INListRideOptionsIntent
 type INListRideOptionsIntent struct {
 	INIntent
@@ -86,8 +90,10 @@ func NewINListRideOptionsIntent() INListRideOptionsIntent {
 }
 
 
+
 // The user’s destination.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
 func (i_ INListRideOptionsIntent) DropOffLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
@@ -95,17 +101,18 @@ func (i_ INListRideOptionsIntent) DropOffLocation() corelocation.Placemark {
 }
 
 
-// SetDropOffLocation sets the value of the dropOffLocation property.
 // The user’s destination.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
 func (i_ INListRideOptionsIntent) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
+
 // The user’s starting location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
 func (i_ INListRideOptionsIntent) PickupLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
@@ -113,10 +120,9 @@ func (i_ INListRideOptionsIntent) PickupLocation() corelocation.Placemark {
 }
 
 
-// SetPickupLocation sets the value of the pickupLocation property.
 // The user’s starting location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
 func (i_ INListRideOptionsIntent) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)

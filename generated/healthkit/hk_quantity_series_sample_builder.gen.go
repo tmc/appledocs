@@ -46,7 +46,6 @@ type IHKQuantitySeriesSampleBuilder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySeriesSampleBuilder
-
 type HKQuantitySeriesSampleBuilder struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewHKQuantitySeriesSampleBuilder() HKQuantitySeriesSampleBuilder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
-
 func (h_ HKQuantitySeriesSampleBuilder) Device() HKDevice {
 	rv := objc.Send[HKDevice](h_.ID, objc.Sel("device"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HKQuantitySeriesSampleBuilder) Device() HKDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
-
 func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value IHKDevice) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDevice:"), value)
 }
@@ -116,7 +113,6 @@ func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value IHKDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/quantitytype
-
 func (h_ HKQuantitySeriesSampleBuilder) QuantityType() HKQuantityType {
 	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKQuantitySeriesSampleBuilder) QuantityType() HKQuantityType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/quantitytype
-
 func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value HKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
@@ -137,7 +132,6 @@ func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value HKQuantityType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-
 func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
@@ -148,7 +142,6 @@ func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-
 func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }

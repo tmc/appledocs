@@ -40,7 +40,6 @@ type ICaptureEventSound interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound
-
 type CaptureEventSound struct {
 	objectivec.Object
 }
@@ -85,12 +84,10 @@ func NewCaptureEventSound() CaptureEventSound {
 
 
 
-
 // Creates a sound object for a capture event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/init(url:)
-
 func NewCaptureEventSoundWithURLError(url foundation.IURL, error_ unsafe.Pointer) CaptureEventSound {
 	instance := getCaptureEventSoundClass().Alloc()
 	rv := objc.Send[CaptureEventSound](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
@@ -104,7 +101,6 @@ func NewCaptureEventSoundWithURLError(url foundation.IURL, error_ unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
-
 func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() CaptureEventSound {
 	rv := objc.Send[AVCaptureEventSound](objc.ID(cc.class), objc.Sel("beginVideoRecordingSound"))
 	return rv
@@ -114,7 +110,6 @@ func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() CaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
-
 func (cc _CaptureEventSoundClass) CameraShutterSound() CaptureEventSound {
 	rv := objc.Send[AVCaptureEventSound](objc.ID(cc.class), objc.Sel("cameraShutterSound"))
 	return rv
@@ -124,7 +119,6 @@ func (cc _CaptureEventSoundClass) CameraShutterSound() CaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
-
 func (cc _CaptureEventSoundClass) EndVideoRecordingSound() CaptureEventSound {
 	rv := objc.Send[AVCaptureEventSound](objc.ID(cc.class), objc.Sel("endVideoRecordingSound"))
 	return rv
@@ -134,7 +128,6 @@ func (cc _CaptureEventSoundClass) EndVideoRecordingSound() CaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
-
 func (c_ CaptureEventSound) BeginVideoRecordingSound() AVCaptureEventSound {
 	rv := objc.Send[AVCaptureEventSound](c_.ID, objc.Sel("beginVideoRecordingSound"))
 	return rv
@@ -145,7 +138,6 @@ func (c_ CaptureEventSound) BeginVideoRecordingSound() AVCaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
-
 func (c_ CaptureEventSound) CameraShutterSound() AVCaptureEventSound {
 	rv := objc.Send[AVCaptureEventSound](c_.ID, objc.Sel("cameraShutterSound"))
 	return rv
@@ -156,7 +148,6 @@ func (c_ CaptureEventSound) CameraShutterSound() AVCaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
-
 func (c_ CaptureEventSound) EndVideoRecordingSound() AVCaptureEventSound {
 	rv := objc.Send[AVCaptureEventSound](c_.ID, objc.Sel("endVideoRecordingSound"))
 	return rv

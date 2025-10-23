@@ -62,7 +62,6 @@ type IHKWorkoutSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession
-
 type HKWorkoutSession struct {
 	objectivec.Object
 }
@@ -107,45 +106,37 @@ func NewHKWorkoutSession() HKWorkoutSession {
 
 
 
-
 // Ends the workout session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/end()
-
 func (h_ HKWorkoutSession) End() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("end"))
 }
-
 
 
 // Ends the current workout activity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)
-
 func (h_ HKWorkoutSession) EndCurrentActivityOnDate(date foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("endCurrentActivityOnDate:"), date)
 }
-
 
 
 // Pauses the workout session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/pause()
-
 func (h_ HKWorkoutSession) Pause() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("pause"))
 }
-
 
 
 // Resumes the workout session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/resume()
-
 func (h_ HKWorkoutSession) Resume() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("resume"))
 }
@@ -155,7 +146,6 @@ func (h_ HKWorkoutSession) Resume() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/locationType
-
 func (h_ HKWorkoutSession) LocationType() HKWorkoutSessionLocationType {
 	rv := objc.Send[HKWorkoutSessionLocationType](h_.ID, objc.Sel("locationType"))
 	return rv
@@ -166,7 +156,6 @@ func (h_ HKWorkoutSession) LocationType() HKWorkoutSessionLocationType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/state
-
 func (h_ HKWorkoutSession) State() HKWorkoutSessionState {
 	rv := objc.Send[HKWorkoutSessionState](h_.ID, objc.Sel("state"))
 	return rv
@@ -177,7 +166,6 @@ func (h_ HKWorkoutSession) State() HKWorkoutSessionState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
-
 func (h_ HKWorkoutSession) ActivityType() HKWorkoutActivityType {
 	rv := objc.Send[HKWorkoutActivityType](h_.ID, objc.Sel("activityType"))
 	return rv
@@ -188,7 +176,6 @@ func (h_ HKWorkoutSession) ActivityType() HKWorkoutActivityType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
-
 func (h_ HKWorkoutSession) SetActivityType(value HKWorkoutActivityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityType:"), value)
 }
@@ -198,7 +185,6 @@ func (h_ HKWorkoutSession) SetActivityType(value HKWorkoutActivityType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
-
 func (h_ HKWorkoutSession) CurrentActivity() HKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("currentActivity"))
 	return rv
@@ -209,7 +195,6 @@ func (h_ HKWorkoutSession) CurrentActivity() HKWorkoutActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
-
 func (h_ HKWorkoutSession) SetCurrentActivity(value IHKWorkoutActivity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCurrentActivity:"), value)
 }
@@ -219,7 +204,6 @@ func (h_ HKWorkoutSession) SetCurrentActivity(value IHKWorkoutActivity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/delegate
-
 func (h_ HKWorkoutSession) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("delegate"))
 	return rv
@@ -230,7 +214,6 @@ func (h_ HKWorkoutSession) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/delegate
-
 func (h_ HKWorkoutSession) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -240,7 +223,6 @@ func (h_ HKWorkoutSession) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
-
 func (h_ HKWorkoutSession) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
@@ -251,7 +233,6 @@ func (h_ HKWorkoutSession) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
-
 func (h_ HKWorkoutSession) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
@@ -261,7 +242,6 @@ func (h_ HKWorkoutSession) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
-
 func (h_ HKWorkoutSession) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
@@ -272,7 +252,6 @@ func (h_ HKWorkoutSession) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
-
 func (h_ HKWorkoutSession) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
@@ -282,7 +261,6 @@ func (h_ HKWorkoutSession) SetStartDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
-
 func (h_ HKWorkoutSession) Type() HKWorkoutSessionType {
 	rv := objc.Send[HKWorkoutSessionType](h_.ID, objc.Sel("type"))
 	return rv
@@ -293,7 +271,6 @@ func (h_ HKWorkoutSession) Type() HKWorkoutSessionType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
-
 func (h_ HKWorkoutSession) SetType(value HKWorkoutSessionType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
 }
@@ -303,7 +280,6 @@ func (h_ HKWorkoutSession) SetType(value HKWorkoutSessionType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
-
 func (h_ HKWorkoutSession) WorkoutConfiguration() HKWorkoutConfiguration {
 	rv := objc.Send[HKWorkoutConfiguration](h_.ID, objc.Sel("workoutConfiguration"))
 	return rv
@@ -314,7 +290,6 @@ func (h_ HKWorkoutSession) WorkoutConfiguration() HKWorkoutConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
-
 func (h_ HKWorkoutSession) SetWorkoutConfiguration(value IHKWorkoutConfiguration) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutConfiguration:"), value)
 }

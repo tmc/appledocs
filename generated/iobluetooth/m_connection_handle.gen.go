@@ -32,7 +32,9 @@ type ImConnectionHandle interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mConnectionHandle
 type mConnectionHandle struct {
 	objectivec.Object

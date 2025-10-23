@@ -41,7 +41,6 @@ type IPersistentCloudKitContainerEventRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest
-
 type PersistentCloudKitContainerEventRequest struct {
 	PersistentStoreRequest
 }
@@ -92,7 +91,6 @@ func NewPersistentCloudKitContainerEventRequest() PersistentCloudKitContainerEve
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-3yfp
-
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(event IPersistentCloudKitContainerEvent) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterEvent:"), event)
 	return rv
@@ -103,7 +101,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(ev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-5izg7
-
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterDate:"), date)
 	return rv
@@ -114,7 +111,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(matchingFetch:)
-
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsMatchingFetchRequest(fetchRequest IFetchRequest) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsMatchingFetchRequest:"), fetchRequest)
 	return rv
@@ -125,7 +121,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsMatchingFetch
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchForEvents()
-
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchRequestForEvents() FetchRequest {
 	rv := objc.Send[FetchRequest](objc.ID(pc.class), objc.Sel("fetchRequestForEvents"))
 	return rv
@@ -136,7 +131,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchRequestForEvents() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/resultType
-
 func (p_ PersistentCloudKitContainerEventRequest) ResultType() PersistentCloudKitContainerEventResultType {
 	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv
@@ -147,7 +141,6 @@ func (p_ PersistentCloudKitContainerEventRequest) ResultType() PersistentCloudKi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/resultType
-
 func (p_ PersistentCloudKitContainerEventRequest) SetResultType(value PersistentCloudKitContainerEventResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }

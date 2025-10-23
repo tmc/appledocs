@@ -59,13 +59,13 @@ type IAudioConverter interface {
 	DynamicRangeControlConfiguration() AudioDynamicRangeControlConfiguration
 	SetDynamicRangeControlConfiguration(value IAudioDynamicRangeControlConfiguration)
 	InputFormat() AVAudioFormat
-	SetInputFormat(value AVAudioFormat)
+	SetInputFormat(value IAVAudioFormat)
 	MagicCookie() foundation.Data
 	SetMagicCookie(value foundation.IData)
 	MaximumOutputPacketSize() int
 	SetMaximumOutputPacketSize(value int)
 	OutputFormat() AVAudioFormat
-	SetOutputFormat(value AVAudioFormat)
+	SetOutputFormat(value IAVAudioFormat)
 	PrimeInfo() unsafe.Pointer
 	SetPrimeInfo(value unsafe.Pointer)
 	PrimeMethod() unsafe.Pointer
@@ -85,7 +85,6 @@ type IAudioConverter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioConverter
-
 type AudioConverter struct {
 	objectivec.Object
 }
@@ -130,12 +129,10 @@ func NewAudioConverter() AudioConverter {
 
 
 
-
 // Performs a conversion between audio formats, if the system supports it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioConverter/convert(to:error:withInputFrom:)
-
 func (a_ AudioConverter) ConvertToBufferErrorWithInputFromBlock(outputBuffer IAVAudioBuffer, outError unsafe.Pointer, inputBlock unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("convertToBuffer:error:withInputFromBlock:"), outputBuffer, outError, inputBlock)
 	return rv
@@ -146,7 +143,6 @@ func (a_ AudioConverter) ConvertToBufferErrorWithInputFromBlock(outputBuffer IAV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodebitrates
-
 func (a_ AudioConverter) ApplicableEncodeBitRates() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("applicableEncodeBitRates"))
 	return rv
@@ -157,7 +153,6 @@ func (a_ AudioConverter) ApplicableEncodeBitRates() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodebitrates
-
 func (a_ AudioConverter) SetApplicableEncodeBitRates(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicableEncodeBitRates:"), value)
 }
@@ -167,7 +162,6 @@ func (a_ AudioConverter) SetApplicableEncodeBitRates(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodesamplerates
-
 func (a_ AudioConverter) ApplicableEncodeSampleRates() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("applicableEncodeSampleRates"))
 	return rv
@@ -178,7 +172,6 @@ func (a_ AudioConverter) ApplicableEncodeSampleRates() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodesamplerates
-
 func (a_ AudioConverter) SetApplicableEncodeSampleRates(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicableEncodeSampleRates:"), value)
 }
@@ -186,7 +179,6 @@ func (a_ AudioConverter) SetApplicableEncodeSampleRates(value foundation.INumber
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/audiosyncpacketfrequency
-
 func (a_ AudioConverter) AudioSyncPacketFrequency() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("audioSyncPacketFrequency"))
 	return rv
@@ -195,7 +187,6 @@ func (a_ AudioConverter) AudioSyncPacketFrequency() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/audiosyncpacketfrequency
-
 func (a_ AudioConverter) SetAudioSyncPacketFrequency(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioSyncPacketFrequency:"), value)
 }
@@ -205,7 +196,6 @@ func (a_ AudioConverter) SetAudioSyncPacketFrequency(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodebitrates
-
 func (a_ AudioConverter) AvailableEncodeBitRates() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableEncodeBitRates"))
 	return rv
@@ -216,7 +206,6 @@ func (a_ AudioConverter) AvailableEncodeBitRates() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodebitrates
-
 func (a_ AudioConverter) SetAvailableEncodeBitRates(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableEncodeBitRates:"), value)
 }
@@ -226,7 +215,6 @@ func (a_ AudioConverter) SetAvailableEncodeBitRates(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodechannellayouttags
-
 func (a_ AudioConverter) AvailableEncodeChannelLayoutTags() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableEncodeChannelLayoutTags"))
 	return rv
@@ -237,7 +225,6 @@ func (a_ AudioConverter) AvailableEncodeChannelLayoutTags() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodechannellayouttags
-
 func (a_ AudioConverter) SetAvailableEncodeChannelLayoutTags(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableEncodeChannelLayoutTags:"), value)
 }
@@ -247,7 +234,6 @@ func (a_ AudioConverter) SetAvailableEncodeChannelLayoutTags(value foundation.IN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodesamplerates
-
 func (a_ AudioConverter) AvailableEncodeSampleRates() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableEncodeSampleRates"))
 	return rv
@@ -258,7 +244,6 @@ func (a_ AudioConverter) AvailableEncodeSampleRates() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodesamplerates
-
 func (a_ AudioConverter) SetAvailableEncodeSampleRates(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableEncodeSampleRates:"), value)
 }
@@ -268,7 +253,6 @@ func (a_ AudioConverter) SetAvailableEncodeSampleRates(value foundation.INumber)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitrate
-
 func (a_ AudioConverter) BitRate() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("bitRate"))
 	return rv
@@ -279,7 +263,6 @@ func (a_ AudioConverter) BitRate() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitrate
-
 func (a_ AudioConverter) SetBitRate(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRate:"), value)
 }
@@ -289,7 +272,6 @@ func (a_ AudioConverter) SetBitRate(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitratestrategy
-
 func (a_ AudioConverter) BitRateStrategy() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("bitRateStrategy"))
 	return rv
@@ -300,7 +282,6 @@ func (a_ AudioConverter) BitRateStrategy() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitratestrategy
-
 func (a_ AudioConverter) SetBitRateStrategy(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRateStrategy:"), objc.String(value))
 }
@@ -310,7 +291,6 @@ func (a_ AudioConverter) SetBitRateStrategy(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/channelmap
-
 func (a_ AudioConverter) ChannelMap() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("channelMap"))
 	return rv
@@ -321,7 +301,6 @@ func (a_ AudioConverter) ChannelMap() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/channelmap
-
 func (a_ AudioConverter) SetChannelMap(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelMap:"), value)
 }
@@ -329,7 +308,6 @@ func (a_ AudioConverter) SetChannelMap(value foundation.INumber) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/contentsource
-
 func (a_ AudioConverter) ContentSource() AudioContentSource {
 	rv := objc.Send[AudioContentSource](a_.ID, objc.Sel("contentSource"))
 	return rv
@@ -338,7 +316,6 @@ func (a_ AudioConverter) ContentSource() AudioContentSource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/contentsource
-
 func (a_ AudioConverter) SetContentSource(value IAudioContentSource) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContentSource:"), value)
 }
@@ -348,7 +325,6 @@ func (a_ AudioConverter) SetContentSource(value IAudioContentSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/dither
-
 func (a_ AudioConverter) Dither() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("dither"))
 	return rv
@@ -359,7 +335,6 @@ func (a_ AudioConverter) Dither() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/dither
-
 func (a_ AudioConverter) SetDither(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDither:"), value)
 }
@@ -369,7 +344,6 @@ func (a_ AudioConverter) SetDither(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/downmix
-
 func (a_ AudioConverter) Downmix() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("downmix"))
 	return rv
@@ -380,7 +354,6 @@ func (a_ AudioConverter) Downmix() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/downmix
-
 func (a_ AudioConverter) SetDownmix(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDownmix:"), value)
 }
@@ -388,7 +361,6 @@ func (a_ AudioConverter) SetDownmix(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/dynamicrangecontrolconfiguration
-
 func (a_ AudioConverter) DynamicRangeControlConfiguration() AudioDynamicRangeControlConfiguration {
 	rv := objc.Send[AudioDynamicRangeControlConfiguration](a_.ID, objc.Sel("dynamicRangeControlConfiguration"))
 	return rv
@@ -397,7 +369,6 @@ func (a_ AudioConverter) DynamicRangeControlConfiguration() AudioDynamicRangeCon
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/dynamicrangecontrolconfiguration
-
 func (a_ AudioConverter) SetDynamicRangeControlConfiguration(value IAudioDynamicRangeControlConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDynamicRangeControlConfiguration:"), value)
 }
@@ -407,7 +378,6 @@ func (a_ AudioConverter) SetDynamicRangeControlConfiguration(value IAudioDynamic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/inputformat
-
 func (a_ AudioConverter) InputFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("inputFormat"))
 	return rv
@@ -418,8 +388,7 @@ func (a_ AudioConverter) InputFormat() AVAudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/inputformat
-
-func (a_ AudioConverter) SetInputFormat(value AVAudioFormat) {
+func (a_ AudioConverter) SetInputFormat(value IAVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputFormat:"), value)
 }
 
@@ -428,7 +397,6 @@ func (a_ AudioConverter) SetInputFormat(value AVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/magiccookie
-
 func (a_ AudioConverter) MagicCookie() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("magicCookie"))
 	return rv
@@ -439,7 +407,6 @@ func (a_ AudioConverter) MagicCookie() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/magiccookie
-
 func (a_ AudioConverter) SetMagicCookie(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMagicCookie:"), value)
 }
@@ -449,7 +416,6 @@ func (a_ AudioConverter) SetMagicCookie(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/maximumoutputpacketsize
-
 func (a_ AudioConverter) MaximumOutputPacketSize() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("maximumOutputPacketSize"))
 	return rv
@@ -460,7 +426,6 @@ func (a_ AudioConverter) MaximumOutputPacketSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/maximumoutputpacketsize
-
 func (a_ AudioConverter) SetMaximumOutputPacketSize(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumOutputPacketSize:"), value)
 }
@@ -470,7 +435,6 @@ func (a_ AudioConverter) SetMaximumOutputPacketSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/outputformat
-
 func (a_ AudioConverter) OutputFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("outputFormat"))
 	return rv
@@ -481,8 +445,7 @@ func (a_ AudioConverter) OutputFormat() AVAudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/outputformat
-
-func (a_ AudioConverter) SetOutputFormat(value AVAudioFormat) {
+func (a_ AudioConverter) SetOutputFormat(value IAVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFormat:"), value)
 }
 
@@ -491,7 +454,6 @@ func (a_ AudioConverter) SetOutputFormat(value AVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/primeinfo
-
 func (a_ AudioConverter) PrimeInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primeInfo"))
 	return rv
@@ -502,7 +464,6 @@ func (a_ AudioConverter) PrimeInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/primeinfo
-
 func (a_ AudioConverter) SetPrimeInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimeInfo:"), value)
 }
@@ -512,7 +473,6 @@ func (a_ AudioConverter) SetPrimeInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/primemethod
-
 func (a_ AudioConverter) PrimeMethod() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primeMethod"))
 	return rv
@@ -523,7 +483,6 @@ func (a_ AudioConverter) PrimeMethod() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/primemethod
-
 func (a_ AudioConverter) SetPrimeMethod(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimeMethod:"), value)
 }
@@ -533,7 +492,6 @@ func (a_ AudioConverter) SetPrimeMethod(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm
-
 func (a_ AudioConverter) SampleRateConverterAlgorithm() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("sampleRateConverterAlgorithm"))
 	return rv
@@ -544,7 +502,6 @@ func (a_ AudioConverter) SampleRateConverterAlgorithm() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm
-
 func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterAlgorithm:"), objc.String(value))
 }
@@ -554,7 +511,6 @@ func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverterquality
-
 func (a_ AudioConverter) SampleRateConverterQuality() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("sampleRateConverterQuality"))
 	return rv
@@ -565,7 +521,6 @@ func (a_ AudioConverter) SampleRateConverterQuality() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverterquality
-
 func (a_ AudioConverter) SetSampleRateConverterQuality(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterQuality:"), value)
 }

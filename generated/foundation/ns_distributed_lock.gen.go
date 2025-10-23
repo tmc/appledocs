@@ -33,7 +33,7 @@ type IDistributedLock interface {
 	BreakLock()
 	TryLock() bool
 	Unlock()
-	LockDate() NSDate
+	LockDate() IDate
 }
 
 // A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
@@ -106,7 +106,7 @@ func NewDistributedLockWithPath(path string) DistributedLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockWithPath:
-func (dc _DistributedLockClass) LockWithPath(path string) DistributedLock {
+func (dc _DistributedLockClass) LockWithPath(path string) IDistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("lockWithPath:"), objc.String(path))
 	return rv
 }
@@ -144,7 +144,7 @@ func (d_ DistributedLock) Unlock() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockDate
-func (d_ DistributedLock) LockDate() NSDate {
+func (d_ DistributedLock) LockDate() IDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("lockDate"))
 	return rv
 }

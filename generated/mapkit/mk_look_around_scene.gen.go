@@ -33,7 +33,11 @@ type IMKLookAroundScene interface {
 }
 
 // A utility class that encapsulates information the framework requires to retrieve and display a specific Look Around location’s imagery.
+
+
+// A utility class that encapsulates information the framework requires to retrieve and display a specific Look Around location’s imagery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLookAroundScene
 type MKLookAroundScene struct {
 	objectivec.Object

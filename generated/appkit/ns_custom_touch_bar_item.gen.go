@@ -44,7 +44,6 @@ type ICustomTouchBarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem
-
 type CustomTouchBarItem struct {
 	TouchBarItem
 }
@@ -95,7 +94,6 @@ func NewCustomTouchBarItem() CustomTouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
-
 func (c_ CustomTouchBarItem) ViewController() NSViewController {
 	rv := objc.Send[NSViewController](c_.ID, objc.Sel("viewController"))
 	return rv
@@ -106,7 +104,6 @@ func (c_ CustomTouchBarItem) ViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
-
 func (c_ CustomTouchBarItem) SetViewController(value IViewController) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setViewController:"), value)
 }
@@ -116,7 +113,6 @@ func (c_ CustomTouchBarItem) SetViewController(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/customizationlabel
-
 func (c_ CustomTouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -127,7 +123,6 @@ func (c_ CustomTouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/customizationlabel
-
 func (c_ CustomTouchBarItem) SetCustomizationLabel(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
@@ -137,7 +132,6 @@ func (c_ CustomTouchBarItem) SetCustomizationLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
-
 func (c_ CustomTouchBarItem) View() NSView {
 	rv := objc.Send[NSView](c_.ID, objc.Sel("view"))
 	return rv
@@ -148,7 +142,6 @@ func (c_ CustomTouchBarItem) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
-
 func (c_ CustomTouchBarItem) SetView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
 }

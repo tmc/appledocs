@@ -30,25 +30,19 @@ type _CaptureSynchronizedDataClass struct {
 // An interface definition for the [CaptureSynchronizedData] class.
 type ICaptureSynchronizedData interface {
 	objectivec.IObject
-	Timestamp() unsafe.Pointer
-	SetTimestamp(value unsafe.Pointer)
 }
 
-// The abstract superclass for media samples collected using synchronized capture.
+// A parent class referenced by other AVFoundation classes.
 
 
-// The abstract superclass for media samples collected using synchronized capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedData
-
+// A parent class referenced by other AVFoundation classes. [Full Topic]
 type CaptureSynchronizedData struct {
 	objectivec.Object
 }
 
 // CaptureSynchronizedDataFrom constructs a [CaptureSynchronizedData] from an unsafe.Pointer.
 //
-// The abstract superclass for media samples collected using synchronized capture.
+// A parent class referenced by other AVFoundation classes.
 func CaptureSynchronizedDataFrom(ptr unsafe.Pointer) CaptureSynchronizedData {
 	return CaptureSynchronizedData{objectivec.Object{objc.ID(ptr)}}
 }
@@ -84,27 +78,6 @@ func NewCaptureSynchronizedData() CaptureSynchronizedData {
 	return getCaptureSynchronizedDataClass().New()
 }
 
-
-
-// The time at which this synchronized data was captured.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata/timestamp
-
-func (c_ CaptureSynchronizedData) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timestamp"))
-	return rv
-}
-
-
-// The time at which this synchronized data was captured.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata/timestamp
-
-func (c_ CaptureSynchronizedData) SetTimestamp(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimestamp:"), value)
-}
 
 
 

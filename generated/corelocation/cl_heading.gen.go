@@ -49,7 +49,6 @@ type IHeading interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading
-
 type Heading struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewHeading() Heading {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/headingAccuracy
-
 func (h_ Heading) HeadingAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("headingAccuracy"))
 	return rv
@@ -109,7 +107,6 @@ func (h_ Heading) HeadingAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/magneticHeading
-
 func (h_ Heading) MagneticHeading() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("magneticHeading"))
 	return rv
@@ -120,7 +117,6 @@ func (h_ Heading) MagneticHeading() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
-
 func (h_ Heading) Timestamp() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("timestamp"))
 	return rv
@@ -131,7 +127,6 @@ func (h_ Heading) Timestamp() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/trueHeading
-
 func (h_ Heading) TrueHeading() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("trueHeading"))
 	return rv
@@ -142,7 +137,6 @@ func (h_ Heading) TrueHeading() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/x
-
 func (h_ Heading) X() HeadingComponentValue {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("x"))
 	return rv
@@ -153,7 +147,6 @@ func (h_ Heading) X() HeadingComponentValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/y
-
 func (h_ Heading) Y() HeadingComponentValue {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("y"))
 	return rv
@@ -164,7 +157,6 @@ func (h_ Heading) Y() HeadingComponentValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/z
-
 func (h_ Heading) Z() HeadingComponentValue {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("z"))
 	return rv

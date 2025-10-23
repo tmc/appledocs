@@ -42,7 +42,11 @@ type IRight interface {
 // A grouped set of requirements that gate access to a resource or operation.
 //
 // Use instances to protect access to portions of your app that may contain sensitive information. By default, instances require people to authenticate with Face ID, Touch ID, Apple Watch, or the device passcode. The following creates an with the default authentication requirements:
+
+
+// A grouped set of requirements that gate access to a resource or operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight
 type Right struct {
 	objectivec.Object
@@ -88,9 +92,9 @@ func NewRight() Right {
 
 
 
-
 // Creates a right with the authentication requirements you supply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/init(requirement:)
 func NewRightWithRequirement(requirement ILAAuthenticationRequirement) Right {
 	instance := getRightClass().Alloc()
@@ -100,44 +104,56 @@ func NewRightWithRequirement(requirement ILAAuthenticationRequirement) Right {
 }
 
 
+
 // Performs an authorization on the right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:completion:)
 func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:completion:"), objc.String(localizedReason), handler)
 }
 
+
 // Performs an authorization on the right with a window context you supply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:in:completion:)
 func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:inPresentationContext:completion:"), objc.String(localizedReason), presentationContext, handler)
 }
 
+
 // Checks whether the right has permission to perform authorization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/checkCanAuthorize(completion:)
 func (r_ Right) CheckCanAuthorizeWithCompletion(handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("checkCanAuthorizeWithCompletion:"), handler)
 }
 
+
 // Invalidates a previously authorized right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/deauthorize(completion:)
 func (r_ Right) DeauthorizeWithCompletion(handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("deauthorizeWithCompletion:"), handler)
 }
 
+
 // The current authorization state for a right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/state-swift.property
 func (r_ Right) State() RightState {
 	rv := objc.Send[RightState](r_.ID, objc.Sel("state"))
 	return rv
 }
 
+
 // An integer you use to identify a right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/tag
 func (r_ Right) Tag() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("tag"))
@@ -145,10 +161,9 @@ func (r_ Right) Tag() int {
 }
 
 
-// SetTag sets the value of the tag property.
 // An integer you use to identify a right.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/tag
 func (r_ Right) SetTag(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTag:"), value)

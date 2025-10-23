@@ -38,7 +38,6 @@ type ICKSyncEngineWillSendChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillSendChangesEvent
-
 type CKSyncEngineWillSendChangesEvent struct {
 	CKSyncEngineEvent
 }

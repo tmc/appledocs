@@ -48,7 +48,6 @@ type IGLKEffectPropertyTexture interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture
-
 type GLKEffectPropertyTexture struct {
 	GLKEffectProperty
 }
@@ -99,7 +98,6 @@ func NewGLKEffectPropertyTexture() GLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/enabled
-
 func (g_ GLKEffectPropertyTexture) Enabled() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("enabled"))
 	return rv
@@ -110,7 +108,6 @@ func (g_ GLKEffectPropertyTexture) Enabled() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/enabled
-
 func (g_ GLKEffectPropertyTexture) SetEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -120,7 +117,6 @@ func (g_ GLKEffectPropertyTexture) SetEnabled(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/envMode
-
 func (g_ GLKEffectPropertyTexture) EnvMode() GLKTextureEnvMode {
 	rv := objc.Send[GLKTextureEnvMode](g_.ID, objc.Sel("envMode"))
 	return rv
@@ -131,7 +127,6 @@ func (g_ GLKEffectPropertyTexture) EnvMode() GLKTextureEnvMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/envMode
-
 func (g_ GLKEffectPropertyTexture) SetEnvMode(value GLKTextureEnvMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnvMode:"), value)
 }
@@ -141,7 +136,6 @@ func (g_ GLKEffectPropertyTexture) SetEnvMode(value GLKTextureEnvMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/name
-
 func (g_ GLKEffectPropertyTexture) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("name"))
 	return rv
@@ -152,7 +146,6 @@ func (g_ GLKEffectPropertyTexture) Name() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/name
-
 func (g_ GLKEffectPropertyTexture) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setName:"), value)
 }
@@ -162,7 +155,6 @@ func (g_ GLKEffectPropertyTexture) SetName(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/target
-
 func (g_ GLKEffectPropertyTexture) Target() GLKTextureTarget {
 	rv := objc.Send[GLKTextureTarget](g_.ID, objc.Sel("target"))
 	return rv
@@ -173,7 +165,6 @@ func (g_ GLKEffectPropertyTexture) Target() GLKTextureTarget {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/target
-
 func (g_ GLKEffectPropertyTexture) SetTarget(value IGLKTextureTarget) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTarget:"), value)
 }

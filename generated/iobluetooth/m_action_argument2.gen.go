@@ -32,7 +32,9 @@ type ImActionArgument2 interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mActionArgument2
 type mActionArgument2 struct {
 	objectivec.Object

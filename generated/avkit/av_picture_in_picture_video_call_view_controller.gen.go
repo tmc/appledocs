@@ -43,7 +43,6 @@ type IPictureInPictureVideoCallViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureVideoCallViewController
-
 type PictureInPictureVideoCallViewController struct {
 	appkit.ViewController
 }
@@ -94,7 +93,6 @@ func NewPictureInPictureVideoCallViewController() PictureInPictureVideoCallViewC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-
 func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController {
 	rv := objc.Send[AVPictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
 	return rv
@@ -105,7 +103,6 @@ func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-
 func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallContentViewController:"), value)
 }
@@ -115,7 +112,6 @@ func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-
 func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() appkit.View {
 	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
@@ -126,7 +122,6 @@ func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() ap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-
 func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
 }

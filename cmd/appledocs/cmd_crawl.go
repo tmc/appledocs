@@ -190,8 +190,8 @@ func pruneOldCache(cacheDir string, verbose bool) error {
 			return nil
 		}
 
-		// Skip if this is an index.json or .etag file (new structure)
-		if filepath.Base(path) == "index.json" || filepath.Ext(path) == ".etag" {
+		// Skip .etag files
+		if filepath.Ext(path) == ".etag" {
 			return nil
 		}
 
@@ -199,10 +199,10 @@ func pruneOldCache(cacheDir string, verbose bool) error {
 		shouldPrune := false
 		reason := ""
 
-		// Check if it's an HTML file
+		// Check if it's an HTML file (including index.json files that contain HTML)
 		if isHTMLFile(path) {
 			shouldPrune = true
-			reason = "HTML file"
+			reason = "HTML file with .json extension"
 			htmlCount++
 		}
 

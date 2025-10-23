@@ -2,11 +2,14 @@
 
 // Package hypervisor provides Go bindings for the Hypervisor framework.
 //
-// Build virtualization solutions on top of a lightweight hypervisor, without third-party kernel extensions. [Full Topic]
+// Build virtualization solutions on top of a lightweight hypervisor, without third-party kernel extensions.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Hypervisor without requiring cgo.
+
+// Build virtualization solutions on top of a lightweight hypervisor, without third-party kernel extensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor
 package hypervisor
 

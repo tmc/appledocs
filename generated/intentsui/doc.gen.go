@@ -2,11 +2,14 @@
 
 // Package intentsui provides Go bindings for the IntentsUI framework.
 //
-// Customize content in the interface for Siri and Maps. [Full Topic]
+// Customize content in the interface for Siri and Maps.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IntentsUI without requiring cgo.
+
+// Customize content in the interface for Siri and Maps.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI
 package intentsui
 

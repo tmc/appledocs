@@ -46,7 +46,6 @@ type ITrackingSeparatorToolbarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem
-
 type TrackingSeparatorToolbarItem struct {
 	ToolbarItem
 }
@@ -97,7 +96,6 @@ func NewTrackingSeparatorToolbarItem() TrackingSeparatorToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/splitView
-
 func (t_ TrackingSeparatorToolbarItem) SplitView() NSSplitView {
 	rv := objc.Send[NSSplitView](t_.ID, objc.Sel("splitView"))
 	return rv
@@ -108,7 +106,6 @@ func (t_ TrackingSeparatorToolbarItem) SplitView() NSSplitView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/splitView
-
 func (t_ TrackingSeparatorToolbarItem) SetSplitView(value ISplitView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSplitView:"), value)
 }
@@ -118,7 +115,6 @@ func (t_ TrackingSeparatorToolbarItem) SetSplitView(value ISplitView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/target
-
 func (t_ TrackingSeparatorToolbarItem) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("target"))
 	return rv
@@ -129,7 +125,6 @@ func (t_ TrackingSeparatorToolbarItem) Target() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/target
-
 func (t_ TrackingSeparatorToolbarItem) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTarget:"), value)
 }
@@ -139,7 +134,6 @@ func (t_ TrackingSeparatorToolbarItem) SetTarget(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingseparatortoolbaritem/dividerindex
-
 func (t_ TrackingSeparatorToolbarItem) DividerIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("dividerIndex"))
 	return rv
@@ -150,7 +144,6 @@ func (t_ TrackingSeparatorToolbarItem) DividerIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingseparatortoolbaritem/dividerindex
-
 func (t_ TrackingSeparatorToolbarItem) SetDividerIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDividerIndex:"), value)
 }

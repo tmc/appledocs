@@ -32,7 +32,9 @@ type IwaitingForRfcommSpace interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/waitingForRfcommSpace
 type waitingForRfcommSpace struct {
 	objectivec.Object

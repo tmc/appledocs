@@ -68,7 +68,6 @@ type IGameActivity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity
-
 type GameActivity struct {
 	objectivec.Object
 }
@@ -113,23 +112,19 @@ func NewGameActivity() GameActivity {
 
 
 
-
 // Set a progress for an achievement for a player.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/setProgress(on:to:)
-
 func (g_ GameActivity) SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProgressOnAchievement:toPercentComplete:"), achievement, percentComplete)
 }
-
 
 
 // Set a score of a leaderboard for a player.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/setScore(on:to:)
-
 func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScoreOnLeaderboard:toScore:"), leaderboard, score)
 }
@@ -139,7 +134,6 @@ func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/duration
-
 func (g_ GameActivity) Duration() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("duration"))
 	return rv
@@ -150,7 +144,6 @@ func (g_ GameActivity) Duration() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/achievements
-
 func (g_ GameActivity) Achievements() GKAchievement {
 	rv := objc.Send[GKAchievement](g_.ID, objc.Sel("achievements"))
 	return rv
@@ -161,7 +154,6 @@ func (g_ GameActivity) Achievements() GKAchievement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/achievements
-
 func (g_ GameActivity) SetAchievements(value IGKAchievement) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAchievements:"), value)
 }
@@ -171,7 +163,6 @@ func (g_ GameActivity) SetAchievements(value IGKAchievement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/activitydefinition
-
 func (g_ GameActivity) ActivityDefinition() GKGameActivityDefinition {
 	rv := objc.Send[GKGameActivityDefinition](g_.ID, objc.Sel("activityDefinition"))
 	return rv
@@ -182,7 +173,6 @@ func (g_ GameActivity) ActivityDefinition() GKGameActivityDefinition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/activitydefinition
-
 func (g_ GameActivity) SetActivityDefinition(value IGKGameActivityDefinition) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActivityDefinition:"), value)
 }
@@ -192,7 +182,6 @@ func (g_ GameActivity) SetActivityDefinition(value IGKGameActivityDefinition) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/creationdate
-
 func (g_ GameActivity) CreationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("creationDate"))
 	return rv
@@ -203,7 +192,6 @@ func (g_ GameActivity) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/creationdate
-
 func (g_ GameActivity) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCreationDate:"), value)
 }
@@ -213,7 +201,6 @@ func (g_ GameActivity) SetCreationDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
-
 func (g_ GameActivity) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("endDate"))
 	return rv
@@ -224,7 +211,6 @@ func (g_ GameActivity) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
-
 func (g_ GameActivity) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEndDate:"), value)
 }
@@ -234,7 +220,6 @@ func (g_ GameActivity) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
-
 func (g_ GameActivity) Identifier() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
 	return rv
@@ -245,7 +230,6 @@ func (g_ GameActivity) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
-
 func (g_ GameActivity) SetIdentifier(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -255,7 +239,6 @@ func (g_ GameActivity) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
-
 func (g_ GameActivity) LastResumeDate() foundation.Date {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("lastResumeDate"))
 	return rv
@@ -266,7 +249,6 @@ func (g_ GameActivity) LastResumeDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
-
 func (g_ GameActivity) SetLastResumeDate(value foundation.IDate) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLastResumeDate:"), value)
 }
@@ -276,7 +258,6 @@ func (g_ GameActivity) SetLastResumeDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/leaderboardscores
-
 func (g_ GameActivity) LeaderboardScores() GKLeaderboardScore {
 	rv := objc.Send[GKLeaderboardScore](g_.ID, objc.Sel("leaderboardScores"))
 	return rv
@@ -287,7 +268,6 @@ func (g_ GameActivity) LeaderboardScores() GKLeaderboardScore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/leaderboardscores
-
 func (g_ GameActivity) SetLeaderboardScores(value IGKLeaderboardScore) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeaderboardScores:"), value)
 }
@@ -297,7 +277,6 @@ func (g_ GameActivity) SetLeaderboardScores(value IGKLeaderboardScore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
-
 func (g_ GameActivity) PartyCode() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("partyCode"))
 	return rv
@@ -308,7 +287,6 @@ func (g_ GameActivity) PartyCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
-
 func (g_ GameActivity) SetPartyCode(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyCode:"), objc.String(value))
 }
@@ -318,7 +296,6 @@ func (g_ GameActivity) SetPartyCode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partyurl
-
 func (g_ GameActivity) PartyURL() foundation.URL {
 	rv := objc.Send[foundation.URL](g_.ID, objc.Sel("partyURL"))
 	return rv
@@ -329,7 +306,6 @@ func (g_ GameActivity) PartyURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partyurl
-
 func (g_ GameActivity) SetPartyURL(value foundation.IURL) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyURL:"), value)
 }
@@ -339,7 +315,6 @@ func (g_ GameActivity) SetPartyURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/properties
-
 func (g_ GameActivity) Properties() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("properties"))
 	return rv
@@ -350,7 +325,6 @@ func (g_ GameActivity) Properties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/properties
-
 func (g_ GameActivity) SetProperties(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProperties:"), objc.String(value))
 }
@@ -360,7 +334,6 @@ func (g_ GameActivity) SetProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
-
 func (g_ GameActivity) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("startDate"))
 	return rv
@@ -371,7 +344,6 @@ func (g_ GameActivity) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
-
 func (g_ GameActivity) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStartDate:"), value)
 }
@@ -381,7 +353,6 @@ func (g_ GameActivity) SetStartDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.property
-
 func (g_ GameActivity) State() coreml.State {
 	rv := objc.Send[coreml.State](g_.ID, objc.Sel("state"))
 	return rv
@@ -392,7 +363,6 @@ func (g_ GameActivity) State() coreml.State {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.property
-
 func (g_ GameActivity) SetState(value coreml.State) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setState:"), value)
 }

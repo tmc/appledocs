@@ -46,7 +46,6 @@ type IMenuItemBadge interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge
-
 type MenuItemBadge struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewMenuItemBadge() MenuItemBadge {
 
 
 
-
 // Creates a badge with a count and an empty string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/init(count:)
-
 func NewMenuItemBadgeWithCount(itemCount int) MenuItemBadge {
 	instance := getMenuItemBadgeClass().Alloc()
 	rv := objc.Send[MenuItemBadge](instance.ID, objc.Sel("initWithCount:"), itemCount)
@@ -105,10 +102,8 @@ func NewMenuItemBadgeWithCount(itemCount int) MenuItemBadge {
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/initWithCount:type:
-
 func NewMenuItemBadgeWithCountType(itemCount int, type_ MenuItemBadgeType) MenuItemBadge {
 	instance := getMenuItemBadgeClass().Alloc()
 	rv := objc.Send[MenuItemBadge](instance.ID, objc.Sel("initWithCount:type:"), itemCount, type_)
@@ -117,12 +112,10 @@ func NewMenuItemBadgeWithCountType(itemCount int, type_ MenuItemBadgeType) MenuI
 }
 
 
-
 // Creates a badge with the provided custom string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/init(string:)
-
 func NewMenuItemBadgeWithString(string_ string) MenuItemBadge {
 	instance := getMenuItemBadgeClass().Alloc()
 	rv := objc.Send[MenuItemBadge](instance.ID, objc.Sel("initWithString:"), objc.String(string_))
@@ -136,7 +129,6 @@ func NewMenuItemBadgeWithString(string_ string) MenuItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/alerts(count:)
-
 func (mc _MenuItemBadgeClass) AlertsWithCount(itemCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("alertsWithCount:"), itemCount)
 	return rv
@@ -147,7 +139,6 @@ func (mc _MenuItemBadgeClass) AlertsWithCount(itemCount int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/newItems(count:)
-
 func (mc _MenuItemBadgeClass) NewItemsWithCount(itemCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("newItemsWithCount:"), itemCount)
 	return rv
@@ -158,7 +149,6 @@ func (mc _MenuItemBadgeClass) NewItemsWithCount(itemCount int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/updates(count:)
-
 func (mc _MenuItemBadgeClass) UpdatesWithCount(itemCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("updatesWithCount:"), itemCount)
 	return rv
@@ -169,7 +159,6 @@ func (mc _MenuItemBadgeClass) UpdatesWithCount(itemCount int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/itemCount
-
 func (m_ MenuItemBadge) ItemCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("itemCount"))
 	return rv
@@ -180,7 +169,6 @@ func (m_ MenuItemBadge) ItemCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/stringValue-fc9f
-
 func (m_ MenuItemBadge) StringValue() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
@@ -191,7 +179,6 @@ func (m_ MenuItemBadge) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/type
-
 func (m_ MenuItemBadge) Type() MenuItemBadgeType {
 	rv := objc.Send[MenuItemBadgeType](m_.ID, objc.Sel("type"))
 	return rv
@@ -200,7 +187,6 @@ func (m_ MenuItemBadge) Type() MenuItemBadgeType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
-
 func (m_ MenuItemBadge) Badge() NSMenuItemBadge {
 	rv := objc.Send[NSMenuItemBadge](m_.ID, objc.Sel("badge"))
 	return rv
@@ -209,7 +195,6 @@ func (m_ MenuItemBadge) Badge() NSMenuItemBadge {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
-
 func (m_ MenuItemBadge) SetBadge(value IMenuItemBadge) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
 }

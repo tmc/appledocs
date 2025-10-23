@@ -40,7 +40,6 @@ type ICloudPlayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKCloudPlayer
-
 type CloudPlayer struct {
 	BasePlayer
 }
@@ -91,7 +90,6 @@ func NewCloudPlayer() CloudPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-
 func (c_ CloudPlayer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CloudPlayer) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-
 func (c_ CloudPlayer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }

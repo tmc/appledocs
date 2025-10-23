@@ -44,7 +44,6 @@ type IDelegatingPlaybackCoordinator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinator
-
 type DelegatingPlaybackCoordinator struct {
 	PlaybackCoordinator
 }
@@ -95,7 +94,6 @@ func NewDelegatingPlaybackCoordinator() DelegatingPlaybackCoordinator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
-
 func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("currentItemIdentifier"))
 	return rv
@@ -106,7 +104,6 @@ func (d_ DelegatingPlaybackCoordinator) CurrentItemIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier
-
 func (d_ DelegatingPlaybackCoordinator) SetCurrentItemIdentifier(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentItemIdentifier:"), objc.String(value))
 }
@@ -116,7 +113,6 @@ func (d_ DelegatingPlaybackCoordinator) SetCurrentItemIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate
-
 func (d_ DelegatingPlaybackCoordinator) PlaybackControlDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("playbackControlDelegate"))
 	return rv
@@ -127,7 +123,6 @@ func (d_ DelegatingPlaybackCoordinator) PlaybackControlDelegate() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate
-
 func (d_ DelegatingPlaybackCoordinator) SetPlaybackControlDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPlaybackControlDelegate:"), value)
 }

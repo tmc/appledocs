@@ -39,7 +39,6 @@ type IATTrackingManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager
-
 type ATTrackingManager struct {
 	objectivec.Object
 }
@@ -88,7 +87,6 @@ func NewATTrackingManager() ATTrackingManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/requestTrackingAuthorization(completionHandler:)
-
 func (ac _ATTrackingManagerClass) RequestTrackingAuthorizationWithCompletionHandler(completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("requestTrackingAuthorizationWithCompletionHandler:"), completion)
 }
@@ -98,7 +96,6 @@ func (ac _ATTrackingManagerClass) RequestTrackingAuthorizationWithCompletionHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus
-
 func (ac _ATTrackingManagerClass) TrackingAuthorizationStatus() ATTrackingManagerAuthorizationStatus {
 	rv := objc.Send[ATTrackingManagerAuthorizationStatus](objc.ID(ac.class), objc.Sel("trackingAuthorizationStatus"))
 	return rv
@@ -108,7 +105,6 @@ func (ac _ATTrackingManagerClass) TrackingAuthorizationStatus() ATTrackingManage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus
-
 func (a_ ATTrackingManager) TrackingAuthorizationStatus() ATTrackingManagerAuthorizationStatus {
 	rv := objc.Send[ATTrackingManagerAuthorizationStatus](a_.ID, objc.Sel("trackingAuthorizationStatus"))
 	return rv

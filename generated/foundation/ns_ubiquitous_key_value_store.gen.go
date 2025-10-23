@@ -30,9 +30,9 @@ type _UbiquitousKeyValueStoreClass struct {
 // An interface definition for the [UbiquitousKeyValueStore] class.
 type IUbiquitousKeyValueStore interface {
 	objectivec.IObject
-	ArrayForKey(aKey string) Array
+	ArrayForKey(aKey string) IArray
 	BoolForKey(aKey string) bool
-	DataForKey(aKey string) Data
+	DataForKey(aKey string) IData
 	DictionaryForKey(aKey string) IDictionary
 	DoubleForKey(aKey string) float64
 	LongLongForKey(aKey string) unsafe.Pointer
@@ -46,7 +46,7 @@ type IUbiquitousKeyValueStore interface {
 	SetBoolForKey(value bool, aKey string)
 	SetObjectForKey(anObject objectivec.IObject, aKey string)
 	SetDictionaryForKey(aDictionary IDictionary, aKey string)
-	StringForKey(aKey string) String
+	StringForKey(aKey string) IString
 	Synchronize() bool
 	DictionaryRepresentation() IDictionary
 	NSUbiquitousKeyValueStoreChangeReasonKey() string
@@ -120,7 +120,7 @@ func (uc _UbiquitousKeyValueStoreClass) DefaultStore() UbiquitousKeyValueStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/array(forKey:)
-func (u_ UbiquitousKeyValueStore) ArrayForKey(aKey string) Array {
+func (u_ UbiquitousKeyValueStore) ArrayForKey(aKey string) IArray {
 	rv := objc.Send[Array](u_.ID, objc.Sel("arrayForKey:"), objc.String(aKey))
 	return rv
 }
@@ -140,7 +140,7 @@ func (u_ UbiquitousKeyValueStore) BoolForKey(aKey string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/data(forKey:)
-func (u_ UbiquitousKeyValueStore) DataForKey(aKey string) Data {
+func (u_ UbiquitousKeyValueStore) DataForKey(aKey string) IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("dataForKey:"), objc.String(aKey))
 	return rv
 }
@@ -271,7 +271,7 @@ func (u_ UbiquitousKeyValueStore) SetDictionaryForKey(aDictionary IDictionary, a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/string(forKey:)
-func (u_ UbiquitousKeyValueStore) StringForKey(aKey string) String {
+func (u_ UbiquitousKeyValueStore) StringForKey(aKey string) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), objc.String(aKey))
 	return rv
 }
@@ -291,7 +291,7 @@ func (u_ UbiquitousKeyValueStore) Synchronize() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/default
-func (u_ UbiquitousKeyValueStore) DefaultStore() NSUbiquitousKeyValueStore {
+func (u_ UbiquitousKeyValueStore) DefaultStore() IUbiquitousKeyValueStore {
 	rv := objc.Send[NSUbiquitousKeyValueStore](u_.ID, objc.Sel("defaultStore"))
 	return rv
 }

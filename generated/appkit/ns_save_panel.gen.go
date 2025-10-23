@@ -95,7 +95,6 @@ type ISavePanel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel
-
 type SavePanel struct {
 	Panel
 }
@@ -146,75 +145,62 @@ func NewSavePanel() SavePanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/savePanel
-
 func (sc _SavePanelClass) SavePanel() SavePanel {
 	rv := objc.Send[SavePanel](objc.ID(sc.class), objc.Sel("savePanel"))
 	return rv
 }
 
 
-
 // Presents the panel as a modeless window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/begin(completionHandler:)
-
 func (s_ SavePanel) BeginWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginWithCompletionHandler:"), handler)
 }
-
 
 
 // Presents the panel as a sheet modal to the specified window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/beginSheetModal(for:completionHandler:)
-
 func (s_ SavePanel) BeginSheetModalForWindowCompletionHandler(window IWindow, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetModalForWindow:completionHandler:"), window, handler)
 }
-
 
 
 // The action method that the panel calls when the user clicks the Cancel button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/cancel(_:)
-
 func (s_ SavePanel) Cancel(sender objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("cancel:"), sender)
 }
-
 
 
 // The action method that the panel calls when the user clicks the OK button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/ok(_:)
-
 func (s_ SavePanel) Ok(sender objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("ok:"), sender)
 }
-
 
 
 // Displays the panel and begins its event loop with the current working (or last-selected) directory as the default starting point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/runModal()
-
 func (s_ SavePanel) RunModal() ModalResponse {
 	rv := objc.Send[ModalResponse](s_.ID, objc.Sel("runModal"))
 	return rv
 }
 
 
-
 // Validates and reloads the browser columns visible in the panel.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/validateVisibleColumns()
-
 func (s_ SavePanel) ValidateVisibleColumns() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("validateVisibleColumns"))
 }
@@ -224,7 +210,6 @@ func (s_ SavePanel) ValidateVisibleColumns() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/accessoryView
-
 func (s_ SavePanel) AccessoryView() NSView {
 	rv := objc.Send[NSView](s_.ID, objc.Sel("accessoryView"))
 	return rv
@@ -235,7 +220,6 @@ func (s_ SavePanel) AccessoryView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/accessoryView
-
 func (s_ SavePanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAccessoryView:"), value)
 }
@@ -245,7 +229,6 @@ func (s_ SavePanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-
 func (s_ SavePanel) AllowedContentTypes() []uniformtypeidentifiers.UTType {
 	rv := objc.Send[[]uniformtypeidentifiers.UTType](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
@@ -256,7 +239,6 @@ func (s_ SavePanel) AllowedContentTypes() []uniformtypeidentifiers.UTType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-
 func (s_ SavePanel) SetAllowedContentTypes(value []uniformtypeidentifiers.UTType) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -276,7 +258,6 @@ func (s_ SavePanel) SetAllowedContentTypes(value []uniformtypeidentifiers.UTType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowsOtherFileTypes
-
 func (s_ SavePanel) AllowsOtherFileTypes() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsOtherFileTypes"))
 	return rv
@@ -287,7 +268,6 @@ func (s_ SavePanel) AllowsOtherFileTypes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowsOtherFileTypes
-
 func (s_ SavePanel) SetAllowsOtherFileTypes(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsOtherFileTypes:"), value)
 }
@@ -297,7 +277,6 @@ func (s_ SavePanel) SetAllowsOtherFileTypes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canCreateDirectories
-
 func (s_ SavePanel) CanCreateDirectories() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canCreateDirectories"))
 	return rv
@@ -308,7 +287,6 @@ func (s_ SavePanel) CanCreateDirectories() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canCreateDirectories
-
 func (s_ SavePanel) SetCanCreateDirectories(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCanCreateDirectories:"), value)
 }
@@ -318,7 +296,6 @@ func (s_ SavePanel) SetCanCreateDirectories(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canSelectHiddenExtension
-
 func (s_ SavePanel) CanSelectHiddenExtension() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canSelectHiddenExtension"))
 	return rv
@@ -329,7 +306,6 @@ func (s_ SavePanel) CanSelectHiddenExtension() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canSelectHiddenExtension
-
 func (s_ SavePanel) SetCanSelectHiddenExtension(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCanSelectHiddenExtension:"), value)
 }
@@ -339,7 +315,6 @@ func (s_ SavePanel) SetCanSelectHiddenExtension(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-
 func (s_ SavePanel) CurrentContentType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentContentType"))
 	return rv
@@ -350,7 +325,6 @@ func (s_ SavePanel) CurrentContentType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-
 func (s_ SavePanel) SetCurrentContentType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentContentType:"), value)
 }
@@ -360,7 +334,6 @@ func (s_ SavePanel) SetCurrentContentType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/delegate
-
 func (s_ SavePanel) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -371,7 +344,6 @@ func (s_ SavePanel) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/delegate
-
 func (s_ SavePanel) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -381,7 +353,6 @@ func (s_ SavePanel) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-
 func (s_ SavePanel) DirectoryURL() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("directoryURL"))
 	return rv
@@ -392,7 +363,6 @@ func (s_ SavePanel) DirectoryURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-
 func (s_ SavePanel) SetDirectoryURL(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDirectoryURL:"), value)
 }
@@ -400,7 +370,6 @@ func (s_ SavePanel) SetDirectoryURL(value foundation.IURL) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
-
 func (s_ SavePanel) Identifier() UserInterfaceItemIdentifier {
 	rv := objc.Send[UserInterfaceItemIdentifier](s_.ID, objc.Sel("identifier"))
 	return rv
@@ -409,7 +378,6 @@ func (s_ SavePanel) Identifier() UserInterfaceItemIdentifier {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
-
 func (s_ SavePanel) SetIdentifier(value IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
@@ -419,7 +387,6 @@ func (s_ SavePanel) SetIdentifier(value IUserInterfaceItemIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExpanded
-
 func (s_ SavePanel) Expanded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("expanded"))
 	return rv
@@ -430,7 +397,6 @@ func (s_ SavePanel) Expanded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExtensionHidden
-
 func (s_ SavePanel) ExtensionHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("extensionHidden"))
 	return rv
@@ -441,7 +407,6 @@ func (s_ SavePanel) ExtensionHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExtensionHidden
-
 func (s_ SavePanel) SetExtensionHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setExtensionHidden:"), value)
 }
@@ -451,7 +416,6 @@ func (s_ SavePanel) SetExtensionHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/message
-
 func (s_ SavePanel) Message() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("message"))
 	return rv
@@ -462,7 +426,6 @@ func (s_ SavePanel) Message() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/message
-
 func (s_ SavePanel) SetMessage(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
@@ -472,7 +435,6 @@ func (s_ SavePanel) SetMessage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldLabel
-
 func (s_ SavePanel) NameFieldLabel() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("nameFieldLabel"))
 	return rv
@@ -483,7 +445,6 @@ func (s_ SavePanel) NameFieldLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldLabel
-
 func (s_ SavePanel) SetNameFieldLabel(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldLabel:"), objc.String(value))
 }
@@ -493,7 +454,6 @@ func (s_ SavePanel) SetNameFieldLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldStringValue
-
 func (s_ SavePanel) NameFieldStringValue() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("nameFieldStringValue"))
 	return rv
@@ -504,7 +464,6 @@ func (s_ SavePanel) NameFieldStringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldStringValue
-
 func (s_ SavePanel) SetNameFieldStringValue(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldStringValue:"), objc.String(value))
 }
@@ -514,7 +473,6 @@ func (s_ SavePanel) SetNameFieldStringValue(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
-
 func (s_ SavePanel) Prompt() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("prompt"))
 	return rv
@@ -525,7 +483,6 @@ func (s_ SavePanel) Prompt() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
-
 func (s_ SavePanel) SetPrompt(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrompt:"), objc.String(value))
 }
@@ -535,7 +492,6 @@ func (s_ SavePanel) SetPrompt(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsContentTypes
-
 func (s_ SavePanel) ShowsContentTypes() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsContentTypes"))
 	return rv
@@ -546,7 +502,6 @@ func (s_ SavePanel) ShowsContentTypes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsContentTypes
-
 func (s_ SavePanel) SetShowsContentTypes(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsContentTypes:"), value)
 }
@@ -556,7 +511,6 @@ func (s_ SavePanel) SetShowsContentTypes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsHiddenFiles
-
 func (s_ SavePanel) ShowsHiddenFiles() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsHiddenFiles"))
 	return rv
@@ -567,7 +521,6 @@ func (s_ SavePanel) ShowsHiddenFiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsHiddenFiles
-
 func (s_ SavePanel) SetShowsHiddenFiles(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsHiddenFiles:"), value)
 }
@@ -577,7 +530,6 @@ func (s_ SavePanel) SetShowsHiddenFiles(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsTagField
-
 func (s_ SavePanel) ShowsTagField() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsTagField"))
 	return rv
@@ -588,7 +540,6 @@ func (s_ SavePanel) ShowsTagField() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsTagField
-
 func (s_ SavePanel) SetShowsTagField(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsTagField:"), value)
 }
@@ -598,7 +549,6 @@ func (s_ SavePanel) SetShowsTagField(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
-
 func (s_ SavePanel) TagNames() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("tagNames"))
 	return rv
@@ -609,7 +559,6 @@ func (s_ SavePanel) TagNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
-
 func (s_ SavePanel) SetTagNames(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -629,7 +578,6 @@ func (s_ SavePanel) SetTagNames(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/title
-
 func (s_ SavePanel) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
@@ -640,7 +588,6 @@ func (s_ SavePanel) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/title
-
 func (s_ SavePanel) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -650,7 +597,6 @@ func (s_ SavePanel) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/treatsFilePackagesAsDirectories
-
 func (s_ SavePanel) TreatsFilePackagesAsDirectories() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("treatsFilePackagesAsDirectories"))
 	return rv
@@ -661,7 +607,6 @@ func (s_ SavePanel) TreatsFilePackagesAsDirectories() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/treatsFilePackagesAsDirectories
-
 func (s_ SavePanel) SetTreatsFilePackagesAsDirectories(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTreatsFilePackagesAsDirectories:"), value)
 }
@@ -671,7 +616,6 @@ func (s_ SavePanel) SetTreatsFilePackagesAsDirectories(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/url
-
 func (s_ SavePanel) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
 	return rv
@@ -682,7 +626,6 @@ func (s_ SavePanel) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isexpanded
-
 func (s_ SavePanel) IsExpanded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isExpanded"))
 	return rv
@@ -693,7 +636,6 @@ func (s_ SavePanel) IsExpanded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isexpanded
-
 func (s_ SavePanel) SetIsExpanded(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExpanded:"), value)
 }
@@ -703,7 +645,6 @@ func (s_ SavePanel) SetIsExpanded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
-
 func (s_ SavePanel) IsExtensionHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isExtensionHidden"))
 	return rv
@@ -714,7 +655,6 @@ func (s_ SavePanel) IsExtensionHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
-
 func (s_ SavePanel) SetIsExtensionHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExtensionHidden:"), value)
 }

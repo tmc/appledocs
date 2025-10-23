@@ -95,7 +95,7 @@ func NewScriptExecutionContext() ScriptExecutionContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptExecutionContext/shared()
-func (sc _ScriptExecutionContextClass) SharedScriptExecutionContext() ScriptExecutionContext {
+func (sc _ScriptExecutionContextClass) SharedScriptExecutionContext() IScriptExecutionContext {
 	rv := objc.Send[ScriptExecutionContext](objc.ID(sc.class), objc.Sel("sharedScriptExecutionContext"))
 	return rv
 }

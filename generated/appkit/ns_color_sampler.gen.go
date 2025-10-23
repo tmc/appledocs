@@ -42,7 +42,6 @@ type IColorSampler interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler
-
 type ColorSampler struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewColorSampler() ColorSampler {
 
 
 
-
 // Displays the system color-sampling interface asynchronously and reports the selected color back to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler/show(selectionHandler:)
-
 func (c_ ColorSampler) ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showSamplerWithSelectionHandler:"), selectionHandler)
 }

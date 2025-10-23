@@ -46,7 +46,6 @@ type IHKCDADocumentSample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCDADocumentSample
-
 type HKCDADocumentSample struct {
 	HKDocumentSample
 }
@@ -97,7 +96,6 @@ func NewHKCDADocumentSample() HKCDADocumentSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCDADocumentSample/document
-
 func (h_ HKCDADocumentSample) Document() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("document"))
 	return rv
@@ -108,7 +106,6 @@ func (h_ HKCDADocumentSample) Document() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey
-
 func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKDetailedCDAValidationErrorKey"))
 	return rv
@@ -119,7 +116,6 @@ func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdaauthorname
-
 func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAAuthorName"))
 	return rv
@@ -130,7 +126,6 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdacustodianname
-
 func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDACustodianName"))
 	return rv
@@ -141,7 +136,6 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname
-
 func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAPatientName"))
 	return rv
@@ -152,7 +146,6 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle
-
 func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDATitle"))
 	return rv

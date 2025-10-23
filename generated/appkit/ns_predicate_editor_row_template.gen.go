@@ -63,7 +63,6 @@ type IPredicateEditorRowTemplate interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate
-
 type PredicateEditorRowTemplate struct {
 	objectivec.Object
 }
@@ -112,7 +111,6 @@ func NewPredicateEditorRowTemplate() PredicateEditorRowTemplate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-
 func (p_ PredicateEditorRowTemplate) ObjectValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectValue"))
 	return rv
@@ -123,7 +121,6 @@ func (p_ PredicateEditorRowTemplate) ObjectValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-
 func (p_ PredicateEditorRowTemplate) SetObjectValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectValue:"), value)
 }
@@ -133,7 +130,6 @@ func (p_ PredicateEditorRowTemplate) SetObjectValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
-
 func (p_ PredicateEditorRowTemplate) RowTemplates() NSPredicateEditorRowTemplate {
 	rv := objc.Send[NSPredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
@@ -144,7 +140,6 @@ func (p_ PredicateEditorRowTemplate) RowTemplates() NSPredicateEditorRowTemplate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
-
 func (p_ PredicateEditorRowTemplate) SetRowTemplates(value IPredicateEditorRowTemplate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
 }
@@ -154,7 +149,6 @@ func (p_ PredicateEditorRowTemplate) SetRowTemplates(value IPredicateEditorRowTe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes
-
 func (p_ PredicateEditorRowTemplate) CompoundTypes() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("compoundTypes"))
 	return rv
@@ -165,7 +159,6 @@ func (p_ PredicateEditorRowTemplate) CompoundTypes() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes
-
 func (p_ PredicateEditorRowTemplate) SetCompoundTypes(value foundation.INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCompoundTypes:"), value)
 }
@@ -175,7 +168,6 @@ func (p_ PredicateEditorRowTemplate) SetCompoundTypes(value foundation.INumber) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions
-
 func (p_ PredicateEditorRowTemplate) LeftExpressions() coredata.Expression {
 	rv := objc.Send[coredata.Expression](p_.ID, objc.Sel("leftExpressions"))
 	return rv
@@ -186,7 +178,6 @@ func (p_ PredicateEditorRowTemplate) LeftExpressions() coredata.Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions
-
 func (p_ PredicateEditorRowTemplate) SetLeftExpressions(value coredata.IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLeftExpressions:"), value)
 }
@@ -196,7 +187,6 @@ func (p_ PredicateEditorRowTemplate) SetLeftExpressions(value coredata.IExpressi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/modifier
-
 func (p_ PredicateEditorRowTemplate) Modifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modifier"))
 	return rv
@@ -207,7 +197,6 @@ func (p_ PredicateEditorRowTemplate) Modifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/modifier
-
 func (p_ PredicateEditorRowTemplate) SetModifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModifier:"), value)
 }
@@ -217,7 +206,6 @@ func (p_ PredicateEditorRowTemplate) SetModifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/operators
-
 func (p_ PredicateEditorRowTemplate) Operators() foundation.Number {
 	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("operators"))
 	return rv
@@ -228,7 +216,6 @@ func (p_ PredicateEditorRowTemplate) Operators() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/operators
-
 func (p_ PredicateEditorRowTemplate) SetOperators(value foundation.INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOperators:"), value)
 }
@@ -238,7 +225,6 @@ func (p_ PredicateEditorRowTemplate) SetOperators(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/options
-
 func (p_ PredicateEditorRowTemplate) Options() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("options"))
 	return rv
@@ -249,7 +235,6 @@ func (p_ PredicateEditorRowTemplate) Options() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/options
-
 func (p_ PredicateEditorRowTemplate) SetOptions(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
 }
@@ -259,7 +244,6 @@ func (p_ PredicateEditorRowTemplate) SetOptions(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressionattributetype
-
 func (p_ PredicateEditorRowTemplate) RightExpressionAttributeType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rightExpressionAttributeType"))
 	return rv
@@ -270,7 +254,6 @@ func (p_ PredicateEditorRowTemplate) RightExpressionAttributeType() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressionattributetype
-
 func (p_ PredicateEditorRowTemplate) SetRightExpressionAttributeType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRightExpressionAttributeType:"), value)
 }
@@ -280,7 +263,6 @@ func (p_ PredicateEditorRowTemplate) SetRightExpressionAttributeType(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions
-
 func (p_ PredicateEditorRowTemplate) RightExpressions() coredata.Expression {
 	rv := objc.Send[coredata.Expression](p_.ID, objc.Sel("rightExpressions"))
 	return rv
@@ -291,7 +273,6 @@ func (p_ PredicateEditorRowTemplate) RightExpressions() coredata.Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions
-
 func (p_ PredicateEditorRowTemplate) SetRightExpressions(value coredata.IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRightExpressions:"), value)
 }
@@ -301,7 +282,6 @@ func (p_ PredicateEditorRowTemplate) SetRightExpressions(value coredata.IExpress
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/templateviews
-
 func (p_ PredicateEditorRowTemplate) TemplateViews() NSView {
 	rv := objc.Send[NSView](p_.ID, objc.Sel("templateViews"))
 	return rv
@@ -312,7 +292,6 @@ func (p_ PredicateEditorRowTemplate) TemplateViews() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/templateviews
-
 func (p_ PredicateEditorRowTemplate) SetTemplateViews(value IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateViews:"), value)
 }

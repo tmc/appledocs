@@ -33,7 +33,7 @@ type IOpenGLLayer interface {
 	OpenGLContext() NSOpenGLContext
 	SetOpenGLContext(value IOpenGLContext)
 	OpenGLPixelFormat() NSOpenGLPixelFormat
-	SetOpenGLPixelFormat(value NSOpenGLPixelFormat)
+	SetOpenGLPixelFormat(value IOpenGLPixelFormat)
 	View() NSView
 	SetView(value IView)
 }
@@ -47,7 +47,6 @@ type IOpenGLLayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer
-
 type OpenGLLayer struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewOpenGLLayer() OpenGLLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
-
 func (o_ OpenGLLayer) OpenGLContext() NSOpenGLContext {
 	rv := objc.Send[NSOpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
@@ -107,7 +105,6 @@ func (o_ OpenGLLayer) OpenGLContext() NSOpenGLContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
-
 func (o_ OpenGLLayer) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
 }
@@ -117,7 +114,6 @@ func (o_ OpenGLLayer) SetOpenGLContext(value IOpenGLContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
-
 func (o_ OpenGLLayer) OpenGLPixelFormat() NSOpenGLPixelFormat {
 	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("openGLPixelFormat"))
 	return rv
@@ -128,8 +124,7 @@ func (o_ OpenGLLayer) OpenGLPixelFormat() NSOpenGLPixelFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
-
-func (o_ OpenGLLayer) SetOpenGLPixelFormat(value NSOpenGLPixelFormat) {
+func (o_ OpenGLLayer) SetOpenGLPixelFormat(value IOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLPixelFormat:"), value)
 }
 
@@ -138,7 +133,6 @@ func (o_ OpenGLLayer) SetOpenGLPixelFormat(value NSOpenGLPixelFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
-
 func (o_ OpenGLLayer) View() NSView {
 	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
 	return rv
@@ -149,7 +143,6 @@ func (o_ OpenGLLayer) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
-
 func (o_ OpenGLLayer) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }

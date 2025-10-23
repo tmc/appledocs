@@ -46,7 +46,6 @@ type ICKQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery
-
 type CKQuery struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewCKQuery() CKQuery {
 
 
 
-
 // Creates an operation group from a serialized instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/init(coder:)
-
 func NewCKQueryWithCoder(aDecoder foundation.ICoder) CKQuery {
 	instance := getCKQueryClass().Alloc()
 	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -105,12 +102,10 @@ func NewCKQueryWithCoder(aDecoder foundation.ICoder) CKQuery {
 }
 
 
-
 // Creates a query with the specified record type and predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/initWithRecordType:predicate:
-
 func NewCKQueryWithRecordTypePredicate(recordType unsafe.Pointer, predicate foundation.IPredicate) CKQuery {
 	instance := getCKQueryClass().Alloc()
 	rv := objc.Send[CKQuery](instance.ID, objc.Sel("initWithRecordType:predicate:"), recordType, predicate)
@@ -124,7 +119,6 @@ func NewCKQueryWithRecordTypePredicate(recordType unsafe.Pointer, predicate foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/predicate
-
 func (c_ CKQuery) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
@@ -135,7 +129,6 @@ func (c_ CKQuery) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/recordType-3clp
-
 func (c_ CKQuery) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
@@ -146,7 +139,6 @@ func (c_ CKQuery) RecordType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/sortDescriptors
-
 func (c_ CKQuery) SortDescriptors() []foundation.SortDescriptor {
 	rv := objc.Send[[]foundation.SortDescriptor](c_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -157,7 +149,6 @@ func (c_ CKQuery) SortDescriptors() []foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/sortDescriptors
-
 func (c_ CKQuery) SetSortDescriptors(value []foundation.ISortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

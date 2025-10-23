@@ -32,7 +32,9 @@ type IBluetoothAccessibilityIgnoredImageCell interface {
 	appkit.IImageCell
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothAccessibilityIgnoredImageCell
 type BluetoothAccessibilityIgnoredImageCell struct {
 	appkit.ImageCell

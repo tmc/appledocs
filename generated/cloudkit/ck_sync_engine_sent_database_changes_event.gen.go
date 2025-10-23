@@ -38,7 +38,6 @@ type ICKSyncEngineSentDatabaseChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent
-
 type CKSyncEngineSentDatabaseChangesEvent struct {
 	CKSyncEngineEvent
 }

@@ -49,7 +49,6 @@ type IDictionaryControllerKeyValuePair interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair
-
 type DictionaryControllerKeyValuePair struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewDictionaryControllerKeyValuePair() DictionaryControllerKeyValuePair {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
-
 func (d_ DictionaryControllerKeyValuePair) Key() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("key"))
 	return rv
@@ -105,7 +103,6 @@ func (d_ DictionaryControllerKeyValuePair) Key() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/key
-
 func (d_ DictionaryControllerKeyValuePair) SetKey(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKey:"), objc.String(value))
 }
@@ -113,7 +110,6 @@ func (d_ DictionaryControllerKeyValuePair) SetKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
-
 func (d_ DictionaryControllerKeyValuePair) Value() objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("value"))
 	return rv
@@ -122,7 +118,6 @@ func (d_ DictionaryControllerKeyValuePair) Value() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair/value
-
 func (d_ DictionaryControllerKeyValuePair) SetValue(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:"), value)
 }
@@ -130,7 +125,6 @@ func (d_ DictionaryControllerKeyValuePair) SetValue(value objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/isexplicitlyincluded
-
 func (d_ DictionaryControllerKeyValuePair) IsExplicitlyIncluded() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isExplicitlyIncluded"))
 	return rv
@@ -139,7 +133,6 @@ func (d_ DictionaryControllerKeyValuePair) IsExplicitlyIncluded() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/isexplicitlyincluded
-
 func (d_ DictionaryControllerKeyValuePair) SetIsExplicitlyIncluded(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsExplicitlyIncluded:"), value)
 }
@@ -147,7 +140,6 @@ func (d_ DictionaryControllerKeyValuePair) SetIsExplicitlyIncluded(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/localizedkey
-
 func (d_ DictionaryControllerKeyValuePair) LocalizedKey() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("localizedKey"))
 	return rv
@@ -156,7 +148,6 @@ func (d_ DictionaryControllerKeyValuePair) LocalizedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair/localizedkey
-
 func (d_ DictionaryControllerKeyValuePair) SetLocalizedKey(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKey:"), objc.String(value))
 }

@@ -43,7 +43,6 @@ type IPredictionOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLPredictionOptions
-
 type PredictionOptions struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewPredictionOptions() PredictionOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-
 func (p_ PredictionOptions) OutputBackings() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("outputBackings"))
 	return rv
@@ -103,7 +101,6 @@ func (p_ PredictionOptions) OutputBackings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-
 func (p_ PredictionOptions) SetOutputBackings(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), objc.String(value))
 }
@@ -113,7 +110,6 @@ func (p_ PredictionOptions) SetOutputBackings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
-
 func (p_ PredictionOptions) UsesCPUOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesCPUOnly"))
 	return rv
@@ -124,7 +120,6 @@ func (p_ PredictionOptions) UsesCPUOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
-
 func (p_ PredictionOptions) SetUsesCPUOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesCPUOnly:"), value)
 }

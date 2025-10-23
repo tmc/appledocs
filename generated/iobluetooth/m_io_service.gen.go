@@ -32,7 +32,9 @@ type ImIOService interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObject/mIOService
 type mIOService struct {
 	objectivec.Object

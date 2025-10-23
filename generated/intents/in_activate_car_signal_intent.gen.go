@@ -38,7 +38,11 @@ type IINActivateCarSignalIntent interface {
 // A request to activate the signals on the user’s car.
 //
 // When the user asks for an audible or visual signal from the car, Siri creates an object. This intent object can contain the name of the user’s car and the signal options. Use this object to trigger audible and visual signals from the car. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results.
+
+
+// A request to activate the signals on the user’s car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INActivateCarSignalIntent
 type INActivateCarSignalIntent struct {
 	INIntent
@@ -85,8 +89,10 @@ func NewINActivateCarSignalIntent() INActivateCarSignalIntent {
 }
 
 
+
 // A name that identifies the user’s car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/carname
 func (i_ INActivateCarSignalIntent) CarName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
@@ -94,17 +100,18 @@ func (i_ INActivateCarSignalIntent) CarName() INSpeakableString {
 }
 
 
-// SetCarName sets the value of the carName property.
 // A name that identifies the user’s car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/carname
 func (i_ INActivateCarSignalIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
+
 // The set of signals to activate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/signals
 func (i_ INActivateCarSignalIntent) Signals() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("signals"))
@@ -112,10 +119,9 @@ func (i_ INActivateCarSignalIntent) Signals() unsafe.Pointer {
 }
 
 
-// SetSignals sets the value of the signals property.
 // The set of signals to activate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inactivatecarsignalintent/signals
 func (i_ INActivateCarSignalIntent) SetSignals(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSignals:"), value)

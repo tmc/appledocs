@@ -58,7 +58,6 @@ type IColorPickerTouchBarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem
-
 type ColorPickerTouchBarItem struct {
 	TouchBarItem
 }
@@ -109,7 +108,6 @@ func NewColorPickerTouchBarItem() ColorPickerTouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:)
-
 func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifier(identifier ITouchBarItemIdentifier) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorPickerWithIdentifier:"), identifier)
 	return rv
@@ -120,7 +118,6 @@ func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifier(identifier ITo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:buttonImage:)
-
 func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifierButtonImage(identifier ITouchBarItemIdentifier, image IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorPickerWithIdentifier:buttonImage:"), identifier, image)
 	return rv
@@ -131,7 +128,6 @@ func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifierButtonImage(ide
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/allowedColorSpaces
-
 func (c_ ColorPickerTouchBarItem) AllowedColorSpaces() []ColorSpace {
 	rv := objc.Send[[]ColorSpace](c_.ID, objc.Sel("allowedColorSpaces"))
 	return rv
@@ -142,7 +138,6 @@ func (c_ ColorPickerTouchBarItem) AllowedColorSpaces() []ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/allowedColorSpaces
-
 func (c_ ColorPickerTouchBarItem) SetAllowedColorSpaces(value []ColorSpace) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -162,7 +157,6 @@ func (c_ ColorPickerTouchBarItem) SetAllowedColorSpaces(value []ColorSpace) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
-
 func (c_ ColorPickerTouchBarItem) ColorList() NSColorList {
 	rv := objc.Send[NSColorList](c_.ID, objc.Sel("colorList"))
 	return rv
@@ -173,7 +167,6 @@ func (c_ ColorPickerTouchBarItem) ColorList() NSColorList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
-
 func (c_ ColorPickerTouchBarItem) SetColorList(value IColorList) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorList:"), value)
 }
@@ -183,7 +176,6 @@ func (c_ ColorPickerTouchBarItem) SetColorList(value IColorList) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/isEnabled
-
 func (c_ ColorPickerTouchBarItem) Enabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
@@ -194,7 +186,6 @@ func (c_ ColorPickerTouchBarItem) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/isEnabled
-
 func (c_ ColorPickerTouchBarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -204,7 +195,6 @@ func (c_ ColorPickerTouchBarItem) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/action
-
 func (c_ ColorPickerTouchBarItem) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
 	return rv
@@ -215,7 +205,6 @@ func (c_ ColorPickerTouchBarItem) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/action
-
 func (c_ ColorPickerTouchBarItem) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
@@ -225,7 +214,6 @@ func (c_ ColorPickerTouchBarItem) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
-
 func (c_ ColorPickerTouchBarItem) Color() Color {
 	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
 	return rv
@@ -236,7 +224,6 @@ func (c_ ColorPickerTouchBarItem) Color() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
-
 func (c_ ColorPickerTouchBarItem) SetColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
 }
@@ -246,7 +233,6 @@ func (c_ ColorPickerTouchBarItem) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/customizationlabel
-
 func (c_ ColorPickerTouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -257,7 +243,6 @@ func (c_ ColorPickerTouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/customizationlabel
-
 func (c_ ColorPickerTouchBarItem) SetCustomizationLabel(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
@@ -267,7 +252,6 @@ func (c_ ColorPickerTouchBarItem) SetCustomizationLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/isenabled
-
 func (c_ ColorPickerTouchBarItem) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -278,7 +262,6 @@ func (c_ ColorPickerTouchBarItem) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/isenabled
-
 func (c_ ColorPickerTouchBarItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -288,7 +271,6 @@ func (c_ ColorPickerTouchBarItem) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/showsalpha
-
 func (c_ ColorPickerTouchBarItem) ShowsAlpha() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("showsAlpha"))
 	return rv
@@ -299,7 +281,6 @@ func (c_ ColorPickerTouchBarItem) ShowsAlpha() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/showsalpha
-
 func (c_ ColorPickerTouchBarItem) SetShowsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
@@ -309,7 +290,6 @@ func (c_ ColorPickerTouchBarItem) SetShowsAlpha(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/target
-
 func (c_ ColorPickerTouchBarItem) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("target"))
 	return rv
@@ -320,7 +300,6 @@ func (c_ ColorPickerTouchBarItem) Target() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/target
-
 func (c_ ColorPickerTouchBarItem) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
 }

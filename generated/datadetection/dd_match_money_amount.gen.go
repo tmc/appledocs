@@ -42,7 +42,6 @@ type IDDMatchMoneyAmount interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount
-
 type DDMatchMoneyAmount struct {
 	DDMatch
 }
@@ -93,7 +92,6 @@ func NewDDMatchMoneyAmount() DDMatchMoneyAmount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/amount
-
 func (d_ DDMatchMoneyAmount) Amount() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("amount"))
 	return rv
@@ -104,7 +102,6 @@ func (d_ DDMatchMoneyAmount) Amount() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/currency
-
 func (d_ DDMatchMoneyAmount) Currency() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("currency"))
 	return rv

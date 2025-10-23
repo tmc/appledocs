@@ -60,7 +60,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)
-
 func compression_decode_buffer(dst_buffer unsafe.Pointer, dst_size unsafe.Pointer, src_buffer unsafe.Pointer, src_size unsafe.Pointer, scratch_buffer unsafe.Pointer, algorithm unsafe.Pointer) unsafe.Pointer {
 	return _compression_decode_buffer(dst_buffer, dst_size, src_buffer, src_size, scratch_buffer, algorithm)
 	}
@@ -74,7 +73,6 @@ func compression_decode_buffer(dst_buffer unsafe.Pointer, dst_size unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_decode_scratch_buffer_size(_:)
-
 func compression_decode_scratch_buffer_size(algorithm unsafe.Pointer) unsafe.Pointer {
 	return _compression_decode_scratch_buffer_size(algorithm)
 	}
@@ -88,7 +86,6 @@ func compression_decode_scratch_buffer_size(algorithm unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)
-
 func compression_encode_buffer(dst_buffer unsafe.Pointer, dst_size unsafe.Pointer, src_buffer unsafe.Pointer, src_size unsafe.Pointer, scratch_buffer unsafe.Pointer, algorithm unsafe.Pointer) unsafe.Pointer {
 	return _compression_encode_buffer(dst_buffer, dst_size, src_buffer, src_size, scratch_buffer, algorithm)
 	}
@@ -102,7 +99,6 @@ func compression_encode_buffer(dst_buffer unsafe.Pointer, dst_size unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_encode_scratch_buffer_size(_:)
-
 func compression_encode_scratch_buffer_size(algorithm unsafe.Pointer) unsafe.Pointer {
 	return _compression_encode_scratch_buffer_size(algorithm)
 	}
@@ -116,7 +112,6 @@ func compression_encode_scratch_buffer_size(algorithm unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_stream_destroy(_:)
-
 func compression_stream_destroy(stream unsafe.Pointer) unsafe.Pointer {
 	return _compression_stream_destroy(stream)
 	}
@@ -130,7 +125,6 @@ func compression_stream_destroy(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_stream_init(_:_:_:)
-
 func compression_stream_init(stream unsafe.Pointer, operation unsafe.Pointer, algorithm unsafe.Pointer) unsafe.Pointer {
 	return _compression_stream_init(stream, operation, algorithm)
 	}
@@ -144,7 +138,6 @@ func compression_stream_init(stream unsafe.Pointer, operation unsafe.Pointer, al
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_stream_process(_:_:)
-
 func compression_stream_process(stream unsafe.Pointer, flags int) unsafe.Pointer {
 	return _compression_stream_process(stream, flags)
 	}

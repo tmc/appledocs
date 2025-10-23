@@ -46,7 +46,6 @@ type IGLKReflectionMapEffect interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect
-
 type GLKReflectionMapEffect struct {
 	GLKBaseEffect
 }
@@ -93,12 +92,10 @@ func NewGLKReflectionMapEffect() GLKReflectionMapEffect {
 
 
 
-
 // Prepares an effect for rendering.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/prepareToDraw()
-
 func (g_ GLKReflectionMapEffect) PrepareToDraw() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("prepareToDraw"))
 }
@@ -108,7 +105,6 @@ func (g_ GLKReflectionMapEffect) PrepareToDraw() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
-
 func (g_ GLKReflectionMapEffect) Matrix() GLKMatrix3 {
 	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("matrix"))
 	return rv
@@ -119,7 +115,6 @@ func (g_ GLKReflectionMapEffect) Matrix() GLKMatrix3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
-
 func (g_ GLKReflectionMapEffect) SetMatrix(value IGLKMatrix3) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMatrix:"), value)
 }
@@ -129,7 +124,6 @@ func (g_ GLKReflectionMapEffect) SetMatrix(value IGLKMatrix3) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/textureCubeMap
-
 func (g_ GLKReflectionMapEffect) TextureCubeMap() GLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
@@ -140,7 +134,6 @@ func (g_ GLKReflectionMapEffect) TextureCubeMap() GLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
-
 func (g_ GLKReflectionMapEffect) TextureOrder() GLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureOrder"))
 	return rv
@@ -151,7 +144,6 @@ func (g_ GLKReflectionMapEffect) TextureOrder() GLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
-
 func (g_ GLKReflectionMapEffect) SetTextureOrder(value IGLKEffectPropertyTexture) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTextureOrder:"), value)
 }

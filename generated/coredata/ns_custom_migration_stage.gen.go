@@ -48,7 +48,6 @@ type ICustomMigrationStage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage
-
 type CustomMigrationStage struct {
 	MigrationStage
 }
@@ -95,12 +94,10 @@ func NewCustomMigrationStage() CustomMigrationStage {
 
 
 
-
 // Creates a custom migration stage with the specified source and destination model references.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:
-
 func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentModel IManagedObjectModelReference, nextModel IManagedObjectModelReference) CustomMigrationStage {
 	instance := getCustomMigrationStageClass().Alloc()
 	rv := objc.Send[CustomMigrationStage](instance.ID, objc.Sel("initWithCurrentModelReference:nextModelReference:"), currentModel, nextModel)
@@ -114,7 +111,6 @@ func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/currentModel
-
 func (c_ CustomMigrationStage) CurrentModel() NSManagedObjectModelReference {
 	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("currentModel"))
 	return rv
@@ -125,7 +121,6 @@ func (c_ CustomMigrationStage) CurrentModel() NSManagedObjectModelReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
-
 func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didMigrateHandler"))
 	return rv
@@ -136,7 +131,6 @@ func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
-
 func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDidMigrateHandler:"), value)
 }
@@ -146,7 +140,6 @@ func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/nextModel
-
 func (c_ CustomMigrationStage) NextModel() NSManagedObjectModelReference {
 	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("nextModel"))
 	return rv
@@ -157,7 +150,6 @@ func (c_ CustomMigrationStage) NextModel() NSManagedObjectModelReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
-
 func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willMigrateHandler"))
 	return rv
@@ -168,7 +160,6 @@ func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
-
 func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWillMigrateHandler:"), value)
 }
@@ -178,7 +169,6 @@ func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-
 func (c_ CustomMigrationStage) Container() NSPersistentContainer {
 	rv := objc.Send[NSPersistentContainer](c_.ID, objc.Sel("container"))
 	return rv
@@ -189,7 +179,6 @@ func (c_ CustomMigrationStage) Container() NSPersistentContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-
 func (c_ CustomMigrationStage) SetContainer(value IPersistentContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }

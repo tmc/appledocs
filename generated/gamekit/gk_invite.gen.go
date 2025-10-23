@@ -50,7 +50,6 @@ type IInvite interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite
-
 type Invite struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewInvite() Invite {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/playerGroup
-
 func (i_ Invite) PlayerGroup() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("playerGroup"))
 	return rv
@@ -110,7 +108,6 @@ func (i_ Invite) PlayerGroup() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-
 func (i_ Invite) Inviter() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("inviter"))
 	return rv
@@ -121,7 +118,6 @@ func (i_ Invite) Inviter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-
 func (i_ Invite) SetInviter(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), objc.String(value))
 }
@@ -131,7 +127,6 @@ func (i_ Invite) SetInviter(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
-
 func (i_ Invite) IsHosted() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isHosted"))
 	return rv
@@ -142,7 +137,6 @@ func (i_ Invite) IsHosted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
-
 func (i_ Invite) SetIsHosted(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHosted:"), value)
 }
@@ -152,7 +146,6 @@ func (i_ Invite) SetIsHosted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/playerattributes
-
 func (i_ Invite) PlayerAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playerAttributes"))
 	return rv
@@ -163,7 +156,6 @@ func (i_ Invite) PlayerAttributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/playerattributes
-
 func (i_ Invite) SetPlayerAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayerAttributes:"), value)
 }
@@ -173,7 +165,6 @@ func (i_ Invite) SetPlayerAttributes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
-
 func (i_ Invite) Sender() GKPlayer {
 	rv := objc.Send[GKPlayer](i_.ID, objc.Sel("sender"))
 	return rv
@@ -184,7 +175,6 @@ func (i_ Invite) Sender() GKPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
-
 func (i_ Invite) SetSender(value IGKPlayer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }

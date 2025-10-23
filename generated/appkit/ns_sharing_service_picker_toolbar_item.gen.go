@@ -44,7 +44,6 @@ type ISharingServicePickerToolbarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
-
 type SharingServicePickerToolbarItem struct {
 	ToolbarItem
 }
@@ -95,7 +94,6 @@ func NewSharingServicePickerToolbarItem() SharingServicePickerToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/activityItemsConfiguration
-
 func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
@@ -106,7 +104,6 @@ func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/activityItemsConfiguration
-
 func (s_ SharingServicePickerToolbarItem) SetActivityItemsConfiguration(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
@@ -116,7 +113,6 @@ func (s_ SharingServicePickerToolbarItem) SetActivityItemsConfiguration(value ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
-
 func (s_ SharingServicePickerToolbarItem) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -127,7 +123,6 @@ func (s_ SharingServicePickerToolbarItem) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
-
 func (s_ SharingServicePickerToolbarItem) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }

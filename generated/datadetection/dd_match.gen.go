@@ -42,7 +42,6 @@ type IDDMatch interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch
-
 type DDMatch struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewDDMatch() DDMatch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch/matchedString
-
 func (d_ DDMatch) MatchedString() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("matchedString"))
 	return rv

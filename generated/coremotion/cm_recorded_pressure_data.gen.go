@@ -43,7 +43,6 @@ type IRecordedPressureData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData
-
 type RecordedPressureData struct {
 	AmbientPressureData
 }
@@ -94,7 +93,6 @@ func NewRecordedPressureData() RecordedPressureData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/identifier
-
 func (r_ RecordedPressureData) Identifier() uint64 {
 	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
 	return rv
@@ -105,7 +103,6 @@ func (r_ RecordedPressureData) Identifier() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/startDate
-
 func (r_ RecordedPressureData) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv

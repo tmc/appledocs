@@ -42,7 +42,6 @@ type IAudioUnitTimeEffect interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitTimeEffect
-
 type AudioUnitTimeEffect struct {
 	AudioUnit
 }
@@ -93,7 +92,6 @@ func NewAudioUnitTimeEffect() AudioUnitTimeEffect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect/bypass
-
 func (a_ AudioUnitTimeEffect) Bypass() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
 	return rv
@@ -104,7 +102,6 @@ func (a_ AudioUnitTimeEffect) Bypass() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect/bypass
-
 func (a_ AudioUnitTimeEffect) SetBypass(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
 }

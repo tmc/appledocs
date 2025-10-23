@@ -46,7 +46,6 @@ type ICKRecordZoneSubscription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription
-
 type CKRecordZoneSubscription struct {
 	CKSubscription
 }
@@ -93,12 +92,10 @@ func NewCKRecordZoneSubscription() CKRecordZoneSubscription {
 
 
 
-
 // Creates a zone-based subscription from a serialized instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/init(coder:)
-
 func NewCKRecordZoneSubscriptionWithCoder(aDecoder foundation.ICoder) CKRecordZoneSubscription {
 	instance := getCKRecordZoneSubscriptionClass().Alloc()
 	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -107,12 +104,10 @@ func NewCKRecordZoneSubscriptionWithCoder(aDecoder foundation.ICoder) CKRecordZo
 }
 
 
-
 // Creates a subscription for all records in the specified record zone.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/init(zoneID:)
-
 func NewCKRecordZoneSubscriptionWithZoneID(zoneID ICKRecordZoneID) CKRecordZoneSubscription {
 	instance := getCKRecordZoneSubscriptionClass().Alloc()
 	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithZoneID:"), zoneID)
@@ -121,12 +116,10 @@ func NewCKRecordZoneSubscriptionWithZoneID(zoneID ICKRecordZoneID) CKRecordZoneS
 }
 
 
-
 // Creates a named subscription for all records in the specified record zone.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/initWithZoneID:subscriptionID:
-
 func NewCKRecordZoneSubscriptionWithZoneIDSubscriptionID(zoneID ICKRecordZoneID, subscriptionID unsafe.Pointer) CKRecordZoneSubscription {
 	instance := getCKRecordZoneSubscriptionClass().Alloc()
 	rv := objc.Send[CKRecordZoneSubscription](instance.ID, objc.Sel("initWithZoneID:subscriptionID:"), zoneID, subscriptionID)
@@ -140,7 +133,6 @@ func NewCKRecordZoneSubscriptionWithZoneIDSubscriptionID(zoneID ICKRecordZoneID,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/recordType-1kt07
-
 func (c_ CKRecordZoneSubscription) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
@@ -151,7 +143,6 @@ func (c_ CKRecordZoneSubscription) RecordType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/recordType-1kt07
-
 func (c_ CKRecordZoneSubscription) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
@@ -161,7 +152,6 @@ func (c_ CKRecordZoneSubscription) SetRecordType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription/zoneID
-
 func (c_ CKRecordZoneSubscription) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
@@ -172,7 +162,6 @@ func (c_ CKRecordZoneSubscription) ZoneID() CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKRecordZoneSubscription) NotificationInfo() CKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
@@ -183,7 +172,6 @@ func (c_ CKRecordZoneSubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKRecordZoneSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }

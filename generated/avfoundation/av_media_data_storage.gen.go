@@ -41,7 +41,6 @@ type IMediaDataStorage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaDataStorage
-
 type MediaDataStorage struct {
 	objectivec.Object
 }
@@ -86,12 +85,10 @@ func NewMediaDataStorage() MediaDataStorage {
 
 
 
-
 // Returns the URL used to initialize the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaDataStorage/url()
-
 func (m_ MediaDataStorage) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("URL"))
 	return rv

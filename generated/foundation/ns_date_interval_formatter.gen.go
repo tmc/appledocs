@@ -29,17 +29,17 @@ type _DateIntervalFormatterClass struct {
 // An interface definition for the [DateIntervalFormatter] class.
 type IDateIntervalFormatter interface {
 	IFormatter
-	Calendar() Calendar
+	Calendar() ICalendar
 	SetCalendar(value ICalendar)
 	DateStyle() unsafe.Pointer
 	SetDateStyle(value unsafe.Pointer)
 	DateTemplate() string
 	SetDateTemplate(value string)
-	Locale() Locale
+	Locale() ILocale
 	SetLocale(value ILocale)
 	TimeStyle() unsafe.Pointer
 	SetTimeStyle(value unsafe.Pointer)
-	TimeZone() TimeZone
+	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 }
 
@@ -102,7 +102,7 @@ func NewDateIntervalFormatter() DateIntervalFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/calendar
-func (d_ DateIntervalFormatter) Calendar() Calendar {
+func (d_ DateIntervalFormatter) Calendar() ICalendar {
 	rv := objc.Send[Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
@@ -159,7 +159,7 @@ func (d_ DateIntervalFormatter) SetDateTemplate(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/locale
-func (d_ DateIntervalFormatter) Locale() Locale {
+func (d_ DateIntervalFormatter) Locale() ILocale {
 	rv := objc.Send[Locale](d_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (d_ DateIntervalFormatter) SetTimeStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/timezone
-func (d_ DateIntervalFormatter) TimeZone() TimeZone {
+func (d_ DateIntervalFormatter) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }

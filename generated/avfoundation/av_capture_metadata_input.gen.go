@@ -40,7 +40,6 @@ type ICaptureMetadataInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataInput
-
 type CaptureMetadataInput struct {
 	CaptureInput
 }

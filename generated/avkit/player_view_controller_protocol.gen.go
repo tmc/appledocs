@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // playerViewControllerProtocol is the playerViewController: protocol.
 //
 // Availability:
-//   - tvOS 9.0+
+//   - tvOS 10.0+
 //
 // Use this protocol when registering custom classes that conform to playerViewController:.
 var playerViewControllerProtocol *objc.Protocol

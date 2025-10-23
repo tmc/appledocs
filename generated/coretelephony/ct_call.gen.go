@@ -41,7 +41,6 @@ type ICall interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall
-
 type Call struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewCall() Call {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callID
-
 func (c_ Call) CallID() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("callID"))
 	return rv
@@ -101,7 +99,6 @@ func (c_ Call) CallID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callState
-
 func (c_ Call) CallState() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("callState"))
 	return rv

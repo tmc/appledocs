@@ -38,7 +38,11 @@ type IUSBHostDevice interface {
 // The class that claims and configures devices, retrieves descriptors, and sends device requests.
 //
 // This class enables management of the device state, including sending control requests to the default endpoint 0, configuring the device, and resetting the device. The interest handler also allows monitoring of the device state. The client creates the class and initializes it with .
+
+
+// The class that claims and configures devices, retrieves descriptors, and sends device requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevice
 type USBHostDevice struct {
 	USBHostObject
@@ -85,24 +89,30 @@ func NewUSBHostDevice() USBHostDevice {
 }
 
 
+
 // Selects a new configuration for the device and registers the interfaces for matching.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevice/configureWithValue:error:
 func (u_ USBHostDevice) ConfigureWithValueError(value uint, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("configureWithValue:error:"), value, error_)
 	return rv
 }
 
+
 // Terminates the device and attempts to re-enumerate it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevice/reset()
 func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("resetWithError:"), error_)
 	return rv
 }
 
+
 // The currently selected configuration descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdevice/configurationdescriptor
 func (u_ USBHostDevice) ConfigurationDescriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configurationDescriptor"))
@@ -110,10 +120,9 @@ func (u_ USBHostDevice) ConfigurationDescriptor() unsafe.Pointer {
 }
 
 
-// SetConfigurationDescriptor sets the value of the configurationDescriptor property.
 // The currently selected configuration descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdevice/configurationdescriptor
 func (u_ USBHostDevice) SetConfigurationDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)

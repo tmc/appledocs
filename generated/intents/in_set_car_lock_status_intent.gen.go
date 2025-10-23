@@ -38,7 +38,11 @@ type IINSetCarLockStatusIntent interface {
 // A request to lock or unlock the user’s car.
 //
 // When the user asks to lock or unlock the car, Siri creates an object. This intent object can contain the name of the user’s car and the requested lock status. Use this object to lock or unlock the car. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results.
+
+
+// A request to lock or unlock the user’s car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetCarLockStatusIntent
 type INSetCarLockStatusIntent struct {
 	INIntent
@@ -85,8 +89,10 @@ func NewINSetCarLockStatusIntent() INSetCarLockStatusIntent {
 }
 
 
+
 // A name that identifies the user’s car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/carname
 func (i_ INSetCarLockStatusIntent) CarName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
@@ -94,17 +100,18 @@ func (i_ INSetCarLockStatusIntent) CarName() INSpeakableString {
 }
 
 
-// SetCarName sets the value of the carName property.
 // A name that identifies the user’s car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/carname
 func (i_ INSetCarLockStatusIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
+
 // A Boolean value that indicates whether to lock the car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/locked-9h0kx
 func (i_ INSetCarLockStatusIntent) Locked() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("locked"))
@@ -112,10 +119,9 @@ func (i_ INSetCarLockStatusIntent) Locked() bool {
 }
 
 
-// SetLocked sets the value of the locked property.
 // A Boolean value that indicates whether to lock the car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetcarlockstatusintent/locked-9h0kx
 func (i_ INSetCarLockStatusIntent) SetLocked(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocked:"), value)

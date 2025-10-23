@@ -45,7 +45,6 @@ type IFSModuleIdentity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity
-
 type FSModuleIdentity struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewFSModuleIdentity() FSModuleIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/bundleIdentifier
-
 func (f_ FSModuleIdentity) BundleIdentifier() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("bundleIdentifier"))
 	return rv
@@ -105,7 +103,6 @@ func (f_ FSModuleIdentity) BundleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/isEnabled
-
 func (f_ FSModuleIdentity) Enabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("enabled"))
 	return rv
@@ -116,7 +113,6 @@ func (f_ FSModuleIdentity) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/url
-
 func (f_ FSModuleIdentity) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
@@ -127,7 +123,6 @@ func (f_ FSModuleIdentity) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
-
 func (f_ FSModuleIdentity) IsEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -138,7 +133,6 @@ func (f_ FSModuleIdentity) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
-
 func (f_ FSModuleIdentity) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }

@@ -41,7 +41,6 @@ type IBarcodeDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor
-
 type BarcodeDescriptor struct {
 	objectivec.Object
 }

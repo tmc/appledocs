@@ -32,7 +32,9 @@ type ImSizeDescriptor interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSizeDescriptor
 type mSizeDescriptor struct {
 	objectivec.Object

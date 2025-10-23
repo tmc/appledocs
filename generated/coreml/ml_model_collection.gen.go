@@ -45,7 +45,6 @@ type IModelCollection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection
-
 type ModelCollection struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewModelCollection() ModelCollection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/beginAccessingModelCollectionWithIdentifier:completionHandler:
-
 func (mc _ModelCollectionClass) BeginAccessingModelCollectionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) foundation.Progress {
 	rv := objc.Send[foundation.Progress](objc.ID(mc.class), objc.Sel("beginAccessingModelCollectionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 	return rv
@@ -105,7 +103,6 @@ func (mc _ModelCollectionClass) BeginAccessingModelCollectionWithIdentifierCompl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/endAccessing(identifier:)
-
 func (mc _ModelCollectionClass) EndAccessingModelCollectionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("endAccessingModelCollectionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
@@ -115,7 +112,6 @@ func (mc _ModelCollectionClass) EndAccessingModelCollectionWithIdentifierComplet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/deploymentID
-
 func (m_ ModelCollection) DeploymentID() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("deploymentID"))
 	return rv
@@ -126,7 +122,6 @@ func (m_ ModelCollection) DeploymentID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/entries
-
 func (m_ ModelCollection) Entries() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entries"))
 	return rv
@@ -137,7 +132,6 @@ func (m_ ModelCollection) Entries() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/identifier
-
 func (m_ ModelCollection) Identifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv

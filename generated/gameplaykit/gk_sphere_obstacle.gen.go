@@ -44,7 +44,6 @@ type ISphereObstacle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle
-
 type SphereObstacle struct {
 	Obstacle
 }
@@ -91,12 +90,10 @@ func NewSphereObstacle() SphereObstacle {
 
 
 
-
 // Initializes a spherical obstacle with the specified radius.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/init(radius:)
-
 func NewSphereObstacleWithRadius(radius float32) SphereObstacle {
 	instance := getSphereObstacleClass().Alloc()
 	rv := objc.Send[SphereObstacle](instance.ID, objc.Sel("initWithRadius:"), radius)
@@ -110,7 +107,6 @@ func NewSphereObstacleWithRadius(radius float32) SphereObstacle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/obstacleWithRadius:
-
 func (sc _SphereObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("obstacleWithRadius:"), radius)
 	return rv
@@ -121,7 +117,6 @@ func (sc _SphereObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/position
-
 func (s_ SphereObstacle) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("position"))
 	return rv
@@ -132,7 +127,6 @@ func (s_ SphereObstacle) Position() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/position
-
 func (s_ SphereObstacle) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPosition:"), value)
 }
@@ -142,7 +136,6 @@ func (s_ SphereObstacle) SetPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
-
 func (s_ SphereObstacle) Radius() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("radius"))
 	return rv
@@ -153,7 +146,6 @@ func (s_ SphereObstacle) Radius() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
-
 func (s_ SphereObstacle) SetRadius(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRadius:"), value)
 }

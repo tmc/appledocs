@@ -43,7 +43,6 @@ type IAssetTrackSegment interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment
-
 type AssetTrackSegment struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewAssetTrackSegment() AssetTrackSegment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment/isEmpty
-
 func (a_ AssetTrackSegment) Empty() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("empty"))
 	return rv
@@ -103,7 +101,6 @@ func (a_ AssetTrackSegment) Empty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment/timeMapping
-
 func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeMapping"))
 	return rv
@@ -114,7 +111,6 @@ func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
-
 func (a_ AssetTrackSegment) IsEmpty() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEmpty"))
 	return rv
@@ -125,7 +121,6 @@ func (a_ AssetTrackSegment) IsEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
-
 func (a_ AssetTrackSegment) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEmpty:"), value)
 }

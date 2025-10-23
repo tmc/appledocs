@@ -32,7 +32,9 @@ type ImChannelIsOpen interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mChannelIsOpen
 type mChannelIsOpen struct {
 	objectivec.Object

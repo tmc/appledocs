@@ -42,7 +42,6 @@ type IAsynchronousFetchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest
-
 type AsynchronousFetchRequest struct {
 	PersistentStoreRequest
 }
@@ -89,12 +88,10 @@ func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
 
 
 
-
 // Initializes a new asynchronous fetch request configured with the provided fetch request and completion block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/init(fetchRequest:completionBlock:)
-
 func NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(request unsafe.Pointer, blk unsafe.Pointer) AsynchronousFetchRequest {
 	instance := getAsynchronousFetchRequestClass().Alloc()
 	rv := objc.Send[AsynchronousFetchRequest](instance.ID, objc.Sel("initWithFetchRequest:completionBlock:"), request, blk)
@@ -108,7 +105,6 @@ func NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(request unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/completionBlock
-
 func (a_ AsynchronousFetchRequest) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -119,7 +115,6 @@ func (a_ AsynchronousFetchRequest) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
-
 func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("estimatedResultCount"))
 	return rv
@@ -130,7 +125,6 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
-
 func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedResultCount:"), value)
 }
@@ -140,7 +134,6 @@ func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/fetchRequest
-
 func (a_ AsynchronousFetchRequest) FetchRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fetchRequest"))
 	return rv

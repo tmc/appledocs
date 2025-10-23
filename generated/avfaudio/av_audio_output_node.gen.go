@@ -31,7 +31,7 @@ type _AudioOutputNodeClass struct {
 type IAudioOutputNode interface {
 	IAudioIONode
 	ManualRenderingFormat() AVAudioFormat
-	SetManualRenderingFormat(value AVAudioFormat)
+	SetManualRenderingFormat(value IAVAudioFormat)
 	IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience
 	SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience)
 }
@@ -45,7 +45,6 @@ type IAudioOutputNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioOutputNode
-
 type AudioOutputNode struct {
 	AudioIONode
 }
@@ -96,7 +95,6 @@ func NewAudioOutputNode() AudioOutputNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-
 func (a_ AudioOutputNode) ManualRenderingFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
@@ -107,8 +105,7 @@ func (a_ AudioOutputNode) ManualRenderingFormat() AVAudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-
-func (a_ AudioOutputNode) SetManualRenderingFormat(value AVAudioFormat) {
+func (a_ AudioOutputNode) SetManualRenderingFormat(value IAVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
 }
 
@@ -117,7 +114,6 @@ func (a_ AudioOutputNode) SetManualRenderingFormat(value AVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-
 func (a_ AudioOutputNode) IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience {
 	rv := objc.Send[audiotoolbox.SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
@@ -128,7 +124,6 @@ func (a_ AudioOutputNode) IntendedSpatialExperience() audiotoolbox.SpatialAudioE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-
 func (a_ AudioOutputNode) SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }

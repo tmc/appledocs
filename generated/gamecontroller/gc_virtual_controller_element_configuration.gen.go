@@ -46,7 +46,6 @@ type IGCVirtualControllerElementConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/ElementConfiguration
-
 type GCVirtualControllerElementConfiguration struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewGCVirtualControllerElementConfiguration() GCVirtualControllerElementConf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/actsastouchpad
-
 func (g_ GCVirtualControllerElementConfiguration) ActsAsTouchpad() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("actsAsTouchpad"))
 	return rv
@@ -106,7 +104,6 @@ func (g_ GCVirtualControllerElementConfiguration) ActsAsTouchpad() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/actsastouchpad
-
 func (g_ GCVirtualControllerElementConfiguration) SetActsAsTouchpad(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActsAsTouchpad:"), value)
 }
@@ -116,7 +113,6 @@ func (g_ GCVirtualControllerElementConfiguration) SetActsAsTouchpad(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
-
 func (g_ GCVirtualControllerElementConfiguration) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
@@ -127,7 +123,6 @@ func (g_ GCVirtualControllerElementConfiguration) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
-
 func (g_ GCVirtualControllerElementConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -137,7 +132,6 @@ func (g_ GCVirtualControllerElementConfiguration) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-
 func (g_ GCVirtualControllerElementConfiguration) Path() appkit.BezierPath {
 	rv := objc.Send[appkit.BezierPath](g_.ID, objc.Sel("path"))
 	return rv
@@ -148,7 +142,6 @@ func (g_ GCVirtualControllerElementConfiguration) Path() appkit.BezierPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-
 func (g_ GCVirtualControllerElementConfiguration) SetPath(value appkit.IBezierPath) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPath:"), value)
 }

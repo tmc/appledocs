@@ -124,7 +124,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_clear_cache(_:)
-
 func es_clear_cache(client unsafe.Pointer) unsafe.Pointer {
 	return _es_clear_cache(client)
 	}
@@ -140,7 +139,6 @@ func es_clear_cache(client unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_copy_message(_:)
-
 func es_copy_message(msg unsafe.Pointer) unsafe.Pointer {
 	return _es_copy_message(msg)
 	}
@@ -154,7 +152,6 @@ func es_copy_message(msg unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_delete_client(_:)
-
 func es_delete_client(client unsafe.Pointer) unsafe.Pointer {
 	return _es_delete_client(client)
 	}
@@ -168,7 +165,6 @@ func es_delete_client(client unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_arg(_:_:)
-
 func es_exec_arg(event unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	return _es_exec_arg(event, index)
 	}
@@ -182,7 +178,6 @@ func es_exec_arg(event unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_arg_count(_:)
-
 func es_exec_arg_count(event unsafe.Pointer) unsafe.Pointer {
 	return _es_exec_arg_count(event)
 	}
@@ -196,7 +191,6 @@ func es_exec_arg_count(event unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_env(_:_:)
-
 func es_exec_env(event unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	return _es_exec_env(event, index)
 	}
@@ -210,7 +204,6 @@ func es_exec_env(event unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_env_count(_:)
-
 func es_exec_env_count(event unsafe.Pointer) unsafe.Pointer {
 	return _es_exec_env_count(event)
 	}
@@ -224,7 +217,6 @@ func es_exec_env_count(event unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_fd(_:_:)
-
 func es_exec_fd(event unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	return _es_exec_fd(event, index)
 	}
@@ -238,7 +230,6 @@ func es_exec_fd(event unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_fd_count(_:)
-
 func es_exec_fd_count(event unsafe.Pointer) unsafe.Pointer {
 	return _es_exec_fd_count(event)
 	}
@@ -254,7 +245,6 @@ func es_exec_fd_count(event unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_free_message(_:)
-
 func es_free_message(msg unsafe.Pointer) {
 	_es_free_message(msg)
 	}
@@ -266,7 +256,6 @@ func es_free_message(msg unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_invert_muting(_:_:)
-
 func es_invert_muting(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.Pointer {
 	return _es_invert_muting(client, mute_type)
 	}
@@ -282,7 +271,6 @@ func es_invert_muting(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_message_size(_:)
-
 func es_message_size(msg unsafe.Pointer) unsafe.Pointer {
 	return _es_message_size(msg)
 	}
@@ -296,7 +284,6 @@ func es_message_size(msg unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path(_:_:_:)
-
 func es_mute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path(client, path, type_)
 	}
@@ -310,7 +297,6 @@ func es_mute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path_events(_:_:_:_:_:)
-
 func es_mute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer, events unsafe.Pointer, event_count unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path_events(client, path, type_, events, event_count)
 	}
@@ -326,7 +312,6 @@ func es_mute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path_literal(_:_:)
-
 func es_mute_path_literal(client unsafe.Pointer, path_literal unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path_literal(client, path_literal)
 	}
@@ -342,7 +327,6 @@ func es_mute_path_literal(client unsafe.Pointer, path_literal unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path_prefix(_:_:)
-
 func es_mute_path_prefix(client unsafe.Pointer, path_prefix unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path_prefix(client, path_prefix)
 	}
@@ -356,7 +340,6 @@ func es_mute_path_prefix(client unsafe.Pointer, path_prefix unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_process(_:_:)
-
 func es_mute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_process(client, audit_token)
 	}
@@ -370,7 +353,6 @@ func es_mute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_process_events(_:_:_:_:)
-
 func es_mute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer, events unsafe.Pointer, event_count unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_process_events(client, audit_token, events, event_count)
 	}
@@ -384,7 +366,6 @@ func es_mute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer, e
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muted_paths_events(_:_:)
-
 func es_muted_paths_events(client unsafe.Pointer, muted_paths unsafe.Pointer) unsafe.Pointer {
 	return _es_muted_paths_events(client, muted_paths)
 	}
@@ -400,7 +381,6 @@ func es_muted_paths_events(client unsafe.Pointer, muted_paths unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muted_processes(_:_:_:)
-
 func es_muted_processes(client unsafe.Pointer, count unsafe.Pointer, audit_tokens unsafe.Pointer) unsafe.Pointer {
 	return _es_muted_processes(client, count, audit_tokens)
 	}
@@ -414,7 +394,6 @@ func es_muted_processes(client unsafe.Pointer, count unsafe.Pointer, audit_token
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muted_processes_events(_:_:)
-
 func es_muted_processes_events(client unsafe.Pointer, muted_processes unsafe.Pointer) unsafe.Pointer {
 	return _es_muted_processes_events(client, muted_processes)
 	}
@@ -426,7 +405,6 @@ func es_muted_processes_events(client unsafe.Pointer, muted_processes unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muting_inverted(_:_:)
-
 func es_muting_inverted(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.Pointer {
 	return _es_muting_inverted(client, mute_type)
 	}
@@ -440,7 +418,6 @@ func es_muting_inverted(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_new_client(_:_:)
-
 func es_new_client(client unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	return _es_new_client(client, handler)
 	}
@@ -454,7 +431,6 @@ func es_new_client(client unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_release_message(_:)
-
 func es_release_message(msg unsafe.Pointer) {
 	_es_release_message(msg)
 	}
@@ -468,7 +444,6 @@ func es_release_message(msg unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_release_muted_paths(_:)
-
 func es_release_muted_paths(muted_paths unsafe.Pointer) {
 	_es_release_muted_paths(muted_paths)
 	}
@@ -482,7 +457,6 @@ func es_release_muted_paths(muted_paths unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_release_muted_processes(_:)
-
 func es_release_muted_processes(muted_processes unsafe.Pointer) {
 	_es_release_muted_processes(muted_processes)
 	}
@@ -496,7 +470,6 @@ func es_release_muted_processes(muted_processes unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)
-
 func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, result unsafe.Pointer, cache bool) unsafe.Pointer {
 	return _es_respond_auth_result(client, message, result, cache)
 	}
@@ -510,7 +483,6 @@ func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, resul
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)
-
 func es_respond_flags_result(client unsafe.Pointer, message unsafe.Pointer, authorized_flags unsafe.Pointer, cache bool) unsafe.Pointer {
 	return _es_respond_flags_result(client, message, authorized_flags, cache)
 	}
@@ -524,7 +496,6 @@ func es_respond_flags_result(client unsafe.Pointer, message unsafe.Pointer, auth
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_retain_message(_:)
-
 func es_retain_message(msg unsafe.Pointer) {
 	_es_retain_message(msg)
 	}
@@ -538,7 +509,6 @@ func es_retain_message(msg unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_subscribe(_:_:_:)
-
 func es_subscribe(client unsafe.Pointer, events unsafe.Pointer, event_count unsafe.Pointer) unsafe.Pointer {
 	return _es_subscribe(client, events, event_count)
 	}
@@ -552,7 +522,6 @@ func es_subscribe(client unsafe.Pointer, events unsafe.Pointer, event_count unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_subscriptions(_:_:_:)
-
 func es_subscriptions(client unsafe.Pointer, count unsafe.Pointer, subscriptions unsafe.Pointer) unsafe.Pointer {
 	return _es_subscriptions(client, count, subscriptions)
 	}
@@ -566,7 +535,6 @@ func es_subscriptions(client unsafe.Pointer, count unsafe.Pointer, subscriptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_all_paths(_:)
-
 func es_unmute_all_paths(client unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_all_paths(client)
 	}
@@ -578,7 +546,6 @@ func es_unmute_all_paths(client unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_all_target_paths(_:)
-
 func es_unmute_all_target_paths(client unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_all_target_paths(client)
 	}
@@ -592,7 +559,6 @@ func es_unmute_all_target_paths(client unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_path(_:_:_:)
-
 func es_unmute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_path(client, path, type_)
 	}
@@ -606,7 +572,6 @@ func es_unmute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_path_events(_:_:_:_:_:)
-
 func es_unmute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer, events unsafe.Pointer, event_count unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_path_events(client, path, type_, events, event_count)
 	}
@@ -620,7 +585,6 @@ func es_unmute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_process(_:_:)
-
 func es_unmute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_process(client, audit_token)
 	}
@@ -634,7 +598,6 @@ func es_unmute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_process_events(_:_:_:_:)
-
 func es_unmute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer, events unsafe.Pointer, event_count unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_process_events(client, audit_token, events, event_count)
 	}
@@ -648,7 +611,6 @@ func es_unmute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unsubscribe(_:_:_:)
-
 func es_unsubscribe(client unsafe.Pointer, events unsafe.Pointer, event_count unsafe.Pointer) unsafe.Pointer {
 	return _es_unsubscribe(client, events, event_count)
 	}
@@ -662,7 +624,6 @@ func es_unsubscribe(client unsafe.Pointer, events unsafe.Pointer, event_count un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unsubscribe_all(_:)
-
 func es_unsubscribe_all(client unsafe.Pointer) unsafe.Pointer {
 	return _es_unsubscribe_all(client)
 	}

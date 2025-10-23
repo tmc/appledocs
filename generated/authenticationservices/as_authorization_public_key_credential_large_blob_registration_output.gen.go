@@ -37,7 +37,6 @@ type IAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput-c.class
-
 type AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput struct {
 	objectivec.Object
 }
@@ -82,7 +81,6 @@ func NewAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput() Authorizat
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput-c.class/isSupported
-
 func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput) IsSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv

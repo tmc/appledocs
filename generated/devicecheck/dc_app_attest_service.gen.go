@@ -48,7 +48,6 @@ type IDCAppAttestService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService
-
 type DCAppAttestService struct {
 	objectivec.Object
 }
@@ -97,40 +96,33 @@ func NewDCAppAttestService() DCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
-
 func (dc _DCAppAttestServiceClass) SharedService() DCAppAttestService {
 	rv := objc.Send[DCAppAttestService](objc.ID(dc.class), objc.Sel("sharedService"))
 	return rv
 }
 
-
 // Asks Apple to attest to the validity of a generated cryptographic key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)
-
 func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
-
 
 
 // Creates a block of data that demonstrates the legitimacy of an instance of your app running on a device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)
-
 func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
-
 
 
 // Creates a new cryptographic key for use with the App Attest service.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)
-
 func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateKeyWithCompletionHandler:"), completionHandler)
 }
@@ -140,7 +132,6 @@ func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported
-
 func (d_ DCAppAttestService) Supported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
@@ -151,7 +142,6 @@ func (d_ DCAppAttestService) Supported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
-
 func (d_ DCAppAttestService) SharedService() DCAppAttestService {
 	rv := objc.Send[DCAppAttestService](d_.ID, objc.Sel("sharedService"))
 	return rv
@@ -162,7 +152,6 @@ func (d_ DCAppAttestService) SharedService() DCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
-
 func (d_ DCAppAttestService) IsSupported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
 	return rv
@@ -173,7 +162,6 @@ func (d_ DCAppAttestService) IsSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
-
 func (d_ DCAppAttestService) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
 }

@@ -61,7 +61,6 @@ type INoise interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise
-
 type Noise struct {
 	objectivec.Object
 }
@@ -106,36 +105,30 @@ func NewNoise() Noise {
 
 
 
-
 // Creates a noise object by combining the specified noise objects, using another noise object to select which regions of the output correspond to which input noise.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(componentNoises:selectionNoise:)
-
 func NewNoiseWithComponentNoisesSelectionNoise(noises []Noise, selectionNoise IGKNoise) Noise {
 	rv := objc.Send[Noise](objc.ID(getNoiseClass().class), objc.Sel("noiseWithComponentNoises:selectionNoise:"), noises, selectionNoise)
 	return rv
 }
 
 
-
 // Creates a noise object by combining the specified noise objects, using another noise object and the specified boundaries to select which regions of the output correspond to which input noise.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(componentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:)
-
 func NewNoiseWithComponentNoisesSelectionNoiseComponentBoundariesBoundaryBlendDistances(noises []Noise, selectionNoise IGKNoise, componentBoundaries []foundation.INumber, blendDistances []foundation.INumber) Noise {
 	rv := objc.Send[Noise](objc.ID(getNoiseClass().class), objc.Sel("noiseWithComponentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:"), noises, selectionNoise, componentBoundaries, blendDistances)
 	return rv
 }
 
 
-
 // Initializes a noise object with the specified noise source.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(_:)
-
 func NewNoiseWithNoiseSource(noiseSource IGKNoiseSource) Noise {
 	instance := getNoiseClass().Alloc()
 	rv := objc.Send[Noise](instance.ID, objc.Sel("initWithNoiseSource:"), noiseSource)
@@ -144,12 +137,10 @@ func NewNoiseWithNoiseSource(noiseSource IGKNoiseSource) Noise {
 }
 
 
-
 // Initializes a noise object with the specified noise source, with colors for later use in generating noise textures.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(_:gradientColors:)
-
 func NewNoiseWithNoiseSourceGradientColors(noiseSource IGKNoiseSource, gradientColors unsafe.Pointer) Noise {
 	instance := getNoiseClass().Alloc()
 	rv := objc.Send[Noise](instance.ID, objc.Sel("initWithNoiseSource:gradientColors:"), noiseSource, gradientColors)
@@ -163,7 +154,6 @@ func NewNoiseWithNoiseSourceGradientColors(noiseSource IGKNoiseSource, gradientC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(componentNoises:selectionNoise:)
-
 func (nc _NoiseClass) NoiseWithComponentNoisesSelectionNoise(noises []Noise, selectionNoise IGKNoise) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseWithComponentNoises:selectionNoise:"), noises, selectionNoise)
 	return rv
@@ -174,7 +164,6 @@ func (nc _NoiseClass) NoiseWithComponentNoisesSelectionNoise(noises []Noise, sel
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/init(componentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:)
-
 func (nc _NoiseClass) NoiseWithComponentNoisesSelectionNoiseComponentBoundariesBoundaryBlendDistances(noises []Noise, selectionNoise IGKNoise, componentBoundaries []foundation.INumber, blendDistances []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseWithComponentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:"), noises, selectionNoise, componentBoundaries, blendDistances)
 	return rv
@@ -185,7 +174,6 @@ func (nc _NoiseClass) NoiseWithComponentNoisesSelectionNoiseComponentBoundariesB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/noiseWithNoiseSource:
-
 func (nc _NoiseClass) NoiseWithNoiseSource(noiseSource IGKNoiseSource) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseWithNoiseSource:"), noiseSource)
 	return rv
@@ -196,193 +184,158 @@ func (nc _NoiseClass) NoiseWithNoiseSource(noiseSource IGKNoiseSource) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/noiseWithNoiseSource:gradientColors:
-
 func (nc _NoiseClass) NoiseWithNoiseSourceGradientColors(noiseSource IGKNoiseSource, gradientColors unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseWithNoiseSource:gradientColors:"), noiseSource, gradientColors)
 	return rv
 }
 
 
-
 // Replaces values in the noise field by adding them to values from the specified noise object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/add(_:)
-
 func (n_ Noise) AddWithNoise(noise IGKNoise) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("addWithNoise:"), noise)
 }
-
 
 
 // Replaces all negative values in the noise field with their positive absolute values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/applyAbsoluteValue()
-
 func (n_ Noise) ApplyAbsoluteValue() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("applyAbsoluteValue"))
 }
-
 
 
 // Replaces values in the noise field by applying a randomized distortion effect.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/applyTurbulence(frequency:power:roughness:seed:)
-
 func (n_ Noise) ApplyTurbulenceWithFrequencyPowerRoughnessSeed(frequency float64, power float64, roughness int, seed unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("applyTurbulenceWithFrequency:power:roughness:seed:"), frequency, power, roughness, seed)
 }
-
 
 
 // Replaces values in the noise field outside the specified range with the values at the endpoints of that range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/clamp(lowerBound:upperBound:)
-
 func (n_ Noise) ClampWithLowerBoundUpperBound(lowerBound float64, upperBound float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("clampWithLowerBound:upperBound:"), lowerBound, upperBound)
 }
-
 
 
 // Replaces values in the noise field by shifting each value along a vector whose x-, y-, and z-components are based on the specified noise objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/displaceWithNoises(x:y:z:)
-
 func (n_ Noise) DisplaceXWithNoiseYWithNoiseZWithNoise(xDisplacementNoise IGKNoise, yDisplacementNoise IGKNoise, zDisplacementNoise IGKNoise) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("displaceXWithNoise:yWithNoise:zWithNoise:"), xDisplacementNoise, yDisplacementNoise, zDisplacementNoise)
 }
-
 
 
 // Replaces all values in the noise field with their opposite, reversing the range of noise values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/invert()
-
 func (n_ Noise) Invert() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("invert"))
 }
-
 
 
 // Replaces values in the noise field by choosing the lesser of each value and a corresponding value in the specified noise object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/maximum(_:)
-
 func (n_ Noise) MaximumWithNoise(noise IGKNoise) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("maximumWithNoise:"), noise)
 }
-
 
 
 // Replaces values in the noise field by choosing the lesser of each value and a corresponding value in the specified noise object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/minimum(_:)
-
 func (n_ Noise) MinimumWithNoise(noise IGKNoise) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("minimumWithNoise:"), noise)
 }
-
 
 
 // Translates the entire noise field by the specified x, y, and z offsets.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/move(by:)
-
 func (n_ Noise) MoveBy(delta unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("moveBy:"), delta)
 }
-
 
 
 // Replaces values in the noise field by multiplying them with values from the specified noise object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/multiply(_:)
-
 func (n_ Noise) MultiplyWithNoise(noise IGKNoise) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("multiplyWithNoise:"), noise)
 }
-
 
 
 // Replaces all values in the noise field by raising each value to the specified power.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/raiseToPower(_:)-14715
-
 func (n_ Noise) RaiseToPower(power float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("raiseToPower:"), power)
 }
-
 
 
 // Replaces values in the noise field by exponentiating them with values from the specified noise object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/raiseToPower(_:)-zm5g
-
 func (n_ Noise) RaiseToPowerWithNoise(noise IGKNoise) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("raiseToPowerWithNoise:"), noise)
 }
-
 
 
 // Replaces values in the noise field by mapping them to a curve that passes through the specified control points.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/remapValues(toCurveWithControlPoints:)
-
 func (n_ Noise) RemapValuesToCurveWithControlPoints(controlPoints unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("remapValuesToCurveWithControlPoints:"), controlPoints)
 }
-
 
 
 // Replaces values in the noise field by mapping them to a terrace-like curve that passes through the specified control points.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/remapValues(toTerracesWithPeaks:terracesInverted:)
-
 func (n_ Noise) RemapValuesToTerracesWithPeaksTerracesInverted(peakInputValues []foundation.INumber, inverted bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("remapValuesToTerracesWithPeaks:terracesInverted:"), peakInputValues, inverted)
 }
-
 
 
 // Rotates the entire noise field by the specified x, y, and z angles.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/rotate(by:)
-
 func (n_ Noise) RotateBy(radians unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("rotateBy:"), radians)
 }
-
 
 
 // Scales the entire noise field by the specified x, y, and z factors.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/scale(by:)
-
 func (n_ Noise) ScaleBy(factor unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scaleBy:"), factor)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/value(atPosition:)
-
 func (n_ Noise) ValueAtPosition(position unsafe.Pointer) float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("valueAtPosition:"), position)
 	return rv
@@ -393,7 +346,6 @@ func (n_ Noise) ValueAtPosition(position unsafe.Pointer) float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/gradientColors
-
 func (n_ Noise) GradientColors() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("gradientColors"))
 	return rv
@@ -404,7 +356,6 @@ func (n_ Noise) GradientColors() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoise/gradientColors
-
 func (n_ Noise) SetGradientColors(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGradientColors:"), value)
 }

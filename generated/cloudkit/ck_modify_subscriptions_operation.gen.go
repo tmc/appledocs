@@ -54,7 +54,6 @@ type ICKModifySubscriptionsOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation
-
 type CKModifySubscriptionsOperation struct {
 	CKDatabaseOperation
 }
@@ -103,7 +102,6 @@ func NewCKModifySubscriptionsOperation() CKModifySubscriptionsOperation {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation/perSubscriptionSaveBlock-1yn86
-
 func (c_ CKModifySubscriptionsOperation) PerSubscriptionSaveBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionSaveBlock"))
 	return rv
@@ -112,7 +110,6 @@ func (c_ CKModifySubscriptionsOperation) PerSubscriptionSaveBlock() unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation/perSubscriptionSaveBlock-1yn86
-
 func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionSaveBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionSaveBlock:"), value)
 }
@@ -122,7 +119,6 @@ func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionSaveBlock(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionscompletionblock-7l56
-
 func (c_ CKModifySubscriptionsOperation) ModifySubscriptionsCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifySubscriptionsCompletionBlock"))
 	return rv
@@ -133,7 +129,6 @@ func (c_ CKModifySubscriptionsOperation) ModifySubscriptionsCompletionBlock() un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionscompletionblock-7l56
-
 func (c_ CKModifySubscriptionsOperation) SetModifySubscriptionsCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifySubscriptionsCompletionBlock:"), value)
 }
@@ -141,7 +136,6 @@ func (c_ CKModifySubscriptionsOperation) SetModifySubscriptionsCompletionBlock(v
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionsresultblock
-
 func (c_ CKModifySubscriptionsOperation) ModifySubscriptionsResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifySubscriptionsResultBlock"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CKModifySubscriptionsOperation) ModifySubscriptionsResultBlock() unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/modifysubscriptionsresultblock
-
 func (c_ CKModifySubscriptionsOperation) SetModifySubscriptionsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifySubscriptionsResultBlock:"), value)
 }
@@ -158,7 +151,6 @@ func (c_ CKModifySubscriptionsOperation) SetModifySubscriptionsResultBlock(value
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/persubscriptiondeleteblock-5ke2l
-
 func (c_ CKModifySubscriptionsOperation) PerSubscriptionDeleteBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionDeleteBlock"))
 	return rv
@@ -167,7 +159,6 @@ func (c_ CKModifySubscriptionsOperation) PerSubscriptionDeleteBlock() unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/persubscriptiondeleteblock-5ke2l
-
 func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionDeleteBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionDeleteBlock:"), value)
 }
@@ -177,7 +168,6 @@ func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionDeleteBlock(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionidstodelete-3534e
-
 func (c_ CKModifySubscriptionsOperation) SubscriptionIDsToDelete() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionIDsToDelete"))
 	return rv
@@ -188,7 +178,6 @@ func (c_ CKModifySubscriptionsOperation) SubscriptionIDsToDelete() unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionidstodelete-3534e
-
 func (c_ CKModifySubscriptionsOperation) SetSubscriptionIDsToDelete(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionIDsToDelete:"), value)
 }
@@ -198,7 +187,6 @@ func (c_ CKModifySubscriptionsOperation) SetSubscriptionIDsToDelete(value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
-
 func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() CKSubscription {
 	rv := objc.Send[CKSubscription](c_.ID, objc.Sel("subscriptionsToSave"))
 	return rv
@@ -209,7 +197,6 @@ func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() CKSubscription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
-
 func (c_ CKModifySubscriptionsOperation) SetSubscriptionsToSave(value ICKSubscription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionsToSave:"), value)
 }
@@ -219,7 +206,6 @@ func (c_ CKModifySubscriptionsOperation) SetSubscriptionsToSave(value ICKSubscri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKModifySubscriptionsOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -230,7 +216,6 @@ func (c_ CKModifySubscriptionsOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKModifySubscriptionsOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

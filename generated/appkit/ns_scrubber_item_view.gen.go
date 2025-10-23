@@ -38,7 +38,6 @@ type IScrubberItemView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberItemView
-
 type ScrubberItemView struct {
 	ScrubberArrangedView
 }

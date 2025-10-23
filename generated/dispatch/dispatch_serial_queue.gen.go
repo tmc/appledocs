@@ -41,7 +41,6 @@ type IDispatchSerialQueue interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchSerialQueue
-
 type DispatchSerialQueue struct {
 	objectivec.Object
 }

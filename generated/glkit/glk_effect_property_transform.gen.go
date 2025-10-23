@@ -45,7 +45,6 @@ type IGLKEffectPropertyTransform interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform
-
 type GLKEffectPropertyTransform struct {
 	GLKEffectProperty
 }
@@ -96,7 +95,6 @@ func NewGLKEffectPropertyTransform() GLKEffectPropertyTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
-
 func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 {
 	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("modelviewMatrix"))
 	return rv
@@ -107,7 +105,6 @@ func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
-
 func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value IGLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModelviewMatrix:"), value)
 }
@@ -117,7 +114,6 @@ func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value IGLKMatrix4) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/normalMatrix
-
 func (g_ GLKEffectPropertyTransform) NormalMatrix() GLKMatrix3 {
 	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("normalMatrix"))
 	return rv
@@ -128,7 +124,6 @@ func (g_ GLKEffectPropertyTransform) NormalMatrix() GLKMatrix3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
-
 func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 {
 	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("projectionMatrix"))
 	return rv
@@ -139,7 +134,6 @@ func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
-
 func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value IGLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProjectionMatrix:"), value)
 }

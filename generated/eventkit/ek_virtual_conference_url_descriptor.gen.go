@@ -48,7 +48,6 @@ type IEKVirtualConferenceURLDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor
-
 type EKVirtualConferenceURLDescriptor struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewEKVirtualConferenceURLDescriptor() EKVirtualConferenceURLDescriptor {
 
 
 
-
 // Creates a URL descriptor with the given title and URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/init(title:url:)
-
 func NewEKVirtualConferenceURLDescriptorWithTitleURL(title string, URL foundation.IURL) EKVirtualConferenceURLDescriptor {
 	instance := getEKVirtualConferenceURLDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceURLDescriptor](instance.ID, objc.Sel("initWithTitle:URL:"), objc.String(title), URL)
@@ -112,7 +109,6 @@ func NewEKVirtualConferenceURLDescriptorWithTitleURL(title string, URL foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/title
-
 func (e_ EKVirtualConferenceURLDescriptor) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
@@ -123,7 +119,6 @@ func (e_ EKVirtualConferenceURLDescriptor) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceURLDescriptor/url
-
 func (e_ EKVirtualConferenceURLDescriptor) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
 	return rv
@@ -134,7 +129,6 @@ func (e_ EKVirtualConferenceURLDescriptor) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/conferencedetails
-
 func (e_ EKVirtualConferenceURLDescriptor) ConferenceDetails() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
@@ -145,7 +139,6 @@ func (e_ EKVirtualConferenceURLDescriptor) ConferenceDetails() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/conferencedetails
-
 func (e_ EKVirtualConferenceURLDescriptor) SetConferenceDetails(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConferenceDetails:"), objc.String(value))
 }
@@ -155,7 +148,6 @@ func (e_ EKVirtualConferenceURLDescriptor) SetConferenceDetails(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/urldescriptors
-
 func (e_ EKVirtualConferenceURLDescriptor) UrlDescriptors() EKVirtualConferenceURLDescriptor {
 	rv := objc.Send[EKVirtualConferenceURLDescriptor](e_.ID, objc.Sel("urlDescriptors"))
 	return rv
@@ -166,7 +158,6 @@ func (e_ EKVirtualConferenceURLDescriptor) UrlDescriptors() EKVirtualConferenceU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/urldescriptors
-
 func (e_ EKVirtualConferenceURLDescriptor) SetUrlDescriptors(value IEKVirtualConferenceURLDescriptor) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUrlDescriptors:"), value)
 }

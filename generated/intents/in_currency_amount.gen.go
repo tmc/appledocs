@@ -40,7 +40,11 @@ type IINCurrencyAmount interface {
 // An amount of money to transfer during a financial transaction.
 //
 // An object encapsulates a monetary value and the currency used to express that value. You use these objects to specify payment amounts when handling intents that involve the transfer of money.
+
+
+// An amount of money to transfer during a financial transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCurrencyAmount
 type INCurrencyAmount struct {
 	objectivec.Object
@@ -85,8 +89,10 @@ func NewINCurrencyAmount() INCurrencyAmount {
 }
 
 
+
 // The monetary amount associated with the currency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/amount
 func (i_ INCurrencyAmount) Amount() foundation.DecimalNumber {
 	rv := objc.Send[foundation.DecimalNumber](i_.ID, objc.Sel("amount"))
@@ -94,17 +100,18 @@ func (i_ INCurrencyAmount) Amount() foundation.DecimalNumber {
 }
 
 
-// SetAmount sets the value of the amount property.
 // The monetary amount associated with the currency.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/amount
 func (i_ INCurrencyAmount) SetAmount(value foundation.IDecimalNumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAmount:"), value)
 }
 
+
 // The ISO 4217 currency code that applies to the monetary amount.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
 func (i_ INCurrencyAmount) CurrencyCode() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("currencyCode"))
@@ -112,10 +119,9 @@ func (i_ INCurrencyAmount) CurrencyCode() string {
 }
 
 
-// SetCurrencyCode sets the value of the currencyCode property.
 // The ISO 4217 currency code that applies to the monetary amount.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
 func (i_ INCurrencyAmount) SetCurrencyCode(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), objc.String(value))

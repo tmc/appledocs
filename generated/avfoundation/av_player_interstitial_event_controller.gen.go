@@ -30,12 +30,12 @@ type _PlayerInterstitialEventControllerClass struct {
 // An interface definition for the [PlayerInterstitialEventController] class.
 type IPlayerInterstitialEventController interface {
 	IPlayerInterstitialEventMonitor
-	LocalizedStringsTableName() string
-	SetLocalizedStringsTableName(value string)
-	Events() AVPlayerInterstitialEvent
+	Events() IAVPlayerInterstitialEvent
 	SetEvents(value IAVPlayerInterstitialEvent)
 	LocalizedStringsBundle() foundation.Bundle
-	SetLocalizedStringsBundle(value foundation.IBundle)
+	SetLocalizedStringsBundle(value foundation.Bundle)
+	LocalizedStringsTableName() string
+	SetLocalizedStringsTableName(value string)
 }
 
 // An object that schedules interstitial events for items played by the primary player.
@@ -47,7 +47,6 @@ type IPlayerInterstitialEventController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController
-
 type PlayerInterstitialEventController struct {
 	PlayerInterstitialEventMonitor
 }
@@ -94,33 +93,11 @@ func NewPlayerInterstitialEventController() PlayerInterstitialEventController {
 
 
 
-// The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController/localizedStringsTableName
-
-func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedStringsTableName"))
-	return rv
-}
-
-
-// The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController/localizedStringsTableName
-
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), objc.String(value))
-}
-
-
 // The current schedule of interstitial events.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/events
-
-func (p_ PlayerInterstitialEventController) Events() AVPlayerInterstitialEvent {
+func (p_ PlayerInterstitialEventController) Events() IAVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("events"))
 	return rv
 }
@@ -130,7 +107,6 @@ func (p_ PlayerInterstitialEventController) Events() AVPlayerInterstitialEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/events
-
 func (p_ PlayerInterstitialEventController) SetEvents(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEvents:"), value)
 }
@@ -140,7 +116,6 @@ func (p_ PlayerInterstitialEventController) SetEvents(value IAVPlayerInterstitia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-
 func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
 	return rv
@@ -151,9 +126,27 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value foundation.IBundle) {
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value foundation.Bundle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsBundle:"), value)
+}
+
+
+// The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringstablename
+func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedStringsTableName"))
+	return rv
+}
+
+
+// The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringstablename
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), objc.String(value))
 }
 
 

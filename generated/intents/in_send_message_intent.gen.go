@@ -43,7 +43,11 @@ type IINSendMessageIntent interface {
 // A request to send a message to the designated recipients.
 //
 // Siri creates an object when the user asks to send a message to one or more users. This intent object contains the message to send and the recipients of the message, which can include groups of users. Use the information in this object to construct and send the message. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler confirms the request and creates an object with the results.
+
+
+// A request to send a message to the designated recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent
 type INSendMessageIntent struct {
 	INIntent
@@ -91,9 +95,9 @@ func NewINSendMessageIntent() INSendMessageIntent {
 
 
 
-
 // Initializes a send message intent object with the specified content and recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/init(recipients:content:groupName:serviceName:sender:)
 func NewINSendMessageIntentWithRecipientsContentGroupNameServiceNameSender(recipients []INPerson, content string, groupName string, serviceName string, sender INPerson) INSendMessageIntent {
 	instance := getINSendMessageIntentClass().Alloc()
@@ -103,9 +107,9 @@ func NewINSendMessageIntentWithRecipientsContentGroupNameServiceNameSender(recip
 }
 
 
-
 // Initializes a send message intent object with the specified content and recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/init(recipients:content:speakableGroupName:conversationIdentifier:serviceName:sender:)
 func NewINSendMessageIntentWithRecipientsContentSpeakableGroupNameConversationIdentifierServiceNameSender(recipients []INPerson, content string, speakableGroupName INSpeakableString, conversationIdentifier string, serviceName string, sender INPerson) INSendMessageIntent {
 	instance := getINSendMessageIntentClass().Alloc()
@@ -115,9 +119,9 @@ func NewINSendMessageIntentWithRecipientsContentSpeakableGroupNameConversationId
 }
 
 
-
 // Initializes a send message intent object with the specified content and recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/init(recipients:outgoingMessageType:content:speakableGroupName:conversationIdentifier:serviceName:sender:)
 func NewINSendMessageIntentWithRecipientsOutgoingMessageTypeContentSpeakableGroupNameConversationIdentifierServiceNameSender(recipients []INPerson, outgoingMessageType INOutgoingMessageType, content string, speakableGroupName INSpeakableString, conversationIdentifier string, serviceName string, sender INPerson) INSendMessageIntent {
 	instance := getINSendMessageIntentClass().Alloc()
@@ -127,9 +131,9 @@ func NewINSendMessageIntentWithRecipientsOutgoingMessageTypeContentSpeakableGrou
 }
 
 
-
 // Creates a send message intent object with the specified content and recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/init(recipients:outgoingMessageType:content:speakableGroupName:conversationIdentifier:serviceName:sender:attachments:)
 func NewINSendMessageIntentWithRecipientsOutgoingMessageTypeContentSpeakableGroupNameConversationIdentifierServiceNameSenderAttachments(recipients []INPerson, outgoingMessageType INOutgoingMessageType, content string, speakableGroupName INSpeakableString, conversationIdentifier string, serviceName string, sender INPerson, attachments []INSendMessageAttachment) INSendMessageIntent {
 	instance := getINSendMessageIntentClass().Alloc()
@@ -139,72 +143,90 @@ func NewINSendMessageIntentWithRecipientsOutgoingMessageTypeContentSpeakableGrou
 }
 
 
+
 // Audio files to include in the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/attachments
 func (i_ INSendMessageIntent) Attachments() []INSendMessageAttachment {
 	rv := objc.Send[[]INSendMessageAttachment](i_.ID, objc.Sel("attachments"))
 	return rv
 }
 
+
 // The content of the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/content
 func (i_ INSendMessageIntent) Content() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("content"))
 	return rv
 }
 
+
 // The identifier for the conversation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/conversationIdentifier
 func (i_ INSendMessageIntent) ConversationIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifier"))
 	return rv
 }
 
+
 // The name of the group to receive the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/groupName
 func (i_ INSendMessageIntent) GroupName() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("groupName"))
 	return rv
 }
 
+
 // The format of the message contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/outgoingMessageType
 func (i_ INSendMessageIntent) OutgoingMessageType() INOutgoingMessageType {
 	rv := objc.Send[INOutgoingMessageType](i_.ID, objc.Sel("outgoingMessageType"))
 	return rv
 }
 
+
 // The array of users to receive the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/recipients
 func (i_ INSendMessageIntent) Recipients() []INPerson {
 	rv := objc.Send[[]INPerson](i_.ID, objc.Sel("recipients"))
 	return rv
 }
 
+
 // The person or account that’s sending the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/sender
 func (i_ INSendMessageIntent) Sender() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("sender"))
 	return rv
 }
 
+
 // The service to use when sending the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/serviceName
 func (i_ INSendMessageIntent) ServiceName() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("serviceName"))
 	return rv
 }
 
+
 // The name of the group to receive the message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/speakableGroupName
 func (i_ INSendMessageIntent) SpeakableGroupName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("speakableGroupName"))

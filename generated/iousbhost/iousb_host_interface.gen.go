@@ -43,7 +43,11 @@ type IUSBHostInterface interface {
 // The class for accessing USB-related services.
 //
 // Use this class to create pipes, retrieve descriptors, send device requests, and enable power savings. Create an instance of the class with .
+
+
+// The class for accessing USB-related services.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface
 type USBHostInterface struct {
 	USBHostObject
@@ -90,40 +94,50 @@ func NewUSBHostInterface() USBHostInterface {
 }
 
 
+
 // Creates a matching dictionary to find a USB interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
 func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.INumber, productID foundation.INumber, bcdDevice foundation.INumber, interfaceNumber foundation.INumber, configurationValue foundation.INumber, interfaceClass foundation.INumber, interfaceSubclass foundation.INumber, interfaceProtocol foundation.INumber, speed foundation.INumber, productIDArray objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
 	return rv
 }
 
+
 // Copies a pipe for a specific endpoint address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/copyPipe(withAddress:)
 func (u_ USBHostInterface) CopyPipeWithAddressError(address uint, error_ unsafe.Pointer) USBHostPipe {
 	rv := objc.Send[USBHostPipe](u_.ID, objc.Sel("copyPipeWithAddress:error:"), address, error_)
 	return rv
 }
 
+
 // Selects an alternative setting for the interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/selectAlternateSetting(_:)
 func (u_ USBHostInterface) SelectAlternateSettingError(alternateSetting uint, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("selectAlternateSetting:error:"), alternateSetting, error_)
 	return rv
 }
 
+
 // The descriptor for the interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/interfaceDescriptor
 func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interfaceDescriptor"))
 	return rv
 }
 
+
 // The configuration descriptor for the interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/configurationdescriptor
 func (u_ USBHostInterface) ConfigurationDescriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configurationDescriptor"))
@@ -131,17 +145,18 @@ func (u_ USBHostInterface) ConfigurationDescriptor() unsafe.Pointer {
 }
 
 
-// SetConfigurationDescriptor sets the value of the configurationDescriptor property.
 // The configuration descriptor for the interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/configurationdescriptor
 func (u_ USBHostInterface) SetConfigurationDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)
 }
 
+
 // The current idle suspend timeout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
 func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
@@ -149,10 +164,9 @@ func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
 }
 
 
-// SetIdleTimeout sets the value of the idleTimeout property.
 // The current idle suspend timeout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
 func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)

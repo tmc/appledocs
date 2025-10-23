@@ -78,21 +78,9 @@ type LocaleKey = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/Name-swift.struct
 // NSNotificationName is a string typedef
 type NotificationName = string
-// Point - A point in a Cartesian coordinate system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPoint
-// NSPoint has base type: CGPoint
-type Point uintptr
-// Rect - A rectangle.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRect
-// NSRect has base type: CGRect
-type Rect uintptr
-// Size - A two-dimensional size.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSize
-// NSSize has base type: CGSize
-type Size uintptr
+// SKIPPED: NSPoint - conflicts with existing enum "Point"
+// SKIPPED: NSRect - conflicts with existing enum "Rect"
+// SKIPPED: NSSize - conflicts with existing enum "Size"
 // URLBookmarkFileCreationOptions - Options used when creating file bookmark data
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkFileCreationOptions
@@ -133,11 +121,7 @@ type SocketNativeHandle int32
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/StringEncodingDetectionOptionsKey
 // NSStringEncodingDetectionOptionsKey is a string typedef
 type StringEncodingDetectionOptionsKey = string
-// TimeInterval - A number of seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/TimeInterval
-// NSTimeInterval has base type: double
-type TimeInterval uintptr
+// SKIPPED: NSTimeInterval - conflicts with existing enum "TimeInterval"
 // URLFileProtectionType - Protection-level values for a URL resource key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileProtection

@@ -76,7 +76,6 @@ type IManagedObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject
-
 type ManagedObject struct {
 	objectivec.Object
 }
@@ -121,12 +120,10 @@ func NewManagedObject() ManagedObject {
 
 
 
-
 // Initializes a managed object from an entity description and inserts it into the specified managed object context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/init(entity:insertInto:)
-
 func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity IEntityDescription, context IManagedObjectContext) ManagedObject {
 	instance := getManagedObjectClass().Alloc()
 	rv := objc.Send[ManagedObject](instance.ID, objc.Sel("initWithEntity:insertIntoManagedObjectContext:"), entity, context)
@@ -140,7 +137,6 @@ func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity IEntityDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity()
-
 func (mc _ManagedObjectClass) Entity() EntityDescription {
 	rv := objc.Send[EntityDescription](objc.ID(mc.class), objc.Sel("entity"))
 	return rv
@@ -151,111 +147,92 @@ func (mc _ManagedObjectClass) Entity() EntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/fetchRequest
-
 func (mc _ManagedObjectClass) FetchRequest() FetchRequest {
 	rv := objc.Send[FetchRequest](objc.ID(mc.class), objc.Sel("fetchRequest"))
 	return rv
 }
 
 
-
 // Returns a dictionary containing the keys and new values of persistent properties with changes since the last fetching or saving of the managed object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/changedValuesForCurrentEvent()
-
 func (m_ ManagedObject) ChangedValuesForCurrentEvent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("changedValuesForCurrentEvent"))
 	return rv
 }
 
 
-
 // Provides an opportunity to respond when a value of a given property has changed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/didChangeValue(forKey:)
-
 func (m_ ManagedObject) DidChangeValueForKey(key string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("didChangeValueForKey:"), objc.String(key))
 }
-
 
 
 // Returns the object IDs for all of the managed objects that are in the named relationship.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectIDs(forRelationshipNamed:)
-
 func (m_ ManagedObject) ObjectIDsForRelationshipNamed(key string) []ManagedObjectID {
 	rv := objc.Send[[]ManagedObjectID](m_.ID, objc.Sel("objectIDsForRelationshipNamed:"), objc.String(key))
 	return rv
 }
 
 
-
 // Returns the value for the specified property from the managed object’s private internal storage .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/primitiveValue(forKey:)
-
 func (m_ ManagedObject) PrimitiveValueForKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("primitiveValueForKey:"), objc.String(key))
 	return rv
 }
 
 
-
 // Sets the observation info of the managed object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/setObservationInfo(_:)
-
 func (m_ ManagedObject) SetObservationInfo(inObservationInfo unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObservationInfo:"), inObservationInfo)
 }
-
 
 
 // Sets the value of a given property in the managed object’s private internal storage.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/setPrimitiveValue(_:forKey:)
-
 func (m_ ManagedObject) SetPrimitiveValueForKey(value objectivec.IObject, key string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveValue:forKey:"), value, objc.String(key))
 }
-
 
 
 // Returns the value for the property specified by .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/value(forKey:)
-
 func (m_ ManagedObject) ValueForKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 
 
-
 // Provides an opportunity to add code into the life cycle of the managed object before saving it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/willSave()
-
 func (m_ ManagedObject) WillSave() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("willSave"))
 }
-
 
 
 // Provides an opportunity to add code into the life cycle of the managed object before converting it to a fault.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/willTurnIntoFault()
-
 func (m_ ManagedObject) WillTurnIntoFault() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("willTurnIntoFault"))
 }
@@ -265,7 +242,6 @@ func (m_ ManagedObject) WillTurnIntoFault() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity-swift.property
-
 func (m_ ManagedObject) Entity() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entity"))
 	return rv
@@ -276,7 +252,6 @@ func (m_ ManagedObject) Entity() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/faultingState
-
 func (m_ ManagedObject) FaultingState() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("faultingState"))
 	return rv
@@ -287,7 +262,6 @@ func (m_ ManagedObject) FaultingState() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/hasChanges
-
 func (m_ ManagedObject) HasChanges() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasChanges"))
 	return rv
@@ -298,7 +272,6 @@ func (m_ ManagedObject) HasChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/hasPersistentChangedValues
-
 func (m_ ManagedObject) HasPersistentChangedValues() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasPersistentChangedValues"))
 	return rv
@@ -309,7 +282,6 @@ func (m_ ManagedObject) HasPersistentChangedValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isDeleted
-
 func (m_ ManagedObject) Deleted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("deleted"))
 	return rv
@@ -320,7 +292,6 @@ func (m_ ManagedObject) Deleted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isFault
-
 func (m_ ManagedObject) Fault() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("fault"))
 	return rv
@@ -331,7 +302,6 @@ func (m_ ManagedObject) Fault() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isInserted
-
 func (m_ ManagedObject) Inserted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("inserted"))
 	return rv
@@ -342,7 +312,6 @@ func (m_ ManagedObject) Inserted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isUpdated
-
 func (m_ ManagedObject) Updated() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("updated"))
 	return rv
@@ -353,7 +322,6 @@ func (m_ ManagedObject) Updated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/managedObjectContext
-
 func (m_ ManagedObject) ManagedObjectContext() NSManagedObjectContext {
 	rv := objc.Send[NSManagedObjectContext](m_.ID, objc.Sel("managedObjectContext"))
 	return rv
@@ -364,7 +332,6 @@ func (m_ ManagedObject) ManagedObjectContext() NSManagedObjectContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectID
-
 func (m_ ManagedObject) ObjectID() NSManagedObjectID {
 	rv := objc.Send[NSManagedObjectID](m_.ID, objc.Sel("objectID"))
 	return rv
@@ -375,7 +342,6 @@ func (m_ ManagedObject) ObjectID() NSManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
-
 func (m_ ManagedObject) IsDeleted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDeleted"))
 	return rv
@@ -386,7 +352,6 @@ func (m_ ManagedObject) IsDeleted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
-
 func (m_ ManagedObject) SetIsDeleted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeleted:"), value)
 }
@@ -396,7 +361,6 @@ func (m_ ManagedObject) SetIsDeleted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
-
 func (m_ ManagedObject) IsFault() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isFault"))
 	return rv
@@ -407,7 +371,6 @@ func (m_ ManagedObject) IsFault() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
-
 func (m_ ManagedObject) SetIsFault(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFault:"), value)
 }
@@ -417,7 +380,6 @@ func (m_ ManagedObject) SetIsFault(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
-
 func (m_ ManagedObject) IsInserted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isInserted"))
 	return rv
@@ -428,7 +390,6 @@ func (m_ ManagedObject) IsInserted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
-
 func (m_ ManagedObject) SetIsInserted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsInserted:"), value)
 }
@@ -438,7 +399,6 @@ func (m_ ManagedObject) SetIsInserted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
-
 func (m_ ManagedObject) IsUpdated() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdated"))
 	return rv
@@ -449,7 +409,6 @@ func (m_ ManagedObject) IsUpdated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
-
 func (m_ ManagedObject) SetIsUpdated(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdated:"), value)
 }
@@ -459,7 +418,6 @@ func (m_ ManagedObject) SetIsUpdated(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationkeyerrorkey
-
 func (m_ ManagedObject) NSValidationKeyErrorKey() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationKeyErrorKey"))
 	return rv
@@ -470,7 +428,6 @@ func (m_ ManagedObject) NSValidationKeyErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationobjecterrorkey
-
 func (m_ ManagedObject) NSValidationObjectErrorKey() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
 	return rv
@@ -481,7 +438,6 @@ func (m_ ManagedObject) NSValidationObjectErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationpredicateerrorkey
-
 func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationPredicateErrorKey"))
 	return rv
@@ -492,7 +448,6 @@ func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationvalueerrorkey
-
 func (m_ ManagedObject) NSValidationValueErrorKey() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationValueErrorKey"))
 	return rv
@@ -503,7 +458,6 @@ func (m_ ManagedObject) NSValidationValueErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-
 func (m_ ManagedObject) Description() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("description"))
 	return rv
@@ -514,7 +468,6 @@ func (m_ ManagedObject) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-
 func (m_ ManagedObject) SetDescription(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
@@ -524,7 +477,6 @@ func (m_ ManagedObject) SetDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-
 func (m_ ManagedObject) Hash() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("hash"))
 	return rv
@@ -535,7 +487,6 @@ func (m_ ManagedObject) Hash() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-
 func (m_ ManagedObject) SetHash(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHash:"), value)
 }
@@ -545,7 +496,6 @@ func (m_ ManagedObject) SetHash(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/superclass
-
 func (m_ ManagedObject) Superclass() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("superclass"))
 	return rv
@@ -556,7 +506,6 @@ func (m_ ManagedObject) Superclass() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/superclass
-
 func (m_ ManagedObject) SetSuperclass(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSuperclass:"), value)
 }

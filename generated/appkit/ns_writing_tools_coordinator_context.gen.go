@@ -49,7 +49,6 @@ type IWritingToolsCoordinatorContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context
-
 type WritingToolsCoordinatorContext struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewWritingToolsCoordinatorContext() WritingToolsCoordinatorContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/range
-
 func (w_ WritingToolsCoordinatorContext) Range() foundation.Range {
 	rv := objc.Send[foundation.Range](w_.ID, objc.Sel("range"))
 	return rv
@@ -109,7 +107,6 @@ func (w_ WritingToolsCoordinatorContext) Range() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-
 func (w_ WritingToolsCoordinatorContext) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedString"))
 	return rv
@@ -120,7 +117,6 @@ func (w_ WritingToolsCoordinatorContext) AttributedString() foundation.Attribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-
 func (w_ WritingToolsCoordinatorContext) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedString:"), value)
 }
@@ -130,7 +126,6 @@ func (w_ WritingToolsCoordinatorContext) SetAttributedString(value foundation.IA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
-
 func (w_ WritingToolsCoordinatorContext) Identifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](w_.ID, objc.Sel("identifier"))
 	return rv
@@ -141,7 +136,6 @@ func (w_ WritingToolsCoordinatorContext) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
-
 func (w_ WritingToolsCoordinatorContext) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
 }
@@ -151,7 +145,6 @@ func (w_ WritingToolsCoordinatorContext) SetIdentifier(value foundation.IUUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
-
 func (w_ WritingToolsCoordinatorContext) ResolvedRange() foundation.Range {
 	rv := objc.Send[foundation.Range](w_.ID, objc.Sel("resolvedRange"))
 	return rv
@@ -162,7 +155,6 @@ func (w_ WritingToolsCoordinatorContext) ResolvedRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
-
 func (w_ WritingToolsCoordinatorContext) SetResolvedRange(value foundation.Range) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setResolvedRange:"), value)
 }

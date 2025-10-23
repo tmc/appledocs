@@ -48,7 +48,6 @@ type IDDMatchCalendarEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent
-
 type DDMatchCalendarEvent struct {
 	DDMatch
 }
@@ -99,7 +98,6 @@ func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endDate
-
 func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
@@ -110,7 +108,6 @@ func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endTimeZone
-
 func (d_ DDMatchCalendarEvent) EndTimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("endTimeZone"))
 	return rv
@@ -121,7 +118,6 @@ func (d_ DDMatchCalendarEvent) EndTimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/isAllDay
-
 func (d_ DDMatchCalendarEvent) AllDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("allDay"))
 	return rv
@@ -132,7 +128,6 @@ func (d_ DDMatchCalendarEvent) AllDay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startDate
-
 func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
@@ -143,7 +138,6 @@ func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startTimeZone
-
 func (d_ DDMatchCalendarEvent) StartTimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("startTimeZone"))
 	return rv
@@ -154,7 +148,6 @@ func (d_ DDMatchCalendarEvent) StartTimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
-
 func (d_ DDMatchCalendarEvent) IsAllDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isAllDay"))
 	return rv
@@ -165,7 +158,6 @@ func (d_ DDMatchCalendarEvent) IsAllDay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
-
 func (d_ DDMatchCalendarEvent) SetIsAllDay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsAllDay:"), value)
 }

@@ -40,7 +40,6 @@ type IHKElectrocardiogramType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogramType
-
 type HKElectrocardiogramType struct {
 	HKSampleType
 }

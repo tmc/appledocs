@@ -32,7 +32,9 @@ type ImOpenConnectionSelectorTarget interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/mOpenConnectionSelectorTarget
 type mOpenConnectionSelectorTarget struct {
 	objectivec.Object

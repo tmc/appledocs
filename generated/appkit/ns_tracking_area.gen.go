@@ -48,7 +48,6 @@ type ITrackingArea interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea
-
 type TrackingArea struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewTrackingArea() TrackingArea {
 
 
 
-
 // Initializes and returns an object defining a region of a view to receive mouse-tracking events, mouse-moved events, cursor-update events, or possibly all these events.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)
-
 func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect coregraphics.CGRect, options TrackingAreaOptions, owner objectivec.IObject, userInfo unsafe.Pointer) TrackingArea {
 	instance := getTrackingAreaClass().Alloc()
 	rv := objc.Send[TrackingArea](instance.ID, objc.Sel("initWithRect:options:owner:userInfo:"), rect, options, owner, userInfo)
@@ -112,7 +109,6 @@ func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect coregraphics.CGRect, optio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/options-swift.property
-
 func (t_ TrackingArea) Options() TrackingAreaOptions {
 	rv := objc.Send[TrackingAreaOptions](t_.ID, objc.Sel("options"))
 	return rv
@@ -123,7 +119,6 @@ func (t_ TrackingArea) Options() TrackingAreaOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/owner
-
 func (t_ TrackingArea) Owner() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("owner"))
 	return rv
@@ -134,7 +129,6 @@ func (t_ TrackingArea) Owner() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/rect
-
 func (t_ TrackingArea) Rect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rect"))
 	return rv
@@ -145,7 +139,6 @@ func (t_ TrackingArea) Rect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/userInfo
-
 func (t_ TrackingArea) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("userInfo"))
 	return rv
@@ -156,7 +149,6 @@ func (t_ TrackingArea) UserInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/visiblerect
-
 func (t_ TrackingArea) VisibleRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("visibleRect"))
 	return rv
@@ -167,7 +159,6 @@ func (t_ TrackingArea) VisibleRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/visiblerect
-
 func (t_ TrackingArea) SetVisibleRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleRect:"), value)
 }

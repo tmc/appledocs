@@ -54,7 +54,6 @@ type IAMWorkflow interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow
-
 type AMWorkflow struct {
 	objectivec.Object
 }
@@ -99,12 +98,10 @@ func NewAMWorkflow() AMWorkflow {
 
 
 
-
 // Creates and initializes a workflow based on the contents of the specified file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/init(contentsOf:)
-
 func NewAMWorkflowWithContentsOfURLError(fileURL foundation.IURL, outError unsafe.Pointer) AMWorkflow {
 	instance := getAMWorkflowClass().Alloc()
 	rv := objc.Send[AMWorkflow](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, outError)
@@ -118,87 +115,72 @@ func NewAMWorkflowWithContentsOfURLError(fileURL foundation.IURL, outError unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/run(at:withInput:)
-
 func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL foundation.IURL, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runWorkflowAtURL:withInput:error:"), fileURL, input, error_)
 	return rv
 }
 
 
-
 // Adds the specified action at the end of the receiving workflow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/addAction(_:)
-
 func (a_ AMWorkflow) AddAction(action IAMAction) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addAction:"), action)
 }
-
 
 
 // Inserts the specified action at the specified position of the receiving workflow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/insertAction(_:at:)
-
 func (a_ AMWorkflow) InsertActionAtIndex(action IAMAction, index uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertAction:atIndex:"), action, index)
 }
-
 
 
 // Moves the action from the specified start position to the specified end position in the receiving workflow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/moveAction(at:to:)
-
 func (a_ AMWorkflow) MoveActionAtIndexToIndex(startIndex uint, endIndex uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("moveActionAtIndex:toIndex:"), startIndex, endIndex)
 }
-
 
 
 // Removes the specified action from the workflow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/removeAction(_:)
-
 func (a_ AMWorkflow) RemoveAction(action IAMAction) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeAction:"), action)
 }
-
 
 
 // Sets the value of the workflow variable with the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/setValue(_:forVariableWithName:)
-
 func (a_ AMWorkflow) SetValueForVariableWithName(value objectivec.IObject, variableName string) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forVariableWithName:"), value, objc.String(variableName))
 	return rv
 }
 
 
-
 // Returns the value of the workflow variable with the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/valueForVariable(withName:)
-
 func (a_ AMWorkflow) ValueForVariableWithName(variableName string) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForVariableWithName:"), objc.String(variableName))
 	return rv
 }
 
 
-
 // Writes the workflow to the specified file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/write(to:)
-
 func (a_ AMWorkflow) WriteToURLError(fileURL foundation.IURL, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), fileURL, outError)
 	return rv
@@ -209,7 +191,6 @@ func (a_ AMWorkflow) WriteToURLError(fileURL foundation.IURL, outError unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/actions
-
 func (a_ AMWorkflow) Actions() []AMAction {
 	rv := objc.Send[[]AMAction](a_.ID, objc.Sel("actions"))
 	return rv
@@ -220,7 +201,6 @@ func (a_ AMWorkflow) Actions() []AMAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/fileURL
-
 func (a_ AMWorkflow) FileURL() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("fileURL"))
 	return rv
@@ -231,7 +211,6 @@ func (a_ AMWorkflow) FileURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/input
-
 func (a_ AMWorkflow) Input() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("input"))
 	return rv
@@ -242,7 +221,6 @@ func (a_ AMWorkflow) Input() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/input
-
 func (a_ AMWorkflow) SetInput(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInput:"), value)
 }
@@ -252,7 +230,6 @@ func (a_ AMWorkflow) SetInput(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/output
-
 func (a_ AMWorkflow) Output() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("output"))
 	return rv

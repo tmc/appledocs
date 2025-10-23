@@ -30,7 +30,7 @@ type _TextCheckingResultClass struct {
 // An interface definition for the [TextCheckingResult] class.
 type ITextCheckingResult interface {
 	objectivec.IObject
-	Date() NSDate
+	Date() IDate
 	PhoneNumber() string
 	NSNotFound() int
 	AddressComponents() string
@@ -40,24 +40,24 @@ type ITextCheckingResult interface {
 	Components() string
 	SetComponents(value string)
 	Duration() TimeInterval
-	SetDuration(value ITimeInterval)
+	SetDuration(value TimeInterval)
 	GrammarDetails() string
 	SetGrammarDetails(value string)
 	NumberOfRanges() int
 	SetNumberOfRanges(value int)
-	Orthography() NSOrthography
+	Orthography() IOrthography
 	SetOrthography(value IOrthography)
 	Range() Range
 	SetRange(value Range)
-	RegularExpression() NSRegularExpression
+	RegularExpression() IRegularExpression
 	SetRegularExpression(value IRegularExpression)
 	ReplacementString() string
 	SetReplacementString(value string)
 	ResultType() unsafe.Pointer
 	SetResultType(value unsafe.Pointer)
-	TimeZone() TimeZone
+	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
-	Url() URL
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -118,7 +118,7 @@ func NewTextCheckingResult() TextCheckingResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
-func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range, components IDictionary) TextCheckingResult {
+func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range, components IDictionary) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
@@ -128,7 +128,7 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/date
-func (t_ TextCheckingResult) Date() NSDate {
+func (t_ TextCheckingResult) Date() IDate {
 	rv := objc.Send[NSDate](t_.ID, objc.Sel("date"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (t_ TextCheckingResult) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (t_ TextCheckingResult) SetDuration(value ITimeInterval) {
+func (t_ TextCheckingResult) SetDuration(value TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -268,7 +268,7 @@ func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/orthography
-func (t_ TextCheckingResult) Orthography() NSOrthography {
+func (t_ TextCheckingResult) Orthography() IOrthography {
 	rv := objc.Send[NSOrthography](t_.ID, objc.Sel("orthography"))
 	return rv
 }
@@ -306,7 +306,7 @@ func (t_ TextCheckingResult) SetRange(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/regularexpression
-func (t_ TextCheckingResult) RegularExpression() NSRegularExpression {
+func (t_ TextCheckingResult) RegularExpression() IRegularExpression {
 	rv := objc.Send[NSRegularExpression](t_.ID, objc.Sel("regularExpression"))
 	return rv
 }
@@ -363,7 +363,7 @@ func (t_ TextCheckingResult) SetResultType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-func (t_ TextCheckingResult) TimeZone() TimeZone {
+func (t_ TextCheckingResult) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](t_.ID, objc.Sel("timeZone"))
 	return rv
 }
@@ -382,7 +382,7 @@ func (t_ TextCheckingResult) SetTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-func (t_ TextCheckingResult) Url() URL {
+func (t_ TextCheckingResult) Url() IURL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("url"))
 	return rv
 }

@@ -17,3 +17,11 @@ func ExampleNewColorForControlTint() {
 	)
 	// Output:
 }
+// ExampleNewColorWithPatternImage demonstrates how to create a Color instance using NewColorWithPatternImage.
+// Creates a color object that uses the specified image pattern to paint the target area.
+func ExampleNewColorWithPatternImage() {
+	_ = appkit.NewColorWithPatternImage(
+		appkit.Image{}, // image Image
+	)
+	// Output:
+}

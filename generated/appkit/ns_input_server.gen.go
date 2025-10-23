@@ -36,7 +36,6 @@ type IInputServer interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputServer
-
 type InputServer struct {
 	objectivec.Object
 }

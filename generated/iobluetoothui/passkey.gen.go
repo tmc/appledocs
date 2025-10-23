@@ -32,7 +32,9 @@ type Ipasskey interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/passkey-c.ivar
 type passkey struct {
 	objectivec.Object

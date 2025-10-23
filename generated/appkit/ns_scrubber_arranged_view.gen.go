@@ -47,7 +47,6 @@ type IScrubberArrangedView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView
-
 type ScrubberArrangedView struct {
 	View
 }
@@ -94,12 +93,10 @@ func NewScrubberArrangedView() ScrubberArrangedView {
 
 
 
-
 // Updates the layout of the arranged view to respect the provided layout attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/apply(_:)
-
 func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes IScrubberLayoutAttributes) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("applyLayoutAttributes:"), layoutAttributes)
 }
@@ -109,7 +106,6 @@ func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes IScrubberL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isHighlighted
-
 func (s_ ScrubberArrangedView) Highlighted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("highlighted"))
 	return rv
@@ -120,7 +116,6 @@ func (s_ ScrubberArrangedView) Highlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isHighlighted
-
 func (s_ ScrubberArrangedView) SetHighlighted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHighlighted:"), value)
 }
@@ -130,7 +125,6 @@ func (s_ ScrubberArrangedView) SetHighlighted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isSelected
-
 func (s_ ScrubberArrangedView) Selected() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("selected"))
 	return rv
@@ -141,7 +135,6 @@ func (s_ ScrubberArrangedView) Selected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/isSelected
-
 func (s_ ScrubberArrangedView) SetSelected(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelected:"), value)
 }
@@ -151,7 +144,6 @@ func (s_ ScrubberArrangedView) SetSelected(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/ishighlighted
-
 func (s_ ScrubberArrangedView) IsHighlighted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isHighlighted"))
 	return rv
@@ -162,7 +154,6 @@ func (s_ ScrubberArrangedView) IsHighlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/ishighlighted
-
 func (s_ ScrubberArrangedView) SetIsHighlighted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHighlighted:"), value)
 }
@@ -172,7 +163,6 @@ func (s_ ScrubberArrangedView) SetIsHighlighted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/isselected
-
 func (s_ ScrubberArrangedView) IsSelected() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSelected"))
 	return rv
@@ -183,7 +173,6 @@ func (s_ ScrubberArrangedView) IsSelected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberarrangedview/isselected
-
 func (s_ ScrubberArrangedView) SetIsSelected(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSelected:"), value)
 }

@@ -54,7 +54,6 @@ type ILayoutAnchor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor
-
 type LayoutAnchor struct {
 	objectivec.Object
 }
@@ -103,7 +102,6 @@ func NewLayoutAnchor() LayoutAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout
-
 func (l_ LayoutAnchor) HasAmbiguousLayout() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("hasAmbiguousLayout"))
 	return rv
@@ -114,7 +112,6 @@ func (l_ LayoutAnchor) HasAmbiguousLayout() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/constraintsaffectinglayout
-
 func (l_ LayoutAnchor) ConstraintsAffectingLayout() NSLayoutConstraint {
 	rv := objc.Send[NSLayoutConstraint](l_.ID, objc.Sel("constraintsAffectingLayout"))
 	return rv
@@ -125,7 +122,6 @@ func (l_ LayoutAnchor) ConstraintsAffectingLayout() NSLayoutConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/constraintsaffectinglayout
-
 func (l_ LayoutAnchor) SetConstraintsAffectingLayout(value ILayoutConstraint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setConstraintsAffectingLayout:"), value)
 }
@@ -135,7 +131,6 @@ func (l_ LayoutAnchor) SetConstraintsAffectingLayout(value ILayoutConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/item
-
 func (l_ LayoutAnchor) Item() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("item"))
 	return rv
@@ -146,7 +141,6 @@ func (l_ LayoutAnchor) Item() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/item
-
 func (l_ LayoutAnchor) SetItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setItem:"), value)
 }
@@ -156,7 +150,6 @@ func (l_ LayoutAnchor) SetItem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/name
-
 func (l_ LayoutAnchor) Name() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
@@ -167,7 +160,6 @@ func (l_ LayoutAnchor) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutanchor/name
-
 func (l_ LayoutAnchor) SetName(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -177,7 +169,6 @@ func (l_ LayoutAnchor) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/bottomanchor
-
 func (l_ LayoutAnchor) BottomAnchor() NSLayoutYAxisAnchor {
 	rv := objc.Send[NSLayoutYAxisAnchor](l_.ID, objc.Sel("bottomAnchor"))
 	return rv
@@ -188,7 +179,6 @@ func (l_ LayoutAnchor) BottomAnchor() NSLayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/bottomanchor
-
 func (l_ LayoutAnchor) SetBottomAnchor(value ILayoutYAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBottomAnchor:"), value)
 }
@@ -198,7 +188,6 @@ func (l_ LayoutAnchor) SetBottomAnchor(value ILayoutYAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leadinganchor
-
 func (l_ LayoutAnchor) LeadingAnchor() NSLayoutXAxisAnchor {
 	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("leadingAnchor"))
 	return rv
@@ -209,7 +198,6 @@ func (l_ LayoutAnchor) LeadingAnchor() NSLayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leadinganchor
-
 func (l_ LayoutAnchor) SetLeadingAnchor(value ILayoutXAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeadingAnchor:"), value)
 }
@@ -219,7 +207,6 @@ func (l_ LayoutAnchor) SetLeadingAnchor(value ILayoutXAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leftanchor
-
 func (l_ LayoutAnchor) LeftAnchor() NSLayoutXAxisAnchor {
 	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("leftAnchor"))
 	return rv
@@ -230,7 +217,6 @@ func (l_ LayoutAnchor) LeftAnchor() NSLayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/leftanchor
-
 func (l_ LayoutAnchor) SetLeftAnchor(value ILayoutXAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeftAnchor:"), value)
 }

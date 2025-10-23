@@ -32,7 +32,9 @@ type ImReserved1 interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mReserved1
 type mReserved1 struct {
 	objectivec.Object

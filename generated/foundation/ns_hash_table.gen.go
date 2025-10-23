@@ -30,7 +30,7 @@ type _HashTableClass struct {
 // An interface definition for the [HashTable] class.
 type IHashTable interface {
 	objectivec.IObject
-	PointerFunctions() NSPointerFunctions
+	PointerFunctions() IPointerFunctions
 	AllObjects() unsafe.Pointer
 	SetAllObjects(value unsafe.Pointer)
 	AnyObject() unsafe.Pointer
@@ -98,7 +98,7 @@ func NewHashTable() HashTable {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/pointerFunctions
-func (h_ HashTable) PointerFunctions() NSPointerFunctions {
+func (h_ HashTable) PointerFunctions() IPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }

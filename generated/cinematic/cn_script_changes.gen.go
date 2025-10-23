@@ -45,7 +45,6 @@ type ICNScriptChanges interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges
-
 type CNScriptChanges struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewCNScriptChanges() CNScriptChanges {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/addedDetectionTracks
-
 func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
 	rv := objc.Send[[]CNDetectionTrack](c_.ID, objc.Sel("addedDetectionTracks"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/dataRepresentation
-
 func (c_ CNScriptChanges) DataRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("dataRepresentation"))
 	return rv
@@ -116,7 +113,6 @@ func (c_ CNScriptChanges) DataRepresentation() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/userDecisions
-
 func (c_ CNScriptChanges) UserDecisions() []CNDecision {
 	rv := objc.Send[[]CNDecision](c_.ID, objc.Sel("userDecisions"))
 	return rv

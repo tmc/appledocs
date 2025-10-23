@@ -65,7 +65,6 @@ type IPopover interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover
-
 type Popover struct {
 	Responder
 }
@@ -112,12 +111,10 @@ func NewPopover() Popover {
 
 
 
-
 // Attempts to close the popover.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/performClose(_:)
-
 func (p_ Popover) PerformClose(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performClose:"), sender)
 }
@@ -127,7 +124,6 @@ func (p_ Popover) PerformClose(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/behavior-swift.property
-
 func (p_ Popover) Behavior() PopoverBehavior {
 	rv := objc.Send[PopoverBehavior](p_.ID, objc.Sel("behavior"))
 	return rv
@@ -138,7 +134,6 @@ func (p_ Popover) Behavior() PopoverBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/behavior-swift.property
-
 func (p_ Popover) SetBehavior(value PopoverBehavior) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBehavior:"), value)
 }
@@ -148,7 +143,6 @@ func (p_ Popover) SetBehavior(value PopoverBehavior) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/contentViewController
-
 func (p_ Popover) ContentViewController() NSViewController {
 	rv := objc.Send[NSViewController](p_.ID, objc.Sel("contentViewController"))
 	return rv
@@ -159,7 +153,6 @@ func (p_ Popover) ContentViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/contentViewController
-
 func (p_ Popover) SetContentViewController(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentViewController:"), value)
 }
@@ -169,7 +162,6 @@ func (p_ Popover) SetContentViewController(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/effectiveAppearance
-
 func (p_ Popover) EffectiveAppearance() NSAppearance {
 	rv := objc.Send[NSAppearance](p_.ID, objc.Sel("effectiveAppearance"))
 	return rv
@@ -180,7 +172,6 @@ func (p_ Popover) EffectiveAppearance() NSAppearance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/hasFullSizeContent
-
 func (p_ Popover) HasFullSizeContent() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasFullSizeContent"))
 	return rv
@@ -191,7 +182,6 @@ func (p_ Popover) HasFullSizeContent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/hasFullSizeContent
-
 func (p_ Popover) SetHasFullSizeContent(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHasFullSizeContent:"), value)
 }
@@ -201,7 +191,6 @@ func (p_ Popover) SetHasFullSizeContent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/isShown
-
 func (p_ Popover) Shown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shown"))
 	return rv
@@ -212,7 +201,6 @@ func (p_ Popover) Shown() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/animates
-
 func (p_ Popover) Animates() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("animates"))
 	return rv
@@ -223,7 +211,6 @@ func (p_ Popover) Animates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/animates
-
 func (p_ Popover) SetAnimates(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAnimates:"), value)
 }
@@ -233,7 +220,6 @@ func (p_ Popover) SetAnimates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
-
 func (p_ Popover) Appearance() NSAppearance {
 	rv := objc.Send[NSAppearance](p_.ID, objc.Sel("appearance"))
 	return rv
@@ -244,7 +230,6 @@ func (p_ Popover) Appearance() NSAppearance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
-
 func (p_ Popover) SetAppearance(value IAppearance) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppearance:"), value)
 }
@@ -254,7 +239,6 @@ func (p_ Popover) SetAppearance(value IAppearance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentsize
-
 func (p_ Popover) ContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("contentSize"))
 	return rv
@@ -265,7 +249,6 @@ func (p_ Popover) ContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentsize
-
 func (p_ Popover) SetContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSize:"), value)
 }
@@ -275,7 +258,6 @@ func (p_ Popover) SetContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/delegate
-
 func (p_ Popover) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
@@ -286,7 +268,6 @@ func (p_ Popover) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/delegate
-
 func (p_ Popover) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -296,7 +277,6 @@ func (p_ Popover) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isdetached
-
 func (p_ Popover) IsDetached() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isDetached"))
 	return rv
@@ -307,7 +287,6 @@ func (p_ Popover) IsDetached() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isdetached
-
 func (p_ Popover) SetIsDetached(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDetached:"), value)
 }
@@ -317,7 +296,6 @@ func (p_ Popover) SetIsDetached(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isshown
-
 func (p_ Popover) IsShown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isShown"))
 	return rv
@@ -328,7 +306,6 @@ func (p_ Popover) IsShown() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/isshown
-
 func (p_ Popover) SetIsShown(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsShown:"), value)
 }
@@ -338,7 +315,6 @@ func (p_ Popover) SetIsShown(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/positioningrect
-
 func (p_ Popover) PositioningRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("positioningRect"))
 	return rv
@@ -349,7 +325,6 @@ func (p_ Popover) PositioningRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/positioningrect
-
 func (p_ Popover) SetPositioningRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPositioningRect:"), value)
 }

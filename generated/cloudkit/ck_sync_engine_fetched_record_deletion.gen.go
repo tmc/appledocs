@@ -41,7 +41,6 @@ type ICKSyncEngineFetchedRecordDeletion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion
-
 type CKSyncEngineFetchedRecordDeletion struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewCKSyncEngineFetchedRecordDeletion() CKSyncEngineFetchedRecordDeletion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion/recordID
-
 func (c_ CKSyncEngineFetchedRecordDeletion) RecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
@@ -101,7 +99,6 @@ func (c_ CKSyncEngineFetchedRecordDeletion) RecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion/recordType
-
 func (c_ CKSyncEngineFetchedRecordDeletion) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv

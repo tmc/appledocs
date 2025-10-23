@@ -46,7 +46,6 @@ type IHKContactsPrescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKContactsPrescription
-
 type HKContactsPrescription struct {
 	HKVisionPrescription
 }
@@ -97,7 +96,6 @@ func NewHKContactsPrescription() HKContactsPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-
 func (h_ HKContactsPrescription) Brand() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("brand"))
 	return rv
@@ -108,7 +106,6 @@ func (h_ HKContactsPrescription) Brand() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-
 func (h_ HKContactsPrescription) SetBrand(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), objc.String(value))
 }
@@ -118,7 +115,6 @@ func (h_ HKContactsPrescription) SetBrand(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
-
 func (h_ HKContactsPrescription) LeftEye() HKContactsLensSpecification {
 	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
@@ -129,7 +125,6 @@ func (h_ HKContactsPrescription) LeftEye() HKContactsLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
-
 func (h_ HKContactsPrescription) SetLeftEye(value IHKContactsLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
 }
@@ -139,7 +134,6 @@ func (h_ HKContactsPrescription) SetLeftEye(value IHKContactsLensSpecification) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
-
 func (h_ HKContactsPrescription) RightEye() HKContactsLensSpecification {
 	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
@@ -150,7 +144,6 @@ func (h_ HKContactsPrescription) RightEye() HKContactsLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
-
 func (h_ HKContactsPrescription) SetRightEye(value IHKContactsLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }

@@ -43,7 +43,6 @@ type IMagnetometerData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMagnetometerData
-
 type MagnetometerData struct {
 	LogItem
 }
@@ -94,7 +93,6 @@ func NewMagnetometerData() MagnetometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMagnetometerData/magneticField
-
 func (m_ MagnetometerData) MagneticField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("magneticField"))
 	return rv
@@ -105,7 +103,6 @@ func (m_ MagnetometerData) MagneticField() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata
-
 func (m_ MagnetometerData) MagnetometerData() CMMagnetometerData {
 	rv := objc.Send[CMMagnetometerData](m_.ID, objc.Sel("magnetometerData"))
 	return rv
@@ -116,7 +113,6 @@ func (m_ MagnetometerData) MagnetometerData() CMMagnetometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata
-
 func (m_ MagnetometerData) SetMagnetometerData(value ICMMagnetometerData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnetometerData:"), value)
 }

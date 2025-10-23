@@ -62,7 +62,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOCallOnce
-
 func IOCallOnce(flag unsafe.Pointer, block unsafe.Pointer) {
 	_IOCallOnce(flag, block)
 	}
@@ -74,7 +73,6 @@ func IOCallOnce(flag unsafe.Pointer, block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IODelay
-
 func IODelay(us unsafe.Pointer) {
 	_IODelay(us)
 	}
@@ -84,7 +82,6 @@ func IODelay(us unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOLogv
-
 func IOLogv(format unsafe.Pointer, ap unsafe.Pointer) int {
 	return _IOLogv(format, ap)
 	}
@@ -96,7 +93,6 @@ func IOLogv(format unsafe.Pointer, ap unsafe.Pointer) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOMallocZero
-
 func IOMallocZero(length unsafe.Pointer) unsafe.Pointer {
 	return _IOMallocZero(length)
 	}
@@ -108,7 +104,6 @@ func IOMallocZero(length unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOParseBootArgString
-
 func IOParseBootArgString(arg_string unsafe.Pointer, arg_ptr unsafe.Pointer, strlen int) bool {
 	return _IOParseBootArgString(arg_string, arg_ptr, strlen)
 	}
@@ -118,7 +113,6 @@ func IOParseBootArgString(arg_string unsafe.Pointer, arg_ptr unsafe.Pointer, str
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IORWLockUnlock
-
 func IORWLockUnlock(lock unsafe.Pointer) {
 	_IORWLockUnlock(lock)
 	}
@@ -128,7 +122,6 @@ func IORWLockUnlock(lock unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDataAppendBytes
-
 func OSDataAppendBytes(data unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer) bool {
 	return _OSDataAppendBytes(data, bytes, length)
 	}
@@ -138,7 +131,6 @@ func OSDataAppendBytes(data unsafe.Pointer, bytes unsafe.Pointer, length unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDataGetBytes
-
 func OSDataGetBytes(obj unsafe.Pointer, buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
 	return _OSDataGetBytes(obj, buffer, offset, length)
 	}
@@ -148,7 +140,6 @@ func OSDataGetBytes(obj unsafe.Pointer, buffer unsafe.Pointer, offset unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDictionaryApply
-
 func OSDictionaryApply(obj unsafe.Pointer, applier unsafe.Pointer) bool {
 	return _OSDictionaryApply(obj, applier)
 	}
@@ -160,7 +151,6 @@ func OSDictionaryApply(obj unsafe.Pointer, applier unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/mach_absolute_time
-
 func mach_absolute_time() unsafe.Pointer {
 	return _mach_absolute_time()
 	}

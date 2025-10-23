@@ -42,7 +42,6 @@ type ITKSmartCardTokenSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenSession
-
 type TKSmartCardTokenSession struct {
 	TKTokenSession
 }
@@ -89,10 +88,8 @@ func NewTKSmartCardTokenSession() TKSmartCardTokenSession {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenSession/getSmartCard()
-
 func (t_ TKSmartCardTokenSession) GetSmartCardWithError(error_ unsafe.Pointer) TKSmartCard {
 	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("getSmartCardWithError:"), error_)
 	return rv
@@ -103,7 +100,6 @@ func (t_ TKSmartCardTokenSession) GetSmartCardWithError(error_ unsafe.Pointer) T
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenSession/smartCard
-
 func (t_ TKSmartCardTokenSession) SmartCard() TKSmartCard {
 	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("smartCard"))
 	return rv

@@ -42,7 +42,6 @@ type IDDMatchPhoneNumber interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber
-
 type DDMatchPhoneNumber struct {
 	DDMatch
 }
@@ -93,7 +92,6 @@ func NewDDMatchPhoneNumber() DDMatchPhoneNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/label
-
 func (d_ DDMatchPhoneNumber) Label() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
@@ -104,7 +102,6 @@ func (d_ DDMatchPhoneNumber) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/phoneNumber
-
 func (d_ DDMatchPhoneNumber) PhoneNumber() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("phoneNumber"))
 	return rv

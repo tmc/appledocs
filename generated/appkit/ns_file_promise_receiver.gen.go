@@ -45,7 +45,6 @@ type IFilePromiseReceiver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver
-
 type FilePromiseReceiver struct {
 	objectivec.Object
 }
@@ -94,18 +93,15 @@ func NewFilePromiseReceiver() FilePromiseReceiver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes
-
 func (fc _FilePromiseReceiverClass) ReadableDraggedTypes() []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("readableDraggedTypes"))
 	return rv
 }
 
-
 // Fulfills the promises at the specified destination.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)
-
 func (f_ FilePromiseReceiver) ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir foundation.IURL, options objectivec.IObject, operationQueue foundation.IOperationQueue, reader unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("receivePromisedFilesAtDestination:options:operationQueue:reader:"), destinationDir, options, operationQueue, reader)
 }
@@ -115,7 +111,6 @@ func (f_ FilePromiseReceiver) ReceivePromisedFilesAtDestinationOptionsOperationQ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileNames
-
 func (f_ FilePromiseReceiver) FileNames() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("fileNames"))
 	return rv
@@ -126,7 +121,6 @@ func (f_ FilePromiseReceiver) FileNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileTypes
-
 func (f_ FilePromiseReceiver) FileTypes() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("fileTypes"))
 	return rv
@@ -137,7 +131,6 @@ func (f_ FilePromiseReceiver) FileTypes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes
-
 func (f_ FilePromiseReceiver) ReadableDraggedTypes() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("readableDraggedTypes"))
 	return rv

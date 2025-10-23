@@ -42,7 +42,6 @@ type IOctreeNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctreeNode
-
 type OctreeNode struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewOctreeNode() OctreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctreeNode/box
-
 func (o_ OctreeNode) Box() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("box"))
 	return rv

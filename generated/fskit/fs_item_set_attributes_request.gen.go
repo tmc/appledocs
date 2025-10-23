@@ -43,7 +43,6 @@ type IFSItemSetAttributesRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest
-
 type FSItemSetAttributesRequest struct {
 	FSItemAttributes
 }
@@ -90,12 +89,10 @@ func NewFSItemSetAttributesRequest() FSItemSetAttributesRequest {
 
 
 
-
 // A method that indicates whether the file system used the given attribute.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/wasAttributeConsumed(_:)
-
 func (f_ FSItemSetAttributesRequest) WasAttributeConsumed(attribute FSItemAttribute) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("wasAttributeConsumed:"), attribute)
 	return rv
@@ -106,7 +103,6 @@ func (f_ FSItemSetAttributesRequest) WasAttributeConsumed(attribute FSItemAttrib
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/consumedAttributes
-
 func (f_ FSItemSetAttributesRequest) ConsumedAttributes() FSItemAttribute {
 	rv := objc.Send[FSItemAttribute](f_.ID, objc.Sel("consumedAttributes"))
 	return rv
@@ -117,7 +113,6 @@ func (f_ FSItemSetAttributesRequest) ConsumedAttributes() FSItemAttribute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/consumedAttributes
-
 func (f_ FSItemSetAttributesRequest) SetConsumedAttributes(value FSItemAttribute) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setConsumedAttributes:"), value)
 }

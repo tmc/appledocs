@@ -41,7 +41,6 @@ type IGyroData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData
-
 type GyroData struct {
 	LogItem
 }
@@ -92,7 +91,6 @@ func NewGyroData() GyroData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData/rotationRate
-
 func (g_ GyroData) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
 	return rv

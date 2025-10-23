@@ -39,7 +39,11 @@ type IMKShape interface {
 // An abstract class that defines the basic properties for all shape-based overlay objects.
 //
 // You can’t instantiate this class directly; use a subclass instead. Subclasses are responsible for defining the geometry of the shape and providing an appropriate value for the coordinate property they inherit from the protocol.
+
+
+// An abstract class that defines the basic properties for all shape-based overlay objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape
 type MKShape struct {
 	objectivec.Object
@@ -84,8 +88,10 @@ func NewMKShape() MKShape {
 }
 
 
+
 // The subtitle of the shape annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/subtitle
 func (m_ MKShape) Subtitle() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
@@ -93,17 +99,18 @@ func (m_ MKShape) Subtitle() string {
 }
 
 
-// SetSubtitle sets the value of the subtitle property.
 // The subtitle of the shape annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/subtitle
 func (m_ MKShape) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
+
 // The title of the shape annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/title
 func (m_ MKShape) Title() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
@@ -111,10 +118,9 @@ func (m_ MKShape) Title() string {
 }
 
 
-// SetTitle sets the value of the title property.
 // The title of the shape annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/title
 func (m_ MKShape) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))

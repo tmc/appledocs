@@ -41,7 +41,6 @@ type IVideoCompositionLayerInstruction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoCompositionLayerInstruction
-
 type VideoCompositionLayerInstruction struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewVideoCompositionLayerInstruction() VideoCompositionLayerInstruction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocompositionlayerinstruction/trackid
-
 func (v_ VideoCompositionLayerInstruction) TrackID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("trackID"))
 	return rv
@@ -101,7 +99,6 @@ func (v_ VideoCompositionLayerInstruction) TrackID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocompositionlayerinstruction/trackid
-
 func (v_ VideoCompositionLayerInstruction) SetTrackID(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTrackID:"), value)
 }

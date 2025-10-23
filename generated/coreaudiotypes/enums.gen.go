@@ -61,10 +61,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/unspecified
 	AudioSessionErrorCodeUnspecified AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeIsBusy - An error code that indicates an attempt to deactivate the audio session while it’s still playing or recording.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode/avaudiosessionerrorcodeisbusy
-	AudioSessionErrorCodeIsBusy AudioSessionErrorCode = 0
 )
 
 // AudioChannelBitmap - The supported channel bitmaps to use when defining channel layouts.
@@ -304,70 +300,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/SMPTETimeType/type60Drop
 	kSMPTETimeType60Drop PTETimeType = 0
-)
-
-// AVAudioSessionErrorCode - Codes that describe error conditions that may occur when performing audio session operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/errorcode
-type AudioSessionErrorCode uint
-
-const (
-	// AudioSessionErrorCodeBadParam - An error code that indicates an attempt to set a property to an illegal value.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/badParam
-	AudioSessionErrorCodeBadParam AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeCannotInterruptOthers - An error code that indictates an attempt to make a nonmixable audio session active while the app was in the background.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/cannotInterruptOthers
-	AudioSessionErrorCodeCannotInterruptOthers AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeCannotStartPlaying - An error code that indicates an attempt to start audio playback when it wasn’t allowed.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/cannotStartPlaying
-	AudioSessionErrorCodeCannotStartPlaying AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeCannotStartRecording - An error code that indicates an attempt to start audio recording, but the operation failed.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/cannotStartRecording
-	AudioSessionErrorCodeCannotStartRecording AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeExpiredSession - An error code that indicates that an operation failed because the system deallocated the associated session.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/expiredSession
-	AudioSessionErrorCodeExpiredSession AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeInsufficientPriority - An error code that indicates the app isn’t allowed to set the audio category because it’s in use by another app.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/insufficientPriority
-	AudioSessionErrorCodeInsufficientPriority AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeIsBusy - An error code that indicates an attempt to deactivate the audio session while it’s still playing or recording.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/isBusy
-	AudioSessionErrorCodeIsBusy AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeMediaServicesFailed - An error code that indictates an attempt to use the audio session during or after a Media Services failure.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/mediaServicesFailed
-	AudioSessionErrorCodeMediaServicesFailed AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeMissingEntitlement - An error code that indicates an attempt to perform an operation for which the app doesn’t have the required entitlements.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/missingEntitlement
-	AudioSessionErrorCodeMissingEntitlement AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeNone - An error code that indicates the operation succeeded.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/none
-	AudioSessionErrorCodeNone AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeSessionNotActive - An error code that indicates the operation failed because the session isn’t active.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/sessionNotActive
-	AudioSessionErrorCodeSessionNotActive AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeSiriIsRecording - An error code that indicates an attempt to perform an operation that isn’t allowed while Siri is recording.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/siriIsRecording
-	AudioSessionErrorCodeSiriIsRecording AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeUnspecified - An error code that indicates an unspecified error occurred.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioSession/ErrorCode/unspecified
-	AudioSessionErrorCodeUnspecified AudioSessionErrorCode = 0
-	// AudioSessionErrorCodeIsBusy - An error code that indicates an attempt to deactivate the audio session while it’s still playing or recording.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode/avaudiosessionerrorcodeisbusy
-	AudioSessionErrorCodeIsBusy AudioSessionErrorCode = 0
 )
 
 

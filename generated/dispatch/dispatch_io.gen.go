@@ -39,7 +39,6 @@ type IDispatchIO interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchIO
-
 type DispatchIO struct {
 	objectivec.Object
 }

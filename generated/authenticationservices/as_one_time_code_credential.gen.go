@@ -41,7 +41,6 @@ type IOneTimeCodeCredential interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredential
-
 type OneTimeCodeCredential struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewOneTimeCodeCredential() OneTimeCodeCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asonetimecodecredential/code
-
 func (o_ OneTimeCodeCredential) Code() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("code"))
 	return rv
@@ -101,7 +99,6 @@ func (o_ OneTimeCodeCredential) Code() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asonetimecodecredential/code
-
 func (o_ OneTimeCodeCredential) SetCode(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCode:"), objc.String(value))
 }

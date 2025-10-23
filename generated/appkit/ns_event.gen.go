@@ -150,7 +150,6 @@ type IEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent
-
 type Event struct {
 	objectivec.Object
 }
@@ -199,7 +198,6 @@ func NewEvent() Event {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/addLocalMonitorForEvents(matching:handler:)
-
 func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask EventMask, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("addLocalMonitorForEventsMatchingMask:handler:"), mask, block)
 	return rv
@@ -210,18 +208,15 @@ func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask EventMask
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
-
 func (ec _EventClass) MouseLocation() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](objc.ID(ec.class), objc.Sel("mouseLocation"))
 	return rv
 }
 
-
 // Returns the location of the receiver in the coordinate system of the given node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/location(in:)
-
 func (e_ Event) LocationInNode(node unsafe.Pointer) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("locationInNode:"), node)
 	return rv
@@ -232,7 +227,6 @@ func (e_ Event) LocationInNode(node unsafe.Pointer) coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/cgEvent
-
 func (e_ Event) CGEvent() coregraphics.CGEventRef {
 	rv := objc.Send[coregraphics.CGEventRef](e_.ID, objc.Sel("CGEvent"))
 	return rv
@@ -243,7 +237,6 @@ func (e_ Event) CGEvent() coregraphics.CGEventRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/eventRef
-
 func (e_ Event) EventRef() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("eventRef"))
 	return rv
@@ -254,7 +247,6 @@ func (e_ Event) EventRef() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/locationInWindow
-
 func (e_ Event) LocationInWindow() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("locationInWindow"))
 	return rv
@@ -265,7 +257,6 @@ func (e_ Event) LocationInWindow() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/modifierFlags-swift.property
-
 func (e_ Event) ModifierFlags() EventModifierFlags {
 	rv := objc.Send[EventModifierFlags](e_.ID, objc.Sel("modifierFlags"))
 	return rv
@@ -276,7 +267,6 @@ func (e_ Event) ModifierFlags() EventModifierFlags {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
-
 func (e_ Event) MouseLocation() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("mouseLocation"))
 	return rv
@@ -287,7 +277,6 @@ func (e_ Event) MouseLocation() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/timestamp
-
 func (e_ Event) Timestamp() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("timestamp"))
 	return rv
@@ -298,7 +287,6 @@ func (e_ Event) Timestamp() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/window
-
 func (e_ Event) Window() NSWindow {
 	rv := objc.Send[NSWindow](e_.ID, objc.Sel("window"))
 	return rv
@@ -309,7 +297,6 @@ func (e_ Event) Window() NSWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/windowNumber
-
 func (e_ Event) WindowNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("windowNumber"))
 	return rv
@@ -320,7 +307,6 @@ func (e_ Event) WindowNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/absolutex
-
 func (e_ Event) AbsoluteX() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteX"))
 	return rv
@@ -331,7 +317,6 @@ func (e_ Event) AbsoluteX() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/absolutex
-
 func (e_ Event) SetAbsoluteX(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAbsoluteX:"), value)
 }
@@ -341,7 +326,6 @@ func (e_ Event) SetAbsoluteX(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/absolutey
-
 func (e_ Event) AbsoluteY() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteY"))
 	return rv
@@ -352,7 +336,6 @@ func (e_ Event) AbsoluteY() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/absolutey
-
 func (e_ Event) SetAbsoluteY(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAbsoluteY:"), value)
 }
@@ -362,7 +345,6 @@ func (e_ Event) SetAbsoluteY(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/absolutez
-
 func (e_ Event) AbsoluteZ() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteZ"))
 	return rv
@@ -373,7 +355,6 @@ func (e_ Event) AbsoluteZ() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/absolutez
-
 func (e_ Event) SetAbsoluteZ(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAbsoluteZ:"), value)
 }
@@ -383,7 +364,6 @@ func (e_ Event) SetAbsoluteZ(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/associatedeventsmask
-
 func (e_ Event) AssociatedEventsMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("associatedEventsMask"))
 	return rv
@@ -394,7 +374,6 @@ func (e_ Event) AssociatedEventsMask() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/associatedeventsmask
-
 func (e_ Event) SetAssociatedEventsMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAssociatedEventsMask:"), value)
 }
@@ -404,7 +383,6 @@ func (e_ Event) SetAssociatedEventsMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.property
-
 func (e_ Event) ButtonMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("buttonMask"))
 	return rv
@@ -415,7 +393,6 @@ func (e_ Event) ButtonMask() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.property
-
 func (e_ Event) SetButtonMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setButtonMask:"), value)
 }
@@ -425,7 +402,6 @@ func (e_ Event) SetButtonMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/buttonnumber
-
 func (e_ Event) ButtonNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("buttonNumber"))
 	return rv
@@ -436,7 +412,6 @@ func (e_ Event) ButtonNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/buttonnumber
-
 func (e_ Event) SetButtonNumber(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setButtonNumber:"), value)
 }
@@ -446,7 +421,6 @@ func (e_ Event) SetButtonNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/capabilitymask
-
 func (e_ Event) CapabilityMask() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("capabilityMask"))
 	return rv
@@ -457,7 +431,6 @@ func (e_ Event) CapabilityMask() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/capabilitymask
-
 func (e_ Event) SetCapabilityMask(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCapabilityMask:"), value)
 }
@@ -467,7 +440,6 @@ func (e_ Event) SetCapabilityMask(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/characters
-
 func (e_ Event) Characters() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("characters"))
 	return rv
@@ -478,7 +450,6 @@ func (e_ Event) Characters() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/characters
-
 func (e_ Event) SetCharacters(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCharacters:"), objc.String(value))
 }
@@ -488,7 +459,6 @@ func (e_ Event) SetCharacters(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/charactersignoringmodifiers
-
 func (e_ Event) CharactersIgnoringModifiers() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("charactersIgnoringModifiers"))
 	return rv
@@ -499,7 +469,6 @@ func (e_ Event) CharactersIgnoringModifiers() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/charactersignoringmodifiers
-
 func (e_ Event) SetCharactersIgnoringModifiers(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCharactersIgnoringModifiers:"), objc.String(value))
 }
@@ -509,7 +478,6 @@ func (e_ Event) SetCharactersIgnoringModifiers(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/clickcount
-
 func (e_ Event) ClickCount() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("clickCount"))
 	return rv
@@ -520,7 +488,6 @@ func (e_ Event) ClickCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/clickcount
-
 func (e_ Event) SetClickCount(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setClickCount:"), value)
 }
@@ -530,7 +497,6 @@ func (e_ Event) SetClickCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
-
 func (e_ Event) Context() NSGraphicsContext {
 	rv := objc.Send[NSGraphicsContext](e_.ID, objc.Sel("context"))
 	return rv
@@ -541,7 +507,6 @@ func (e_ Event) Context() NSGraphicsContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
-
 func (e_ Event) SetContext(value IGraphicsContext) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setContext:"), value)
 }
@@ -551,7 +516,6 @@ func (e_ Event) SetContext(value IGraphicsContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/data1
-
 func (e_ Event) Data1() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("data1"))
 	return rv
@@ -562,7 +526,6 @@ func (e_ Event) Data1() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/data1
-
 func (e_ Event) SetData1(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setData1:"), value)
 }
@@ -572,7 +535,6 @@ func (e_ Event) SetData1(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/data2
-
 func (e_ Event) Data2() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("data2"))
 	return rv
@@ -583,7 +545,6 @@ func (e_ Event) Data2() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/data2
-
 func (e_ Event) SetData2(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setData2:"), value)
 }
@@ -593,7 +554,6 @@ func (e_ Event) SetData2(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deltax
-
 func (e_ Event) DeltaX() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaX"))
 	return rv
@@ -604,7 +564,6 @@ func (e_ Event) DeltaX() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deltax
-
 func (e_ Event) SetDeltaX(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDeltaX:"), value)
 }
@@ -614,7 +573,6 @@ func (e_ Event) SetDeltaX(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deltay
-
 func (e_ Event) DeltaY() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaY"))
 	return rv
@@ -625,7 +583,6 @@ func (e_ Event) DeltaY() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deltay
-
 func (e_ Event) SetDeltaY(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDeltaY:"), value)
 }
@@ -635,7 +592,6 @@ func (e_ Event) SetDeltaY(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deltaz
-
 func (e_ Event) DeltaZ() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaZ"))
 	return rv
@@ -646,7 +602,6 @@ func (e_ Event) DeltaZ() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deltaz
-
 func (e_ Event) SetDeltaZ(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDeltaZ:"), value)
 }
@@ -656,7 +611,6 @@ func (e_ Event) SetDeltaZ(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deviceid
-
 func (e_ Event) DeviceID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("deviceID"))
 	return rv
@@ -667,7 +621,6 @@ func (e_ Event) DeviceID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deviceid
-
 func (e_ Event) SetDeviceID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDeviceID:"), value)
 }
@@ -677,7 +630,6 @@ func (e_ Event) SetDeviceID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/eventnumber
-
 func (e_ Event) EventNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("eventNumber"))
 	return rv
@@ -688,7 +640,6 @@ func (e_ Event) EventNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/eventnumber
-
 func (e_ Event) SetEventNumber(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEventNumber:"), value)
 }
@@ -698,7 +649,6 @@ func (e_ Event) SetEventNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/hasprecisescrollingdeltas
-
 func (e_ Event) HasPreciseScrollingDeltas() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasPreciseScrollingDeltas"))
 	return rv
@@ -709,7 +659,6 @@ func (e_ Event) HasPreciseScrollingDeltas() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/hasprecisescrollingdeltas
-
 func (e_ Event) SetHasPreciseScrollingDeltas(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setHasPreciseScrollingDeltas:"), value)
 }
@@ -719,7 +668,6 @@ func (e_ Event) SetHasPreciseScrollingDeltas(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isarepeat
-
 func (e_ Event) IsARepeat() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isARepeat"))
 	return rv
@@ -730,7 +678,6 @@ func (e_ Event) IsARepeat() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isarepeat
-
 func (e_ Event) SetIsARepeat(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsARepeat:"), value)
 }
@@ -740,7 +687,6 @@ func (e_ Event) SetIsARepeat(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isdirectioninvertedfromdevice
-
 func (e_ Event) IsDirectionInvertedFromDevice() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDirectionInvertedFromDevice"))
 	return rv
@@ -751,7 +697,6 @@ func (e_ Event) IsDirectionInvertedFromDevice() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isdirectioninvertedfromdevice
-
 func (e_ Event) SetIsDirectionInvertedFromDevice(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsDirectionInvertedFromDevice:"), value)
 }
@@ -761,7 +706,6 @@ func (e_ Event) SetIsDirectionInvertedFromDevice(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isenteringproximity
-
 func (e_ Event) IsEnteringProximity() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isEnteringProximity"))
 	return rv
@@ -772,7 +716,6 @@ func (e_ Event) IsEnteringProximity() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isenteringproximity
-
 func (e_ Event) SetIsEnteringProximity(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsEnteringProximity:"), value)
 }
@@ -782,7 +725,6 @@ func (e_ Event) SetIsEnteringProximity(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/keycode
-
 func (e_ Event) KeyCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("keyCode"))
 	return rv
@@ -793,7 +735,6 @@ func (e_ Event) KeyCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/keycode
-
 func (e_ Event) SetKeyCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyCode:"), value)
 }
@@ -803,7 +744,6 @@ func (e_ Event) SetKeyCode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/magnification
-
 func (e_ Event) Magnification() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("magnification"))
 	return rv
@@ -814,7 +754,6 @@ func (e_ Event) Magnification() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/magnification
-
 func (e_ Event) SetMagnification(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMagnification:"), value)
 }
@@ -824,7 +763,6 @@ func (e_ Event) SetMagnification(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/momentumphase
-
 func (e_ Event) MomentumPhase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("momentumPhase"))
 	return rv
@@ -835,7 +773,6 @@ func (e_ Event) MomentumPhase() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/momentumphase
-
 func (e_ Event) SetMomentumPhase(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMomentumPhase:"), value)
 }
@@ -845,7 +782,6 @@ func (e_ Event) SetMomentumPhase(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/phase-swift.property
-
 func (e_ Event) Phase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("phase"))
 	return rv
@@ -856,7 +792,6 @@ func (e_ Event) Phase() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/phase-swift.property
-
 func (e_ Event) SetPhase(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPhase:"), value)
 }
@@ -866,7 +801,6 @@ func (e_ Event) SetPhase(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceid
-
 func (e_ Event) PointingDeviceID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("pointingDeviceID"))
 	return rv
@@ -877,7 +811,6 @@ func (e_ Event) PointingDeviceID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceid
-
 func (e_ Event) SetPointingDeviceID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceID:"), value)
 }
@@ -887,7 +820,6 @@ func (e_ Event) SetPointingDeviceID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceserialnumber
-
 func (e_ Event) PointingDeviceSerialNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("pointingDeviceSerialNumber"))
 	return rv
@@ -898,7 +830,6 @@ func (e_ Event) PointingDeviceSerialNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceserialnumber
-
 func (e_ Event) SetPointingDeviceSerialNumber(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceSerialNumber:"), value)
 }
@@ -908,7 +839,6 @@ func (e_ Event) SetPointingDeviceSerialNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property
-
 func (e_ Event) PointingDeviceType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("pointingDeviceType"))
 	return rv
@@ -919,7 +849,6 @@ func (e_ Event) PointingDeviceType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property
-
 func (e_ Event) SetPointingDeviceType(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceType:"), value)
 }
@@ -929,7 +858,6 @@ func (e_ Event) SetPointingDeviceType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pressure
-
 func (e_ Event) Pressure() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("pressure"))
 	return rv
@@ -940,7 +868,6 @@ func (e_ Event) Pressure() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pressure
-
 func (e_ Event) SetPressure(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPressure:"), value)
 }
@@ -950,7 +877,6 @@ func (e_ Event) SetPressure(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.property
-
 func (e_ Event) PressureBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("pressureBehavior"))
 	return rv
@@ -961,7 +887,6 @@ func (e_ Event) PressureBehavior() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.property
-
 func (e_ Event) SetPressureBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPressureBehavior:"), value)
 }
@@ -971,7 +896,6 @@ func (e_ Event) SetPressureBehavior(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/rotation
-
 func (e_ Event) Rotation() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("rotation"))
 	return rv
@@ -982,7 +906,6 @@ func (e_ Event) Rotation() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/rotation
-
 func (e_ Event) SetRotation(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRotation:"), value)
 }
@@ -992,7 +915,6 @@ func (e_ Event) SetRotation(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/scrollingdeltax
-
 func (e_ Event) ScrollingDeltaX() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("scrollingDeltaX"))
 	return rv
@@ -1003,7 +925,6 @@ func (e_ Event) ScrollingDeltaX() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/scrollingdeltax
-
 func (e_ Event) SetScrollingDeltaX(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setScrollingDeltaX:"), value)
 }
@@ -1013,7 +934,6 @@ func (e_ Event) SetScrollingDeltaX(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/scrollingdeltay
-
 func (e_ Event) ScrollingDeltaY() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("scrollingDeltaY"))
 	return rv
@@ -1024,7 +944,6 @@ func (e_ Event) ScrollingDeltaY() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/scrollingdeltay
-
 func (e_ Event) SetScrollingDeltaY(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setScrollingDeltaY:"), value)
 }
@@ -1034,7 +953,6 @@ func (e_ Event) SetScrollingDeltaY(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/specialkey-swift.property
-
 func (e_ Event) SpecialKey() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("specialKey"))
 	return rv
@@ -1045,7 +963,6 @@ func (e_ Event) SpecialKey() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/specialkey-swift.property
-
 func (e_ Event) SetSpecialKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSpecialKey:"), value)
 }
@@ -1055,7 +972,6 @@ func (e_ Event) SetSpecialKey(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/stage
-
 func (e_ Event) Stage() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("stage"))
 	return rv
@@ -1066,7 +982,6 @@ func (e_ Event) Stage() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/stage
-
 func (e_ Event) SetStage(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStage:"), value)
 }
@@ -1076,7 +991,6 @@ func (e_ Event) SetStage(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/stagetransition
-
 func (e_ Event) StageTransition() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("stageTransition"))
 	return rv
@@ -1087,7 +1001,6 @@ func (e_ Event) StageTransition() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/stagetransition
-
 func (e_ Event) SetStageTransition(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStageTransition:"), value)
 }
@@ -1097,7 +1010,6 @@ func (e_ Event) SetStageTransition(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/subtype
-
 func (e_ Event) Subtype() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("subtype"))
 	return rv
@@ -1108,7 +1020,6 @@ func (e_ Event) Subtype() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/subtype
-
 func (e_ Event) SetSubtype(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSubtype:"), value)
 }
@@ -1118,7 +1029,6 @@ func (e_ Event) SetSubtype(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/systemtabletid
-
 func (e_ Event) SystemTabletID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("systemTabletID"))
 	return rv
@@ -1129,7 +1039,6 @@ func (e_ Event) SystemTabletID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/systemtabletid
-
 func (e_ Event) SetSystemTabletID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSystemTabletID:"), value)
 }
@@ -1139,7 +1048,6 @@ func (e_ Event) SetSystemTabletID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tabletid
-
 func (e_ Event) TabletID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("tabletID"))
 	return rv
@@ -1150,7 +1058,6 @@ func (e_ Event) TabletID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tabletid
-
 func (e_ Event) SetTabletID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTabletID:"), value)
 }
@@ -1160,7 +1067,6 @@ func (e_ Event) SetTabletID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tangentialpressure
-
 func (e_ Event) TangentialPressure() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("tangentialPressure"))
 	return rv
@@ -1171,7 +1077,6 @@ func (e_ Event) TangentialPressure() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tangentialpressure
-
 func (e_ Event) SetTangentialPressure(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTangentialPressure:"), value)
 }
@@ -1181,7 +1086,6 @@ func (e_ Event) SetTangentialPressure(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tilt
-
 func (e_ Event) Tilt() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](e_.ID, objc.Sel("tilt"))
 	return rv
@@ -1192,7 +1096,6 @@ func (e_ Event) Tilt() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tilt
-
 func (e_ Event) SetTilt(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTilt:"), value)
 }
@@ -1202,7 +1105,6 @@ func (e_ Event) SetTilt(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/trackingarea
-
 func (e_ Event) TrackingArea() NSTrackingArea {
 	rv := objc.Send[NSTrackingArea](e_.ID, objc.Sel("trackingArea"))
 	return rv
@@ -1213,7 +1115,6 @@ func (e_ Event) TrackingArea() NSTrackingArea {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/trackingarea
-
 func (e_ Event) SetTrackingArea(value ITrackingArea) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTrackingArea:"), value)
 }
@@ -1223,7 +1124,6 @@ func (e_ Event) SetTrackingArea(value ITrackingArea) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/trackingnumber
-
 func (e_ Event) TrackingNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("trackingNumber"))
 	return rv
@@ -1234,7 +1134,6 @@ func (e_ Event) TrackingNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/trackingnumber
-
 func (e_ Event) SetTrackingNumber(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTrackingNumber:"), value)
 }
@@ -1244,7 +1143,6 @@ func (e_ Event) SetTrackingNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/type
-
 func (e_ Event) Type() EventType {
 	rv := objc.Send[EventType](e_.ID, objc.Sel("type"))
 	return rv
@@ -1255,7 +1153,6 @@ func (e_ Event) Type() EventType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/type
-
 func (e_ Event) SetType(value EventType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setType:"), value)
 }
@@ -1265,7 +1162,6 @@ func (e_ Event) SetType(value EventType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/uniqueid
-
 func (e_ Event) UniqueID() uint64 {
 	rv := objc.Send[uint64](e_.ID, objc.Sel("uniqueID"))
 	return rv
@@ -1276,7 +1172,6 @@ func (e_ Event) UniqueID() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/uniqueid
-
 func (e_ Event) SetUniqueID(value uint64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUniqueID:"), value)
 }
@@ -1286,7 +1181,6 @@ func (e_ Event) SetUniqueID(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/userdata
-
 func (e_ Event) UserData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userData"))
 	return rv
@@ -1297,7 +1191,6 @@ func (e_ Event) UserData() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/userdata
-
 func (e_ Event) SetUserData(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserData:"), value)
 }
@@ -1307,7 +1200,6 @@ func (e_ Event) SetUserData(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendordefined
-
 func (e_ Event) VendorDefined() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("vendorDefined"))
 	return rv
@@ -1318,7 +1210,6 @@ func (e_ Event) VendorDefined() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendordefined
-
 func (e_ Event) SetVendorDefined(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorDefined:"), value)
 }
@@ -1328,7 +1219,6 @@ func (e_ Event) SetVendorDefined(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorid
-
 func (e_ Event) VendorID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("vendorID"))
 	return rv
@@ -1339,7 +1229,6 @@ func (e_ Event) VendorID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorid
-
 func (e_ Event) SetVendorID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorID:"), value)
 }
@@ -1349,7 +1238,6 @@ func (e_ Event) SetVendorID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorpointingdevicetype
-
 func (e_ Event) VendorPointingDeviceType() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("vendorPointingDeviceType"))
 	return rv
@@ -1360,7 +1248,6 @@ func (e_ Event) VendorPointingDeviceType() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorpointingdevicetype
-
 func (e_ Event) SetVendorPointingDeviceType(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorPointingDeviceType:"), value)
 }

@@ -84,7 +84,6 @@ type IGCExtendedGamepad interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad
-
 type GCExtendedGamepad struct {
 	GCPhysicalInputProfile
 }
@@ -131,12 +130,10 @@ func NewGCExtendedGamepad() GCExtendedGamepad {
 
 
 
-
 // Saves a snapshot of all of the profile’s elements.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/saveSnapshot()
-
 func (g_ GCExtendedGamepad) SaveSnapshot() GCExtendedGamepadSnapshot {
 	rv := objc.Send[GCExtendedGamepadSnapshot](g_.ID, objc.Sel("saveSnapshot"))
 	return rv
@@ -147,7 +144,6 @@ func (g_ GCExtendedGamepad) SaveSnapshot() GCExtendedGamepadSnapshot {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonHome
-
 func (g_ GCExtendedGamepad) ButtonHome() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonHome"))
 	return rv
@@ -158,7 +154,6 @@ func (g_ GCExtendedGamepad) ButtonHome() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonY
-
 func (g_ GCExtendedGamepad) ButtonY() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonY"))
 	return rv
@@ -169,7 +164,6 @@ func (g_ GCExtendedGamepad) ButtonY() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/dpad
-
 func (g_ GCExtendedGamepad) Dpad() GCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("dpad"))
 	return rv
@@ -180,7 +174,6 @@ func (g_ GCExtendedGamepad) Dpad() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/valueChangedHandler
-
 func (g_ GCExtendedGamepad) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
@@ -191,7 +184,6 @@ func (g_ GCExtendedGamepad) ValueChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/valueChangedHandler
-
 func (g_ GCExtendedGamepad) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }
@@ -201,7 +193,6 @@ func (g_ GCExtendedGamepad) SetValueChangedHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-
 func (g_ GCExtendedGamepad) ExtendedGamepad() GCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
@@ -212,7 +203,6 @@ func (g_ GCExtendedGamepad) ExtendedGamepad() GCExtendedGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-
 func (g_ GCExtendedGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
@@ -222,7 +212,6 @@ func (g_ GCExtendedGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-
 func (g_ GCExtendedGamepad) Gamepad() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
 	return rv
@@ -233,7 +222,6 @@ func (g_ GCExtendedGamepad) Gamepad() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-
 func (g_ GCExtendedGamepad) SetGamepad(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
 }
@@ -243,7 +231,6 @@ func (g_ GCExtendedGamepad) SetGamepad(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-
 func (g_ GCExtendedGamepad) MicroGamepad() GCMicroGamepad {
 	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
@@ -254,7 +241,6 @@ func (g_ GCExtendedGamepad) MicroGamepad() GCMicroGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-
 func (g_ GCExtendedGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
@@ -264,7 +250,6 @@ func (g_ GCExtendedGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCExtendedGamepad) Motion() GCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
@@ -275,7 +260,6 @@ func (g_ GCExtendedGamepad) Motion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCExtendedGamepad) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
@@ -285,7 +269,6 @@ func (g_ GCExtendedGamepad) SetMotion(value IGCMotion) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-
 func (g_ GCExtendedGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
 	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
@@ -296,7 +279,6 @@ func (g_ GCExtendedGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-
 func (g_ GCExtendedGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
@@ -306,7 +288,6 @@ func (g_ GCExtendedGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfil
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttona
-
 func (g_ GCExtendedGamepad) ButtonA() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonA"))
 	return rv
@@ -317,7 +298,6 @@ func (g_ GCExtendedGamepad) ButtonA() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttona
-
 func (g_ GCExtendedGamepad) SetButtonA(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonA:"), value)
 }
@@ -327,7 +307,6 @@ func (g_ GCExtendedGamepad) SetButtonA(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonb
-
 func (g_ GCExtendedGamepad) ButtonB() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonB"))
 	return rv
@@ -338,7 +317,6 @@ func (g_ GCExtendedGamepad) ButtonB() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonb
-
 func (g_ GCExtendedGamepad) SetButtonB(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonB:"), value)
 }
@@ -348,7 +326,6 @@ func (g_ GCExtendedGamepad) SetButtonB(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonmenu
-
 func (g_ GCExtendedGamepad) ButtonMenu() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonMenu"))
 	return rv
@@ -359,7 +336,6 @@ func (g_ GCExtendedGamepad) ButtonMenu() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonmenu
-
 func (g_ GCExtendedGamepad) SetButtonMenu(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonMenu:"), value)
 }
@@ -369,7 +345,6 @@ func (g_ GCExtendedGamepad) SetButtonMenu(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonoptions
-
 func (g_ GCExtendedGamepad) ButtonOptions() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonOptions"))
 	return rv
@@ -380,7 +355,6 @@ func (g_ GCExtendedGamepad) ButtonOptions() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonoptions
-
 func (g_ GCExtendedGamepad) SetButtonOptions(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonOptions:"), value)
 }
@@ -390,7 +364,6 @@ func (g_ GCExtendedGamepad) SetButtonOptions(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonx
-
 func (g_ GCExtendedGamepad) ButtonX() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonX"))
 	return rv
@@ -401,7 +374,6 @@ func (g_ GCExtendedGamepad) ButtonX() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonx
-
 func (g_ GCExtendedGamepad) SetButtonX(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonX:"), value)
 }
@@ -411,7 +383,6 @@ func (g_ GCExtendedGamepad) SetButtonX(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/controller
-
 func (g_ GCExtendedGamepad) Controller() GCController {
 	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv
@@ -422,7 +393,6 @@ func (g_ GCExtendedGamepad) Controller() GCController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/controller
-
 func (g_ GCExtendedGamepad) SetController(value IGCController) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
 }
@@ -432,7 +402,6 @@ func (g_ GCExtendedGamepad) SetController(value IGCController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftshoulder
-
 func (g_ GCExtendedGamepad) LeftShoulder() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftShoulder"))
 	return rv
@@ -443,7 +412,6 @@ func (g_ GCExtendedGamepad) LeftShoulder() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftshoulder
-
 func (g_ GCExtendedGamepad) SetLeftShoulder(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftShoulder:"), value)
 }
@@ -453,7 +421,6 @@ func (g_ GCExtendedGamepad) SetLeftShoulder(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-
 func (g_ GCExtendedGamepad) LeftThumbstick() GCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("leftThumbstick"))
 	return rv
@@ -464,7 +431,6 @@ func (g_ GCExtendedGamepad) LeftThumbstick() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-
 func (g_ GCExtendedGamepad) SetLeftThumbstick(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstick:"), value)
 }
@@ -474,7 +440,6 @@ func (g_ GCExtendedGamepad) SetLeftThumbstick(value IGCControllerDirectionPad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstickbutton
-
 func (g_ GCExtendedGamepad) LeftThumbstickButton() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftThumbstickButton"))
 	return rv
@@ -485,7 +450,6 @@ func (g_ GCExtendedGamepad) LeftThumbstickButton() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstickbutton
-
 func (g_ GCExtendedGamepad) SetLeftThumbstickButton(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstickButton:"), value)
 }
@@ -495,7 +459,6 @@ func (g_ GCExtendedGamepad) SetLeftThumbstickButton(value IGCControllerButtonInp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/lefttrigger
-
 func (g_ GCExtendedGamepad) LeftTrigger() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftTrigger"))
 	return rv
@@ -506,7 +469,6 @@ func (g_ GCExtendedGamepad) LeftTrigger() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/lefttrigger
-
 func (g_ GCExtendedGamepad) SetLeftTrigger(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftTrigger:"), value)
 }
@@ -516,7 +478,6 @@ func (g_ GCExtendedGamepad) SetLeftTrigger(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightshoulder
-
 func (g_ GCExtendedGamepad) RightShoulder() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightShoulder"))
 	return rv
@@ -527,7 +488,6 @@ func (g_ GCExtendedGamepad) RightShoulder() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightshoulder
-
 func (g_ GCExtendedGamepad) SetRightShoulder(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightShoulder:"), value)
 }
@@ -537,7 +497,6 @@ func (g_ GCExtendedGamepad) SetRightShoulder(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstick
-
 func (g_ GCExtendedGamepad) RightThumbstick() GCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("rightThumbstick"))
 	return rv
@@ -548,7 +507,6 @@ func (g_ GCExtendedGamepad) RightThumbstick() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstick
-
 func (g_ GCExtendedGamepad) SetRightThumbstick(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightThumbstick:"), value)
 }
@@ -558,7 +516,6 @@ func (g_ GCExtendedGamepad) SetRightThumbstick(value IGCControllerDirectionPad) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstickbutton
-
 func (g_ GCExtendedGamepad) RightThumbstickButton() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightThumbstickButton"))
 	return rv
@@ -569,7 +526,6 @@ func (g_ GCExtendedGamepad) RightThumbstickButton() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstickbutton
-
 func (g_ GCExtendedGamepad) SetRightThumbstickButton(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightThumbstickButton:"), value)
 }
@@ -579,7 +535,6 @@ func (g_ GCExtendedGamepad) SetRightThumbstickButton(value IGCControllerButtonIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/righttrigger
-
 func (g_ GCExtendedGamepad) RightTrigger() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightTrigger"))
 	return rv
@@ -590,7 +545,6 @@ func (g_ GCExtendedGamepad) RightTrigger() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/righttrigger
-
 func (g_ GCExtendedGamepad) SetRightTrigger(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightTrigger:"), value)
 }

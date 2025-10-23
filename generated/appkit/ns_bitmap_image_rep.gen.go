@@ -30,6 +30,9 @@ type _BitmapImageRepClass struct {
 // An interface definition for the [BitmapImageRep] class.
 type IBitmapImageRep interface {
 	IImageRep
+	RepresentationUsingTypeProperties(storageType unsafe.Pointer, properties unsafe.Pointer) foundation.Data
+	TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data
+	TIFFRepresentation() foundation.NSData
 	BitmapData() unsafe.Pointer
 	SetBitmapData(value unsafe.Pointer)
 	BitmapFormat() unsafe.Pointer
@@ -50,8 +53,6 @@ type IBitmapImageRep interface {
 	SetNumberOfPlanes(value int)
 	SamplesPerPixel() int
 	SetSamplesPerPixel(value int)
-	TiffRepresentation() foundation.Data
-	SetTiffRepresentation(value foundation.IData)
 }
 
 // An object that renders an image from bitmap data.
@@ -63,7 +64,6 @@ type IBitmapImageRep interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep
-
 type BitmapImageRep struct {
 	ImageRep
 }
@@ -110,11 +110,40 @@ func NewBitmapImageRep() BitmapImageRep {
 
 
 
+// Formats the bitmap representation’s image data using the specified storage type and properties and returns it in a data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/representation(using:properties:)
+func (b_ BitmapImageRep) RepresentationUsingTypeProperties(storageType unsafe.Pointer, properties unsafe.Pointer) foundation.Data {
+	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("representationUsingType:properties:"), storageType, properties)
+	return rv
+}
+
+
+// Returns a TIFF representation of the image using the specified compression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/tiffRepresentation(using:factor:)
+func (b_ BitmapImageRep) TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data {
+	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("TIFFRepresentationUsingCompression:factor:"), comp, factor)
+	return rv
+}
+
+
+// A TIFF representation of the bitmap image data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/tiffRepresentation
+func (b_ BitmapImageRep) TIFFRepresentation() foundation.NSData {
+	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("TIFFRepresentation"))
+	return rv
+}
+
+
 // A pointer to the bitmap data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitmapdata
-
 func (b_ BitmapImageRep) BitmapData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bitmapData"))
 	return rv
@@ -125,7 +154,6 @@ func (b_ BitmapImageRep) BitmapData() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitmapdata
-
 func (b_ BitmapImageRep) SetBitmapData(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBitmapData:"), value)
 }
@@ -135,7 +163,6 @@ func (b_ BitmapImageRep) SetBitmapData(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitmapformat
-
 func (b_ BitmapImageRep) BitmapFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bitmapFormat"))
 	return rv
@@ -146,7 +173,6 @@ func (b_ BitmapImageRep) BitmapFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitmapformat
-
 func (b_ BitmapImageRep) SetBitmapFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBitmapFormat:"), value)
 }
@@ -156,7 +182,6 @@ func (b_ BitmapImageRep) SetBitmapFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitsperpixel
-
 func (b_ BitmapImageRep) BitsPerPixel() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("bitsPerPixel"))
 	return rv
@@ -167,7 +192,6 @@ func (b_ BitmapImageRep) BitsPerPixel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitsperpixel
-
 func (b_ BitmapImageRep) SetBitsPerPixel(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBitsPerPixel:"), value)
 }
@@ -177,7 +201,6 @@ func (b_ BitmapImageRep) SetBitsPerPixel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bytesperplane
-
 func (b_ BitmapImageRep) BytesPerPlane() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("bytesPerPlane"))
 	return rv
@@ -188,7 +211,6 @@ func (b_ BitmapImageRep) BytesPerPlane() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bytesperplane
-
 func (b_ BitmapImageRep) SetBytesPerPlane(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBytesPerPlane:"), value)
 }
@@ -198,7 +220,6 @@ func (b_ BitmapImageRep) SetBytesPerPlane(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bytesperrow
-
 func (b_ BitmapImageRep) BytesPerRow() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("bytesPerRow"))
 	return rv
@@ -209,7 +230,6 @@ func (b_ BitmapImageRep) BytesPerRow() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bytesperrow
-
 func (b_ BitmapImageRep) SetBytesPerRow(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBytesPerRow:"), value)
 }
@@ -219,7 +239,6 @@ func (b_ BitmapImageRep) SetBytesPerRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/cgimage
-
 func (b_ BitmapImageRep) CgImage() Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("cgImage"))
 	return rv
@@ -230,7 +249,6 @@ func (b_ BitmapImageRep) CgImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/cgimage
-
 func (b_ BitmapImageRep) SetCgImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCgImage:"), value)
 }
@@ -240,7 +258,6 @@ func (b_ BitmapImageRep) SetCgImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/colorspace
-
 func (b_ BitmapImageRep) ColorSpace() NSColorSpace {
 	rv := objc.Send[NSColorSpace](b_.ID, objc.Sel("colorSpace"))
 	return rv
@@ -251,7 +268,6 @@ func (b_ BitmapImageRep) ColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/colorspace
-
 func (b_ BitmapImageRep) SetColorSpace(value IColorSpace) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setColorSpace:"), value)
 }
@@ -261,7 +277,6 @@ func (b_ BitmapImageRep) SetColorSpace(value IColorSpace) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/isplanar
-
 func (b_ BitmapImageRep) IsPlanar() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isPlanar"))
 	return rv
@@ -272,7 +287,6 @@ func (b_ BitmapImageRep) IsPlanar() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/isplanar
-
 func (b_ BitmapImageRep) SetIsPlanar(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsPlanar:"), value)
 }
@@ -282,7 +296,6 @@ func (b_ BitmapImageRep) SetIsPlanar(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/numberofplanes
-
 func (b_ BitmapImageRep) NumberOfPlanes() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("numberOfPlanes"))
 	return rv
@@ -293,7 +306,6 @@ func (b_ BitmapImageRep) NumberOfPlanes() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/numberofplanes
-
 func (b_ BitmapImageRep) SetNumberOfPlanes(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNumberOfPlanes:"), value)
 }
@@ -303,7 +315,6 @@ func (b_ BitmapImageRep) SetNumberOfPlanes(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/samplesperpixel
-
 func (b_ BitmapImageRep) SamplesPerPixel() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("samplesPerPixel"))
 	return rv
@@ -314,30 +325,8 @@ func (b_ BitmapImageRep) SamplesPerPixel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/samplesperpixel
-
 func (b_ BitmapImageRep) SetSamplesPerPixel(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSamplesPerPixel:"), value)
-}
-
-
-// A TIFF representation of the bitmap image data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffrepresentation
-
-func (b_ BitmapImageRep) TiffRepresentation() foundation.Data {
-	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("tiffRepresentation"))
-	return rv
-}
-
-
-// A TIFF representation of the bitmap image data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffrepresentation
-
-func (b_ BitmapImageRep) SetTiffRepresentation(value foundation.IData) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTiffRepresentation:"), value)
 }
 
 

@@ -42,7 +42,6 @@ type ICBAttribute interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttribute
-
 type CBAttribute struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewCBAttribute() CBAttribute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttribute/uuid
-
 func (c_ CBAttribute) UUID() CBUUID {
 	rv := objc.Send[CBUUID](c_.ID, objc.Sel("UUID"))
 	return rv

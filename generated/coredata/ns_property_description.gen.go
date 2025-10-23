@@ -75,7 +75,6 @@ type IPropertyDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription
-
 type PropertyDescription struct {
 	objectivec.Object
 }
@@ -120,12 +119,10 @@ func NewPropertyDescription() PropertyDescription {
 
 
 
-
 // Sets the validation predicates and warnings of the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/setValidationPredicates(_:withValidationWarnings:)
-
 func (p_ PropertyDescription) SetValidationPredicatesWithValidationWarnings(validationPredicates []foundation.IPredicate, validationWarnings []string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationPredicates:withValidationWarnings:"), validationPredicates, validationWarnings)
 }
@@ -135,7 +132,6 @@ func (p_ PropertyDescription) SetValidationPredicatesWithValidationWarnings(vali
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/entity
-
 func (p_ PropertyDescription) Entity() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entity"))
 	return rv
@@ -146,7 +142,6 @@ func (p_ PropertyDescription) Entity() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexed
-
 func (p_ PropertyDescription) Indexed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("indexed"))
 	return rv
@@ -157,7 +152,6 @@ func (p_ PropertyDescription) Indexed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexed
-
 func (p_ PropertyDescription) SetIndexed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexed:"), value)
 }
@@ -167,7 +161,6 @@ func (p_ PropertyDescription) SetIndexed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight
-
 func (p_ PropertyDescription) IndexedBySpotlight() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("indexedBySpotlight"))
 	return rv
@@ -178,7 +171,6 @@ func (p_ PropertyDescription) IndexedBySpotlight() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight
-
 func (p_ PropertyDescription) SetIndexedBySpotlight(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexedBySpotlight:"), value)
 }
@@ -188,7 +180,6 @@ func (p_ PropertyDescription) SetIndexedBySpotlight(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isOptional
-
 func (p_ PropertyDescription) Optional() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("optional"))
 	return rv
@@ -199,7 +190,6 @@ func (p_ PropertyDescription) Optional() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isOptional
-
 func (p_ PropertyDescription) SetOptional(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOptional:"), value)
 }
@@ -209,7 +199,6 @@ func (p_ PropertyDescription) SetOptional(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord
-
 func (p_ PropertyDescription) StoredInExternalRecord() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("storedInExternalRecord"))
 	return rv
@@ -220,7 +209,6 @@ func (p_ PropertyDescription) StoredInExternalRecord() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord
-
 func (p_ PropertyDescription) SetStoredInExternalRecord(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStoredInExternalRecord:"), value)
 }
@@ -230,7 +218,6 @@ func (p_ PropertyDescription) SetStoredInExternalRecord(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isTransient
-
 func (p_ PropertyDescription) Transient() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("transient"))
 	return rv
@@ -241,7 +228,6 @@ func (p_ PropertyDescription) Transient() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isTransient
-
 func (p_ PropertyDescription) SetTransient(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransient:"), value)
 }
@@ -251,7 +237,6 @@ func (p_ PropertyDescription) SetTransient(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-
 func (p_ PropertyDescription) Name() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
@@ -262,7 +247,6 @@ func (p_ PropertyDescription) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-
 func (p_ PropertyDescription) SetName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -272,7 +256,6 @@ func (p_ PropertyDescription) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-
 func (p_ PropertyDescription) RenamingIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("renamingIdentifier"))
 	return rv
@@ -283,7 +266,6 @@ func (p_ PropertyDescription) RenamingIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-
 func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
 }
@@ -293,7 +275,6 @@ func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/userInfo
-
 func (p_ PropertyDescription) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userInfo"))
 	return rv
@@ -304,7 +285,6 @@ func (p_ PropertyDescription) UserInfo() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/userInfo
-
 func (p_ PropertyDescription) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
@@ -314,7 +294,6 @@ func (p_ PropertyDescription) SetUserInfo(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/validationPredicates
-
 func (p_ PropertyDescription) ValidationPredicates() []foundation.Predicate {
 	rv := objc.Send[[]foundation.Predicate](p_.ID, objc.Sel("validationPredicates"))
 	return rv
@@ -325,7 +304,6 @@ func (p_ PropertyDescription) ValidationPredicates() []foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/validationWarnings
-
 func (p_ PropertyDescription) ValidationWarnings() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("validationWarnings"))
 	return rv
@@ -336,7 +314,6 @@ func (p_ PropertyDescription) ValidationWarnings() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHash
-
 func (p_ PropertyDescription) VersionHash() foundation.NSData {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("versionHash"))
 	return rv
@@ -347,7 +324,6 @@ func (p_ PropertyDescription) VersionHash() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-
 func (p_ PropertyDescription) VersionHashModifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("versionHashModifier"))
 	return rv
@@ -358,7 +334,6 @@ func (p_ PropertyDescription) VersionHashModifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-
 func (p_ PropertyDescription) SetVersionHashModifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
 }
@@ -368,7 +343,6 @@ func (p_ PropertyDescription) SetVersionHashModifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
-
 func (p_ PropertyDescription) IsIndexed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexed"))
 	return rv
@@ -379,7 +353,6 @@ func (p_ PropertyDescription) IsIndexed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
-
 func (p_ PropertyDescription) SetIsIndexed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexed:"), value)
 }
@@ -389,7 +362,6 @@ func (p_ PropertyDescription) SetIsIndexed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
-
 func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexedBySpotlight"))
 	return rv
@@ -400,7 +372,6 @@ func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
-
 func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexedBySpotlight:"), value)
 }
@@ -410,7 +381,6 @@ func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
-
 func (p_ PropertyDescription) IsOptional() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOptional"))
 	return rv
@@ -421,7 +391,6 @@ func (p_ PropertyDescription) IsOptional() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
-
 func (p_ PropertyDescription) SetIsOptional(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOptional:"), value)
 }
@@ -431,7 +400,6 @@ func (p_ PropertyDescription) SetIsOptional(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
-
 func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isStoredInExternalRecord"))
 	return rv
@@ -442,7 +410,6 @@ func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
-
 func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsStoredInExternalRecord:"), value)
 }
@@ -452,7 +419,6 @@ func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
-
 func (p_ PropertyDescription) IsTransient() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isTransient"))
 	return rv
@@ -463,7 +429,6 @@ func (p_ PropertyDescription) IsTransient() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
-
 func (p_ PropertyDescription) SetIsTransient(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTransient:"), value)
 }

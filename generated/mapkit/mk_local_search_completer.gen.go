@@ -54,7 +54,11 @@ type IMKLocalSearchCompleter interface {
 // A utility object for generating a list of completion strings based on a partial search string that you provide.
 //
 // You use an object to retrieve auto-complete suggestions for your own map-based search controls. As the user types text, you feed the current text string into the search completer object, which delivers possible string completions that match locations or points of interest. You create and configure objects yourself. You must always assign a delegate object to the search completer so that you can receive the search results that it generates. Specify a search region to restrict results to a designated area. The following code shows a simple example of a view controller that stores the object in a property. The view controller itself acts as the delegate for the completer and the view controller uses the region associated with an object that’s part of the view controller’s interface. Completer objects are long-lived objects, so you can store strong references to them and reuse them later in your code. Listing 1. Creating and configuring a search completer Update the value of the completer’s property to begin a search query. You can update this property in real time as the user types new characters into a text field because the completer object waits a short amount of time for the query string to stabilize. When modifications to the query string stop, the completer initiates a new search and returns the results to your delegate as an array of objects.
+
+
+// A utility object for generating a list of completion strings based on a partial search string that you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearchCompleter
 type MKLocalSearchCompleter struct {
 	objectivec.Object
@@ -99,8 +103,10 @@ func NewMKLocalSearchCompleter() MKLocalSearchCompleter {
 }
 
 
+
 // The filter options for the search results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearchCompleter/filterType-swift.property
 func (m_ MKLocalSearchCompleter) FilterType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("filterType"))
@@ -108,25 +114,28 @@ func (m_ MKLocalSearchCompleter) FilterType() unsafe.Pointer {
 }
 
 
-// SetFilterType sets the value of the filterType property.
 // The filter options for the search results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearchCompleter/filterType-swift.property
 func (m_ MKLocalSearchCompleter) SetFilterType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFilterType:"), value)
 }
 
+
 // The most recently received search completions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearchCompleter/results
 func (m_ MKLocalSearchCompleter) Results() []MKLocalSearchCompletion {
 	rv := objc.Send[[]MKLocalSearchCompletion](m_.ID, objc.Sel("results"))
 	return rv
 }
 
+
 // A filter that lists which address options to include or exclude in search results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/addressfilter
 func (m_ MKLocalSearchCompleter) AddressFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addressFilter"))
@@ -134,17 +143,18 @@ func (m_ MKLocalSearchCompleter) AddressFilter() unsafe.Pointer {
 }
 
 
-// SetAddressFilter sets the value of the addressFilter property.
 // A filter that lists which address options to include or exclude in search results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/addressfilter
 func (m_ MKLocalSearchCompleter) SetAddressFilter(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressFilter:"), value)
 }
 
+
 // The object that receives the completion results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/delegate
 func (m_ MKLocalSearchCompleter) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
@@ -152,17 +162,18 @@ func (m_ MKLocalSearchCompleter) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that receives the completion results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/delegate
 func (m_ MKLocalSearchCompleter) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether a search operation is in progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/issearching
 func (m_ MKLocalSearchCompleter) IsSearching() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isSearching"))
@@ -170,17 +181,18 @@ func (m_ MKLocalSearchCompleter) IsSearching() bool {
 }
 
 
-// SetIsSearching sets the value of the isSearching property.
 // A Boolean value that indicates whether a search operation is in progress.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/issearching
 func (m_ MKLocalSearchCompleter) SetIsSearching(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSearching:"), value)
 }
 
+
 // A filter that lists point of interest categories to include or exclude in the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
 func (m_ MKLocalSearchCompleter) PointOfInterestFilter() MKPointOfInterestFilter {
 	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
@@ -188,17 +200,18 @@ func (m_ MKLocalSearchCompleter) PointOfInterestFilter() MKPointOfInterestFilter
 }
 
 
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
 // A filter that lists point of interest categories to include or exclude in the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
 func (m_ MKLocalSearchCompleter) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
+
 // The search string that you want completions for.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
 func (m_ MKLocalSearchCompleter) QueryFragment() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("queryFragment"))
@@ -206,17 +219,18 @@ func (m_ MKLocalSearchCompleter) QueryFragment() string {
 }
 
 
-// SetQueryFragment sets the value of the queryFragment property.
 // The search string that you want completions for.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
 func (m_ MKLocalSearchCompleter) SetQueryFragment(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), objc.String(value))
 }
 
+
 // The region that defines the geographic scope of the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/region
 func (m_ MKLocalSearchCompleter) Region() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("region"))
@@ -224,17 +238,18 @@ func (m_ MKLocalSearchCompleter) Region() unsafe.Pointer {
 }
 
 
-// SetRegion sets the value of the region property.
 // The region that defines the geographic scope of the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/region
 func (m_ MKLocalSearchCompleter) SetRegion(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
 
+
 // A value that indicates the importance of the configured region.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/regionpriority
 func (m_ MKLocalSearchCompleter) RegionPriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("regionPriority"))
@@ -242,17 +257,18 @@ func (m_ MKLocalSearchCompleter) RegionPriority() unsafe.Pointer {
 }
 
 
-// SetRegionPriority sets the value of the regionPriority property.
 // A value that indicates the importance of the configured region.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/regionpriority
 func (m_ MKLocalSearchCompleter) SetRegionPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegionPriority:"), value)
 }
 
+
 // The types of search completions to include.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttypes
 func (m_ MKLocalSearchCompleter) ResultTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("resultTypes"))
@@ -260,10 +276,9 @@ func (m_ MKLocalSearchCompleter) ResultTypes() unsafe.Pointer {
 }
 
 
-// SetResultTypes sets the value of the resultTypes property.
 // The types of search completions to include.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttypes
 func (m_ MKLocalSearchCompleter) SetResultTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResultTypes:"), value)

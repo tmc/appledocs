@@ -40,7 +40,6 @@ type ITextCheckingController interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextCheckingController
-
 type TextCheckingController struct {
 	objectivec.Object
 }
@@ -85,7 +84,6 @@ func NewTextCheckingController() TextCheckingController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcheckingcontroller/client
-
 func (t_ TextCheckingController) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("client"))
 	return rv
@@ -94,7 +92,6 @@ func (t_ TextCheckingController) Client() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcheckingcontroller/client
-
 func (t_ TextCheckingController) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
 }
@@ -102,7 +99,6 @@ func (t_ TextCheckingController) SetClient(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcheckingcontroller/spellcheckerdocumenttag
-
 func (t_ TextCheckingController) SpellCheckerDocumentTag() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("spellCheckerDocumentTag"))
 	return rv
@@ -111,7 +107,6 @@ func (t_ TextCheckingController) SpellCheckerDocumentTag() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcheckingcontroller/spellcheckerdocumenttag
-
 func (t_ TextCheckingController) SetSpellCheckerDocumentTag(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSpellCheckerDocumentTag:"), value)
 }

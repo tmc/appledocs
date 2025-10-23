@@ -55,7 +55,6 @@ type IGLKSkyboxEffect interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect
-
 type GLKSkyboxEffect struct {
 	objectivec.Object
 }
@@ -100,23 +99,19 @@ func NewGLKSkyboxEffect() GLKSkyboxEffect {
 
 
 
-
 // Draws the skybox.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/draw()
-
 func (g_ GLKSkyboxEffect) Draw() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("draw"))
 }
-
 
 
 // Prepares an effect for rendering.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/prepareToDraw()
-
 func (g_ GLKSkyboxEffect) PrepareToDraw() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("prepareToDraw"))
 }
@@ -126,7 +121,6 @@ func (g_ GLKSkyboxEffect) PrepareToDraw() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-
 func (g_ GLKSkyboxEffect) Center() GLKVector3 {
 	rv := objc.Send[GLKVector3](g_.ID, objc.Sel("center"))
 	return rv
@@ -137,7 +131,6 @@ func (g_ GLKSkyboxEffect) Center() GLKVector3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-
 func (g_ GLKSkyboxEffect) SetCenter(value IGLKVector3) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCenter:"), value)
 }
@@ -147,7 +140,6 @@ func (g_ GLKSkyboxEffect) SetCenter(value IGLKVector3) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-
 func (g_ GLKSkyboxEffect) Label() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("label"))
 	return rv
@@ -158,7 +150,6 @@ func (g_ GLKSkyboxEffect) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-
 func (g_ GLKSkyboxEffect) SetLabel(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -168,7 +159,6 @@ func (g_ GLKSkyboxEffect) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/textureCubeMap
-
 func (g_ GLKSkyboxEffect) TextureCubeMap() GLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
@@ -179,7 +169,6 @@ func (g_ GLKSkyboxEffect) TextureCubeMap() GLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/transform
-
 func (g_ GLKSkyboxEffect) Transform() GLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
@@ -190,7 +179,6 @@ func (g_ GLKSkyboxEffect) Transform() GLKEffectPropertyTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/xSize
-
 func (g_ GLKSkyboxEffect) XSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xSize"))
 	return rv
@@ -201,7 +189,6 @@ func (g_ GLKSkyboxEffect) XSize() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/xSize
-
 func (g_ GLKSkyboxEffect) SetXSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXSize:"), value)
 }
@@ -211,7 +198,6 @@ func (g_ GLKSkyboxEffect) SetXSize(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/ySize
-
 func (g_ GLKSkyboxEffect) YSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("ySize"))
 	return rv
@@ -222,7 +208,6 @@ func (g_ GLKSkyboxEffect) YSize() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/ySize
-
 func (g_ GLKSkyboxEffect) SetYSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYSize:"), value)
 }
@@ -232,7 +217,6 @@ func (g_ GLKSkyboxEffect) SetYSize(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/zSize
-
 func (g_ GLKSkyboxEffect) ZSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("zSize"))
 	return rv
@@ -243,7 +227,6 @@ func (g_ GLKSkyboxEffect) ZSize() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/zSize
-
 func (g_ GLKSkyboxEffect) SetZSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setZSize:"), value)
 }

@@ -40,7 +40,6 @@ type IHKCharacteristicType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCharacteristicType
-
 type HKCharacteristicType struct {
 	HKObjectType
 }

@@ -46,7 +46,6 @@ type IACAccountType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType
-
 type ACAccountType struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewACAccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accessGranted
-
 func (a_ ACAccountType) AccessGranted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("accessGranted"))
 	return rv
@@ -106,7 +104,6 @@ func (a_ ACAccountType) AccessGranted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
-
 func (a_ ACAccountType) AccountTypeDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
@@ -117,7 +114,6 @@ func (a_ ACAccountType) AccountTypeDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
-
 func (a_ ACAccountType) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
@@ -128,7 +124,6 @@ func (a_ ACAccountType) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
-
 func (a_ ACAccountType) AccountType() ACAccountType {
 	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
@@ -139,7 +134,6 @@ func (a_ ACAccountType) AccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
-
 func (a_ ACAccountType) SetAccountType(value ACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }

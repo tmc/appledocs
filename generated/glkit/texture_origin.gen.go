@@ -36,7 +36,6 @@ type ItextureOrigin interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/textureOrigin-c.ivar
-
 type textureOrigin struct {
 	objectivec.Object
 }

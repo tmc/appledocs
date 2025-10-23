@@ -55,7 +55,6 @@ type IPasskeyAssertionCredential interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredential
-
 type PasskeyAssertionCredential struct {
 	objectivec.Object
 }
@@ -100,10 +99,8 @@ func NewPasskeyAssertionCredential() PasskeyAssertionCredential {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredential/initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:
-
 func NewPasskeyAssertionCredentialWithUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle foundation.IData, relyingParty string, signature foundation.IData, clientDataHash foundation.IData, authenticatorData foundation.IData, credentialID foundation.IData, extensionOutput IASPasskeyAssertionCredentialExtensionOutput) PasskeyAssertionCredential {
 	instance := getPasskeyAssertionCredentialClass().Alloc()
 	rv := objc.Send[PasskeyAssertionCredential](instance.ID, objc.Sel("initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:"), userHandle, objc.String(relyingParty), signature, clientDataHash, authenticatorData, credentialID, extensionOutput)
@@ -117,7 +114,6 @@ func NewPasskeyAssertionCredentialWithUserHandleRelyingPartySignatureClientDataH
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredential/signature
-
 func (p_ PasskeyAssertionCredential) Signature() foundation.NSData {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("signature"))
 	return rv
@@ -128,7 +124,6 @@ func (p_ PasskeyAssertionCredential) Signature() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/authenticatordata
-
 func (p_ PasskeyAssertionCredential) AuthenticatorData() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("authenticatorData"))
 	return rv
@@ -139,7 +134,6 @@ func (p_ PasskeyAssertionCredential) AuthenticatorData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/authenticatordata
-
 func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAuthenticatorData:"), value)
 }
@@ -149,7 +143,6 @@ func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value foundation.IData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/clientdatahash
-
 func (p_ PasskeyAssertionCredential) ClientDataHash() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("clientDataHash"))
 	return rv
@@ -160,7 +153,6 @@ func (p_ PasskeyAssertionCredential) ClientDataHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/clientdatahash
-
 func (p_ PasskeyAssertionCredential) SetClientDataHash(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
@@ -170,7 +162,6 @@ func (p_ PasskeyAssertionCredential) SetClientDataHash(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/credentialid
-
 func (p_ PasskeyAssertionCredential) CredentialID() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("credentialID"))
 	return rv
@@ -181,7 +172,6 @@ func (p_ PasskeyAssertionCredential) CredentialID() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/credentialid
-
 func (p_ PasskeyAssertionCredential) SetCredentialID(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
 }
@@ -189,7 +179,6 @@ func (p_ PasskeyAssertionCredential) SetCredentialID(value foundation.IData) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/extensionoutput-7t6rn
-
 func (p_ PasskeyAssertionCredential) ExtensionOutput() PasskeyAssertionCredentialExtensionOutput {
 	rv := objc.Send[PasskeyAssertionCredentialExtensionOutput](p_.ID, objc.Sel("extensionOutput"))
 	return rv
@@ -198,7 +187,6 @@ func (p_ PasskeyAssertionCredential) ExtensionOutput() PasskeyAssertionCredentia
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/extensionoutput-7t6rn
-
 func (p_ PasskeyAssertionCredential) SetExtensionOutput(value IPasskeyAssertionCredentialExtensionOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExtensionOutput:"), value)
 }
@@ -208,7 +196,6 @@ func (p_ PasskeyAssertionCredential) SetExtensionOutput(value IPasskeyAssertionC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-
 func (p_ PasskeyAssertionCredential) RelyingParty() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
 	return rv
@@ -219,7 +206,6 @@ func (p_ PasskeyAssertionCredential) RelyingParty() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-
 func (p_ PasskeyAssertionCredential) SetRelyingParty(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }
@@ -229,7 +215,6 @@ func (p_ PasskeyAssertionCredential) SetRelyingParty(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/userhandle
-
 func (p_ PasskeyAssertionCredential) UserHandle() foundation.Data {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("userHandle"))
 	return rv
@@ -240,7 +225,6 @@ func (p_ PasskeyAssertionCredential) UserHandle() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/userhandle
-
 func (p_ PasskeyAssertionCredential) SetUserHandle(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserHandle:"), value)
 }

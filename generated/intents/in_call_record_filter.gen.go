@@ -41,7 +41,11 @@ type IINCallRecordFilter interface {
 // Filters a user specifies to redial a call.
 //
 // Use this method to create filters contributed by the user to redial a call. The object identifies the person, type of call, and ability to make the call to initiate the user’s request.
+
+
+// Filters a user specifies to redial a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCallRecordFilter
 type INCallRecordFilter struct {
 	objectivec.Object
@@ -86,8 +90,10 @@ func NewINCallRecordFilter() INCallRecordFilter {
 }
 
 
+
 // An indicator of whether the call supports audio or video.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/callcapability
 func (i_ INCallRecordFilter) CallCapability() INCallCapability {
 	rv := objc.Send[INCallCapability](i_.ID, objc.Sel("callCapability"))
@@ -95,17 +101,18 @@ func (i_ INCallRecordFilter) CallCapability() INCallCapability {
 }
 
 
-// SetCallCapability sets the value of the callCapability property.
 // An indicator of whether the call supports audio or video.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/callcapability
 func (i_ INCallRecordFilter) SetCallCapability(value INCallCapability) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
 
+
 // The various call options that the user can requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/calltypes
 func (i_ INCallRecordFilter) CallTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callTypes"))
@@ -113,17 +120,18 @@ func (i_ INCallRecordFilter) CallTypes() unsafe.Pointer {
 }
 
 
-// SetCallTypes sets the value of the callTypes property.
 // The various call options that the user can requests.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/calltypes
 func (i_ INCallRecordFilter) SetCallTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
 }
 
+
 // The recipient of the user’s call request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/participants
 func (i_ INCallRecordFilter) Participants() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("participants"))
@@ -131,10 +139,9 @@ func (i_ INCallRecordFilter) Participants() INPerson {
 }
 
 
-// SetParticipants sets the value of the participants property.
 // The recipient of the user’s call request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/participants
 func (i_ INCallRecordFilter) SetParticipants(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)

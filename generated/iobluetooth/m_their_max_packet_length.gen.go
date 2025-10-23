@@ -32,7 +32,9 @@ type ImTheirMaxPacketLength interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mTheirMaxPacketLength
 type mTheirMaxPacketLength struct {
 	objectivec.Object

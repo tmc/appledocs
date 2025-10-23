@@ -49,7 +49,6 @@ type IShadow interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow
-
 type Shadow struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewShadow() Shadow {
 
 
 
-
 // Sets the shadow of subsequent drawing operations to the current shadow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/set()
-
 func (s_ Shadow) Set() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("set"))
 }
@@ -110,7 +107,6 @@ func (s_ Shadow) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-
 func (s_ Shadow) ShadowBlurRadius() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
 	return rv
@@ -121,7 +117,6 @@ func (s_ Shadow) ShadowBlurRadius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-
 func (s_ Shadow) SetShadowBlurRadius(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
 }
@@ -131,7 +126,6 @@ func (s_ Shadow) SetShadowBlurRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
-
 func (s_ Shadow) ShadowColor() NSColor {
 	rv := objc.Send[NSColor](s_.ID, objc.Sel("shadowColor"))
 	return rv
@@ -142,7 +136,6 @@ func (s_ Shadow) ShadowColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
-
 func (s_ Shadow) SetShadowColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowColor:"), value)
 }
@@ -152,7 +145,6 @@ func (s_ Shadow) SetShadowColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
-
 func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("shadowOffset"))
 	return rv
@@ -163,7 +155,6 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
-
 func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }

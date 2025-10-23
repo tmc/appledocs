@@ -36,7 +36,11 @@ type IMKMapFeatureAnnotation interface {
 }
 
 // A class that describes an annotation element on the map’s display such as a point of interest, territorial boundary, or physical feature.
+
+
+// A class that describes an annotation element on the map’s display such as a point of interest, territorial boundary, or physical feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation
 type MKMapFeatureAnnotation struct {
 	objectivec.Object
@@ -81,24 +85,30 @@ func NewMKMapFeatureAnnotation() MKMapFeatureAnnotation {
 }
 
 
+
 // The type of map feature this annotation represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/featureType-swift.property
 func (m_ MKMapFeatureAnnotation) FeatureType() MKMapFeatureType {
 	rv := objc.Send[MKMapFeatureType](m_.ID, objc.Sel("featureType"))
 	return rv
 }
 
+
 // The icon style of a feature annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/iconStyle
 func (m_ MKMapFeatureAnnotation) IconStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iconStyle"))
 	return rv
 }
 
+
 // The feature annotation’s point of interest category.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapFeatureAnnotation/pointOfInterestCategory
 func (m_ MKMapFeatureAnnotation) PointOfInterestCategory() MKPointOfInterestCategory {
 	rv := objc.Send[MKPointOfInterestCategory](m_.ID, objc.Sel("pointOfInterestCategory"))

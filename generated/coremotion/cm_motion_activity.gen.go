@@ -49,7 +49,6 @@ type IMotionActivity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity
-
 type MotionActivity struct {
 	LogItem
 }
@@ -100,7 +99,6 @@ func NewMotionActivity() MotionActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/automotive
-
 func (m_ MotionActivity) Automotive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("automotive"))
 	return rv
@@ -111,7 +109,6 @@ func (m_ MotionActivity) Automotive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/confidence
-
 func (m_ MotionActivity) Confidence() MotionActivityConfidence {
 	rv := objc.Send[MotionActivityConfidence](m_.ID, objc.Sel("confidence"))
 	return rv
@@ -122,7 +119,6 @@ func (m_ MotionActivity) Confidence() MotionActivityConfidence {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/cycling
-
 func (m_ MotionActivity) Cycling() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("cycling"))
 	return rv
@@ -133,7 +129,6 @@ func (m_ MotionActivity) Cycling() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/running
-
 func (m_ MotionActivity) Running() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("running"))
 	return rv
@@ -144,7 +139,6 @@ func (m_ MotionActivity) Running() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/startDate
-
 func (m_ MotionActivity) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("startDate"))
 	return rv
@@ -155,7 +149,6 @@ func (m_ MotionActivity) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/stationary
-
 func (m_ MotionActivity) Stationary() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("stationary"))
 	return rv
@@ -166,7 +159,6 @@ func (m_ MotionActivity) Stationary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/unknown
-
 func (m_ MotionActivity) Unknown() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("unknown"))
 	return rv
@@ -177,7 +169,6 @@ func (m_ MotionActivity) Unknown() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/walking
-
 func (m_ MotionActivity) Walking() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("walking"))
 	return rv

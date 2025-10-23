@@ -75,7 +75,6 @@ type ITreeController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController
-
 type TreeController struct {
 	ObjectController
 }
@@ -126,7 +125,6 @@ func NewTreeController() TreeController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker
-
 func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("alwaysUsesMultipleValuesMarker"))
 	return rv
@@ -137,7 +135,6 @@ func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker
-
 func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlwaysUsesMultipleValuesMarker:"), value)
 }
@@ -147,7 +144,6 @@ func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-
 func (t_ TreeController) ArrangedObjects() NSTreeNode {
 	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("arrangedObjects"))
 	return rv
@@ -158,7 +154,6 @@ func (t_ TreeController) ArrangedObjects() NSTreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-
 func (t_ TreeController) SetArrangedObjects(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setArrangedObjects:"), value)
 }
@@ -168,7 +163,6 @@ func (t_ TreeController) SetArrangedObjects(value ITreeNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/avoidsemptyselection
-
 func (t_ TreeController) AvoidsEmptySelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("avoidsEmptySelection"))
 	return rv
@@ -179,7 +173,6 @@ func (t_ TreeController) AvoidsEmptySelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/avoidsemptyselection
-
 func (t_ TreeController) SetAvoidsEmptySelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAvoidsEmptySelection:"), value)
 }
@@ -189,7 +182,6 @@ func (t_ TreeController) SetAvoidsEmptySelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/canaddchild
-
 func (t_ TreeController) CanAddChild() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canAddChild"))
 	return rv
@@ -200,7 +192,6 @@ func (t_ TreeController) CanAddChild() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/canaddchild
-
 func (t_ TreeController) SetCanAddChild(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanAddChild:"), value)
 }
@@ -210,7 +201,6 @@ func (t_ TreeController) SetCanAddChild(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsert
-
 func (t_ TreeController) CanInsert() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canInsert"))
 	return rv
@@ -221,7 +211,6 @@ func (t_ TreeController) CanInsert() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsert
-
 func (t_ TreeController) SetCanInsert(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanInsert:"), value)
 }
@@ -231,7 +220,6 @@ func (t_ TreeController) SetCanInsert(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsertchild
-
 func (t_ TreeController) CanInsertChild() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canInsertChild"))
 	return rv
@@ -242,7 +230,6 @@ func (t_ TreeController) CanInsertChild() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsertchild
-
 func (t_ TreeController) SetCanInsertChild(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanInsertChild:"), value)
 }
@@ -252,7 +239,6 @@ func (t_ TreeController) SetCanInsertChild(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath
-
 func (t_ TreeController) ChildrenKeyPath() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("childrenKeyPath"))
 	return rv
@@ -263,7 +249,6 @@ func (t_ TreeController) ChildrenKeyPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath
-
 func (t_ TreeController) SetChildrenKeyPath(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildrenKeyPath:"), objc.String(value))
 }
@@ -273,7 +258,6 @@ func (t_ TreeController) SetChildrenKeyPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/content
-
 func (t_ TreeController) Content() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("content"))
 	return rv
@@ -284,7 +268,6 @@ func (t_ TreeController) Content() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/content
-
 func (t_ TreeController) SetContent(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContent:"), value)
 }
@@ -294,7 +277,6 @@ func (t_ TreeController) SetContent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath
-
 func (t_ TreeController) CountKeyPath() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("countKeyPath"))
 	return rv
@@ -305,7 +287,6 @@ func (t_ TreeController) CountKeyPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath
-
 func (t_ TreeController) SetCountKeyPath(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCountKeyPath:"), objc.String(value))
 }
@@ -315,7 +296,6 @@ func (t_ TreeController) SetCountKeyPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath
-
 func (t_ TreeController) LeafKeyPath() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("leafKeyPath"))
 	return rv
@@ -326,7 +306,6 @@ func (t_ TreeController) LeafKeyPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath
-
 func (t_ TreeController) SetLeafKeyPath(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLeafKeyPath:"), objc.String(value))
 }
@@ -336,7 +315,6 @@ func (t_ TreeController) SetLeafKeyPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/preservesselection
-
 func (t_ TreeController) PreservesSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("preservesSelection"))
 	return rv
@@ -347,7 +325,6 @@ func (t_ TreeController) PreservesSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/preservesselection
-
 func (t_ TreeController) SetPreservesSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreservesSelection:"), value)
 }
@@ -357,7 +334,6 @@ func (t_ TreeController) SetPreservesSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-
 func (t_ TreeController) SelectedNodes() NSTreeNode {
 	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("selectedNodes"))
 	return rv
@@ -368,7 +344,6 @@ func (t_ TreeController) SelectedNodes() NSTreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-
 func (t_ TreeController) SetSelectedNodes(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedNodes:"), value)
 }
@@ -378,7 +353,6 @@ func (t_ TreeController) SetSelectedNodes(value ITreeNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectedobjects
-
 func (t_ TreeController) SelectedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedObjects"))
 	return rv
@@ -389,7 +363,6 @@ func (t_ TreeController) SelectedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectedobjects
-
 func (t_ TreeController) SetSelectedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedObjects:"), value)
 }
@@ -399,7 +372,6 @@ func (t_ TreeController) SetSelectedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-
 func (t_ TreeController) SelectionIndexPath() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPath"))
 	return rv
@@ -410,7 +382,6 @@ func (t_ TreeController) SelectionIndexPath() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-
 func (t_ TreeController) SetSelectionIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPath:"), value)
 }
@@ -420,7 +391,6 @@ func (t_ TreeController) SetSelectionIndexPath(value foundation.IIndexPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-
 func (t_ TreeController) SelectionIndexPaths() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
@@ -431,7 +401,6 @@ func (t_ TreeController) SelectionIndexPaths() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-
 func (t_ TreeController) SetSelectionIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
@@ -441,7 +410,6 @@ func (t_ TreeController) SetSelectionIndexPaths(value foundation.IIndexPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectsinsertedobjects
-
 func (t_ TreeController) SelectsInsertedObjects() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("selectsInsertedObjects"))
 	return rv
@@ -452,7 +420,6 @@ func (t_ TreeController) SelectsInsertedObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectsinsertedobjects
-
 func (t_ TreeController) SetSelectsInsertedObjects(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectsInsertedObjects:"), value)
 }
@@ -462,7 +429,6 @@ func (t_ TreeController) SetSelectsInsertedObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-
 func (t_ TreeController) SortDescriptors() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -473,7 +439,6 @@ func (t_ TreeController) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-
 func (t_ TreeController) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }

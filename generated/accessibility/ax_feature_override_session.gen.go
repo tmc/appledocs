@@ -40,7 +40,6 @@ type IAXFeatureOverrideSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSession
-
 type AXFeatureOverrideSession struct {
 	objectivec.Object
 }
@@ -87,7 +86,6 @@ func NewAXFeatureOverrideSession() AXFeatureOverrideSession {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-
 func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv

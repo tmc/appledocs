@@ -42,7 +42,6 @@ type ICheckerboardNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCheckerboardNoiseSource
-
 type CheckerboardNoiseSource struct {
 	NoiseSource
 }
@@ -89,12 +88,10 @@ func NewCheckerboardNoiseSource() CheckerboardNoiseSource {
 
 
 
-
 // Initializes a checkerboard noise source with the specified square size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCheckerboardNoiseSource/init(squareSize:)
-
 func NewCheckerboardNoiseSourceWithSquareSize(squareSize float64) CheckerboardNoiseSource {
 	instance := getCheckerboardNoiseSourceClass().Alloc()
 	rv := objc.Send[CheckerboardNoiseSource](instance.ID, objc.Sel("initWithSquareSize:"), squareSize)
@@ -108,7 +105,6 @@ func NewCheckerboardNoiseSourceWithSquareSize(squareSize float64) CheckerboardNo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCheckerboardNoiseSource/checkerboardNoise(withSquareSize:)
-
 func (cc _CheckerboardNoiseSourceClass) CheckerboardNoiseWithSquareSize(squareSize float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("checkerboardNoiseWithSquareSize:"), squareSize)
 	return rv
@@ -119,7 +115,6 @@ func (cc _CheckerboardNoiseSourceClass) CheckerboardNoiseWithSquareSize(squareSi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCheckerboardNoiseSource/squareSize
-
 func (c_ CheckerboardNoiseSource) SquareSize() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("squareSize"))
 	return rv
@@ -130,7 +125,6 @@ func (c_ CheckerboardNoiseSource) SquareSize() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCheckerboardNoiseSource/squareSize
-
 func (c_ CheckerboardNoiseSource) SetSquareSize(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSquareSize:"), value)
 }

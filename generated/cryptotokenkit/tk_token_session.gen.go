@@ -44,7 +44,6 @@ type ITKTokenSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession
-
 type TKTokenSession struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewTKTokenSession() TKTokenSession {
 
 
 
-
 // Initializes a token session with the specified token.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/init(token:)
-
 func NewTKTokenSessionWithToken(token ITKToken) TKTokenSession {
 	instance := getTKTokenSessionClass().Alloc()
 	rv := objc.Send[TKTokenSession](instance.ID, objc.Sel("initWithToken:"), token)
@@ -108,7 +105,6 @@ func NewTKTokenSessionWithToken(token ITKToken) TKTokenSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/delegate
-
 func (t_ TKTokenSession) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -119,7 +115,6 @@ func (t_ TKTokenSession) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/delegate
-
 func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -129,7 +124,6 @@ func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/token
-
 func (t_ TKTokenSession) Token() TKToken {
 	rv := objc.Send[TKToken](t_.ID, objc.Sel("token"))
 	return rv

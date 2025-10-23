@@ -40,7 +40,6 @@ type IHKStatisticsQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatisticsQuery
-
 type HKStatisticsQuery struct {
 	HKQuery
 }

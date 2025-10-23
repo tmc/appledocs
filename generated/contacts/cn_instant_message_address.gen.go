@@ -58,7 +58,6 @@ type ICNInstantMessageAddress interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress
-
 type CNInstantMessageAddress struct {
 	objectivec.Object
 }
@@ -103,12 +102,10 @@ func NewCNInstantMessageAddress() CNInstantMessageAddress {
 
 
 
-
 // Returns a object initialized with the specified user name and service.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/init(username:service:)
-
 func NewCNInstantMessageAddressWithUsernameService(username string, service string) CNInstantMessageAddress {
 	instance := getCNInstantMessageAddressClass().Alloc()
 	rv := objc.Send[CNInstantMessageAddress](instance.ID, objc.Sel("initWithUsername:service:"), objc.String(username), objc.String(service))
@@ -122,7 +119,6 @@ func NewCNInstantMessageAddressWithUsernameService(username string, service stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/localizedString(forKey:)
-
 func (cc _CNInstantMessageAddressClass) LocalizedStringForKey(key string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
 	return rv
@@ -133,7 +129,6 @@ func (cc _CNInstantMessageAddressClass) LocalizedStringForKey(key string) founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/localizedString(forService:)
-
 func (cc _CNInstantMessageAddressClass) LocalizedStringForService(service string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForService:"), objc.String(service))
 	return rv
@@ -144,7 +139,6 @@ func (cc _CNInstantMessageAddressClass) LocalizedStringForService(service string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/service
-
 func (c_ CNInstantMessageAddress) Service() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("service"))
 	return rv
@@ -155,7 +149,6 @@ func (c_ CNInstantMessageAddress) Service() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/service
-
 func (c_ CNInstantMessageAddress) SetService(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), objc.String(value))
 }
@@ -165,7 +158,6 @@ func (c_ CNInstantMessageAddress) SetService(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
-
 func (c_ CNInstantMessageAddress) Username() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("username"))
 	return rv
@@ -176,7 +168,6 @@ func (c_ CNInstantMessageAddress) Username() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
-
 func (c_ CNInstantMessageAddress) SetUsername(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
@@ -186,7 +177,6 @@ func (c_ CNInstantMessageAddress) SetUsername(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressservicekey
-
 func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressServiceKey"))
 	return rv
@@ -197,7 +187,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey
-
 func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressUsernameKey"))
 	return rv
@@ -208,7 +197,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceaim
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceAIM"))
 	return rv
@@ -219,7 +207,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicefacebook
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceFacebook() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceFacebook"))
 	return rv
@@ -230,7 +217,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceFacebook() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicegadugadu
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceGaduGadu() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceGaduGadu"))
 	return rv
@@ -241,7 +227,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceGaduGadu() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicegoogletalk
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceGoogleTalk() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceGoogleTalk"))
 	return rv
@@ -252,7 +237,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceGoogleTalk() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceicq
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceICQ() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceICQ"))
 	return rv
@@ -263,7 +247,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceICQ() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicejabber
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceJabber() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceJabber"))
 	return rv
@@ -274,7 +257,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceJabber() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicemsn
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceMSN"))
 	return rv
@@ -285,7 +267,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceqq
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceQQ"))
 	return rv
@@ -296,7 +277,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceskype
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceSkype() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceSkype"))
 	return rv
@@ -307,7 +287,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceSkype() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceyahoo
-
 func (c_ CNInstantMessageAddress) CNInstantMessageServiceYahoo() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceYahoo"))
 	return rv

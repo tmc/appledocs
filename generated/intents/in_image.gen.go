@@ -39,7 +39,11 @@ type IINImage interface {
 // Image data inside an Intents extension or Intents UI extension.
 //
 // is a wrapper for image data that you include in a response to an intent. When providing a response to an intent, you must specify any image parameters using instances of this class. supports the same formats as the underlying platform. When confirming or handling an intent, you provide a response object with details about how your app handles that intent. When that response contains an image, use the method to determine the required image size and then create an instance of this class with the corresponding image data.
+
+
+// Image data inside an Intents extension or Intents UI extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage
 type INImage struct {
 	objectivec.Object
@@ -85,9 +89,9 @@ func NewINImage() INImage {
 
 
 
-
 // Creates an image object from an image file in the extension’s bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
 func NewINImageNamed(name string) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageNamed:"), objc.String(name))
@@ -95,9 +99,9 @@ func NewINImageNamed(name string) INImage {
 }
 
 
-
 // Creates an image object from the specified Core Graphics image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(CGImage:)
 func NewINImageWithCGImage(imageRef coregraphics.CGImageRef) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithCGImage:"), imageRef)
@@ -105,16 +109,17 @@ func NewINImageWithCGImage(imageRef coregraphics.CGImageRef) INImage {
 }
 
 
-
 // Creates an image object from the specified data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(imageData:)
 func NewINImageWithImageData(imageData foundation.IData) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithImageData:"), imageData)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(NSImage:)
 func NewINImageWithNSImage(image appkit.IImage) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithNSImage:"), image)
@@ -122,9 +127,9 @@ func NewINImageWithNSImage(image appkit.IImage) INImage {
 }
 
 
-
 // Creates an image object from the specified UIKit image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
 func NewINImageWithUIImage(image appkit.IImage) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithUIImage:"), image)
@@ -132,9 +137,9 @@ func NewINImageWithUIImage(image appkit.IImage) INImage {
 }
 
 
-
 // Creates an image object from an image file in the local file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
 func NewINImageWithURL(URL foundation.IURL) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:"), URL)
@@ -142,9 +147,9 @@ func NewINImageWithURL(URL foundation.IURL) INImage {
 }
 
 
-
 // Creates an image object, of the specified size, from an image file in the local file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
 func NewINImageWithURLWidthHeight(URL foundation.IURL, width float64, height float64) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
@@ -152,79 +157,98 @@ func NewINImageWithURLWidthHeight(URL foundation.IURL, width float64, height flo
 }
 
 
+
 // Returns the preferred image size for the specified response object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/imageSize(for:)
 func (ic _INImageClass) ImageSizeForIntentResponse(response INIntentResponse) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(ic.class), objc.Sel("imageSizeForIntentResponse:"), response)
 	return rv
 }
 
+
 // Creates an image object from the specified Core Graphics image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(CGImage:)
 func (ic _INImageClass) ImageWithCGImage(imageRef coregraphics.CGImageRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithCGImage:"), imageRef)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(NSImage:)
 func (ic _INImageClass) ImageWithNSImage(image appkit.IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithNSImage:"), image)
 	return rv
 }
 
+
 // Creates an image object from the specified UIKit image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
 func (ic _INImageClass) ImageWithUIImage(image appkit.IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithUIImage:"), image)
 	return rv
 }
 
+
 // Creates an image object from the specified data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(imageData:)
 func (ic _INImageClass) ImageWithImageData(imageData foundation.IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithImageData:"), imageData)
 	return rv
 }
 
+
 // Creates an image object from an image file in the extension’s bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
 func (ic _INImageClass) ImageNamed(name string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageNamed:"), objc.String(name))
 	return rv
 }
 
+
 // Creates an image object from an image file in the local file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
 func (ic _INImageClass) ImageWithURL(URL foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithURL:"), URL)
 	return rv
 }
 
+
 // Creates an image object, of the specified size, from an image file in the local file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
 func (ic _INImageClass) ImageWithURLWidthHeight(URL foundation.IURL, width float64, height float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
 	return rv
 }
 
+
 // Returns an image object that contains the specified system symbol image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/systemImageNamed(_:)
 func (ic _INImageClass) SystemImageNamed(systemImageName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("systemImageNamed:"), objc.String(systemImageName))
 	return rv
 }
 
+
 // Fetches the image and provides it to the specified completion handler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/fetchUIImage(completion:)
 func (i_ INImage) FetchUIImageWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("fetchUIImageWithCompletion:"), completion)

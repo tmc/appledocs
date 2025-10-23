@@ -44,7 +44,6 @@ type ICaptureEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent
-
 type CaptureEvent struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewCaptureEvent() CaptureEvent {
 
 
 
-
 // Plays the specified capture sound through AirPods.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/play(_:)
-
 func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("playSound:"), sound)
 	return rv
@@ -105,7 +102,6 @@ func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/phase
-
 func (c_ CaptureEvent) Phase() CaptureEventPhase {
 	rv := objc.Send[CaptureEventPhase](c_.ID, objc.Sel("phase"))
 	return rv
@@ -116,7 +112,6 @@ func (c_ CaptureEvent) Phase() CaptureEventPhase {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/shouldPlaySound
-
 func (c_ CaptureEvent) ShouldPlaySound() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldPlaySound"))
 	return rv

@@ -50,7 +50,6 @@ type ITextViewportLayoutController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutController
-
 type TextViewportLayoutController struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewTextViewportLayoutController() TextViewportLayoutController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/delegate
-
 func (t_ TextViewportLayoutController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -110,7 +108,6 @@ func (t_ TextViewportLayoutController) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/delegate
-
 func (t_ TextViewportLayoutController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -120,7 +117,6 @@ func (t_ TextViewportLayoutController) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
-
 func (t_ TextViewportLayoutController) TextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
@@ -131,7 +127,6 @@ func (t_ TextViewportLayoutController) TextLayoutManager() NSTextLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/textlayoutmanager
-
 func (t_ TextViewportLayoutController) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
@@ -141,7 +136,6 @@ func (t_ TextViewportLayoutController) SetTextLayoutManager(value ITextLayoutMan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportbounds
-
 func (t_ TextViewportLayoutController) ViewportBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("viewportBounds"))
 	return rv
@@ -152,7 +146,6 @@ func (t_ TextViewportLayoutController) ViewportBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportbounds
-
 func (t_ TextViewportLayoutController) SetViewportBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportBounds:"), value)
 }
@@ -162,7 +155,6 @@ func (t_ TextViewportLayoutController) SetViewportBounds(value coregraphics.CGRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
-
 func (t_ TextViewportLayoutController) ViewportRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("viewportRange"))
 	return rv
@@ -173,7 +165,6 @@ func (t_ TextViewportLayoutController) ViewportRange() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller/viewportrange
-
 func (t_ TextViewportLayoutController) SetViewportRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setViewportRange:"), value)
 }

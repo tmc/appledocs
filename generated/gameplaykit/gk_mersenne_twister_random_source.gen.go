@@ -42,7 +42,6 @@ type IMersenneTwisterRandomSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource
-
 type MersenneTwisterRandomSource struct {
 	RandomSource
 }
@@ -89,12 +88,10 @@ func NewMersenneTwisterRandomSource() MersenneTwisterRandomSource {
 
 
 
-
 // Initializes a random source with the specified seed value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/init(seed:)
-
 func NewMersenneTwisterRandomSourceWithSeed(seed uint64) MersenneTwisterRandomSource {
 	instance := getMersenneTwisterRandomSourceClass().Alloc()
 	rv := objc.Send[MersenneTwisterRandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
@@ -108,7 +105,6 @@ func NewMersenneTwisterRandomSourceWithSeed(seed uint64) MersenneTwisterRandomSo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/seed
-
 func (m_ MersenneTwisterRandomSource) Seed() uint64 {
 	rv := objc.Send[uint64](m_.ID, objc.Sel("seed"))
 	return rv
@@ -119,7 +115,6 @@ func (m_ MersenneTwisterRandomSource) Seed() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/seed
-
 func (m_ MersenneTwisterRandomSource) SetSeed(value uint64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeed:"), value)
 }

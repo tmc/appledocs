@@ -45,7 +45,6 @@ type IPersistentHistoryChange interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange
-
 type PersistentHistoryChange struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewPersistentHistoryChange() PersistentHistoryChange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/entityDescription
-
 func (pc _PersistentHistoryChangeClass) EntityDescription() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](objc.ID(pc.class), objc.Sel("entityDescription"))
 	return rv
@@ -104,7 +102,6 @@ func (pc _PersistentHistoryChangeClass) EntityDescription() NSEntityDescription 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/fetchRequest
-
 func (pc _PersistentHistoryChangeClass) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](objc.ID(pc.class), objc.Sel("fetchRequest"))
 	return rv
@@ -114,7 +111,6 @@ func (pc _PersistentHistoryChangeClass) FetchRequest() NSFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeID
-
 func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeID"))
 	return rv
@@ -125,7 +121,6 @@ func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeType
-
 func (p_ PersistentHistoryChange) ChangeType() PersistentHistoryChangeType {
 	rv := objc.Send[PersistentHistoryChangeType](p_.ID, objc.Sel("changeType"))
 	return rv
@@ -136,7 +131,6 @@ func (p_ PersistentHistoryChange) ChangeType() PersistentHistoryChangeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changedObjectID
-
 func (p_ PersistentHistoryChange) ChangedObjectID() NSManagedObjectID {
 	rv := objc.Send[NSManagedObjectID](p_.ID, objc.Sel("changedObjectID"))
 	return rv
@@ -147,7 +141,6 @@ func (p_ PersistentHistoryChange) ChangedObjectID() NSManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/entityDescription
-
 func (p_ PersistentHistoryChange) EntityDescription() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entityDescription"))
 	return rv
@@ -158,7 +151,6 @@ func (p_ PersistentHistoryChange) EntityDescription() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/fetchRequest
-
 func (p_ PersistentHistoryChange) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
@@ -169,7 +161,6 @@ func (p_ PersistentHistoryChange) FetchRequest() NSFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/tombstone
-
 func (p_ PersistentHistoryChange) Tombstone() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("tombstone"))
 	return rv
@@ -180,7 +171,6 @@ func (p_ PersistentHistoryChange) Tombstone() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/transaction
-
 func (p_ PersistentHistoryChange) Transaction() NSPersistentHistoryTransaction {
 	rv := objc.Send[NSPersistentHistoryTransaction](p_.ID, objc.Sel("transaction"))
 	return rv
@@ -191,7 +181,6 @@ func (p_ PersistentHistoryChange) Transaction() NSPersistentHistoryTransaction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/updatedProperties
-
 func (p_ PersistentHistoryChange) UpdatedProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("updatedProperties"))
 	return rv

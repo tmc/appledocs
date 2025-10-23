@@ -47,7 +47,6 @@ type IAttitude interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude
-
 type Attitude struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewAttitude() Attitude {
 
 
 
-
 // Yields the change in attitude given a specific attitude.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)
-
 func (a_ Attitude) MultiplyByInverseOfAttitude(attitude ICMAttitude) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("multiplyByInverseOfAttitude:"), attitude)
 }
@@ -107,7 +104,6 @@ func (a_ Attitude) MultiplyByInverseOfAttitude(attitude ICMAttitude) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/pitch
-
 func (a_ Attitude) Pitch() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("pitch"))
 	return rv
@@ -118,7 +114,6 @@ func (a_ Attitude) Pitch() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/quaternion
-
 func (a_ Attitude) Quaternion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("quaternion"))
 	return rv
@@ -129,7 +124,6 @@ func (a_ Attitude) Quaternion() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/roll
-
 func (a_ Attitude) Roll() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("roll"))
 	return rv
@@ -140,7 +134,6 @@ func (a_ Attitude) Roll() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/rotationMatrix
-
 func (a_ Attitude) RotationMatrix() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rotationMatrix"))
 	return rv
@@ -151,7 +144,6 @@ func (a_ Attitude) RotationMatrix() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/yaw
-
 func (a_ Attitude) Yaw() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("yaw"))
 	return rv

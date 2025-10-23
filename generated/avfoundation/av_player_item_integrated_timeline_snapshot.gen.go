@@ -51,7 +51,6 @@ type IPlayerItemIntegratedTimelineSnapshot interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot
-
 type PlayerItemIntegratedTimelineSnapshot struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewPlayerItemIntegratedTimelineSnapshot() PlayerItemIntegratedTimelineSnaps
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot/currentSegment
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentSegment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentSegment"))
 	return rv
@@ -111,7 +109,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentSegment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot/currentTime
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
 	return rv
@@ -122,7 +119,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimelineSnapshot/segments
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) Segments() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("segments"))
 	return rv
@@ -133,7 +129,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) Segments() []unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot {
 	rv := objc.Send[AVPlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
@@ -144,7 +139,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentSnapshot() AVPlayerItemInt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
 }
@@ -154,7 +148,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) SetCurrentSnapshot(value IAVPlaye
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
@@ -165,7 +158,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) CurrentDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) SetCurrentDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
@@ -175,7 +167,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) SetCurrentDate(value foundation.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("duration"))
 	return rv
@@ -186,7 +177,6 @@ func (p_ PlayerItemIntegratedTimelineSnapshot) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
-
 func (p_ PlayerItemIntegratedTimelineSnapshot) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
 }

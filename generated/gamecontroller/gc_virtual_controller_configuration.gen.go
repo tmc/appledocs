@@ -47,7 +47,6 @@ type IGCVirtualControllerConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration
-
 type GCVirtualControllerConfiguration struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewGCVirtualControllerConfiguration() GCVirtualControllerConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
-
 func (g_ GCVirtualControllerConfiguration) Hidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
 	return rv
@@ -107,7 +105,6 @@ func (g_ GCVirtualControllerConfiguration) Hidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
-
 func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
 }
@@ -117,7 +114,6 @@ func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-
 func (g_ GCVirtualControllerConfiguration) Elements() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("elements"))
 	return rv
@@ -128,7 +124,6 @@ func (g_ GCVirtualControllerConfiguration) Elements() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-
 func (g_ GCVirtualControllerConfiguration) SetElements(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), objc.String(value))
 }
@@ -138,7 +133,6 @@ func (g_ GCVirtualControllerConfiguration) SetElements(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/ishidden
-
 func (g_ GCVirtualControllerConfiguration) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
@@ -149,7 +143,6 @@ func (g_ GCVirtualControllerConfiguration) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/ishidden
-
 func (g_ GCVirtualControllerConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
 }

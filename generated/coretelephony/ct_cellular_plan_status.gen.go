@@ -41,7 +41,6 @@ type ICellularPlanStatus interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanStatus
-
 type CellularPlanStatus struct {
 	objectivec.Object
 }

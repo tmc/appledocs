@@ -30,12 +30,12 @@ type _FormatterClass struct {
 // An interface definition for the [Formatter] class.
 type IFormatter interface {
 	objectivec.IObject
-	AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) AttributedString
-	EditingStringForObjectValue(obj objectivec.IObject) String
+	AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) IAttributedString
+	EditingStringForObjectValue(obj objectivec.IObject) IString
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
 	IsPartialStringValidNewEditingStringErrorDescription(partialString string, newString string, error_ string) bool
 	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr unsafe.Pointer, origString string, origSelRange Range, error_ string) bool
-	StringForObjectValue(obj objectivec.IObject) String
+	StringForObjectValue(obj objectivec.IObject) IString
 }
 
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
@@ -95,7 +95,7 @@ func NewFormatter() Formatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/attributedString(for:withDefaultAttributes:)
-func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) AttributedString {
+func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) IAttributedString {
 	rv := objc.Send[AttributedString](f_.ID, objc.Sel("attributedStringForObjectValue:withDefaultAttributes:"), obj, attrs)
 	return rv
 }
@@ -105,7 +105,7 @@ func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj obje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/editingString(for:)
-func (f_ Formatter) EditingStringForObjectValue(obj objectivec.IObject) String {
+func (f_ Formatter) EditingStringForObjectValue(obj objectivec.IObject) IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("editingStringForObjectValue:"), obj)
 	return rv
 }
@@ -145,7 +145,7 @@ func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOrigi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
-func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) String {
+func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

@@ -36,7 +36,11 @@ type IINBoatReservation interface {
 }
 
 // The information that describes a boat reservation.
+
+
+// The information that describes a boat reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INBoatReservation
 type INBoatReservation struct {
 	INReservation
@@ -83,8 +87,10 @@ func NewINBoatReservation() INBoatReservation {
 }
 
 
+
 // Information describing a voyage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/boattrip
 func (i_ INBoatReservation) BoatTrip() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("boatTrip"))
@@ -92,17 +98,18 @@ func (i_ INBoatReservation) BoatTrip() unsafe.Pointer {
 }
 
 
-// SetBoatTrip sets the value of the boatTrip property.
 // Information describing a voyage.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/boattrip
 func (i_ INBoatReservation) SetBoatTrip(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBoatTrip:"), value)
 }
 
+
 // The passenger’s seat on a boat reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/reservedseat
 func (i_ INBoatReservation) ReservedSeat() INSeat {
 	rv := objc.Send[INSeat](i_.ID, objc.Sel("reservedSeat"))
@@ -110,10 +117,9 @@ func (i_ INBoatReservation) ReservedSeat() INSeat {
 }
 
 
-// SetReservedSeat sets the value of the reservedSeat property.
 // The passenger’s seat on a boat reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inboatreservation/reservedseat
 func (i_ INBoatReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)

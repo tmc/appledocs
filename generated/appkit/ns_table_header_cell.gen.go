@@ -40,7 +40,6 @@ type ITableHeaderCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderCell
-
 type TableHeaderCell struct {
 	TextFieldCell
 }

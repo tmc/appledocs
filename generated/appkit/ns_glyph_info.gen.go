@@ -50,7 +50,6 @@ type IGlyphInfo interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo
-
 type GlyphInfo struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewGlyphInfo() GlyphInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/characterIdentifier
-
 func (g_ GlyphInfo) CharacterIdentifier() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("characterIdentifier"))
 	return rv
@@ -110,7 +108,6 @@ func (g_ GlyphInfo) CharacterIdentifier() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/basestring
-
 func (g_ GlyphInfo) BaseString() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("baseString"))
 	return rv
@@ -121,7 +118,6 @@ func (g_ GlyphInfo) BaseString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/basestring
-
 func (g_ GlyphInfo) SetBaseString(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBaseString:"), objc.String(value))
 }
@@ -131,7 +127,6 @@ func (g_ GlyphInfo) SetBaseString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/charactercollection
-
 func (g_ GlyphInfo) CharacterCollection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("characterCollection"))
 	return rv
@@ -142,7 +137,6 @@ func (g_ GlyphInfo) CharacterCollection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/charactercollection
-
 func (g_ GlyphInfo) SetCharacterCollection(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCharacterCollection:"), value)
 }
@@ -152,7 +146,6 @@ func (g_ GlyphInfo) SetCharacterCollection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-
 func (g_ GlyphInfo) GlyphID() Glyph {
 	rv := objc.Send[Glyph](g_.ID, objc.Sel("glyphID"))
 	return rv
@@ -163,7 +156,6 @@ func (g_ GlyphInfo) GlyphID() Glyph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-
 func (g_ GlyphInfo) SetGlyphID(value IGlyph) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphID:"), value)
 }
@@ -173,7 +165,6 @@ func (g_ GlyphInfo) SetGlyphID(value IGlyph) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphname
-
 func (g_ GlyphInfo) GlyphName() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("glyphName"))
 	return rv
@@ -184,7 +175,6 @@ func (g_ GlyphInfo) GlyphName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphname
-
 func (g_ GlyphInfo) SetGlyphName(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphName:"), objc.String(value))
 }

@@ -41,7 +41,6 @@ type ICBManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager
-
 type CBManager struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewCBManager() CBManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager/authorization-swift.property
-
 func (c_ CBManager) Authorization() CBManagerAuthorization {
 	rv := objc.Send[CBManagerAuthorization](c_.ID, objc.Sel("authorization"))
 	return rv
@@ -101,7 +99,6 @@ func (c_ CBManager) Authorization() CBManagerAuthorization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager/state
-
 func (c_ CBManager) State() CBManagerState {
 	rv := objc.Send[CBManagerState](c_.ID, objc.Sel("state"))
 	return rv

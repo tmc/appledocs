@@ -42,7 +42,6 @@ type IColorKernel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
-
 type ColorKernel struct {
 	Kernel
 }
@@ -89,12 +88,10 @@ func NewColorKernel() ColorKernel {
 
 
 
-
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-
 func NewColorKernelWithString(string_ string) ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
@@ -106,19 +103,16 @@ func NewColorKernelWithString(string_ string) ColorKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-
 func (cc _ColorKernelClass) KernelWithString(string_ string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 
 
-
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
-
 func (c_ ColorKernel) ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID) Image {
 	rv := objc.Send[Image](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
 	return rv

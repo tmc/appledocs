@@ -29,17 +29,15 @@ type _CaptureMovieFileOutputClass struct {
 // An interface definition for the [CaptureMovieFileOutput] class.
 type ICaptureMovieFileOutput interface {
 	ICaptureFileOutput
-	RecordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(connection IAVCaptureConnection) bool
-	SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
-	AvailableVideoCodecTypes() VideoCodecType
-	SetAvailableVideoCodecTypes(value VideoCodecType)
+	AvailableVideoCodecTypes() unsafe.Pointer
+	SetAvailableVideoCodecTypes(value unsafe.Pointer)
 	IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool
 	SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool)
 	IsSpatialVideoCaptureEnabled() bool
 	SetIsSpatialVideoCaptureEnabled(value bool)
 	IsSpatialVideoCaptureSupported() bool
 	SetIsSpatialVideoCaptureSupported(value bool)
-	Metadata() AVMetadataItem
+	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
 	MovieFragmentInterval() unsafe.Pointer
 	SetMovieFragmentInterval(value unsafe.Pointer)
@@ -58,7 +56,6 @@ type ICaptureMovieFileOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput
-
 type CaptureMovieFileOutput struct {
 	CaptureFileOutput
 }
@@ -105,36 +102,12 @@ func NewCaptureMovieFileOutput() CaptureMovieFileOutput {
 
 
 
-
-// A Boolean value that indicates whether the movie file output records video orientation and mirroring information as a metadata track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput/recordsVideoOrientationAndMirroringChangesAsMetadataTrack(for:)
-
-func (c_ CaptureMovieFileOutput) RecordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(connection IAVCaptureConnection) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:"), connection)
-	return rv
-}
-
-
-
-// Sets the camera switching behavior to use during recording.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput/setPrimaryConstituentDeviceSwitchingBehaviorForRecording(_:restrictedSwitchingBehaviorConditions:)
-
-func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:"), switchingBehavior, restrictedSwitchingBehaviorConditions)
-}
-
-
 // The video codecs types the output supports for recording movie files.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
-
-func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() VideoCodecType {
-	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableVideoCodecTypes"))
+func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableVideoCodecTypes"))
 	return rv
 }
 
@@ -143,8 +116,7 @@ func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() VideoCodecType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
-
-func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value VideoCodecType) {
+func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoCodecTypes:"), value)
 }
 
@@ -153,7 +125,6 @@ func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value VideoCodecTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isprimaryconstituentdeviceswitchingbehaviorforrecordingenabled
-
 func (c_ CaptureMovieFileOutput) IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled"))
 	return rv
@@ -164,7 +135,6 @@ func (c_ CaptureMovieFileOutput) IsPrimaryConstituentDeviceSwitchingBehaviorForR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isprimaryconstituentdeviceswitchingbehaviorforrecordingenabled
-
 func (c_ CaptureMovieFileOutput) SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled:"), value)
 }
@@ -174,7 +144,6 @@ func (c_ CaptureMovieFileOutput) SetIsPrimaryConstituentDeviceSwitchingBehaviorF
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocaptureenabled
-
 func (c_ CaptureMovieFileOutput) IsSpatialVideoCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSpatialVideoCaptureEnabled"))
 	return rv
@@ -185,7 +154,6 @@ func (c_ CaptureMovieFileOutput) IsSpatialVideoCaptureEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocaptureenabled
-
 func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSpatialVideoCaptureEnabled:"), value)
 }
@@ -195,7 +163,6 @@ func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocapturesupported
-
 func (c_ CaptureMovieFileOutput) IsSpatialVideoCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSpatialVideoCaptureSupported"))
 	return rv
@@ -206,7 +173,6 @@ func (c_ CaptureMovieFileOutput) IsSpatialVideoCaptureSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/isspatialvideocapturesupported
-
 func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSpatialVideoCaptureSupported:"), value)
 }
@@ -216,8 +182,7 @@ func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/metadata
-
-func (c_ CaptureMovieFileOutput) Metadata() AVMetadataItem {
+func (c_ CaptureMovieFileOutput) Metadata() IAVMetadataItem {
 	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -227,7 +192,6 @@ func (c_ CaptureMovieFileOutput) Metadata() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/metadata
-
 func (c_ CaptureMovieFileOutput) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
@@ -237,7 +201,6 @@ func (c_ CaptureMovieFileOutput) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/moviefragmentinterval
-
 func (c_ CaptureMovieFileOutput) MovieFragmentInterval() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("movieFragmentInterval"))
 	return rv
@@ -248,7 +211,6 @@ func (c_ CaptureMovieFileOutput) MovieFragmentInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/moviefragmentinterval
-
 func (c_ CaptureMovieFileOutput) SetMovieFragmentInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMovieFragmentInterval:"), value)
 }
@@ -258,7 +220,6 @@ func (c_ CaptureMovieFileOutput) SetMovieFragmentInterval(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdevicerestrictedswitchingbehaviorconditionsforrecording
-
 func (c_ CaptureMovieFileOutput) PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording"))
 	return rv
@@ -269,7 +230,6 @@ func (c_ CaptureMovieFileOutput) PrimaryConstituentDeviceRestrictedSwitchingBeha
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdevicerestrictedswitchingbehaviorconditionsforrecording
-
 func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording:"), value)
 }
@@ -279,7 +239,6 @@ func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceRestrictedSwitchingB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdeviceswitchingbehaviorforrecording
-
 func (c_ CaptureMovieFileOutput) PrimaryConstituentDeviceSwitchingBehaviorForRecording() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("primaryConstituentDeviceSwitchingBehaviorForRecording"))
 	return rv
@@ -290,7 +249,6 @@ func (c_ CaptureMovieFileOutput) PrimaryConstituentDeviceSwitchingBehaviorForRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/primaryconstituentdeviceswitchingbehaviorforrecording
-
 func (c_ CaptureMovieFileOutput) SetPrimaryConstituentDeviceSwitchingBehaviorForRecording(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehaviorForRecording:"), value)
 }

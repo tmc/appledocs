@@ -2,11 +2,14 @@
 
 // Package intents provides Go bindings for the Intents framework.
 //
-// Empower people to customize interactions for your app on their device. [Full Topic]
+// Empower people to customize interactions for your app on their device.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Intents without requiring cgo.
+
+// Empower people to customize interactions for your app on their device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents
 package intents
 

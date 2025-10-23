@@ -45,7 +45,6 @@ type IPathComponentCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell
-
 type PathComponentCell struct {
 	TextFieldCell
 }
@@ -96,7 +95,6 @@ func NewPathComponentCell() PathComponentCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
-
 func (p_ PathComponentCell) Image() Image {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
@@ -107,7 +105,6 @@ func (p_ PathComponentCell) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
-
 func (p_ PathComponentCell) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
@@ -117,7 +114,6 @@ func (p_ PathComponentCell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-
 func (p_ PathComponentCell) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
@@ -128,7 +124,6 @@ func (p_ PathComponentCell) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-
 func (p_ PathComponentCell) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }

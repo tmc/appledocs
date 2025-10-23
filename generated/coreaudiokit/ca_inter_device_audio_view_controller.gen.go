@@ -38,7 +38,6 @@ type IInterDeviceAudioViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterDeviceAudioViewController
-
 type InterDeviceAudioViewController struct {
 	ViewController
 }

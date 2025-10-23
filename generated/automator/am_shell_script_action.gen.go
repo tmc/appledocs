@@ -43,7 +43,6 @@ type IAMShellScriptAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction
-
 type AMShellScriptAction struct {
 	AMBundleAction
 }
@@ -94,7 +93,6 @@ func NewAMShellScriptAction() AMShellScriptAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/inputFieldSeparator
-
 func (a_ AMShellScriptAction) InputFieldSeparator() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("inputFieldSeparator"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AMShellScriptAction) InputFieldSeparator() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/outputFieldSeparator
-
 func (a_ AMShellScriptAction) OutputFieldSeparator() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("outputFieldSeparator"))
 	return rv
@@ -116,7 +113,6 @@ func (a_ AMShellScriptAction) OutputFieldSeparator() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/remapLineEndings
-
 func (a_ AMShellScriptAction) RemapLineEndings() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("remapLineEndings"))
 	return rv

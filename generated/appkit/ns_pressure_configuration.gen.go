@@ -44,7 +44,6 @@ type IPressureConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration
-
 type PressureConfiguration struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewPressureConfiguration() PressureConfiguration {
 
 
 
-
 // Changes the pressure configuration of the trackpad to the initialized pressure configuration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration/set()
-
 func (p_ PressureConfiguration) Set() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("set"))
 }
@@ -104,7 +101,6 @@ func (p_ PressureConfiguration) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
-
 func (p_ PressureConfiguration) PressureBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressureBehavior"))
 	return rv
@@ -115,7 +111,6 @@ func (p_ PressureConfiguration) PressureBehavior() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
-
 func (p_ PressureConfiguration) SetPressureBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressureBehavior:"), value)
 }

@@ -239,26 +239,37 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType
 	}
 
+	// Strip ObjC prefixes first before checking if it's a class
+	// This handles cases where mapObjCTypeToGo returns "NSData" instead of "Data"
+	baseType := goType
+	if strings.HasPrefix(goType, "NS") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		baseType = goType[2:]
+	} else if strings.HasPrefix(goType, "CG") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		baseType = goType[2:]
+	} else if strings.HasPrefix(goType, "CA") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
+		baseType = goType[2:]
+	}
+
 	// DATA-DRIVEN: Check if this is actually a class type by looking it up
+	// Check both the original type and the stripped version
 	// If it's not a class, it's likely a struct - don't convert
-	if !g.IsClassType(goType) {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
+		fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: goType=%s baseType=%s IsClass(goType)=%v IsClass(baseType)=%v\n",
+			goType, baseType, g.IsClassType(goType), g.IsClassType(baseType))
+	}
+	if !g.IsClassType(goType) && !g.IsClassType(baseType) {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
+			fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: NOT a class, returning goType=%s unchanged\n", goType)
+		}
 		return goType
 	}
 
 	// Convert to interface type: "Data" -> "IData"
-	// This works for class types like Data, String, Array, etc.
-	// If the type still has an ObjC prefix (NS, CG, CA), strip it first
-	// so we get "IAccessibilityElement" not "INSAccessibilityElement"
-	interfaceType := goType
-	if strings.HasPrefix(goType, "NS") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
-		interfaceType = goType[2:]
-	} else if strings.HasPrefix(goType, "CG") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
-		interfaceType = goType[2:]
-	} else if strings.HasPrefix(goType, "CA") && len(goType) > 2 && goType[2] >= 'A' && goType[2] <= 'Z' {
-		interfaceType = goType[2:]
+	// Use the stripped base type for the interface name
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
+		fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: IS a class, returning I%s\n", baseType)
 	}
-
-	return "I" + interfaceType
+	return "I" + baseType
 }
 
 // prepare computes cached data needed for generation
@@ -399,6 +410,26 @@ func (g *Generator) prepare() {
 		if strings.HasPrefix(refType, prefix) && strings.HasSuffix(refType, "Ref") {
 			typeName := strings.TrimSuffix(strings.TrimPrefix(refType, prefix), "Ref")
 			g.typeToRef[typeName] = refType
+		}
+	}
+
+	// Extract missing enums automatically from undefined types
+	if os.Getenv("EXTRACT_MISSING_ENUMS") == "1" {
+		if os.Getenv("VERBOSE") == "1" {
+			fmt.Fprintf(os.Stderr, "EXTRACT_MISSING_ENUMS=1, calling ExtractMissingEnums() for %s\n", g.Framework)
+		}
+		extractedEnums, err := g.ExtractMissingEnums()
+		if err != nil && os.Getenv("VERBOSE") == "1" {
+			fmt.Fprintf(os.Stderr, "ExtractMissingEnums error: %v\n", err)
+		}
+		if err == nil && len(extractedEnums) > 0 {
+			if os.Getenv("VERBOSE") == "1" {
+				fmt.Fprintf(os.Stderr, "Auto-extracted %d missing enums for %s\n", len(extractedEnums), g.Framework)
+			}
+			// Add extracted enums to existing enums
+			g.Enums = append(g.Enums, extractedEnums...)
+		} else if os.Getenv("VERBOSE") == "1" {
+			fmt.Fprintf(os.Stderr, "No enums extracted for %s\n", g.Framework)
 		}
 	}
 

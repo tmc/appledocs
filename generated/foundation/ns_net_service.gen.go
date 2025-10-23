@@ -41,7 +41,7 @@ type INetService interface {
 	StartMonitoring()
 	Stop()
 	StopMonitoring()
-	TXTRecordData() Data
+	TXTRecordData() IData
 	Addresses() []Data
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -136,7 +136,7 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
-func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary) Data {
+func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary) IData {
 	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
 }
@@ -257,7 +257,7 @@ func (n_ NetService) StopMonitoring() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/txtRecordData()
-func (n_ NetService) TXTRecordData() Data {
+func (n_ NetService) TXTRecordData() IData {
 	rv := objc.Send[Data](n_.ID, objc.Sel("TXTRecordData"))
 	return rv
 }

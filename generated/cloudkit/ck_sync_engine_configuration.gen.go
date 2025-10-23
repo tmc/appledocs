@@ -39,7 +39,6 @@ type ICKSyncEngineConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineConfiguration
-
 type CKSyncEngineConfiguration struct {
 	objectivec.Object
 }

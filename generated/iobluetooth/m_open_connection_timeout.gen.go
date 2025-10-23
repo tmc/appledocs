@@ -32,7 +32,9 @@ type ImOpenConnectionTimeout interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/mOpenConnectionTimeout
 type mOpenConnectionTimeout struct {
 	objectivec.Object

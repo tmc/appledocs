@@ -46,7 +46,6 @@ type IHKAudiogramSensitivityTest interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityTest
-
 type HKAudiogramSensitivityTest struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewHKAudiogramSensitivityTest() HKAudiogramSensitivityTest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/clampingrange
-
 func (h_ HKAudiogramSensitivityTest) ClampingRange() HKAudiogramSensitivityPointClampingRange {
 	rv := objc.Send[HKAudiogramSensitivityPointClampingRange](h_.ID, objc.Sel("clampingRange"))
 	return rv
@@ -100,7 +98,6 @@ func (h_ HKAudiogramSensitivityTest) ClampingRange() HKAudiogramSensitivityPoint
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/clampingrange
-
 func (h_ HKAudiogramSensitivityTest) SetClampingRange(value IHKAudiogramSensitivityPointClampingRange) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setClampingRange:"), value)
 }
@@ -108,7 +105,6 @@ func (h_ HKAudiogramSensitivityTest) SetClampingRange(value IHKAudiogramSensitiv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/masked
-
 func (h_ HKAudiogramSensitivityTest) Masked() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("masked"))
 	return rv
@@ -117,7 +113,6 @@ func (h_ HKAudiogramSensitivityTest) Masked() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/masked
-
 func (h_ HKAudiogramSensitivityTest) SetMasked(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMasked:"), value)
 }
@@ -125,7 +120,6 @@ func (h_ HKAudiogramSensitivityTest) SetMasked(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/sensitivity
-
 func (h_ HKAudiogramSensitivityTest) Sensitivity() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sensitivity"))
 	return rv
@@ -134,7 +128,6 @@ func (h_ HKAudiogramSensitivityTest) Sensitivity() HKQuantity {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/sensitivity
-
 func (h_ HKAudiogramSensitivityTest) SetSensitivity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSensitivity:"), value)
 }
@@ -142,7 +135,6 @@ func (h_ HKAudiogramSensitivityTest) SetSensitivity(value IHKQuantity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/side
-
 func (h_ HKAudiogramSensitivityTest) Side() HKAudiogramSensitivityTestSide {
 	rv := objc.Send[HKAudiogramSensitivityTestSide](h_.ID, objc.Sel("side"))
 	return rv
@@ -151,7 +143,6 @@ func (h_ HKAudiogramSensitivityTest) Side() HKAudiogramSensitivityTestSide {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/side
-
 func (h_ HKAudiogramSensitivityTest) SetSide(value IHKAudiogramSensitivityTestSide) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSide:"), value)
 }
@@ -159,7 +150,6 @@ func (h_ HKAudiogramSensitivityTest) SetSide(value IHKAudiogramSensitivityTestSi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/type
-
 func (h_ HKAudiogramSensitivityTest) Type() HKAudiogramConductionType {
 	rv := objc.Send[HKAudiogramConductionType](h_.ID, objc.Sel("type"))
 	return rv
@@ -168,7 +158,6 @@ func (h_ HKAudiogramSensitivityTest) Type() HKAudiogramConductionType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/type
-
 func (h_ HKAudiogramSensitivityTest) SetType(value HKAudiogramConductionType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
 }

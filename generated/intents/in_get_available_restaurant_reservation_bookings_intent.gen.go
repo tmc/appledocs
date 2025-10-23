@@ -47,7 +47,11 @@ type IINGetAvailableRestaurantReservationBookingsIntent interface {
 // A request for the time slots available for making a reservation.
 //
 // An object asks you to generate details regarding the available time slots offered by a restaurant for a given party size. Maps sends this intent to your Intents extension when the user begins the booking process. You use this intent to obtain the initial details about the reservation request, including the number of people and the preferred date for the reservation. You use those details to identify potential time slots that can accommodate the party and return those time slots in your response object. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm any parameters and create an object with the list of potential time slots.
+
+
+// A request for the time slots available for making a reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetAvailableRestaurantReservationBookingsIntent
 type INGetAvailableRestaurantReservationBookingsIntent struct {
 	INIntent
@@ -94,8 +98,10 @@ func NewINGetAvailableRestaurantReservationBookingsIntent() INGetAvailableRestau
 }
 
 
+
 // The earliest date for which to return results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/earliestbookingdateforresults
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateForResults() foundation.Date {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("earliestBookingDateForResults"))
@@ -103,17 +109,18 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateF
 }
 
 
-// SetEarliestBookingDateForResults sets the value of the earliestBookingDateForResults property.
 // The earliest date for which to return results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/earliestbookingdateforresults
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
 }
 
+
 // The latest date for which to return results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/latestbookingdateforresults
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateForResults() foundation.Date {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("latestBookingDateForResults"))
@@ -121,17 +128,18 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateFor
 }
 
 
-// SetLatestBookingDateForResults sets the value of the latestBookingDateForResults property.
 // The latest date for which to return results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/latestbookingdateforresults
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetLatestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLatestBookingDateForResults:"), value)
 }
 
+
 // The maximum number of reservation results to return.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/maximumnumberofresults
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) MaximumNumberOfResults() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("maximumNumberOfResults"))
@@ -139,17 +147,18 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) MaximumNumberOfResul
 }
 
 
-// SetMaximumNumberOfResults sets the value of the maximumNumberOfResults property.
 // The maximum number of reservation results to return.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/maximumnumberofresults
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)
 }
 
+
 // The number of people in the guest’s party.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/partysize
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) PartySize() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
@@ -157,17 +166,18 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PartySize() int {
 }
 
 
-// SetPartySize sets the value of the partySize property.
 // The number of people in the guest’s party.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/partysize
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
 
+
 // The date and time preferred by the user for the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/preferredbookingdatecomponents
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDateComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("preferredBookingDateComponents"))
@@ -175,17 +185,18 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDate
 }
 
 
-// SetPreferredBookingDateComponents sets the value of the preferredBookingDateComponents property.
 // The date and time preferred by the user for the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/preferredbookingdatecomponents
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPreferredBookingDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredBookingDateComponents:"), value)
 }
 
+
 // The restaurant associated with the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/restaurant
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) Restaurant() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurant"))
@@ -193,10 +204,9 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) Restaurant() unsafe.
 }
 
 
-// SetRestaurant sets the value of the restaurant property.
 // The restaurant associated with the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/restaurant
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)

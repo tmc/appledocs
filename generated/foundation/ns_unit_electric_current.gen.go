@@ -135,7 +135,7 @@ func (uc _UnitElectricCurrentClass) Milliamperes() UnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
-func (u_ UnitElectricCurrent) Amperes() NSUnitElectricCurrent {
+func (u_ UnitElectricCurrent) Amperes() IUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("amperes"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (u_ UnitElectricCurrent) Amperes() NSUnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/kiloamperes
-func (u_ UnitElectricCurrent) Kiloamperes() NSUnitElectricCurrent {
+func (u_ UnitElectricCurrent) Kiloamperes() IUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("kiloamperes"))
 	return rv
 }
@@ -155,7 +155,7 @@ func (u_ UnitElectricCurrent) Kiloamperes() NSUnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/megaamperes
-func (u_ UnitElectricCurrent) Megaamperes() NSUnitElectricCurrent {
+func (u_ UnitElectricCurrent) Megaamperes() IUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("megaamperes"))
 	return rv
 }
@@ -165,7 +165,7 @@ func (u_ UnitElectricCurrent) Megaamperes() NSUnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/microamperes
-func (u_ UnitElectricCurrent) Microamperes() NSUnitElectricCurrent {
+func (u_ UnitElectricCurrent) Microamperes() IUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("microamperes"))
 	return rv
 }
@@ -175,7 +175,7 @@ func (u_ UnitElectricCurrent) Microamperes() NSUnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/milliamperes
-func (u_ UnitElectricCurrent) Milliamperes() NSUnitElectricCurrent {
+func (u_ UnitElectricCurrent) Milliamperes() IUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("milliamperes"))
 	return rv
 }

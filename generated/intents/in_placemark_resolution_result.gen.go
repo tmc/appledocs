@@ -35,7 +35,11 @@ type IINPlacemarkResolutionResult interface {
 // A resolution result for placemark information associated with an intent.
 //
 // An object is what you return when resolving parameters containing an object. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see .
+
+
+// A resolution result for placemark information associated with an intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult
 type INPlacemarkResolutionResult struct {
 	INIntentResolutionResult
@@ -82,16 +86,20 @@ func NewINPlacemarkResolutionResult() INPlacemarkResolutionResult {
 }
 
 
+
 // Creates an object whose resolution requires that the user must confirm the value before proceeding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/confirmationRequired(with:)
 func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm corelocation.IPlacemark) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("confirmationRequiredWithPlacemarkToConfirm:"), placemarkToConfirm)
 	return rv
 }
 
+
 // Creates an object whose resolution requires the user to select from among the specified objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/disambiguation(with:)
 func (ic _INPlacemarkResolutionResultClass) DisambiguationWithPlacemarksToDisambiguate(placemarksToDisambiguate []corelocation.IPlacemark) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("disambiguationWithPlacemarksToDisambiguate:"), placemarksToDisambiguate)

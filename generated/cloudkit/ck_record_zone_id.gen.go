@@ -44,7 +44,6 @@ type ICKRecordZoneID interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID
-
 type CKRecordZoneID struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewCKRecordZoneID() CKRecordZoneID {
 
 
 
-
 // Creates a record zone ID with the specified name and owner.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneID/initWithZoneName:ownerName:
-
 func NewCKRecordZoneIDWithZoneNameOwnerName(zoneName string, ownerName string) CKRecordZoneID {
 	instance := getCKRecordZoneIDClass().Alloc()
 	rv := objc.Send[CKRecordZoneID](instance.ID, objc.Sel("initWithZoneName:ownerName:"), objc.String(zoneName), objc.String(ownerName))
@@ -108,7 +105,6 @@ func NewCKRecordZoneIDWithZoneNameOwnerName(zoneName string, ownerName string) C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/ownerName
-
 func (c_ CKRecordZoneID) OwnerName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("ownerName"))
 	return rv
@@ -119,7 +115,6 @@ func (c_ CKRecordZoneID) OwnerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/zoneName
-
 func (c_ CKRecordZoneID) ZoneName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("zoneName"))
 	return rv
@@ -130,7 +125,6 @@ func (c_ CKRecordZoneID) ZoneName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
-
 func (c_ CKRecordZoneID) CKCurrentUserDefaultName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
 	return rv

@@ -44,7 +44,6 @@ type IHKContactsLensSpecification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKContactsLensSpecification
-
 type HKContactsLensSpecification struct {
 	HKLensSpecification
 }
@@ -95,7 +94,6 @@ func NewHKContactsLensSpecification() HKContactsLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
-
 func (h_ HKContactsLensSpecification) BaseCurve() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("baseCurve"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HKContactsLensSpecification) BaseCurve() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
-
 func (h_ HKContactsLensSpecification) SetBaseCurve(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBaseCurve:"), value)
 }
@@ -116,7 +113,6 @@ func (h_ HKContactsLensSpecification) SetBaseCurve(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
-
 func (h_ HKContactsLensSpecification) Diameter() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("diameter"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKContactsLensSpecification) Diameter() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
-
 func (h_ HKContactsLensSpecification) SetDiameter(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDiameter:"), value)
 }

@@ -30,20 +30,26 @@ type _SpeechSynthesizerClass struct {
 // An interface definition for the [SpeechSynthesizer] class.
 type ISpeechSynthesizer interface {
 	objectivec.IObject
+	ContinueSpeaking() bool
+	PauseSpeakingAtBoundary(boundary ISpeechBoundary) bool
 	SpeakUtterance(utterance IAVSpeechUtterance)
+	StopSpeakingAtBoundary(boundary ISpeechBoundary) bool
+	WriteUtteranceToBufferCallback(utterance IAVSpeechUtterance, bufferCallback unsafe.Pointer)
+	WriteUtteranceToBufferCallbackToMarkerCallback(utterance IAVSpeechUtterance, bufferCallback unsafe.Pointer, markerCallback unsafe.Pointer)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	Paused() bool
 	Speaking() bool
+	MixToTelephonyUplink() bool
+	SetMixToTelephonyUplink(value bool)
+	OutputChannels() []unsafe.Pointer
+	SetOutputChannels(value []unsafe.IPointer)
+	UsesApplicationAudioSession() bool
+	SetUsesApplicationAudioSession(value bool)
 	IsPaused() bool
 	SetIsPaused(value bool)
 	IsSpeaking() bool
 	SetIsSpeaking(value bool)
-	MixToTelephonyUplink() bool
-	SetMixToTelephonyUplink(value bool)
-	OutputChannels() unsafe.Pointer
-	SetOutputChannels(value unsafe.Pointer)
-	UsesApplicationAudioSession() bool
-	SetUsesApplicationAudioSession(value bool)
 	PreUtteranceDelay() unsafe.Pointer
 	SetPreUtteranceDelay(value unsafe.Pointer)
 	Voice() AVSpeechSynthesisVoice
@@ -59,7 +65,6 @@ type ISpeechSynthesizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer
-
 type SpeechSynthesizer struct {
 	objectivec.Object
 }
@@ -104,14 +109,78 @@ func NewSpeechSynthesizer() SpeechSynthesizer {
 
 
 
+// Prompts the user to authorize your app to use personal voices.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/requestPersonalVoiceAuthorization(completionHandler:)
+func (sc _SpeechSynthesizerClass) RequestPersonalVoiceAuthorizationWithCompletionHandler(handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("requestPersonalVoiceAuthorizationWithCompletionHandler:"), handler)
+}
+
+
+// Your app’s authorization to use personal voices.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/personalVoiceAuthorizationStatus-swift.type.property
+func (sc _SpeechSynthesizerClass) PersonalVoiceAuthorizationStatus() SpeechSynthesisPersonalVoiceAuthorizationStatus {
+	rv := objc.Send[SpeechSynthesisPersonalVoiceAuthorizationStatus](objc.ID(sc.class), objc.Sel("personalVoiceAuthorizationStatus"))
+	return rv
+}
+
+// Resumes speech from its paused point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/continueSpeaking()
+func (s_ SpeechSynthesizer) ContinueSpeaking() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("continueSpeaking"))
+	return rv
+}
+
+
+// Pauses speech at the boundary you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/pauseSpeaking(at:)
+func (s_ SpeechSynthesizer) PauseSpeakingAtBoundary(boundary ISpeechBoundary) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("pauseSpeakingAtBoundary:"), boundary)
+	return rv
+}
+
 
 // Adds the utterance you specify to the speech synthesizer’s queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/speak(_:)
-
 func (s_ SpeechSynthesizer) SpeakUtterance(utterance IAVSpeechUtterance) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("speakUtterance:"), utterance)
+}
+
+
+// Stops speech at the boundary you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/stopSpeaking(at:)
+func (s_ SpeechSynthesizer) StopSpeakingAtBoundary(boundary ISpeechBoundary) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("stopSpeakingAtBoundary:"), boundary)
+	return rv
+}
+
+
+// Generates speech for the utterance and invokes the callback with the audio buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/write(_:toBufferCallback:)
+func (s_ SpeechSynthesizer) WriteUtteranceToBufferCallback(utterance IAVSpeechUtterance, bufferCallback unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("writeUtterance:toBufferCallback:"), utterance, bufferCallback)
+}
+
+
+// Generates audio buffers and associated metadata for storage or further speech synthesis processing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/write(_:toBufferCallback:toMarkerCallback:)
+func (s_ SpeechSynthesizer) WriteUtteranceToBufferCallbackToMarkerCallback(utterance IAVSpeechUtterance, bufferCallback unsafe.Pointer, markerCallback unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("writeUtterance:toBufferCallback:toMarkerCallback:"), utterance, bufferCallback, markerCallback)
 }
 
 
@@ -119,7 +188,6 @@ func (s_ SpeechSynthesizer) SpeakUtterance(utterance IAVSpeechUtterance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/delegate
-
 func (s_ SpeechSynthesizer) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -130,9 +198,18 @@ func (s_ SpeechSynthesizer) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/delegate
-
 func (s_ SpeechSynthesizer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// A Boolean value that indicates whether a speech synthesizer is in a paused state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/isPaused
+func (s_ SpeechSynthesizer) Paused() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("paused"))
+	return rv
 }
 
 
@@ -140,10 +217,86 @@ func (s_ SpeechSynthesizer) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/isSpeaking
-
 func (s_ SpeechSynthesizer) Speaking() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("speaking"))
 	return rv
+}
+
+
+// A Boolean value that specifies whether to send synthesized speech to an active call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/mixToTelephonyUplink
+func (s_ SpeechSynthesizer) MixToTelephonyUplink() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("mixToTelephonyUplink"))
+	return rv
+}
+
+
+// A Boolean value that specifies whether to send synthesized speech to an active call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/mixToTelephonyUplink
+func (s_ SpeechSynthesizer) SetMixToTelephonyUplink(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMixToTelephonyUplink:"), value)
+}
+
+
+// An array of audio session channels to route generated speech.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/outputChannels
+func (s_ SpeechSynthesizer) OutputChannels() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("outputChannels"))
+	return rv
+}
+
+
+// An array of audio session channels to route generated speech.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/outputChannels
+func (s_ SpeechSynthesizer) SetOutputChannels(value []unsafe.IPointer) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setOutputChannels:"), nsArray)
+}
+
+
+// Your app’s authorization to use personal voices.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/personalVoiceAuthorizationStatus-swift.type.property
+func (s_ SpeechSynthesizer) PersonalVoiceAuthorizationStatus() SpeechSynthesisPersonalVoiceAuthorizationStatus {
+	rv := objc.Send[SpeechSynthesisPersonalVoiceAuthorizationStatus](s_.ID, objc.Sel("personalVoiceAuthorizationStatus"))
+	return rv
+}
+
+
+// A Boolean value that specifies whether the app manages the audio session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/usesApplicationAudioSession
+func (s_ SpeechSynthesizer) UsesApplicationAudioSession() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("usesApplicationAudioSession"))
+	return rv
+}
+
+
+// A Boolean value that specifies whether the app manages the audio session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/usesApplicationAudioSession
+func (s_ SpeechSynthesizer) SetUsesApplicationAudioSession(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
 }
 
 
@@ -151,7 +304,6 @@ func (s_ SpeechSynthesizer) Speaking() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused
-
 func (s_ SpeechSynthesizer) IsPaused() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isPaused"))
 	return rv
@@ -162,7 +314,6 @@ func (s_ SpeechSynthesizer) IsPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused
-
 func (s_ SpeechSynthesizer) SetIsPaused(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPaused:"), value)
 }
@@ -172,7 +323,6 @@ func (s_ SpeechSynthesizer) SetIsPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking
-
 func (s_ SpeechSynthesizer) IsSpeaking() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSpeaking"))
 	return rv
@@ -183,72 +333,8 @@ func (s_ SpeechSynthesizer) IsSpeaking() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking
-
 func (s_ SpeechSynthesizer) SetIsSpeaking(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpeaking:"), value)
-}
-
-
-// A Boolean value that specifies whether to send synthesized speech to an active call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/mixtotelephonyuplink
-
-func (s_ SpeechSynthesizer) MixToTelephonyUplink() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("mixToTelephonyUplink"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether to send synthesized speech to an active call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/mixtotelephonyuplink
-
-func (s_ SpeechSynthesizer) SetMixToTelephonyUplink(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMixToTelephonyUplink:"), value)
-}
-
-
-// An array of audio session channels to route generated speech.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/outputchannels
-
-func (s_ SpeechSynthesizer) OutputChannels() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("outputChannels"))
-	return rv
-}
-
-
-// An array of audio session channels to route generated speech.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/outputchannels
-
-func (s_ SpeechSynthesizer) SetOutputChannels(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setOutputChannels:"), value)
-}
-
-
-// A Boolean value that specifies whether the app manages the audio session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/usesapplicationaudiosession
-
-func (s_ SpeechSynthesizer) UsesApplicationAudioSession() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("usesApplicationAudioSession"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether the app manages the audio session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/usesapplicationaudiosession
-
-func (s_ SpeechSynthesizer) SetUsesApplicationAudioSession(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
 }
 
 
@@ -256,7 +342,6 @@ func (s_ SpeechSynthesizer) SetUsesApplicationAudioSession(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay
-
 func (s_ SpeechSynthesizer) PreUtteranceDelay() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preUtteranceDelay"))
 	return rv
@@ -267,7 +352,6 @@ func (s_ SpeechSynthesizer) PreUtteranceDelay() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay
-
 func (s_ SpeechSynthesizer) SetPreUtteranceDelay(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
 }
@@ -277,7 +361,6 @@ func (s_ SpeechSynthesizer) SetPreUtteranceDelay(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-
 func (s_ SpeechSynthesizer) Voice() AVSpeechSynthesisVoice {
 	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
@@ -288,7 +371,6 @@ func (s_ SpeechSynthesizer) Voice() AVSpeechSynthesisVoice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-
 func (s_ SpeechSynthesizer) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }

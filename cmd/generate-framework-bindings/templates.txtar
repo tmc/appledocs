@@ -352,255 +352,6 @@ func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}
 
 {{end}}
 
--- classes.gen.go --
-// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
-
-package {{.PackageName}}
-
-import (
-	"sync"
-	"unsafe"
-
-	"github.com/ebitengine/purego/objc"
-	{{- if ne .Framework "Foundation"}}
-	"github.com/tmc/appledocs/generated/foundation"
-	{{- end}}
-	{{- if ne .Framework "CoreGraphics"}}
-	"github.com/tmc/appledocs/generated/coregraphics"
-	{{- end}}
-	{{- if ne .Framework "AppKit"}}
-	"github.com/tmc/appledocs/generated/appkit"
-	{{- end}}
-	{{- if ne .Framework "QuartzCore"}}
-	"github.com/tmc/appledocs/generated/quartzcore"
-	{{- end}}
-)
-
-// {{.Framework}} Classes - Objective-C runtime bindings
-//
-// This file contains class declarations and methods discovered from Apple's documentation.
-// These use purego/objc runtime bindings to provide Go wrappers for Objective-C classes.
-
-{{range .Classes -}}
-{{$framework := $.Framework -}}
-{{$className := .Name -}}
-{{$structName := classToStructName .Name -}}
-{{$varName := classToVarName .Name -}}
-{{$classTypeName := print "_" $structName "Class" -}}
-{{$classReceiver := receiverName $structName true -}}
-{{$instReceiver := receiverName $structName false -}}
-
-// The class instance for the [{{$structName}}] class.
-var (
-	{{$varName}}     {{$classTypeName}}
-	{{$varName}}Once sync.Once
-)
-
-func get{{$structName}}Class() {{$classTypeName}} {
-	{{$varName}}Once.Do(func() {
-		{{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
-	})
-	return {{$varName}}
-}
-
-type {{$classTypeName}} struct {
-	class objc.Class
-}
-
-// An interface definition for the [{{$structName}}] class.
-type I{{$structName}} interface {
-	{{- if and .SuperClass (ne .SuperClass "NSObject")}}
-	{{- $superStructName := classToStructName .SuperClass}}
-	{{- $isSelfReferential := eq $superStructName $structName}}
-	{{- if $isSelfReferential}}
-	objectivec.IObject
-	{{- else}}
-	{{- $superResolved := resolveType $.Framework $superStructName}}
-	{{- if hasPrefix $superResolved "foundation."}}
-	foundation.I{{trimPrefix $superResolved "foundation."}}
-	{{- else if hasPrefix $superResolved "appkit."}}
-	appkit.I{{trimPrefix $superResolved "appkit."}}
-	{{- else if hasPrefix $superResolved "quartzcore."}}
-	quartzcore.I{{trimPrefix $superResolved "quartzcore."}}
-	{{- else if hasPrefix $superResolved "objectivec."}}
-	objectivec.I{{trimPrefix $superResolved "objectivec."}}
-	{{- else}}
-	I{{$superStructName}}
-	{{- end}}
-	{{- end}}
-	{{- else if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject")}}
-	objc.IObject
-	{{- else if eq $.Framework "ObjectiveC"}}
-	IObject
-	{{- else}}
-	objectivec.IObject
-	{{- end}}
-	{{- range filterPropertyMethods .}}
-	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
-	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
-	{{- $isInitMethod := hasPrefix .Selector "init"}}
-	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
-	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
-	{{- end}}
-	{{- end}}
-	{{- end}}
-	{{- range .Properties}}
-	{{- if not .IsClassProperty}}
-	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
-	{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
-	{{- $capitalizedName := capitalize .Name}}
-	{{- $conflictsWithParent := propertyConflictsWithParent $className $.SuperClass .Name}}
-	{{- if and (ne $goType "") (not $conflictsWithParent)}}
-	{{$capitalizedName}}() {{$goType}}
-	{{- $isReadOnly := contains .Attributes "readonly"}}
-	{{- if not $isReadOnly}}
-	{{- $setterParamType := typeToInterfaceType $ $goType}}
-	Set{{$capitalizedName}}(value {{$setterParamType}})
-	{{- end}}
-	{{- end}}
-	{{- end}}
-	{{- end}}
-	// DEBUG: {{len .Properties}} properties
-}
-
-
-
-{{if .Abstract -}}
-// {{commentLine .Abstract}}
-{{if .Overview}}//
-// {{commentLine .Overview}}
-{{end -}}
-{{end -}}
-{{if or .Abstract .DocURL}}
-{{template "doc_comment" .}}
-{{end -}}
-type {{$structName}} struct {
-	{{getStructEmbeddedField . $.Framework}}
-}
-
-// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
-{{if .Abstract -}}
-//
-// {{commentLine .Abstract}}
-{{end -}}
-func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	{{getFromConstructorBody . $.Framework}}
-}
-
-// Alloc allocates a new instance without initialization.
-func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
-	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("alloc"))
-	return rv
-}
-
-// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
-func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
-	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("new"))
-	rv.Autorelease()
-	return rv
-}
-
-// Init initializes the instance.
-func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
-	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("init"))
-	return rv
-}
-
-// Autorelease adds the receiver to the current autorelease pool.
-func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
-	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("autorelease"))
-	return rv
-}
-
-// New{{$structName}} creates a new {{$structName}} instance.
-func New{{$structName}}() {{$structName}} {
-	return get{{$structName}}Class().New()
-}
-
-{{if .HasInitMethods -}}
-{{- range prepareInitMethodsWithClassName $className .Methods}}
-{{- if ne .Selector "init"}}
-{{- $constructorName := initMethodToConstructorName $className .Selector}}
-{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-{{- if or .Abstract .DocURL}}
-{{template "doc_comment" .}}
-{{end -}}
-func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
-{{getConstructorBody . $structName $paramNames}}
-}
-{{end}}
-{{- end}}
-{{end -}}
-{{- range prepareClassMethods .Methods}}
-{{- if not (isEssentialSelector .Selector)}}
-{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
-{{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
-{{- $returnType := $goType}}
-{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
-
-{{- if or .Abstract .DocURL}}
-{{template "doc_comment" .}}
-{{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	return rv
-	{{- else}}
-	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- end}}
-}
-{{end}}
-{{- end}}
-{{- range .Properties}}
-{{- if .IsClassProperty}}
-{{- $goType := mapObjCTypeToGo .Type $framework}}
-{{- /* If the property returns the same type as the class, use the wrapper type instead of the underlying struct */}}
-{{- $returnType := $goType}}
-{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
-{{- $capitalizedName := capitalize .Name}}
-{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
-{{- if and (ne $goType "") (not $conflictsWithParent)}}
-
-{{- if or .Abstract .DocURL}}
-{{template "doc_comment" .}}
-{{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
-	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
-	return rv
-}
-{{- end}}
-{{- end}}
-{{- end}}
-{{- range filterPropertyMethods .}}
-{{- if not (isEssentialSelector .Selector)}}
-{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
-{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
-{{- $isInitMethod := hasPrefix .Selector "init"}}
-{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
-{{- if $hasValidReturnType}}
-{{- if or .Abstract .DocURL}}
-{{template "doc_comment" .}}
-{{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
-	{{- if $isInitMethod}}
-	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	return rv
-	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	return rv
-	{{- else}}
-	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- end}}
-}
-{{- end}}
-{{- end}}
-{{- end}}
-
-{{end -}}
-
 -- class.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -650,10 +401,11 @@ type I{{$structName}} interface {
 	{{- range filterPropertyMethods .}}
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $interfaceType := typeToInterfaceType $goType}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$interfaceType}}{{end}}{{end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}
@@ -661,13 +413,14 @@ type I{{$structName}} interface {
 	{{- if not .IsClassProperty}}
 	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
 	{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
+	{{- $returnType := typeToInterfaceType $goType}}
 	{{- $capitalizedName := capitalize .Name}}
 	{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 	{{- if and (ne $goType "") (not $conflictsWithParent)}}
-	{{$capitalizedName}}() {{$goType}}
+	{{$capitalizedName}}() {{$returnType}}
 	{{- $isReadOnly := contains .Attributes "readonly"}}
 	{{- if not $isReadOnly}}
-	{{- $setterParamType := typeToInterfaceType $ $goType}}
+	{{- $setterParamType := typeToInterfaceType $goType}}
 	Set{{$capitalizedName}}(value {{$setterParamType}})
 	{{- end}}
 	{{- end}}
@@ -748,7 +501,7 @@ func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
 {{- $returnType := $goType}}
-{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
 
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
@@ -768,7 +521,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}})
 {{- $goType := mapObjCTypeToGo .Type $framework}}
 {{- /* If the property returns the same type as the class, use the wrapper type instead of the underlying struct */}}
 {{- $returnType := $goType}}
-{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
 {{- $capitalizedName := capitalize .Name}}
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
@@ -789,7 +542,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
 {{- $returnType := $goType}}
-{{- if eq $goType $className}}{{$returnType = $structName}}{{end}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 {{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 {{- if $hasValidReturnType}}
@@ -814,19 +567,20 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 {{- range .Properties}}
 {{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
 {{- $goType := mapObjCTypeToGo $typeToMap $framework}}
+{{- $returnType := typeToInterfaceType $goType}}
 {{- $capitalizedName := capitalize .Name}}
 {{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
 {{- if and (ne $goType "") (not $conflictsWithParent)}}
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
+func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
 	return rv
 }
 {{ $isReadOnly := contains .Attributes "readonly"}}
 {{- if not $isReadOnly}}
-{{- $setterParamType := typeToInterfaceType $ $goType}}
+{{- $setterParamType := typeToInterfaceType $goType}}
 
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}

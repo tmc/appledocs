@@ -44,7 +44,11 @@ type IINSetRadioStationIntent interface {
 // A request to change the current radio station.
 //
 // When the user asks Siri to change the current radio station, SiriKit creates an object and delivers it to the app’s Intents extension. You use the intent to identify which radio station the user wants. Automotive vendors can use this intent to change the settings on a vehicle’s built-in entertainment system. This properties of this class support identifying a radio station in several different ways, but a given instance of this class contains doesn’t populate all of those properties. When resolving and confirming the parameters of this intent, use the properties that are available to change the station. The object that handles this intent must adopt the protocol. Use this intent object to identify the selected station and to create an object indicating the results of changing the station.
+
+
+// A request to change the current radio station.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetRadioStationIntent
 type INSetRadioStationIntent struct {
 	INIntent
@@ -91,8 +95,10 @@ func NewINSetRadioStationIntent() INSetRadioStationIntent {
 }
 
 
+
 // The channel number of the station.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
 func (i_ INSetRadioStationIntent) Channel() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("channel"))
@@ -100,17 +106,18 @@ func (i_ INSetRadioStationIntent) Channel() string {
 }
 
 
-// SetChannel sets the value of the channel property.
 // The channel number of the station.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
 func (i_ INSetRadioStationIntent) SetChannel(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), objc.String(value))
 }
 
+
 // The broadcast frequency of the radio station.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/frequency-2ctw6
 func (i_ INSetRadioStationIntent) Frequency() float64 {
 	rv := objc.Send[float64](i_.ID, objc.Sel("frequency"))
@@ -118,17 +125,18 @@ func (i_ INSetRadioStationIntent) Frequency() float64 {
 }
 
 
-// SetFrequency sets the value of the frequency property.
 // The broadcast frequency of the radio station.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/frequency-2ctw6
 func (i_ INSetRadioStationIntent) SetFrequency(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFrequency:"), value)
 }
 
+
 // The programmable preset assigned to the station.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/presetnumber-2dub4
 func (i_ INSetRadioStationIntent) PresetNumber() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("presetNumber"))
@@ -136,17 +144,18 @@ func (i_ INSetRadioStationIntent) PresetNumber() int {
 }
 
 
-// SetPresetNumber sets the value of the presetNumber property.
 // The programmable preset assigned to the station.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/presetnumber-2dub4
 func (i_ INSetRadioStationIntent) SetPresetNumber(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPresetNumber:"), value)
 }
 
+
 // The type of radio tuner to use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/radiotype
 func (i_ INSetRadioStationIntent) RadioType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("radioType"))
@@ -154,17 +163,18 @@ func (i_ INSetRadioStationIntent) RadioType() unsafe.Pointer {
 }
 
 
-// SetRadioType sets the value of the radioType property.
 // The type of radio tuner to use.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/radiotype
 func (i_ INSetRadioStationIntent) SetRadioType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRadioType:"), value)
 }
 
+
 // The name associated with the radio station.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
 func (i_ INSetRadioStationIntent) StationName() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("stationName"))
@@ -172,10 +182,9 @@ func (i_ INSetRadioStationIntent) StationName() string {
 }
 
 
-// SetStationName sets the value of the stationName property.
 // The name associated with the radio station.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
 func (i_ INSetRadioStationIntent) SetStationName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), objc.String(value))

@@ -30,9 +30,9 @@ type _CachedURLResponseClass struct {
 // An interface definition for the [CachedURLResponse] class.
 type ICachedURLResponse interface {
 	objectivec.IObject
-	Data() Data
+	Data() IData
 	SetData(value IData)
-	Response() NSURLResponse
+	Response() IURLResponse
 	SetResponse(value IURLResponse)
 	StoragePolicy() unsafe.Pointer
 	SetStoragePolicy(value unsafe.Pointer)
@@ -97,7 +97,7 @@ func NewCachedURLResponse() CachedURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
-func (c_ CachedURLResponse) Data() Data {
+func (c_ CachedURLResponse) Data() IData {
 	rv := objc.Send[Data](c_.ID, objc.Sel("data"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (c_ CachedURLResponse) SetData(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
-func (c_ CachedURLResponse) Response() NSURLResponse {
+func (c_ CachedURLResponse) Response() IURLResponse {
 	rv := objc.Send[NSURLResponse](c_.ID, objc.Sel("response"))
 	return rv
 }

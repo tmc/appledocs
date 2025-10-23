@@ -40,7 +40,6 @@ type IFSGenericURLResource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource
-
 type FSGenericURLResource struct {
 	FSResource
 }
@@ -87,10 +86,8 @@ func NewFSGenericURLResource() FSGenericURLResource {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource/init(url:)
-
 func NewFSGenericURLResourceWithURL(url foundation.IURL) FSGenericURLResource {
 	instance := getFSGenericURLResourceClass().Alloc()
 	rv := objc.Send[FSGenericURLResource](instance.ID, objc.Sel("initWithURL:"), url)
@@ -102,7 +99,6 @@ func NewFSGenericURLResourceWithURL(url foundation.IURL) FSGenericURLResource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource/url
-
 func (f_ FSGenericURLResource) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv

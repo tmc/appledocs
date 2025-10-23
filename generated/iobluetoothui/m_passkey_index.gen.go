@@ -32,7 +32,9 @@ type ImPasskeyIndex interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/mPasskeyIndex
 type mPasskeyIndex struct {
 	objectivec.Object

@@ -39,7 +39,6 @@ type ICNChangeHistoryDeleteGroupEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteGroupEvent
-
 type CNChangeHistoryDeleteGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -90,7 +89,6 @@ func NewCNChangeHistoryDeleteGroupEvent() CNChangeHistoryDeleteGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteGroupEvent/groupIdentifier
-
 func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("groupIdentifier"))
 	return rv

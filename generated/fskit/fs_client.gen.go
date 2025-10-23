@@ -42,7 +42,6 @@ type IFSClient interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient
-
 type FSClient struct {
 	objectivec.Object
 }
@@ -91,18 +90,15 @@ func NewFSClient() FSClient {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/shared
-
 func (fc _FSClientClass) SharedInstance() FSClient {
 	rv := objc.Send[FSClient](objc.ID(fc.class), objc.Sel("sharedInstance"))
 	return rv
 }
 
-
 // Asynchronously retrieves an list of installed file system modules.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/fetchInstalledExtensions(completionHandler:)
-
 func (f_ FSClient) FetchInstalledExtensionsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("fetchInstalledExtensionsWithCompletionHandler:"), completionHandler)
 }
@@ -112,7 +108,6 @@ func (f_ FSClient) FetchInstalledExtensionsWithCompletionHandler(completionHandl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/shared
-
 func (f_ FSClient) SharedInstance() FSClient {
 	rv := objc.Send[FSClient](f_.ID, objc.Sel("sharedInstance"))
 	return rv

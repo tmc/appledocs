@@ -32,7 +32,9 @@ type ImPUTProgress interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mPUTProgress
 type mPUTProgress struct {
 	objectivec.Object

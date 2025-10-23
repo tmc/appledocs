@@ -38,7 +38,11 @@ type IUSBHostIOSource interface {
 // This class provides basic functionality for deriving pipe and stream classes.
 //
 // Don’t create objects of this class or use this class as a subclass. Instead, use and when creating an .
+
+
+// This class provides basic functionality for deriving pipe and stream classes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource
 type USBHostIOSource struct {
 	objectivec.Object
@@ -83,24 +87,30 @@ func NewUSBHostIOSource() USBHostIOSource {
 }
 
 
+
 // The device’s bus address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/deviceAddress
 func (u_ USBHostIOSource) DeviceAddress() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("deviceAddress"))
 	return rv
 }
 
+
 // The pipe or stream’s endpoint address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/endpointAddress
 func (u_ USBHostIOSource) EndpointAddress() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("endpointAddress"))
 	return rv
 }
 
+
 // The interface for the input/output source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/hostInterface
 func (u_ USBHostIOSource) HostInterface() IOUSBHostInterface {
 	rv := objc.Send[IOUSBHostInterface](u_.ID, objc.Sel("hostInterface"))

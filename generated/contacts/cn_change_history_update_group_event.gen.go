@@ -39,7 +39,6 @@ type ICNChangeHistoryUpdateGroupEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateGroupEvent
-
 type CNChangeHistoryUpdateGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -90,7 +89,6 @@ func NewCNChangeHistoryUpdateGroupEvent() CNChangeHistoryUpdateGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateGroupEvent/group
-
 func (c_ CNChangeHistoryUpdateGroupEvent) Group() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv

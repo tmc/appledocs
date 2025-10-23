@@ -32,8 +32,10 @@ type ImDevice interface {
 	objectivec.IObject
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mDevice
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mDevice
 type mDevice struct {
 	objectivec.Object
 }

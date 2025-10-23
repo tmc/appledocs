@@ -36,7 +36,11 @@ type ISecret interface {
 // Data that’s protected by a persisted right.
 //
 // You create instances when you store an ; you can’t create them directly.
+
+
+// Data that’s protected by a persisted right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LASecret
 type Secret struct {
 	objectivec.Object
@@ -81,8 +85,10 @@ func NewSecret() Secret {
 }
 
 
+
 // Retrieves data stored in a secret.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LASecret/loadData(completion:)
 func (s_ Secret) LoadDataWithCompletion(handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("loadDataWithCompletion:"), handler)

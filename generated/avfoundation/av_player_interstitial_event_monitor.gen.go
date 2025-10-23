@@ -34,19 +34,19 @@ type IPlayerInterstitialEventMonitor interface {
 	SetReasonForWaitingToPlay(value unsafe.Pointer)
 	TimeControlStatus() unsafe.Pointer
 	SetTimeControlStatus(value unsafe.Pointer)
-	TemplateItems() AVPlayerItem
+	TemplateItems() IAVPlayerItem
 	SetTemplateItems(value IAVPlayerItem)
-	CurrentEvent() AVPlayerInterstitialEvent
+	CurrentEvent() IAVPlayerInterstitialEvent
 	SetCurrentEvent(value IAVPlayerInterstitialEvent)
 	CurrentEventSkipControlLabel() string
 	SetCurrentEventSkipControlLabel(value string)
 	CurrentEventSkippableState() unsafe.Pointer
 	SetCurrentEventSkippableState(value unsafe.Pointer)
-	Events() AVPlayerInterstitialEvent
+	Events() IAVPlayerInterstitialEvent
 	SetEvents(value IAVPlayerInterstitialEvent)
-	InterstitialPlayer() AVQueuePlayer
+	InterstitialPlayer() IAVQueuePlayer
 	SetInterstitialPlayer(value IAVQueuePlayer)
-	PrimaryPlayer() AVPlayer
+	PrimaryPlayer() IAVPlayer
 	SetPrimaryPlayer(value IAVPlayer)
 }
 
@@ -59,7 +59,6 @@ type IPlayerInterstitialEventMonitor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventMonitor
-
 type PlayerInterstitialEventMonitor struct {
 	objectivec.Object
 }
@@ -108,7 +107,6 @@ func NewPlayerInterstitialEventMonitor() PlayerInterstitialEventMonitor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/reasonforwaitingtoplay
-
 func (p_ PlayerInterstitialEventMonitor) ReasonForWaitingToPlay() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("reasonForWaitingToPlay"))
 	return rv
@@ -119,7 +117,6 @@ func (p_ PlayerInterstitialEventMonitor) ReasonForWaitingToPlay() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/reasonforwaitingtoplay
-
 func (p_ PlayerInterstitialEventMonitor) SetReasonForWaitingToPlay(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReasonForWaitingToPlay:"), value)
 }
@@ -129,7 +126,6 @@ func (p_ PlayerInterstitialEventMonitor) SetReasonForWaitingToPlay(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
-
 func (p_ PlayerInterstitialEventMonitor) TimeControlStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeControlStatus"))
 	return rv
@@ -140,7 +136,6 @@ func (p_ PlayerInterstitialEventMonitor) TimeControlStatus() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
-
 func (p_ PlayerInterstitialEventMonitor) SetTimeControlStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeControlStatus:"), value)
 }
@@ -150,8 +145,7 @@ func (p_ PlayerInterstitialEventMonitor) SetTimeControlStatus(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
-
-func (p_ PlayerInterstitialEventMonitor) TemplateItems() AVPlayerItem {
+func (p_ PlayerInterstitialEventMonitor) TemplateItems() IAVPlayerItem {
 	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("templateItems"))
 	return rv
 }
@@ -161,7 +155,6 @@ func (p_ PlayerInterstitialEventMonitor) TemplateItems() AVPlayerItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
-
 func (p_ PlayerInterstitialEventMonitor) SetTemplateItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateItems:"), value)
 }
@@ -171,8 +164,7 @@ func (p_ PlayerInterstitialEventMonitor) SetTemplateItems(value IAVPlayerItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currentevent
-
-func (p_ PlayerInterstitialEventMonitor) CurrentEvent() AVPlayerInterstitialEvent {
+func (p_ PlayerInterstitialEventMonitor) CurrentEvent() IAVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("currentEvent"))
 	return rv
 }
@@ -182,7 +174,6 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEvent() AVPlayerInterstitialEven
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currentevent
-
 func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEvent:"), value)
 }
@@ -192,7 +183,6 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerIntersti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-
 func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
 	return rv
@@ -203,7 +193,6 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-
 func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), objc.String(value))
 }
@@ -213,7 +202,6 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestate
-
 func (p_ PlayerInterstitialEventMonitor) CurrentEventSkippableState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentEventSkippableState"))
 	return rv
@@ -224,7 +212,6 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEventSkippableState() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestate
-
 func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkippableState(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkippableState:"), value)
 }
@@ -234,8 +221,7 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkippableState(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/events
-
-func (p_ PlayerInterstitialEventMonitor) Events() AVPlayerInterstitialEvent {
+func (p_ PlayerInterstitialEventMonitor) Events() IAVPlayerInterstitialEvent {
 	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("events"))
 	return rv
 }
@@ -245,7 +231,6 @@ func (p_ PlayerInterstitialEventMonitor) Events() AVPlayerInterstitialEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/events
-
 func (p_ PlayerInterstitialEventMonitor) SetEvents(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEvents:"), value)
 }
@@ -255,8 +240,7 @@ func (p_ PlayerInterstitialEventMonitor) SetEvents(value IAVPlayerInterstitialEv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialplayer
-
-func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() AVQueuePlayer {
+func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() IAVQueuePlayer {
 	rv := objc.Send[AVQueuePlayer](p_.ID, objc.Sel("interstitialPlayer"))
 	return rv
 }
@@ -266,7 +250,6 @@ func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() AVQueuePlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialplayer
-
 func (p_ PlayerInterstitialEventMonitor) SetInterstitialPlayer(value IAVQueuePlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInterstitialPlayer:"), value)
 }
@@ -276,8 +259,7 @@ func (p_ PlayerInterstitialEventMonitor) SetInterstitialPlayer(value IAVQueuePla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/primaryplayer
-
-func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() AVPlayer {
+func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() IAVPlayer {
 	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("primaryPlayer"))
 	return rv
 }
@@ -287,7 +269,6 @@ func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() AVPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/primaryplayer
-
 func (p_ PlayerInterstitialEventMonitor) SetPrimaryPlayer(value IAVPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrimaryPlayer:"), value)
 }

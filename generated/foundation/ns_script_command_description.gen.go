@@ -31,10 +31,10 @@ type _ScriptCommandDescriptionClass struct {
 type IScriptCommandDescription interface {
 	objectivec.IObject
 	AppleEventCodeForArgumentWithName(argumentName string) unsafe.Pointer
-	CreateCommandInstance() ScriptCommand
-	CreateCommandInstanceWithZone(zone unsafe.Pointer) ScriptCommand
+	CreateCommandInstance() IScriptCommand
+	CreateCommandInstanceWithZone(zone unsafe.Pointer) IScriptCommand
 	IsOptionalArgumentWithName(argumentName string) bool
-	TypeForArgumentWithName(argumentName string) String
+	TypeForArgumentWithName(argumentName string) IString
 	AppleEventClassCode() unsafe.Pointer
 	AppleEventCode() unsafe.Pointer
 	AppleEventCodeForReturnType() unsafe.Pointer
@@ -135,7 +135,7 @@ func (s_ ScriptCommandDescription) AppleEventCodeForArgumentWithName(argumentNam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/createCommandInstance()
-func (s_ ScriptCommandDescription) CreateCommandInstance() ScriptCommand {
+func (s_ ScriptCommandDescription) CreateCommandInstance() IScriptCommand {
 	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("createCommandInstance"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (s_ ScriptCommandDescription) CreateCommandInstance() ScriptCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/createCommandInstance(with:)
-func (s_ ScriptCommandDescription) CreateCommandInstanceWithZone(zone unsafe.Pointer) ScriptCommand {
+func (s_ ScriptCommandDescription) CreateCommandInstanceWithZone(zone unsafe.Pointer) IScriptCommand {
 	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("createCommandInstanceWithZone:"), zone)
 	return rv
 }
@@ -165,7 +165,7 @@ func (s_ ScriptCommandDescription) IsOptionalArgumentWithName(argumentName strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/typeForArgument(withName:)
-func (s_ ScriptCommandDescription) TypeForArgumentWithName(argumentName string) String {
+func (s_ ScriptCommandDescription) TypeForArgumentWithName(argumentName string) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("typeForArgumentWithName:"), objc.String(argumentName))
 	return rv
 }

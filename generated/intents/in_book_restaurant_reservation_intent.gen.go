@@ -49,7 +49,11 @@ type IINBookRestaurantReservationIntent interface {
 // A request to create a reservation at the specified restaurant.
 //
 // An object asks you to book the reservation time selected by the user. Maps sends this intent to your Intents extension when the user selects a reservation time from the available options. Use this intent object to obtain the details of the reservation, including the time slot and any selected special offers. Use those details to confirm the reservation with the restaurant and store the results in your system. Booking a reservation is the last step in the reservation creation process. By the time the system delivers this intent to your Intents extension, the user has already had an opportunity to view a list of potential reservation times and configure the details of the reservation request. This intent object contains all of the final choices made by the user. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm any parameters and create an object with the status of the reservation.
+
+
+// A request to create a reservation at the specified restaurant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INBookRestaurantReservationIntent
 type INBookRestaurantReservationIntent struct {
 	INIntent
@@ -96,8 +100,10 @@ func NewINBookRestaurantReservationIntent() INBookRestaurantReservationIntent {
 }
 
 
+
 // The date and time of the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingdatecomponents
 func (i_ INBookRestaurantReservationIntent) BookingDateComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("bookingDateComponents"))
@@ -105,17 +111,18 @@ func (i_ INBookRestaurantReservationIntent) BookingDateComponents() foundation.D
 }
 
 
-// SetBookingDateComponents sets the value of the bookingDateComponents property.
 // The date and time of the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingdatecomponents
 func (i_ INBookRestaurantReservationIntent) SetBookingDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingDateComponents:"), value)
 }
 
+
 // The unique identifier associated with the initial reservation data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingidentifier
 func (i_ INBookRestaurantReservationIntent) BookingIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("bookingIdentifier"))
@@ -123,17 +130,18 @@ func (i_ INBookRestaurantReservationIntent) BookingIdentifier() string {
 }
 
 
-// SetBookingIdentifier sets the value of the bookingIdentifier property.
 // The unique identifier associated with the initial reservation data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingidentifier
 func (i_ INBookRestaurantReservationIntent) SetBookingIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingIdentifier:"), objc.String(value))
 }
 
+
 // The identity of the guest associated with the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guest
 func (i_ INBookRestaurantReservationIntent) Guest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("guest"))
@@ -141,17 +149,18 @@ func (i_ INBookRestaurantReservationIntent) Guest() unsafe.Pointer {
 }
 
 
-// SetGuest sets the value of the guest property.
 // The identity of the guest associated with the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guest
 func (i_ INBookRestaurantReservationIntent) SetGuest(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGuest:"), value)
 }
 
+
 // Information about any special requests made by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
 func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
@@ -159,17 +168,18 @@ func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() st
 }
 
 
-// SetGuestProvidedSpecialRequestText sets the value of the guestProvidedSpecialRequestText property.
 // Information about any special requests made by the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
 func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), objc.String(value))
 }
 
+
 // The total number of people in the user’s party.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/partysize
 func (i_ INBookRestaurantReservationIntent) PartySize() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("partySize"))
@@ -177,17 +187,18 @@ func (i_ INBookRestaurantReservationIntent) PartySize() int {
 }
 
 
-// SetPartySize sets the value of the partySize property.
 // The total number of people in the user’s party.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/partysize
 func (i_ INBookRestaurantReservationIntent) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
 
+
 // The restaurant to contact regarding the booking.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/restaurant
 func (i_ INBookRestaurantReservationIntent) Restaurant() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurant"))
@@ -195,17 +206,18 @@ func (i_ INBookRestaurantReservationIntent) Restaurant() unsafe.Pointer {
 }
 
 
-// SetRestaurant sets the value of the restaurant property.
 // The restaurant to contact regarding the booking.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/restaurant
 func (i_ INBookRestaurantReservationIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
 }
 
+
 // The special offer, if any, selected by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/selectedoffer
 func (i_ INBookRestaurantReservationIntent) SelectedOffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectedOffer"))
@@ -213,10 +225,9 @@ func (i_ INBookRestaurantReservationIntent) SelectedOffer() unsafe.Pointer {
 }
 
 
-// SetSelectedOffer sets the value of the selectedOffer property.
 // The special offer, if any, selected by the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/selectedoffer
 func (i_ INBookRestaurantReservationIntent) SetSelectedOffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectedOffer:"), value)

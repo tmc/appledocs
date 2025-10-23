@@ -47,7 +47,11 @@ type IMKUserLocation interface {
 // An annotation that reflects the user’s location on the map.
 //
 // You don’t create instances of this class directly. Instead, you retrieve an existing object from the property of the map view that displays in your app.
+
+
+// An annotation that reflects the user’s location on the map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation
 type MKUserLocation struct {
 	objectivec.Object
@@ -92,32 +96,40 @@ func NewMKUserLocation() MKUserLocation {
 }
 
 
+
 // The heading of the user’s location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/heading
 func (m_ MKUserLocation) Heading() corelocation.Heading {
 	rv := objc.Send[corelocation.Heading](m_.ID, objc.Sel("heading"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the map view is updating the user’s location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/isUpdating
 func (m_ MKUserLocation) Updating() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("updating"))
 	return rv
 }
 
+
 // The location of the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/location
 func (m_ MKUserLocation) Location() corelocation.Location {
 	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
 	return rv
 }
 
+
 // The subtitle to display for the user’s location annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
 func (m_ MKUserLocation) Subtitle() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
@@ -125,17 +137,18 @@ func (m_ MKUserLocation) Subtitle() string {
 }
 
 
-// SetSubtitle sets the value of the subtitle property.
 // The subtitle to display for the user’s location annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
 func (m_ MKUserLocation) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
+
 // The title to display for the user’s location annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
 func (m_ MKUserLocation) Title() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
@@ -143,17 +156,18 @@ func (m_ MKUserLocation) Title() string {
 }
 
 
-// SetTitle sets the value of the title property.
 // The title to display for the user’s location annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
 func (m_ MKUserLocation) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
+
 // The annotation object that represents the user’s location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
 func (m_ MKUserLocation) UserLocation() MKUserLocation {
 	rv := objc.Send[MKUserLocation](m_.ID, objc.Sel("userLocation"))
@@ -161,17 +175,18 @@ func (m_ MKUserLocation) UserLocation() MKUserLocation {
 }
 
 
-// SetUserLocation sets the value of the userLocation property.
 // The annotation object that represents the user’s location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
 func (m_ MKUserLocation) SetUserLocation(value IMKUserLocation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserLocation:"), value)
 }
 
+
 // A Boolean value that indicates whether the map view is updating the user’s location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
 func (m_ MKUserLocation) IsUpdating() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdating"))
@@ -179,10 +194,9 @@ func (m_ MKUserLocation) IsUpdating() bool {
 }
 
 
-// SetIsUpdating sets the value of the isUpdating property.
 // A Boolean value that indicates whether the map view is updating the user’s location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
 func (m_ MKUserLocation) SetIsUpdating(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdating:"), value)

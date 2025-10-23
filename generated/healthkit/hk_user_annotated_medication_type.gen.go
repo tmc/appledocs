@@ -35,7 +35,6 @@ type IHKUserAnnotatedMedicationType interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedicationType
-
 type HKUserAnnotatedMedicationType struct {
 	HKObjectType
 }

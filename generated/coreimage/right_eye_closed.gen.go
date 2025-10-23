@@ -36,7 +36,6 @@ type IrightEyeClosed interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyeClosed-c.ivar
-
 type rightEyeClosed struct {
 	objectivec.Object
 }

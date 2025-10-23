@@ -53,7 +53,6 @@ type IMultiArrayConstraint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayConstraint
-
 type MultiArrayConstraint struct {
 	objectivec.Object
 }
@@ -102,7 +101,6 @@ func NewMultiArrayConstraint() MultiArrayConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayConstraint/dataType
-
 func (m_ MultiArrayConstraint) DataType() MultiArrayDataType {
 	rv := objc.Send[MultiArrayDataType](m_.ID, objc.Sel("dataType"))
 	return rv
@@ -113,7 +111,6 @@ func (m_ MultiArrayConstraint) DataType() MultiArrayDataType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayConstraint/shape
-
 func (m_ MultiArrayConstraint) Shape() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("shape"))
 	return rv
@@ -124,7 +121,6 @@ func (m_ MultiArrayConstraint) Shape() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArrayConstraint/shapeConstraint
-
 func (m_ MultiArrayConstraint) ShapeConstraint() MLMultiArrayShapeConstraint {
 	rv := objc.Send[MLMultiArrayShapeConstraint](m_.ID, objc.Sel("shapeConstraint"))
 	return rv
@@ -135,7 +131,6 @@ func (m_ MultiArrayConstraint) ShapeConstraint() MLMultiArrayShapeConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-
 func (m_ MultiArrayConstraint) DictionaryConstraint() MLDictionaryConstraint {
 	rv := objc.Send[MLDictionaryConstraint](m_.ID, objc.Sel("dictionaryConstraint"))
 	return rv
@@ -146,7 +141,6 @@ func (m_ MultiArrayConstraint) DictionaryConstraint() MLDictionaryConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-
 func (m_ MultiArrayConstraint) SetDictionaryConstraint(value IMLDictionaryConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionaryConstraint:"), value)
 }
@@ -156,7 +150,6 @@ func (m_ MultiArrayConstraint) SetDictionaryConstraint(value IMLDictionaryConstr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-
 func (m_ MultiArrayConstraint) ImageConstraint() MLImageConstraint {
 	rv := objc.Send[MLImageConstraint](m_.ID, objc.Sel("imageConstraint"))
 	return rv
@@ -167,7 +160,6 @@ func (m_ MultiArrayConstraint) ImageConstraint() MLImageConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-
 func (m_ MultiArrayConstraint) SetImageConstraint(value IMLImageConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageConstraint:"), value)
 }
@@ -177,7 +169,6 @@ func (m_ MultiArrayConstraint) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-
 func (m_ MultiArrayConstraint) MultiArrayConstraint() MLMultiArrayConstraint {
 	rv := objc.Send[MLMultiArrayConstraint](m_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
@@ -188,7 +179,6 @@ func (m_ MultiArrayConstraint) MultiArrayConstraint() MLMultiArrayConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-
 func (m_ MultiArrayConstraint) SetMultiArrayConstraint(value IMLMultiArrayConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMultiArrayConstraint:"), value)
 }
@@ -198,7 +188,6 @@ func (m_ MultiArrayConstraint) SetMultiArrayConstraint(value IMLMultiArrayConstr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-
 func (m_ MultiArrayConstraint) SequenceConstraint() MLSequenceConstraint {
 	rv := objc.Send[MLSequenceConstraint](m_.ID, objc.Sel("sequenceConstraint"))
 	return rv
@@ -209,7 +198,6 @@ func (m_ MultiArrayConstraint) SequenceConstraint() MLSequenceConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-
 func (m_ MultiArrayConstraint) SetSequenceConstraint(value IMLSequenceConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSequenceConstraint:"), value)
 }
@@ -219,7 +207,6 @@ func (m_ MultiArrayConstraint) SetSequenceConstraint(value IMLSequenceConstraint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
-
 func (m_ MultiArrayConstraint) StateConstraint() MLStateConstraint {
 	rv := objc.Send[MLStateConstraint](m_.ID, objc.Sel("stateConstraint"))
 	return rv
@@ -230,7 +217,6 @@ func (m_ MultiArrayConstraint) StateConstraint() MLStateConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
-
 func (m_ MultiArrayConstraint) SetStateConstraint(value IMLStateConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStateConstraint:"), value)
 }

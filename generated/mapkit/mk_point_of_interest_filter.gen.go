@@ -37,7 +37,11 @@ type IMKPointOfInterestFilter interface {
 // A filter that includes or excludes point of interest categories from a map view, local search, or local search completer.
 //
 // You can apply a point of interest filter in a map view ( ), a local search request ( ), a search completer ( ), and in snapshot options ( ).
+
+
+// A filter that includes or excludes point of interest categories from a map view, local search, or local search completer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPointOfInterestFilter
 type MKPointOfInterestFilter struct {
 	objectivec.Object
@@ -82,8 +86,10 @@ func NewMKPointOfInterestFilter() MKPointOfInterestFilter {
 }
 
 
+
 // A filter that lists point of interest categories to include or exclude in the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
 func (m_ MKPointOfInterestFilter) PointOfInterestFilter() MKPointOfInterestFilter {
 	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
@@ -91,10 +97,9 @@ func (m_ MKPointOfInterestFilter) PointOfInterestFilter() MKPointOfInterestFilte
 }
 
 
-// SetPointOfInterestFilter sets the value of the pointOfInterestFilter property.
 // A filter that lists point of interest categories to include or exclude in the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
 func (m_ MKPointOfInterestFilter) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)

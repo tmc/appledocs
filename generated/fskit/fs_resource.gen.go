@@ -46,7 +46,6 @@ type IFSResource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource
-
 type FSResource struct {
 	objectivec.Object
 }
@@ -91,24 +90,20 @@ func NewFSResource() FSResource {
 
 
 
-
 // Creates a proxy object of this resource.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/makeProxy()
-
 func (f_ FSResource) MakeProxy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("makeProxy"))
 	return rv
 }
 
 
-
 // Revokes the resource.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/revoke()
-
 func (f_ FSResource) Revoke() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("revoke"))
 }
@@ -118,7 +113,6 @@ func (f_ FSResource) Revoke() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/isRevoked
-
 func (f_ FSResource) Revoked() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("revoked"))
 	return rv
@@ -129,7 +123,6 @@ func (f_ FSResource) Revoked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
-
 func (f_ FSResource) IsRevoked() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRevoked"))
 	return rv
@@ -140,7 +133,6 @@ func (f_ FSResource) IsRevoked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
-
 func (f_ FSResource) SetIsRevoked(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRevoked:"), value)
 }

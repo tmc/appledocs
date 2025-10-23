@@ -46,7 +46,6 @@ type ICNContactFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter
-
 type CNContactFormatter struct {
 	foundation.Formatter
 }
@@ -97,7 +96,6 @@ func NewCNContactFormatter() CNContactFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:style:defaultAttributes:)
-
 func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttributes(contact ICNContact, style CNContactFormatterStyle, attributes objectivec.IObject) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromContact:style:defaultAttributes:"), contact, style, attributes)
 	return rv
@@ -108,7 +106,6 @@ func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttrib
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/delimiter(for:)
-
 func (cc _CNContactFormatterClass) DelimiterForContact(contact ICNContact) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
 	return rv
@@ -119,7 +116,6 @@ func (cc _CNContactFormatterClass) DelimiterForContact(contact ICNContact) found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeys(for:)
-
 func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForStyle(style CNContactFormatterStyle) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForStyle:"), style)
 	return rv
@@ -130,7 +126,6 @@ func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForStyle(style CNCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/nameOrder(for:)
-
 func (cc _CNContactFormatterClass) NameOrderForContact(contact ICNContact) CNContactDisplayNameOrder {
 	rv := objc.Send[CNContactDisplayNameOrder](objc.ID(cc.class), objc.Sel("nameOrderForContact:"), contact)
 	return rv
@@ -141,7 +136,6 @@ func (cc _CNContactFormatterClass) NameOrderForContact(contact ICNContact) CNCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:style:)
-
 func (cc _CNContactFormatterClass) StringFromContactStyle(contact ICNContact, style CNContactFormatterStyle) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
 	return rv
@@ -152,7 +146,6 @@ func (cc _CNContactFormatterClass) StringFromContactStyle(contact ICNContact, st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForDelimiter
-
 func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForDelimiter() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForDelimiter"))
 	return rv
@@ -162,30 +155,25 @@ func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForDelimiter() objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForNameOrder
-
 func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForNameOrder() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForNameOrder"))
 	return rv
 }
 
-
 // Formats the contact name as an attributed string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:defaultAttributes:)
-
 func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringFromContact:defaultAttributes:"), contact, attributes)
 	return rv
 }
 
 
-
 // Formats the contact name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:)
-
 func (c_ CNContactFormatter) StringFromContact(contact ICNContact) foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("stringFromContact:"), contact)
 	return rv
@@ -196,7 +184,6 @@ func (c_ CNContactFormatter) StringFromContact(contact ICNContact) foundation.St
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForDelimiter
-
 func (c_ CNContactFormatter) DescriptorForRequiredKeysForDelimiter() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("descriptorForRequiredKeysForDelimiter"))
 	return rv
@@ -207,7 +194,6 @@ func (c_ CNContactFormatter) DescriptorForRequiredKeysForDelimiter() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeysForNameOrder
-
 func (c_ CNContactFormatter) DescriptorForRequiredKeysForNameOrder() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("descriptorForRequiredKeysForNameOrder"))
 	return rv
@@ -218,7 +204,6 @@ func (c_ CNContactFormatter) DescriptorForRequiredKeysForNameOrder() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/style
-
 func (c_ CNContactFormatter) Style() CNContactFormatterStyle {
 	rv := objc.Send[CNContactFormatterStyle](c_.ID, objc.Sel("style"))
 	return rv
@@ -229,7 +214,6 @@ func (c_ CNContactFormatter) Style() CNContactFormatterStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/style
-
 func (c_ CNContactFormatter) SetStyle(value CNContactFormatterStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
 }

@@ -41,7 +41,6 @@ type ICBIdentityAuthority interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority
-
 type CBIdentityAuthority struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewCBIdentityAuthority() CBIdentityAuthority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/identityAuthorityWithCSIdentityAuthority:
-
 func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSIdentityAuthority unsafe.Pointer) CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("identityAuthorityWithCSIdentityAuthority:"), CSIdentityAuthority)
 	return rv
@@ -101,7 +99,6 @@ func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/local()
-
 func (cc _CBIdentityAuthorityClass) LocalIdentityAuthority() CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("localIdentityAuthority"))
 	return rv
@@ -112,7 +109,6 @@ func (cc _CBIdentityAuthorityClass) LocalIdentityAuthority() CBIdentityAuthority
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/managed()
-
 func (cc _CBIdentityAuthorityClass) ManagedIdentityAuthority() CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("managedIdentityAuthority"))
 	return rv
@@ -123,7 +119,6 @@ func (cc _CBIdentityAuthorityClass) ManagedIdentityAuthority() CBIdentityAuthori
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/CSIdentityAuthority
-
 func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("CSIdentityAuthority"))
 	return rv
@@ -134,7 +129,6 @@ func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/localizedName
-
 func (c_ CBIdentityAuthority) LocalizedName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv

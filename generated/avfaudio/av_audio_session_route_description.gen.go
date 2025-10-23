@@ -46,7 +46,6 @@ type IAudioSessionRouteDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionRouteDescription
-
 type AudioSessionRouteDescription struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewAudioSessionRouteDescription() AudioSessionRouteDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionRouteDescription/inputs
-
 func (a_ AudioSessionRouteDescription) Inputs() []AudioSessionPortDescription {
 	rv := objc.Send[[]AudioSessionPortDescription](a_.ID, objc.Sel("inputs"))
 	return rv
@@ -106,7 +104,6 @@ func (a_ AudioSessionRouteDescription) Inputs() []AudioSessionPortDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-
 func (a_ AudioSessionRouteDescription) CurrentRoute() AVAudioSessionRouteDescription {
 	rv := objc.Send[AVAudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
 	return rv
@@ -117,7 +114,6 @@ func (a_ AudioSessionRouteDescription) CurrentRoute() AVAudioSessionRouteDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-
 func (a_ AudioSessionRouteDescription) SetCurrentRoute(value IAVAudioSessionRouteDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentRoute:"), value)
 }
@@ -127,7 +123,6 @@ func (a_ AudioSessionRouteDescription) SetCurrentRoute(value IAVAudioSessionRout
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription/outputs
-
 func (a_ AudioSessionRouteDescription) Outputs() AVAudioSessionPortDescription {
 	rv := objc.Send[AVAudioSessionPortDescription](a_.ID, objc.Sel("outputs"))
 	return rv
@@ -138,7 +133,6 @@ func (a_ AudioSessionRouteDescription) Outputs() AVAudioSessionPortDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription/outputs
-
 func (a_ AudioSessionRouteDescription) SetOutputs(value IAVAudioSessionPortDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }

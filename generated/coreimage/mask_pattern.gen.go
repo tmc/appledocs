@@ -36,7 +36,6 @@ type ImaskPattern interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/maskPattern-c.ivar
-
 type maskPattern struct {
 	objectivec.Object
 }

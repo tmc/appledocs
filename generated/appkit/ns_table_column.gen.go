@@ -70,7 +70,6 @@ type ITableColumn interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn
-
 type TableColumn struct {
 	objectivec.Object
 }
@@ -119,7 +118,6 @@ func NewTableColumn() TableColumn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/dataCell
-
 func (t_ TableColumn) DataCell() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("dataCell"))
 	return rv
@@ -130,7 +128,6 @@ func (t_ TableColumn) DataCell() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/dataCell
-
 func (t_ TableColumn) SetDataCell(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDataCell:"), value)
 }
@@ -140,7 +137,6 @@ func (t_ TableColumn) SetDataCell(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/isEditable
-
 func (t_ TableColumn) Editable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
@@ -151,7 +147,6 @@ func (t_ TableColumn) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/isEditable
-
 func (t_ TableColumn) SetEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
@@ -161,7 +156,6 @@ func (t_ TableColumn) SetEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-
 func (t_ TableColumn) HeaderCell() NSTableHeaderCell {
 	rv := objc.Send[NSTableHeaderCell](t_.ID, objc.Sel("headerCell"))
 	return rv
@@ -172,7 +166,6 @@ func (t_ TableColumn) HeaderCell() NSTableHeaderCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-
 func (t_ TableColumn) SetHeaderCell(value ITableHeaderCell) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderCell:"), value)
 }
@@ -182,7 +175,6 @@ func (t_ TableColumn) SetHeaderCell(value ITableHeaderCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
-
 func (t_ TableColumn) HeaderToolTip() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("headerToolTip"))
 	return rv
@@ -193,7 +185,6 @@ func (t_ TableColumn) HeaderToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
-
 func (t_ TableColumn) SetHeaderToolTip(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderToolTip:"), objc.String(value))
 }
@@ -203,7 +194,6 @@ func (t_ TableColumn) SetHeaderToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-
 func (t_ TableColumn) Identifier() UserInterfaceItemIdentifier {
 	rv := objc.Send[UserInterfaceItemIdentifier](t_.ID, objc.Sel("identifier"))
 	return rv
@@ -214,7 +204,6 @@ func (t_ TableColumn) Identifier() UserInterfaceItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-
 func (t_ TableColumn) SetIdentifier(value IUserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
@@ -224,7 +213,6 @@ func (t_ TableColumn) SetIdentifier(value IUserInterfaceItemIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/iseditable
-
 func (t_ TableColumn) IsEditable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
 	return rv
@@ -235,7 +223,6 @@ func (t_ TableColumn) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/iseditable
-
 func (t_ TableColumn) SetIsEditable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
 }
@@ -245,7 +232,6 @@ func (t_ TableColumn) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/ishidden
-
 func (t_ TableColumn) IsHidden() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
 	return rv
@@ -256,7 +242,6 @@ func (t_ TableColumn) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/ishidden
-
 func (t_ TableColumn) SetIsHidden(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -266,7 +251,6 @@ func (t_ TableColumn) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/maxwidth
-
 func (t_ TableColumn) MaxWidth() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("maxWidth"))
 	return rv
@@ -277,7 +261,6 @@ func (t_ TableColumn) MaxWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/maxwidth
-
 func (t_ TableColumn) SetMaxWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxWidth:"), value)
 }
@@ -287,7 +270,6 @@ func (t_ TableColumn) SetMaxWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/minwidth
-
 func (t_ TableColumn) MinWidth() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("minWidth"))
 	return rv
@@ -298,7 +280,6 @@ func (t_ TableColumn) MinWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/minwidth
-
 func (t_ TableColumn) SetMinWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinWidth:"), value)
 }
@@ -308,7 +289,6 @@ func (t_ TableColumn) SetMinWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/resizingmask
-
 func (t_ TableColumn) ResizingMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resizingMask"))
 	return rv
@@ -319,7 +299,6 @@ func (t_ TableColumn) ResizingMask() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/resizingmask
-
 func (t_ TableColumn) SetResizingMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResizingMask:"), value)
 }
@@ -329,7 +308,6 @@ func (t_ TableColumn) SetResizingMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-
 func (t_ TableColumn) SortDescriptorPrototype() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptorPrototype"))
 	return rv
@@ -340,7 +318,6 @@ func (t_ TableColumn) SortDescriptorPrototype() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-
 func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptorPrototype:"), value)
 }
@@ -350,7 +327,6 @@ func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.ISortDescripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-
 func (t_ TableColumn) TableView() NSTableView {
 	rv := objc.Send[NSTableView](t_.ID, objc.Sel("tableView"))
 	return rv
@@ -361,7 +337,6 @@ func (t_ TableColumn) TableView() NSTableView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-
 func (t_ TableColumn) SetTableView(value ITableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
@@ -371,7 +346,6 @@ func (t_ TableColumn) SetTableView(value ITableView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
-
 func (t_ TableColumn) Title() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("title"))
 	return rv
@@ -382,7 +356,6 @@ func (t_ TableColumn) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
-
 func (t_ TableColumn) SetTitle(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -392,7 +365,6 @@ func (t_ TableColumn) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/width
-
 func (t_ TableColumn) Width() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("width"))
 	return rv
@@ -403,7 +375,6 @@ func (t_ TableColumn) Width() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/width
-
 func (t_ TableColumn) SetWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
 }

@@ -44,7 +44,6 @@ type IHKClinicalCoding interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding
-
 type HKClinicalCoding struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewHKClinicalCoding() HKClinicalCoding {
 
 
 
-
 // Creates a clinical coding with the specified system, version, and code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/init(system:version:code:)
-
 func NewHKClinicalCodingWithSystemVersionCode(system string, version string, code string) HKClinicalCoding {
 	instance := getHKClinicalCodingClass().Alloc()
 	rv := objc.Send[HKClinicalCoding](instance.ID, objc.Sel("initWithSystem:version:code:"), objc.String(system), objc.String(version), objc.String(code))
@@ -108,7 +105,6 @@ func NewHKClinicalCodingWithSystemVersionCode(system string, version string, cod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/code
-
 func (h_ HKClinicalCoding) Code() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("code"))
 	return rv
@@ -119,7 +115,6 @@ func (h_ HKClinicalCoding) Code() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/system
-
 func (h_ HKClinicalCoding) System() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("system"))
 	return rv
@@ -130,7 +125,6 @@ func (h_ HKClinicalCoding) System() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/version
-
 func (h_ HKClinicalCoding) Version() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv

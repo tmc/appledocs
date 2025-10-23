@@ -29,10 +29,12 @@ type _CaptureSynchronizedSampleBufferDataClass struct {
 // An interface definition for the [CaptureSynchronizedSampleBufferData] class.
 type ICaptureSynchronizedSampleBufferData interface {
 	ICaptureSynchronizedData
-	DroppedReason() CaptureOutputDataDroppedReason
-	SampleBufferWasDropped() bool
+	DroppedReason() unsafe.Pointer
+	SetDroppedReason(value unsafe.Pointer)
 	SampleBuffer() unsafe.Pointer
 	SetSampleBuffer(value unsafe.Pointer)
+	SampleBufferWasDropped() bool
+	SetSampleBufferWasDropped(value bool)
 }
 
 // A container for video or audio samples collected using synchronized capture.
@@ -42,7 +44,6 @@ type ICaptureSynchronizedSampleBufferData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData
-
 type CaptureSynchronizedSampleBufferData struct {
 	CaptureSynchronizedData
 }
@@ -92,22 +93,19 @@ func NewCaptureSynchronizedSampleBufferData() CaptureSynchronizedSampleBufferDat
 // A value indicating why the capture output failed to deliver sample buffers, if applicable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData/droppedReason
-
-func (c_ CaptureSynchronizedSampleBufferData) DroppedReason() CaptureOutputDataDroppedReason {
-	rv := objc.Send[CaptureOutputDataDroppedReason](c_.ID, objc.Sel("droppedReason"))
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/droppedreason
+func (c_ CaptureSynchronizedSampleBufferData) DroppedReason() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("droppedReason"))
 	return rv
 }
 
 
-// A Boolean value indicating whether sample buffers were discarded between capture and processing.
+// A value indicating why the capture output failed to deliver sample buffers, if applicable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData/sampleBufferWasDropped
-
-func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("sampleBufferWasDropped"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/droppedreason
+func (c_ CaptureSynchronizedSampleBufferData) SetDroppedReason(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDroppedReason:"), value)
 }
 
 
@@ -115,7 +113,6 @@ func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-
 func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBuffer"))
 	return rv
@@ -126,9 +123,27 @@ func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-
 func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
+}
+
+
+// A Boolean value indicating whether sample buffers were discarded between capture and processing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebufferwasdropped
+func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("sampleBufferWasDropped"))
+	return rv
+}
+
+
+// A Boolean value indicating whether sample buffers were discarded between capture and processing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebufferwasdropped
+func (c_ CaptureSynchronizedSampleBufferData) SetSampleBufferWasDropped(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferWasDropped:"), value)
 }
 
 

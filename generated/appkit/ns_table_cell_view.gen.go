@@ -51,7 +51,6 @@ type ITableCellView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView
-
 type TableCellView struct {
 	View
 }
@@ -102,7 +101,6 @@ func NewTableCellView() TableCellView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-
 func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
 	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
 	return rv
@@ -113,7 +111,6 @@ func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-
 func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
@@ -123,7 +120,6 @@ func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
-
 func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
@@ -134,7 +130,6 @@ func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
-
 func (t_ TableCellView) ImageView() NSImageView {
 	rv := objc.Send[NSImageView](t_.ID, objc.Sel("imageView"))
 	return rv
@@ -145,7 +140,6 @@ func (t_ TableCellView) ImageView() NSImageView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
-
 func (t_ TableCellView) SetImageView(value IImageView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageView:"), value)
 }
@@ -155,7 +149,6 @@ func (t_ TableCellView) SetImageView(value IImageView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/objectValue
-
 func (t_ TableCellView) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("objectValue"))
 	return rv
@@ -166,7 +159,6 @@ func (t_ TableCellView) ObjectValue() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/objectValue
-
 func (t_ TableCellView) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setObjectValue:"), value)
 }
@@ -176,7 +168,6 @@ func (t_ TableCellView) SetObjectValue(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-
 func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
 	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
@@ -187,7 +178,6 @@ func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-
 func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
@@ -197,7 +187,6 @@ func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-
 func (t_ TableCellView) TextField() NSTextField {
 	rv := objc.Send[NSTextField](t_.ID, objc.Sel("textField"))
 	return rv
@@ -208,7 +197,6 @@ func (t_ TableCellView) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-
 func (t_ TableCellView) SetTextField(value ITextField) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }

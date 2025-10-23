@@ -333,9 +333,4 @@ type STXStateIndex uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/TrakValue
 // TrakValue has base type: SInt16
 type TrakValue uintptr
-// ATSFontRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/ATSFontRef
-// ATSFontRef has base type: UInt32
-type ATSFontRef uintptr
 

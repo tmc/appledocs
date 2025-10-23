@@ -37,7 +37,11 @@ type IMKUserTrackingButton interface {
 // A specialized button that allows the user to toggle whether the map tracks to the heading the user is facing.
 //
 // Use this class when you need a standard button that you can incorporate into your view hierarchy. Tapping the button lets the user toggles between modes for displaying the map with and without the current heading applied. The button also reflects the current user tracking mode if set elsewhere.
+
+
+// A specialized button that allows the user to toggle whether the map tracks to the heading the user is facing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton
 type MKUserTrackingButton struct {
 	appkit.View
@@ -85,9 +89,9 @@ func NewMKUserTrackingButton() MKUserTrackingButton {
 
 
 
-
 // Initializes the button with the map view that it should control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/init(mapView:)
 func NewMKUserTrackingButtonWithMapView(mapView IMKMapView) MKUserTrackingButton {
 	rv := objc.Send[MKUserTrackingButton](objc.ID(getMKUserTrackingButtonClass().class), objc.Sel("userTrackingButtonWithMapView:"), mapView)
@@ -95,16 +99,20 @@ func NewMKUserTrackingButtonWithMapView(mapView IMKMapView) MKUserTrackingButton
 }
 
 
+
 // Initializes the button with the map view that it should control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/init(mapView:)
 func (mc _MKUserTrackingButtonClass) UserTrackingButtonWithMapView(mapView IMKMapView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("userTrackingButtonWithMapView:"), mapView)
 	return rv
 }
 
+
 // The map view associated with the button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/mapView
 func (m_ MKUserTrackingButton) MapView() MKMapView {
 	rv := objc.Send[MKMapView](m_.ID, objc.Sel("mapView"))
@@ -112,10 +120,9 @@ func (m_ MKUserTrackingButton) MapView() MKMapView {
 }
 
 
-// SetMapView sets the value of the mapView property.
 // The map view associated with the button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/mapView
 func (m_ MKUserTrackingButton) SetMapView(value IMKMapView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapView:"), value)

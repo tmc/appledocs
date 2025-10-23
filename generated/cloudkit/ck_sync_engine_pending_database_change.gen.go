@@ -41,7 +41,6 @@ type ICKSyncEnginePendingDatabaseChange interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange
-
 type CKSyncEnginePendingDatabaseChange struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewCKSyncEnginePendingDatabaseChange() CKSyncEnginePendingDatabaseChange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange/type
-
 func (c_ CKSyncEnginePendingDatabaseChange) Type() CKSyncEnginePendingDatabaseChangeType {
 	rv := objc.Send[CKSyncEnginePendingDatabaseChangeType](c_.ID, objc.Sel("type"))
 	return rv
@@ -101,7 +99,6 @@ func (c_ CKSyncEnginePendingDatabaseChange) Type() CKSyncEnginePendingDatabaseCh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange/zoneID
-
 func (c_ CKSyncEnginePendingDatabaseChange) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv

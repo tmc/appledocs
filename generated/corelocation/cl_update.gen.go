@@ -50,7 +50,6 @@ type IUpdate interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate
-
 type Update struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewUpdate() Update {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/accuracyLimited
-
 func (u_ Update) AccuracyLimited() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("accuracyLimited"))
 	return rv
@@ -106,7 +104,6 @@ func (u_ Update) AccuracyLimited() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDenied
-
 func (u_ Update) AuthorizationDenied() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDenied"))
 	return rv
@@ -115,7 +112,6 @@ func (u_ Update) AuthorizationDenied() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDeniedGlobally
-
 func (u_ Update) AuthorizationDeniedGlobally() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
@@ -124,7 +120,6 @@ func (u_ Update) AuthorizationDeniedGlobally() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRequestInProgress
-
 func (u_ Update) AuthorizationRequestInProgress() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
@@ -133,7 +128,6 @@ func (u_ Update) AuthorizationRequestInProgress() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRestricted
-
 func (u_ Update) AuthorizationRestricted() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationRestricted"))
 	return rv
@@ -142,7 +136,6 @@ func (u_ Update) AuthorizationRestricted() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/insufficientlyInUse
-
 func (u_ Update) InsufficientlyInUse() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
@@ -153,7 +146,6 @@ func (u_ Update) InsufficientlyInUse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/isStationary
-
 func (u_ Update) IsStationary() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isStationary"))
 	return rv
@@ -164,7 +156,6 @@ func (u_ Update) IsStationary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/location
-
 func (u_ Update) Location() CLLocation {
 	rv := objc.Send[CLLocation](u_.ID, objc.Sel("location"))
 	return rv
@@ -173,7 +164,6 @@ func (u_ Update) Location() CLLocation {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/locationUnavailable
-
 func (u_ Update) LocationUnavailable() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("locationUnavailable"))
 	return rv
@@ -182,7 +172,6 @@ func (u_ Update) LocationUnavailable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/serviceSessionRequired
-
 func (u_ Update) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
@@ -191,7 +180,6 @@ func (u_ Update) ServiceSessionRequired() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/stationary
-
 func (u_ Update) Stationary() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("stationary"))
 	return rv

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"regexp"
 	"strings"
 
@@ -77,6 +79,9 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	// Filter out types that are defined
 	defined := g.getDefinedTypes()
 	for name := range undefined {
+		if os.Getenv("DEBUG_UNDEFINED") == "1" && (strings.Contains(name, "Date") || strings.Contains(name, "Error") || strings.Contains(name, "URL")) {
+			fmt.Fprintf(os.Stderr, "DEBUG %s filtering undefined: name=%s, defined=%v\n", g.Framework, name, defined[name])
+		}
 		if defined[name] {
 			delete(undefined, name)
 		}
@@ -188,6 +193,15 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 func (g *Generator) getDefinedTypes() map[string]bool {
 	defined := make(map[string]bool)
 
+	if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" {
+		fmt.Fprintf(os.Stderr, "DEBUG getDefinedTypes Foundation: g.Classes has %d classes\n", len(g.Classes))
+		for i, cls := range g.Classes {
+			if i < 10 || strings.Contains(cls.Name, "Date") || strings.Contains(cls.Name, "Error") || cls.Name == "NSURL" {
+				fmt.Fprintf(os.Stderr, "  [%d] %s\n", i, cls.Name)
+			}
+		}
+	}
+
 	// Add built-in types
 	for _, name := range []string{
 		"void", "bool", "int", "uint", "int8", "uint8", "int16", "uint16",
@@ -214,7 +228,11 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 	for _, cls := range g.Classes {
 		defined[cls.Name] = true
 		// Also add Go struct name
-		defined[classToStructName(cls.Name)] = true
+		structName := classToStructName(cls.Name)
+		defined[structName] = true
+		if os.Getenv("DEBUG_UNDEFINED") == "1" && (strings.Contains(cls.Name, "NSDate") || strings.Contains(cls.Name, "NSError") || cls.Name == "NSURL") {
+			fmt.Fprintf(os.Stderr, "DEBUG %s class: cls.Name=%s, structName=%s\n", g.Framework, cls.Name, structName)
+		}
 	}
 
 	for _, proto := range g.Protocols {
@@ -235,16 +253,23 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		defined[ref] = true
 	}
 
-	// Add types from cross-framework registry that belong to OTHER frameworks
-	// This prevents generating fallback types for classes that exist in other frameworks
-	// e.g., UniformTypeIdentifiers shouldn't define NSArray - it exists in Foundation
-	// But we only mark them as defined if they're from a DIFFERENT framework
+	// Add types from cross-framework registry
+	// Mark types that belong to OTHER frameworks as defined (to avoid generating fallback types)
+	// Also mark types that belong to THIS framework as defined (they may have been filtered from g.Classes)
 	currentFrameworkPkg := strings.ToLower(g.Framework)
 	for typeName, pkgName := range crossFrameworkTypeRegistry {
-		if pkgName != currentFrameworkPkg {
-			defined[typeName] = true
-			// Also add the NS-prefixed version (e.g., if registry has "Error", also mark "NSError" as defined)
-			// This handles cases where docs reference "NSError" but Foundation generates "Error"
+		// Always mark types from the registry as defined
+		defined[typeName] = true
+
+		// For types belonging to this framework, also mark both ObjC and Go names
+		// This handles cases where a class like NSDate was filtered from g.Classes
+		// but still exists in generated code (from API collections or previous runs)
+		if pkgName == currentFrameworkPkg {
+			// Add both "Date" and "NSDate" for Foundation types
+			objcName := "NS" + typeName
+			defined[objcName] = true
+		} else {
+			// For other frameworks, just add the NS-prefixed version to catch references
 			objcName := "NS" + typeName
 			defined[objcName] = true
 		}
@@ -284,6 +309,9 @@ func isBuiltinType(name string) bool {
 
 // GetUndefinedTypesForTemplate returns undefined types formatted for template use
 func (g *Generator) GetUndefinedTypesForTemplate() []UndefinedType {
+	if os.Getenv("DEBUG_UNDEFINED") == "1" {
+		fmt.Fprintf(os.Stderr, "DEBUG GetUndefinedTypesForTemplate called with %d classes, Framework=%s\n", len(g.Classes), g.Framework)
+	}
 	undefined := g.CollectUndefinedTypes()
 	result := make([]UndefinedType, 0, len(undefined))
 

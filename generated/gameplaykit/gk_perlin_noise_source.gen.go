@@ -42,7 +42,6 @@ type IPerlinNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource
-
 type PerlinNoiseSource struct {
 	CoherentNoiseSource
 }
@@ -89,12 +88,10 @@ func NewPerlinNoiseSource() PerlinNoiseSource {
 
 
 
-
 // Initializes a Perlin noise source with the specified parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/init(frequency:octaveCount:persistence:lacunarity:seed:)
-
 func NewPerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) PerlinNoiseSource {
 	instance := getPerlinNoiseSourceClass().Alloc()
 	rv := objc.Send[PerlinNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
@@ -108,7 +105,6 @@ func NewPerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:
-
 func (pc _PerlinNoiseSourceClass) PerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
 	return rv
@@ -119,7 +115,6 @@ func (pc _PerlinNoiseSourceClass) PerlinNoiseSourceWithFrequencyOctaveCountPersi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/persistence
-
 func (p_ PerlinNoiseSource) Persistence() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("persistence"))
 	return rv
@@ -130,7 +125,6 @@ func (p_ PerlinNoiseSource) Persistence() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/persistence
-
 func (p_ PerlinNoiseSource) SetPersistence(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistence:"), value)
 }

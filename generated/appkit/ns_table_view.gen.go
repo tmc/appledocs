@@ -125,7 +125,7 @@ type ITableView interface {
 	TableColumns() NSTableColumn
 	SetTableColumns(value ITableColumn)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
 	UsesAlternatingRowBackgroundColors() bool
 	SetUsesAlternatingRowBackgroundColors(value bool)
 	UsesAutomaticRowHeights() bool
@@ -145,7 +145,6 @@ type ITableView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView
-
 type TableView struct {
 	Control
 }
@@ -192,47 +191,39 @@ func NewTableView() TableView {
 
 
 
-
 // Returns the rectangle containing the row at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rect(ofRow:)
-
 func (t_ TableView) RectOfRow(row int) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rectOfRow:"), row)
 	return rv
 }
 
 
-
 // Removes the rows using the specified animation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/removeRows(at:withAnimation:)
-
 func (t_ TableView) RemoveRowsAtIndexesWithAnimation(indexes foundation.IIndexSet, animationOptions TableViewAnimationOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeRowsAtIndexes:withAnimation:"), indexes, animationOptions)
 }
-
 
 
 // Returns the index of the row the specified point lies in.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/row(at:)
-
 func (t_ TableView) RowAtPoint(point coregraphics.CGPoint) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("rowAtPoint:"), point)
 	return rv
 }
 
 
-
 // Sets the default operation mask returned by to .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/setDraggingSourceOperationMask(_:forLocal:)
-
 func (t_ TableView) SetDraggingSourceOperationMaskForLocal(mask IDragOperation, isLocal bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingSourceOperationMask:forLocal:"), mask, isLocal)
 }
@@ -242,7 +233,6 @@ func (t_ TableView) SetDraggingSourceOperationMaskForLocal(mask IDragOperation, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/backgroundColor
-
 func (t_ TableView) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -253,7 +243,6 @@ func (t_ TableView) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/backgroundColor
-
 func (t_ TableView) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -263,7 +252,6 @@ func (t_ TableView) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property
-
 func (t_ TableView) ColumnAutoresizingStyle() TableViewColumnAutoresizingStyle {
 	rv := objc.Send[TableViewColumnAutoresizingStyle](t_.ID, objc.Sel("columnAutoresizingStyle"))
 	return rv
@@ -274,7 +262,6 @@ func (t_ TableView) ColumnAutoresizingStyle() TableViewColumnAutoresizingStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property
-
 func (t_ TableView) SetColumnAutoresizingStyle(value TableViewColumnAutoresizingStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColumnAutoresizingStyle:"), value)
 }
@@ -284,7 +271,6 @@ func (t_ TableView) SetColumnAutoresizingStyle(value TableViewColumnAutoresizing
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/draggingDestinationFeedbackStyle-swift.property
-
 func (t_ TableView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle {
 	rv := objc.Send[TableViewDraggingDestinationFeedbackStyle](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
 	return rv
@@ -295,7 +281,6 @@ func (t_ TableView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/draggingDestinationFeedbackStyle-swift.property
-
 func (t_ TableView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingDestinationFeedbackStyle:"), value)
 }
@@ -305,7 +290,6 @@ func (t_ TableView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/effectiveRowSizeStyle
-
 func (t_ TableView) EffectiveRowSizeStyle() TableViewRowSizeStyle {
 	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("effectiveRowSizeStyle"))
 	return rv
@@ -316,7 +300,6 @@ func (t_ TableView) EffectiveRowSizeStyle() TableViewRowSizeStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/gridStyleMask
-
 func (t_ TableView) GridStyleMask() TableViewGridLineStyle {
 	rv := objc.Send[TableViewGridLineStyle](t_.ID, objc.Sel("gridStyleMask"))
 	return rv
@@ -327,7 +310,6 @@ func (t_ TableView) GridStyleMask() TableViewGridLineStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/gridStyleMask
-
 func (t_ TableView) SetGridStyleMask(value TableViewGridLineStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGridStyleMask:"), value)
 }
@@ -337,7 +319,6 @@ func (t_ TableView) SetGridStyleMask(value TableViewGridLineStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rowSizeStyle-swift.property
-
 func (t_ TableView) RowSizeStyle() TableViewRowSizeStyle {
 	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
@@ -348,7 +329,6 @@ func (t_ TableView) RowSizeStyle() TableViewRowSizeStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/rowSizeStyle-swift.property
-
 func (t_ TableView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
@@ -358,7 +338,6 @@ func (t_ TableView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/selectionHighlightStyle-swift.property
-
 func (t_ TableView) SelectionHighlightStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionHighlightStyle"))
 	return rv
@@ -369,7 +348,6 @@ func (t_ TableView) SelectionHighlightStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/selectionHighlightStyle-swift.property
-
 func (t_ TableView) SetSelectionHighlightStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionHighlightStyle:"), value)
 }
@@ -379,7 +357,6 @@ func (t_ TableView) SetSelectionHighlightStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/isenabled
-
 func (t_ TableView) IsEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -390,7 +367,6 @@ func (t_ TableView) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/isenabled
-
 func (t_ TableView) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -400,7 +376,6 @@ func (t_ TableView) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowscolumnreordering
-
 func (t_ TableView) AllowsColumnReordering() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsColumnReordering"))
 	return rv
@@ -411,7 +386,6 @@ func (t_ TableView) AllowsColumnReordering() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowscolumnreordering
-
 func (t_ TableView) SetAllowsColumnReordering(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColumnReordering:"), value)
 }
@@ -421,7 +395,6 @@ func (t_ TableView) SetAllowsColumnReordering(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowscolumnresizing
-
 func (t_ TableView) AllowsColumnResizing() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsColumnResizing"))
 	return rv
@@ -432,7 +405,6 @@ func (t_ TableView) AllowsColumnResizing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowscolumnresizing
-
 func (t_ TableView) SetAllowsColumnResizing(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColumnResizing:"), value)
 }
@@ -442,7 +414,6 @@ func (t_ TableView) SetAllowsColumnResizing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowscolumnselection
-
 func (t_ TableView) AllowsColumnSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsColumnSelection"))
 	return rv
@@ -453,7 +424,6 @@ func (t_ TableView) AllowsColumnSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowscolumnselection
-
 func (t_ TableView) SetAllowsColumnSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColumnSelection:"), value)
 }
@@ -463,7 +433,6 @@ func (t_ TableView) SetAllowsColumnSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowsemptyselection
-
 func (t_ TableView) AllowsEmptySelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsEmptySelection"))
 	return rv
@@ -474,7 +443,6 @@ func (t_ TableView) AllowsEmptySelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowsemptyselection
-
 func (t_ TableView) SetAllowsEmptySelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsEmptySelection:"), value)
 }
@@ -484,7 +452,6 @@ func (t_ TableView) SetAllowsEmptySelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowsmultipleselection
-
 func (t_ TableView) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
@@ -495,7 +462,6 @@ func (t_ TableView) AllowsMultipleSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowsmultipleselection
-
 func (t_ TableView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
@@ -505,7 +471,6 @@ func (t_ TableView) SetAllowsMultipleSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowstypeselect
-
 func (t_ TableView) AllowsTypeSelect() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsTypeSelect"))
 	return rv
@@ -516,7 +481,6 @@ func (t_ TableView) AllowsTypeSelect() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/allowstypeselect
-
 func (t_ TableView) SetAllowsTypeSelect(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsTypeSelect:"), value)
 }
@@ -526,7 +490,6 @@ func (t_ TableView) SetAllowsTypeSelect(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/autosavename-swift.property
-
 func (t_ TableView) AutosaveName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("autosaveName"))
 	return rv
@@ -537,7 +500,6 @@ func (t_ TableView) AutosaveName() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/autosavename-swift.property
-
 func (t_ TableView) SetAutosaveName(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutosaveName:"), value)
 }
@@ -547,7 +509,6 @@ func (t_ TableView) SetAutosaveName(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/autosavetablecolumns
-
 func (t_ TableView) AutosaveTableColumns() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("autosaveTableColumns"))
 	return rv
@@ -558,7 +519,6 @@ func (t_ TableView) AutosaveTableColumns() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/autosavetablecolumns
-
 func (t_ TableView) SetAutosaveTableColumns(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutosaveTableColumns:"), value)
 }
@@ -568,7 +528,6 @@ func (t_ TableView) SetAutosaveTableColumns(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/clickedcolumn
-
 func (t_ TableView) ClickedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("clickedColumn"))
 	return rv
@@ -579,7 +538,6 @@ func (t_ TableView) ClickedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/clickedcolumn
-
 func (t_ TableView) SetClickedColumn(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClickedColumn:"), value)
 }
@@ -589,7 +547,6 @@ func (t_ TableView) SetClickedColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/clickedrow
-
 func (t_ TableView) ClickedRow() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("clickedRow"))
 	return rv
@@ -600,7 +557,6 @@ func (t_ TableView) ClickedRow() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/clickedrow
-
 func (t_ TableView) SetClickedRow(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClickedRow:"), value)
 }
@@ -610,7 +566,6 @@ func (t_ TableView) SetClickedRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/cornerview
-
 func (t_ TableView) CornerView() NSView {
 	rv := objc.Send[NSView](t_.ID, objc.Sel("cornerView"))
 	return rv
@@ -621,7 +576,6 @@ func (t_ TableView) CornerView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/cornerview
-
 func (t_ TableView) SetCornerView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCornerView:"), value)
 }
@@ -631,7 +585,6 @@ func (t_ TableView) SetCornerView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/datasource
-
 func (t_ TableView) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dataSource"))
 	return rv
@@ -642,7 +595,6 @@ func (t_ TableView) DataSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/datasource
-
 func (t_ TableView) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDataSource:"), value)
 }
@@ -652,7 +604,6 @@ func (t_ TableView) SetDataSource(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/delegate
-
 func (t_ TableView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -663,7 +614,6 @@ func (t_ TableView) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/delegate
-
 func (t_ TableView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -673,7 +623,6 @@ func (t_ TableView) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/doubleaction
-
 func (t_ TableView) DoubleAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("doubleAction"))
 	return rv
@@ -684,7 +633,6 @@ func (t_ TableView) DoubleAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/doubleaction
-
 func (t_ TableView) SetDoubleAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDoubleAction:"), value)
 }
@@ -694,7 +642,6 @@ func (t_ TableView) SetDoubleAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/editedcolumn
-
 func (t_ TableView) EditedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("editedColumn"))
 	return rv
@@ -705,7 +652,6 @@ func (t_ TableView) EditedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/editedcolumn
-
 func (t_ TableView) SetEditedColumn(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedColumn:"), value)
 }
@@ -715,7 +661,6 @@ func (t_ TableView) SetEditedColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/editedrow
-
 func (t_ TableView) EditedRow() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("editedRow"))
 	return rv
@@ -726,7 +671,6 @@ func (t_ TableView) EditedRow() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/editedrow
-
 func (t_ TableView) SetEditedRow(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedRow:"), value)
 }
@@ -736,7 +680,6 @@ func (t_ TableView) SetEditedRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/effectivestyle
-
 func (t_ TableView) EffectiveStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("effectiveStyle"))
 	return rv
@@ -747,7 +690,6 @@ func (t_ TableView) EffectiveStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/effectivestyle
-
 func (t_ TableView) SetEffectiveStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEffectiveStyle:"), value)
 }
@@ -757,7 +699,6 @@ func (t_ TableView) SetEffectiveStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/floatsgrouprows
-
 func (t_ TableView) FloatsGroupRows() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("floatsGroupRows"))
 	return rv
@@ -768,7 +709,6 @@ func (t_ TableView) FloatsGroupRows() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/floatsgrouprows
-
 func (t_ TableView) SetFloatsGroupRows(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFloatsGroupRows:"), value)
 }
@@ -778,7 +718,6 @@ func (t_ TableView) SetFloatsGroupRows(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/gridcolor
-
 func (t_ TableView) GridColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("gridColor"))
 	return rv
@@ -789,7 +728,6 @@ func (t_ TableView) GridColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/gridcolor
-
 func (t_ TableView) SetGridColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGridColor:"), value)
 }
@@ -799,7 +737,6 @@ func (t_ TableView) SetGridColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/headerview
-
 func (t_ TableView) HeaderView() NSTableHeaderView {
 	rv := objc.Send[NSTableHeaderView](t_.ID, objc.Sel("headerView"))
 	return rv
@@ -810,7 +747,6 @@ func (t_ TableView) HeaderView() NSTableHeaderView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/headerview
-
 func (t_ TableView) SetHeaderView(value ITableHeaderView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderView:"), value)
 }
@@ -820,7 +756,6 @@ func (t_ TableView) SetHeaderView(value ITableHeaderView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/hiddenrowindexes
-
 func (t_ TableView) HiddenRowIndexes() foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](t_.ID, objc.Sel("hiddenRowIndexes"))
 	return rv
@@ -831,7 +766,6 @@ func (t_ TableView) HiddenRowIndexes() foundation.IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/hiddenrowindexes
-
 func (t_ TableView) SetHiddenRowIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHiddenRowIndexes:"), value)
 }
@@ -841,7 +775,6 @@ func (t_ TableView) SetHiddenRowIndexes(value foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/highlightedtablecolumn
-
 func (t_ TableView) HighlightedTableColumn() NSTableColumn {
 	rv := objc.Send[NSTableColumn](t_.ID, objc.Sel("highlightedTableColumn"))
 	return rv
@@ -852,7 +785,6 @@ func (t_ TableView) HighlightedTableColumn() NSTableColumn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/highlightedtablecolumn
-
 func (t_ TableView) SetHighlightedTableColumn(value ITableColumn) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHighlightedTableColumn:"), value)
 }
@@ -862,7 +794,6 @@ func (t_ TableView) SetHighlightedTableColumn(value ITableColumn) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/intercellspacing
-
 func (t_ TableView) IntercellSpacing() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("intercellSpacing"))
 	return rv
@@ -873,7 +804,6 @@ func (t_ TableView) IntercellSpacing() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/intercellspacing
-
 func (t_ TableView) SetIntercellSpacing(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIntercellSpacing:"), value)
 }
@@ -883,7 +813,6 @@ func (t_ TableView) SetIntercellSpacing(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofcolumns
-
 func (t_ TableView) NumberOfColumns() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfColumns"))
 	return rv
@@ -894,7 +823,6 @@ func (t_ TableView) NumberOfColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofcolumns
-
 func (t_ TableView) SetNumberOfColumns(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfColumns:"), value)
 }
@@ -904,7 +832,6 @@ func (t_ TableView) SetNumberOfColumns(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofrows
-
 func (t_ TableView) NumberOfRows() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfRows"))
 	return rv
@@ -915,7 +842,6 @@ func (t_ TableView) NumberOfRows() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofrows
-
 func (t_ TableView) SetNumberOfRows(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfRows:"), value)
 }
@@ -925,7 +851,6 @@ func (t_ TableView) SetNumberOfRows(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofselectedcolumns
-
 func (t_ TableView) NumberOfSelectedColumns() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfSelectedColumns"))
 	return rv
@@ -936,7 +861,6 @@ func (t_ TableView) NumberOfSelectedColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofselectedcolumns
-
 func (t_ TableView) SetNumberOfSelectedColumns(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfSelectedColumns:"), value)
 }
@@ -946,7 +870,6 @@ func (t_ TableView) SetNumberOfSelectedColumns(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofselectedrows
-
 func (t_ TableView) NumberOfSelectedRows() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfSelectedRows"))
 	return rv
@@ -957,7 +880,6 @@ func (t_ TableView) NumberOfSelectedRows() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/numberofselectedrows
-
 func (t_ TableView) SetNumberOfSelectedRows(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfSelectedRows:"), value)
 }
@@ -967,7 +889,6 @@ func (t_ TableView) SetNumberOfSelectedRows(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/registerednibsbyidentifier
-
 func (t_ TableView) RegisteredNibsByIdentifier() NSNib {
 	rv := objc.Send[NSNib](t_.ID, objc.Sel("registeredNibsByIdentifier"))
 	return rv
@@ -978,7 +899,6 @@ func (t_ TableView) RegisteredNibsByIdentifier() NSNib {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/registerednibsbyidentifier
-
 func (t_ TableView) SetRegisteredNibsByIdentifier(value INib) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRegisteredNibsByIdentifier:"), value)
 }
@@ -988,7 +908,6 @@ func (t_ TableView) SetRegisteredNibsByIdentifier(value INib) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/rowactionsvisible
-
 func (t_ TableView) RowActionsVisible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("rowActionsVisible"))
 	return rv
@@ -999,7 +918,6 @@ func (t_ TableView) RowActionsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/rowactionsvisible
-
 func (t_ TableView) SetRowActionsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowActionsVisible:"), value)
 }
@@ -1009,7 +927,6 @@ func (t_ TableView) SetRowActionsVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/rowheight
-
 func (t_ TableView) RowHeight() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("rowHeight"))
 	return rv
@@ -1020,7 +937,6 @@ func (t_ TableView) RowHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/rowheight
-
 func (t_ TableView) SetRowHeight(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowHeight:"), value)
 }
@@ -1030,7 +946,6 @@ func (t_ TableView) SetRowHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedcolumn
-
 func (t_ TableView) SelectedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedColumn"))
 	return rv
@@ -1041,7 +956,6 @@ func (t_ TableView) SelectedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedcolumn
-
 func (t_ TableView) SetSelectedColumn(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedColumn:"), value)
 }
@@ -1051,7 +965,6 @@ func (t_ TableView) SetSelectedColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedcolumnindexes
-
 func (t_ TableView) SelectedColumnIndexes() foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](t_.ID, objc.Sel("selectedColumnIndexes"))
 	return rv
@@ -1062,7 +975,6 @@ func (t_ TableView) SelectedColumnIndexes() foundation.IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedcolumnindexes
-
 func (t_ TableView) SetSelectedColumnIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedColumnIndexes:"), value)
 }
@@ -1072,7 +984,6 @@ func (t_ TableView) SetSelectedColumnIndexes(value foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedrow
-
 func (t_ TableView) SelectedRow() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedRow"))
 	return rv
@@ -1083,7 +994,6 @@ func (t_ TableView) SelectedRow() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedrow
-
 func (t_ TableView) SetSelectedRow(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRow:"), value)
 }
@@ -1093,7 +1003,6 @@ func (t_ TableView) SetSelectedRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedrowindexes
-
 func (t_ TableView) SelectedRowIndexes() foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](t_.ID, objc.Sel("selectedRowIndexes"))
 	return rv
@@ -1104,7 +1013,6 @@ func (t_ TableView) SelectedRowIndexes() foundation.IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/selectedrowindexes
-
 func (t_ TableView) SetSelectedRowIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRowIndexes:"), value)
 }
@@ -1114,7 +1022,6 @@ func (t_ TableView) SetSelectedRowIndexes(value foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/sortdescriptors
-
 func (t_ TableView) SortDescriptors() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -1125,7 +1032,6 @@ func (t_ TableView) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/sortdescriptors
-
 func (t_ TableView) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }
@@ -1135,7 +1041,6 @@ func (t_ TableView) SetSortDescriptors(value foundation.ISortDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/style-swift.property
-
 func (t_ TableView) Style() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("style"))
 	return rv
@@ -1146,7 +1051,6 @@ func (t_ TableView) Style() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/style-swift.property
-
 func (t_ TableView) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
 }
@@ -1156,7 +1060,6 @@ func (t_ TableView) SetStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/tablecolumns
-
 func (t_ TableView) TableColumns() NSTableColumn {
 	rv := objc.Send[NSTableColumn](t_.ID, objc.Sel("tableColumns"))
 	return rv
@@ -1167,7 +1070,6 @@ func (t_ TableView) TableColumns() NSTableColumn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/tablecolumns
-
 func (t_ TableView) SetTableColumns(value ITableColumn) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableColumns:"), value)
 }
@@ -1177,7 +1079,6 @@ func (t_ TableView) SetTableColumns(value ITableColumn) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/userinterfacelayoutdirection
-
 func (t_ TableView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 	rv := objc.Send[UserInterfaceLayoutDirection](t_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
@@ -1188,8 +1089,7 @@ func (t_ TableView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/userinterfacelayoutdirection
-
-func (t_ TableView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
+func (t_ TableView) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 
@@ -1198,7 +1098,6 @@ func (t_ TableView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDir
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/usesalternatingrowbackgroundcolors
-
 func (t_ TableView) UsesAlternatingRowBackgroundColors() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesAlternatingRowBackgroundColors"))
 	return rv
@@ -1209,7 +1108,6 @@ func (t_ TableView) UsesAlternatingRowBackgroundColors() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/usesalternatingrowbackgroundcolors
-
 func (t_ TableView) SetUsesAlternatingRowBackgroundColors(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesAlternatingRowBackgroundColors:"), value)
 }
@@ -1219,7 +1117,6 @@ func (t_ TableView) SetUsesAlternatingRowBackgroundColors(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/usesautomaticrowheights
-
 func (t_ TableView) UsesAutomaticRowHeights() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesAutomaticRowHeights"))
 	return rv
@@ -1230,7 +1127,6 @@ func (t_ TableView) UsesAutomaticRowHeights() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/usesautomaticrowheights
-
 func (t_ TableView) SetUsesAutomaticRowHeights(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesAutomaticRowHeights:"), value)
 }
@@ -1240,7 +1136,6 @@ func (t_ TableView) SetUsesAutomaticRowHeights(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/usesstaticcontents
-
 func (t_ TableView) UsesStaticContents() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesStaticContents"))
 	return rv
@@ -1251,7 +1146,6 @@ func (t_ TableView) UsesStaticContents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/usesstaticcontents
-
 func (t_ TableView) SetUsesStaticContents(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesStaticContents:"), value)
 }
@@ -1261,7 +1155,6 @@ func (t_ TableView) SetUsesStaticContents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/verticalmotioncanbegindrag
-
 func (t_ TableView) VerticalMotionCanBeginDrag() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("verticalMotionCanBeginDrag"))
 	return rv
@@ -1272,7 +1165,6 @@ func (t_ TableView) VerticalMotionCanBeginDrag() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableview/verticalmotioncanbegindrag
-
 func (t_ TableView) SetVerticalMotionCanBeginDrag(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVerticalMotionCanBeginDrag:"), value)
 }

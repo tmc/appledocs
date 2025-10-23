@@ -41,7 +41,6 @@ type ICKServerChangeToken interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKServerChangeToken
-
 type CKServerChangeToken struct {
 	objectivec.Object
 }

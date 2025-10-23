@@ -36,7 +36,6 @@ type IdataCodewordCount interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/dataCodewordCount-c.ivar
-
 type dataCodewordCount struct {
 	objectivec.Object
 }

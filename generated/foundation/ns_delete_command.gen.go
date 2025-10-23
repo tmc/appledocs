@@ -30,7 +30,7 @@ type _DeleteCommandClass struct {
 type IDeleteCommand interface {
 	IScriptCommand
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
-	KeySpecifier() NSScriptObjectSpecifier
+	KeySpecifier() IScriptObjectSpecifier
 }
 
 // A command that deletes a scriptable object.
@@ -101,7 +101,7 @@ func (d_ DeleteCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand/keySpecifier
-func (d_ DeleteCommand) KeySpecifier() NSScriptObjectSpecifier {
+func (d_ DeleteCommand) KeySpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](d_.ID, objc.Sel("keySpecifier"))
 	return rv
 }

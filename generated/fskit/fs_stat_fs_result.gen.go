@@ -73,7 +73,6 @@ type IFSStatFSResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSStatFSResult
-
 type FSStatFSResult struct {
 	objectivec.Object
 }
@@ -122,7 +121,6 @@ func NewFSStatFSResult() FSStatFSResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/availableblocks
-
 func (f_ FSStatFSResult) AvailableBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("availableBlocks"))
 	return rv
@@ -133,7 +131,6 @@ func (f_ FSStatFSResult) AvailableBlocks() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/availableblocks
-
 func (f_ FSStatFSResult) SetAvailableBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableBlocks:"), value)
 }
@@ -143,7 +140,6 @@ func (f_ FSStatFSResult) SetAvailableBlocks(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/availablebytes
-
 func (f_ FSStatFSResult) AvailableBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("availableBytes"))
 	return rv
@@ -154,7 +150,6 @@ func (f_ FSStatFSResult) AvailableBytes() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/availablebytes
-
 func (f_ FSStatFSResult) SetAvailableBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableBytes:"), value)
 }
@@ -164,7 +159,6 @@ func (f_ FSStatFSResult) SetAvailableBytes(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/blocksize
-
 func (f_ FSStatFSResult) BlockSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("blockSize"))
 	return rv
@@ -175,7 +169,6 @@ func (f_ FSStatFSResult) BlockSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/blocksize
-
 func (f_ FSStatFSResult) SetBlockSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBlockSize:"), value)
 }
@@ -185,7 +178,6 @@ func (f_ FSStatFSResult) SetBlockSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemsubtype
-
 func (f_ FSStatFSResult) FileSystemSubType() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fileSystemSubType"))
 	return rv
@@ -196,7 +188,6 @@ func (f_ FSStatFSResult) FileSystemSubType() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemsubtype
-
 func (f_ FSStatFSResult) SetFileSystemSubType(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemSubType:"), value)
 }
@@ -206,7 +197,6 @@ func (f_ FSStatFSResult) SetFileSystemSubType(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename
-
 func (f_ FSStatFSResult) FileSystemTypeName() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("fileSystemTypeName"))
 	return rv
@@ -217,7 +207,6 @@ func (f_ FSStatFSResult) FileSystemTypeName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename
-
 func (f_ FSStatFSResult) SetFileSystemTypeName(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemTypeName:"), objc.String(value))
 }
@@ -227,7 +216,6 @@ func (f_ FSStatFSResult) SetFileSystemTypeName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/freeblocks
-
 func (f_ FSStatFSResult) FreeBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("freeBlocks"))
 	return rv
@@ -238,7 +226,6 @@ func (f_ FSStatFSResult) FreeBlocks() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/freeblocks
-
 func (f_ FSStatFSResult) SetFreeBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFreeBlocks:"), value)
 }
@@ -248,7 +235,6 @@ func (f_ FSStatFSResult) SetFreeBlocks(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/freebytes
-
 func (f_ FSStatFSResult) FreeBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("freeBytes"))
 	return rv
@@ -259,7 +245,6 @@ func (f_ FSStatFSResult) FreeBytes() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/freebytes
-
 func (f_ FSStatFSResult) SetFreeBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFreeBytes:"), value)
 }
@@ -269,7 +254,6 @@ func (f_ FSStatFSResult) SetFreeBytes(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/freefiles
-
 func (f_ FSStatFSResult) FreeFiles() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("freeFiles"))
 	return rv
@@ -280,7 +264,6 @@ func (f_ FSStatFSResult) FreeFiles() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/freefiles
-
 func (f_ FSStatFSResult) SetFreeFiles(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFreeFiles:"), value)
 }
@@ -290,7 +273,6 @@ func (f_ FSStatFSResult) SetFreeFiles(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/iosize
-
 func (f_ FSStatFSResult) IoSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("ioSize"))
 	return rv
@@ -301,7 +283,6 @@ func (f_ FSStatFSResult) IoSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/iosize
-
 func (f_ FSStatFSResult) SetIoSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIoSize:"), value)
 }
@@ -311,7 +292,6 @@ func (f_ FSStatFSResult) SetIoSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/totalblocks
-
 func (f_ FSStatFSResult) TotalBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("totalBlocks"))
 	return rv
@@ -322,7 +302,6 @@ func (f_ FSStatFSResult) TotalBlocks() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/totalblocks
-
 func (f_ FSStatFSResult) SetTotalBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTotalBlocks:"), value)
 }
@@ -332,7 +311,6 @@ func (f_ FSStatFSResult) SetTotalBlocks(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/totalbytes
-
 func (f_ FSStatFSResult) TotalBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("totalBytes"))
 	return rv
@@ -343,7 +321,6 @@ func (f_ FSStatFSResult) TotalBytes() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/totalbytes
-
 func (f_ FSStatFSResult) SetTotalBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTotalBytes:"), value)
 }
@@ -353,7 +330,6 @@ func (f_ FSStatFSResult) SetTotalBytes(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/totalfiles
-
 func (f_ FSStatFSResult) TotalFiles() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("totalFiles"))
 	return rv
@@ -364,7 +340,6 @@ func (f_ FSStatFSResult) TotalFiles() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/totalfiles
-
 func (f_ FSStatFSResult) SetTotalFiles(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTotalFiles:"), value)
 }
@@ -374,7 +349,6 @@ func (f_ FSStatFSResult) SetTotalFiles(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/usedblocks
-
 func (f_ FSStatFSResult) UsedBlocks() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("usedBlocks"))
 	return rv
@@ -385,7 +359,6 @@ func (f_ FSStatFSResult) UsedBlocks() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/usedblocks
-
 func (f_ FSStatFSResult) SetUsedBlocks(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUsedBlocks:"), value)
 }
@@ -395,7 +368,6 @@ func (f_ FSStatFSResult) SetUsedBlocks(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/usedbytes
-
 func (f_ FSStatFSResult) UsedBytes() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("usedBytes"))
 	return rv
@@ -406,7 +378,6 @@ func (f_ FSStatFSResult) UsedBytes() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/usedbytes
-
 func (f_ FSStatFSResult) SetUsedBytes(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUsedBytes:"), value)
 }
@@ -416,7 +387,6 @@ func (f_ FSStatFSResult) SetUsedBytes(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-
 func (f_ FSStatFSResult) SupportedVolumeCapabilities() FSVolumeSupportedCapabilities {
 	rv := objc.Send[FSVolumeSupportedCapabilities](f_.ID, objc.Sel("supportedVolumeCapabilities"))
 	return rv
@@ -427,7 +397,6 @@ func (f_ FSStatFSResult) SupportedVolumeCapabilities() FSVolumeSupportedCapabili
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-
 func (f_ FSStatFSResult) SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedVolumeCapabilities:"), value)
 }
@@ -437,7 +406,6 @@ func (f_ FSStatFSResult) SetSupportedVolumeCapabilities(value IFSVolumeSupported
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-
 func (f_ FSStatFSResult) VolumeStatistics() FSStatFSResult {
 	rv := objc.Send[FSStatFSResult](f_.ID, objc.Sel("volumeStatistics"))
 	return rv
@@ -448,7 +416,6 @@ func (f_ FSStatFSResult) VolumeStatistics() FSStatFSResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-
 func (f_ FSStatFSResult) SetVolumeStatistics(value IFSStatFSResult) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeStatistics:"), value)
 }

@@ -42,7 +42,6 @@ type IBackgroundActivitySessionDiagnostic interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic
-
 type BackgroundActivitySessionDiagnostic struct {
 	objectivec.Object
 }
@@ -87,7 +86,6 @@ func NewBackgroundActivitySessionDiagnostic() BackgroundActivitySessionDiagnosti
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationDenied
-
 func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDenied() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationDenied"))
 	return rv
@@ -96,7 +94,6 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDenied() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationDeniedGlobally
-
 func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDeniedGlobally() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
@@ -105,7 +102,6 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDeniedGlobally() bool
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationRequestInProgress
-
 func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRequestInProgress() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
@@ -114,7 +110,6 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRequestInProgress() b
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationRestricted
-
 func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRestricted() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationRestricted"))
 	return rv
@@ -123,7 +118,6 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRestricted() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/insufficientlyInUse
-
 func (b_ BackgroundActivitySessionDiagnostic) InsufficientlyInUse() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
@@ -132,7 +126,6 @@ func (b_ BackgroundActivitySessionDiagnostic) InsufficientlyInUse() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/serviceSessionRequired
-
 func (b_ BackgroundActivitySessionDiagnostic) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("serviceSessionRequired"))
 	return rv

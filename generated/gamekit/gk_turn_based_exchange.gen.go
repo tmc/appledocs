@@ -63,7 +63,6 @@ type ITurnBasedExchange interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange
-
 type TurnBasedExchange struct {
 	objectivec.Object
 }
@@ -112,7 +111,6 @@ func NewTurnBasedExchange() TurnBasedExchange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange/exchangeID
-
 func (t_ TurnBasedExchange) ExchangeID() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("exchangeID"))
 	return rv
@@ -123,7 +121,6 @@ func (t_ TurnBasedExchange) ExchangeID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/completiondate
-
 func (t_ TurnBasedExchange) CompletionDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("completionDate"))
 	return rv
@@ -134,7 +131,6 @@ func (t_ TurnBasedExchange) CompletionDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/completiondate
-
 func (t_ TurnBasedExchange) SetCompletionDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDate:"), value)
 }
@@ -144,7 +140,6 @@ func (t_ TurnBasedExchange) SetCompletionDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/data
-
 func (t_ TurnBasedExchange) Data() foundation.Data {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("data"))
 	return rv
@@ -155,7 +150,6 @@ func (t_ TurnBasedExchange) Data() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/data
-
 func (t_ TurnBasedExchange) SetData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
@@ -165,7 +159,6 @@ func (t_ TurnBasedExchange) SetData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
-
 func (t_ TurnBasedExchange) Message() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
@@ -176,7 +169,6 @@ func (t_ TurnBasedExchange) Message() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
-
 func (t_ TurnBasedExchange) SetMessage(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
@@ -186,7 +178,6 @@ func (t_ TurnBasedExchange) SetMessage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/recipients
-
 func (t_ TurnBasedExchange) Recipients() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("recipients"))
 	return rv
@@ -197,7 +188,6 @@ func (t_ TurnBasedExchange) Recipients() GKTurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/recipients
-
 func (t_ TurnBasedExchange) SetRecipients(value IGKTurnBasedParticipant) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRecipients:"), value)
 }
@@ -207,7 +197,6 @@ func (t_ TurnBasedExchange) SetRecipients(value IGKTurnBasedParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-
 func (t_ TurnBasedExchange) Replies() GKTurnBasedExchangeReply {
 	rv := objc.Send[GKTurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
 	return rv
@@ -218,7 +207,6 @@ func (t_ TurnBasedExchange) Replies() GKTurnBasedExchangeReply {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-
 func (t_ TurnBasedExchange) SetReplies(value IGKTurnBasedExchangeReply) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplies:"), value)
 }
@@ -228,7 +216,6 @@ func (t_ TurnBasedExchange) SetReplies(value IGKTurnBasedExchangeReply) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/senddate
-
 func (t_ TurnBasedExchange) SendDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("sendDate"))
 	return rv
@@ -239,7 +226,6 @@ func (t_ TurnBasedExchange) SendDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/senddate
-
 func (t_ TurnBasedExchange) SetSendDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSendDate:"), value)
 }
@@ -249,7 +235,6 @@ func (t_ TurnBasedExchange) SetSendDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/sender
-
 func (t_ TurnBasedExchange) Sender() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("sender"))
 	return rv
@@ -260,7 +245,6 @@ func (t_ TurnBasedExchange) Sender() GKTurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/sender
-
 func (t_ TurnBasedExchange) SetSender(value IGKTurnBasedParticipant) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSender:"), value)
 }
@@ -270,7 +254,6 @@ func (t_ TurnBasedExchange) SetSender(value IGKTurnBasedParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/status
-
 func (t_ TurnBasedExchange) Status() TurnBasedExchangeStatus {
 	rv := objc.Send[TurnBasedExchangeStatus](t_.ID, objc.Sel("status"))
 	return rv
@@ -281,7 +264,6 @@ func (t_ TurnBasedExchange) Status() TurnBasedExchangeStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/status
-
 func (t_ TurnBasedExchange) SetStatus(value TurnBasedExchangeStatus) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
 }
@@ -291,7 +273,6 @@ func (t_ TurnBasedExchange) SetStatus(value TurnBasedExchangeStatus) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/timeoutdate
-
 func (t_ TurnBasedExchange) TimeoutDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("timeoutDate"))
 	return rv
@@ -302,7 +283,6 @@ func (t_ TurnBasedExchange) TimeoutDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/timeoutdate
-
 func (t_ TurnBasedExchange) SetTimeoutDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeoutDate:"), value)
 }
@@ -312,7 +292,6 @@ func (t_ TurnBasedExchange) SetTimeoutDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
-
 func (t_ TurnBasedExchange) CompletedExchanges() GKTurnBasedExchange {
 	rv := objc.Send[GKTurnBasedExchange](t_.ID, objc.Sel("completedExchanges"))
 	return rv
@@ -323,7 +302,6 @@ func (t_ TurnBasedExchange) CompletedExchanges() GKTurnBasedExchange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
-
 func (t_ TurnBasedExchange) SetCompletedExchanges(value IGKTurnBasedExchange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletedExchanges:"), value)
 }

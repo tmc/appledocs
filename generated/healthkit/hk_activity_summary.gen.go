@@ -70,7 +70,6 @@ type IHKActivitySummary interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary
-
 type HKActivitySummary struct {
 	objectivec.Object
 }
@@ -115,12 +114,10 @@ func NewHKActivitySummary() HKActivitySummary {
 
 
 
-
 // Date components that uniquely identify the day represented by the summary object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/dateComponents(for:)
-
 func (h_ HKActivitySummary) DateComponentsForCalendar(calendar foundation.ICalendar) foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateComponentsForCalendar:"), calendar)
 	return rv
@@ -131,7 +128,6 @@ func (h_ HKActivitySummary) DateComponentsForCalendar(calendar foundation.ICalen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurned
-
 func (h_ HKActivitySummary) ActiveEnergyBurned() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("activeEnergyBurned"))
 	return rv
@@ -142,7 +138,6 @@ func (h_ HKActivitySummary) ActiveEnergyBurned() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurned
-
 func (h_ HKActivitySummary) SetActiveEnergyBurned(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurned:"), value)
 }
@@ -152,7 +147,6 @@ func (h_ HKActivitySummary) SetActiveEnergyBurned(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal
-
 func (h_ HKActivitySummary) ActiveEnergyBurnedGoal() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("activeEnergyBurnedGoal"))
 	return rv
@@ -163,7 +157,6 @@ func (h_ HKActivitySummary) ActiveEnergyBurnedGoal() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal
-
 func (h_ HKActivitySummary) SetActiveEnergyBurnedGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurnedGoal:"), value)
 }
@@ -173,7 +166,6 @@ func (h_ HKActivitySummary) SetActiveEnergyBurnedGoal(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activityMoveMode
-
 func (h_ HKActivitySummary) ActivityMoveMode() HKActivityMoveMode {
 	rv := objc.Send[HKActivityMoveMode](h_.ID, objc.Sel("activityMoveMode"))
 	return rv
@@ -184,7 +176,6 @@ func (h_ HKActivitySummary) ActivityMoveMode() HKActivityMoveMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activityMoveMode
-
 func (h_ HKActivitySummary) SetActivityMoveMode(value HKActivityMoveMode) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityMoveMode:"), value)
 }
@@ -194,7 +185,6 @@ func (h_ HKActivitySummary) SetActivityMoveMode(value HKActivityMoveMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTime
-
 func (h_ HKActivitySummary) AppleExerciseTime() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleExerciseTime"))
 	return rv
@@ -205,7 +195,6 @@ func (h_ HKActivitySummary) AppleExerciseTime() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTime
-
 func (h_ HKActivitySummary) SetAppleExerciseTime(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTime:"), value)
 }
@@ -215,7 +204,6 @@ func (h_ HKActivitySummary) SetAppleExerciseTime(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTimeGoal
-
 func (h_ HKActivitySummary) AppleExerciseTimeGoal() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleExerciseTimeGoal"))
 	return rv
@@ -226,7 +214,6 @@ func (h_ HKActivitySummary) AppleExerciseTimeGoal() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTimeGoal
-
 func (h_ HKActivitySummary) SetAppleExerciseTimeGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTimeGoal:"), value)
 }
@@ -236,7 +223,6 @@ func (h_ HKActivitySummary) SetAppleExerciseTimeGoal(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTime
-
 func (h_ HKActivitySummary) AppleMoveTime() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleMoveTime"))
 	return rv
@@ -247,7 +233,6 @@ func (h_ HKActivitySummary) AppleMoveTime() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTime
-
 func (h_ HKActivitySummary) SetAppleMoveTime(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
 }
@@ -257,7 +242,6 @@ func (h_ HKActivitySummary) SetAppleMoveTime(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTimeGoal
-
 func (h_ HKActivitySummary) AppleMoveTimeGoal() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleMoveTimeGoal"))
 	return rv
@@ -268,7 +252,6 @@ func (h_ HKActivitySummary) AppleMoveTimeGoal() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTimeGoal
-
 func (h_ HKActivitySummary) SetAppleMoveTimeGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTimeGoal:"), value)
 }
@@ -278,7 +261,6 @@ func (h_ HKActivitySummary) SetAppleMoveTimeGoal(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHours
-
 func (h_ HKActivitySummary) AppleStandHours() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleStandHours"))
 	return rv
@@ -289,7 +271,6 @@ func (h_ HKActivitySummary) AppleStandHours() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHours
-
 func (h_ HKActivitySummary) SetAppleStandHours(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHours:"), value)
 }
@@ -299,7 +280,6 @@ func (h_ HKActivitySummary) SetAppleStandHours(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHoursGoal
-
 func (h_ HKActivitySummary) AppleStandHoursGoal() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleStandHoursGoal"))
 	return rv
@@ -310,7 +290,6 @@ func (h_ HKActivitySummary) AppleStandHoursGoal() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHoursGoal
-
 func (h_ HKActivitySummary) SetAppleStandHoursGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHoursGoal:"), value)
 }
@@ -320,7 +299,6 @@ func (h_ HKActivitySummary) SetAppleStandHoursGoal(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/exerciseTimeGoal
-
 func (h_ HKActivitySummary) ExerciseTimeGoal() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("exerciseTimeGoal"))
 	return rv
@@ -331,7 +309,6 @@ func (h_ HKActivitySummary) ExerciseTimeGoal() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/exerciseTimeGoal
-
 func (h_ HKActivitySummary) SetExerciseTimeGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExerciseTimeGoal:"), value)
 }
@@ -339,7 +316,6 @@ func (h_ HKActivitySummary) SetExerciseTimeGoal(value IHKQuantity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/isPaused
-
 func (h_ HKActivitySummary) Paused() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("paused"))
 	return rv
@@ -348,7 +324,6 @@ func (h_ HKActivitySummary) Paused() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/isPaused
-
 func (h_ HKActivitySummary) SetPaused(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPaused:"), value)
 }
@@ -358,7 +333,6 @@ func (h_ HKActivitySummary) SetPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/standHoursGoal
-
 func (h_ HKActivitySummary) StandHoursGoal() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("standHoursGoal"))
 	return rv
@@ -369,7 +343,6 @@ func (h_ HKActivitySummary) StandHoursGoal() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/standHoursGoal
-
 func (h_ HKActivitySummary) SetStandHoursGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStandHoursGoal:"), value)
 }
@@ -377,7 +350,6 @@ func (h_ HKActivitySummary) SetStandHoursGoal(value IHKQuantity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-
 func (h_ HKActivitySummary) IsPaused() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isPaused"))
 	return rv
@@ -386,7 +358,6 @@ func (h_ HKActivitySummary) IsPaused() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-
 func (h_ HKActivitySummary) SetIsPaused(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsPaused:"), value)
 }
@@ -396,7 +367,6 @@ func (h_ HKActivitySummary) SetIsPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents
-
 func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
 	return rv

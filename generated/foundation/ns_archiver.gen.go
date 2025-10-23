@@ -31,7 +31,7 @@ type _ArchiverClass struct {
 type IArchiver interface {
 	ICoder
 	EncodeRootObject(rootObject objectivec.IObject)
-	ArchiverData() NSMutableData
+	ArchiverData() IMutableData
 	SetArchiverData(value IMutableData)
 }
 
@@ -103,7 +103,7 @@ func (a_ Archiver) EncodeRootObject(rootObject objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
-func (a_ Archiver) ArchiverData() NSMutableData {
+func (a_ Archiver) ArchiverData() IMutableData {
 	rv := objc.Send[NSMutableData](a_.ID, objc.Sel("archiverData"))
 	return rv
 }

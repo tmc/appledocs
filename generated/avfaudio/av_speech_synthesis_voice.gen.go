@@ -56,7 +56,6 @@ type ISpeechSynthesisVoice interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice
-
 type SpeechSynthesisVoice struct {
 	objectivec.Object
 }
@@ -105,7 +104,6 @@ func NewSpeechSynthesisVoice() SpeechSynthesisVoice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/gender
-
 func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gender"))
 	return rv
@@ -116,7 +114,6 @@ func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/language
-
 func (s_ SpeechSynthesisVoice) Language() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("language"))
 	return rv
@@ -127,7 +124,6 @@ func (s_ SpeechSynthesisVoice) Language() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
-
 func (s_ SpeechSynthesisVoice) AudioFileSettings() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("audioFileSettings"))
 	return rv
@@ -138,7 +134,6 @@ func (s_ SpeechSynthesisVoice) AudioFileSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
-
 func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioFileSettings:"), objc.String(value))
 }
@@ -148,7 +143,6 @@ func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
-
 func (s_ SpeechSynthesisVoice) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
@@ -159,7 +153,6 @@ func (s_ SpeechSynthesisVoice) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
-
 func (s_ SpeechSynthesisVoice) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -169,7 +162,6 @@ func (s_ SpeechSynthesisVoice) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
-
 func (s_ SpeechSynthesisVoice) Name() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("name"))
 	return rv
@@ -180,7 +172,6 @@ func (s_ SpeechSynthesisVoice) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
-
 func (s_ SpeechSynthesisVoice) SetName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -190,7 +181,6 @@ func (s_ SpeechSynthesisVoice) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/quality
-
 func (s_ SpeechSynthesisVoice) Quality() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("quality"))
 	return rv
@@ -201,7 +191,6 @@ func (s_ SpeechSynthesisVoice) Quality() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/quality
-
 func (s_ SpeechSynthesisVoice) SetQuality(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuality:"), value)
 }
@@ -211,7 +200,6 @@ func (s_ SpeechSynthesisVoice) SetQuality(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/voicetraits
-
 func (s_ SpeechSynthesisVoice) VoiceTraits() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceTraits"))
 	return rv
@@ -222,7 +210,6 @@ func (s_ SpeechSynthesisVoice) VoiceTraits() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/voicetraits
-
 func (s_ SpeechSynthesisVoice) SetVoiceTraits(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceTraits:"), value)
 }
@@ -232,7 +219,6 @@ func (s_ SpeechSynthesisVoice) SetVoiceTraits(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoiceidentifieralex
-
 func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisVoiceIdentifierAlex"))
 	return rv
@@ -243,7 +229,6 @@ func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-
 func (s_ SpeechSynthesisVoice) Voice() AVSpeechSynthesisVoice {
 	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
@@ -254,7 +239,6 @@ func (s_ SpeechSynthesisVoice) Voice() AVSpeechSynthesisVoice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-
 func (s_ SpeechSynthesisVoice) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }

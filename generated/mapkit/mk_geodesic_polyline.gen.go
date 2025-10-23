@@ -34,7 +34,11 @@ type IMKGeodesicPolyline interface {
 // An open polygon overlay consisting of line segments that follow the contours of the Earth to create the shortest path between the specified points.
 //
 // A geodesic polyline contains a set of points that connect end-to-end in the order that you provide them. The first and last points don’t automatically connect to each other. When displaying on a two-dimensional map view, the line segment between any two points may appear curved.
+
+
+// An open polygon overlay consisting of line segments that follow the contours of the Earth to create the shortest path between the specified points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeodesicPolyline
 type MKGeodesicPolyline struct {
 	MKPolyline

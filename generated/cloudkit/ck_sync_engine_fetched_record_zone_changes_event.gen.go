@@ -38,7 +38,6 @@ type ICKSyncEngineFetchedRecordZoneChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent
-
 type CKSyncEngineFetchedRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }

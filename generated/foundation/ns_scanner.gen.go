@@ -36,7 +36,7 @@ type IScanner interface {
 	NSNotFound() int
 	CaseSensitive() bool
 	SetCaseSensitive(value bool)
-	CharactersToBeSkipped() CharacterSet
+	CharactersToBeSkipped() ICharacterSet
 	SetCharactersToBeSkipped(value ICharacterSet)
 	CurrentIndex() unsafe.Pointer
 	SetCurrentIndex(value unsafe.Pointer)
@@ -166,7 +166,7 @@ func (s_ Scanner) SetCaseSensitive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
-func (s_ Scanner) CharactersToBeSkipped() CharacterSet {
+func (s_ Scanner) CharactersToBeSkipped() ICharacterSet {
 	rv := objc.Send[CharacterSet](s_.ID, objc.Sel("charactersToBeSkipped"))
 	return rv
 }

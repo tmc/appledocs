@@ -44,7 +44,6 @@ type ITKSmartCardSlotNFCSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession
-
 type TKSmartCardSlotNFCSession struct {
 	objectivec.Object
 }
@@ -89,23 +88,19 @@ func NewTKSmartCardSlotNFCSession() TKSmartCardSlotNFCSession {
 
 
 
-
 // Ends the NFC slot session and dismisses the system-presented NFC UI (if present).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/end()
-
 func (t_ TKSmartCardSlotNFCSession) EndSession() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
 }
-
 
 
 // Updates the message of the system-presented NFC UI.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/update(message:)
-
 func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message string, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("updateWithMessage:error:"), objc.String(message), error_)
 	return rv
@@ -116,7 +111,6 @@ func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message string, error
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/slotName
-
 func (t_ TKSmartCardSlotNFCSession) SlotName() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv

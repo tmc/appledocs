@@ -42,7 +42,6 @@ type ICallCenter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCallCenter
-
 type CallCenter struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewCallCenter() CallCenter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCallCenter/currentCalls
-
 func (c_ CallCenter) CurrentCalls() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentCalls"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CallCenter) CurrentCalls() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcallcenter/calleventhandler
-
 func (c_ CallCenter) CallEventHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callEventHandler"))
 	return rv
@@ -113,7 +110,6 @@ func (c_ CallCenter) CallEventHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcallcenter/calleventhandler
-
 func (c_ CallCenter) SetCallEventHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallEventHandler:"), value)
 }

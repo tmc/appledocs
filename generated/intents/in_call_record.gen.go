@@ -54,7 +54,11 @@ type IINCallRecord interface {
 // The details about a call handled by your app.
 //
 // An object stores details about calls made by the user through your app. You use call record objects to communicate basic information about calls to SiriKit. A call record identifies the type of call, the duration of the call, the date and time of the call, and the person on the other end of the call. You create call record objects when reporting search results back to SiriKit and when identifying voicemails to play.
+
+
+// The details about a call handled by your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCallRecord
 type INCallRecord struct {
 	objectivec.Object
@@ -99,8 +103,10 @@ func NewINCallRecord() INCallRecord {
 }
 
 
+
 // The audio and video capabilities of the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callcapability
 func (i_ INCallRecord) CallCapability() INCallCapability {
 	rv := objc.Send[INCallCapability](i_.ID, objc.Sel("callCapability"))
@@ -108,17 +114,18 @@ func (i_ INCallRecord) CallCapability() INCallCapability {
 }
 
 
-// SetCallCapability sets the value of the callCapability property.
 // The audio and video capabilities of the call.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callcapability
 func (i_ INCallRecord) SetCallCapability(value INCallCapability) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
 
+
 // The duration (measured in seconds) of the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callduration-47iud
 func (i_ INCallRecord) CallDuration() float64 {
 	rv := objc.Send[float64](i_.ID, objc.Sel("callDuration"))
@@ -126,17 +133,18 @@ func (i_ INCallRecord) CallDuration() float64 {
 }
 
 
-// SetCallDuration sets the value of the callDuration property.
 // The duration (measured in seconds) of the call.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callduration-47iud
 func (i_ INCallRecord) SetCallDuration(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallDuration:"), value)
 }
 
+
 // The type of call that resulted from the attempt.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callrecordtype
 func (i_ INCallRecord) CallRecordType() INCallRecordType {
 	rv := objc.Send[INCallRecordType](i_.ID, objc.Sel("callRecordType"))
@@ -144,17 +152,18 @@ func (i_ INCallRecord) CallRecordType() INCallRecordType {
 }
 
 
-// SetCallRecordType sets the value of the callRecordType property.
 // The type of call that resulted from the attempt.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callrecordtype
 func (i_ INCallRecord) SetCallRecordType(value INCallRecordType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordType:"), value)
 }
 
+
 // The person who participated in the call with the current user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/caller
 func (i_ INCallRecord) Caller() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("caller"))
@@ -162,17 +171,18 @@ func (i_ INCallRecord) Caller() INPerson {
 }
 
 
-// SetCaller sets the value of the caller property.
 // The person who participated in the call with the current user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/caller
 func (i_ INCallRecord) SetCaller(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCaller:"), value)
 }
 
+
 // The date and time at which the call was initiated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/datecreated
 func (i_ INCallRecord) DateCreated() foundation.Date {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("dateCreated"))
@@ -180,17 +190,18 @@ func (i_ INCallRecord) DateCreated() foundation.Date {
 }
 
 
-// SetDateCreated sets the value of the dateCreated property.
 // The date and time at which the call was initiated.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/datecreated
 func (i_ INCallRecord) SetDateCreated(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
+
 // A unique string that you can use to locate the call in your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
 func (i_ INCallRecord) Identifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
@@ -198,17 +209,18 @@ func (i_ INCallRecord) Identifier() string {
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // A unique string that you can use to locate the call in your app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
 func (i_ INCallRecord) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
+
 // The number of calls in the call record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/numberofcalls-r8kl
 func (i_ INCallRecord) NumberOfCalls() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("numberOfCalls"))
@@ -216,17 +228,18 @@ func (i_ INCallRecord) NumberOfCalls() int {
 }
 
 
-// SetNumberOfCalls sets the value of the numberOfCalls property.
 // The number of calls in the call record.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/numberofcalls-r8kl
 func (i_ INCallRecord) SetNumberOfCalls(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfCalls:"), value)
 }
 
+
 // The recipient of the user’s call request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/participants
 func (i_ INCallRecord) Participants() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("participants"))
@@ -234,17 +247,18 @@ func (i_ INCallRecord) Participants() INPerson {
 }
 
 
-// SetParticipants sets the value of the participants property.
 // The recipient of the user’s call request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/participants
 func (i_ INCallRecord) SetParticipants(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
 }
 
+
 // A Boolean value indicating whether the user has seen the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/unseen-2m7sz
 func (i_ INCallRecord) Unseen() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("unseen"))
@@ -252,10 +266,9 @@ func (i_ INCallRecord) Unseen() bool {
 }
 
 
-// SetUnseen sets the value of the unseen property.
 // A Boolean value indicating whether the user has seen the call.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/unseen-2m7sz
 func (i_ INCallRecord) SetUnseen(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)

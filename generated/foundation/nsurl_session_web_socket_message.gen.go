@@ -30,9 +30,9 @@ type _URLSessionWebSocketMessageClass struct {
 // An interface definition for the [URLSessionWebSocketMessage] class.
 type IURLSessionWebSocketMessage interface {
 	objectivec.IObject
-	Data() NSData
+	Data() IData
 	String() string
-	Type() URLSessionWebSocketMessageType
+	Type() NSURLSessionWebSocketMessageType
 }
 
 
@@ -104,7 +104,7 @@ func NewURLSessionWebSocketMessageWithString(string_ string) URLSessionWebSocket
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/data
-func (u_ URLSessionWebSocketMessage) Data() NSData {
+func (u_ URLSessionWebSocketMessage) Data() IData {
 	rv := objc.Send[NSData](u_.ID, objc.Sel("data"))
 	return rv
 }
@@ -120,7 +120,7 @@ func (u_ URLSessionWebSocketMessage) String() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/type
-func (u_ URLSessionWebSocketMessage) Type() URLSessionWebSocketMessageType {
+func (u_ URLSessionWebSocketMessage) Type() NSURLSessionWebSocketMessageType {
 	rv := objc.Send[URLSessionWebSocketMessageType](u_.ID, objc.Sel("type"))
 	return rv
 }

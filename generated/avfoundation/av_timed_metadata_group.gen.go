@@ -30,9 +30,10 @@ type _TimedMetadataGroupClass struct {
 // An interface definition for the [TimedMetadataGroup] class.
 type ITimedMetadataGroup interface {
 	objectivec.IObject
-	TimeRange() unsafe.Pointer
-	Items() AVMetadataItem
+	Items() IAVMetadataItem
 	SetItems(value IAVMetadataItem)
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
 }
 
 // A collection of metadata items that are valid for use during a specific time range.
@@ -44,7 +45,6 @@ type ITimedMetadataGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup
-
 type TimedMetadataGroup struct {
 	objectivec.Object
 }
@@ -89,38 +89,11 @@ func NewTimedMetadataGroup() TimedMetadataGroup {
 
 
 
-
-// Creates a timed metadata group initialized with the given metadata items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/init(items:timeRange:)
-
-func NewTimedMetadataGroupWithItemsTimeRange(items []MetadataItem, timeRange unsafe.Pointer) TimedMetadataGroup {
-	instance := getTimedMetadataGroupClass().Alloc()
-	rv := objc.Send[TimedMetadataGroup](instance.ID, objc.Sel("initWithItems:timeRange:"), items, timeRange)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The time range for the timed metadata.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/timeRange
-
-func (t_ TimedMetadataGroup) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeRange"))
-	return rv
-}
-
-
 // An array of metadata items in the timed metadata group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
-
-func (t_ TimedMetadataGroup) Items() AVMetadataItem {
+func (t_ TimedMetadataGroup) Items() IAVMetadataItem {
 	rv := objc.Send[AVMetadataItem](t_.ID, objc.Sel("items"))
 	return rv
 }
@@ -130,9 +103,28 @@ func (t_ TimedMetadataGroup) Items() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
-
 func (t_ TimedMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItems:"), value)
 }
+
+
+// The time range for the timed metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/timerange
+func (t_ TimedMetadataGroup) TimeRange() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeRange"))
+	return rv
+}
+
+
+// The time range for the timed metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/timerange
+func (t_ TimedMetadataGroup) SetTimeRange(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeRange:"), value)
+}
+
 
 

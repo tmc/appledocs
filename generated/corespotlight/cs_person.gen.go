@@ -46,7 +46,6 @@ type ICSPerson interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson
-
 type CSPerson struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewCSPerson() CSPerson {
 
 
 
-
 // Returns a new object initialized with the specified display name and contact attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/init(displayName:handles:handleIdentifier:)
-
 func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handles []string, handleIdentifier string) CSPerson {
 	instance := getCSPersonClass().Alloc()
 	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), objc.String(displayName), handles, objc.String(handleIdentifier))
@@ -110,7 +107,6 @@ func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-
 func (c_ CSPerson) ContactIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
@@ -121,7 +117,6 @@ func (c_ CSPerson) ContactIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-
 func (c_ CSPerson) SetContactIdentifier(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
@@ -131,7 +126,6 @@ func (c_ CSPerson) SetContactIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName
-
 func (c_ CSPerson) DisplayName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
@@ -142,7 +136,6 @@ func (c_ CSPerson) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handleIdentifier
-
 func (c_ CSPerson) HandleIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("handleIdentifier"))
 	return rv
@@ -153,7 +146,6 @@ func (c_ CSPerson) HandleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handles
-
 func (c_ CSPerson) Handles() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("handles"))
 	return rv

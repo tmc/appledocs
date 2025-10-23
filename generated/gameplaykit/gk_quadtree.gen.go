@@ -48,7 +48,6 @@ type IQuadtree interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree
-
 type Quadtree struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewQuadtree() Quadtree {
 
 
 
-
 // Initializes a quadtree with the specified dimensions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/init(boundingQuad:minimumCellSize:)
-
 func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) Quadtree {
 	instance := getQuadtreeClass().Alloc()
 	rv := objc.Send[Quadtree](instance.ID, objc.Sel("initWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
@@ -112,79 +109,66 @@ func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/quadtreeWithBoundingQuad:minimumCellSize:
-
 func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("quadtreeWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
 	return rv
 }
 
 
-
 // Adds an object to the tree corresponding to the specified point in 2D space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:at:)
-
 func (q_ Quadtree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) QuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withPoint:"), element, point)
 	return rv
 }
 
 
-
 // Adds an object to the tree corresponding to the specified region of 2D space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:in:)
-
 func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) QuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withQuad:"), element, quad)
 	return rv
 }
 
 
-
 // Returns all objects whose corresponding locations overlap the specified point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(at:)
-
 func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
 	rv := objc.Send[[]foundation.Object](q_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
 
-
 // Returns all objects whose corresponding locations overlap the specified region.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(in:)
-
 func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []foundation.Object {
 	rv := objc.Send[[]foundation.Object](q_.ID, objc.Sel("elementsInQuad:"), quad)
 	return rv
 }
 
 
-
 // Searches for the specified object and removes it from the tree.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/remove(_:)
-
 func (q_ Quadtree) RemoveElement(element unsafe.Pointer) bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("removeElement:"), element)
 	return rv
 }
 
 
-
 // Removes the specified object from the tree, using a reference to its containing node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/remove(_:using:)
-
 func (q_ Quadtree) RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("removeElement:withNode:"), data, node)
 	return rv

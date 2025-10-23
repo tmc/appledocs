@@ -29,9 +29,9 @@ type _SocketPortNameServerClass struct {
 // An interface definition for the [SocketPortNameServer] class.
 type ISocketPortNameServer interface {
 	IPortNameServer
-	PortForName(name string) Port
-	PortForNameHost(name string, host string) Port
-	PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) Port
+	PortForName(name string) IPort
+	PortForNameHost(name string, host string) IPort
+	PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) IPort
 	RegisterPortName(port IPort, name string) bool
 	RegisterPortNameNameServerPortNumber(port IPort, name string, portNumber unsafe.Pointer) bool
 	RemovePortForName(name string) bool
@@ -108,7 +108,7 @@ func (sc _SocketPortNameServerClass) SharedInstance() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/portForName:
-func (s_ SocketPortNameServer) PortForName(name string) Port {
+func (s_ SocketPortNameServer) PortForName(name string) IPort {
 	rv := objc.Send[Port](s_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
@@ -118,7 +118,7 @@ func (s_ SocketPortNameServer) PortForName(name string) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/portForName:host:
-func (s_ SocketPortNameServer) PortForNameHost(name string, host string) Port {
+func (s_ SocketPortNameServer) PortForNameHost(name string, host string) IPort {
 	rv := objc.Send[Port](s_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }
@@ -128,7 +128,7 @@ func (s_ SocketPortNameServer) PortForNameHost(name string, host string) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/portForName:host:nameServerPortNumber:
-func (s_ SocketPortNameServer) PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) Port {
+func (s_ SocketPortNameServer) PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) IPort {
 	rv := objc.Send[Port](s_.ID, objc.Sel("portForName:host:nameServerPortNumber:"), objc.String(name), objc.String(host), portNumber)
 	return rv
 }

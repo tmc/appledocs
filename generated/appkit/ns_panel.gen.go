@@ -48,7 +48,6 @@ type IPanel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel
-
 type Panel struct {
 	Window
 }
@@ -99,7 +98,6 @@ func NewPanel() Panel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
-
 func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("becomesKeyOnlyIfNeeded"))
 	return rv
@@ -110,7 +108,6 @@ func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
-
 func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBecomesKeyOnlyIfNeeded:"), value)
 }
@@ -120,7 +117,6 @@ func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
-
 func (p_ Panel) FloatingPanel() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("floatingPanel"))
 	return rv
@@ -131,7 +127,6 @@ func (p_ Panel) FloatingPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
-
 func (p_ Panel) SetFloatingPanel(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFloatingPanel:"), value)
 }
@@ -141,7 +136,6 @@ func (p_ Panel) SetFloatingPanel(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
-
 func (p_ Panel) WorksWhenModal() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("worksWhenModal"))
 	return rv
@@ -152,7 +146,6 @@ func (p_ Panel) WorksWhenModal() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
-
 func (p_ Panel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
@@ -162,7 +155,6 @@ func (p_ Panel) SetWorksWhenModal(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
-
 func (p_ Panel) IsFloatingPanel() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFloatingPanel"))
 	return rv
@@ -173,7 +165,6 @@ func (p_ Panel) IsFloatingPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
-
 func (p_ Panel) SetIsFloatingPanel(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFloatingPanel:"), value)
 }

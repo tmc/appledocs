@@ -48,7 +48,6 @@ type IFeature interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature
-
 type Feature struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewFeature() Feature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
-
 func (f_ Feature) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
@@ -108,7 +106,6 @@ func (f_ Feature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
-
 func (f_ Feature) Type() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("type"))
 	return rv
@@ -119,7 +116,6 @@ func (f_ Feature) Type() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeface
-
 func (f_ Feature) CIFeatureTypeFace() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeFace"))
 	return rv
@@ -130,7 +126,6 @@ func (f_ Feature) CIFeatureTypeFace() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode
-
 func (f_ Feature) CIFeatureTypeQRCode() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
 	return rv
@@ -141,7 +136,6 @@ func (f_ Feature) CIFeatureTypeQRCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
-
 func (f_ Feature) CIFeatureTypeRectangle() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
 	return rv
@@ -152,7 +146,6 @@ func (f_ Feature) CIFeatureTypeRectangle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
-
 func (f_ Feature) CIFeatureTypeText() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
 	return rv

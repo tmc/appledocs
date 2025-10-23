@@ -2,11 +2,14 @@
 
 // Package linkpresentation provides Go bindings for the LinkPresentation framework.
 //
-// Fetch, provide, and present rich links in your app. [Full Topic]
+// Fetch, provide, and present rich links in your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LinkPresentation without requiring cgo.
+
+// Fetch, provide, and present rich links in your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation
 package linkpresentation
 

@@ -42,7 +42,6 @@ type ICNFetchResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult
-
 type CNFetchResult struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewCNFetchResult() CNFetchResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/currentHistoryToken
-
 func (c_ CNFetchResult) CurrentHistoryToken() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CNFetchResult) CurrentHistoryToken() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/value
-
 func (c_ CNFetchResult) Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
 	return rv

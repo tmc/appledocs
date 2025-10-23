@@ -45,7 +45,6 @@ type IMIDICIResponder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIResponder
-
 type MIDICIResponder struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewMIDICIResponder() MIDICIResponder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-
 func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
@@ -105,7 +103,6 @@ func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-
 func (m_ MIDICIResponder) SetDeviceInfo(value IMIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
@@ -115,7 +112,6 @@ func (m_ MIDICIResponder) SetDeviceInfo(value IMIDICIDeviceInfo) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
-
 func (m_ MIDICIResponder) Initiators() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("initiators"))
 	return rv
@@ -126,7 +122,6 @@ func (m_ MIDICIResponder) Initiators() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/initiators
-
 func (m_ MIDICIResponder) SetInitiators(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInitiators:"), value)
 }
@@ -136,7 +131,6 @@ func (m_ MIDICIResponder) SetInitiators(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/profiledelegate
-
 func (m_ MIDICIResponder) ProfileDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileDelegate"))
 	return rv
@@ -147,7 +141,6 @@ func (m_ MIDICIResponder) ProfileDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/profiledelegate
-
 func (m_ MIDICIResponder) SetProfileDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileDelegate:"), value)
 }

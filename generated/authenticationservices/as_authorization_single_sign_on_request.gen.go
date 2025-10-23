@@ -47,7 +47,6 @@ type IAuthorizationSingleSignOnRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest
-
 type AuthorizationSingleSignOnRequest struct {
 	AuthorizationOpenIDRequest
 }
@@ -98,7 +97,6 @@ func NewAuthorizationSingleSignOnRequest() AuthorizationSingleSignOnRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-
 func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []foundation.URLQueryItem {
 	rv := objc.Send[[]foundation.URLQueryItem](a_.ID, objc.Sel("authorizationOptions"))
 	return rv
@@ -109,7 +107,6 @@ func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []foundation.U
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-
 func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []foundation.IURLQueryItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -127,7 +124,6 @@ func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []found
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/isUserInterfaceEnabled
-
 func (a_ AuthorizationSingleSignOnRequest) UserInterfaceEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("userInterfaceEnabled"))
 	return rv
@@ -136,7 +132,6 @@ func (a_ AuthorizationSingleSignOnRequest) UserInterfaceEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/isUserInterfaceEnabled
-
 func (a_ AuthorizationSingleSignOnRequest) SetUserInterfaceEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInterfaceEnabled:"), value)
 }
@@ -146,7 +141,6 @@ func (a_ AuthorizationSingleSignOnRequest) SetUserInterfaceEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/canperformauthorization
-
 func (a_ AuthorizationSingleSignOnRequest) CanPerformAuthorization() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformAuthorization"))
 	return rv
@@ -157,7 +151,6 @@ func (a_ AuthorizationSingleSignOnRequest) CanPerformAuthorization() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/canperformauthorization
-
 func (a_ AuthorizationSingleSignOnRequest) SetCanPerformAuthorization(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformAuthorization:"), value)
 }
@@ -165,7 +158,6 @@ func (a_ AuthorizationSingleSignOnRequest) SetCanPerformAuthorization(value bool
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest/isuserinterfaceenabled
-
 func (a_ AuthorizationSingleSignOnRequest) IsUserInterfaceEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isUserInterfaceEnabled"))
 	return rv
@@ -174,7 +166,6 @@ func (a_ AuthorizationSingleSignOnRequest) IsUserInterfaceEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest/isuserinterfaceenabled
-
 func (a_ AuthorizationSingleSignOnRequest) SetIsUserInterfaceEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserInterfaceEnabled:"), value)
 }

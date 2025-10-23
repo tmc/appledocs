@@ -44,7 +44,6 @@ type IPersistentCloudKitContainerOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions
-
 type PersistentCloudKitContainerOptions struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 
 
 
-
 // Initializes container options using the given CloudKit container identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
-
 func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {
 	instance := getPersistentCloudKitContainerOptionsClass().Alloc()
 	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
@@ -108,7 +105,6 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/containerIdentifier
-
 func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
@@ -119,7 +115,6 @@ func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/databaseScope-2784h
-
 func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("databaseScope"))
 	return rv
@@ -130,7 +125,6 @@ func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/databaseScope-2784h
-
 func (p_ PersistentCloudKitContainerOptions) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDatabaseScope:"), value)
 }

@@ -36,7 +36,6 @@ type ISCNNodeComponent interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent
-
 type SCNNodeComponent struct {
 	Component
 }
@@ -81,10 +80,8 @@ func NewSCNNodeComponent() SCNNodeComponent {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent/init(node:)
-
 func NewSCNNodeComponentWithNode(node unsafe.Pointer) SCNNodeComponent {
 	instance := getSCNNodeComponentClass().Alloc()
 	rv := objc.Send[SCNNodeComponent](instance.ID, objc.Sel("initWithNode:"), node)
@@ -96,7 +93,6 @@ func NewSCNNodeComponentWithNode(node unsafe.Pointer) SCNNodeComponent {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent/componentWithNode:
-
 func (nc _SCNNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
 	return rv
@@ -105,7 +101,6 @@ func (nc _SCNNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent/node
-
 func (n_ SCNNodeComponent) Node() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("node"))
 	return rv

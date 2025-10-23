@@ -35,7 +35,6 @@ type IHKStateOfMindType interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMindType
-
 type HKStateOfMindType struct {
 	HKSampleType
 }

@@ -50,7 +50,6 @@ type IGCStylus interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus
-
 type GCStylus struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewGCStylus() GCStylus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus/haptics
-
 func (g_ GCStylus) Haptics() GCDeviceHaptics {
 	rv := objc.Send[GCDeviceHaptics](g_.ID, objc.Sel("haptics"))
 	return rv
@@ -108,7 +106,6 @@ func (g_ GCStylus) Haptics() GCDeviceHaptics {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton-18g2p
-
 func (g_ GCStylus) GCInputStylusPrimaryButton() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusPrimaryButton"))
 	return rv
@@ -117,7 +114,6 @@ func (g_ GCStylus) GCInputStylusPrimaryButton() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton-18g2p
-
 func (g_ GCStylus) SetGCInputStylusPrimaryButton(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusPrimaryButton:"), objc.String(value))
 }
@@ -125,7 +121,6 @@ func (g_ GCStylus) SetGCInputStylusPrimaryButton(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton-6r3q
-
 func (g_ GCStylus) GCInputStylusSecondaryButton() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusSecondaryButton"))
 	return rv
@@ -134,7 +129,6 @@ func (g_ GCStylus) GCInputStylusSecondaryButton() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton-6r3q
-
 func (g_ GCStylus) SetGCInputStylusSecondaryButton(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusSecondaryButton:"), objc.String(value))
 }
@@ -142,7 +136,6 @@ func (g_ GCStylus) SetGCInputStylusSecondaryButton(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
-
 func (g_ GCStylus) GCInputStylusTip() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusTip"))
 	return rv
@@ -151,7 +144,6 @@ func (g_ GCStylus) GCInputStylusTip() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
-
 func (g_ GCStylus) SetGCInputStylusTip(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusTip:"), objc.String(value))
 }
@@ -161,7 +153,6 @@ func (g_ GCStylus) SetGCInputStylusTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcstylus/input
-
 func (g_ GCStylus) Input() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
 	return rv
@@ -172,7 +163,6 @@ func (g_ GCStylus) Input() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcstylus/input
-
 func (g_ GCStylus) SetInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }

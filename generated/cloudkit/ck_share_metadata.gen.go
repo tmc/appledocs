@@ -58,7 +58,6 @@ type ICKShareMetadata interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata
-
 type CKShareMetadata struct {
 	objectivec.Object
 }
@@ -107,7 +106,6 @@ func NewCKShareMetadata() CKShareMetadata {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/containerIdentifier
-
 func (c_ CKShareMetadata) ContainerIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
@@ -118,7 +116,6 @@ func (c_ CKShareMetadata) ContainerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/hierarchicalRootRecordID
-
 func (c_ CKShareMetadata) HierarchicalRootRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("hierarchicalRootRecordID"))
 	return rv
@@ -129,7 +126,6 @@ func (c_ CKShareMetadata) HierarchicalRootRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/ownerIdentity
-
 func (c_ CKShareMetadata) OwnerIdentity() CKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("ownerIdentity"))
 	return rv
@@ -140,7 +136,6 @@ func (c_ CKShareMetadata) OwnerIdentity() CKUserIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantPermission
-
 func (c_ CKShareMetadata) ParticipantPermission() CKShareParticipantPermission {
 	rv := objc.Send[CKShareParticipantPermission](c_.ID, objc.Sel("participantPermission"))
 	return rv
@@ -151,7 +146,6 @@ func (c_ CKShareMetadata) ParticipantPermission() CKShareParticipantPermission {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantRole
-
 func (c_ CKShareMetadata) ParticipantRole() CKShareParticipantRole {
 	rv := objc.Send[CKShareParticipantRole](c_.ID, objc.Sel("participantRole"))
 	return rv
@@ -162,7 +156,6 @@ func (c_ CKShareMetadata) ParticipantRole() CKShareParticipantRole {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantStatus
-
 func (c_ CKShareMetadata) ParticipantStatus() CKShareParticipantAcceptanceStatus {
 	rv := objc.Send[CKShareParticipantAcceptanceStatus](c_.ID, objc.Sel("participantStatus"))
 	return rv
@@ -173,7 +166,6 @@ func (c_ CKShareMetadata) ParticipantStatus() CKShareParticipantAcceptanceStatus
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantType
-
 func (c_ CKShareMetadata) ParticipantType() CKShareParticipantType {
 	rv := objc.Send[CKShareParticipantType](c_.ID, objc.Sel("participantType"))
 	return rv
@@ -184,7 +176,6 @@ func (c_ CKShareMetadata) ParticipantType() CKShareParticipantType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/rootRecord
-
 func (c_ CKShareMetadata) RootRecord() CKRecord {
 	rv := objc.Send[CKRecord](c_.ID, objc.Sel("rootRecord"))
 	return rv
@@ -195,7 +186,6 @@ func (c_ CKShareMetadata) RootRecord() CKRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/rootRecordID
-
 func (c_ CKShareMetadata) RootRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("rootRecordID"))
 	return rv
@@ -206,7 +196,6 @@ func (c_ CKShareMetadata) RootRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/share
-
 func (c_ CKShareMetadata) Share() cloudkit.CKShare {
 	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("share"))
 	return rv
@@ -217,7 +206,6 @@ func (c_ CKShareMetadata) Share() cloudkit.CKShare {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/rootrecorddesiredkeys-3xrex
-
 func (c_ CKShareMetadata) RootRecordDesiredKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootRecordDesiredKeys"))
 	return rv
@@ -228,7 +216,6 @@ func (c_ CKShareMetadata) RootRecordDesiredKeys() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/rootrecorddesiredkeys-3xrex
-
 func (c_ CKShareMetadata) SetRootRecordDesiredKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRootRecordDesiredKeys:"), value)
 }
@@ -238,7 +225,6 @@ func (c_ CKShareMetadata) SetRootRecordDesiredKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shouldfetchrootrecord
-
 func (c_ CKShareMetadata) ShouldFetchRootRecord() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldFetchRootRecord"))
 	return rv
@@ -249,7 +235,6 @@ func (c_ CKShareMetadata) ShouldFetchRootRecord() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shouldfetchrootrecord
-
 func (c_ CKShareMetadata) SetShouldFetchRootRecord(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldFetchRootRecord:"), value)
 }
@@ -259,7 +244,6 @@ func (c_ CKShareMetadata) SetShouldFetchRootRecord(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-
 func (c_ CKShareMetadata) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
 	return rv
@@ -270,7 +254,6 @@ func (c_ CKShareMetadata) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-
 func (c_ CKShareMetadata) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }

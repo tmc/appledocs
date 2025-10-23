@@ -46,7 +46,6 @@ type IMovieTrack interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack
-
 type MovieTrack struct {
 	AssetTrack
 }
@@ -97,7 +96,6 @@ func NewMovieTrack() MovieTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/alternategroupid
-
 func (m_ MovieTrack) AlternateGroupID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("alternateGroupID"))
 	return rv
@@ -108,7 +106,6 @@ func (m_ MovieTrack) AlternateGroupID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/alternategroupid
-
 func (m_ MovieTrack) SetAlternateGroupID(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlternateGroupID:"), value)
 }
@@ -118,7 +115,6 @@ func (m_ MovieTrack) SetAlternateGroupID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
-
 func (m_ MovieTrack) MediaDataStorage() AVMediaDataStorage {
 	rv := objc.Send[AVMediaDataStorage](m_.ID, objc.Sel("mediaDataStorage"))
 	return rv
@@ -129,7 +125,6 @@ func (m_ MovieTrack) MediaDataStorage() AVMediaDataStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
-
 func (m_ MovieTrack) SetMediaDataStorage(value IAVMediaDataStorage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDataStorage:"), value)
 }
@@ -139,7 +134,6 @@ func (m_ MovieTrack) SetMediaDataStorage(value IAVMediaDataStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadecodetimerange
-
 func (m_ MovieTrack) MediaDecodeTimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaDecodeTimeRange"))
 	return rv
@@ -150,7 +144,6 @@ func (m_ MovieTrack) MediaDecodeTimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadecodetimerange
-
 func (m_ MovieTrack) SetMediaDecodeTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDecodeTimeRange:"), value)
 }
@@ -160,7 +153,6 @@ func (m_ MovieTrack) SetMediaDecodeTimeRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediapresentationtimerange
-
 func (m_ MovieTrack) MediaPresentationTimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaPresentationTimeRange"))
 	return rv
@@ -171,7 +163,6 @@ func (m_ MovieTrack) MediaPresentationTimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediapresentationtimerange
-
 func (m_ MovieTrack) SetMediaPresentationTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaPresentationTimeRange:"), value)
 }

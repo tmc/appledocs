@@ -41,7 +41,6 @@ type IFontAssetRequest interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest
-
 type FontAssetRequest struct {
 	objectivec.Object
 }
@@ -86,7 +85,6 @@ func NewFontAssetRequest() FontAssetRequest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/downloadedfontdescriptors
-
 func (f_ FontAssetRequest) DownloadedFontDescriptors() NSFontDescriptor {
 	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("downloadedFontDescriptors"))
 	return rv
@@ -95,7 +93,6 @@ func (f_ FontAssetRequest) DownloadedFontDescriptors() NSFontDescriptor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/downloadedfontdescriptors
-
 func (f_ FontAssetRequest) SetDownloadedFontDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDownloadedFontDescriptors:"), value)
 }
@@ -103,7 +100,6 @@ func (f_ FontAssetRequest) SetDownloadedFontDescriptors(value IFontDescriptor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
-
 func (f_ FontAssetRequest) Progress() foundation.Progress {
 	rv := objc.Send[foundation.Progress](f_.ID, objc.Sel("progress"))
 	return rv
@@ -112,7 +108,6 @@ func (f_ FontAssetRequest) Progress() foundation.Progress {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
-
 func (f_ FontAssetRequest) SetProgress(value foundation.IProgress) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setProgress:"), value)
 }

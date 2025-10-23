@@ -46,7 +46,6 @@ type ICSSuggestion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion
-
 type CSSuggestion struct {
 	objectivec.Object
 }
@@ -91,22 +90,18 @@ func NewCSSuggestion() CSSuggestion {
 
 
 
-
 // Compares the suggestion with a second specified suggestion.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/compare(_:)
-
 func (c_ CSSuggestion) Compare(other ICSSuggestion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compare:"), other)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/compare(byRank:)
-
 func (c_ CSSuggestion) CompareByRank(other ICSSuggestion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compareByRank:"), other)
 	return rv
@@ -115,7 +110,6 @@ func (c_ CSSuggestion) CompareByRank(other ICSSuggestion) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/localizedAttributedSuggestion-oq3b
-
 func (c_ CSSuggestion) LocalizedAttributedSuggestion() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("localizedAttributedSuggestion"))
 	return rv
@@ -126,7 +120,6 @@ func (c_ CSSuggestion) LocalizedAttributedSuggestion() foundation.AttributedStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/suggestionKind-swift.property
-
 func (c_ CSSuggestion) SuggestionKind() CSSuggestionKind {
 	rv := objc.Send[CSSuggestionKind](c_.ID, objc.Sel("suggestionKind"))
 	return rv

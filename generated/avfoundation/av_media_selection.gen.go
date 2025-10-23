@@ -30,7 +30,7 @@ type _MediaSelectionClass struct {
 // An interface definition for the [MediaSelection] class.
 type IMediaSelection interface {
 	objectivec.IObject
-	Asset() AVAsset
+	Asset() IAVAsset
 	SetAsset(value IAVAsset)
 }
 
@@ -41,7 +41,6 @@ type IMediaSelection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection
-
 type MediaSelection struct {
 	objectivec.Object
 }
@@ -90,8 +89,7 @@ func NewMediaSelection() MediaSelection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
-
-func (m_ MediaSelection) Asset() AVAsset {
+func (m_ MediaSelection) Asset() IAVAsset {
 	rv := objc.Send[AVAsset](m_.ID, objc.Sel("asset"))
 	return rv
 }
@@ -101,7 +99,6 @@ func (m_ MediaSelection) Asset() AVAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
-
 func (m_ MediaSelection) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAsset:"), value)
 }

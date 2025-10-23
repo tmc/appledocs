@@ -56,7 +56,6 @@ type IColorSpace interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace
-
 type ColorSpace struct {
 	objectivec.Object
 }
@@ -101,12 +100,10 @@ func NewColorSpace() ColorSpace {
 
 
 
-
 // Initializes and returns a color space object initialized from a Core Graphics color-space object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(cgColorSpace:)
-
 func NewColorSpaceWithCGColorSpace(cgColorSpace coregraphics.CGColorSpaceRef) ColorSpace {
 	instance := getColorSpaceClass().Alloc()
 	rv := objc.Send[ColorSpace](instance.ID, objc.Sel("initWithCGColorSpace:"), cgColorSpace)
@@ -115,12 +112,10 @@ func NewColorSpaceWithCGColorSpace(cgColorSpace coregraphics.CGColorSpaceRef) Co
 }
 
 
-
 // Initializes and returns a color space object from the specified ColorSync profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(colorSyncProfile:)
-
 func NewColorSpaceWithColorSyncProfile(prof unsafe.Pointer) ColorSpace {
 	instance := getColorSpaceClass().Alloc()
 	rv := objc.Send[ColorSpace](instance.ID, objc.Sel("initWithColorSyncProfile:"), prof)
@@ -129,12 +124,10 @@ func NewColorSpaceWithColorSyncProfile(prof unsafe.Pointer) ColorSpace {
 }
 
 
-
 // Initializes and returns a color space object from the specified ICC profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(iccProfileData:)
-
 func NewColorSpaceWithICCProfileData(iccData foundation.IData) ColorSpace {
 	instance := getColorSpaceClass().Alloc()
 	rv := objc.Send[ColorSpace](instance.ID, objc.Sel("initWithICCProfileData:"), iccData)
@@ -148,7 +141,6 @@ func NewColorSpaceWithICCProfileData(iccData foundation.IData) ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/availableColorSpaces(with:)
-
 func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model unsafe.Pointer) []ColorSpace {
 	rv := objc.Send[[]ColorSpace](objc.ID(cc.class), objc.Sel("availableColorSpacesWithModel:"), model)
 	return rv
@@ -159,7 +151,6 @@ func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model unsafe.Pointer) [
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/adobeRGB1998
-
 func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("adobeRGB1998ColorSpace"))
 	return rv
@@ -169,7 +160,6 @@ func (cc _ColorSpaceClass) AdobeRGB1998ColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/deviceGray
-
 func (cc _ColorSpaceClass) DeviceGrayColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("deviceGrayColorSpace"))
 	return rv
@@ -179,7 +169,6 @@ func (cc _ColorSpaceClass) DeviceGrayColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray
-
 func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("extendedGenericGamma22GrayColorSpace"))
 	return rv
@@ -189,7 +178,6 @@ func (cc _ColorSpaceClass) ExtendedGenericGamma22GrayColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedSRGB
-
 func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() ColorSpace {
 	rv := objc.Send[NSColorSpace](objc.ID(cc.class), objc.Sel("extendedSRGBColorSpace"))
 	return rv
@@ -199,7 +187,6 @@ func (cc _ColorSpaceClass) ExtendedSRGBColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/adobeRGB1998
-
 func (c_ ColorSpace) AdobeRGB1998ColorSpace() NSColorSpace {
 	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("adobeRGB1998ColorSpace"))
 	return rv
@@ -210,7 +197,6 @@ func (c_ ColorSpace) AdobeRGB1998ColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/deviceGray
-
 func (c_ ColorSpace) DeviceGrayColorSpace() NSColorSpace {
 	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("deviceGrayColorSpace"))
 	return rv
@@ -221,7 +207,6 @@ func (c_ ColorSpace) DeviceGrayColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray
-
 func (c_ ColorSpace) ExtendedGenericGamma22GrayColorSpace() NSColorSpace {
 	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("extendedGenericGamma22GrayColorSpace"))
 	return rv
@@ -232,7 +217,6 @@ func (c_ ColorSpace) ExtendedGenericGamma22GrayColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/extendedSRGB
-
 func (c_ ColorSpace) ExtendedSRGBColorSpace() NSColorSpace {
 	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("extendedSRGBColorSpace"))
 	return rv
@@ -243,7 +227,6 @@ func (c_ ColorSpace) ExtendedSRGBColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/cgcolorspace
-
 func (c_ ColorSpace) CgColorSpace() ColorSpace {
 	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("cgColorSpace"))
 	return rv
@@ -254,7 +237,6 @@ func (c_ ColorSpace) CgColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/cgcolorspace
-
 func (c_ ColorSpace) SetCgColorSpace(value IColorSpace) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCgColorSpace:"), value)
 }
@@ -264,7 +246,6 @@ func (c_ ColorSpace) SetCgColorSpace(value IColorSpace) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
-
 func (c_ ColorSpace) ColorSpaceModel() coreml.Model {
 	rv := objc.Send[coreml.Model](c_.ID, objc.Sel("colorSpaceModel"))
 	return rv
@@ -275,7 +256,6 @@ func (c_ ColorSpace) ColorSpaceModel() coreml.Model {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
-
 func (c_ ColorSpace) SetColorSpaceModel(value coreml.IModel) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpaceModel:"), value)
 }
@@ -285,7 +265,6 @@ func (c_ ColorSpace) SetColorSpaceModel(value coreml.IModel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorsyncprofile
-
 func (c_ ColorSpace) ColorSyncProfile() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorSyncProfile"))
 	return rv
@@ -296,7 +275,6 @@ func (c_ ColorSpace) ColorSyncProfile() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorsyncprofile
-
 func (c_ ColorSpace) SetColorSyncProfile(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSyncProfile:"), value)
 }
@@ -306,7 +284,6 @@ func (c_ ColorSpace) SetColorSyncProfile(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
-
 func (c_ ColorSpace) IccProfileData() foundation.Data {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("iccProfileData"))
 	return rv
@@ -317,7 +294,6 @@ func (c_ ColorSpace) IccProfileData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
-
 func (c_ ColorSpace) SetIccProfileData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIccProfileData:"), value)
 }
@@ -327,7 +303,6 @@ func (c_ ColorSpace) SetIccProfileData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/localizedname
-
 func (c_ ColorSpace) LocalizedName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
@@ -338,7 +313,6 @@ func (c_ ColorSpace) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/localizedname
-
 func (c_ ColorSpace) SetLocalizedName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
@@ -348,7 +322,6 @@ func (c_ ColorSpace) SetLocalizedName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/numberofcolorcomponents
-
 func (c_ ColorSpace) NumberOfColorComponents() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfColorComponents"))
 	return rv
@@ -359,7 +332,6 @@ func (c_ ColorSpace) NumberOfColorComponents() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/numberofcolorcomponents
-
 func (c_ ColorSpace) SetNumberOfColorComponents(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfColorComponents:"), value)
 }

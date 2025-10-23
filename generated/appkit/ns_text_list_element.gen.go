@@ -38,7 +38,7 @@ type ITextListElement interface {
 	Contents() foundation.AttributedString
 	SetContents(value foundation.IAttributedString)
 	MarkerAttributes() coreml.Key
-	SetMarkerAttributes(value coreml.Key)
+	SetMarkerAttributes(value coreml.IKey)
 	Parent() NSTextListElement
 	SetParent(value ITextListElement)
 	TextList() NSTextList
@@ -52,7 +52,6 @@ type ITextListElement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextListElement
-
 type TextListElement struct {
 	TextParagraph
 }
@@ -103,7 +102,6 @@ func NewTextListElement() TextListElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-
 func (t_ TextListElement) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
@@ -114,7 +112,6 @@ func (t_ TextListElement) AttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-
 func (t_ TextListElement) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
@@ -124,7 +121,6 @@ func (t_ TextListElement) SetAttributedString(value foundation.IAttributedString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
-
 func (t_ TextListElement) ChildElements() NSTextListElement {
 	rv := objc.Send[NSTextListElement](t_.ID, objc.Sel("childElements"))
 	return rv
@@ -135,7 +131,6 @@ func (t_ TextListElement) ChildElements() NSTextListElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
-
 func (t_ TextListElement) SetChildElements(value ITextListElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildElements:"), value)
 }
@@ -145,7 +140,6 @@ func (t_ TextListElement) SetChildElements(value ITextListElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-
 func (t_ TextListElement) Contents() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("contents"))
 	return rv
@@ -156,7 +150,6 @@ func (t_ TextListElement) Contents() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-
 func (t_ TextListElement) SetContents(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
 }
@@ -166,7 +159,6 @@ func (t_ TextListElement) SetContents(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
-
 func (t_ TextListElement) MarkerAttributes() coreml.Key {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("markerAttributes"))
 	return rv
@@ -177,8 +169,7 @@ func (t_ TextListElement) MarkerAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
-
-func (t_ TextListElement) SetMarkerAttributes(value coreml.Key) {
+func (t_ TextListElement) SetMarkerAttributes(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkerAttributes:"), value)
 }
 
@@ -187,7 +178,6 @@ func (t_ TextListElement) SetMarkerAttributes(value coreml.Key) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
-
 func (t_ TextListElement) Parent() NSTextListElement {
 	rv := objc.Send[NSTextListElement](t_.ID, objc.Sel("parent"))
 	return rv
@@ -198,7 +188,6 @@ func (t_ TextListElement) Parent() NSTextListElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
-
 func (t_ TextListElement) SetParent(value ITextListElement) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
 }
@@ -208,7 +197,6 @@ func (t_ TextListElement) SetParent(value ITextListElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
-
 func (t_ TextListElement) TextList() NSTextList {
 	rv := objc.Send[NSTextList](t_.ID, objc.Sel("textList"))
 	return rv
@@ -219,7 +207,6 @@ func (t_ TextListElement) TextList() NSTextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
-
 func (t_ TextListElement) SetTextList(value ITextList) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextList:"), value)
 }

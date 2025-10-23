@@ -41,7 +41,6 @@ type IDispatchSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchSource
-
 type DispatchSource struct {
 	objectivec.Object
 }

@@ -62,7 +62,6 @@ type IAuthorizationProviderExtensionLoginManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager
-
 type AuthorizationProviderExtensionLoginManager struct {
 	objectivec.Object
 }
@@ -107,31 +106,25 @@ func NewAuthorizationProviderExtensionLoginManager() AuthorizationProviderExtens
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/beginKeyRotation(_:)
-
 func (a_ AuthorizationProviderExtensionLoginManager) BeginKeyRotationForKeyType(keyType unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("beginKeyRotationForKeyType:"), keyType)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/completeKeyRotation(_:)
-
 func (a_ AuthorizationProviderExtensionLoginManager) CompleteKeyRotationForKeyType(keyType unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("completeKeyRotationForKeyType:"), keyType)
 }
-
 
 
 // Saves the provided certificate for the key type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/saveCertificate(_:keyType:)
-
 func (a_ AuthorizationProviderExtensionLoginManager) SaveCertificateKeyType(certificate unsafe.Pointer, keyType unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("saveCertificate:keyType:"), certificate, keyType)
 }
@@ -139,7 +132,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SaveCertificateKeyType(cert
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/authenticationmethod
-
 func (a_ AuthorizationProviderExtensionLoginManager) AuthenticationMethod() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authenticationMethod"))
 	return rv
@@ -148,7 +140,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) AuthenticationMethod() unsa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/authenticationmethod
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetAuthenticationMethod(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthenticationMethod:"), value)
 }
@@ -156,7 +147,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetAuthenticationMethod(val
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/extensiondata
-
 func (a_ AuthorizationProviderExtensionLoginManager) ExtensionData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("extensionData"))
 	return rv
@@ -165,7 +155,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) ExtensionData() unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/extensiondata
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetExtensionData(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtensionData:"), value)
 }
@@ -175,7 +164,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetExtensionData(value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isdeviceregistered
-
 func (a_ AuthorizationProviderExtensionLoginManager) IsDeviceRegistered() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isDeviceRegistered"))
 	return rv
@@ -186,7 +174,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) IsDeviceRegistered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isdeviceregistered
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetIsDeviceRegistered(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsDeviceRegistered:"), value)
 }
@@ -196,7 +183,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetIsDeviceRegistered(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
-
 func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isUserRegistered"))
 	return rv
@@ -207,7 +193,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetIsUserRegistered(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserRegistered:"), value)
 }
@@ -217,7 +202,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetIsUserRegistered(value b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginconfiguration
-
 func (a_ AuthorizationProviderExtensionLoginManager) LoginConfiguration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("loginConfiguration"))
 	return rv
@@ -228,7 +212,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) LoginConfiguration() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginconfiguration
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetLoginConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginConfiguration:"), value)
 }
@@ -238,7 +221,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetLoginConfiguration(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
-
 func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
 	return rv
@@ -249,7 +231,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
 }
@@ -259,7 +240,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-
 func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("registrationToken"))
 	return rv
@@ -270,7 +250,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), objc.String(value))
 }
@@ -280,7 +259,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/ssotokens
-
 func (a_ AuthorizationProviderExtensionLoginManager) SsoTokens() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("ssoTokens"))
 	return rv
@@ -291,7 +269,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SsoTokens() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/ssotokens
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetSsoTokens(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSsoTokens:"), value)
 }
@@ -299,7 +276,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetSsoTokens(value unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
-
 func (a_ AuthorizationProviderExtensionLoginManager) UserLoginConfiguration() ASAuthorizationProviderExtensionUserLoginConfiguration {
 	rv := objc.Send[ASAuthorizationProviderExtensionUserLoginConfiguration](a_.ID, objc.Sel("userLoginConfiguration"))
 	return rv
@@ -308,7 +284,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) UserLoginConfiguration() AS
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
-
 func (a_ AuthorizationProviderExtensionLoginManager) SetUserLoginConfiguration(value IASAuthorizationProviderExtensionUserLoginConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserLoginConfiguration:"), value)
 }

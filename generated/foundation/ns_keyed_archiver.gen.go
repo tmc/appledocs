@@ -32,7 +32,7 @@ type IKeyedArchiver interface {
 	ICoder
 	EncodeDoubleForKey(value float64, key string)
 	FinishEncoding()
-	EncodedData() NSData
+	EncodedData() IData
 	OutputFormat() unsafe.Pointer
 	SetOutputFormat(value unsafe.Pointer)
 	RequiresSecureCoding() bool
@@ -110,7 +110,7 @@ func (kc _KeyedArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:)
-func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.IObject) Data {
+func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.IObject) IData {
 	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:"), rootObject)
 	return rv
 }
@@ -120,7 +120,7 @@ func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:requiringSecureCoding:)
-func (kc _KeyedArchiverClass) ArchivedDataWithRootObjectRequiringSecureCodingError(object objectivec.IObject, requiresSecureCoding bool, error_ IError) Data {
+func (kc _KeyedArchiverClass) ArchivedDataWithRootObjectRequiringSecureCodingError(object objectivec.IObject, requiresSecureCoding bool, error_ IError) IData {
 	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:requiringSecureCoding:error:"), object, requiresSecureCoding, error_)
 	return rv
 }
@@ -148,7 +148,7 @@ func (k_ KeyedArchiver) FinishEncoding() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encodedData
-func (k_ KeyedArchiver) EncodedData() NSData {
+func (k_ KeyedArchiver) EncodedData() IData {
 	rv := objc.Send[NSData](k_.ID, objc.Sel("encodedData"))
 	return rv
 }

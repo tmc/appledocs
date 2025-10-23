@@ -38,7 +38,6 @@ type IHKClinicalType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalType
-
 type HKClinicalType struct {
 	HKSampleType
 }

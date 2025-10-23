@@ -32,7 +32,9 @@ type ImReturnImage interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/mReturnImage
 type mReturnImage struct {
 	objectivec.Object

@@ -56,7 +56,6 @@ type IMIDINetworkSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession
-
 type MIDINetworkSession struct {
 	objectivec.Object
 }
@@ -101,24 +100,20 @@ func NewMIDINetworkSession() MIDINetworkSession {
 
 
 
-
 // Adds a new connection to this session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/addConnection(_:)
-
 func (m_ MIDINetworkSession) AddConnection(connection IMIDINetworkConnection) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("addConnection:"), connection)
 	return rv
 }
 
 
-
 // Removes a connection from this session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/removeConnection(_:)
-
 func (m_ MIDINetworkSession) RemoveConnection(connection IMIDINetworkConnection) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("removeConnection:"), connection)
 	return rv
@@ -129,7 +124,6 @@ func (m_ MIDINetworkSession) RemoveConnection(connection IMIDINetworkConnection)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
-
 func (m_ MIDINetworkSession) Enabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
 	return rv
@@ -140,7 +134,6 @@ func (m_ MIDINetworkSession) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
-
 func (m_ MIDINetworkSession) SetEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -150,7 +143,6 @@ func (m_ MIDINetworkSession) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/networkPort
-
 func (m_ MIDINetworkSession) NetworkPort() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("networkPort"))
 	return rv
@@ -161,7 +153,6 @@ func (m_ MIDINetworkSession) NetworkPort() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange
-
 func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationContactsDidChange"))
 	return rv
@@ -172,7 +163,6 @@ func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange
-
 func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationSessionDidChange"))
 	return rv
@@ -183,7 +173,6 @@ func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
-
 func (m_ MIDINetworkSession) ConnectionPolicy() MIDINetworkConnectionPolicy {
 	rv := objc.Send[MIDINetworkConnectionPolicy](m_.ID, objc.Sel("connectionPolicy"))
 	return rv
@@ -194,7 +183,6 @@ func (m_ MIDINetworkSession) ConnectionPolicy() MIDINetworkConnectionPolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
-
 func (m_ MIDINetworkSession) SetConnectionPolicy(value MIDINetworkConnectionPolicy) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionPolicy:"), value)
 }
@@ -204,7 +192,6 @@ func (m_ MIDINetworkSession) SetConnectionPolicy(value MIDINetworkConnectionPoli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/isenabled
-
 func (m_ MIDINetworkSession) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -215,7 +202,6 @@ func (m_ MIDINetworkSession) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/isenabled
-
 func (m_ MIDINetworkSession) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -225,7 +211,6 @@ func (m_ MIDINetworkSession) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/localname
-
 func (m_ MIDINetworkSession) LocalName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("localName"))
 	return rv
@@ -236,7 +221,6 @@ func (m_ MIDINetworkSession) LocalName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/localname
-
 func (m_ MIDINetworkSession) SetLocalName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalName:"), objc.String(value))
 }
@@ -246,7 +230,6 @@ func (m_ MIDINetworkSession) SetLocalName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
-
 func (m_ MIDINetworkSession) NetworkName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
 	return rv
@@ -257,7 +240,6 @@ func (m_ MIDINetworkSession) NetworkName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
-
 func (m_ MIDINetworkSession) SetNetworkName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }

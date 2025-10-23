@@ -50,7 +50,6 @@ type ICBMutableCharacteristic interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic
-
 type CBMutableCharacteristic struct {
 	CBCharacteristic
 }
@@ -97,12 +96,10 @@ func NewCBMutableCharacteristic() CBMutableCharacteristic {
 
 
 
-
 // Creates a mutable characteristic with specified permissions, properties, and value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/init(type:properties:value:permissions:)
-
 func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, properties ICBCharacteristicProperties, value foundation.IData, permissions ICBAttributePermissions) CBMutableCharacteristic {
 	instance := getCBMutableCharacteristicClass().Alloc()
 	rv := objc.Send[CBMutableCharacteristic](instance.ID, objc.Sel("initWithType:properties:value:permissions:"), UUID, properties, value, permissions)
@@ -116,7 +113,6 @@ func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/descriptors
-
 func (c_ CBMutableCharacteristic) Descriptors() []CBDescriptor {
 	rv := objc.Send[[]CBDescriptor](c_.ID, objc.Sel("descriptors"))
 	return rv
@@ -127,7 +123,6 @@ func (c_ CBMutableCharacteristic) Descriptors() []CBDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/descriptors
-
 func (c_ CBMutableCharacteristic) SetDescriptors(value []CBDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -147,7 +142,6 @@ func (c_ CBMutableCharacteristic) SetDescriptors(value []CBDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/permissions
-
 func (c_ CBMutableCharacteristic) Permissions() CBAttributePermissions {
 	rv := objc.Send[CBAttributePermissions](c_.ID, objc.Sel("permissions"))
 	return rv
@@ -158,7 +152,6 @@ func (c_ CBMutableCharacteristic) Permissions() CBAttributePermissions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/permissions
-
 func (c_ CBMutableCharacteristic) SetPermissions(value ICBAttributePermissions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPermissions:"), value)
 }
@@ -168,7 +161,6 @@ func (c_ CBMutableCharacteristic) SetPermissions(value ICBAttributePermissions) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/properties
-
 func (c_ CBMutableCharacteristic) Properties() CBCharacteristicProperties {
 	rv := objc.Send[CBCharacteristicProperties](c_.ID, objc.Sel("properties"))
 	return rv
@@ -179,7 +171,6 @@ func (c_ CBMutableCharacteristic) Properties() CBCharacteristicProperties {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/properties
-
 func (c_ CBMutableCharacteristic) SetProperties(value ICBCharacteristicProperties) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProperties:"), value)
 }
@@ -189,7 +180,6 @@ func (c_ CBMutableCharacteristic) SetProperties(value ICBCharacteristicPropertie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/subscribedCentrals
-
 func (c_ CBMutableCharacteristic) SubscribedCentrals() []CBCentral {
 	rv := objc.Send[[]CBCentral](c_.ID, objc.Sel("subscribedCentrals"))
 	return rv
@@ -200,7 +190,6 @@ func (c_ CBMutableCharacteristic) SubscribedCentrals() []CBCentral {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-
 func (c_ CBMutableCharacteristic) Value() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
@@ -211,7 +200,6 @@ func (c_ CBMutableCharacteristic) Value() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-
 func (c_ CBMutableCharacteristic) SetValue(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }

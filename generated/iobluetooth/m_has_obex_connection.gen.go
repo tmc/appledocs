@@ -32,7 +32,9 @@ type ImHasOBEXConnection interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mHasOBEXConnection
 type mHasOBEXConnection struct {
 	objectivec.Object

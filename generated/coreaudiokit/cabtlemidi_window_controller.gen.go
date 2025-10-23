@@ -39,7 +39,6 @@ type IBTLEMIDIWindowController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTLEMIDIWindowController
-
 type BTLEMIDIWindowController struct {
 	appkit.WindowController
 }

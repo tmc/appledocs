@@ -51,7 +51,6 @@ type IAudioUnit interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit
-
 type AudioUnit struct {
 	AudioNode
 }
@@ -98,12 +97,10 @@ func NewAudioUnit() AudioUnit {
 
 
 
-
 // Loads an audio unit using a specified preset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/loadPreset(at:)
-
 func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url foundation.IURL, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("loadAudioUnitPresetAtURL:error:"), url, outError)
 	return rv
@@ -114,7 +111,6 @@ func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url foundation.IURL, outError 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/audioUnit
-
 func (a_ AudioUnit) AudioUnit() AudioUnit {
 	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
 	return rv
@@ -125,7 +121,6 @@ func (a_ AudioUnit) AudioUnit() AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/auaudiounit
-
 func (a_ AudioUnit) AuAudioUnit() AudioUnit {
 	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("auAudioUnit"))
 	return rv
@@ -136,7 +131,6 @@ func (a_ AudioUnit) AuAudioUnit() AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/auaudiounit
-
 func (a_ AudioUnit) SetAuAudioUnit(value IAudioUnit) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuAudioUnit:"), value)
 }
@@ -146,7 +140,6 @@ func (a_ AudioUnit) SetAuAudioUnit(value IAudioUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
-
 func (a_ AudioUnit) AudioComponentDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioComponentDescription"))
 	return rv
@@ -157,7 +150,6 @@ func (a_ AudioUnit) AudioComponentDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
-
 func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioComponentDescription:"), value)
 }
@@ -167,7 +159,6 @@ func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
-
 func (a_ AudioUnit) ManufacturerName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
 	return rv
@@ -178,7 +169,6 @@ func (a_ AudioUnit) ManufacturerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
-
 func (a_ AudioUnit) SetManufacturerName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), objc.String(value))
 }
@@ -188,7 +178,6 @@ func (a_ AudioUnit) SetManufacturerName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
-
 func (a_ AudioUnit) Name() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
@@ -199,7 +188,6 @@ func (a_ AudioUnit) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
-
 func (a_ AudioUnit) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -209,7 +197,6 @@ func (a_ AudioUnit) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/version
-
 func (a_ AudioUnit) Version() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("version"))
 	return rv
@@ -220,7 +207,6 @@ func (a_ AudioUnit) Version() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/version
-
 func (a_ AudioUnit) SetVersion(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), value)
 }

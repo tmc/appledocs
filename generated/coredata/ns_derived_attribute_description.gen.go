@@ -42,7 +42,6 @@ type IDerivedAttributeDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription
-
 type DerivedAttributeDescription struct {
 	AttributeDescription
 }
@@ -93,7 +92,6 @@ func NewDerivedAttributeDescription() DerivedAttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-
 func (d_ DerivedAttributeDescription) DerivationExpression() Expression {
 	rv := objc.Send[Expression](d_.ID, objc.Sel("derivationExpression"))
 	return rv
@@ -104,7 +102,6 @@ func (d_ DerivedAttributeDescription) DerivationExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-
 func (d_ DerivedAttributeDescription) SetDerivationExpression(value IExpression) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDerivationExpression:"), value)
 }

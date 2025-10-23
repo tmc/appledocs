@@ -40,7 +40,6 @@ type IModelStructureProgramArgument interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramArgument
-
 type ModelStructureProgramArgument struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewModelStructureProgramArgument() ModelStructureProgramArgument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramArgument/bindings
-
 func (m_ ModelStructureProgramArgument) Bindings() []ModelStructureProgramBinding {
 	rv := objc.Send[[]ModelStructureProgramBinding](m_.ID, objc.Sel("bindings"))
 	return rv

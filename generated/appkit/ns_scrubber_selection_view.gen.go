@@ -40,7 +40,6 @@ type IScrubberSelectionView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionView
-
 type ScrubberSelectionView struct {
 	ScrubberArrangedView
 }

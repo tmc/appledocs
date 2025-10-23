@@ -45,7 +45,6 @@ type IDecisionNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode
-
 type DecisionNode struct {
 	objectivec.Object
 }
@@ -90,36 +89,30 @@ func NewDecisionNode() DecisionNode {
 
 
 
-
 // Creates a child node that the decision tree should use when the current node’s attribute satisfies the specified predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode/createBranch(predicate:attribute:)
-
 func (d_ DecisionNode) CreateBranchWithPredicateAttribute(predicate foundation.IPredicate, attribute objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("createBranchWithPredicate:attribute:"), predicate, attribute)
 	return rv
 }
 
 
-
 // Creates a child node that the decision tree should use when the current node’s attribute has the specified value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)
-
 func (d_ DecisionNode) CreateBranchWithValueAttribute(value foundation.INumber, attribute objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("createBranchWithValue:attribute:"), value, attribute)
 	return rv
 }
 
 
-
 // Creates a child node that the decision tree should use as the result of a random choice, biased by the specified weight.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode/createBranch(weight:attribute:)
-
 func (d_ DecisionNode) CreateBranchWithWeightAttribute(weight int, attribute objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("createBranchWithWeight:attribute:"), weight, attribute)
 	return rv

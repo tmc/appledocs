@@ -41,7 +41,11 @@ type IINRentalCarReservation interface {
 }
 
 // The information that describes a rental car reservation.
+
+
+// The information that describes a rental car reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRentalCarReservation
 type INRentalCarReservation struct {
 	INReservation
@@ -88,8 +92,10 @@ func NewINRentalCarReservation() INRentalCarReservation {
 }
 
 
+
 // The name and location where the user can drop off the car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/dropofflocation
 func (i_ INRentalCarReservation) DropOffLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
@@ -97,17 +103,18 @@ func (i_ INRentalCarReservation) DropOffLocation() corelocation.Placemark {
 }
 
 
-// SetDropOffLocation sets the value of the dropOffLocation property.
 // The name and location where the user can drop off the car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/dropofflocation
 func (i_ INRentalCarReservation) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
+
 // The name and location where the user can pick up the car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/pickuplocation
 func (i_ INRentalCarReservation) PickupLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
@@ -115,17 +122,18 @@ func (i_ INRentalCarReservation) PickupLocation() corelocation.Placemark {
 }
 
 
-// SetPickupLocation sets the value of the pickupLocation property.
 // The name and location where the user can pick up the car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/pickuplocation
 func (i_ INRentalCarReservation) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
 
+
 // An object containing detailed information about the rental car.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/rentalcar
 func (i_ INRentalCarReservation) RentalCar() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rentalCar"))
@@ -133,17 +141,18 @@ func (i_ INRentalCarReservation) RentalCar() unsafe.Pointer {
 }
 
 
-// SetRentalCar sets the value of the rentalCar property.
 // An object containing detailed information about the rental car.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/rentalcar
 func (i_ INRentalCarReservation) SetRentalCar(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRentalCar:"), value)
 }
 
+
 // The date and time range that indicates the pickup and drop off times for the rental.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/rentalduration
 func (i_ INRentalCarReservation) RentalDuration() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("rentalDuration"))
@@ -151,10 +160,9 @@ func (i_ INRentalCarReservation) RentalDuration() INDateComponentsRange {
 }
 
 
-// SetRentalDuration sets the value of the rentalDuration property.
 // The date and time range that indicates the pickup and drop off times for the rental.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/rentalduration
 func (i_ INRentalCarReservation) SetRentalDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRentalDuration:"), value)

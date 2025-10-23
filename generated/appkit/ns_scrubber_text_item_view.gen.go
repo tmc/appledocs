@@ -43,7 +43,6 @@ type IScrubberTextItemView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView
-
 type ScrubberTextItemView struct {
 	ScrubberItemView
 }
@@ -94,7 +93,6 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
-
 func (s_ ScrubberTextItemView) TextField() NSTextField {
 	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
 	return rv
@@ -105,7 +103,6 @@ func (s_ ScrubberTextItemView) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
-
 func (s_ ScrubberTextItemView) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
@@ -116,7 +113,6 @@ func (s_ ScrubberTextItemView) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
-
 func (s_ ScrubberTextItemView) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

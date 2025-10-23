@@ -42,7 +42,6 @@ type IBillowNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource
-
 type BillowNoiseSource struct {
 	CoherentNoiseSource
 }
@@ -89,12 +88,10 @@ func NewBillowNoiseSource() BillowNoiseSource {
 
 
 
-
 // Creates a billow noise source with the specified parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/init(frequency:octaveCount:persistence:lacunarity:seed:)
-
 func NewBillowNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) BillowNoiseSource {
 	instance := getBillowNoiseSourceClass().Alloc()
 	rv := objc.Send[BillowNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
@@ -108,7 +105,6 @@ func NewBillowNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:
-
 func (bc _BillowNoiseSourceClass) BillowNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
 	return rv
@@ -119,7 +115,6 @@ func (bc _BillowNoiseSourceClass) BillowNoiseSourceWithFrequencyOctaveCountPersi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/persistence
-
 func (b_ BillowNoiseSource) Persistence() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("persistence"))
 	return rv
@@ -130,7 +125,6 @@ func (b_ BillowNoiseSource) Persistence() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBillowNoiseSource/persistence
-
 func (b_ BillowNoiseSource) SetPersistence(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPersistence:"), value)
 }

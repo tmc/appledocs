@@ -48,7 +48,6 @@ type ICNContainer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer
-
 type CNContainer struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewCNContainer() CNContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/predicateForContainerOfContact(withIdentifier:)
-
 func (cc _CNContainerClass) PredicateForContainerOfContactWithIdentifier(contactIdentifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContainerOfContactWithIdentifier:"), objc.String(contactIdentifier))
 	return rv
@@ -108,7 +106,6 @@ func (cc _CNContainerClass) PredicateForContainerOfContactWithIdentifier(contact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/predicateForContainerOfGroup(withIdentifier:)
-
 func (cc _CNContainerClass) PredicateForContainerOfGroupWithIdentifier(groupIdentifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContainerOfGroupWithIdentifier:"), objc.String(groupIdentifier))
 	return rv
@@ -119,7 +116,6 @@ func (cc _CNContainerClass) PredicateForContainerOfGroupWithIdentifier(groupIden
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/predicateForContainers(withIdentifiers:)
-
 func (cc _CNContainerClass) PredicateForContainersWithIdentifiers(identifiers []string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContainersWithIdentifiers:"), identifiers)
 	return rv
@@ -130,7 +126,6 @@ func (cc _CNContainerClass) PredicateForContainersWithIdentifiers(identifiers []
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/identifier
-
 func (c_ CNContainer) Identifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
@@ -141,7 +136,6 @@ func (c_ CNContainer) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/name
-
 func (c_ CNContainer) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
@@ -152,7 +146,6 @@ func (c_ CNContainer) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/type
-
 func (c_ CNContainer) Type() CNContainerType {
 	rv := objc.Send[CNContainerType](c_.ID, objc.Sel("type"))
 	return rv
@@ -163,7 +156,6 @@ func (c_ CNContainer) Type() CNContainerType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontaineridentifierkey
-
 func (c_ CNContainer) CNContainerIdentifierKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerIdentifierKey"))
 	return rv
@@ -174,7 +166,6 @@ func (c_ CNContainer) CNContainerIdentifierKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainernamekey
-
 func (c_ CNContainer) CNContainerNameKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerNameKey"))
 	return rv
@@ -185,7 +176,6 @@ func (c_ CNContainer) CNContainerNameKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainertypekey
-
 func (c_ CNContainer) CNContainerTypeKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerTypeKey"))
 	return rv

@@ -38,6 +38,8 @@ type NSAttributeType unsafe.Pointer
 
 type NSAttributedStringKey unsafe.Pointer
 
+type NSBitmapImageFileType unsafe.Pointer
+
 type NSBrowserDelegate unsafe.Pointer
 
 type NSCharacterCollection unsafe.Pointer
@@ -76,8 +78,6 @@ type NSImageAlignment unsafe.Pointer
 
 type NSImageFrameStyle unsafe.Pointer
 
-type NSImageName unsafe.Pointer
-
 type NSInterfaceStyle unsafe.Pointer
 
 type NSLayoutManagerDelegate unsafe.Pointer
@@ -93,12 +93,6 @@ type NSPathControlItem unsafe.Pointer
 type NSPointArray unsafe.Pointer
 
 type NSPointPointer unsafe.Pointer
-
-type NSPrintJobDispositionValue unsafe.Pointer
-
-type NSPrintPanelJobStyleHint unsafe.Pointer
-
-type NSPrinterPaperName unsafe.Pointer
 
 type NSPrinterTableStatus unsafe.Pointer
 
@@ -120,8 +114,6 @@ type NSSelectionGranularity unsafe.Pointer
 
 type NSServiceProviderName unsafe.Pointer
 
-type NSSharingServiceDelegate unsafe.Pointer
-
 type NSStoryboardControllerCreator unsafe.Pointer
 
 type NSSymbolContentTransition unsafe.Pointer
@@ -133,8 +125,6 @@ type NSSymbolEffectOptions unsafe.Pointer
 type NSTableViewDelegate unsafe.Pointer
 
 type NSTableViewSelectionHighlightStyle unsafe.Pointer
-
-type NSTextAttachmentCellProtocol unsafe.Pointer
 
 type NSTextCheckingTypes unsafe.Pointer
 
@@ -168,15 +158,13 @@ type NSTouchPhase unsafe.Pointer
 
 type NSTypesetterBehavior unsafe.Pointer
 
-type NSWorkspaceAuthorizationType unsafe.Pointer
-
-type NSWorkspaceLaunchOptions unsafe.Pointer
-
 type NSWritingToolsCoordinatorTextUpdateReason unsafe.Pointer
 
 type NSZone unsafe.Pointer
 
 type PasteboardType unsafe.Pointer
+
+type QLPreviewItem unsafe.Pointer
 
 type UIColor unsafe.Pointer
 

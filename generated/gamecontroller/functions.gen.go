@@ -50,7 +50,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepadSnapshotDataFromNSData(_:_:)
-
 func GCExtendedGamepadSnapshotDataFromNSData(snapshotData unsafe.Pointer, data unsafe.Pointer) bool {
 	return _GCExtendedGamepadSnapshotDataFromNSData(snapshotData, data)
 	}
@@ -64,7 +63,6 @@ func GCExtendedGamepadSnapshotDataFromNSData(snapshotData unsafe.Pointer, data u
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMicroGamepadSnapshotDataFromNSData(_:_:)
-
 func GCMicroGamepadSnapshotDataFromNSData(snapshotData unsafe.Pointer, data unsafe.Pointer) bool {
 	return _GCMicroGamepadSnapshotDataFromNSData(snapshotData, data)
 	}

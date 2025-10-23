@@ -43,7 +43,6 @@ type IRandomSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource
-
 type RandomSource struct {
 	objectivec.Object
 }
@@ -88,10 +87,8 @@ func NewRandomSource() RandomSource {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/init(coder:)
-
 func NewRandomSourceWithCoder(aDecoder foundation.ICoder) RandomSource {
 	instance := getRandomSourceClass().Alloc()
 	rv := objc.Send[RandomSource](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -105,19 +102,16 @@ func NewRandomSourceWithCoder(aDecoder foundation.ICoder) RandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/sharedRandom()
-
 func (rc _RandomSourceClass) SharedRandom() RandomSource {
 	rv := objc.Send[RandomSource](objc.ID(rc.class), objc.Sel("sharedRandom"))
 	return rv
 }
 
 
-
 // Returns an array whose contents are the same as those of the specified array, but in a random order determined by the random source.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)
-
 func (r_ RandomSource) ArrayByShufflingObjectsInArray(array objectivec.IObject) foundation.Array {
 	rv := objc.Send[foundation.Array](r_.ID, objc.Sel("arrayByShufflingObjectsInArray:"), array)
 	return rv

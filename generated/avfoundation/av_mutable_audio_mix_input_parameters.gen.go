@@ -44,7 +44,6 @@ type IMutableAudioMixInputParameters interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableAudioMixInputParameters
-
 type MutableAudioMixInputParameters struct {
 	AudioMixInputParameters
 }
@@ -95,7 +94,6 @@ func NewMutableAudioMixInputParameters() MutableAudioMixInputParameters {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/audiotapprocessor
-
 func (m_ MutableAudioMixInputParameters) AudioTapProcessor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("audioTapProcessor"))
 	return rv
@@ -106,7 +104,6 @@ func (m_ MutableAudioMixInputParameters) AudioTapProcessor() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/audiotapprocessor
-
 func (m_ MutableAudioMixInputParameters) SetAudioTapProcessor(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioTapProcessor:"), value)
 }
@@ -116,7 +113,6 @@ func (m_ MutableAudioMixInputParameters) SetAudioTapProcessor(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/audiotimepitchalgorithm
-
 func (m_ MutableAudioMixInputParameters) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
 	rv := objc.Send[AudioTimePitchAlgorithm](m_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
@@ -127,7 +123,6 @@ func (m_ MutableAudioMixInputParameters) AudioTimePitchAlgorithm() AudioTimePitc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/audiotimepitchalgorithm
-
 func (m_ MutableAudioMixInputParameters) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
@@ -137,7 +132,6 @@ func (m_ MutableAudioMixInputParameters) SetAudioTimePitchAlgorithm(value IAudio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/trackid
-
 func (m_ MutableAudioMixInputParameters) TrackID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("trackID"))
 	return rv
@@ -148,7 +142,6 @@ func (m_ MutableAudioMixInputParameters) TrackID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/trackid
-
 func (m_ MutableAudioMixInputParameters) SetTrackID(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
 }

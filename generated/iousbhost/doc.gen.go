@@ -2,11 +2,14 @@
 
 // Package iousbhost provides Go bindings for the IOUSBHost framework.
 //
-// Create host-mode user space drivers for USB devices. [Full Topic]
+// Create host-mode user space drivers for USB devices.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IOUSBHost without requiring cgo.
+
+// Create host-mode user space drivers for USB devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost
 package iousbhost
 

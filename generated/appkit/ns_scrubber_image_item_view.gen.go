@@ -45,7 +45,6 @@ type IScrubberImageItemView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView
-
 type ScrubberImageItemView struct {
 	ScrubberItemView
 }
@@ -96,7 +95,6 @@ func NewScrubberImageItemView() ScrubberImageItemView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
-
 func (s_ ScrubberImageItemView) ImageAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("imageAlignment"))
 	return rv
@@ -107,7 +105,6 @@ func (s_ ScrubberImageItemView) ImageAlignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
-
 func (s_ ScrubberImageItemView) SetImageAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageAlignment:"), value)
 }
@@ -117,7 +114,6 @@ func (s_ ScrubberImageItemView) SetImageAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageView
-
 func (s_ ScrubberImageItemView) ImageView() NSImageView {
 	rv := objc.Send[NSImageView](s_.ID, objc.Sel("imageView"))
 	return rv
@@ -128,7 +124,6 @@ func (s_ ScrubberImageItemView) ImageView() NSImageView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
-
 func (s_ ScrubberImageItemView) Image() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
@@ -139,7 +134,6 @@ func (s_ ScrubberImageItemView) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
-
 func (s_ ScrubberImageItemView) SetImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }

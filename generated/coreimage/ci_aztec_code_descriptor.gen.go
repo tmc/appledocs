@@ -45,7 +45,6 @@ type IAztecCodeDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor
-
 type AztecCodeDescriptor struct {
 	BarcodeDescriptor
 }
@@ -92,12 +91,10 @@ func NewAztecCodeDescriptor() AztecCodeDescriptor {
 
 
 
-
 // Initializes an Aztec code descriptor for the given payload and parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/init(payload:isCompact:layerCount:dataCodewordCount:)
-
 func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload foundation.IData, isCompact bool, layerCount int, dataCodewordCount int) AztecCodeDescriptor {
 	instance := getAztecCodeDescriptorClass().Alloc()
 	rv := objc.Send[AztecCodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:layerCount:dataCodewordCount:"), errorCorrectedPayload, isCompact, layerCount, dataCodewordCount)
@@ -111,7 +108,6 @@ func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(error
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/descriptorWithPayload:isCompact:layerCount:dataCodewordCount:
-
 func (ac _AztecCodeDescriptorClass) DescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload foundation.IData, isCompact bool, layerCount int, dataCodewordCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("descriptorWithPayload:isCompact:layerCount:dataCodewordCount:"), errorCorrectedPayload, isCompact, layerCount, dataCodewordCount)
 	return rv
@@ -122,7 +118,6 @@ func (ac _AztecCodeDescriptorClass) DescriptorWithPayloadIsCompactLayerCountData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/dataCodewordCount-swift.property
-
 func (a_ AztecCodeDescriptor) DataCodewordCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("dataCodewordCount"))
 	return rv
@@ -133,7 +128,6 @@ func (a_ AztecCodeDescriptor) DataCodewordCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-swift.property
-
 func (a_ AztecCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
@@ -144,7 +138,6 @@ func (a_ AztecCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/isCompact-swift.property
-
 func (a_ AztecCodeDescriptor) IsCompact() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompact"))
 	return rv
@@ -155,7 +148,6 @@ func (a_ AztecCodeDescriptor) IsCompact() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/layerCount-swift.property
-
 func (a_ AztecCodeDescriptor) LayerCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("layerCount"))
 	return rv

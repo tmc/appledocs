@@ -66,7 +66,6 @@ type ITextContainer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer
-
 type TextContainer struct {
 	objectivec.Object
 }
@@ -115,7 +114,6 @@ func NewTextContainer() TextContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
-
 func (t_ TextContainer) LayoutManager() NSLayoutManager {
 	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
 	return rv
@@ -126,7 +124,6 @@ func (t_ TextContainer) LayoutManager() NSLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
-
 func (t_ TextContainer) SetLayoutManager(value ILayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
@@ -136,7 +133,6 @@ func (t_ TextContainer) SetLayoutManager(value ILayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/containersize
-
 func (t_ TextContainer) ContainerSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("containerSize"))
 	return rv
@@ -147,7 +143,6 @@ func (t_ TextContainer) ContainerSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/containersize
-
 func (t_ TextContainer) SetContainerSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContainerSize:"), value)
 }
@@ -157,7 +152,6 @@ func (t_ TextContainer) SetContainerSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
-
 func (t_ TextContainer) ExclusionPaths() NSBezierPath {
 	rv := objc.Send[NSBezierPath](t_.ID, objc.Sel("exclusionPaths"))
 	return rv
@@ -168,7 +162,6 @@ func (t_ TextContainer) ExclusionPaths() NSBezierPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
-
 func (t_ TextContainer) SetExclusionPaths(value IBezierPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExclusionPaths:"), value)
 }
@@ -178,7 +171,6 @@ func (t_ TextContainer) SetExclusionPaths(value IBezierPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/heighttrackstextview
-
 func (t_ TextContainer) HeightTracksTextView() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("heightTracksTextView"))
 	return rv
@@ -189,7 +181,6 @@ func (t_ TextContainer) HeightTracksTextView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/heighttrackstextview
-
 func (t_ TextContainer) SetHeightTracksTextView(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeightTracksTextView:"), value)
 }
@@ -199,7 +190,6 @@ func (t_ TextContainer) SetHeightTracksTextView(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/issimplerectangulartextcontainer
-
 func (t_ TextContainer) IsSimpleRectangularTextContainer() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSimpleRectangularTextContainer"))
 	return rv
@@ -210,7 +200,6 @@ func (t_ TextContainer) IsSimpleRectangularTextContainer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/issimplerectangulartextcontainer
-
 func (t_ TextContainer) SetIsSimpleRectangularTextContainer(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSimpleRectangularTextContainer:"), value)
 }
@@ -220,7 +209,6 @@ func (t_ TextContainer) SetIsSimpleRectangularTextContainer(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linebreakmode
-
 func (t_ TextContainer) LineBreakMode() LineBreakMode {
 	rv := objc.Send[LineBreakMode](t_.ID, objc.Sel("lineBreakMode"))
 	return rv
@@ -231,7 +219,6 @@ func (t_ TextContainer) LineBreakMode() LineBreakMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linebreakmode
-
 func (t_ TextContainer) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineBreakMode:"), value)
 }
@@ -241,7 +228,6 @@ func (t_ TextContainer) SetLineBreakMode(value LineBreakMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linefragmentpadding
-
 func (t_ TextContainer) LineFragmentPadding() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("lineFragmentPadding"))
 	return rv
@@ -252,7 +238,6 @@ func (t_ TextContainer) LineFragmentPadding() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linefragmentpadding
-
 func (t_ TextContainer) SetLineFragmentPadding(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineFragmentPadding:"), value)
 }
@@ -262,7 +247,6 @@ func (t_ TextContainer) SetLineFragmentPadding(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/maximumnumberoflines
-
 func (t_ TextContainer) MaximumNumberOfLines() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("maximumNumberOfLines"))
 	return rv
@@ -273,7 +257,6 @@ func (t_ TextContainer) MaximumNumberOfLines() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/maximumnumberoflines
-
 func (t_ TextContainer) SetMaximumNumberOfLines(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaximumNumberOfLines:"), value)
 }
@@ -283,7 +266,6 @@ func (t_ TextContainer) SetMaximumNumberOfLines(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/size
-
 func (t_ TextContainer) Size() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("size"))
 	return rv
@@ -294,7 +276,6 @@ func (t_ TextContainer) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/size
-
 func (t_ TextContainer) SetSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSize:"), value)
 }
@@ -302,7 +283,6 @@ func (t_ TextContainer) SetSize(value coregraphics.CGSize) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
-
 func (t_ TextContainer) TextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
@@ -311,7 +291,6 @@ func (t_ TextContainer) TextLayoutManager() NSTextLayoutManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
-
 func (t_ TextContainer) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
@@ -321,7 +300,6 @@ func (t_ TextContainer) SetTextLayoutManager(value ITextLayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
-
 func (t_ TextContainer) TextView() NSTextView {
 	rv := objc.Send[NSTextView](t_.ID, objc.Sel("textView"))
 	return rv
@@ -332,7 +310,6 @@ func (t_ TextContainer) TextView() NSTextView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
-
 func (t_ TextContainer) SetTextView(value ITextView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextView:"), value)
 }
@@ -342,7 +319,6 @@ func (t_ TextContainer) SetTextView(value ITextView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/widthtrackstextview
-
 func (t_ TextContainer) WidthTracksTextView() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("widthTracksTextView"))
 	return rv
@@ -353,7 +329,6 @@ func (t_ TextContainer) WidthTracksTextView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/widthtrackstextview
-
 func (t_ TextContainer) SetWidthTracksTextView(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidthTracksTextView:"), value)
 }

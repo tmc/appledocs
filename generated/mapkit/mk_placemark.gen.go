@@ -37,7 +37,11 @@ type IMKPlacemark interface {
 // A user-friendly description of a location on the map.
 //
 // Placemark data includes information like the country or region, state, city, and street address associated with the specified coordinate. A placemark is a concrete annotation object and conforms to the protocol. Because it’s an annotation, you can add a placemark directly to the map view’s list of annotations.
+
+
+// A user-friendly description of a location on the map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPlacemark
 type MKPlacemark struct {
 	corelocation.Placemark
@@ -85,9 +89,9 @@ func NewMKPlacemark() MKPlacemark {
 
 
 
-
 // Creates and returns a placemark object using the specified coordinate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPlacemark/init(coordinate:)
 func NewMKPlacemarkWithCoordinate(coordinate unsafe.Pointer) MKPlacemark {
 	instance := getMKPlacemarkClass().Alloc()
@@ -97,8 +101,10 @@ func NewMKPlacemarkWithCoordinate(coordinate unsafe.Pointer) MKPlacemark {
 }
 
 
+
 // The abbreviated country or region name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkplacemark/countrycode
 func (m_ MKPlacemark) CountryCode() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
@@ -106,10 +112,9 @@ func (m_ MKPlacemark) CountryCode() string {
 }
 
 
-// SetCountryCode sets the value of the countryCode property.
 // The abbreviated country or region name.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkplacemark/countrycode
 func (m_ MKPlacemark) SetCountryCode(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))

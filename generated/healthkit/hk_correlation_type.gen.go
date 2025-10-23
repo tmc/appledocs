@@ -40,7 +40,6 @@ type IHKCorrelationType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationType
-
 type HKCorrelationType struct {
 	HKSampleType
 }

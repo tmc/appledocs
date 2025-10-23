@@ -50,7 +50,6 @@ type ICredentialProviderViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController
-
 type CredentialProviderViewController struct {
 	appkit.ViewController
 }
@@ -97,56 +96,46 @@ func NewCredentialProviderViewController() CredentialProviderViewController {
 
 
 
-
 // Perform a conditional passkey registration, if possible.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/performWithoutUserInteractionIfPossible(passkeyRegistration:)
-
 func (c_ CredentialProviderViewController) PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performPasskeyRegistrationWithoutUserInteractionIfPossible:"), registrationRequest)
 }
-
 
 
 // Prepares the interface to display a list of credentials from which the user can select.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareCredentialList(for:)
-
 func (c_ CredentialProviderViewController) PrepareCredentialListForServiceIdentifiers(serviceIdentifiers []unsafe.IPointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareCredentialListForServiceIdentifiers:"), serviceIdentifiers)
 }
-
 
 
 // Prepare the view controller to show a list of all insertable text with user selectable fields.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareInterfaceForUserChoosingTextToInsert()
-
 func (c_ CredentialProviderViewController) PrepareInterfaceForUserChoosingTextToInsert() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareInterfaceForUserChoosingTextToInsert"))
 }
-
 
 
 // Prepare the view controller to show user interface for providing the requested credential.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareInterfaceToProvideCredential(for:)-68qpo
-
 func (c_ CredentialProviderViewController) PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareInterfaceToProvideCredentialForRequest:"), credentialRequest)
 }
-
 
 
 // Attempts to provide the user-requested credential with no further user interaction.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/provideCredentialWithoutUserInteraction(for:)-3mo23
-
 func (c_ CredentialProviderViewController) ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("provideCredentialWithoutUserInteractionForRequest:"), credentialRequest)
 }
@@ -156,7 +145,6 @@ func (c_ CredentialProviderViewController) ProvideCredentialWithoutUserInteracti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/extensioncontext
-
 func (c_ CredentialProviderViewController) ExtensionContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extensionContext"))
 	return rv
@@ -167,7 +155,6 @@ func (c_ CredentialProviderViewController) ExtensionContext() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/extensioncontext
-
 func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExtensionContext:"), value)
 }
@@ -177,7 +164,6 @@ func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain
-
 func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
 	return rv

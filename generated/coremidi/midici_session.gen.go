@@ -56,7 +56,6 @@ type IMIDICISession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession
-
 type MIDICISession struct {
 	objectivec.Object
 }
@@ -101,12 +100,10 @@ func NewMIDICISession() MIDICISession {
 
 
 
-
 // Creates a MIDI-CI session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/init(discoveredNode:dataReadyHandler:disconnectHandler:)
-
 func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discoveredNode IMIDICIDiscoveredNode, handler unsafe.Pointer, disconnectHandler unsafe.Pointer) MIDICISession {
 	instance := getMIDICISessionClass().Alloc()
 	rv := objc.Send[MIDICISession](instance.ID, objc.Sel("initWithDiscoveredNode:dataReadyHandler:disconnectHandler:"), discoveredNode, handler, disconnectHandler)
@@ -120,7 +117,6 @@ func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discove
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/deviceInfo
-
 func (m_ MIDICISession) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
@@ -131,7 +127,6 @@ func (m_ MIDICISession) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxSysExSize
-
 func (m_ MIDICISession) MaxSysExSize() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
 	return rv
@@ -142,7 +137,6 @@ func (m_ MIDICISession) MaxSysExSize() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/midiDestination
-
 func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
 	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("midiDestination"))
 	return rv
@@ -153,7 +147,6 @@ func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
-
 func (m_ MIDICISession) MaxPropertyRequests() foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPropertyRequests"))
 	return rv
@@ -164,7 +157,6 @@ func (m_ MIDICISession) MaxPropertyRequests() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
-
 func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPropertyRequests:"), value)
 }
@@ -174,7 +166,6 @@ func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilechangedcallback
-
 func (m_ MIDICISession) ProfileChangedCallback() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileChangedCallback"))
 	return rv
@@ -185,7 +176,6 @@ func (m_ MIDICISession) ProfileChangedCallback() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilechangedcallback
-
 func (m_ MIDICISession) SetProfileChangedCallback(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileChangedCallback:"), value)
 }
@@ -195,7 +185,6 @@ func (m_ MIDICISession) SetProfileChangedCallback(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilespecificdatahandler
-
 func (m_ MIDICISession) ProfileSpecificDataHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileSpecificDataHandler"))
 	return rv
@@ -206,7 +195,6 @@ func (m_ MIDICISession) ProfileSpecificDataHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/profilespecificdatahandler
-
 func (m_ MIDICISession) SetProfileSpecificDataHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileSpecificDataHandler:"), value)
 }
@@ -216,7 +204,6 @@ func (m_ MIDICISession) SetProfileSpecificDataHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportsprofilecapability
-
 func (m_ MIDICISession) SupportsProfileCapability() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileCapability"))
 	return rv
@@ -227,7 +214,6 @@ func (m_ MIDICISession) SupportsProfileCapability() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportsprofilecapability
-
 func (m_ MIDICISession) SetSupportsProfileCapability(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportsProfileCapability:"), value)
 }
@@ -237,7 +223,6 @@ func (m_ MIDICISession) SetSupportsProfileCapability(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportspropertycapability
-
 func (m_ MIDICISession) SupportsPropertyCapability() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyCapability"))
 	return rv
@@ -248,7 +233,6 @@ func (m_ MIDICISession) SupportsPropertyCapability() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportspropertycapability
-
 func (m_ MIDICISession) SetSupportsPropertyCapability(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportsPropertyCapability:"), value)
 }
@@ -258,7 +242,6 @@ func (m_ MIDICISession) SetSupportsPropertyCapability(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midichannelswholeport
-
 func (m_ MIDICISession) MIDIChannelsWholePort() MIDIChannelNumber {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("MIDIChannelsWholePort"))
 	return rv

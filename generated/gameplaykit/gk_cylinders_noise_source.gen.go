@@ -42,7 +42,6 @@ type ICylindersNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource
-
 type CylindersNoiseSource struct {
 	NoiseSource
 }
@@ -89,12 +88,10 @@ func NewCylindersNoiseSource() CylindersNoiseSource {
 
 
 
-
 // Initializes a cylinder noise source with the specified frequency.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/init(frequency:)
-
 func NewCylindersNoiseSourceWithFrequency(frequency float64) CylindersNoiseSource {
 	instance := getCylindersNoiseSourceClass().Alloc()
 	rv := objc.Send[CylindersNoiseSource](instance.ID, objc.Sel("initWithFrequency:"), frequency)
@@ -108,7 +105,6 @@ func NewCylindersNoiseSourceWithFrequency(frequency float64) CylindersNoiseSourc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/cylindersNoise(withFrequency:)
-
 func (cc _CylindersNoiseSourceClass) CylindersNoiseWithFrequency(frequency float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("cylindersNoiseWithFrequency:"), frequency)
 	return rv
@@ -119,7 +115,6 @@ func (cc _CylindersNoiseSourceClass) CylindersNoiseWithFrequency(frequency float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/frequency
-
 func (c_ CylindersNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("frequency"))
 	return rv
@@ -130,7 +125,6 @@ func (c_ CylindersNoiseSource) Frequency() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCylindersNoiseSource/frequency
-
 func (c_ CylindersNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }

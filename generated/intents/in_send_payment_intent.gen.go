@@ -40,7 +40,11 @@ type IINSendPaymentIntent interface {
 // A request to transfer money from the current user’s account to a different user’s account.
 //
 // Siri creates an object when the current user asks to transfer money to another user. A send payment intent object includes the payment amount and the recipient of the payment. Use that information to validate the transaction and transfer the funds. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the result of sending the money to the specified user. This intent object represents a financial transaction between two users.
+
+
+// A request to transfer money from the current user’s account to a different user’s account.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntent
 type INSendPaymentIntent struct {
 	INIntent
@@ -87,8 +91,10 @@ func NewINSendPaymentIntent() INSendPaymentIntent {
 }
 
 
+
 // The amount of the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/currencyamount
 func (i_ INSendPaymentIntent) CurrencyAmount() INCurrencyAmount {
 	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("currencyAmount"))
@@ -96,17 +102,18 @@ func (i_ INSendPaymentIntent) CurrencyAmount() INCurrencyAmount {
 }
 
 
-// SetCurrencyAmount sets the value of the currencyAmount property.
 // The amount of the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/currencyamount
 func (i_ INSendPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
 }
 
+
 // A note associated with the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
 func (i_ INSendPaymentIntent) Note() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("note"))
@@ -114,17 +121,18 @@ func (i_ INSendPaymentIntent) Note() string {
 }
 
 
-// SetNote sets the value of the note property.
 // A note associated with the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
 func (i_ INSendPaymentIntent) SetNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
 }
 
+
 // The recipient of the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/payee
 func (i_ INSendPaymentIntent) Payee() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("payee"))
@@ -132,10 +140,9 @@ func (i_ INSendPaymentIntent) Payee() INPerson {
 }
 
 
-// SetPayee sets the value of the payee property.
 // The recipient of the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/payee
 func (i_ INSendPaymentIntent) SetPayee(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPayee:"), value)

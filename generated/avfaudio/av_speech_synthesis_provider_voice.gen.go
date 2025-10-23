@@ -59,7 +59,6 @@ type ISpeechSynthesisProviderVoice interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice
-
 type SpeechSynthesisProviderVoice struct {
 	objectivec.Object
 }
@@ -108,7 +107,6 @@ func NewSpeechSynthesisProviderVoice() SpeechSynthesisProviderVoice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/updateSpeechVoices()
-
 func (sc _SpeechSynthesisProviderVoiceClass) UpdateSpeechVoices() {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("updateSpeechVoices"))
 }
@@ -118,7 +116,6 @@ func (sc _SpeechSynthesisProviderVoiceClass) UpdateSpeechVoices() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-
 func (s_ SpeechSynthesisProviderVoice) SpeechVoices() AVSpeechSynthesisProviderVoice {
 	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
@@ -129,7 +126,6 @@ func (s_ SpeechSynthesisProviderVoice) SpeechVoices() AVSpeechSynthesisProviderV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-
 func (s_ SpeechSynthesisProviderVoice) SetSpeechVoices(value IAVSpeechSynthesisProviderVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
 }
@@ -139,7 +135,6 @@ func (s_ SpeechSynthesisProviderVoice) SetSpeechVoices(value IAVSpeechSynthesisP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/age
-
 func (s_ SpeechSynthesisProviderVoice) Age() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("age"))
 	return rv
@@ -150,7 +145,6 @@ func (s_ SpeechSynthesisProviderVoice) Age() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/age
-
 func (s_ SpeechSynthesisProviderVoice) SetAge(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAge:"), value)
 }
@@ -160,7 +154,6 @@ func (s_ SpeechSynthesisProviderVoice) SetAge(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/gender
-
 func (s_ SpeechSynthesisProviderVoice) Gender() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gender"))
 	return rv
@@ -171,7 +164,6 @@ func (s_ SpeechSynthesisProviderVoice) Gender() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/gender
-
 func (s_ SpeechSynthesisProviderVoice) SetGender(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setGender:"), value)
 }
@@ -181,7 +173,6 @@ func (s_ SpeechSynthesisProviderVoice) SetGender(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/identifier
-
 func (s_ SpeechSynthesisProviderVoice) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
@@ -192,7 +183,6 @@ func (s_ SpeechSynthesisProviderVoice) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/identifier
-
 func (s_ SpeechSynthesisProviderVoice) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -202,7 +192,6 @@ func (s_ SpeechSynthesisProviderVoice) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/name
-
 func (s_ SpeechSynthesisProviderVoice) Name() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("name"))
 	return rv
@@ -213,7 +202,6 @@ func (s_ SpeechSynthesisProviderVoice) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/name
-
 func (s_ SpeechSynthesisProviderVoice) SetName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -223,7 +211,6 @@ func (s_ SpeechSynthesisProviderVoice) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/primarylanguages
-
 func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("primaryLanguages"))
 	return rv
@@ -234,7 +221,6 @@ func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/primarylanguages
-
 func (s_ SpeechSynthesisProviderVoice) SetPrimaryLanguages(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryLanguages:"), objc.String(value))
 }
@@ -244,7 +230,6 @@ func (s_ SpeechSynthesisProviderVoice) SetPrimaryLanguages(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/supportedlanguages
-
 func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("supportedLanguages"))
 	return rv
@@ -255,7 +240,6 @@ func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/supportedlanguages
-
 func (s_ SpeechSynthesisProviderVoice) SetSupportedLanguages(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportedLanguages:"), objc.String(value))
 }
@@ -265,7 +249,6 @@ func (s_ SpeechSynthesisProviderVoice) SetSupportedLanguages(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/version
-
 func (s_ SpeechSynthesisProviderVoice) Version() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("version"))
 	return rv
@@ -276,7 +259,6 @@ func (s_ SpeechSynthesisProviderVoice) Version() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/version
-
 func (s_ SpeechSynthesisProviderVoice) SetVersion(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
@@ -286,7 +268,6 @@ func (s_ SpeechSynthesisProviderVoice) SetVersion(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/voicesize
-
 func (s_ SpeechSynthesisProviderVoice) VoiceSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceSize"))
 	return rv
@@ -297,7 +278,6 @@ func (s_ SpeechSynthesisProviderVoice) VoiceSize() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/voicesize
-
 func (s_ SpeechSynthesisProviderVoice) SetVoiceSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceSize:"), value)
 }

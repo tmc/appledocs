@@ -38,7 +38,11 @@ type IINAppendToNoteIntent interface {
 // A request to append content to a note.
 //
 // Siri creates an object when the user asks to append content to an existing note. The intent object contains the note to modify and the content to add to the note. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated note.
+
+
+// A request to append content to a note.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INAppendToNoteIntent
 type INAppendToNoteIntent struct {
 	INIntent
@@ -85,8 +89,10 @@ func NewINAppendToNoteIntent() INAppendToNoteIntent {
 }
 
 
+
 // The content to append to the note.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/content
 func (i_ INAppendToNoteIntent) Content() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("content"))
@@ -94,17 +100,18 @@ func (i_ INAppendToNoteIntent) Content() unsafe.Pointer {
 }
 
 
-// SetContent sets the value of the content property.
 // The content to append to the note.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/content
 func (i_ INAppendToNoteIntent) SetContent(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
 }
 
+
 // The note to receive the additional content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/targetnote
 func (i_ INAppendToNoteIntent) TargetNote() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("targetNote"))
@@ -112,10 +119,9 @@ func (i_ INAppendToNoteIntent) TargetNote() unsafe.Pointer {
 }
 
 
-// SetTargetNote sets the value of the targetNote property.
 // The note to receive the additional content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inappendtonoteintent/targetnote
 func (i_ INAppendToNoteIntent) SetTargetNote(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetNote:"), value)

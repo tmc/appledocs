@@ -43,7 +43,6 @@ type IFileProviderStringSearchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderStringSearchRequest
-
 type FileProviderStringSearchRequest struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewFileProviderStringSearchRequest() FileProviderStringSearchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/desirednumberofresults
-
 func (f_ FileProviderStringSearchRequest) DesiredNumberOfResults() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("desiredNumberOfResults"))
 	return rv
@@ -103,7 +101,6 @@ func (f_ FileProviderStringSearchRequest) DesiredNumberOfResults() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/desirednumberofresults
-
 func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesiredNumberOfResults:"), value)
 }
@@ -113,7 +110,6 @@ func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
-
 func (f_ FileProviderStringSearchRequest) Query() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("query"))
 	return rv
@@ -124,7 +120,6 @@ func (f_ FileProviderStringSearchRequest) Query() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
-
 func (f_ FileProviderStringSearchRequest) SetQuery(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQuery:"), objc.String(value))
 }

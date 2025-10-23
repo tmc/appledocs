@@ -38,7 +38,11 @@ type IAuthenticationView interface {
 // A graphical representation of the state of biometric authentication.
 //
 // In the view that you use to manage authentication, add a local authentication view as a subview and provide it with an instance. For example, you can do this in the doc://com.apple.documentation/documentation/appkit/nsviewcontroller/1434405-loadview method of your view controller: When the view appears, call the context’s method to initiate the authentication: The local authentication view displays an icon that depends on the type of authentication you request, and the types of authentication that the system supports. For example, for a device that supports Touch ID, if you request the policy, like in the example above, the view displays the familiar finger print icon: In the case above, if the user has a connected Apple Watch, that authentication mechanism works as well. If you limit the authentication to the policy, the icon shows an Apple Watch in profile: You can include other content around this icon that suits your app. The system also displays a message on the Touch Bar or on the user’s Apple Watch, if appropriate. When the evaluation succeeds, the icon transitions into a checkmark: If you call the evaluation without first attaching it to a local authentication view, the system shows a standard authentication alert instead.
+
+
+// A graphical representation of the state of biometric authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView
 type AuthenticationView struct {
 	appkit.View
@@ -86,9 +90,9 @@ func NewAuthenticationView() AuthenticationView {
 
 
 
-
 // Creates a new authentication icon that reflects the current authentication state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:)
 func NewAuthenticationViewWithContext(context coreimage.IContext) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
@@ -98,9 +102,9 @@ func NewAuthenticationViewWithContext(context coreimage.IContext) Authentication
 }
 
 
-
 // Creates a new authentication icon that reflects the current authentication state, using a specified size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:controlSize:)
 func NewAuthenticationViewWithContextControlSize(context coreimage.IContext, controlSize unsafe.Pointer) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
@@ -110,16 +114,20 @@ func NewAuthenticationViewWithContextControlSize(context coreimage.IContext, con
 }
 
 
+
 // The local authentication context associated with the authentication view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/context
 func (a_ AuthenticationView) Context() coreimage.Context {
 	rv := objc.Send[coreimage.Context](a_.ID, objc.Sel("context"))
 	return rv
 }
 
+
 // The size of the local authentication view user interface element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/controlSize
 func (a_ AuthenticationView) ControlSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlSize"))

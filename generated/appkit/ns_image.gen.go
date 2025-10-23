@@ -32,51 +32,70 @@ type _ImageClass struct {
 // An interface definition for the [Image] class.
 type IImage interface {
 	objectivec.IObject
+	AddRepresentation(imageRep IImageRep)
+	AddRepresentations(imageReps []ImageRep)
+	BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) ImageRep
 	BestRepresentationForDevice(deviceDescription objectivec.IObject) ImageRep
+	CancelIncrementalLoad()
+	CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) coregraphics.CGImageRef
 	CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation)
 	CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation, fraction float64)
 	CompositeToPointOperation(point coregraphics.CGPoint, operation ICompositingOperation)
 	CompositeToPointOperationFraction(point coregraphics.CGPoint, operation ICompositingOperation, fraction float64)
 	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
+	DrawInRect(rect coregraphics.CGRect)
 	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
+	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer)
+	DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.CGRect) bool
+	HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints unsafe.Pointer, flipped bool) bool
 	LayerContentsForContentsScale(layerContentsScale float64) objc.ID
+	LockFocus()
+	Name() ImageName
+	Recache()
+	RecommendedLayerContentsScale(preferredContentsScale float64) float64
+	RemoveRepresentation(imageRep IImageRep)
+	SetCachedSeparately(flag bool)
+	SetDataRetained(flag bool)
+	SetName(string_ IImageName) bool
+	TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data
+	UnlockFocus()
+	ImageWithLocale(locale foundation.ILocale) Image
 	ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image
 	AccessibilityDescription() string
 	SetAccessibilityDescription(value string)
 	AlignmentRect() coregraphics.CGRect
 	SetAlignmentRect(value coregraphics.CGRect)
-	CapInsets() unsafe.Pointer
-	SetCapInsets(value unsafe.Pointer)
 	BackgroundColor() NSColor
 	SetBackgroundColor(value IColor)
-	CacheMode() unsafe.Pointer
-	SetCacheMode(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	IsTemplate() bool
-	SetIsTemplate(value bool)
-	IsValid() bool
-	SetIsValid(value bool)
+	CacheMode() ImageCacheMode
+	SetCacheMode(value ImageCacheMode)
+	CapInsets() unsafe.Pointer
+	SetCapInsets(value unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Template() bool
+	SetTemplate(value bool)
+	Valid() bool
 	Locale() foundation.Locale
-	SetLocale(value foundation.ILocale)
 	MatchesOnMultipleResolution() bool
 	SetMatchesOnMultipleResolution(value bool)
 	MatchesOnlyOnBestFittingAxis() bool
 	SetMatchesOnlyOnBestFittingAxis(value bool)
 	PrefersColorMatch() bool
 	SetPrefersColorMatch(value bool)
-	Representations() NSImageRep
-	SetRepresentations(value IImageRep)
-	ResizingMode() unsafe.Pointer
-	SetResizingMode(value unsafe.Pointer)
+	Representations() []ImageRep
+	ResizingMode() ImageResizingMode
+	SetResizingMode(value ImageResizingMode)
 	Size() coregraphics.CGSize
 	SetSize(value coregraphics.CGSize)
 	SymbolConfiguration() ImageSymbolConfiguration
-	SetSymbolConfiguration(value IImageSymbolConfiguration)
-	TiffRepresentation() foundation.Data
-	SetTiffRepresentation(value foundation.IData)
+	TIFFRepresentation() foundation.NSData
 	UsesEPSOnResolutionMismatch() bool
 	SetUsesEPSOnResolutionMismatch(value bool)
+	IsTemplate() bool
+	SetIsTemplate(value bool)
+	IsValid() bool
+	SetIsValid(value bool)
 	Contents() unsafe.Pointer
 	SetContents(value unsafe.Pointer)
 	ContentsGravity() unsafe.Pointer
@@ -92,7 +111,6 @@ type IImage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage
-
 type Image struct {
 	objectivec.Object
 }
@@ -137,24 +155,44 @@ func NewImage() Image {
 
 
 
+// Initializes and returns an image object using the specified file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(byReferencingFile:)
+func NewImageByReferencingFile(fileName string) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initByReferencingFile:"), objc.String(fileName))
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns an image object using the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(byReferencing:)
+func NewImageByReferencingURL(url foundation.IURL) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initByReferencingURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
 
 // Returns the image object associated with the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(named:)
-
-func NewImageNamed(name unsafe.Pointer) Image {
+func NewImageNamed(name IImageName) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageNamed:"), name)
 	return rv
 }
-
 
 
 // Creates a new image using the contents of the provided image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(cgImage:size:)
-
 func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.CGSize) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:size:"), cgImage, size)
@@ -163,12 +201,46 @@ func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.
 }
 
 
+// Initializes and returns an image object from data in an unarchiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(coder:)
+func NewImageWithCoder(coder foundation.ICoder) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns an image object with the contents of the specified file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(contentsOfFile:)
+func NewImageWithContentsOfFile(fileName string) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(fileName))
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns an image object with the contents of the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(contentsOf:)
+func NewImageWithContentsOfURL(url foundation.IURL) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
 
 // Initializes and returns an image object using the provided image data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(data:)
-
 func NewImageWithData(data foundation.IData) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
@@ -177,49 +249,136 @@ func NewImageWithData(data foundation.IData) Image {
 }
 
 
+// Initializes and returns an image object using the provided image data and ignoring the EXIF orientation tags.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(dataIgnoringOrientation:)
+func NewImageWithDataIgnoringOrientation(data foundation.IData) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDataIgnoringOrientation:"), data)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns an image object with data from the specified pasteboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(pasteboard:)
+func NewImageWithPasteboard(pasteboard IPasteboard) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPasteboard:"), pasteboard)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns an image object with the specified dimensions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:)
+func NewImageWithSize(size coregraphics.CGSize) Image {
+	instance := getImageClass().Alloc()
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSize:"), size)
+	rv.Autorelease()
+	return rv
+}
+
 
 // Creates and returns an image object whose contents are drawn using the specified block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)
-
 func NewImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHandlerShouldBeCalledWithFlippedContext bool, drawingHandler unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSize:flipped:drawingHandler:"), size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
 	return rv
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:bundle:variableValue:)
+func NewImageWithSymbolNameBundleVariableValue(name string, bundle foundation.IBundle, value float64) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), objc.String(name), bundle, value)
+	return rv
+}
+
 
 // Creates a symbol image with the symbol name and variable value you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
-
 func NewImageWithSymbolNameVariableValue(name string, value float64) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
 	return rv
 }
 
 
-
 // Creates a symbol image with the system symbol name and accessibility description you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
-
 func NewImageWithSystemSymbolNameAccessibilityDescription(name string, description string) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
 	return rv
 }
 
 
+// Creates a symbol image with the system symbol name and variable value you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:variableValue:accessibilityDescription:)
+func NewImageWithSystemSymbolNameVariableValueAccessibilityDescription(name string, value float64, description string) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:variableValue:accessibilityDescription:"), objc.String(name), value, objc.String(description))
+	return rv
+}
+
+
+
+// Tests whether the image can create an instance of itself using pasteboard data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/canInit(with:)
+func (ic _ImageClass) CanInitWithPasteboard(pasteboard IPasteboard) bool {
+	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInitWithPasteboard:"), pasteboard)
+	return rv
+}
+
+
+// Returns an array of strings identifying the image types supported by the registered image representation objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imageFileTypes()
+func (ic _ImageClass) ImageFileTypes() []string {
+	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imageFileTypes"))
+	return rv
+}
+
+
+// Returns an array of strings identifying the pasteboard types supported directly by the registered image representation objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imagePasteboardTypes()
+func (ic _ImageClass) ImagePasteboardTypes() []string {
+	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imagePasteboardTypes"))
+	return rv
+}
+
+
+// Returns an array of strings identifying the pasteboard types supported directly by the registered image representation objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imageUnfilteredPasteboardTypes()
+func (ic _ImageClass) ImageUnfilteredPasteboardTypes() []string {
+	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imageUnfilteredPasteboardTypes"))
+	return rv
+}
+
 
 // Returns the image object associated with the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(named:)
-
-func (ic _ImageClass) ImageNamed(name unsafe.Pointer) Image {
+func (ic _ImageClass) ImageNamed(name IImageName) Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageNamed:"), name)
 	return rv
 }
@@ -229,9 +388,16 @@ func (ic _ImageClass) ImageNamed(name unsafe.Pointer) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)
-
 func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHandlerShouldBeCalledWithFlippedContext bool, drawingHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSize:flipped:drawingHandler:"), size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:bundle:variableValue:)
+func (ic _ImageClass) ImageWithSymbolNameBundleVariableValue(name string, bundle foundation.IBundle, value float64) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), objc.String(name), bundle, value)
 	return rv
 }
 
@@ -240,7 +406,6 @@ func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
-
 func (ic _ImageClass) ImageWithSymbolNameVariableValue(name string, value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
 	return rv
@@ -251,109 +416,305 @@ func (ic _ImageClass) ImageWithSymbolNameVariableValue(name string, value float6
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
-
 func (ic _ImageClass) ImageWithSystemSymbolNameAccessibilityDescription(name string, description string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
 	return rv
 }
 
 
+// Creates a symbol image with the system symbol name and variable value you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:variableValue:accessibilityDescription:)
+func (ic _ImageClass) ImageWithSystemSymbolNameVariableValueAccessibilityDescription(name string, value float64, description string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSystemSymbolName:variableValue:accessibilityDescription:"), objc.String(name), value, objc.String(description))
+	return rv
+}
+
+
+// Returns an array of UTI strings identifying the image types supported by the registered image representation objects, either directly or through a user-installed filter service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imageTypes
+func (ic _ImageClass) ImageTypes() []string {
+	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imageTypes"))
+	return rv
+}
+
+// Returns an array of UTI strings identifying the image types supported directly by the registered image representation objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imageUnfilteredTypes
+func (ic _ImageClass) ImageUnfilteredTypes() []string {
+	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imageUnfilteredTypes"))
+	return rv
+}
+
+// Adds the specified image representation object to the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/addRepresentation(_:)
+func (i_ Image) AddRepresentation(imageRep IImageRep) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("addRepresentation:"), imageRep)
+}
+
+
+// Adds an array of image representation objects to the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/addRepresentations(_:)
+func (i_ Image) AddRepresentations(imageReps []ImageRep) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("addRepresentations:"), imageReps)
+}
+
+
+// Returns the best representation of the image for the specified rectangle using the provided hints.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentation(for:context:hints:)
+func (i_ Image) BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) ImageRep {
+	rv := objc.Send[ImageRep](i_.ID, objc.Sel("bestRepresentationForRect:context:hints:"), rect, referenceContext, hints)
+	return rv
+}
+
 
 // Returns the best representation for the device with the specified characteristics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentationForDevice:
-
 func (i_ Image) BestRepresentationForDevice(deviceDescription objectivec.IObject) ImageRep {
 	rv := objc.Send[ImageRep](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
 	return rv
 }
 
 
+// Cancels the current download operation, if any, for an incrementally loaded image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cancelIncrementalLoad
+func (i_ Image) CancelIncrementalLoad() {
+	objc.Send[objc.ID](i_.ID, objc.Sel("cancelIncrementalLoad"))
+}
+
+
+// Returns a Core Graphics image based on the contents of the current image object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cgImage(forProposedRect:context:hints:)
+func (i_ Image) CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](i_.ID, objc.Sel("CGImageForProposedRect:context:hints:"), proposedDestRect, referenceContext, hints)
+	return rv
+}
+
 
 // Composites a portion of the image to the specified point in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:
-
 func (i_ Image) CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:fromRect:operation:"), point, rect, operation)
 }
-
 
 
 // Composites a portion of the image at the specified opacity to the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:
-
 func (i_ Image) CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation, fraction float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:fromRect:operation:fraction:"), point, rect, operation, fraction)
 }
-
 
 
 // Composites the entire image to the specified point in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:operation:
-
 func (i_ Image) CompositeToPointOperation(point coregraphics.CGPoint, operation ICompositingOperation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:operation:"), point, operation)
 }
-
 
 
 // Composites the entire image at the specified opacity in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:
-
 func (i_ Image) CompositeToPointOperationFraction(point coregraphics.CGPoint, operation ICompositingOperation, fraction float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:operation:fraction:"), point, operation, fraction)
 }
-
 
 
 // Draws all or part of the image at the specified point in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)
-
 func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawAtPoint:fromRect:operation:fraction:"), point, fromRect, op, delta)
 }
 
+
+// Draws the image in the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:)
+func (i_ Image) DrawInRect(rect coregraphics.CGRect) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:"), rect)
+}
 
 
 // Draws all or part of the image in the specified rectangle in the current coordinate system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)
-
 func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:"), rect, fromRect, op, delta)
 }
 
+
+// Draws all or part of the image in the specified rectangle respecting the hints and the orientation of the current coordinate system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:respectFlipped:hints:)
+func (i_ Image) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
+}
+
+
+// Draws the image using the specified image representation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/drawRepresentation(_:in:)
+func (i_ Image) DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.CGRect) bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("drawRepresentation:inRect:"), imageRep, rect)
+	return rv
+}
+
+
+// Returns whether the destination rectangle would intersect a non-transparent portion of the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/hitTest(_:withDestinationRect:context:hints:flipped:)
+func (i_ Image) HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints unsafe.Pointer, flipped bool) bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("hitTestRect:withImageDestinationRect:context:hints:flipped:"), testRectDestSpace, imageRectDestSpace, context, hints, flipped)
+	return rv
+}
 
 
 // Returns an object that may be used as the contents of a layer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/layerContents(forContentsScale:)
-
 func (i_ Image) LayerContentsForContentsScale(layerContentsScale float64) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("layerContentsForContentsScale:"), layerContentsScale)
 	return rv
 }
 
 
+// Prepares the image to receive drawing commands.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/lockFocus()
+func (i_ Image) LockFocus() {
+	objc.Send[objc.ID](i_.ID, objc.Sel("lockFocus"))
+}
+
+
+// Returns the name associated with the image, if any.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/name()
+func (i_ Image) Name() ImageName {
+	rv := objc.Send[ImageName](i_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// Invalidates and frees offscreen caches of all image representations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/recache()
+func (i_ Image) Recache() {
+	objc.Send[objc.ID](i_.ID, objc.Sel("recache"))
+}
+
+
+// Returns the recommended layer contents scale for this image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/recommendedLayerContentsScale(_:)
+func (i_ Image) RecommendedLayerContentsScale(preferredContentsScale float64) float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("recommendedLayerContentsScale:"), preferredContentsScale)
+	return rv
+}
+
+
+// Removes and releases the specified image representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/removeRepresentation(_:)
+func (i_ Image) RemoveRepresentation(imageRep IImageRep) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("removeRepresentation:"), imageRep)
+}
+
+
+// Sets whether each image representation uses a separate offscreen window to cache its contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/setCachedSeparately:
+func (i_ Image) SetCachedSeparately(flag bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCachedSeparately:"), flag)
+}
+
+
+// Sets whether the image retains its source image data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/setDataRetained:
+func (i_ Image) SetDataRetained(flag bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDataRetained:"), flag)
+}
+
+
+// Registers the image object under the specified name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/setName(_:)
+func (i_ Image) SetName(string_ IImageName) bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("setName:"), string_)
+	return rv
+}
+
+
+// Returns a data object that contains TIFF data with the specified compression settings for all of the image representations in the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/tiffRepresentation(using:factor:)
+func (i_ Image) TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data {
+	rv := objc.Send[foundation.Data](i_.ID, objc.Sel("TIFFRepresentationUsingCompression:factor:"), comp, factor)
+	return rv
+}
+
+
+// Removes the focus from the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/unlockFocus()
+func (i_ Image) UnlockFocus() {
+	objc.Send[objc.ID](i_.ID, objc.Sel("unlockFocus"))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/withLocale(_:)
+func (i_ Image) ImageWithLocale(locale foundation.ILocale) Image {
+	rv := objc.Send[Image](i_.ID, objc.Sel("imageWithLocale:"), locale)
+	return rv
+}
+
 
 // Creates a new symbol image with the specified configuration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/withSymbolConfiguration(_:)
-
 func (i_ Image) ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageWithSymbolConfiguration:"), configuration)
 	return rv
@@ -364,7 +725,6 @@ func (i_ Image) ImageWithSymbolConfiguration(configuration IImageSymbolConfigura
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/accessibilityDescription
-
 func (i_ Image) AccessibilityDescription() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("accessibilityDescription"))
 	return rv
@@ -375,7 +735,6 @@ func (i_ Image) AccessibilityDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/accessibilityDescription
-
 func (i_ Image) SetAccessibilityDescription(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAccessibilityDescription:"), objc.String(value))
 }
@@ -385,7 +744,6 @@ func (i_ Image) SetAccessibilityDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/alignmentRect
-
 func (i_ Image) AlignmentRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](i_.ID, objc.Sel("alignmentRect"))
 	return rv
@@ -396,9 +754,46 @@ func (i_ Image) AlignmentRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/alignmentRect
-
 func (i_ Image) SetAlignmentRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlignmentRect:"), value)
+}
+
+
+// The background color for the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/backgroundColor
+func (i_ Image) BackgroundColor() NSColor {
+	rv := objc.Send[NSColor](i_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// The background color for the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/backgroundColor
+func (i_ Image) SetBackgroundColor(value IColor) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+
+// The image’s caching mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cacheMode-swift.property
+func (i_ Image) CacheMode() ImageCacheMode {
+	rv := objc.Send[ImageCacheMode](i_.ID, objc.Sel("cacheMode"))
+	return rv
+}
+
+
+// The image’s caching mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cacheMode-swift.property
+func (i_ Image) SetCacheMode(value ImageCacheMode) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCacheMode:"), value)
 }
 
 
@@ -406,7 +801,6 @@ func (i_ Image) SetAlignmentRect(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/capInsets
-
 func (i_ Image) CapInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("capInsets"))
 	return rv
@@ -417,61 +811,17 @@ func (i_ Image) CapInsets() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/capInsets
-
 func (i_ Image) SetCapInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCapInsets:"), value)
 }
 
 
-// The background color for the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/backgroundcolor
-
-func (i_ Image) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](i_.ID, objc.Sel("backgroundColor"))
-	return rv
-}
-
-
-// The background color for the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/backgroundcolor
-
-func (i_ Image) SetBackgroundColor(value IColor) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setBackgroundColor:"), value)
-}
-
-
-// The image’s caching mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.property
-
-func (i_ Image) CacheMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("cacheMode"))
-	return rv
-}
-
-
-// The image’s caching mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.property
-
-func (i_ Image) SetCacheMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCacheMode:"), value)
-}
-
-
 // The image’s delegate object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/delegate
-
-func (i_ Image) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/delegate
+func (i_ Image) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -479,10 +829,210 @@ func (i_ Image) Delegate() unsafe.Pointer {
 // The image’s delegate object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/delegate
-
-func (i_ Image) SetDelegate(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/delegate
+func (i_ Image) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// Returns an array of UTI strings identifying the image types supported by the registered image representation objects, either directly or through a user-installed filter service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imageTypes
+func (i_ Image) ImageTypes() []string {
+	rv := objc.Send[[]string](i_.ID, objc.Sel("imageTypes"))
+	return rv
+}
+
+
+// Returns an array of UTI strings identifying the image types supported directly by the registered image representation objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/imageUnfilteredTypes
+func (i_ Image) ImageUnfilteredTypes() []string {
+	rv := objc.Send[[]string](i_.ID, objc.Sel("imageUnfilteredTypes"))
+	return rv
+}
+
+
+// A Boolean value that determines whether the image represents a template image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/isTemplate
+func (i_ Image) Template() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("template"))
+	return rv
+}
+
+
+// A Boolean value that determines whether the image represents a template image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/isTemplate
+func (i_ Image) SetTemplate(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTemplate:"), value)
+}
+
+
+// A Boolean value that indicates whether it is possible to draw an image representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/isValid
+func (i_ Image) Valid() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("valid"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/locale
+func (i_ Image) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](i_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/matchesOnMultipleResolution
+func (i_ Image) MatchesOnMultipleResolution() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("matchesOnMultipleResolution"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/matchesOnMultipleResolution
+func (i_ Image) SetMatchesOnMultipleResolution(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMatchesOnMultipleResolution:"), value)
+}
+
+
+// A Boolean value that indicates whether the image matches only on the best fitting axis.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/matchesOnlyOnBestFittingAxis
+func (i_ Image) MatchesOnlyOnBestFittingAxis() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("matchesOnlyOnBestFittingAxis"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the image matches only on the best fitting axis.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/matchesOnlyOnBestFittingAxis
+func (i_ Image) SetMatchesOnlyOnBestFittingAxis(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMatchesOnlyOnBestFittingAxis:"), value)
+}
+
+
+// A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/prefersColorMatch
+func (i_ Image) PrefersColorMatch() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("prefersColorMatch"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/prefersColorMatch
+func (i_ Image) SetPrefersColorMatch(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPrefersColorMatch:"), value)
+}
+
+
+// An array containing all of the image object’s image representations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/representations
+func (i_ Image) Representations() []ImageRep {
+	rv := objc.Send[[]ImageRep](i_.ID, objc.Sel("representations"))
+	return rv
+}
+
+
+// The resizing mode for the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/resizingMode-swift.property
+func (i_ Image) ResizingMode() ImageResizingMode {
+	rv := objc.Send[ImageResizingMode](i_.ID, objc.Sel("resizingMode"))
+	return rv
+}
+
+
+// The resizing mode for the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/resizingMode-swift.property
+func (i_ Image) SetResizingMode(value ImageResizingMode) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setResizingMode:"), value)
+}
+
+
+// The size of the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/size
+func (i_ Image) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// The size of the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/size
+func (i_ Image) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
+}
+
+
+// The configuration details for a symbol image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/symbolConfiguration-swift.property
+func (i_ Image) SymbolConfiguration() ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("symbolConfiguration"))
+	return rv
+}
+
+
+// A data object containing TIFF data for all of the image representations in the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/tiffRepresentation
+func (i_ Image) TIFFRepresentation() foundation.NSData {
+	rv := objc.Send[foundation.NSData](i_.ID, objc.Sel("TIFFRepresentation"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether EPS representations are preferred when no other representations match the resolution of the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/usesEPSOnResolutionMismatch
+func (i_ Image) UsesEPSOnResolutionMismatch() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("usesEPSOnResolutionMismatch"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether EPS representations are preferred when no other representations match the resolution of the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/usesEPSOnResolutionMismatch
+func (i_ Image) SetUsesEPSOnResolutionMismatch(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setUsesEPSOnResolutionMismatch:"), value)
 }
 
 
@@ -490,7 +1040,6 @@ func (i_ Image) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/istemplate
-
 func (i_ Image) IsTemplate() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isTemplate"))
 	return rv
@@ -501,7 +1050,6 @@ func (i_ Image) IsTemplate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/istemplate
-
 func (i_ Image) SetIsTemplate(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsTemplate:"), value)
 }
@@ -511,7 +1059,6 @@ func (i_ Image) SetIsTemplate(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/isvalid
-
 func (i_ Image) IsValid() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isValid"))
 	return rv
@@ -522,215 +1069,8 @@ func (i_ Image) IsValid() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/isvalid
-
 func (i_ Image) SetIsValid(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsValid:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/locale
-
-func (i_ Image) Locale() foundation.Locale {
-	rv := objc.Send[foundation.Locale](i_.ID, objc.Sel("locale"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/locale
-
-func (i_ Image) SetLocale(value foundation.ILocale) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setLocale:"), value)
-}
-
-
-// A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonmultipleresolution
-
-func (i_ Image) MatchesOnMultipleResolution() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("matchesOnMultipleResolution"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonmultipleresolution
-
-func (i_ Image) SetMatchesOnMultipleResolution(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMatchesOnMultipleResolution:"), value)
-}
-
-
-// A Boolean value that indicates whether the image matches only on the best fitting axis.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonlyonbestfittingaxis
-
-func (i_ Image) MatchesOnlyOnBestFittingAxis() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("matchesOnlyOnBestFittingAxis"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the image matches only on the best fitting axis.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/matchesonlyonbestfittingaxis
-
-func (i_ Image) SetMatchesOnlyOnBestFittingAxis(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMatchesOnlyOnBestFittingAxis:"), value)
-}
-
-
-// A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/preferscolormatch
-
-func (i_ Image) PrefersColorMatch() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("prefersColorMatch"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/preferscolormatch
-
-func (i_ Image) SetPrefersColorMatch(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPrefersColorMatch:"), value)
-}
-
-
-// An array containing all of the image object’s image representations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/representations
-
-func (i_ Image) Representations() NSImageRep {
-	rv := objc.Send[NSImageRep](i_.ID, objc.Sel("representations"))
-	return rv
-}
-
-
-// An array containing all of the image object’s image representations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/representations
-
-func (i_ Image) SetRepresentations(value IImageRep) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRepresentations:"), value)
-}
-
-
-// The resizing mode for the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/resizingmode-swift.property
-
-func (i_ Image) ResizingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("resizingMode"))
-	return rv
-}
-
-
-// The resizing mode for the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/resizingmode-swift.property
-
-func (i_ Image) SetResizingMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setResizingMode:"), value)
-}
-
-
-// The size of the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/size
-
-func (i_ Image) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("size"))
-	return rv
-}
-
-
-// The size of the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/size
-
-func (i_ Image) SetSize(value coregraphics.CGSize) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
-}
-
-
-// The configuration details for a symbol image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.property
-
-func (i_ Image) SymbolConfiguration() ImageSymbolConfiguration {
-	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("symbolConfiguration"))
-	return rv
-}
-
-
-// The configuration details for a symbol image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.property
-
-func (i_ Image) SetSymbolConfiguration(value IImageSymbolConfiguration) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSymbolConfiguration:"), value)
-}
-
-
-// A data object containing TIFF data for all of the image representations in the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/tiffrepresentation
-
-func (i_ Image) TiffRepresentation() foundation.Data {
-	rv := objc.Send[foundation.Data](i_.ID, objc.Sel("tiffRepresentation"))
-	return rv
-}
-
-
-// A data object containing TIFF data for all of the image representations in the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/tiffrepresentation
-
-func (i_ Image) SetTiffRepresentation(value foundation.IData) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTiffRepresentation:"), value)
-}
-
-
-// A Boolean value that indicates whether EPS representations are preferred when no other representations match the resolution of the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/usesepsonresolutionmismatch
-
-func (i_ Image) UsesEPSOnResolutionMismatch() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("usesEPSOnResolutionMismatch"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether EPS representations are preferred when no other representations match the resolution of the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimage/usesepsonresolutionmismatch
-
-func (i_ Image) SetUsesEPSOnResolutionMismatch(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setUsesEPSOnResolutionMismatch:"), value)
 }
 
 
@@ -738,7 +1078,6 @@ func (i_ Image) SetUsesEPSOnResolutionMismatch(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
-
 func (i_ Image) Contents() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contents"))
 	return rv
@@ -749,7 +1088,6 @@ func (i_ Image) Contents() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contents
-
 func (i_ Image) SetContents(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContents:"), value)
 }
@@ -759,7 +1097,6 @@ func (i_ Image) SetContents(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
-
 func (i_ Image) ContentsGravity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentsGravity"))
 	return rv
@@ -770,7 +1107,6 @@ func (i_ Image) ContentsGravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
-
 func (i_ Image) SetContentsGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContentsGravity:"), value)
 }

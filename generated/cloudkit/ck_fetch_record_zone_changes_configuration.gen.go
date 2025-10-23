@@ -51,7 +51,6 @@ type ICKFetchRecordZoneChangesConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration
-
 type CKFetchRecordZoneChangesConfiguration struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewCKFetchRecordZoneChangesConfiguration() CKFetchRecordZoneChangesConfigur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesConfiguration/desiredKeys
-
 func (c_ CKFetchRecordZoneChangesConfiguration) DesiredKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
@@ -111,7 +109,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) DesiredKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesConfiguration/desiredKeys
-
 func (c_ CKFetchRecordZoneChangesConfiguration) SetDesiredKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -131,7 +128,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) SetDesiredKeys(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/previousServerChangeToken
-
 func (c_ CKFetchRecordZoneChangesConfiguration) PreviousServerChangeToken() CKServerChangeToken {
 	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
@@ -142,7 +138,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) PreviousServerChangeToken() CKSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/previousServerChangeToken
-
 func (c_ CKFetchRecordZoneChangesConfiguration) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
@@ -152,7 +147,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) SetPreviousServerChangeToken(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/resultsLimit
-
 func (c_ CKFetchRecordZoneChangesConfiguration) ResultsLimit() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("resultsLimit"))
 	return rv
@@ -163,7 +157,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) ResultsLimit() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneConfiguration/resultsLimit
-
 func (c_ CKFetchRecordZoneChangesConfiguration) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
@@ -173,7 +166,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) SetResultsLimit(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
-
 func (c_ CKFetchRecordZoneChangesConfiguration) ConfigurationsByRecordZoneID() CKFetchRecordZoneChangesConfiguration {
 	rv := objc.Send[CKFetchRecordZoneChangesConfiguration](c_.ID, objc.Sel("configurationsByRecordZoneID"))
 	return rv
@@ -184,7 +176,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) ConfigurationsByRecordZoneID() C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
-
 func (c_ CKFetchRecordZoneChangesConfiguration) SetConfigurationsByRecordZoneID(value ICKFetchRecordZoneChangesConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfigurationsByRecordZoneID:"), value)
 }
@@ -194,7 +185,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) SetConfigurationsByRecordZoneID(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
-
 func (c_ CKFetchRecordZoneChangesConfiguration) FetchAllChanges() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
 	return rv
@@ -205,7 +195,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) FetchAllChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
-
 func (c_ CKFetchRecordZoneChangesConfiguration) SetFetchAllChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
@@ -215,7 +204,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) SetFetchAllChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzoneids
-
 func (c_ CKFetchRecordZoneChangesConfiguration) RecordZoneIDs() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("recordZoneIDs"))
 	return rv
@@ -226,7 +214,6 @@ func (c_ CKFetchRecordZoneChangesConfiguration) RecordZoneIDs() CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzoneids
-
 func (c_ CKFetchRecordZoneChangesConfiguration) SetRecordZoneIDs(value ICKRecordZoneID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneIDs:"), value)
 }

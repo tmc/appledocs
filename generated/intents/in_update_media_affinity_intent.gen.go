@@ -38,7 +38,11 @@ type IINUpdateMediaAffinityIntent interface {
 // A request to update the user’s affinity for a media item.
 //
 // Siri creates an object when the user expresses a preference for or disinterest in a media item. The intent object contains the media to update. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the media to update.
+
+
+// A request to update the user’s affinity for a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent
 type INUpdateMediaAffinityIntent struct {
 	INIntent
@@ -85,24 +89,30 @@ func NewINUpdateMediaAffinityIntent() INUpdateMediaAffinityIntent {
 }
 
 
+
 // The media items to update.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent/mediaItems
 func (i_ INUpdateMediaAffinityIntent) MediaItems() []INMediaItem {
 	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
 
+
 // The type of item to search for.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent/mediaSearch
 func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
 
+
 // The user’s affinity for the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/affinitytype
 func (i_ INUpdateMediaAffinityIntent) AffinityType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("affinityType"))
@@ -110,10 +120,9 @@ func (i_ INUpdateMediaAffinityIntent) AffinityType() unsafe.Pointer {
 }
 
 
-// SetAffinityType sets the value of the affinityType property.
 // The user’s affinity for the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/affinitytype
 func (i_ INUpdateMediaAffinityIntent) SetAffinityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAffinityType:"), value)

@@ -58,7 +58,11 @@ type IContext interface {
 // A mechanism for evaluating authentication policies and access controls.
 //
 // You use an authentication context to evaluate the user’s identity, either with biometrics like Touch ID or Face ID, or by supplying the device passcode. The context handles user interaction, and also interfaces to the Secure Enclave, the underlying hardware element that manages biometric data. You create and configure the context, and ask it to carry out the authentication. You then receive an asynchronous callback, which provides an indication of authentication success or failure, and an error instance that explains the reason for a failure, if any.
+
+
+// A mechanism for evaluating authentication policies and access controls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext
 type Context struct {
 	objectivec.Object
@@ -103,77 +107,97 @@ func NewContext() Context {
 }
 
 
+
 // Assesses whether authentication can proceed for a given policy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)
 func (c_ Context) CanEvaluatePolicyError(policy Policy, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canEvaluatePolicy:error:"), policy, error_)
 	return rv
 }
 
+
 // Evaluates an access control for a given operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluateAccessControl(_:operation:localizedReason:reply:)
 func (c_ Context) EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation IAccessControlOperation, localizedReason string, reply unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("evaluateAccessControl:operation:localizedReason:reply:"), accessControl, operation, objc.String(localizedReason), reply)
 }
 
+
 // Evaluates the specified policy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)
 func (c_ Context) EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason string, reply unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("evaluatePolicy:localizedReason:reply:"), policy, objc.String(localizedReason), reply)
 }
 
+
 // Invalidates the authentication context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/invalidate()
 func (c_ Context) Invalidate() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidate"))
 }
 
+
 // Returns a Boolean value indicating whether the specified credential type is set.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/isCredentialSet(_:)
 func (c_ Context) IsCredentialSet(type_ CredentialType) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCredentialSet:"), type_)
 	return rv
 }
 
+
 // Sets an application-provided credential to be used when evaluating authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/setCredential(_:type:)
 func (c_ Context) SetCredentialType(credential foundation.IData, type_ CredentialType) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setCredential:type:"), credential, type_)
 	return rv
 }
 
+
 // The type of biometric authentication supported by the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/biometryType
 func (c_ Context) BiometryType() BiometryType {
 	rv := objc.Send[BiometryType](c_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
+
 // Contains authentication domain state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/domainState
 func (c_ Context) DomainState() LADomainState {
 	rv := objc.Send[LADomainState](c_.ID, objc.Sel("domainState"))
 	return rv
 }
 
+
 // The current state of the evaluated policy domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluatedPolicyDomainState
 func (c_ Context) EvaluatedPolicyDomainState() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("evaluatedPolicyDomainState"))
 	return rv
 }
 
+
 // A Boolean value indicating whether authentication can be interactive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/interactionNotAllowed
 func (c_ Context) InteractionNotAllowed() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("interactionNotAllowed"))
@@ -181,17 +205,18 @@ func (c_ Context) InteractionNotAllowed() bool {
 }
 
 
-// SetInteractionNotAllowed sets the value of the interactionNotAllowed property.
 // A Boolean value indicating whether authentication can be interactive.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/interactionNotAllowed
 func (c_ Context) SetInteractionNotAllowed(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInteractionNotAllowed:"), value)
 }
 
+
 // The localized title for the cancel button in the dialog presented to the user during authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
 func (c_ Context) LocalizedCancelTitle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedCancelTitle"))
@@ -199,17 +224,18 @@ func (c_ Context) LocalizedCancelTitle() string {
 }
 
 
-// SetLocalizedCancelTitle sets the value of the localizedCancelTitle property.
 // The localized title for the cancel button in the dialog presented to the user during authentication.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
 func (c_ Context) SetLocalizedCancelTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), objc.String(value))
 }
 
+
 // The localized title for the fallback button in the dialog presented to the user during authentication.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
 func (c_ Context) LocalizedFallbackTitle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedFallbackTitle"))
@@ -217,17 +243,18 @@ func (c_ Context) LocalizedFallbackTitle() string {
 }
 
 
-// SetLocalizedFallbackTitle sets the value of the localizedFallbackTitle property.
 // The localized title for the fallback button in the dialog presented to the user during authentication.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
 func (c_ Context) SetLocalizedFallbackTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), objc.String(value))
 }
 
+
 // The localized explanation for authentication shown in the dialog presented to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
 func (c_ Context) LocalizedReason() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedReason"))
@@ -235,17 +262,18 @@ func (c_ Context) LocalizedReason() string {
 }
 
 
-// SetLocalizedReason sets the value of the localizedReason property.
 // The localized explanation for authentication shown in the dialog presented to the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
 func (c_ Context) SetLocalizedReason(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), objc.String(value))
 }
 
+
 // The number of biometric authentication failures after which the context falls back to another mechanism.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
 func (c_ Context) MaxBiometryFailures() foundation.Number {
 	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("maxBiometryFailures"))
@@ -253,17 +281,18 @@ func (c_ Context) MaxBiometryFailures() foundation.Number {
 }
 
 
-// SetMaxBiometryFailures sets the value of the maxBiometryFailures property.
 // The number of biometric authentication failures after which the context falls back to another mechanism.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
 func (c_ Context) SetMaxBiometryFailures(value foundation.INumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBiometryFailures:"), value)
 }
 
+
 // The duration for which Touch ID authentication reuse is allowable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
 func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("touchIDAuthenticationAllowableReuseDuration"))
@@ -271,17 +300,18 @@ func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeI
 }
 
 
-// SetTouchIDAuthenticationAllowableReuseDuration sets the value of the touchIDAuthenticationAllowableReuseDuration property.
 // The duration for which Touch ID authentication reuse is allowable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
 func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTouchIDAuthenticationAllowableReuseDuration:"), value)
 }
 
+
 // The maximum allowable reuse duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration
 func (c_ Context) LATouchIDAuthenticationMaximumAllowableReuseDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("LATouchIDAuthenticationMaximumAllowableReuseDuration"))

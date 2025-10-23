@@ -47,7 +47,6 @@ type IRectangleFeature interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature
-
 type RectangleFeature struct {
 	Feature
 }
@@ -98,7 +97,6 @@ func NewRectangleFeature() RectangleFeature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-swift.property
-
 func (r_ RectangleFeature) BottomLeft() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomLeft"))
 	return rv
@@ -109,7 +107,6 @@ func (r_ RectangleFeature) BottomLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomRight-swift.property
-
 func (r_ RectangleFeature) BottomRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomRight"))
 	return rv
@@ -120,7 +117,6 @@ func (r_ RectangleFeature) BottomRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bounds-swift.property
-
 func (r_ RectangleFeature) Bounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("bounds"))
 	return rv
@@ -131,7 +127,6 @@ func (r_ RectangleFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topLeft-swift.property
-
 func (r_ RectangleFeature) TopLeft() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topLeft"))
 	return rv
@@ -142,7 +137,6 @@ func (r_ RectangleFeature) TopLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topRight-swift.property
-
 func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topRight"))
 	return rv
@@ -153,7 +147,6 @@ func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortyperectangle
-
 func (r_ RectangleFeature) CIDetectorTypeRectangle() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
 	return rv

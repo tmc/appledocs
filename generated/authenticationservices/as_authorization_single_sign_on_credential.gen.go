@@ -49,7 +49,6 @@ type IAuthorizationSingleSignOnCredential interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential
-
 type AuthorizationSingleSignOnCredential struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewAuthorizationSingleSignOnCredential() AuthorizationSingleSignOnCredentia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnCredential/authorizedScopes
-
 func (a_ AuthorizationSingleSignOnCredential) AuthorizedScopes() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("authorizedScopes"))
 	return rv
@@ -109,7 +107,6 @@ func (a_ AuthorizationSingleSignOnCredential) AuthorizedScopes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
-
 func (a_ AuthorizationSingleSignOnCredential) AccessToken() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("accessToken"))
 	return rv
@@ -120,7 +117,6 @@ func (a_ AuthorizationSingleSignOnCredential) AccessToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
-
 func (a_ AuthorizationSingleSignOnCredential) SetAccessToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessToken:"), value)
 }
@@ -130,7 +126,6 @@ func (a_ AuthorizationSingleSignOnCredential) SetAccessToken(value foundation.ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
-
 func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() foundation.HTTPURLResponse {
 	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("authenticatedResponse"))
 	return rv
@@ -141,7 +136,6 @@ func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
-
 func (a_ AuthorizationSingleSignOnCredential) SetAuthenticatedResponse(value foundation.IHTTPURLResponse) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthenticatedResponse:"), value)
 }
@@ -151,7 +145,6 @@ func (a_ AuthorizationSingleSignOnCredential) SetAuthenticatedResponse(value fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
-
 func (a_ AuthorizationSingleSignOnCredential) IdentityToken() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
 	return rv
@@ -162,7 +155,6 @@ func (a_ AuthorizationSingleSignOnCredential) IdentityToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
-
 func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
@@ -172,7 +164,6 @@ func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-
 func (a_ AuthorizationSingleSignOnCredential) State() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
@@ -183,7 +174,6 @@ func (a_ AuthorizationSingleSignOnCredential) State() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-
 func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }

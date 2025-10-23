@@ -50,7 +50,6 @@ type IPressGestureRecognizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer
-
 type PressGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -101,7 +100,6 @@ func NewPressGestureRecognizer() PressGestureRecognizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer/minimumPressDuration
-
 func (p_ PressGestureRecognizer) MinimumPressDuration() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("minimumPressDuration"))
 	return rv
@@ -112,7 +110,6 @@ func (p_ PressGestureRecognizer) MinimumPressDuration() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer/minimumPressDuration
-
 func (p_ PressGestureRecognizer) SetMinimumPressDuration(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimumPressDuration:"), value)
 }
@@ -122,7 +119,6 @@ func (p_ PressGestureRecognizer) SetMinimumPressDuration(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
-
 func (p_ PressGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("delaysPrimaryMouseButtonEvents"))
 	return rv
@@ -133,7 +129,6 @@ func (p_ PressGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
-
 func (p_ PressGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
 }
@@ -143,7 +138,6 @@ func (p_ PressGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/allowablemovement
-
 func (p_ PressGestureRecognizer) AllowableMovement() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("allowableMovement"))
 	return rv
@@ -154,7 +148,6 @@ func (p_ PressGestureRecognizer) AllowableMovement() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/allowablemovement
-
 func (p_ PressGestureRecognizer) SetAllowableMovement(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowableMovement:"), value)
 }
@@ -164,7 +157,6 @@ func (p_ PressGestureRecognizer) SetAllowableMovement(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/buttonmask
-
 func (p_ PressGestureRecognizer) ButtonMask() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("buttonMask"))
 	return rv
@@ -175,7 +167,6 @@ func (p_ PressGestureRecognizer) ButtonMask() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/buttonmask
-
 func (p_ PressGestureRecognizer) SetButtonMask(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonMask:"), value)
 }
@@ -185,7 +176,6 @@ func (p_ PressGestureRecognizer) SetButtonMask(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/numberoftouchesrequired
-
 func (p_ PressGestureRecognizer) NumberOfTouchesRequired() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfTouchesRequired"))
 	return rv
@@ -196,7 +186,6 @@ func (p_ PressGestureRecognizer) NumberOfTouchesRequired() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/numberoftouchesrequired
-
 func (p_ PressGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }

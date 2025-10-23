@@ -30,7 +30,7 @@ type _Agent3DClass struct {
 // An interface definition for the [Agent3D] class.
 type IAgent3D interface {
 	IAgent
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
 	RightHanded() bool
@@ -49,7 +49,6 @@ type IAgent3D interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D
-
 type Agent3D struct {
 	Agent
 }
@@ -96,13 +95,11 @@ func NewAgent3D() Agent3D {
 
 
 
-
 // Causes the agent to evaluate its goals and update its position, rotation, and velocity accordingly.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/update(deltaTime:)
-
-func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -111,7 +108,6 @@ func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/position
-
 func (a_ Agent3D) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("position"))
 	return rv
@@ -122,7 +118,6 @@ func (a_ Agent3D) Position() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/position
-
 func (a_ Agent3D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPosition:"), value)
 }
@@ -130,7 +125,6 @@ func (a_ Agent3D) SetPosition(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rightHanded
-
 func (a_ Agent3D) RightHanded() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("rightHanded"))
 	return rv
@@ -139,7 +133,6 @@ func (a_ Agent3D) RightHanded() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rightHanded
-
 func (a_ Agent3D) SetRightHanded(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRightHanded:"), value)
 }
@@ -149,7 +142,6 @@ func (a_ Agent3D) SetRightHanded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rotation
-
 func (a_ Agent3D) Rotation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rotation"))
 	return rv
@@ -160,7 +152,6 @@ func (a_ Agent3D) Rotation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rotation
-
 func (a_ Agent3D) SetRotation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
@@ -170,7 +161,6 @@ func (a_ Agent3D) SetRotation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/velocity
-
 func (a_ Agent3D) Velocity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("velocity"))
 	return rv

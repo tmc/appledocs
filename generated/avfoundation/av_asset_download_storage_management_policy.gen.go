@@ -42,7 +42,6 @@ type IAssetDownloadStorageManagementPolicy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy
-
 type AssetDownloadStorageManagementPolicy struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewAssetDownloadStorageManagementPolicy() AssetDownloadStorageManagementPol
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/expirationDate
-
 func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](a_.ID, objc.Sel("expirationDate"))
 	return rv
@@ -102,7 +100,6 @@ func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() foundation.NSDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/priority
-
 func (a_ AssetDownloadStorageManagementPolicy) Priority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("priority"))
 	return rv

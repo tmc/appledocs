@@ -30,13 +30,13 @@ type _XMLNodeClass struct {
 // An interface definition for the [XMLNode] class.
 type IXMLNode interface {
 	objectivec.IObject
-	Kind() XMLNodeKind
-	Parent() NSXMLNode
+	Kind() NSXMLNodeKind
+	Parent() IXMLNode
 	URI() string
 	SetURI(value string)
 	ChildCount() int
 	SetChildCount(value int)
-	Children() NSXMLNode
+	Children() IXMLNode
 	SetChildren(value IXMLNode)
 	Description() string
 	SetDescription(value string)
@@ -48,19 +48,19 @@ type IXMLNode interface {
 	SetLocalName(value string)
 	Name() string
 	SetName(value string)
-	Next() NSXMLNode
+	Next() IXMLNode
 	SetNext(value IXMLNode)
-	NextSibling() NSXMLNode
+	NextSibling() IXMLNode
 	SetNextSibling(value IXMLNode)
 	ObjectValue() unsafe.Pointer
 	SetObjectValue(value unsafe.Pointer)
 	Prefix() string
 	SetPrefix(value string)
-	Previous() NSXMLNode
+	Previous() IXMLNode
 	SetPrevious(value IXMLNode)
-	PreviousSibling() NSXMLNode
+	PreviousSibling() IXMLNode
 	SetPreviousSibling(value IXMLNode)
-	RootDocument() NSXMLDocument
+	RootDocument() IXMLDocument
 	SetRootDocument(value IXMLDocument)
 	StringValue() string
 	SetStringValue(value string)
@@ -152,7 +152,7 @@ func NewXMLNodeWithKindOptions(kind NSXMLNodeKind, options NSXMLNodeOptions) XML
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/kind-swift.property
-func (x_ XMLNode) Kind() XMLNodeKind {
+func (x_ XMLNode) Kind() NSXMLNodeKind {
 	rv := objc.Send[XMLNodeKind](x_.ID, objc.Sel("kind"))
 	return rv
 }
@@ -162,7 +162,7 @@ func (x_ XMLNode) Kind() XMLNodeKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
-func (x_ XMLNode) Parent() NSXMLNode {
+func (x_ XMLNode) Parent() IXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("parent"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (x_ XMLNode) SetChildCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
-func (x_ XMLNode) Children() NSXMLNode {
+func (x_ XMLNode) Children() IXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("children"))
 	return rv
 }
@@ -320,7 +320,7 @@ func (x_ XMLNode) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
-func (x_ XMLNode) Next() NSXMLNode {
+func (x_ XMLNode) Next() IXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("next"))
 	return rv
 }
@@ -339,7 +339,7 @@ func (x_ XMLNode) SetNext(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/nextsibling
-func (x_ XMLNode) NextSibling() NSXMLNode {
+func (x_ XMLNode) NextSibling() IXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("nextSibling"))
 	return rv
 }
@@ -396,7 +396,7 @@ func (x_ XMLNode) SetPrefix(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
-func (x_ XMLNode) Previous() NSXMLNode {
+func (x_ XMLNode) Previous() IXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("previous"))
 	return rv
 }
@@ -415,7 +415,7 @@ func (x_ XMLNode) SetPrevious(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
-func (x_ XMLNode) PreviousSibling() NSXMLNode {
+func (x_ XMLNode) PreviousSibling() IXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("previousSibling"))
 	return rv
 }
@@ -434,7 +434,7 @@ func (x_ XMLNode) SetPreviousSibling(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
-func (x_ XMLNode) RootDocument() NSXMLDocument {
+func (x_ XMLNode) RootDocument() IXMLDocument {
 	rv := objc.Send[NSXMLDocument](x_.ID, objc.Sel("rootDocument"))
 	return rv
 }

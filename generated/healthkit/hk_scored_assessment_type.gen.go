@@ -35,7 +35,6 @@ type IHKScoredAssessmentType interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKScoredAssessmentType
-
 type HKScoredAssessmentType struct {
 	HKSampleType
 }

@@ -49,7 +49,6 @@ type IAEAssessmentApplication interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication
-
 type AEAssessmentApplication struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 
 
 
-
 // Creates a representation of an app using its bundle identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
-
 func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
 	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(bundleIdentifier))
@@ -108,12 +105,10 @@ func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEA
 }
 
 
-
 // Creates a representation of an app using its bundle and team identifiers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
-
 func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
 	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
@@ -127,7 +122,6 @@ func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/bundleIdentifier
-
 func (a_ AEAssessmentApplication) BundleIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
@@ -138,7 +132,6 @@ func (a_ AEAssessmentApplication) BundleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/requiresSignatureValidation
-
 func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("requiresSignatureValidation"))
 	return rv
@@ -149,7 +142,6 @@ func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/requiresSignatureValidation
-
 func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresSignatureValidation:"), value)
 }
@@ -159,7 +151,6 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/teamIdentifier
-
 func (a_ AEAssessmentApplication) TeamIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
@@ -170,7 +161,6 @@ func (a_ AEAssessmentApplication) TeamIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-
 func (a_ AEAssessmentApplication) ConfigurationsByApplication() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
@@ -181,7 +171,6 @@ func (a_ AEAssessmentApplication) ConfigurationsByApplication() AEAssessmentPart
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-
 func (a_ AEAssessmentApplication) SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationsByApplication:"), value)
 }
@@ -191,7 +180,6 @@ func (a_ AEAssessmentApplication) SetConfigurationsByApplication(value IAEAssess
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-
 func (a_ AEAssessmentApplication) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
@@ -202,7 +190,6 @@ func (a_ AEAssessmentApplication) MainParticipantConfiguration() AEAssessmentPar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-
 func (a_ AEAssessmentApplication) SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMainParticipantConfiguration:"), value)
 }

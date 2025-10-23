@@ -32,8 +32,8 @@ type IFragmentedMovieMinder interface {
 	objectivec.IObject
 	MindingInterval() unsafe.Pointer
 	SetMindingInterval(value unsafe.Pointer)
-	Movies() AVFragmentedMovie
-	SetMovies(value IAVFragmentedMovie)
+	Movies() FragmentedMovie
+	SetMovies(value FragmentedMovie)
 }
 
 // An object that checks whether a fragmented movie appends additional movie fragments.
@@ -45,7 +45,6 @@ type IFragmentedMovieMinder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedMovieMinder
-
 type FragmentedMovieMinder struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewFragmentedMovieMinder() FragmentedMovieMinder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/mindinginterval
-
 func (f_ FragmentedMovieMinder) MindingInterval() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mindingInterval"))
 	return rv
@@ -105,7 +103,6 @@ func (f_ FragmentedMovieMinder) MindingInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/mindinginterval
-
 func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMindingInterval:"), value)
 }
@@ -115,9 +112,8 @@ func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-
-func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie {
-	rv := objc.Send[AVFragmentedMovie](f_.ID, objc.Sel("movies"))
+func (f_ FragmentedMovieMinder) Movies() FragmentedMovie {
+	rv := objc.Send[FragmentedMovie](f_.ID, objc.Sel("movies"))
 	return rv
 }
 
@@ -126,8 +122,7 @@ func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-
-func (f_ FragmentedMovieMinder) SetMovies(value IAVFragmentedMovie) {
+func (f_ FragmentedMovieMinder) SetMovies(value FragmentedMovie) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMovies:"), value)
 }
 

@@ -34,7 +34,7 @@ type IMutableAttributedString interface {
 	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
 	ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString)
 	SetAttributedString(attrString IAttributedString)
-	MutableString() NSMutableString
+	MutableString() IMutableString
 	SetMutableString(value IMutableString)
 }
 
@@ -140,7 +140,7 @@ func (m_ MutableAttributedString) SetAttributedString(attrString IAttributedStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
-func (m_ MutableAttributedString) MutableString() NSMutableString {
+func (m_ MutableAttributedString) MutableString() IMutableString {
 	rv := objc.Send[NSMutableString](m_.ID, objc.Sel("mutableString"))
 	return rv
 }

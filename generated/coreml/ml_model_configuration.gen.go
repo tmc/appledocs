@@ -55,7 +55,6 @@ type IModelConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration
-
 type ModelConfiguration struct {
 	objectivec.Object
 }
@@ -104,7 +103,6 @@ func NewModelConfiguration() ModelConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/allowLowPrecisionAccumulationOnGPU
-
 func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowLowPrecisionAccumulationOnGPU"))
 	return rv
@@ -115,7 +113,6 @@ func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/allowLowPrecisionAccumulationOnGPU
-
 func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowLowPrecisionAccumulationOnGPU:"), value)
 }
@@ -125,7 +122,6 @@ func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
-
 func (m_ ModelConfiguration) ComputeUnits() ComputeUnits {
 	rv := objc.Send[ComputeUnits](m_.ID, objc.Sel("computeUnits"))
 	return rv
@@ -136,7 +132,6 @@ func (m_ ModelConfiguration) ComputeUnits() ComputeUnits {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
-
 func (m_ ModelConfiguration) SetComputeUnits(value IComputeUnits) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComputeUnits:"), value)
 }
@@ -146,7 +141,6 @@ func (m_ ModelConfiguration) SetComputeUnits(value IComputeUnits) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-
 func (m_ ModelConfiguration) FunctionName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
 	return rv
@@ -157,7 +151,6 @@ func (m_ ModelConfiguration) FunctionName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-
 func (m_ ModelConfiguration) SetFunctionName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
 }
@@ -167,7 +160,6 @@ func (m_ ModelConfiguration) SetFunctionName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
-
 func (m_ ModelConfiguration) ModelDisplayName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
 	return rv
@@ -178,7 +170,6 @@ func (m_ ModelConfiguration) ModelDisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
-
 func (m_ ModelConfiguration) SetModelDisplayName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
 }
@@ -188,7 +179,6 @@ func (m_ ModelConfiguration) SetModelDisplayName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
-
 func (m_ ModelConfiguration) OptimizationHints() MLOptimizationHints {
 	rv := objc.Send[MLOptimizationHints](m_.ID, objc.Sel("optimizationHints"))
 	return rv
@@ -199,7 +189,6 @@ func (m_ ModelConfiguration) OptimizationHints() MLOptimizationHints {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
-
 func (m_ ModelConfiguration) SetOptimizationHints(value IMLOptimizationHints) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptimizationHints:"), value)
 }
@@ -209,7 +198,6 @@ func (m_ ModelConfiguration) SetOptimizationHints(value IMLOptimizationHints) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/parameters
-
 func (m_ ModelConfiguration) Parameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parameters"))
 	return rv
@@ -220,7 +208,6 @@ func (m_ ModelConfiguration) Parameters() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/parameters
-
 func (m_ ModelConfiguration) SetParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParameters:"), value)
 }
@@ -230,7 +217,6 @@ func (m_ ModelConfiguration) SetParameters(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
-
 func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("preferredMetalDevice"))
 	return rv
@@ -241,7 +227,6 @@ func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
-
 func (m_ ModelConfiguration) SetPreferredMetalDevice(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredMetalDevice:"), value)
 }

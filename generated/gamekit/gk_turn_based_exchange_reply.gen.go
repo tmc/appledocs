@@ -51,7 +51,6 @@ type ITurnBasedExchangeReply interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeReply
-
 type TurnBasedExchangeReply struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewTurnBasedExchangeReply() TurnBasedExchangeReply {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeReply/recipient
-
 func (t_ TurnBasedExchangeReply) Recipient() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("recipient"))
 	return rv
@@ -111,7 +109,6 @@ func (t_ TurnBasedExchangeReply) Recipient() GKTurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-
 func (t_ TurnBasedExchangeReply) Replies() GKTurnBasedExchangeReply {
 	rv := objc.Send[GKTurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
 	return rv
@@ -122,7 +119,6 @@ func (t_ TurnBasedExchangeReply) Replies() GKTurnBasedExchangeReply {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-
 func (t_ TurnBasedExchangeReply) SetReplies(value IGKTurnBasedExchangeReply) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplies:"), value)
 }
@@ -132,7 +128,6 @@ func (t_ TurnBasedExchangeReply) SetReplies(value IGKTurnBasedExchangeReply) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
-
 func (t_ TurnBasedExchangeReply) Data() foundation.Data {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("data"))
 	return rv
@@ -143,7 +138,6 @@ func (t_ TurnBasedExchangeReply) Data() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
-
 func (t_ TurnBasedExchangeReply) SetData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
@@ -153,7 +147,6 @@ func (t_ TurnBasedExchangeReply) SetData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/message
-
 func (t_ TurnBasedExchangeReply) Message() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
@@ -164,7 +157,6 @@ func (t_ TurnBasedExchangeReply) Message() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/message
-
 func (t_ TurnBasedExchangeReply) SetMessage(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
@@ -174,7 +166,6 @@ func (t_ TurnBasedExchangeReply) SetMessage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
-
 func (t_ TurnBasedExchangeReply) ReplyDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("replyDate"))
 	return rv
@@ -185,7 +176,6 @@ func (t_ TurnBasedExchangeReply) ReplyDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
-
 func (t_ TurnBasedExchangeReply) SetReplyDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplyDate:"), value)
 }

@@ -46,7 +46,6 @@ type IGraph interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph
-
 type Graph struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewGraph() Graph {
 
 
 
-
 // Initializes a graph with the specified list of nodes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/init(_:)
-
 func NewGraphWithNodes(nodes []GraphNode) Graph {
 	instance := getGraphClass().Alloc()
 	rv := objc.Send[Graph](instance.ID, objc.Sel("initWithNodes:"), nodes)
@@ -110,53 +107,44 @@ func NewGraphWithNodes(nodes []GraphNode) Graph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/graphWithNodes:
-
 func (gc _GraphClass) GraphWithNodes(nodes []GraphNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphWithNodes:"), nodes)
 	return rv
 }
 
 
-
 // Adds the specified nodes to the graph.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/add(_:)
-
 func (g_ Graph) AddNodes(nodes []GraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addNodes:"), nodes)
 }
-
 
 
 // Adds a node to the graph, connecting it to the node already in the graph for which the connection has the lowest cost.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/connectToLowestCostNode(node:bidirectional:)
-
 func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectNodeToLowestCostNode:bidirectional:"), node, bidirectional)
 }
-
 
 
 // Computes and returns a sequence of nodes that represents the shortest traversal of the graph between the specified nodes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/findPath(from:to:)
-
 func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:toNode:"), startNode, endNode)
 	return rv
 }
 
 
-
 // Removes the specified nodes from the graph.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/remove(_:)
-
 func (g_ Graph) RemoveNodes(nodes []GraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeNodes:"), nodes)
 }
@@ -166,7 +154,6 @@ func (g_ Graph) RemoveNodes(nodes []GraphNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/nodes
-
 func (g_ Graph) Nodes() []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("nodes"))
 	return rv

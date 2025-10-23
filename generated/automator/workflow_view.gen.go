@@ -36,7 +36,6 @@ type IworkflowView interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-c.ivar
-
 type workflowView struct {
 	objectivec.Object
 }

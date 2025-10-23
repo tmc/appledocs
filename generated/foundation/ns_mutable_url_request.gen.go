@@ -49,9 +49,9 @@ type IMutableURLRequest interface {
 	SetCachePolicy(value unsafe.Pointer)
 	CookiePartitionIdentifier() string
 	SetCookiePartitionIdentifier(value string)
-	HttpBody() Data
+	HttpBody() IData
 	SetHttpBody(value IData)
-	HttpBodyStream() NSInputStream
+	HttpBodyStream() IInputStream
 	SetHttpBodyStream(value IInputStream)
 	HttpMethod() string
 	SetHttpMethod(value string)
@@ -59,15 +59,15 @@ type IMutableURLRequest interface {
 	SetHttpShouldHandleCookies(value bool)
 	HttpShouldUsePipelining() bool
 	SetHttpShouldUsePipelining(value bool)
-	MainDocumentURL() URL
+	MainDocumentURL() IURL
 	SetMainDocumentURL(value IURL)
 	NetworkServiceType() unsafe.Pointer
 	SetNetworkServiceType(value unsafe.Pointer)
 	RequiresDNSSECValidation() bool
 	SetRequiresDNSSECValidation(value bool)
 	TimeoutInterval() TimeInterval
-	SetTimeoutInterval(value ITimeInterval)
-	Url() URL
+	SetTimeoutInterval(value TimeInterval)
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -304,7 +304,7 @@ func (m_ MutableURLRequest) SetCookiePartitionIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbody
-func (m_ MutableURLRequest) HttpBody() Data {
+func (m_ MutableURLRequest) HttpBody() IData {
 	rv := objc.Send[Data](m_.ID, objc.Sel("httpBody"))
 	return rv
 }
@@ -323,7 +323,7 @@ func (m_ MutableURLRequest) SetHttpBody(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
-func (m_ MutableURLRequest) HttpBodyStream() NSInputStream {
+func (m_ MutableURLRequest) HttpBodyStream() IInputStream {
 	rv := objc.Send[NSInputStream](m_.ID, objc.Sel("httpBodyStream"))
 	return rv
 }
@@ -399,7 +399,7 @@ func (m_ MutableURLRequest) SetHttpShouldUsePipelining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/maindocumenturl
-func (m_ MutableURLRequest) MainDocumentURL() URL {
+func (m_ MutableURLRequest) MainDocumentURL() IURL {
 	rv := objc.Send[URL](m_.ID, objc.Sel("mainDocumentURL"))
 	return rv
 }
@@ -462,7 +462,7 @@ func (m_ MutableURLRequest) TimeoutInterval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/timeoutinterval
-func (m_ MutableURLRequest) SetTimeoutInterval(value ITimeInterval) {
+func (m_ MutableURLRequest) SetTimeoutInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeoutInterval:"), value)
 }
 
@@ -471,7 +471,7 @@ func (m_ MutableURLRequest) SetTimeoutInterval(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/url
-func (m_ MutableURLRequest) Url() URL {
+func (m_ MutableURLRequest) Url() IURL {
 	rv := objc.Send[URL](m_.ID, objc.Sel("url"))
 	return rv
 }

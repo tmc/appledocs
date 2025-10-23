@@ -45,7 +45,6 @@ type ILocationSourceInformation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation
-
 type LocationSourceInformation struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewLocationSourceInformation() LocationSourceInformation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
-
 func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("isProducedByAccessory"))
 	return rv
@@ -105,7 +103,6 @@ func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isProducedByAccessory
-
 func (l_ LocationSourceInformation) SetIsProducedByAccessory(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsProducedByAccessory:"), value)
 }
@@ -115,7 +112,6 @@ func (l_ LocationSourceInformation) SetIsProducedByAccessory(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
-
 func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("isSimulatedBySoftware"))
 	return rv
@@ -126,7 +122,6 @@ func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation/isSimulatedBySoftware
-
 func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsSimulatedBySoftware:"), value)
 }

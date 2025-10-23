@@ -46,7 +46,6 @@ type IVisit interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit
-
 type Visit struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewVisit() Visit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/arrivalDate
-
 func (v_ Visit) ArrivalDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("arrivalDate"))
 	return rv
@@ -106,7 +104,6 @@ func (v_ Visit) ArrivalDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/coordinate
-
 func (v_ Visit) Coordinate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("coordinate"))
 	return rv
@@ -117,7 +114,6 @@ func (v_ Visit) Coordinate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/departureDate
-
 func (v_ Visit) DepartureDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("departureDate"))
 	return rv
@@ -128,7 +124,6 @@ func (v_ Visit) DepartureDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/horizontalAccuracy
-
 func (v_ Visit) HorizontalAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("horizontalAccuracy"))
 	return rv

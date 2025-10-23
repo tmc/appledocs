@@ -32,7 +32,9 @@ type ImBackgroundImage interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/mBackgroundImage
 type mBackgroundImage struct {
 	objectivec.Object

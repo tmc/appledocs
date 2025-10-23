@@ -46,17 +46,17 @@ type IConnection interface {
 	SetIndependentConversationQueueing(value bool)
 	LocalObjects() objc.ID
 	MultipleThreadsEnabled() bool
-	ReceivePort() NSPort
+	ReceivePort() IPort
 	RemoteObjects() objc.ID
 	ReplyTimeout() TimeInterval
-	SetReplyTimeout(value ITimeInterval)
+	SetReplyTimeout(value TimeInterval)
 	RequestModes() []string
 	RequestTimeout() TimeInterval
-	SetRequestTimeout(value ITimeInterval)
+	SetRequestTimeout(value TimeInterval)
 	RootObject() objc.ID
 	SetRootObject(value objc.ID)
-	RootProxy() NSDistantObject
-	SendPort() NSPort
+	RootProxy() IDistantObject
+	SendPort() IPort
 	Statistics() IDictionary
 	Valid() bool
 }
@@ -181,7 +181,7 @@ func (cc _ConnectionClass) CurrentConversation() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/defaultConnection
-func (cc _ConnectionClass) DefaultConnection() Connection {
+func (cc _ConnectionClass) DefaultConnection() IConnection {
 	rv := objc.Send[Connection](objc.ID(cc.class), objc.Sel("defaultConnection"))
 	return rv
 }
@@ -191,7 +191,7 @@ func (cc _ConnectionClass) DefaultConnection() Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:
-func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name string, hostName string) DistantObject {
+func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name string, hostName string) IDistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
 	return rv
 }
@@ -201,7 +201,7 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:usingNameServer:
-func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingNameServer(name string, hostName string, server IPortNameServer) DistantObject {
+func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingNameServer(name string, hostName string, server IPortNameServer) IDistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:usingNameServer:"), objc.String(name), objc.String(hostName), server)
 	return rv
 }
@@ -381,7 +381,7 @@ func (c_ Connection) MultipleThreadsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/receivePort-c.property
-func (c_ Connection) ReceivePort() NSPort {
+func (c_ Connection) ReceivePort() IPort {
 	rv := objc.Send[NSPort](c_.ID, objc.Sel("receivePort"))
 	return rv
 }
@@ -411,7 +411,7 @@ func (c_ Connection) ReplyTimeout() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
-func (c_ Connection) SetReplyTimeout(value ITimeInterval) {
+func (c_ Connection) SetReplyTimeout(value TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReplyTimeout:"), value)
 }
 
@@ -440,7 +440,7 @@ func (c_ Connection) RequestTimeout() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
-func (c_ Connection) SetRequestTimeout(value ITimeInterval) {
+func (c_ Connection) SetRequestTimeout(value TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequestTimeout:"), value)
 }
 
@@ -468,7 +468,7 @@ func (c_ Connection) SetRootObject(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxy
-func (c_ Connection) RootProxy() NSDistantObject {
+func (c_ Connection) RootProxy() IDistantObject {
 	rv := objc.Send[NSDistantObject](c_.ID, objc.Sel("rootProxy"))
 	return rv
 }
@@ -478,7 +478,7 @@ func (c_ Connection) RootProxy() NSDistantObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/sendPort-c.property
-func (c_ Connection) SendPort() NSPort {
+func (c_ Connection) SendPort() IPort {
 	rv := objc.Send[NSPort](c_.ID, objc.Sel("sendPort"))
 	return rv
 }

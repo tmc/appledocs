@@ -54,7 +54,6 @@ type ILevelIndicatorCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicatorCell
-
 type LevelIndicatorCell struct {
 	ActionCell
 }
@@ -105,7 +104,6 @@ func NewLevelIndicatorCell() LevelIndicatorCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/criticalvalue
-
 func (l_ LevelIndicatorCell) CriticalValue() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("criticalValue"))
 	return rv
@@ -116,7 +114,6 @@ func (l_ LevelIndicatorCell) CriticalValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/criticalvalue
-
 func (l_ LevelIndicatorCell) SetCriticalValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCriticalValue:"), value)
 }
@@ -126,7 +123,6 @@ func (l_ LevelIndicatorCell) SetCriticalValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/levelindicatorstyle
-
 func (l_ LevelIndicatorCell) LevelIndicatorStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("levelIndicatorStyle"))
 	return rv
@@ -137,7 +133,6 @@ func (l_ LevelIndicatorCell) LevelIndicatorStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/levelindicatorstyle
-
 func (l_ LevelIndicatorCell) SetLevelIndicatorStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLevelIndicatorStyle:"), value)
 }
@@ -147,7 +142,6 @@ func (l_ LevelIndicatorCell) SetLevelIndicatorStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/maxvalue
-
 func (l_ LevelIndicatorCell) MaxValue() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("maxValue"))
 	return rv
@@ -158,7 +152,6 @@ func (l_ LevelIndicatorCell) MaxValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/maxvalue
-
 func (l_ LevelIndicatorCell) SetMaxValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMaxValue:"), value)
 }
@@ -168,7 +161,6 @@ func (l_ LevelIndicatorCell) SetMaxValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/minvalue
-
 func (l_ LevelIndicatorCell) MinValue() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("minValue"))
 	return rv
@@ -179,7 +171,6 @@ func (l_ LevelIndicatorCell) MinValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/minvalue
-
 func (l_ LevelIndicatorCell) SetMinValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinValue:"), value)
 }
@@ -189,7 +180,6 @@ func (l_ LevelIndicatorCell) SetMinValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberofmajortickmarks
-
 func (l_ LevelIndicatorCell) NumberOfMajorTickMarks() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("numberOfMajorTickMarks"))
 	return rv
@@ -200,7 +190,6 @@ func (l_ LevelIndicatorCell) NumberOfMajorTickMarks() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberofmajortickmarks
-
 func (l_ LevelIndicatorCell) SetNumberOfMajorTickMarks(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfMajorTickMarks:"), value)
 }
@@ -210,7 +199,6 @@ func (l_ LevelIndicatorCell) SetNumberOfMajorTickMarks(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberoftickmarks
-
 func (l_ LevelIndicatorCell) NumberOfTickMarks() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("numberOfTickMarks"))
 	return rv
@@ -221,7 +209,6 @@ func (l_ LevelIndicatorCell) NumberOfTickMarks() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/numberoftickmarks
-
 func (l_ LevelIndicatorCell) SetNumberOfTickMarks(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfTickMarks:"), value)
 }
@@ -231,7 +218,6 @@ func (l_ LevelIndicatorCell) SetNumberOfTickMarks(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/tickmarkposition
-
 func (l_ LevelIndicatorCell) TickMarkPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("tickMarkPosition"))
 	return rv
@@ -242,7 +228,6 @@ func (l_ LevelIndicatorCell) TickMarkPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/tickmarkposition
-
 func (l_ LevelIndicatorCell) SetTickMarkPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTickMarkPosition:"), value)
 }
@@ -252,7 +237,6 @@ func (l_ LevelIndicatorCell) SetTickMarkPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/warningvalue
-
 func (l_ LevelIndicatorCell) WarningValue() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("warningValue"))
 	return rv
@@ -263,7 +247,6 @@ func (l_ LevelIndicatorCell) WarningValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/warningvalue
-
 func (l_ LevelIndicatorCell) SetWarningValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWarningValue:"), value)
 }

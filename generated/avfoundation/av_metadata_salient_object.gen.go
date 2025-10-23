@@ -42,7 +42,6 @@ type IMetadataSalientObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataSalientObject
-
 type MetadataSalientObject struct {
 	MetadataObject
 }
@@ -93,7 +92,6 @@ func NewMetadataSalientObject() MetadataSalientObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatasalientobject/objectid
-
 func (m_ MetadataSalientObject) ObjectID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("objectID"))
 	return rv
@@ -104,7 +102,6 @@ func (m_ MetadataSalientObject) ObjectID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatasalientobject/objectid
-
 func (m_ MetadataSalientObject) SetObjectID(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectID:"), value)
 }

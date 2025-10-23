@@ -37,7 +37,7 @@ type IRunLoop interface {
 	CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject)
 	CancelPerformSelectorsWithTarget(target objectivec.IObject)
 	GetCFRunLoop() unsafe.Pointer
-	LimitDateForMode(mode RunLoopMode) Date
+	LimitDateForMode(mode RunLoopMode) IDate
 	PerformBlock(block unsafe.Pointer)
 	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string)
 	PerformInModesBlock(modes []string, block unsafe.Pointer)
@@ -187,7 +187,7 @@ func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
-func (r_ RunLoop) LimitDateForMode(mode RunLoopMode) Date {
+func (r_ RunLoop) LimitDateForMode(mode RunLoopMode) IDate {
 	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
 	return rv
 }
@@ -261,7 +261,7 @@ func (r_ RunLoop) RunUntilDate(limitDate IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
-func (r_ RunLoop) CurrentRunLoop() NSRunLoop {
+func (r_ RunLoop) CurrentRunLoop() IRunLoop {
 	rv := objc.Send[NSRunLoop](r_.ID, objc.Sel("currentRunLoop"))
 	return rv
 }
@@ -281,7 +281,7 @@ func (r_ RunLoop) CurrentMode() RunLoopMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
-func (r_ RunLoop) MainRunLoop() NSRunLoop {
+func (r_ RunLoop) MainRunLoop() IRunLoop {
 	rv := objc.Send[NSRunLoop](r_.ID, objc.Sel("mainRunLoop"))
 	return rv
 }

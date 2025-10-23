@@ -50,7 +50,6 @@ type IPersistentHistoryTransaction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction
-
 type PersistentHistoryTransaction struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewPersistentHistoryTransaction() PersistentHistoryTransaction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription(with:)
-
 func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(context IManagedObjectContext) EntityDescription {
 	rv := objc.Send[EntityDescription](objc.ID(pc.class), objc.Sel("entityDescriptionWithContext:"), context)
 	return rv
@@ -110,7 +108,6 @@ func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(contex
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
-
 func (pc _PersistentHistoryTransactionClass) EntityDescription() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](objc.ID(pc.class), objc.Sel("entityDescription"))
 	return rv
@@ -120,18 +117,15 @@ func (pc _PersistentHistoryTransactionClass) EntityDescription() NSEntityDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
-
 func (pc _PersistentHistoryTransactionClass) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](objc.ID(pc.class), objc.Sel("fetchRequest"))
 	return rv
 }
 
-
 // Obtains a notification for use in merging the transaction’s changes into a managed object context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()
-
 func (p_ PersistentHistoryTransaction) ObjectIDNotification() foundation.Notification {
 	rv := objc.Send[foundation.Notification](p_.ID, objc.Sel("objectIDNotification"))
 	return rv
@@ -142,7 +136,6 @@ func (p_ PersistentHistoryTransaction) ObjectIDNotification() foundation.Notific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/author
-
 func (p_ PersistentHistoryTransaction) Author() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("author"))
 	return rv
@@ -153,7 +146,6 @@ func (p_ PersistentHistoryTransaction) Author() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/bundleID
-
 func (p_ PersistentHistoryTransaction) BundleID() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("bundleID"))
 	return rv
@@ -164,7 +156,6 @@ func (p_ PersistentHistoryTransaction) BundleID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/changes
-
 func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 	rv := objc.Send[[]PersistentHistoryChange](p_.ID, objc.Sel("changes"))
 	return rv
@@ -175,7 +166,6 @@ func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/contextName
-
 func (p_ PersistentHistoryTransaction) ContextName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("contextName"))
 	return rv
@@ -186,7 +176,6 @@ func (p_ PersistentHistoryTransaction) ContextName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
-
 func (p_ PersistentHistoryTransaction) EntityDescription() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entityDescription"))
 	return rv
@@ -197,7 +186,6 @@ func (p_ PersistentHistoryTransaction) EntityDescription() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
-
 func (p_ PersistentHistoryTransaction) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
@@ -208,7 +196,6 @@ func (p_ PersistentHistoryTransaction) FetchRequest() NSFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/processID
-
 func (p_ PersistentHistoryTransaction) ProcessID() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("processID"))
 	return rv
@@ -219,7 +206,6 @@ func (p_ PersistentHistoryTransaction) ProcessID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/storeID
-
 func (p_ PersistentHistoryTransaction) StoreID() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("storeID"))
 	return rv
@@ -230,7 +216,6 @@ func (p_ PersistentHistoryTransaction) StoreID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/timestamp
-
 func (p_ PersistentHistoryTransaction) Timestamp() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("timestamp"))
 	return rv
@@ -241,7 +226,6 @@ func (p_ PersistentHistoryTransaction) Timestamp() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/token
-
 func (p_ PersistentHistoryTransaction) Token() NSPersistentHistoryToken {
 	rv := objc.Send[NSPersistentHistoryToken](p_.ID, objc.Sel("token"))
 	return rv
@@ -252,7 +236,6 @@ func (p_ PersistentHistoryTransaction) Token() NSPersistentHistoryToken {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/transactionNumber
-
 func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionNumber"))
 	return rv

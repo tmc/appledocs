@@ -38,7 +38,6 @@ type IFrontAnchoringStrategy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFrontAnchoringStrategy
-
 type FrontAnchoringStrategy struct {
 	AnchoringStrategy
 }

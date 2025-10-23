@@ -31,7 +31,7 @@ type _URLSessionTaskMetricsClass struct {
 type IURLSessionTaskMetrics interface {
 	objectivec.IObject
 	RedirectCount() uint
-	TaskInterval() NSDateInterval
+	TaskInterval() IDateInterval
 	TransactionMetrics() []URLSessionTaskTransactionMetrics
 }
 
@@ -103,7 +103,7 @@ func (u_ URLSessionTaskMetrics) RedirectCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/taskInterval
-func (u_ URLSessionTaskMetrics) TaskInterval() NSDateInterval {
+func (u_ URLSessionTaskMetrics) TaskInterval() IDateInterval {
 	rv := objc.Send[NSDateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }

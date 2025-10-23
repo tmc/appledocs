@@ -51,7 +51,6 @@ type ITextList interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList
-
 type TextList struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewTextList() TextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-
 func (t_ TextList) TextLists() NSTextList {
 	rv := objc.Send[NSTextList](t_.ID, objc.Sel("textLists"))
 	return rv
@@ -111,7 +109,6 @@ func (t_ TextList) TextLists() NSTextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-
 func (t_ TextList) SetTextLists(value ITextList) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLists:"), value)
 }
@@ -119,7 +116,6 @@ func (t_ TextList) SetTextLists(value ITextList) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/isordered
-
 func (t_ TextList) IsOrdered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isOrdered"))
 	return rv
@@ -128,7 +124,6 @@ func (t_ TextList) IsOrdered() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/isordered
-
 func (t_ TextList) SetIsOrdered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsOrdered:"), value)
 }
@@ -138,7 +133,6 @@ func (t_ TextList) SetIsOrdered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/listoptions
-
 func (t_ TextList) ListOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("listOptions"))
 	return rv
@@ -149,7 +143,6 @@ func (t_ TextList) ListOptions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/listoptions
-
 func (t_ TextList) SetListOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setListOptions:"), value)
 }
@@ -159,7 +152,6 @@ func (t_ TextList) SetListOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.property
-
 func (t_ TextList) MarkerFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("markerFormat"))
 	return rv
@@ -170,7 +162,6 @@ func (t_ TextList) MarkerFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.property
-
 func (t_ TextList) SetMarkerFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkerFormat:"), value)
 }
@@ -180,7 +171,6 @@ func (t_ TextList) SetMarkerFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/startingitemnumber
-
 func (t_ TextList) StartingItemNumber() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("startingItemNumber"))
 	return rv
@@ -191,7 +181,6 @@ func (t_ TextList) StartingItemNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/startingitemnumber
-
 func (t_ TextList) SetStartingItemNumber(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStartingItemNumber:"), value)
 }

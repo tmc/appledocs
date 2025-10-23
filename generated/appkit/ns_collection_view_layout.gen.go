@@ -48,7 +48,6 @@ type ICollectionViewLayout interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout
-
 type CollectionViewLayout struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewCollectionViewLayout() CollectionViewLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
-
 func (c_ CollectionViewLayout) CollectionViewLayout() NSCollectionViewLayout {
 	rv := objc.Send[NSCollectionViewLayout](c_.ID, objc.Sel("collectionViewLayout"))
 	return rv
@@ -108,7 +106,6 @@ func (c_ CollectionViewLayout) CollectionViewLayout() NSCollectionViewLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout
-
 func (c_ CollectionViewLayout) SetCollectionViewLayout(value ICollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
 }
@@ -118,7 +115,6 @@ func (c_ CollectionViewLayout) SetCollectionViewLayout(value ICollectionViewLayo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionview
-
 func (c_ CollectionViewLayout) CollectionView() NSCollectionView {
 	rv := objc.Send[NSCollectionView](c_.ID, objc.Sel("collectionView"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CollectionViewLayout) CollectionView() NSCollectionView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionview
-
 func (c_ CollectionViewLayout) SetCollectionView(value ICollectionView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionView:"), value)
 }
@@ -139,7 +134,6 @@ func (c_ CollectionViewLayout) SetCollectionView(value ICollectionView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize
-
 func (c_ CollectionViewLayout) CollectionViewContentSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("collectionViewContentSize"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CollectionViewLayout) CollectionViewContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize
-
 func (c_ CollectionViewLayout) SetCollectionViewContentSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewContentSize:"), value)
 }

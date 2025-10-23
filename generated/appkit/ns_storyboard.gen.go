@@ -46,7 +46,6 @@ type IStoryboard interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard
-
 type Storyboard struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewStoryboard() Storyboard {
 
 
 
-
 // Creates a storyboard based on the named storyboard file in the specified bundle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/init(name:bundle:)
-
 func NewStoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil foundation.IBundle) Storyboard {
 	rv := objc.Send[Storyboard](objc.ID(getStoryboardClass().class), objc.Sel("storyboardWithName:bundle:"), name, storyboardBundleOrNil)
 	return rv
@@ -108,7 +105,6 @@ func NewStoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/init(name:bundle:)
-
 func (sc _StoryboardClass) StoryboardWithNameBundle(name IStoryboardName, storyboardBundleOrNil foundation.IBundle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("storyboardWithName:bundle:"), name, storyboardBundleOrNil)
 	return rv
@@ -119,50 +115,41 @@ func (sc _StoryboardClass) StoryboardWithNameBundle(name IStoryboardName, storyb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/main
-
 func (sc _StoryboardClass) MainStoryboard() Storyboard {
 	rv := objc.Send[NSStoryboard](objc.ID(sc.class), objc.Sel("mainStoryboard"))
 	return rv
 }
 
-
 // Instantiates a specified view controller or window controller from a storyboard.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateController(withIdentifier:)
-
 func (s_ Storyboard) InstantiateControllerWithIdentifier(identifier IStoryboardSceneIdentifier) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateControllerWithIdentifier:"), identifier)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateControllerWithIdentifier:creator:
-
 func (s_ Storyboard) InstantiateControllerWithIdentifierCreator(identifier IStoryboardSceneIdentifier, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateControllerWithIdentifier:creator:"), identifier, block)
 	return rv
 }
 
 
-
 // Creates the initial view controller or window controller from a storyboard.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateInitialController()
-
 func (s_ Storyboard) InstantiateInitialController() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateInitialController"))
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateInitialControllerWithCreator:
-
 func (s_ Storyboard) InstantiateInitialControllerWithCreator(block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateInitialControllerWithCreator:"), block)
 	return rv
@@ -173,7 +160,6 @@ func (s_ Storyboard) InstantiateInitialControllerWithCreator(block unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/main
-
 func (s_ Storyboard) MainStoryboard() NSStoryboard {
 	rv := objc.Send[NSStoryboard](s_.ID, objc.Sel("mainStoryboard"))
 	return rv

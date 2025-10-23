@@ -57,7 +57,6 @@ type IOpenPanel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel
-
 type OpenPanel struct {
 	SavePanel
 }
@@ -108,7 +107,6 @@ func NewOpenPanel() OpenPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/openPanel
-
 func (oc _OpenPanelClass) OpenPanel() OpenPanel {
 	rv := objc.Send[OpenPanel](objc.ID(oc.class), objc.Sel("openPanel"))
 	return rv
@@ -119,7 +117,6 @@ func (oc _OpenPanelClass) OpenPanel() OpenPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseFiles
-
 func (o_ OpenPanel) CanChooseFiles() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseFiles"))
 	return rv
@@ -130,7 +127,6 @@ func (o_ OpenPanel) CanChooseFiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseFiles
-
 func (o_ OpenPanel) SetCanChooseFiles(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseFiles:"), value)
 }
@@ -140,7 +136,6 @@ func (o_ OpenPanel) SetCanChooseFiles(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/allowsmultipleselection
-
 func (o_ OpenPanel) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
@@ -151,7 +146,6 @@ func (o_ OpenPanel) AllowsMultipleSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/allowsmultipleselection
-
 func (o_ OpenPanel) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
@@ -161,7 +155,6 @@ func (o_ OpenPanel) SetAllowsMultipleSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canchoosedirectories
-
 func (o_ OpenPanel) CanChooseDirectories() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseDirectories"))
 	return rv
@@ -172,7 +165,6 @@ func (o_ OpenPanel) CanChooseDirectories() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canchoosedirectories
-
 func (o_ OpenPanel) SetCanChooseDirectories(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseDirectories:"), value)
 }
@@ -182,7 +174,6 @@ func (o_ OpenPanel) SetCanChooseDirectories(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/candownloadubiquitouscontents
-
 func (o_ OpenPanel) CanDownloadUbiquitousContents() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canDownloadUbiquitousContents"))
 	return rv
@@ -193,7 +184,6 @@ func (o_ OpenPanel) CanDownloadUbiquitousContents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/candownloadubiquitouscontents
-
 func (o_ OpenPanel) SetCanDownloadUbiquitousContents(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanDownloadUbiquitousContents:"), value)
 }
@@ -203,7 +193,6 @@ func (o_ OpenPanel) SetCanDownloadUbiquitousContents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canresolveubiquitousconflicts
-
 func (o_ OpenPanel) CanResolveUbiquitousConflicts() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canResolveUbiquitousConflicts"))
 	return rv
@@ -214,7 +203,6 @@ func (o_ OpenPanel) CanResolveUbiquitousConflicts() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canresolveubiquitousconflicts
-
 func (o_ OpenPanel) SetCanResolveUbiquitousConflicts(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanResolveUbiquitousConflicts:"), value)
 }
@@ -224,7 +212,6 @@ func (o_ OpenPanel) SetCanResolveUbiquitousConflicts(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/isaccessoryviewdisclosed
-
 func (o_ OpenPanel) IsAccessoryViewDisclosed() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAccessoryViewDisclosed"))
 	return rv
@@ -235,7 +222,6 @@ func (o_ OpenPanel) IsAccessoryViewDisclosed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/isaccessoryviewdisclosed
-
 func (o_ OpenPanel) SetIsAccessoryViewDisclosed(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAccessoryViewDisclosed:"), value)
 }
@@ -245,7 +231,6 @@ func (o_ OpenPanel) SetIsAccessoryViewDisclosed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/resolvesaliases
-
 func (o_ OpenPanel) ResolvesAliases() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("resolvesAliases"))
 	return rv
@@ -256,7 +241,6 @@ func (o_ OpenPanel) ResolvesAliases() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/resolvesaliases
-
 func (o_ OpenPanel) SetResolvesAliases(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setResolvesAliases:"), value)
 }
@@ -266,7 +250,6 @@ func (o_ OpenPanel) SetResolvesAliases(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-
 func (o_ OpenPanel) Urls() foundation.URL {
 	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("urls"))
 	return rv
@@ -277,7 +260,6 @@ func (o_ OpenPanel) Urls() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-
 func (o_ OpenPanel) SetUrls(value foundation.IURL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUrls:"), value)
 }

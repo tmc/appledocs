@@ -47,7 +47,6 @@ type IAuthorizationRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationRequest
-
 type AuthorizationRequest struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewAuthorizationRequest() AuthorizationRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-
 func (a_ AuthorizationRequest) AuthorizationRequests() ASAuthorizationRequest {
 	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
@@ -107,7 +105,6 @@ func (a_ AuthorizationRequest) AuthorizationRequests() ASAuthorizationRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-
 func (a_ AuthorizationRequest) SetAuthorizationRequests(value IASAuthorizationRequest) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
@@ -117,7 +114,6 @@ func (a_ AuthorizationRequest) SetAuthorizationRequests(value IASAuthorizationRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/customauthorizationmethods
-
 func (a_ AuthorizationRequest) CustomAuthorizationMethods() AuthorizationCustomMethod {
 	rv := objc.Send[AuthorizationCustomMethod](a_.ID, objc.Sel("customAuthorizationMethods"))
 	return rv
@@ -128,7 +124,6 @@ func (a_ AuthorizationRequest) CustomAuthorizationMethods() AuthorizationCustomM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/customauthorizationmethods
-
 func (a_ AuthorizationRequest) SetCustomAuthorizationMethods(value IAuthorizationCustomMethod) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), value)
 }
@@ -138,7 +133,6 @@ func (a_ AuthorizationRequest) SetCustomAuthorizationMethods(value IAuthorizatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
-
 func (a_ AuthorizationRequest) Provider() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
 	return rv
@@ -149,7 +143,6 @@ func (a_ AuthorizationRequest) Provider() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
-
 func (a_ AuthorizationRequest) SetProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
 }

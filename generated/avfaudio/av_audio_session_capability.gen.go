@@ -45,7 +45,6 @@ type IAudioSessionCapability interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability
-
 type AudioSessionCapability struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewAudioSessionCapability() AudioSessionCapability {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability/isEnabled
-
 func (a_ AudioSessionCapability) Enabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enabled"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AudioSessionCapability) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability/isSupported
-
 func (a_ AudioSessionCapability) Supported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supported"))
 	return rv
@@ -116,7 +113,6 @@ func (a_ AudioSessionCapability) Supported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
-
 func (a_ AudioSessionCapability) IsEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -127,7 +123,6 @@ func (a_ AudioSessionCapability) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
-
 func (a_ AudioSessionCapability) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -137,7 +132,6 @@ func (a_ AudioSessionCapability) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
-
 func (a_ AudioSessionCapability) IsSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv
@@ -148,7 +142,6 @@ func (a_ AudioSessionCapability) IsSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
-
 func (a_ AudioSessionCapability) SetIsSupported(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSupported:"), value)
 }

@@ -43,7 +43,6 @@ type IModelStructure interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class
-
 type ModelStructure struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewModelStructure() ModelStructure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
-
 func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.IURL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
 }
@@ -102,7 +100,6 @@ func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadModelAsset:completionHandler:
-
 func (mc _ModelStructureClass) LoadModelAssetCompletionHandler(asset IMLModelAsset, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadModelAsset:completionHandler:"), asset, handler)
 }
@@ -112,7 +109,6 @@ func (mc _ModelStructureClass) LoadModelAssetCompletionHandler(asset IMLModelAss
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/neuralNetwork
-
 func (m_ ModelStructure) NeuralNetwork() MLModelStructureNeuralNetwork {
 	rv := objc.Send[MLModelStructureNeuralNetwork](m_.ID, objc.Sel("neuralNetwork"))
 	return rv
@@ -123,7 +119,6 @@ func (m_ ModelStructure) NeuralNetwork() MLModelStructureNeuralNetwork {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/pipeline
-
 func (m_ ModelStructure) Pipeline() MLModelStructurePipeline {
 	rv := objc.Send[MLModelStructurePipeline](m_.ID, objc.Sel("pipeline"))
 	return rv
@@ -134,7 +129,6 @@ func (m_ ModelStructure) Pipeline() MLModelStructurePipeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/program
-
 func (m_ ModelStructure) Program() MLModelStructureProgram {
 	rv := objc.Send[MLModelStructureProgram](m_.ID, objc.Sel("program"))
 	return rv

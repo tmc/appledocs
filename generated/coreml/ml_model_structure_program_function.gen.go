@@ -41,7 +41,6 @@ type IModelStructureProgramFunction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramFunction
-
 type ModelStructureProgramFunction struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewModelStructureProgramFunction() ModelStructureProgramFunction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramFunction/block
-
 func (m_ ModelStructureProgramFunction) Block() MLModelStructureProgramBlock {
 	rv := objc.Send[MLModelStructureProgramBlock](m_.ID, objc.Sel("block"))
 	return rv
@@ -101,7 +99,6 @@ func (m_ ModelStructureProgramFunction) Block() MLModelStructureProgramBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramFunction/inputs
-
 func (m_ ModelStructureProgramFunction) Inputs() []ModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("inputs"))
 	return rv

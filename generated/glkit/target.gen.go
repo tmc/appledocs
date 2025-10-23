@@ -36,7 +36,6 @@ type Itarget interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/target-c.ivar
-
 type target struct {
 	objectivec.Object
 }

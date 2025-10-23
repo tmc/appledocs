@@ -47,7 +47,6 @@ type IBeaconIdentityConstraint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityConstraint
-
 type BeaconIdentityConstraint struct {
 	BeaconIdentityCondition
 }
@@ -98,7 +97,6 @@ func NewBeaconIdentityConstraint() BeaconIdentityConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-
 func (b_ BeaconIdentityConstraint) Major() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
@@ -109,7 +107,6 @@ func (b_ BeaconIdentityConstraint) Major() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-
 func (b_ BeaconIdentityConstraint) SetMajor(value foundation.INumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
@@ -119,7 +116,6 @@ func (b_ BeaconIdentityConstraint) SetMajor(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-
 func (b_ BeaconIdentityConstraint) Minor() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
@@ -130,7 +126,6 @@ func (b_ BeaconIdentityConstraint) Minor() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-
 func (b_ BeaconIdentityConstraint) SetMinor(value foundation.INumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
@@ -140,7 +135,6 @@ func (b_ BeaconIdentityConstraint) SetMinor(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-
 func (b_ BeaconIdentityConstraint) Uuid() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
@@ -151,7 +145,6 @@ func (b_ BeaconIdentityConstraint) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-
 func (b_ BeaconIdentityConstraint) SetUuid(value foundation.IUUID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }

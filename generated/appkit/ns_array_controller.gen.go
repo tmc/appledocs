@@ -72,7 +72,6 @@ type IArrayController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController
-
 type ArrayController struct {
 	ObjectController
 }
@@ -123,7 +122,6 @@ func NewArrayController() ArrayController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/automaticRearrangementKeyPaths
-
 func (a_ ArrayController) AutomaticRearrangementKeyPaths() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
 	return rv
@@ -134,7 +132,6 @@ func (a_ ArrayController) AutomaticRearrangementKeyPaths() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/alwaysusesmultiplevaluesmarker
-
 func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("alwaysUsesMultipleValuesMarker"))
 	return rv
@@ -145,7 +142,6 @@ func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/alwaysusesmultiplevaluesmarker
-
 func (a_ ArrayController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAlwaysUsesMultipleValuesMarker:"), value)
 }
@@ -155,7 +151,6 @@ func (a_ ArrayController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
-
 func (a_ ArrayController) ArrangedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("arrangedObjects"))
 	return rv
@@ -166,7 +161,6 @@ func (a_ ArrayController) ArrangedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
-
 func (a_ ArrayController) SetArrangedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArrangedObjects:"), value)
 }
@@ -176,7 +170,6 @@ func (a_ ArrayController) SetArrangedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticallyrearrangesobjects
-
 func (a_ ArrayController) AutomaticallyRearrangesObjects() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("automaticallyRearrangesObjects"))
 	return rv
@@ -187,7 +180,6 @@ func (a_ ArrayController) AutomaticallyRearrangesObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticallyrearrangesobjects
-
 func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticallyRearrangesObjects:"), value)
 }
@@ -197,7 +189,6 @@ func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/avoidsemptyselection
-
 func (a_ ArrayController) AvoidsEmptySelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("avoidsEmptySelection"))
 	return rv
@@ -208,7 +199,6 @@ func (a_ ArrayController) AvoidsEmptySelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/avoidsemptyselection
-
 func (a_ ArrayController) SetAvoidsEmptySelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvoidsEmptySelection:"), value)
 }
@@ -218,7 +208,6 @@ func (a_ ArrayController) SetAvoidsEmptySelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/caninsert
-
 func (a_ ArrayController) CanInsert() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canInsert"))
 	return rv
@@ -229,7 +218,6 @@ func (a_ ArrayController) CanInsert() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/caninsert
-
 func (a_ ArrayController) SetCanInsert(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanInsert:"), value)
 }
@@ -239,7 +227,6 @@ func (a_ ArrayController) SetCanInsert(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectnext
-
 func (a_ ArrayController) CanSelectNext() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canSelectNext"))
 	return rv
@@ -250,7 +237,6 @@ func (a_ ArrayController) CanSelectNext() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectnext
-
 func (a_ ArrayController) SetCanSelectNext(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanSelectNext:"), value)
 }
@@ -260,7 +246,6 @@ func (a_ ArrayController) SetCanSelectNext(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectprevious
-
 func (a_ ArrayController) CanSelectPrevious() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canSelectPrevious"))
 	return rv
@@ -271,7 +256,6 @@ func (a_ ArrayController) CanSelectPrevious() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectprevious
-
 func (a_ ArrayController) SetCanSelectPrevious(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanSelectPrevious:"), value)
 }
@@ -281,7 +265,6 @@ func (a_ ArrayController) SetCanSelectPrevious(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/clearsfilterpredicateoninsertion
-
 func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("clearsFilterPredicateOnInsertion"))
 	return rv
@@ -292,7 +275,6 @@ func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/clearsfilterpredicateoninsertion
-
 func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setClearsFilterPredicateOnInsertion:"), value)
 }
@@ -302,7 +284,6 @@ func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/filterpredicate
-
 func (a_ ArrayController) FilterPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](a_.ID, objc.Sel("filterPredicate"))
 	return rv
@@ -313,7 +294,6 @@ func (a_ ArrayController) FilterPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/filterpredicate
-
 func (a_ ArrayController) SetFilterPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterPredicate:"), value)
 }
@@ -323,7 +303,6 @@ func (a_ ArrayController) SetFilterPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/preservesselection
-
 func (a_ ArrayController) PreservesSelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preservesSelection"))
 	return rv
@@ -334,7 +313,6 @@ func (a_ ArrayController) PreservesSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/preservesselection
-
 func (a_ ArrayController) SetPreservesSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesSelection:"), value)
 }
@@ -344,7 +322,6 @@ func (a_ ArrayController) SetPreservesSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectedobjects
-
 func (a_ ArrayController) SelectedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectedObjects"))
 	return rv
@@ -355,7 +332,6 @@ func (a_ ArrayController) SelectedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectedobjects
-
 func (a_ ArrayController) SetSelectedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedObjects:"), value)
 }
@@ -365,7 +341,6 @@ func (a_ ArrayController) SetSelectedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindex
-
 func (a_ ArrayController) SelectionIndex() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("selectionIndex"))
 	return rv
@@ -376,7 +351,6 @@ func (a_ ArrayController) SelectionIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindex
-
 func (a_ ArrayController) SetSelectionIndex(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectionIndex:"), value)
 }
@@ -386,7 +360,6 @@ func (a_ ArrayController) SetSelectionIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-
 func (a_ ArrayController) SelectionIndexes() foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](a_.ID, objc.Sel("selectionIndexes"))
 	return rv
@@ -397,7 +370,6 @@ func (a_ ArrayController) SelectionIndexes() foundation.IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-
 func (a_ ArrayController) SetSelectionIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
@@ -407,7 +379,6 @@ func (a_ ArrayController) SetSelectionIndexes(value foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectsinsertedobjects
-
 func (a_ ArrayController) SelectsInsertedObjects() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("selectsInsertedObjects"))
 	return rv
@@ -418,7 +389,6 @@ func (a_ ArrayController) SelectsInsertedObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectsinsertedobjects
-
 func (a_ ArrayController) SetSelectsInsertedObjects(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectsInsertedObjects:"), value)
 }
@@ -428,7 +398,6 @@ func (a_ ArrayController) SetSelectsInsertedObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-
 func (a_ ArrayController) SortDescriptors() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](a_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -439,7 +408,6 @@ func (a_ ArrayController) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-
 func (a_ ArrayController) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSortDescriptors:"), value)
 }

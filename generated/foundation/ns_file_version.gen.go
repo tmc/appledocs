@@ -31,7 +31,7 @@ type _FileVersionClass struct {
 type IFileVersion interface {
 	objectivec.IObject
 	RemoveAndReturnError(outError IError) bool
-	ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) URL
+	ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) IURL
 	HasLocalContents() bool
 	SetHasLocalContents(value bool)
 	HasThumbnail() bool
@@ -46,13 +46,13 @@ type IFileVersion interface {
 	SetLocalizedName(value string)
 	LocalizedNameOfSavingComputer() string
 	SetLocalizedNameOfSavingComputer(value string)
-	ModificationDate() Date
+	ModificationDate() IDate
 	SetModificationDate(value IDate)
-	OriginatorNameComponents() PersonNameComponents
+	OriginatorNameComponents() IPersonNameComponents
 	SetOriginatorNameComponents(value IPersonNameComponents)
 	PersistentIdentifier() unsafe.Pointer
 	SetPersistentIdentifier(value unsafe.Pointer)
-	Url() URL
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -113,7 +113,7 @@ func NewFileVersion() FileVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/currentVersionOfItem(at:)
-func (fc _FileVersionClass) CurrentVersionOfItemAtURL(url IURL) FileVersion {
+func (fc _FileVersionClass) CurrentVersionOfItemAtURL(url IURL) IFileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("currentVersionOfItemAtURL:"), url)
 	return rv
 }
@@ -143,7 +143,7 @@ func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/replaceItem(at:options:)
-func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) URL {
+func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("replaceItemAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -278,7 +278,7 @@ func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
-func (f_ FileVersion) ModificationDate() Date {
+func (f_ FileVersion) ModificationDate() IDate {
 	rv := objc.Send[Date](f_.ID, objc.Sel("modificationDate"))
 	return rv
 }
@@ -295,7 +295,7 @@ func (f_ FileVersion) SetModificationDate(value IDate) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-func (f_ FileVersion) OriginatorNameComponents() PersonNameComponents {
+func (f_ FileVersion) OriginatorNameComponents() IPersonNameComponents {
 	rv := objc.Send[PersonNameComponents](f_.ID, objc.Sel("originatorNameComponents"))
 	return rv
 }
@@ -331,7 +331,7 @@ func (f_ FileVersion) SetPersistentIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/url
-func (f_ FileVersion) Url() URL {
+func (f_ FileVersion) Url() IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("url"))
 	return rv
 }

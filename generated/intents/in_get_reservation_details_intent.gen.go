@@ -36,7 +36,11 @@ type IINGetReservationDetailsIntent interface {
 // A request for details about one or more reservations.
 //
 // Create an object when the user makes a request to see the details about one or more reservations in your app. The app creates a new object containing the and object and donates it to the system.
+
+
+// A request for details about one or more reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntent
 type INGetReservationDetailsIntent struct {
 	INIntent
@@ -83,16 +87,20 @@ func NewINGetReservationDetailsIntent() INGetReservationDetailsIntent {
 }
 
 
+
 // A unique identifier for the array containing the reservation objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntent/reservationContainerReference
 func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("reservationContainerReference"))
 	return rv
 }
 
+
 // An array of unique identifiers for previously created reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntent/reservationItemReferences
 func (i_ INGetReservationDetailsIntent) ReservationItemReferences() []INSpeakableString {
 	rv := objc.Send[[]INSpeakableString](i_.ID, objc.Sel("reservationItemReferences"))

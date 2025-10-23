@@ -41,7 +41,6 @@ type IOpenGLPixelBuffer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer
-
 type OpenGLPixelBuffer struct {
 	objectivec.Object
 }

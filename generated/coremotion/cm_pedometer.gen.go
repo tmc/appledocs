@@ -47,7 +47,6 @@ type IPedometer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer
-
 type Pedometer struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewPedometer() Pedometer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/authorizationStatus()
-
 func (pc _PedometerClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
 	return rv
@@ -107,7 +105,6 @@ func (pc _PedometerClass) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isCadenceAvailable()
-
 func (pc _PedometerClass) IsCadenceAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isCadenceAvailable"))
 	return rv
@@ -118,7 +115,6 @@ func (pc _PedometerClass) IsCadenceAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isDistanceAvailable()
-
 func (pc _PedometerClass) IsDistanceAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isDistanceAvailable"))
 	return rv
@@ -129,7 +125,6 @@ func (pc _PedometerClass) IsDistanceAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()
-
 func (pc _PedometerClass) IsFloorCountingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isFloorCountingAvailable"))
 	return rv
@@ -140,7 +135,6 @@ func (pc _PedometerClass) IsFloorCountingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isPaceAvailable()
-
 func (pc _PedometerClass) IsPaceAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPaceAvailable"))
 	return rv
@@ -151,7 +145,6 @@ func (pc _PedometerClass) IsPaceAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()
-
 func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPedometerEventTrackingAvailable"))
 	return rv
@@ -162,63 +155,52 @@ func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()
-
 func (pc _PedometerClass) IsStepCountingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isStepCountingAvailable"))
 	return rv
 }
 
 
-
 // Retrieves the data between the specified start and end dates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)
-
 func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.IDate, end foundation.IDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("queryPedometerDataFromDate:toDate:withHandler:"), start, end, handler)
 }
-
 
 
 // Starts the delivery of pedometer events to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)
-
 func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerEventUpdatesWithHandler:"), handler)
 }
-
 
 
 // Starts the delivery of recent pedestrian-related data to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)
-
 func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.IDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerUpdatesFromDate:withHandler:"), start, handler)
 }
-
 
 
 // Stops the delivery of pedometer events to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/stopEventUpdates()
-
 func (p_ Pedometer) StopPedometerEventUpdates() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopPedometerEventUpdates"))
 }
-
 
 
 // Stops the delivery of recent pedestrian data updates to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/stopUpdates()
-
 func (p_ Pedometer) StopPedometerUpdates() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopPedometerUpdates"))
 }

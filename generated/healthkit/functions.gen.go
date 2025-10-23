@@ -66,7 +66,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassification/minimum
-
 func HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification)
 	}
@@ -78,7 +77,6 @@ func HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassificationForQuantity
-
 func HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value)
 	}
@@ -92,7 +90,6 @@ func HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity
-
 func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, classificationOut unsafe.Pointer, errorOut unsafe.Pointer) bool {
 	return _HKAppleWalkingSteadinessClassificationForQuantity(value, classificationOut, errorOut)
 	}
@@ -106,7 +103,6 @@ func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessMaximumQuantityForClassification
-
 func HKAppleWalkingSteadinessMaximumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleWalkingSteadinessMaximumQuantityForClassification(classification)
 	}
@@ -120,7 +116,6 @@ func HKAppleWalkingSteadinessMaximumQuantityForClassification(classification uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessMinimumQuantityForClassification
-
 func HKAppleWalkingSteadinessMinimumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleWalkingSteadinessMinimumQuantityForClassification(classification)
 	}
@@ -132,7 +127,6 @@ func HKAppleWalkingSteadinessMinimumQuantityForClassification(classification uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueSleepAnalysisAsleepValues
-
 func HKCategoryValueSleepAnalysisAsleepValues() unsafe.Pointer {
 	return _HKCategoryValueSleepAnalysisAsleepValues()
 	}
@@ -144,7 +138,6 @@ func HKCategoryValueSleepAnalysisAsleepValues() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForGAD7AssessmentRisk
-
 func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMaximumScoreForGAD7AssessmentRisk(risk)
 	}
@@ -156,7 +149,6 @@ func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForPHQ9AssessmentRisk
-
 func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMaximumScoreForPHQ9AssessmentRisk(risk)
 	}
@@ -168,7 +160,6 @@ func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForGAD7AssessmentRisk
-
 func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMinimumScoreForGAD7AssessmentRisk(risk)
 	}
@@ -180,7 +171,6 @@ func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForPHQ9AssessmentRisk
-
 func HKMinimumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 	return _HKMinimumScoreForPHQ9AssessmentRisk(risk)
 	}
@@ -190,7 +180,6 @@ func HKMinimumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMindValenceClassificationForValence
-
 func HKStateOfMindValenceClassificationForValence(valence unsafe.Pointer) unsafe.Pointer {
 	return _HKStateOfMindValenceClassificationForValence(valence)
 	}

@@ -50,7 +50,6 @@ type IVoronoiNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource
-
 type VoronoiNoiseSource struct {
 	NoiseSource
 }
@@ -97,12 +96,10 @@ func NewVoronoiNoiseSource() VoronoiNoiseSource {
 
 
 
-
 // Initializes a Voronoi noise source with the specified parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/init(frequency:displacement:distanceEnabled:seed:)
-
 func NewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed(frequency float64, displacement float64, distanceEnabled bool, seed unsafe.Pointer) VoronoiNoiseSource {
 	instance := getVoronoiNoiseSourceClass().Alloc()
 	rv := objc.Send[VoronoiNoiseSource](instance.ID, objc.Sel("initWithFrequency:displacement:distanceEnabled:seed:"), frequency, displacement, distanceEnabled, seed)
@@ -116,7 +113,6 @@ func NewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed(frequency
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/voronoiNoise(withFrequency:displacement:distanceEnabled:seed:)
-
 func (vc _VoronoiNoiseSourceClass) VoronoiNoiseWithFrequencyDisplacementDistanceEnabledSeed(frequency float64, displacement float64, distanceEnabled bool, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:"), frequency, displacement, distanceEnabled, seed)
 	return rv
@@ -127,7 +123,6 @@ func (vc _VoronoiNoiseSourceClass) VoronoiNoiseWithFrequencyDisplacementDistance
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/displacement
-
 func (v_ VoronoiNoiseSource) Displacement() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("displacement"))
 	return rv
@@ -138,7 +133,6 @@ func (v_ VoronoiNoiseSource) Displacement() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/displacement
-
 func (v_ VoronoiNoiseSource) SetDisplacement(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplacement:"), value)
 }
@@ -148,7 +142,6 @@ func (v_ VoronoiNoiseSource) SetDisplacement(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/frequency
-
 func (v_ VoronoiNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("frequency"))
 	return rv
@@ -159,7 +152,6 @@ func (v_ VoronoiNoiseSource) Frequency() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/frequency
-
 func (v_ VoronoiNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrequency:"), value)
 }
@@ -169,7 +161,6 @@ func (v_ VoronoiNoiseSource) SetFrequency(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/isDistanceEnabled
-
 func (v_ VoronoiNoiseSource) DistanceEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("distanceEnabled"))
 	return rv
@@ -180,7 +171,6 @@ func (v_ VoronoiNoiseSource) DistanceEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/isDistanceEnabled
-
 func (v_ VoronoiNoiseSource) SetDistanceEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDistanceEnabled:"), value)
 }
@@ -190,7 +180,6 @@ func (v_ VoronoiNoiseSource) SetDistanceEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/seed
-
 func (v_ VoronoiNoiseSource) Seed() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("seed"))
 	return rv
@@ -201,7 +190,6 @@ func (v_ VoronoiNoiseSource) Seed() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/seed
-
 func (v_ VoronoiNoiseSource) SetSeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSeed:"), value)
 }
@@ -211,7 +199,6 @@ func (v_ VoronoiNoiseSource) SetSeed(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkvoronoinoisesource/isdistanceenabled
-
 func (v_ VoronoiNoiseSource) IsDistanceEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isDistanceEnabled"))
 	return rv
@@ -222,7 +209,6 @@ func (v_ VoronoiNoiseSource) IsDistanceEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkvoronoinoisesource/isdistanceenabled
-
 func (v_ VoronoiNoiseSource) SetIsDistanceEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsDistanceEnabled:"), value)
 }

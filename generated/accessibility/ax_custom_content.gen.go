@@ -52,7 +52,6 @@ type IAXCustomContent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCustomContent
-
 type AXCustomContent struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewAXCustomContent() AXCustomContent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
-
 func (a_ AXCustomContent) AttributedLabel() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
@@ -112,7 +110,6 @@ func (a_ AXCustomContent) AttributedLabel() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
-
 func (a_ AXCustomContent) SetAttributedLabel(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedLabel:"), value)
 }
@@ -122,7 +119,6 @@ func (a_ AXCustomContent) SetAttributedLabel(value foundation.IAttributedString)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
-
 func (a_ AXCustomContent) AttributedValue() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedValue"))
 	return rv
@@ -133,7 +129,6 @@ func (a_ AXCustomContent) AttributedValue() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
-
 func (a_ AXCustomContent) SetAttributedValue(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedValue:"), value)
 }
@@ -143,7 +138,6 @@ func (a_ AXCustomContent) SetAttributedValue(value foundation.IAttributedString)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.property
-
 func (a_ AXCustomContent) Importance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("importance"))
 	return rv
@@ -154,7 +148,6 @@ func (a_ AXCustomContent) Importance() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.property
-
 func (a_ AXCustomContent) SetImportance(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImportance:"), value)
 }
@@ -164,7 +157,6 @@ func (a_ AXCustomContent) SetImportance(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-
 func (a_ AXCustomContent) Label() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
@@ -175,7 +167,6 @@ func (a_ AXCustomContent) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-
 func (a_ AXCustomContent) SetLabel(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -185,7 +176,6 @@ func (a_ AXCustomContent) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-
 func (a_ AXCustomContent) Value() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("value"))
 	return rv
@@ -196,7 +186,6 @@ func (a_ AXCustomContent) Value() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-
 func (a_ AXCustomContent) SetValue(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), objc.String(value))
 }

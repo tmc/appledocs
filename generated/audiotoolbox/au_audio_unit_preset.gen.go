@@ -49,7 +49,6 @@ type IAudioUnitPreset interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset
-
 type AudioUnitPreset struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewAudioUnitPreset() AudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-
 func (a_ AudioUnitPreset) Name() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
@@ -109,7 +107,6 @@ func (a_ AudioUnitPreset) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-
 func (a_ AudioUnitPreset) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -119,7 +116,6 @@ func (a_ AudioUnitPreset) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
-
 func (a_ AudioUnitPreset) Number() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("number"))
 	return rv
@@ -130,7 +126,6 @@ func (a_ AudioUnitPreset) Number() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
-
 func (a_ AudioUnitPreset) SetNumber(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumber:"), value)
 }
@@ -140,7 +135,6 @@ func (a_ AudioUnitPreset) SetNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-
 func (a_ AudioUnitPreset) FullState() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("fullState"))
 	return rv
@@ -151,7 +145,6 @@ func (a_ AudioUnitPreset) FullState() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-
 func (a_ AudioUnitPreset) SetFullState(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), objc.String(value))
 }
@@ -161,7 +154,6 @@ func (a_ AudioUnitPreset) SetFullState(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-
 func (a_ AudioUnitPreset) FullStateForDocument() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("fullStateForDocument"))
 	return rv
@@ -172,7 +164,6 @@ func (a_ AudioUnitPreset) FullStateForDocument() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-
 func (a_ AudioUnitPreset) SetFullStateForDocument(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), objc.String(value))
 }

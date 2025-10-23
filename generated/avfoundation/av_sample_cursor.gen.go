@@ -68,7 +68,6 @@ type ISampleCursor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor
-
 type SampleCursor struct {
 	objectivec.Object
 }
@@ -117,7 +116,6 @@ func NewSampleCursor() SampleCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkinfo
-
 func (s_ SampleCursor) CurrentChunkInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentChunkInfo"))
 	return rv
@@ -128,7 +126,6 @@ func (s_ SampleCursor) CurrentChunkInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkinfo
-
 func (s_ SampleCursor) SetCurrentChunkInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkInfo:"), value)
 }
@@ -138,7 +135,6 @@ func (s_ SampleCursor) SetCurrentChunkInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstoragerange
-
 func (s_ SampleCursor) CurrentChunkStorageRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentChunkStorageRange"))
 	return rv
@@ -149,7 +145,6 @@ func (s_ SampleCursor) CurrentChunkStorageRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstoragerange
-
 func (s_ SampleCursor) SetCurrentChunkStorageRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkStorageRange:"), value)
 }
@@ -159,7 +154,6 @@ func (s_ SampleCursor) SetCurrentChunkStorageRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstorageurl
-
 func (s_ SampleCursor) CurrentChunkStorageURL() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("currentChunkStorageURL"))
 	return rv
@@ -170,7 +164,6 @@ func (s_ SampleCursor) CurrentChunkStorageURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstorageurl
-
 func (s_ SampleCursor) SetCurrentChunkStorageURL(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkStorageURL:"), value)
 }
@@ -180,7 +173,6 @@ func (s_ SampleCursor) SetCurrentChunkStorageURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleaudiodependencyinfo
-
 func (s_ SampleCursor) CurrentSampleAudioDependencyInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleAudioDependencyInfo"))
 	return rv
@@ -191,7 +183,6 @@ func (s_ SampleCursor) CurrentSampleAudioDependencyInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleaudiodependencyinfo
-
 func (s_ SampleCursor) SetCurrentSampleAudioDependencyInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleAudioDependencyInfo:"), value)
 }
@@ -201,7 +192,6 @@ func (s_ SampleCursor) SetCurrentSampleAudioDependencyInfo(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyattachments
-
 func (s_ SampleCursor) CurrentSampleDependencyAttachments() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleDependencyAttachments"))
 	return rv
@@ -212,7 +202,6 @@ func (s_ SampleCursor) CurrentSampleDependencyAttachments() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyattachments
-
 func (s_ SampleCursor) SetCurrentSampleDependencyAttachments(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleDependencyAttachments:"), value)
 }
@@ -222,7 +211,6 @@ func (s_ SampleCursor) SetCurrentSampleDependencyAttachments(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyinfo
-
 func (s_ SampleCursor) CurrentSampleDependencyInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleDependencyInfo"))
 	return rv
@@ -233,7 +221,6 @@ func (s_ SampleCursor) CurrentSampleDependencyInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyinfo
-
 func (s_ SampleCursor) SetCurrentSampleDependencyInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleDependencyInfo:"), value)
 }
@@ -243,7 +230,6 @@ func (s_ SampleCursor) SetCurrentSampleDependencyInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleduration
-
 func (s_ SampleCursor) CurrentSampleDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleDuration"))
 	return rv
@@ -254,7 +240,6 @@ func (s_ SampleCursor) CurrentSampleDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleduration
-
 func (s_ SampleCursor) SetCurrentSampleDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleDuration:"), value)
 }
@@ -264,7 +249,6 @@ func (s_ SampleCursor) SetCurrentSampleDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleindexinchunk
-
 func (s_ SampleCursor) CurrentSampleIndexInChunk() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleIndexInChunk"))
 	return rv
@@ -275,7 +259,6 @@ func (s_ SampleCursor) CurrentSampleIndexInChunk() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleindexinchunk
-
 func (s_ SampleCursor) SetCurrentSampleIndexInChunk(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleIndexInChunk:"), value)
 }
@@ -285,7 +268,6 @@ func (s_ SampleCursor) SetCurrentSampleIndexInChunk(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplestoragerange
-
 func (s_ SampleCursor) CurrentSampleStorageRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleStorageRange"))
 	return rv
@@ -296,7 +278,6 @@ func (s_ SampleCursor) CurrentSampleStorageRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplestoragerange
-
 func (s_ SampleCursor) SetCurrentSampleStorageRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleStorageRange:"), value)
 }
@@ -306,7 +287,6 @@ func (s_ SampleCursor) SetCurrentSampleStorageRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplesyncinfo
-
 func (s_ SampleCursor) CurrentSampleSyncInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleSyncInfo"))
 	return rv
@@ -317,7 +297,6 @@ func (s_ SampleCursor) CurrentSampleSyncInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplesyncinfo
-
 func (s_ SampleCursor) SetCurrentSampleSyncInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleSyncInfo:"), value)
 }
@@ -327,7 +306,6 @@ func (s_ SampleCursor) SetCurrentSampleSyncInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/decodetimestamp
-
 func (s_ SampleCursor) DecodeTimeStamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("decodeTimeStamp"))
 	return rv
@@ -338,7 +316,6 @@ func (s_ SampleCursor) DecodeTimeStamp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/decodetimestamp
-
 func (s_ SampleCursor) SetDecodeTimeStamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDecodeTimeStamp:"), value)
 }
@@ -348,7 +325,6 @@ func (s_ SampleCursor) SetDecodeTimeStamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/presentationtimestamp
-
 func (s_ SampleCursor) PresentationTimeStamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("presentationTimeStamp"))
 	return rv
@@ -359,7 +335,6 @@ func (s_ SampleCursor) PresentationTimeStamp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/presentationtimestamp
-
 func (s_ SampleCursor) SetPresentationTimeStamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPresentationTimeStamp:"), value)
 }
@@ -369,7 +344,6 @@ func (s_ SampleCursor) SetPresentationTimeStamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/samplesrequiredfordecoderrefresh
-
 func (s_ SampleCursor) SamplesRequiredForDecoderRefresh() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("samplesRequiredForDecoderRefresh"))
 	return rv
@@ -380,7 +354,6 @@ func (s_ SampleCursor) SamplesRequiredForDecoderRefresh() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/samplesrequiredfordecoderrefresh
-
 func (s_ SampleCursor) SetSamplesRequiredForDecoderRefresh(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSamplesRequiredForDecoderRefresh:"), value)
 }

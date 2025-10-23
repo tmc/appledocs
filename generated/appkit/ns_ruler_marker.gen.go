@@ -62,7 +62,6 @@ type IRulerMarker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker
-
 type RulerMarker struct {
 	objectivec.Object
 }
@@ -107,12 +106,10 @@ func NewRulerMarker() RulerMarker {
 
 
 
-
 // Handles user manipulation of the receiver in its ruler view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/trackMouse(with:adding:)
-
 func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trackMouse:adding:"), mouseDownEvent, isAdding)
 	return rv
@@ -123,7 +120,6 @@ func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/image
-
 func (r_ RulerMarker) Image() Image {
 	rv := objc.Send[Image](r_.ID, objc.Sel("image"))
 	return rv
@@ -134,7 +130,6 @@ func (r_ RulerMarker) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/image
-
 func (r_ RulerMarker) SetImage(value IImage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setImage:"), value)
 }
@@ -144,7 +139,6 @@ func (r_ RulerMarker) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/ruler
-
 func (r_ RulerMarker) Ruler() NSRulerView {
 	rv := objc.Send[NSRulerView](r_.ID, objc.Sel("ruler"))
 	return rv
@@ -155,7 +149,6 @@ func (r_ RulerMarker) Ruler() NSRulerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/imageorigin
-
 func (r_ RulerMarker) ImageOrigin() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("imageOrigin"))
 	return rv
@@ -166,7 +159,6 @@ func (r_ RulerMarker) ImageOrigin() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/imageorigin
-
 func (r_ RulerMarker) SetImageOrigin(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setImageOrigin:"), value)
 }
@@ -176,7 +168,6 @@ func (r_ RulerMarker) SetImageOrigin(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/imagerectinruler
-
 func (r_ RulerMarker) ImageRectInRuler() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("imageRectInRuler"))
 	return rv
@@ -187,7 +178,6 @@ func (r_ RulerMarker) ImageRectInRuler() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/imagerectinruler
-
 func (r_ RulerMarker) SetImageRectInRuler(value coregraphics.CGRect) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setImageRectInRuler:"), value)
 }
@@ -197,7 +187,6 @@ func (r_ RulerMarker) SetImageRectInRuler(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isdragging
-
 func (r_ RulerMarker) IsDragging() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isDragging"))
 	return rv
@@ -208,7 +197,6 @@ func (r_ RulerMarker) IsDragging() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isdragging
-
 func (r_ RulerMarker) SetIsDragging(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDragging:"), value)
 }
@@ -218,7 +206,6 @@ func (r_ RulerMarker) SetIsDragging(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/ismovable
-
 func (r_ RulerMarker) IsMovable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isMovable"))
 	return rv
@@ -229,7 +216,6 @@ func (r_ RulerMarker) IsMovable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/ismovable
-
 func (r_ RulerMarker) SetIsMovable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMovable:"), value)
 }
@@ -239,7 +225,6 @@ func (r_ RulerMarker) SetIsMovable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isremovable
-
 func (r_ RulerMarker) IsRemovable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isRemovable"))
 	return rv
@@ -250,7 +235,6 @@ func (r_ RulerMarker) IsRemovable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isremovable
-
 func (r_ RulerMarker) SetIsRemovable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRemovable:"), value)
 }
@@ -260,7 +244,6 @@ func (r_ RulerMarker) SetIsRemovable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/markerlocation
-
 func (r_ RulerMarker) MarkerLocation() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("markerLocation"))
 	return rv
@@ -271,7 +254,6 @@ func (r_ RulerMarker) MarkerLocation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/markerlocation
-
 func (r_ RulerMarker) SetMarkerLocation(value float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMarkerLocation:"), value)
 }
@@ -281,7 +263,6 @@ func (r_ RulerMarker) SetMarkerLocation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/representedobject
-
 func (r_ RulerMarker) RepresentedObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("representedObject"))
 	return rv
@@ -292,7 +273,6 @@ func (r_ RulerMarker) RepresentedObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/representedobject
-
 func (r_ RulerMarker) SetRepresentedObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRepresentedObject:"), value)
 }
@@ -302,7 +282,6 @@ func (r_ RulerMarker) SetRepresentedObject(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/thicknessrequiredinruler
-
 func (r_ RulerMarker) ThicknessRequiredInRuler() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("thicknessRequiredInRuler"))
 	return rv
@@ -313,7 +292,6 @@ func (r_ RulerMarker) ThicknessRequiredInRuler() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/thicknessrequiredinruler
-
 func (r_ RulerMarker) SetThicknessRequiredInRuler(value float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setThicknessRequiredInRuler:"), value)
 }

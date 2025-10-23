@@ -32,8 +32,10 @@ type ImDataAvailablePort interface {
 	objectivec.IObject
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mDataAvailablePort
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mDataAvailablePort
 type mDataAvailablePort struct {
 	objectivec.Object
 }

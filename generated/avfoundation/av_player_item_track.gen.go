@@ -30,15 +30,14 @@ type _PlayerItemTrackClass struct {
 // An interface definition for the [PlayerItemTrack] class.
 type IPlayerItemTrack interface {
 	objectivec.IObject
+	AssetTrack() AssetTrack
+	SetAssetTrack(value AssetTrack)
 	CurrentVideoFrameRate() float32
-	Enabled() bool
-	SetEnabled(value bool)
-	VideoFieldMode() string
-	SetVideoFieldMode(value string)
-	AssetTrack() AVAssetTrack
-	SetAssetTrack(value IAVAssetTrack)
+	SetCurrentVideoFrameRate(value float32)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	VideoFieldMode() string
+	SetVideoFieldMode(value string)
 	AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string
 }
 
@@ -49,7 +48,6 @@ type IPlayerItemTrack interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack
-
 type PlayerItemTrack struct {
 	objectivec.Object
 }
@@ -94,77 +92,41 @@ func NewPlayerItemTrack() PlayerItemTrack {
 
 
 
+// An asset track that provides the media for the player item track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
+func (p_ PlayerItemTrack) AssetTrack() AssetTrack {
+	rv := objc.Send[AssetTrack](p_.ID, objc.Sel("assetTrack"))
+	return rv
+}
+
+
+// An asset track that provides the media for the player item track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
+func (p_ PlayerItemTrack) SetAssetTrack(value AssetTrack) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetTrack:"), value)
+}
+
+
 // The current frame rate of the video track as it plays.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/currentVideoFrameRate
-
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/currentvideoframerate
 func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("currentVideoFrameRate"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the player item presents the track’s media during playback.
+// The current frame rate of the video track as it plays.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/isEnabled
-
-func (p_ PlayerItemTrack) Enabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the player item presents the track’s media during playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/isEnabled
-
-func (p_ PlayerItemTrack) SetEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setEnabled:"), value)
-}
-
-
-// A mode that specifies the handling of video frames that contain multiple fields.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-
-func (p_ PlayerItemTrack) VideoFieldMode() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
-	return rv
-}
-
-
-// A mode that specifies the handling of video frames that contain multiple fields.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-
-func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
-}
-
-
-// An asset track that provides the media for the player item track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
-
-func (p_ PlayerItemTrack) AssetTrack() AVAssetTrack {
-	rv := objc.Send[AVAssetTrack](p_.ID, objc.Sel("assetTrack"))
-	return rv
-}
-
-
-// An asset track that provides the media for the player item track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
-
-func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetTrack:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/currentvideoframerate
+func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentVideoFrameRate:"), value)
 }
 
 
@@ -172,7 +134,6 @@ func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
-
 func (p_ PlayerItemTrack) IsEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -183,9 +144,27 @@ func (p_ PlayerItemTrack) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
-
 func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+
+// A mode that specifies the handling of video frames that contain multiple fields.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/videofieldmode
+func (p_ PlayerItemTrack) VideoFieldMode() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
+	return rv
+}
+
+
+// A mode that specifies the handling of video frames that contain multiple fields.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/videofieldmode
+func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
 
 
@@ -193,7 +172,6 @@ func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields
-
 func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
 	return rv

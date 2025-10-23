@@ -52,7 +52,6 @@ type IGLKEffectPropertyFog interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog
-
 type GLKEffectPropertyFog struct {
 	GLKEffectProperty
 }
@@ -103,7 +102,6 @@ func NewGLKEffectPropertyFog() GLKEffectPropertyFog {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-
 func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("color"))
 	return rv
@@ -114,7 +112,6 @@ func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-
 func (g_ GLKEffectPropertyFog) SetColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
@@ -124,7 +121,6 @@ func (g_ GLKEffectPropertyFog) SetColor(value IGLKVector4) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/density
-
 func (g_ GLKEffectPropertyFog) Density() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("density"))
 	return rv
@@ -135,7 +131,6 @@ func (g_ GLKEffectPropertyFog) Density() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/density
-
 func (g_ GLKEffectPropertyFog) SetDensity(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDensity:"), value)
 }
@@ -145,7 +140,6 @@ func (g_ GLKEffectPropertyFog) SetDensity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/enabled
-
 func (g_ GLKEffectPropertyFog) Enabled() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("enabled"))
 	return rv
@@ -156,7 +150,6 @@ func (g_ GLKEffectPropertyFog) Enabled() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/enabled
-
 func (g_ GLKEffectPropertyFog) SetEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -166,7 +159,6 @@ func (g_ GLKEffectPropertyFog) SetEnabled(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/end
-
 func (g_ GLKEffectPropertyFog) End() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("end"))
 	return rv
@@ -177,7 +169,6 @@ func (g_ GLKEffectPropertyFog) End() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/end
-
 func (g_ GLKEffectPropertyFog) SetEnd(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnd:"), value)
 }
@@ -187,7 +178,6 @@ func (g_ GLKEffectPropertyFog) SetEnd(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/mode
-
 func (g_ GLKEffectPropertyFog) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mode"))
 	return rv
@@ -198,7 +188,6 @@ func (g_ GLKEffectPropertyFog) Mode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/mode
-
 func (g_ GLKEffectPropertyFog) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMode:"), value)
 }
@@ -208,7 +197,6 @@ func (g_ GLKEffectPropertyFog) SetMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/start
-
 func (g_ GLKEffectPropertyFog) Start() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("start"))
 	return rv
@@ -219,7 +207,6 @@ func (g_ GLKEffectPropertyFog) Start() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/start
-
 func (g_ GLKEffectPropertyFog) SetStart(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStart:"), value)
 }

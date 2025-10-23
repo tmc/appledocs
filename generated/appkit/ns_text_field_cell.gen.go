@@ -56,7 +56,6 @@ type ITextFieldCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell
-
 type TextFieldCell struct {
 	ActionCell
 }
@@ -103,12 +102,10 @@ func NewTextFieldCell() TextFieldCell {
 
 
 
-
 // Directs the cell’s associated field editor to post text change notifications.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/setWantsNotificationForMarkedText(_:)
-
 func (t_ TextFieldCell) SetWantsNotificationForMarkedText(flag bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWantsNotificationForMarkedText:"), flag)
 }
@@ -118,7 +115,6 @@ func (t_ TextFieldCell) SetWantsNotificationForMarkedText(flag bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/allowedInputSourceLocales
-
 func (t_ TextFieldCell) AllowedInputSourceLocales() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
@@ -129,7 +125,6 @@ func (t_ TextFieldCell) AllowedInputSourceLocales() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/allowedInputSourceLocales
-
 func (t_ TextFieldCell) SetAllowedInputSourceLocales(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -149,7 +144,6 @@ func (t_ TextFieldCell) SetAllowedInputSourceLocales(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/backgroundColor
-
 func (t_ TextFieldCell) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -160,7 +154,6 @@ func (t_ TextFieldCell) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/backgroundColor
-
 func (t_ TextFieldCell) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -170,7 +163,6 @@ func (t_ TextFieldCell) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/bezelStyle
-
 func (t_ TextFieldCell) BezelStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelStyle"))
 	return rv
@@ -181,7 +173,6 @@ func (t_ TextFieldCell) BezelStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/bezelStyle
-
 func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelStyle:"), value)
 }
@@ -191,7 +182,6 @@ func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-
 func (t_ TextFieldCell) PlaceholderAttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
@@ -202,7 +192,6 @@ func (t_ TextFieldCell) PlaceholderAttributedString() foundation.AttributedStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-
 func (t_ TextFieldCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
@@ -212,7 +201,6 @@ func (t_ TextFieldCell) SetPlaceholderAttributedString(value foundation.IAttribu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-
 func (t_ TextFieldCell) PlaceholderString() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("placeholderString"))
 	return rv
@@ -223,7 +211,6 @@ func (t_ TextFieldCell) PlaceholderString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-
 func (t_ TextFieldCell) SetPlaceholderString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
@@ -233,7 +220,6 @@ func (t_ TextFieldCell) SetPlaceholderString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/textColor
-
 func (t_ TextFieldCell) TextColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("textColor"))
 	return rv
@@ -244,7 +230,6 @@ func (t_ TextFieldCell) TextColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/textColor
-
 func (t_ TextFieldCell) SetTextColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }
@@ -254,7 +239,6 @@ func (t_ TextFieldCell) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
-
 func (t_ TextFieldCell) DrawsBackground() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
@@ -265,7 +249,6 @@ func (t_ TextFieldCell) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
-
 func (t_ TextFieldCell) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
 }

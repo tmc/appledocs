@@ -53,7 +53,6 @@ type IBAAssetPackManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager
-
 type BAAssetPackManager struct {
 	objectivec.Object
 }
@@ -102,109 +101,90 @@ func NewBAAssetPackManager() BAAssetPackManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-
 func (bc _BAAssetPackManagerClass) SharedManager() BAAssetPackManager {
 	rv := objc.Send[BAAssetPackManager](objc.ID(bc.class), objc.Sel("sharedManager"))
 	return rv
 }
 
-
 // Returns a URL for the specified relative path.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/URLForPath:error:
-
 func (b_ BAAssetPackManager) URLForPathError(path string, error_ unsafe.Pointer) foundation.URL {
 	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URLForPath:error:"), objc.String(path), error_)
 	return rv
 }
 
 
-
 // Gets the latest asset-pack information from the server, updates outdated asset packs, and removes obsolete asset packs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/checkForUpdatesWithCompletionHandler:
-
 func (b_ BAAssetPackManager) CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("checkForUpdatesWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Returns the contents of an asset file at the specified relative path.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:
-
 func (b_ BAAssetPackManager) ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) foundation.Data {
 	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("contentsAtPath:searchingInAssetPackWithIdentifier:options:error:"), objc.String(path), objc.String(assetPackIdentifier), options, error_)
 	return rv
 }
 
 
-
 // Ensures that the specified asset pack be available locally.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/ensureLocalAvailabilityOfAssetPack:completionHandler:
-
 func (b_ BAAssetPackManager) EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack IBAAssetPack, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("ensureLocalAvailabilityOfAssetPack:completionHandler:"), assetPack, completionHandler)
 }
-
 
 
 // Opens and returns a file descriptor for the asset file at the specified relative path.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:
-
 func (b_ BAAssetPackManager) FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string, assetPackIdentifier string, error_ unsafe.Pointer) int {
 	rv := objc.Send[int](b_.ID, objc.Sel("fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:"), objc.String(path), objc.String(assetPackIdentifier), error_)
 	return rv
 }
 
 
-
 // Gets the asset packs that are available to download.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getAllAssetPacksWithCompletionHandler:
-
 func (b_ BAAssetPackManager) GetAllAssetPacksWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getAllAssetPacksWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Gets the asset pack with the given identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getAssetPackWithIdentifier:completionHandler:
-
 func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
 }
-
 
 
 // Gets the status of the asset pack with the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getStatusOfAssetPackWithIdentifier:completionHandler:
-
 func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getStatusOfAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
 }
-
 
 
 // Removes the specified asset pack from the device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/removeAssetPackWithIdentifier:completionHandler:
-
 func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("removeAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
 }
@@ -214,7 +194,6 @@ func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(asse
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/delegate
-
 func (b_ BAAssetPackManager) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("delegate"))
 	return rv
@@ -225,7 +204,6 @@ func (b_ BAAssetPackManager) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/delegate
-
 func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -235,7 +213,6 @@ func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-
 func (b_ BAAssetPackManager) SharedManager() BAAssetPackManager {
 	rv := objc.Send[BAAssetPackManager](b_.ID, objc.Sel("sharedManager"))
 	return rv

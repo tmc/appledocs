@@ -84,7 +84,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyEAPIdentity
-
 func CWKeychainCopyEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyEAPIdentity(ssidData, identity)
 	}
@@ -98,7 +97,6 @@ func CWKeychainCopyEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyEAPIdentityList(_:)
-
 func CWKeychainCopyEAPIdentityList(list unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyEAPIdentityList(list)
 	}
@@ -114,7 +112,6 @@ func CWKeychainCopyEAPIdentityList(list unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyEAPUsernameAndPassword
-
 func CWKeychainCopyEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyEAPUsernameAndPassword(ssidData, username, password)
 	}
@@ -130,7 +127,6 @@ func CWKeychainCopyEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyPassword
-
 func CWKeychainCopyPassword(ssidData unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyPassword(ssidData, password)
 	}
@@ -144,7 +140,6 @@ func CWKeychainCopyPassword(ssidData unsafe.Pointer, password unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyWiFiEAPIdentity(_:_:_:)
-
 func CWKeychainCopyWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyWiFiEAPIdentity(domain, ssid, identity)
 	}
@@ -160,7 +155,6 @@ func CWKeychainCopyWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeleteEAPUsernameAndPassword
-
 func CWKeychainDeleteEAPUsernameAndPassword(ssidData unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainDeleteEAPUsernameAndPassword(ssidData)
 	}
@@ -176,7 +170,6 @@ func CWKeychainDeleteEAPUsernameAndPassword(ssidData unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeletePassword
-
 func CWKeychainDeletePassword(ssidData unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainDeletePassword(ssidData)
 	}
@@ -190,7 +183,6 @@ func CWKeychainDeletePassword(ssidData unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeleteWiFiEAPUsernameAndPassword(_:_:)
-
 func CWKeychainDeleteWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainDeleteWiFiEAPUsernameAndPassword(domain, ssid)
 	}
@@ -204,7 +196,6 @@ func CWKeychainDeleteWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeleteWiFiPassword(_:_:)
-
 func CWKeychainDeleteWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainDeleteWiFiPassword(domain, ssid)
 	}
@@ -218,7 +209,6 @@ func CWKeychainDeleteWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainFindWiFiEAPUsernameAndPassword(_:_:_:_:)
-
 func CWKeychainFindWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainFindWiFiEAPUsernameAndPassword(domain, ssid, username, password)
 	}
@@ -232,7 +222,6 @@ func CWKeychainFindWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainFindWiFiPassword(_:_:_:)
-
 func CWKeychainFindWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainFindWiFiPassword(domain, ssid, password)
 	}
@@ -248,7 +237,6 @@ func CWKeychainFindWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, pass
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetEAPIdentity
-
 func CWKeychainSetEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetEAPIdentity(ssidData, identity)
 	}
@@ -264,7 +252,6 @@ func CWKeychainSetEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetEAPUsernameAndPassword
-
 func CWKeychainSetEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetEAPUsernameAndPassword(ssidData, username, password)
 	}
@@ -280,7 +267,6 @@ func CWKeychainSetEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetPassword
-
 func CWKeychainSetPassword(ssidData unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetPassword(ssidData, password)
 	}
@@ -294,7 +280,6 @@ func CWKeychainSetPassword(ssidData unsafe.Pointer, password unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetWiFiEAPIdentity(_:_:_:)
-
 func CWKeychainSetWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetWiFiEAPIdentity(domain, ssid, identity)
 	}
@@ -308,7 +293,6 @@ func CWKeychainSetWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, id
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetWiFiEAPUsernameAndPassword(_:_:_:_:)
-
 func CWKeychainSetWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetWiFiEAPUsernameAndPassword(domain, ssid, username, password)
 	}
@@ -322,7 +306,6 @@ func CWKeychainSetWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetWiFiPassword(_:_:_:)
-
 func CWKeychainSetWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetWiFiPassword(domain, ssid, password)
 	}
@@ -336,7 +319,6 @@ func CWKeychainSetWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, passw
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMergeNetworks(_:)
-
 func CWMergeNetworks(networks unsafe.Pointer) unsafe.Pointer {
 	return _CWMergeNetworks(networks)
 	}

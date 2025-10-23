@@ -42,7 +42,6 @@ type IState interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLState
-
 type State struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewState() State {
 
 
 
-
 // Gets a mutable view into a state buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLState/getMultiArrayForStateNamed:handler:
-
 func (s_ State) GetMultiArrayForStateNamedHandler(stateName string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getMultiArrayForStateNamed:handler:"), objc.String(stateName), handler)
 }

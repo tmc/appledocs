@@ -49,7 +49,6 @@ type IMIDIUMPEndpoint interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint
-
 type MIDIUMPEndpoint struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewMIDIUMPEndpoint() MIDIUMPEndpoint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/deviceInfo
-
 func (m_ MIDIUMPEndpoint) DeviceInfo() MIDI2DeviceInfo {
 	rv := objc.Send[MIDI2DeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ MIDIUMPEndpoint) DeviceInfo() MIDI2DeviceInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/endpointType
-
 func (m_ MIDIUMPEndpoint) EndpointType() MIDIUMPCIObjectBackingType {
 	rv := objc.Send[MIDIUMPCIObjectBackingType](m_.ID, objc.Sel("endpointType"))
 	return rv
@@ -112,7 +109,6 @@ func (m_ MIDIUMPEndpoint) EndpointType() MIDIUMPCIObjectBackingType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/functionBlocks
-
 func (m_ MIDIUMPEndpoint) FunctionBlocks() []MIDIUMPFunctionBlock {
 	rv := objc.Send[[]MIDIUMPFunctionBlock](m_.ID, objc.Sel("functionBlocks"))
 	return rv
@@ -121,7 +117,6 @@ func (m_ MIDIUMPEndpoint) FunctionBlocks() []MIDIUMPFunctionBlock {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/functionBlocks
-
 func (m_ MIDIUMPEndpoint) SetFunctionBlocks(value []MIDIUMPFunctionBlock) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -139,7 +134,6 @@ func (m_ MIDIUMPEndpoint) SetFunctionBlocks(value []MIDIUMPFunctionBlock) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasJRTSReceiveCapability
-
 func (m_ MIDIUMPEndpoint) HasJRTSReceiveCapability() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasJRTSReceiveCapability"))
 	return rv
@@ -148,7 +142,6 @@ func (m_ MIDIUMPEndpoint) HasJRTSReceiveCapability() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasJRTSTransmitCapability
-
 func (m_ MIDIUMPEndpoint) HasJRTSTransmitCapability() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasJRTSTransmitCapability"))
 	return rv
@@ -157,7 +150,6 @@ func (m_ MIDIUMPEndpoint) HasJRTSTransmitCapability() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasStaticFunctionBlocks
-
 func (m_ MIDIUMPEndpoint) HasStaticFunctionBlocks() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasStaticFunctionBlocks"))
 	return rv
@@ -166,7 +158,6 @@ func (m_ MIDIUMPEndpoint) HasStaticFunctionBlocks() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiDestination
-
 func (m_ MIDIUMPEndpoint) MIDIDestination() MIDIEndpointRef {
 	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("MIDIDestination"))
 	return rv
@@ -175,7 +166,6 @@ func (m_ MIDIUMPEndpoint) MIDIDestination() MIDIEndpointRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiProtocol
-
 func (m_ MIDIUMPEndpoint) MIDIProtocol() MIDIProtocolID {
 	rv := objc.Send[MIDIProtocolID](m_.ID, objc.Sel("MIDIProtocol"))
 	return rv
@@ -184,7 +174,6 @@ func (m_ MIDIUMPEndpoint) MIDIProtocol() MIDIProtocolID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiSource
-
 func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef {
 	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("MIDISource"))
 	return rv
@@ -193,7 +182,6 @@ func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/name
-
 func (m_ MIDIUMPEndpoint) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -202,7 +190,6 @@ func (m_ MIDIUMPEndpoint) Name() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/productInstanceID
-
 func (m_ MIDIUMPEndpoint) ProductInstanceID() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("productInstanceID"))
 	return rv
@@ -211,7 +198,6 @@ func (m_ MIDIUMPEndpoint) ProductInstanceID() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/supportedMIDIProtocols
-
 func (m_ MIDIUMPEndpoint) SupportedMIDIProtocols() MIDIUMPProtocolOptions {
 	rv := objc.Send[MIDIUMPProtocolOptions](m_.ID, objc.Sel("supportedMIDIProtocols"))
 	return rv

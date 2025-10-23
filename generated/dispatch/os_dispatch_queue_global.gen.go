@@ -41,7 +41,6 @@ type IOS_dispatch_queue_global interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/OS_dispatch_queue_global-swift.class
-
 type OS_dispatch_queue_global struct {
 	objectivec.Object
 }

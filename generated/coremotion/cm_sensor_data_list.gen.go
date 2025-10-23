@@ -41,7 +41,6 @@ type ISensorDataList interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorDataList
-
 type SensorDataList struct {
 	objectivec.Object
 }

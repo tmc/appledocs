@@ -44,7 +44,6 @@ type ICarrier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier
-
 type Carrier struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewCarrier() Carrier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/allowsVOIP
-
 func (c_ Carrier) AllowsVOIP() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsVOIP"))
 	return rv
@@ -104,7 +102,6 @@ func (c_ Carrier) AllowsVOIP() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/carrierName
-
 func (c_ Carrier) CarrierName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("carrierName"))
 	return rv
@@ -115,7 +112,6 @@ func (c_ Carrier) CarrierName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/isoCountryCode
-
 func (c_ Carrier) IsoCountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ Carrier) IsoCountryCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileCountryCode
-
 func (c_ Carrier) MobileCountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("mobileCountryCode"))
 	return rv
@@ -137,7 +132,6 @@ func (c_ Carrier) MobileCountryCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileNetworkCode
-
 func (c_ Carrier) MobileNetworkCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("mobileNetworkCode"))
 	return rv

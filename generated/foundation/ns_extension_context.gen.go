@@ -36,7 +36,7 @@ type IExtensionContext interface {
 	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL IURL, broadcastConfiguration objectivec.IObject, setupInfo IDictionary)
 	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary)
 	DismissNotificationContentExtension()
-	InterfaceParametersDescription() String
+	InterfaceParametersDescription() IString
 	LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer)
 	MediaPlayingPaused()
 	MediaPlayingStarted()
@@ -152,7 +152,7 @@ func (e_ ExtensionContext) DismissNotificationContentExtension() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/interfaceParametersDescription()
-func (e_ ExtensionContext) InterfaceParametersDescription() String {
+func (e_ ExtensionContext) InterfaceParametersDescription() IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("interfaceParametersDescription"))
 	return rv
 }

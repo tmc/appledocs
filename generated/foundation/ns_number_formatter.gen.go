@@ -31,17 +31,17 @@ type _NumberFormatterClass struct {
 type INumberFormatter interface {
 	IFormatter
 	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
-	NumberFromString(string_ string) Number
-	StringFromNumber(number INumber) String
+	NumberFromString(string_ string) INumber
+	StringFromNumber(number INumber) IString
 	AllowsFloats() bool
 	SetAllowsFloats(value bool)
 	AlwaysShowsDecimalSeparator() bool
 	SetAlwaysShowsDecimalSeparator(value bool)
-	AttributedStringForNil() NSAttributedString
+	AttributedStringForNil() IAttributedString
 	SetAttributedStringForNil(value IAttributedString)
-	AttributedStringForNotANumber() NSAttributedString
+	AttributedStringForNotANumber() IAttributedString
 	SetAttributedStringForNotANumber(value IAttributedString)
-	AttributedStringForZero() NSAttributedString
+	AttributedStringForZero() IAttributedString
 	SetAttributedStringForZero(value IAttributedString)
 	CurrencyCode() string
 	SetCurrencyCode(value string)
@@ -59,8 +59,8 @@ type INumberFormatter interface {
 	SetFormat(value string)
 	FormatWidth() uint
 	SetFormatWidth(value uint)
-	FormatterBehavior() NumberFormatterBehavior
-	SetFormatterBehavior(value NumberFormatterBehavior)
+	FormatterBehavior() NSNumberFormatterBehavior
+	SetFormatterBehavior(value NSNumberFormatterBehavior)
 	FormattingContext() int
 	SetFormattingContext(value int)
 	GeneratesDecimalNumbers() bool
@@ -77,11 +77,11 @@ type INumberFormatter interface {
 	SetLenient(value bool)
 	PartialStringValidationEnabled() bool
 	SetPartialStringValidationEnabled(value bool)
-	Locale() NSLocale
+	Locale() ILocale
 	SetLocale(value ILocale)
 	LocalizesFormat() bool
 	SetLocalizesFormat(value bool)
-	Maximum() Number
+	Maximum() INumber
 	SetMaximum(value INumber)
 	MaximumFractionDigits() uint
 	SetMaximumFractionDigits(value uint)
@@ -89,7 +89,7 @@ type INumberFormatter interface {
 	SetMaximumIntegerDigits(value uint)
 	MaximumSignificantDigits() uint
 	SetMaximumSignificantDigits(value uint)
-	Minimum() Number
+	Minimum() INumber
 	SetMinimum(value INumber)
 	MinimumFractionDigits() uint
 	SetMinimumFractionDigits(value uint)
@@ -101,7 +101,7 @@ type INumberFormatter interface {
 	SetMinimumSignificantDigits(value uint)
 	MinusSign() string
 	SetMinusSign(value string)
-	Multiplier() Number
+	Multiplier() INumber
 	SetMultiplier(value INumber)
 	NegativeFormat() string
 	SetNegativeFormat(value string)
@@ -115,12 +115,12 @@ type INumberFormatter interface {
 	SetNilSymbol(value string)
 	NotANumberSymbol() string
 	SetNotANumberSymbol(value string)
-	NumberStyle() NumberFormatterStyle
-	SetNumberStyle(value NumberFormatterStyle)
+	NumberStyle() NSNumberFormatterStyle
+	SetNumberStyle(value NSNumberFormatterStyle)
 	PaddingCharacter() string
 	SetPaddingCharacter(value string)
-	PaddingPosition() NumberFormatterPadPosition
-	SetPaddingPosition(value INumberFormatterPadPosition)
+	PaddingPosition() NSNumberFormatterPadPosition
+	SetPaddingPosition(value NSNumberFormatterPadPosition)
 	PerMillSymbol() string
 	SetPerMillSymbol(value string)
 	PercentSymbol() string
@@ -135,12 +135,12 @@ type INumberFormatter interface {
 	SetPositivePrefix(value string)
 	PositiveSuffix() string
 	SetPositiveSuffix(value string)
-	RoundingBehavior() NSDecimalNumberHandler
+	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() Number
+	RoundingIncrement() INumber
 	SetRoundingIncrement(value INumber)
-	RoundingMode() NumberFormatterRoundingMode
-	SetRoundingMode(value NumberFormatterRoundingMode)
+	RoundingMode() NSNumberFormatterRoundingMode
+	SetRoundingMode(value NSNumberFormatterRoundingMode)
 	SecondaryGroupingSize() uint
 	SetSecondaryGroupingSize(value uint)
 	TextAttributesForNegativeInfinity() IDictionary
@@ -230,7 +230,7 @@ func NewNumberFormatter() NumberFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/defaultFormatterBehavior()
-func (nc _NumberFormatterClass) DefaultFormatterBehavior() NumberFormatterBehavior {
+func (nc _NumberFormatterClass) DefaultFormatterBehavior() NSNumberFormatterBehavior {
 	rv := objc.Send[NumberFormatterBehavior](objc.ID(nc.class), objc.Sel("defaultFormatterBehavior"))
 	return rv
 }
@@ -240,7 +240,7 @@ func (nc _NumberFormatterClass) DefaultFormatterBehavior() NumberFormatterBehavi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizedString(from:number:)
-func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num INumber, nstyle NSNumberFormatterStyle) String {
+func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num INumber, nstyle NSNumberFormatterStyle) IString {
 	rv := objc.Send[String](objc.ID(nc.class), objc.Sel("localizedStringFromNumber:numberStyle:"), num, nstyle)
 	return rv
 }
@@ -269,7 +269,7 @@ func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/number(from:)
-func (n_ NumberFormatter) NumberFromString(string_ string) Number {
+func (n_ NumberFormatter) NumberFromString(string_ string) INumber {
 	rv := objc.Send[Number](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
 	return rv
 }
@@ -279,7 +279,7 @@ func (n_ NumberFormatter) NumberFromString(string_ string) Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/string(from:)
-func (n_ NumberFormatter) StringFromNumber(number INumber) String {
+func (n_ NumberFormatter) StringFromNumber(number INumber) IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("stringFromNumber:"), number)
 	return rv
 }
@@ -327,7 +327,7 @@ func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
-func (n_ NumberFormatter) AttributedStringForNil() NSAttributedString {
+func (n_ NumberFormatter) AttributedStringForNil() IAttributedString {
 	rv := objc.Send[NSAttributedString](n_.ID, objc.Sel("attributedStringForNil"))
 	return rv
 }
@@ -346,7 +346,7 @@ func (n_ NumberFormatter) SetAttributedStringForNil(value IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
-func (n_ NumberFormatter) AttributedStringForNotANumber() NSAttributedString {
+func (n_ NumberFormatter) AttributedStringForNotANumber() IAttributedString {
 	rv := objc.Send[NSAttributedString](n_.ID, objc.Sel("attributedStringForNotANumber"))
 	return rv
 }
@@ -365,7 +365,7 @@ func (n_ NumberFormatter) SetAttributedStringForNotANumber(value IAttributedStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
-func (n_ NumberFormatter) AttributedStringForZero() NSAttributedString {
+func (n_ NumberFormatter) AttributedStringForZero() IAttributedString {
 	rv := objc.Send[NSAttributedString](n_.ID, objc.Sel("attributedStringForZero"))
 	return rv
 }
@@ -536,7 +536,7 @@ func (n_ NumberFormatter) SetFormatWidth(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatterBehavior
-func (n_ NumberFormatter) FormatterBehavior() NumberFormatterBehavior {
+func (n_ NumberFormatter) FormatterBehavior() NSNumberFormatterBehavior {
 	rv := objc.Send[NumberFormatterBehavior](n_.ID, objc.Sel("formatterBehavior"))
 	return rv
 }
@@ -546,7 +546,7 @@ func (n_ NumberFormatter) FormatterBehavior() NumberFormatterBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatterBehavior
-func (n_ NumberFormatter) SetFormatterBehavior(value NumberFormatterBehavior) {
+func (n_ NumberFormatter) SetFormatterBehavior(value NSNumberFormatterBehavior) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatterBehavior:"), value)
 }
 
@@ -707,7 +707,7 @@ func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
-func (n_ NumberFormatter) Locale() NSLocale {
+func (n_ NumberFormatter) Locale() ILocale {
 	rv := objc.Send[NSLocale](n_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -745,7 +745,7 @@ func (n_ NumberFormatter) SetLocalizesFormat(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) Maximum() Number {
+func (n_ NumberFormatter) Maximum() INumber {
 	rv := objc.Send[Number](n_.ID, objc.Sel("maximum"))
 	return rv
 }
@@ -821,7 +821,7 @@ func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) Minimum() Number {
+func (n_ NumberFormatter) Minimum() INumber {
 	rv := objc.Send[Number](n_.ID, objc.Sel("minimum"))
 	return rv
 }
@@ -931,7 +931,7 @@ func (n_ NumberFormatter) SetMinusSign(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) Multiplier() Number {
+func (n_ NumberFormatter) Multiplier() INumber {
 	rv := objc.Send[Number](n_.ID, objc.Sel("multiplier"))
 	return rv
 }
@@ -1064,7 +1064,7 @@ func (n_ NumberFormatter) SetNotANumberSymbol(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/numberStyle
-func (n_ NumberFormatter) NumberStyle() NumberFormatterStyle {
+func (n_ NumberFormatter) NumberStyle() NSNumberFormatterStyle {
 	rv := objc.Send[NumberFormatterStyle](n_.ID, objc.Sel("numberStyle"))
 	return rv
 }
@@ -1074,7 +1074,7 @@ func (n_ NumberFormatter) NumberStyle() NumberFormatterStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/numberStyle
-func (n_ NumberFormatter) SetNumberStyle(value NumberFormatterStyle) {
+func (n_ NumberFormatter) SetNumberStyle(value NSNumberFormatterStyle) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberStyle:"), value)
 }
 
@@ -1102,7 +1102,7 @@ func (n_ NumberFormatter) SetPaddingCharacter(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/paddingPosition
-func (n_ NumberFormatter) PaddingPosition() NumberFormatterPadPosition {
+func (n_ NumberFormatter) PaddingPosition() NSNumberFormatterPadPosition {
 	rv := objc.Send[NumberFormatterPadPosition](n_.ID, objc.Sel("paddingPosition"))
 	return rv
 }
@@ -1112,7 +1112,7 @@ func (n_ NumberFormatter) PaddingPosition() NumberFormatterPadPosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/paddingPosition
-func (n_ NumberFormatter) SetPaddingPosition(value INumberFormatterPadPosition) {
+func (n_ NumberFormatter) SetPaddingPosition(value NSNumberFormatterPadPosition) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPaddingPosition:"), value)
 }
 
@@ -1254,7 +1254,7 @@ func (n_ NumberFormatter) SetPositiveSuffix(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingBehavior
-func (n_ NumberFormatter) RoundingBehavior() NSDecimalNumberHandler {
+func (n_ NumberFormatter) RoundingBehavior() IDecimalNumberHandler {
 	rv := objc.Send[NSDecimalNumberHandler](n_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
@@ -1273,7 +1273,7 @@ func (n_ NumberFormatter) SetRoundingBehavior(value IDecimalNumberHandler) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) RoundingIncrement() Number {
+func (n_ NumberFormatter) RoundingIncrement() INumber {
 	rv := objc.Send[Number](n_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
@@ -1292,7 +1292,7 @@ func (n_ NumberFormatter) SetRoundingIncrement(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingMode-swift.property
-func (n_ NumberFormatter) RoundingMode() NumberFormatterRoundingMode {
+func (n_ NumberFormatter) RoundingMode() NSNumberFormatterRoundingMode {
 	rv := objc.Send[NumberFormatterRoundingMode](n_.ID, objc.Sel("roundingMode"))
 	return rv
 }
@@ -1302,7 +1302,7 @@ func (n_ NumberFormatter) RoundingMode() NumberFormatterRoundingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingMode-swift.property
-func (n_ NumberFormatter) SetRoundingMode(value NumberFormatterRoundingMode) {
+func (n_ NumberFormatter) SetRoundingMode(value NSNumberFormatterRoundingMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingMode:"), value)
 }
 

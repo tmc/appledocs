@@ -42,7 +42,6 @@ type IDDMatchFlightNumber interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber
-
 type DDMatchFlightNumber struct {
 	DDMatch
 }
@@ -93,7 +92,6 @@ func NewDDMatchFlightNumber() DDMatchFlightNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/airline
-
 func (d_ DDMatchFlightNumber) Airline() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("airline"))
 	return rv
@@ -104,7 +102,6 @@ func (d_ DDMatchFlightNumber) Airline() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/flightNumber
-
 func (d_ DDMatchFlightNumber) FlightNumber() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("flightNumber"))
 	return rv

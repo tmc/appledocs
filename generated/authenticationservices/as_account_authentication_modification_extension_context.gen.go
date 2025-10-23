@@ -42,7 +42,6 @@ type IAccountAuthenticationModificationExtensionContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext
-
 type AccountAuthenticationModificationExtensionContext struct {
 	foundation.ExtensionContext
 }
@@ -89,12 +88,10 @@ func NewAccountAuthenticationModificationExtensionContext() AccountAuthenticatio
 
 
 
-
 // Completes a request to update an account’s authentication credentials from using a weak password to using a strong password.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeChangePasswordRequest(updatedCredential:userInfo:)
-
 func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential IASPasswordCredential, userInfo objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("completeChangePasswordRequestWithUpdatedCredential:userInfo:"), updatedCredential, userInfo)
 }
@@ -104,7 +101,6 @@ func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey
-
 func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
 	return rv

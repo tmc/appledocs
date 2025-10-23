@@ -41,7 +41,6 @@ type IGLKEffectProperty interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectProperty
-
 type GLKEffectProperty struct {
 	objectivec.Object
 }

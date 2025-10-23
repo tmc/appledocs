@@ -44,9 +44,9 @@ type IFormCell interface {
 	Title() string
 	SetTitle(value string)
 	TitleAlignment() TextAlignment
-	SetTitleAlignment(value TextAlignment)
+	SetTitleAlignment(value ITextAlignment)
 	TitleBaseWritingDirection() WritingDirection
-	SetTitleBaseWritingDirection(value WritingDirection)
+	SetTitleBaseWritingDirection(value IWritingDirection)
 	TitleFont() NSFont
 	SetTitleFont(value IFont)
 	TitleWidth() float64
@@ -62,7 +62,6 @@ type IFormCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell
-
 type FormCell struct {
 	ActionCell
 }
@@ -109,10 +108,8 @@ func NewFormCell() FormCell {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell/init(coder:)
-
 func NewFormCellWithCoder(coder foundation.ICoder) FormCell {
 	instance := getFormCellClass().Alloc()
 	rv := objc.Send[FormCell](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -126,7 +123,6 @@ func NewFormCellWithCoder(coder foundation.ICoder) FormCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell/isOpaque
-
 func (f_ FormCell) Opaque() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("opaque"))
 	return rv
@@ -137,7 +133,6 @@ func (f_ FormCell) Opaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/attributedtitle
-
 func (f_ FormCell) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](f_.ID, objc.Sel("attributedTitle"))
 	return rv
@@ -148,7 +143,6 @@ func (f_ FormCell) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/attributedtitle
-
 func (f_ FormCell) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributedTitle:"), value)
 }
@@ -158,7 +152,6 @@ func (f_ FormCell) SetAttributedTitle(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/isopaque
-
 func (f_ FormCell) IsOpaque() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isOpaque"))
 	return rv
@@ -169,7 +162,6 @@ func (f_ FormCell) IsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/isopaque
-
 func (f_ FormCell) SetIsOpaque(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsOpaque:"), value)
 }
@@ -179,7 +171,6 @@ func (f_ FormCell) SetIsOpaque(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderattributedstring
-
 func (f_ FormCell) PlaceholderAttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](f_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
@@ -190,7 +181,6 @@ func (f_ FormCell) PlaceholderAttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderattributedstring
-
 func (f_ FormCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
@@ -200,7 +190,6 @@ func (f_ FormCell) SetPlaceholderAttributedString(value foundation.IAttributedSt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderstring
-
 func (f_ FormCell) PlaceholderString() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("placeholderString"))
 	return rv
@@ -211,7 +200,6 @@ func (f_ FormCell) PlaceholderString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderstring
-
 func (f_ FormCell) SetPlaceholderString(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
@@ -221,7 +209,6 @@ func (f_ FormCell) SetPlaceholderString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/preferredtextfieldwidth
-
 func (f_ FormCell) PreferredTextFieldWidth() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("preferredTextFieldWidth"))
 	return rv
@@ -232,7 +219,6 @@ func (f_ FormCell) PreferredTextFieldWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/preferredtextfieldwidth
-
 func (f_ FormCell) SetPreferredTextFieldWidth(value float64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredTextFieldWidth:"), value)
 }
@@ -242,7 +228,6 @@ func (f_ FormCell) SetPreferredTextFieldWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/title
-
 func (f_ FormCell) Title() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("title"))
 	return rv
@@ -253,7 +238,6 @@ func (f_ FormCell) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/title
-
 func (f_ FormCell) SetTitle(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -263,7 +247,6 @@ func (f_ FormCell) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlealignment
-
 func (f_ FormCell) TitleAlignment() TextAlignment {
 	rv := objc.Send[TextAlignment](f_.ID, objc.Sel("titleAlignment"))
 	return rv
@@ -274,8 +257,7 @@ func (f_ FormCell) TitleAlignment() TextAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlealignment
-
-func (f_ FormCell) SetTitleAlignment(value TextAlignment) {
+func (f_ FormCell) SetTitleAlignment(value ITextAlignment) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleAlignment:"), value)
 }
 
@@ -284,7 +266,6 @@ func (f_ FormCell) SetTitleAlignment(value TextAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlebasewritingdirection
-
 func (f_ FormCell) TitleBaseWritingDirection() WritingDirection {
 	rv := objc.Send[WritingDirection](f_.ID, objc.Sel("titleBaseWritingDirection"))
 	return rv
@@ -295,8 +276,7 @@ func (f_ FormCell) TitleBaseWritingDirection() WritingDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlebasewritingdirection
-
-func (f_ FormCell) SetTitleBaseWritingDirection(value WritingDirection) {
+func (f_ FormCell) SetTitleBaseWritingDirection(value IWritingDirection) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleBaseWritingDirection:"), value)
 }
 
@@ -305,7 +285,6 @@ func (f_ FormCell) SetTitleBaseWritingDirection(value WritingDirection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlefont
-
 func (f_ FormCell) TitleFont() NSFont {
 	rv := objc.Send[NSFont](f_.ID, objc.Sel("titleFont"))
 	return rv
@@ -316,7 +295,6 @@ func (f_ FormCell) TitleFont() NSFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlefont
-
 func (f_ FormCell) SetTitleFont(value IFont) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleFont:"), value)
 }
@@ -326,7 +304,6 @@ func (f_ FormCell) SetTitleFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlewidth
-
 func (f_ FormCell) TitleWidth() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("titleWidth"))
 	return rv
@@ -337,7 +314,6 @@ func (f_ FormCell) TitleWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/titlewidth
-
 func (f_ FormCell) SetTitleWidth(value float64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTitleWidth:"), value)
 }

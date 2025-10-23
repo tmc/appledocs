@@ -32,7 +32,9 @@ type ImIsServer interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mIsServer
 type mIsServer struct {
 	objectivec.Object

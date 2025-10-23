@@ -42,7 +42,6 @@ type IStateConstraint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint
-
 type StateConstraint struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewStateConstraint() StateConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/bufferShape-6o5vn
-
 func (s_ StateConstraint) BufferShape() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("bufferShape"))
 	return rv
@@ -102,7 +100,6 @@ func (s_ StateConstraint) BufferShape() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/dataType
-
 func (s_ StateConstraint) DataType() MultiArrayDataType {
 	rv := objc.Send[MultiArrayDataType](s_.ID, objc.Sel("dataType"))
 	return rv

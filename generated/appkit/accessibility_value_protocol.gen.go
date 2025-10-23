@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // accessibilityValueProtocol is the accessibilityValue protocol.
 //
+// Availability:
+//   - macOS 10.10+
+//
 // Use this protocol when registering custom classes that conform to accessibilityValue.
 var accessibilityValueProtocol *objc.Protocol
 

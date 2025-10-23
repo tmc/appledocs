@@ -45,7 +45,6 @@ type IWebAuthenticationSessionWebBrowserSessionManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager
-
 type WebAuthenticationSessionWebBrowserSessionManager struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewWebAuthenticationSessionWebBrowserSessionManager() WebAuthenticationSess
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager/shared
-
 func (wc _WebAuthenticationSessionWebBrowserSessionManagerClass) SharedManager() WebAuthenticationSessionWebBrowserSessionManager {
 	rv := objc.Send[ASWebAuthenticationSessionWebBrowserSessionManager](objc.ID(wc.class), objc.Sel("sharedManager"))
 	return rv
@@ -104,7 +102,6 @@ func (wc _WebAuthenticationSessionWebBrowserSessionManagerClass) SharedManager()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager/shared
-
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SharedManager() ASWebAuthenticationSessionWebBrowserSessionManager {
 	rv := objc.Send[ASWebAuthenticationSessionWebBrowserSessionManager](w_.ID, objc.Sel("sharedManager"))
 	return rv
@@ -115,7 +112,6 @@ func (w_ WebAuthenticationSessionWebBrowserSessionManager) SharedManager() ASWeb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/sessionhandler
-
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SessionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("sessionHandler"))
 	return rv
@@ -126,7 +122,6 @@ func (w_ WebAuthenticationSessionWebBrowserSessionManager) SessionHandler() unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/sessionhandler
-
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetSessionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSessionHandler:"), value)
 }
@@ -136,7 +131,6 @@ func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetSessionHandler(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices
-
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) WasLaunchedByAuthenticationServices() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("wasLaunchedByAuthenticationServices"))
 	return rv
@@ -147,7 +141,6 @@ func (w_ WebAuthenticationSessionWebBrowserSessionManager) WasLaunchedByAuthenti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices
-
 func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetWasLaunchedByAuthenticationServices(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWasLaunchedByAuthenticationServices:"), value)
 }

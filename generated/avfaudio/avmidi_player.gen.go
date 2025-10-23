@@ -35,7 +35,7 @@ type IMIDIPlayer interface {
 	PrepareToPlay()
 	Stop()
 	CurrentPosition() foundation.TimeInterval
-	SetCurrentPosition(value foundation.TimeInterval)
+	SetCurrentPosition(value foundation.ITimeInterval)
 	Duration() foundation.TimeInterval
 	Playing() bool
 	Rate() float32
@@ -53,7 +53,6 @@ type IMIDIPlayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer
-
 type MIDIPlayer struct {
 	objectivec.Object
 }
@@ -98,12 +97,10 @@ func NewMIDIPlayer() MIDIPlayer {
 
 
 
-
 // Creates a player to play a MIDI file with the specified soundbank.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(contentsOf:soundBankURL:)
-
 func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.IURL, bankURL foundation.IURL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithContentsOfURL:soundBankURL:error:"), inURL, bankURL, outError)
@@ -112,12 +109,10 @@ func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.IURL, bank
 }
 
 
-
 // Creates a player to play MIDI data with the specified soundbank.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(data:soundBankURL:)
-
 func NewMIDIPlayerWithDataSoundBankURLError(data foundation.IData, bankURL foundation.IURL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithData:soundBankURL:error:"), data, bankURL, outError)
@@ -127,34 +122,28 @@ func NewMIDIPlayerWithDataSoundBankURLError(data foundation.IData, bankURL found
 
 
 
-
 // Plays the MIDI sequence.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/play(_:)
-
 func (m_ MIDIPlayer) Play(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("play:"), completionHandler)
 }
-
 
 
 // Prepares the player to play the sequence by prerolling all events.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/prepareToPlay()
-
 func (m_ MIDIPlayer) PrepareToPlay() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("prepareToPlay"))
 }
-
 
 
 // Stops playing the sequence.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/stop()
-
 func (m_ MIDIPlayer) Stop() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stop"))
 }
@@ -164,7 +153,6 @@ func (m_ MIDIPlayer) Stop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-
 func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("currentPosition"))
 	return rv
@@ -175,8 +163,7 @@ func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-
-func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
+func (m_ MIDIPlayer) SetCurrentPosition(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentPosition:"), value)
 }
 
@@ -185,7 +172,6 @@ func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/duration
-
 func (m_ MIDIPlayer) Duration() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("duration"))
 	return rv
@@ -196,7 +182,6 @@ func (m_ MIDIPlayer) Duration() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/isPlaying
-
 func (m_ MIDIPlayer) Playing() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("playing"))
 	return rv
@@ -207,7 +192,6 @@ func (m_ MIDIPlayer) Playing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
-
 func (m_ MIDIPlayer) Rate() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("rate"))
 	return rv
@@ -218,7 +202,6 @@ func (m_ MIDIPlayer) Rate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
-
 func (m_ MIDIPlayer) SetRate(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
 }
@@ -228,7 +211,6 @@ func (m_ MIDIPlayer) SetRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
-
 func (m_ MIDIPlayer) IsPlaying() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPlaying"))
 	return rv
@@ -239,7 +221,6 @@ func (m_ MIDIPlayer) IsPlaying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
-
 func (m_ MIDIPlayer) SetIsPlaying(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlaying:"), value)
 }

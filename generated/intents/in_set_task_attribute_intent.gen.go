@@ -46,7 +46,11 @@ type IINSetTaskAttributeIntent interface {
 // A request to modify the attributes of a task.
 //
 // Siri creates an object when the user marks a task as complete or changes the triggers used to generate reminders for the task. The intent object can contain the task information and values for any changed attributes. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task information.
+
+
+// A request to modify the attributes of a task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetTaskAttributeIntent
 type INSetTaskAttributeIntent struct {
 	INIntent
@@ -93,8 +97,10 @@ func NewINSetTaskAttributeIntent() INSetTaskAttributeIntent {
 }
 
 
+
 // The priority for the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/priority
 func (i_ INSetTaskAttributeIntent) Priority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("priority"))
@@ -102,17 +108,18 @@ func (i_ INSetTaskAttributeIntent) Priority() unsafe.Pointer {
 }
 
 
-// SetPriority sets the value of the priority property.
 // The priority for the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/priority
 func (i_ INSetTaskAttributeIntent) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPriority:"), value)
 }
 
+
 // The location-based trigger to apply to the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/spatialeventtrigger
 func (i_ INSetTaskAttributeIntent) SpatialEventTrigger() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("spatialEventTrigger"))
@@ -120,17 +127,18 @@ func (i_ INSetTaskAttributeIntent) SpatialEventTrigger() unsafe.Pointer {
 }
 
 
-// SetSpatialEventTrigger sets the value of the spatialEventTrigger property.
 // The location-based trigger to apply to the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/spatialeventtrigger
 func (i_ INSetTaskAttributeIntent) SetSpatialEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpatialEventTrigger:"), value)
 }
 
+
 // The status to apply to the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/status
 func (i_ INSetTaskAttributeIntent) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("status"))
@@ -138,17 +146,18 @@ func (i_ INSetTaskAttributeIntent) Status() unsafe.Pointer {
 }
 
 
-// SetStatus sets the value of the status property.
 // The status to apply to the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/status
 func (i_ INSetTaskAttributeIntent) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
 }
 
+
 // The task targetted for modification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/targettask
 func (i_ INSetTaskAttributeIntent) TargetTask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("targetTask"))
@@ -156,17 +165,18 @@ func (i_ INSetTaskAttributeIntent) TargetTask() unsafe.Pointer {
 }
 
 
-// SetTargetTask sets the value of the targetTask property.
 // The task targetted for modification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/targettask
 func (i_ INSetTaskAttributeIntent) SetTargetTask(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetTask:"), value)
 }
 
+
 // The title for the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/tasktitle
 func (i_ INSetTaskAttributeIntent) TaskTitle() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("taskTitle"))
@@ -174,17 +184,18 @@ func (i_ INSetTaskAttributeIntent) TaskTitle() INSpeakableString {
 }
 
 
-// SetTaskTitle sets the value of the taskTitle property.
 // The title for the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/tasktitle
 func (i_ INSetTaskAttributeIntent) SetTaskTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitle:"), value)
 }
 
+
 // The time-based trigger to apply to the task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/temporaleventtrigger
 func (i_ INSetTaskAttributeIntent) TemporalEventTrigger() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temporalEventTrigger"))
@@ -192,10 +203,9 @@ func (i_ INSetTaskAttributeIntent) TemporalEventTrigger() unsafe.Pointer {
 }
 
 
-// SetTemporalEventTrigger sets the value of the temporalEventTrigger property.
 // The time-based trigger to apply to the task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/temporaleventtrigger
 func (i_ INSetTaskAttributeIntent) SetTemporalEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTrigger:"), value)

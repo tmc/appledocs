@@ -32,7 +32,9 @@ type ImChannelID interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mChannelID
 type mChannelID struct {
 	objectivec.Object

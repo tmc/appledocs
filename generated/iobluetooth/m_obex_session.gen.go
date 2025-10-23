@@ -32,7 +32,9 @@ type ImOBEXSession interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mOBEXSession
 type mOBEXSession struct {
 	objectivec.Object

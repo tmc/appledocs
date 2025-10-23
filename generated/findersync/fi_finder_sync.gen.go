@@ -41,7 +41,6 @@ type IFIFinderSync interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSync-swift.class
-
 type FIFinderSync struct {
 	objectivec.Object
 }

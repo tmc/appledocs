@@ -55,7 +55,6 @@ type IDockTile interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile
-
 type DockTile struct {
 	objectivec.Object
 }
@@ -100,12 +99,10 @@ func NewDockTile() DockTile {
 
 
 
-
 // Redraws the dock tile’s content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/display()
-
 func (d_ DockTile) Display() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("display"))
 }
@@ -115,7 +112,6 @@ func (d_ DockTile) Display() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/badgeLabel
-
 func (d_ DockTile) BadgeLabel() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("badgeLabel"))
 	return rv
@@ -126,7 +122,6 @@ func (d_ DockTile) BadgeLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/badgeLabel
-
 func (d_ DockTile) SetBadgeLabel(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBadgeLabel:"), objc.String(value))
 }
@@ -136,7 +131,6 @@ func (d_ DockTile) SetBadgeLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/contentView
-
 func (d_ DockTile) ContentView() NSView {
 	rv := objc.Send[NSView](d_.ID, objc.Sel("contentView"))
 	return rv
@@ -147,7 +141,6 @@ func (d_ DockTile) ContentView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/contentView
-
 func (d_ DockTile) SetContentView(value IView) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
 }
@@ -157,7 +150,6 @@ func (d_ DockTile) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/owner
-
 func (d_ DockTile) Owner() objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("owner"))
 	return rv
@@ -168,7 +160,6 @@ func (d_ DockTile) Owner() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/showsApplicationBadge
-
 func (d_ DockTile) ShowsApplicationBadge() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("showsApplicationBadge"))
 	return rv
@@ -179,7 +170,6 @@ func (d_ DockTile) ShowsApplicationBadge() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/showsApplicationBadge
-
 func (d_ DockTile) SetShowsApplicationBadge(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShowsApplicationBadge:"), value)
 }
@@ -189,7 +179,6 @@ func (d_ DockTile) SetShowsApplicationBadge(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/size
-
 func (d_ DockTile) Size() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("size"))
 	return rv
@@ -200,7 +189,6 @@ func (d_ DockTile) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
-
 func (d_ DockTile) ApplicationIconImage() Image {
 	rv := objc.Send[Image](d_.ID, objc.Sel("applicationIconImage"))
 	return rv
@@ -211,7 +199,6 @@ func (d_ DockTile) ApplicationIconImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
-
 func (d_ DockTile) SetApplicationIconImage(value IImage) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setApplicationIconImage:"), value)
 }
@@ -221,7 +208,6 @@ func (d_ DockTile) SetApplicationIconImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/docktile
-
 func (d_ DockTile) DockTile() NSDockTile {
 	rv := objc.Send[NSDockTile](d_.ID, objc.Sel("dockTile"))
 	return rv
@@ -232,7 +218,6 @@ func (d_ DockTile) DockTile() NSDockTile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/docktile
-
 func (d_ DockTile) SetDockTile(value IDockTile) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDockTile:"), value)
 }

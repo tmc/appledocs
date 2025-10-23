@@ -32,7 +32,9 @@ type IcurrentOffsetInBuffer interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/currentOffsetInBuffer
 type currentOffsetInBuffer struct {
 	objectivec.Object

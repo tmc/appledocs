@@ -59,7 +59,6 @@ type IHKVerifiableClinicalRecord interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord
-
 type HKVerifiableClinicalRecord struct {
 	HKSample
 }
@@ -110,7 +109,6 @@ func NewHKVerifiableClinicalRecord() HKVerifiableClinicalRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord/dataRepresentation
-
 func (h_ HKVerifiableClinicalRecord) DataRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](h_.ID, objc.Sel("dataRepresentation"))
 	return rv
@@ -121,7 +119,6 @@ func (h_ HKVerifiableClinicalRecord) DataRepresentation() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord/relevantDate
-
 func (h_ HKVerifiableClinicalRecord) RelevantDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("relevantDate"))
 	return rv
@@ -132,7 +129,6 @@ func (h_ HKVerifiableClinicalRecord) RelevantDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/expirationdate
-
 func (h_ HKVerifiableClinicalRecord) ExpirationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("expirationDate"))
 	return rv
@@ -143,7 +139,6 @@ func (h_ HKVerifiableClinicalRecord) ExpirationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/expirationdate
-
 func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
@@ -153,7 +148,6 @@ func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-
 func (h_ HKVerifiableClinicalRecord) IssuedDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("issuedDate"))
 	return rv
@@ -164,7 +158,6 @@ func (h_ HKVerifiableClinicalRecord) IssuedDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-
 func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuedDate:"), value)
 }
@@ -174,7 +167,6 @@ func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueridentifier
-
 func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("issuerIdentifier"))
 	return rv
@@ -185,7 +177,6 @@ func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueridentifier
-
 func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuerIdentifier:"), objc.String(value))
 }
@@ -195,7 +186,6 @@ func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-
 func (h_ HKVerifiableClinicalRecord) ItemNames() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("itemNames"))
 	return rv
@@ -206,7 +196,6 @@ func (h_ HKVerifiableClinicalRecord) ItemNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-
 func (h_ HKVerifiableClinicalRecord) SetItemNames(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), objc.String(value))
 }
@@ -216,7 +205,6 @@ func (h_ HKVerifiableClinicalRecord) SetItemNames(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/jwsrepresentation
-
 func (h_ HKVerifiableClinicalRecord) JwsRepresentation() foundation.Data {
 	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("jwsRepresentation"))
 	return rv
@@ -227,7 +215,6 @@ func (h_ HKVerifiableClinicalRecord) JwsRepresentation() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/jwsrepresentation
-
 func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.IData) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setJwsRepresentation:"), value)
 }
@@ -237,7 +224,6 @@ func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.IData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-
 func (h_ HKVerifiableClinicalRecord) RecordTypes() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
 	return rv
@@ -248,7 +234,6 @@ func (h_ HKVerifiableClinicalRecord) RecordTypes() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-
 func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
 }
@@ -258,7 +243,6 @@ func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/sourcetype
-
 func (h_ HKVerifiableClinicalRecord) SourceType() HKVerifiableClinicalRecordSourceType {
 	rv := objc.Send[HKVerifiableClinicalRecordSourceType](h_.ID, objc.Sel("sourceType"))
 	return rv
@@ -269,7 +253,6 @@ func (h_ HKVerifiableClinicalRecord) SourceType() HKVerifiableClinicalRecordSour
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/sourcetype
-
 func (h_ HKVerifiableClinicalRecord) SetSourceType(value HKVerifiableClinicalRecordSourceType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceType:"), value)
 }
@@ -279,7 +262,6 @@ func (h_ HKVerifiableClinicalRecord) SetSourceType(value HKVerifiableClinicalRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
-
 func (h_ HKVerifiableClinicalRecord) Subject() HKVerifiableClinicalRecordSubject {
 	rv := objc.Send[HKVerifiableClinicalRecordSubject](h_.ID, objc.Sel("subject"))
 	return rv
@@ -290,7 +272,6 @@ func (h_ HKVerifiableClinicalRecord) Subject() HKVerifiableClinicalRecordSubject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
-
 func (h_ HKVerifiableClinicalRecord) SetSubject(value IHKVerifiableClinicalRecordSubject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSubject:"), value)
 }

@@ -50,7 +50,6 @@ type ISharingServicePickerTouchBarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem
-
 type SharingServicePickerTouchBarItem struct {
 	TouchBarItem
 }
@@ -99,7 +98,6 @@ func NewSharingServicePickerTouchBarItem() SharingServicePickerTouchBarItem {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
-
 func (s_ SharingServicePickerTouchBarItem) ActivityItemsConfiguration() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
@@ -108,7 +106,6 @@ func (s_ SharingServicePickerTouchBarItem) ActivityItemsConfiguration() objc.ID 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
-
 func (s_ SharingServicePickerTouchBarItem) SetActivityItemsConfiguration(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
@@ -118,7 +115,6 @@ func (s_ SharingServicePickerTouchBarItem) SetActivityItemsConfiguration(value o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/isEnabled
-
 func (s_ SharingServicePickerTouchBarItem) Enabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
 	return rv
@@ -129,7 +125,6 @@ func (s_ SharingServicePickerTouchBarItem) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/isEnabled
-
 func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -139,7 +134,6 @@ func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
-
 func (s_ SharingServicePickerTouchBarItem) ButtonImage() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("buttonImage"))
 	return rv
@@ -150,7 +144,6 @@ func (s_ SharingServicePickerTouchBarItem) ButtonImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
-
 func (s_ SharingServicePickerTouchBarItem) SetButtonImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonImage:"), value)
 }
@@ -160,7 +153,6 @@ func (s_ SharingServicePickerTouchBarItem) SetButtonImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttontitle
-
 func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("buttonTitle"))
 	return rv
@@ -171,7 +163,6 @@ func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttontitle
-
 func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonTitle:"), objc.String(value))
 }
@@ -181,7 +172,6 @@ func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/delegate
-
 func (s_ SharingServicePickerTouchBarItem) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -192,7 +182,6 @@ func (s_ SharingServicePickerTouchBarItem) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/delegate
-
 func (s_ SharingServicePickerTouchBarItem) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -202,7 +191,6 @@ func (s_ SharingServicePickerTouchBarItem) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/isenabled
-
 func (s_ SharingServicePickerTouchBarItem) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -213,7 +201,6 @@ func (s_ SharingServicePickerTouchBarItem) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/isenabled
-
 func (s_ SharingServicePickerTouchBarItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }

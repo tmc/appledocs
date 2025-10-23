@@ -11,7 +11,6 @@
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppleNewsAPI
-
 package applenewsapi
 
 import (

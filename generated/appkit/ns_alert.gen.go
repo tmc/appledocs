@@ -68,7 +68,6 @@ type IAlert interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert
-
 type Alert struct {
 	objectivec.Object
 }
@@ -113,12 +112,10 @@ func NewAlert() Alert {
 
 
 
-
 // Returns an alert initialized from information in an error object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-
 func NewAlertWithError(error_ foundation.IError) Alert {
 	rv := objc.Send[Alert](objc.ID(getAlertClass().class), objc.Sel("alertWithError:"), error_)
 	return rv
@@ -130,7 +127,6 @@ func NewAlertWithError(error_ foundation.IError) Alert {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/alertWithMessageText:defaultButton:alternateButton:otherButton:informativeTextWithFormat:
-
 func (ac _AlertClass) AlertWithMessageTextDefaultButtonAlternateButtonOtherButtonInformativeTextWithFormat(message string, defaultButton string, alternateButton string, otherButton string, format string) Alert {
 	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alertWithMessageText:defaultButton:alternateButton:otherButton:informativeTextWithFormat:"), objc.String(message), objc.String(defaultButton), objc.String(alternateButton), objc.String(otherButton), objc.String(format))
 	return rv
@@ -141,41 +137,34 @@ func (ac _AlertClass) AlertWithMessageTextDefaultButtonAlternateButtonOtherButto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-
 func (ac _AlertClass) AlertWithError(error_ foundation.IError) Alert {
 	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alertWithError:"), error_)
 	return rv
 }
 
 
-
 // Runs the alert modally as a sheet attached to the specified window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/beginSheetModal(for:completionHandler:)
-
 func (a_ Alert) BeginSheetModalForWindowCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginSheetModalForWindow:completionHandler:"), sheetWindow, handler)
 }
-
 
 
 // Runs the alert modally as an alert sheet attached to a specified window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/beginSheetModal(for:modalDelegate:didEnd:contextInfo:)
-
 func (a_ Alert) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(window IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:"), window, delegate, didEndSelector, contextInfo)
 }
-
 
 
 // Runs the alert as an app-modal dialog and returns the constant that identifies the button clicked.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/runModal()
-
 func (a_ Alert) RunModal() ModalResponse {
 	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModal"))
 	return rv
@@ -186,7 +175,6 @@ func (a_ Alert) RunModal() ModalResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/buttons
-
 func (a_ Alert) Buttons() []Button {
 	rv := objc.Send[[]Button](a_.ID, objc.Sel("buttons"))
 	return rv
@@ -197,7 +185,6 @@ func (a_ Alert) Buttons() []Button {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/icon
-
 func (a_ Alert) Icon() Image {
 	rv := objc.Send[Image](a_.ID, objc.Sel("icon"))
 	return rv
@@ -208,7 +195,6 @@ func (a_ Alert) Icon() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/icon
-
 func (a_ Alert) SetIcon(value IImage) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIcon:"), value)
 }
@@ -218,7 +204,6 @@ func (a_ Alert) SetIcon(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/accessoryview
-
 func (a_ Alert) AccessoryView() NSView {
 	rv := objc.Send[NSView](a_.ID, objc.Sel("accessoryView"))
 	return rv
@@ -229,7 +214,6 @@ func (a_ Alert) AccessoryView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/accessoryview
-
 func (a_ Alert) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessoryView:"), value)
 }
@@ -239,7 +223,6 @@ func (a_ Alert) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/alertstyle
-
 func (a_ Alert) AlertStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("alertStyle"))
 	return rv
@@ -250,7 +233,6 @@ func (a_ Alert) AlertStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/alertstyle
-
 func (a_ Alert) SetAlertStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAlertStyle:"), value)
 }
@@ -260,7 +242,6 @@ func (a_ Alert) SetAlertStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/delegate
-
 func (a_ Alert) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -271,7 +252,6 @@ func (a_ Alert) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/delegate
-
 func (a_ Alert) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -281,7 +261,6 @@ func (a_ Alert) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/helpanchor
-
 func (a_ Alert) HelpAnchor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("helpAnchor"))
 	return rv
@@ -292,7 +271,6 @@ func (a_ Alert) HelpAnchor() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/helpanchor
-
 func (a_ Alert) SetHelpAnchor(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHelpAnchor:"), value)
 }
@@ -302,7 +280,6 @@ func (a_ Alert) SetHelpAnchor(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/informativetext
-
 func (a_ Alert) InformativeText() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("informativeText"))
 	return rv
@@ -313,7 +290,6 @@ func (a_ Alert) InformativeText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/informativetext
-
 func (a_ Alert) SetInformativeText(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInformativeText:"), objc.String(value))
 }
@@ -323,7 +299,6 @@ func (a_ Alert) SetInformativeText(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/messagetext
-
 func (a_ Alert) MessageText() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("messageText"))
 	return rv
@@ -334,7 +309,6 @@ func (a_ Alert) MessageText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/messagetext
-
 func (a_ Alert) SetMessageText(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMessageText:"), objc.String(value))
 }
@@ -344,7 +318,6 @@ func (a_ Alert) SetMessageText(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/showshelp
-
 func (a_ Alert) ShowsHelp() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("showsHelp"))
 	return rv
@@ -355,7 +328,6 @@ func (a_ Alert) ShowsHelp() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/showshelp
-
 func (a_ Alert) SetShowsHelp(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShowsHelp:"), value)
 }
@@ -365,7 +337,6 @@ func (a_ Alert) SetShowsHelp(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/showssuppressionbutton
-
 func (a_ Alert) ShowsSuppressionButton() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("showsSuppressionButton"))
 	return rv
@@ -376,7 +347,6 @@ func (a_ Alert) ShowsSuppressionButton() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/showssuppressionbutton
-
 func (a_ Alert) SetShowsSuppressionButton(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShowsSuppressionButton:"), value)
 }
@@ -386,7 +356,6 @@ func (a_ Alert) SetShowsSuppressionButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/suppressionbutton
-
 func (a_ Alert) SuppressionButton() NSButton {
 	rv := objc.Send[NSButton](a_.ID, objc.Sel("suppressionButton"))
 	return rv
@@ -397,7 +366,6 @@ func (a_ Alert) SuppressionButton() NSButton {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/suppressionbutton
-
 func (a_ Alert) SetSuppressionButton(value IButton) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSuppressionButton:"), value)
 }
@@ -407,7 +375,6 @@ func (a_ Alert) SetSuppressionButton(value IButton) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/window
-
 func (a_ Alert) Window() NSWindow {
 	rv := objc.Send[NSWindow](a_.ID, objc.Sel("window"))
 	return rv
@@ -418,7 +385,6 @@ func (a_ Alert) Window() NSWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/window
-
 func (a_ Alert) SetWindow(value IWindow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWindow:"), value)
 }

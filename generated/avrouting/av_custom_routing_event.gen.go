@@ -43,7 +43,6 @@ type ICustomRoutingEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent
-
 type CustomRoutingEvent struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewCustomRoutingEvent() CustomRoutingEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent/reason
-
 func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
@@ -103,7 +101,6 @@ func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent/route
-
 func (c_ CustomRoutingEvent) Route() AVCustomDeviceRoute {
 	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv

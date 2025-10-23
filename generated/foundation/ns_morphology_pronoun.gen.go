@@ -30,8 +30,8 @@ type _MorphologyPronounClass struct {
 // An interface definition for the [MorphologyPronoun] class.
 type IMorphologyPronoun interface {
 	objectivec.IObject
-	DependentMorphology() NSMorphology
-	Morphology() NSMorphology
+	DependentMorphology() IMorphology
+	Morphology() IMorphology
 	Pronoun() string
 }
 
@@ -101,7 +101,7 @@ func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/dependentMorphology
-func (m_ MorphologyPronoun) DependentMorphology() NSMorphology {
+func (m_ MorphologyPronoun) DependentMorphology() IMorphology {
 	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("dependentMorphology"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (m_ MorphologyPronoun) DependentMorphology() NSMorphology {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
-func (m_ MorphologyPronoun) Morphology() NSMorphology {
+func (m_ MorphologyPronoun) Morphology() IMorphology {
 	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("morphology"))
 	return rv
 }

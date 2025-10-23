@@ -32,8 +32,10 @@ type ImEventDataListenerRefCon interface {
 	objectivec.IObject
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mEventDataListenerRefCon
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mEventDataListenerRefCon
 type mEventDataListenerRefCon struct {
 	objectivec.Object
 }

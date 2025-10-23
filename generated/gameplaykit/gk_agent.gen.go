@@ -54,7 +54,6 @@ type IAgent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent
-
 type Agent struct {
 	Component
 }
@@ -105,7 +104,6 @@ func NewAgent() Agent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
-
 func (a_ Agent) Behavior() GKBehavior {
 	rv := objc.Send[GKBehavior](a_.ID, objc.Sel("behavior"))
 	return rv
@@ -116,7 +114,6 @@ func (a_ Agent) Behavior() GKBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
-
 func (a_ Agent) SetBehavior(value GKBehavior) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBehavior:"), value)
 }
@@ -126,7 +123,6 @@ func (a_ Agent) SetBehavior(value GKBehavior) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/delegate
-
 func (a_ Agent) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -137,7 +133,6 @@ func (a_ Agent) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/delegate
-
 func (a_ Agent) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -147,7 +142,6 @@ func (a_ Agent) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
-
 func (a_ Agent) Mass() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("mass"))
 	return rv
@@ -158,7 +152,6 @@ func (a_ Agent) Mass() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
-
 func (a_ Agent) SetMass(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMass:"), value)
 }
@@ -168,7 +161,6 @@ func (a_ Agent) SetMass(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
-
 func (a_ Agent) MaxAcceleration() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maxAcceleration"))
 	return rv
@@ -179,7 +171,6 @@ func (a_ Agent) MaxAcceleration() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
-
 func (a_ Agent) SetMaxAcceleration(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxAcceleration:"), value)
 }
@@ -189,7 +180,6 @@ func (a_ Agent) SetMaxAcceleration(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
-
 func (a_ Agent) MaxSpeed() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maxSpeed"))
 	return rv
@@ -200,7 +190,6 @@ func (a_ Agent) MaxSpeed() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
-
 func (a_ Agent) SetMaxSpeed(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxSpeed:"), value)
 }
@@ -210,7 +199,6 @@ func (a_ Agent) SetMaxSpeed(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
-
 func (a_ Agent) Radius() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("radius"))
 	return rv
@@ -221,7 +209,6 @@ func (a_ Agent) Radius() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
-
 func (a_ Agent) SetRadius(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadius:"), value)
 }
@@ -231,7 +218,6 @@ func (a_ Agent) SetRadius(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
-
 func (a_ Agent) Speed() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("speed"))
 	return rv
@@ -242,7 +228,6 @@ func (a_ Agent) Speed() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
-
 func (a_ Agent) SetSpeed(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSpeed:"), value)
 }

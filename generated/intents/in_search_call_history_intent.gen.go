@@ -46,7 +46,11 @@ type IINSearchCallHistoryIntent interface {
 // A request to list the calls matching the specified criteria.
 //
 // SiriKit creates objects when the user asks to see previous calls from their call history. This intent object contains the values for you to match when searching the user’s call history. Users can search for calls involving a specific person, calls that occurred on specific dates, or calls that are of a specific type such as missed calls. When performing the search, use only the parameters provided and ignore any that have no values. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler confirms the request and creates an object with the results of the search. For successful searches, Siri offers the user a way to launch your app and see the results.
+
+
+// A request to list the calls matching the specified criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchCallHistoryIntent
 type INSearchCallHistoryIntent struct {
 	INIntent
@@ -93,8 +97,10 @@ func NewINSearchCallHistoryIntent() INSearchCallHistoryIntent {
 }
 
 
+
 // The audio-video capabilities of the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/callcapabilities
 func (i_ INSearchCallHistoryIntent) CallCapabilities() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callCapabilities"))
@@ -102,17 +108,18 @@ func (i_ INSearchCallHistoryIntent) CallCapabilities() unsafe.Pointer {
 }
 
 
-// SetCallCapabilities sets the value of the callCapabilities property.
 // The audio-video capabilities of the call.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/callcapabilities
 func (i_ INSearchCallHistoryIntent) SetCallCapabilities(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapabilities:"), value)
 }
 
+
 // The call type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltype
 func (i_ INSearchCallHistoryIntent) CallType() INCallRecordType {
 	rv := objc.Send[INCallRecordType](i_.ID, objc.Sel("callType"))
@@ -120,17 +127,18 @@ func (i_ INSearchCallHistoryIntent) CallType() INCallRecordType {
 }
 
 
-// SetCallType sets the value of the callType property.
 // The call type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltype
 func (i_ INSearchCallHistoryIntent) SetCallType(value INCallRecordType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallType:"), value)
 }
 
+
 // The types of calls to search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltypes
 func (i_ INSearchCallHistoryIntent) CallTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callTypes"))
@@ -138,17 +146,18 @@ func (i_ INSearchCallHistoryIntent) CallTypes() unsafe.Pointer {
 }
 
 
-// SetCallTypes sets the value of the callTypes property.
 // The types of calls to search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltypes
 func (i_ INSearchCallHistoryIntent) SetCallTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
 }
 
+
 // The range of dates associated with the call records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/datecreated
 func (i_ INSearchCallHistoryIntent) DateCreated() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateCreated"))
@@ -156,17 +165,18 @@ func (i_ INSearchCallHistoryIntent) DateCreated() INDateComponentsRange {
 }
 
 
-// SetDateCreated sets the value of the dateCreated property.
 // The range of dates associated with the call records.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/datecreated
 func (i_ INSearchCallHistoryIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
+
 // The person involved in the call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
 func (i_ INSearchCallHistoryIntent) Recipient() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("recipient"))
@@ -174,17 +184,18 @@ func (i_ INSearchCallHistoryIntent) Recipient() INPerson {
 }
 
 
-// SetRecipient sets the value of the recipient property.
 // The person involved in the call.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
 func (i_ INSearchCallHistoryIntent) SetRecipient(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipient:"), value)
 }
 
+
 // A Boolean value that indicates whether the user has seen the call yet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/unseen-9ua7o
 func (i_ INSearchCallHistoryIntent) Unseen() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("unseen"))
@@ -192,10 +203,9 @@ func (i_ INSearchCallHistoryIntent) Unseen() bool {
 }
 
 
-// SetUnseen sets the value of the unseen property.
 // A Boolean value that indicates whether the user has seen the call yet.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/unseen-9ua7o
 func (i_ INSearchCallHistoryIntent) SetUnseen(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)

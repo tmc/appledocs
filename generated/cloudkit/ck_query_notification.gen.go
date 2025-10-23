@@ -56,7 +56,6 @@ type ICKQueryNotification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification
-
 type CKQueryNotification struct {
 	CKNotification
 }
@@ -107,7 +106,6 @@ func NewCKQueryNotification() CKQueryNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/databaseScope
-
 func (c_ CKQueryNotification) DatabaseScope() CKDatabaseScope {
 	rv := objc.Send[CKDatabaseScope](c_.ID, objc.Sel("databaseScope"))
 	return rv
@@ -118,7 +116,6 @@ func (c_ CKQueryNotification) DatabaseScope() CKDatabaseScope {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/recordID
-
 func (c_ CKQueryNotification) RecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
@@ -129,7 +126,6 @@ func (c_ CKQueryNotification) RecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-
 func (c_ CKQueryNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
@@ -140,7 +136,6 @@ func (c_ CKQueryNotification) IsPruned() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-
 func (c_ CKQueryNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
@@ -150,7 +145,6 @@ func (c_ CKQueryNotification) SetIsPruned(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-
 func (c_ CKQueryNotification) NotificationType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
 	return rv
@@ -161,7 +155,6 @@ func (c_ CKQueryNotification) NotificationType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-
 func (c_ CKQueryNotification) SetNotificationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
 }
@@ -171,7 +164,6 @@ func (c_ CKQueryNotification) SetNotificationType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/querynotificationreason
-
 func (c_ CKQueryNotification) QueryNotificationReason() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("queryNotificationReason"))
 	return rv
@@ -182,7 +174,6 @@ func (c_ CKQueryNotification) QueryNotificationReason() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/querynotificationreason
-
 func (c_ CKQueryNotification) SetQueryNotificationReason(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQueryNotificationReason:"), value)
 }
@@ -192,7 +183,6 @@ func (c_ CKQueryNotification) SetQueryNotificationReason(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/recordfields
-
 func (c_ CKQueryNotification) RecordFields() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordFields"))
 	return rv
@@ -203,7 +193,6 @@ func (c_ CKQueryNotification) RecordFields() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/recordfields
-
 func (c_ CKQueryNotification) SetRecordFields(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordFields:"), objc.String(value))
 }
@@ -213,7 +202,6 @@ func (c_ CKQueryNotification) SetRecordFields(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
-
 func (c_ CKQueryNotification) DesiredKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
 	return rv
@@ -224,7 +212,6 @@ func (c_ CKQueryNotification) DesiredKeys() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
-
 func (c_ CKQueryNotification) SetDesiredKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
 }
@@ -234,7 +221,6 @@ func (c_ CKQueryNotification) SetDesiredKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-
 func (c_ CKQueryNotification) ShouldSendContentAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
 	return rv
@@ -245,7 +231,6 @@ func (c_ CKQueryNotification) ShouldSendContentAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-
 func (c_ CKQueryNotification) SetShouldSendContentAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
 }
@@ -255,7 +240,6 @@ func (c_ CKQueryNotification) SetShouldSendContentAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKQueryNotification) NotificationInfo() CKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
@@ -266,7 +250,6 @@ func (c_ CKQueryNotification) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKQueryNotification) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }

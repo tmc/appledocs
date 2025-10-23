@@ -38,7 +38,6 @@ type IHKHeartbeatSeriesQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartbeatSeriesQuery
-
 type HKHeartbeatSeriesQuery struct {
 	HKQuery
 }

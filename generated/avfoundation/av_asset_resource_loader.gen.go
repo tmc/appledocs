@@ -38,7 +38,7 @@ type IAssetResourceLoader interface {
 	SetDelegateQueue(value unsafe.Pointer)
 	PreloadsEligibleContentKeys() bool
 	SetPreloadsEligibleContentKeys(value bool)
-	ResourceLoader() AVAssetResourceLoader
+	ResourceLoader() IAVAssetResourceLoader
 	SetResourceLoader(value IAVAssetResourceLoader)
 }
 
@@ -51,7 +51,6 @@ type IAssetResourceLoader interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader
-
 type AssetResourceLoader struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewAssetResourceLoader() AssetResourceLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
-
 func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendsCommonMediaClientDataAsHTTPHeaders"))
 	return rv
@@ -111,7 +109,6 @@ func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
-
 func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSendsCommonMediaClientDataAsHTTPHeaders:"), value)
 }
@@ -121,7 +118,6 @@ func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
-
 func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -132,7 +128,6 @@ func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
-
 func (a_ AssetResourceLoader) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -142,7 +137,6 @@ func (a_ AssetResourceLoader) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegatequeue
-
 func (a_ AssetResourceLoader) DelegateQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegateQueue"))
 	return rv
@@ -153,7 +147,6 @@ func (a_ AssetResourceLoader) DelegateQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegatequeue
-
 func (a_ AssetResourceLoader) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegateQueue:"), value)
 }
@@ -163,7 +156,6 @@ func (a_ AssetResourceLoader) SetDelegateQueue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
-
 func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preloadsEligibleContentKeys"))
 	return rv
@@ -174,7 +166,6 @@ func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
-
 func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreloadsEligibleContentKeys:"), value)
 }
@@ -184,8 +175,7 @@ func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-
-func (a_ AssetResourceLoader) ResourceLoader() AVAssetResourceLoader {
+func (a_ AssetResourceLoader) ResourceLoader() IAVAssetResourceLoader {
 	rv := objc.Send[AVAssetResourceLoader](a_.ID, objc.Sel("resourceLoader"))
 	return rv
 }
@@ -195,7 +185,6 @@ func (a_ AssetResourceLoader) ResourceLoader() AVAssetResourceLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-
 func (a_ AssetResourceLoader) SetResourceLoader(value IAVAssetResourceLoader) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setResourceLoader:"), value)
 }

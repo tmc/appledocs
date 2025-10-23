@@ -41,7 +41,6 @@ type IHKAttachmentStore interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAttachmentStore
-
 type HKAttachmentStore struct {
 	objectivec.Object
 }

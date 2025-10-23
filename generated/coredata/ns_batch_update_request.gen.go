@@ -49,7 +49,6 @@ type IBatchUpdateRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest
-
 type BatchUpdateRequest struct {
 	PersistentStoreRequest
 }
@@ -96,12 +95,10 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 
 
 
-
 // Creates a batch-update request for a managed entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
-
 func NewBatchUpdateRequestWithEntity(entity IEntityDescription) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntity:"), entity)
@@ -110,12 +107,10 @@ func NewBatchUpdateRequestWithEntity(entity IEntityDescription) BatchUpdateReque
 }
 
 
-
 // Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
-
 func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
@@ -129,7 +124,6 @@ func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/batchUpdateRequestWithEntityName:
-
 func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), objc.String(entityName))
 	return rv
@@ -140,7 +134,6 @@ func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entity
-
 func (b_ BatchUpdateRequest) Entity() NSEntityDescription {
 	rv := objc.Send[NSEntityDescription](b_.ID, objc.Sel("entity"))
 	return rv
@@ -151,7 +144,6 @@ func (b_ BatchUpdateRequest) Entity() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entityName
-
 func (b_ BatchUpdateRequest) EntityName() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
 	return rv
@@ -162,7 +154,6 @@ func (b_ BatchUpdateRequest) EntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/includesSubentities
-
 func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesSubentities"))
 	return rv
@@ -173,7 +164,6 @@ func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/includesSubentities
-
 func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
@@ -183,7 +173,6 @@ func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-
 func (b_ BatchUpdateRequest) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](b_.ID, objc.Sel("predicate"))
 	return rv
@@ -194,7 +183,6 @@ func (b_ BatchUpdateRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-
 func (b_ BatchUpdateRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPredicate:"), value)
 }
@@ -204,7 +192,6 @@ func (b_ BatchUpdateRequest) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/propertiesToUpdate
-
 func (b_ BatchUpdateRequest) PropertiesToUpdate() objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("propertiesToUpdate"))
 	return rv
@@ -215,7 +202,6 @@ func (b_ BatchUpdateRequest) PropertiesToUpdate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/propertiesToUpdate
-
 func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPropertiesToUpdate:"), value)
 }
@@ -225,7 +211,6 @@ func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/resultType
-
 func (b_ BatchUpdateRequest) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
 	return rv
@@ -236,7 +221,6 @@ func (b_ BatchUpdateRequest) ResultType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/resultType
-
 func (b_ BatchUpdateRequest) SetResultType(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }

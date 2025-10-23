@@ -44,7 +44,6 @@ type ICXHandle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle
-
 type CXHandle struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewCXHandle() CXHandle {
 
 
 
-
 // Initializes a new handle of a given type with the specified value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/init(type:value:)
-
 func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
 	instance := getCXHandleClass().Alloc()
 	rv := objc.Send[CXHandle](instance.ID, objc.Sel("initWithType:value:"), type_, objc.String(value))
@@ -104,12 +101,10 @@ func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
 
 
 
-
 // Returns a Boolean value that indicates whether a given handle is equal to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/isEqualToHandle:
-
 func (c_ CXHandle) IsEqualToHandle(handle ICXHandle) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToHandle:"), handle)
 	return rv
@@ -120,7 +115,6 @@ func (c_ CXHandle) IsEqualToHandle(handle ICXHandle) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/type
-
 func (c_ CXHandle) Type() CXHandleType {
 	rv := objc.Send[CXHandleType](c_.ID, objc.Sel("type"))
 	return rv
@@ -131,7 +125,6 @@ func (c_ CXHandle) Type() CXHandleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/value
-
 func (c_ CXHandle) Value() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("value"))
 	return rv

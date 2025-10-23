@@ -45,7 +45,6 @@ type IGCExtendedGamepadSnapshot interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepadSnapshot
-
 type GCExtendedGamepadSnapshot struct {
 	GCExtendedGamepad
 }
@@ -94,7 +93,6 @@ func NewGCExtendedGamepadSnapshot() GCExtendedGamepadSnapshot {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccurrentextendedgamepadsnapshotdataversion
-
 func (g_ GCExtendedGamepadSnapshot) GCCurrentExtendedGamepadSnapshotDataVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCCurrentExtendedGamepadSnapshotDataVersion"))
 	return rv
@@ -103,7 +101,6 @@ func (g_ GCExtendedGamepadSnapshot) GCCurrentExtendedGamepadSnapshotDataVersion(
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccurrentmicrogamepadsnapshotdataversion
-
 func (g_ GCExtendedGamepadSnapshot) GCCurrentMicroGamepadSnapshotDataVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCCurrentMicroGamepadSnapshotDataVersion"))
 	return rv
@@ -114,7 +111,6 @@ func (g_ GCExtendedGamepadSnapshot) GCCurrentMicroGamepadSnapshotDataVersion() u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
-
 func (g_ GCExtendedGamepadSnapshot) SnapshotData() foundation.Data {
 	rv := objc.Send[foundation.Data](g_.ID, objc.Sel("snapshotData"))
 	return rv
@@ -125,7 +121,6 @@ func (g_ GCExtendedGamepadSnapshot) SnapshotData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
-
 func (g_ GCExtendedGamepadSnapshot) SetSnapshotData(value foundation.IData) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSnapshotData:"), value)
 }

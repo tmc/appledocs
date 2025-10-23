@@ -41,7 +41,6 @@ type IAuthorization interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization
-
 type Authorization struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewAuthorization() Authorization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/credential
-
 func (a_ Authorization) Credential() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("credential"))
 	return rv
@@ -101,7 +99,6 @@ func (a_ Authorization) Credential() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/provider
-
 func (a_ Authorization) Provider() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("provider"))
 	return rv

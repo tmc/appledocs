@@ -45,7 +45,6 @@ type ITextSelectionNavigation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation
-
 type TextSelectionNavigation struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewTextSelectionNavigation() TextSelectionNavigation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/allowsnoncontiguousranges
-
 func (t_ TextSelectionNavigation) AllowsNonContiguousRanges() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsNonContiguousRanges"))
 	return rv
@@ -105,7 +103,6 @@ func (t_ TextSelectionNavigation) AllowsNonContiguousRanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/allowsnoncontiguousranges
-
 func (t_ TextSelectionNavigation) SetAllowsNonContiguousRanges(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsNonContiguousRanges:"), value)
 }
@@ -115,7 +112,6 @@ func (t_ TextSelectionNavigation) SetAllowsNonContiguousRanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/rotatescoordinatesystemforlayoutorientation
-
 func (t_ TextSelectionNavigation) RotatesCoordinateSystemForLayoutOrientation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("rotatesCoordinateSystemForLayoutOrientation"))
 	return rv
@@ -126,7 +122,6 @@ func (t_ TextSelectionNavigation) RotatesCoordinateSystemForLayoutOrientation() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/rotatescoordinatesystemforlayoutorientation
-
 func (t_ TextSelectionNavigation) SetRotatesCoordinateSystemForLayoutOrientation(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRotatesCoordinateSystemForLayoutOrientation:"), value)
 }
@@ -136,7 +131,6 @@ func (t_ TextSelectionNavigation) SetRotatesCoordinateSystemForLayoutOrientation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/textselectiondatasource
-
 func (t_ TextSelectionNavigation) TextSelectionDataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textSelectionDataSource"))
 	return rv
@@ -147,7 +141,6 @@ func (t_ TextSelectionNavigation) TextSelectionDataSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselectionnavigation/textselectiondatasource
-
 func (t_ TextSelectionNavigation) SetTextSelectionDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionDataSource:"), value)
 }

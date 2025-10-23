@@ -32,7 +32,9 @@ type ImIncompletePacketResponseCode interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mIncompletePacketResponseCode
 type mIncompletePacketResponseCode struct {
 	objectivec.Object

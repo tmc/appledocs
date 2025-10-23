@@ -40,7 +40,6 @@ type ICNChangeHistoryAddContactEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent
-
 type CNChangeHistoryAddContactEvent struct {
 	CNChangeHistoryEvent
 }
@@ -91,7 +90,6 @@ func NewCNChangeHistoryAddContactEvent() CNChangeHistoryAddContactEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/contact
-
 func (c_ CNChangeHistoryAddContactEvent) Contact() CNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CNChangeHistoryAddContactEvent) Contact() CNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/containerIdentifier
-
 func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv

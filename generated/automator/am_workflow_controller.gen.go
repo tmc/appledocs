@@ -60,7 +60,6 @@ type IAMWorkflowController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController
-
 type AMWorkflowController struct {
 	appkit.Controller
 }
@@ -107,56 +106,46 @@ func NewAMWorkflowController() AMWorkflowController {
 
 
 
-
 // Pauses a workflow that’s running.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/pause(_:)
-
 func (a_ AMWorkflowController) Pause(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("pause:"), sender)
 }
-
 
 
 // Stops a workflow, clears any action results, and resets the workflow back to an un-run state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/reset(_:)
-
 func (a_ AMWorkflowController) Reset(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("reset:"), sender)
 }
-
 
 
 // Runs the associated workflow, after first clearing any results stored by its actions during any previous run.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/run(_:)
-
 func (a_ AMWorkflowController) Run(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("run:"), sender)
 }
-
 
 
 // In a paused workflow, runs the next action in the workflow and then pauses again.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/step(_:)
-
 func (a_ AMWorkflowController) Step(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("step:"), sender)
 }
-
 
 
 // Stops the associated workflow.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/stop(_:)
-
 func (a_ AMWorkflowController) Stop(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stop:"), sender)
 }
@@ -166,7 +155,6 @@ func (a_ AMWorkflowController) Stop(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/canRun
-
 func (a_ AMWorkflowController) CanRun() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canRun"))
 	return rv
@@ -177,7 +165,6 @@ func (a_ AMWorkflowController) CanRun() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/delegate
-
 func (a_ AMWorkflowController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -188,7 +175,6 @@ func (a_ AMWorkflowController) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/delegate
-
 func (a_ AMWorkflowController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -198,7 +184,6 @@ func (a_ AMWorkflowController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/isPaused
-
 func (a_ AMWorkflowController) Paused() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("paused"))
 	return rv
@@ -209,7 +194,6 @@ func (a_ AMWorkflowController) Paused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/isRunning
-
 func (a_ AMWorkflowController) Running() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("running"))
 	return rv
@@ -220,7 +204,6 @@ func (a_ AMWorkflowController) Running() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflow
-
 func (a_ AMWorkflowController) Workflow() AMWorkflow {
 	rv := objc.Send[AMWorkflow](a_.ID, objc.Sel("workflow"))
 	return rv
@@ -231,7 +214,6 @@ func (a_ AMWorkflowController) Workflow() AMWorkflow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflow
-
 func (a_ AMWorkflowController) SetWorkflow(value IAMWorkflow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflow:"), value)
 }
@@ -241,7 +223,6 @@ func (a_ AMWorkflowController) SetWorkflow(value IAMWorkflow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
-
 func (a_ AMWorkflowController) WorkflowView() AMWorkflowView {
 	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("workflowView"))
 	return rv
@@ -252,7 +233,6 @@ func (a_ AMWorkflowController) WorkflowView() AMWorkflowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
-
 func (a_ AMWorkflowController) SetWorkflowView(value IAMWorkflowView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
 }
@@ -262,7 +242,6 @@ func (a_ AMWorkflowController) SetWorkflowView(value IAMWorkflowView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
-
 func (a_ AMWorkflowController) IsPaused() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPaused"))
 	return rv
@@ -273,7 +252,6 @@ func (a_ AMWorkflowController) IsPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
-
 func (a_ AMWorkflowController) SetIsPaused(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPaused:"), value)
 }
@@ -283,7 +261,6 @@ func (a_ AMWorkflowController) SetIsPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
-
 func (a_ AMWorkflowController) IsRunning() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
@@ -294,7 +271,6 @@ func (a_ AMWorkflowController) IsRunning() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
-
 func (a_ AMWorkflowController) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }

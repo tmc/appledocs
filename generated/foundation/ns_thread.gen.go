@@ -39,11 +39,11 @@ type IThread interface {
 	IsMainThread() bool
 	Name() string
 	SetName(value string)
-	QualityOfService() QualityOfService
-	SetQualityOfService(value IQualityOfService)
+	QualityOfService() NSQualityOfService
+	SetQualityOfService(value NSQualityOfService)
 	StackSize() uint
 	SetStackSize(value uint)
-	ThreadDictionary() NSMutableDictionary
+	ThreadDictionary() IMutableDictionary
 	ThreadPriority() float64
 	SetThreadPriority(value float64)
 	NSAssertionHandlerKey() string
@@ -291,7 +291,7 @@ func (t_ Thread) CallStackSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
-func (t_ Thread) CurrentThread() NSThread {
+func (t_ Thread) CurrentThread() IThread {
 	rv := objc.Send[NSThread](t_.ID, objc.Sel("currentThread"))
 	return rv
 }
@@ -341,7 +341,7 @@ func (t_ Thread) IsMainThread() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
-func (t_ Thread) MainThread() NSThread {
+func (t_ Thread) MainThread() IThread {
 	rv := objc.Send[NSThread](t_.ID, objc.Sel("mainThread"))
 	return rv
 }
@@ -368,7 +368,7 @@ func (t_ Thread) SetName(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
-func (t_ Thread) QualityOfService() QualityOfService {
+func (t_ Thread) QualityOfService() NSQualityOfService {
 	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
@@ -376,7 +376,7 @@ func (t_ Thread) QualityOfService() QualityOfService {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
-func (t_ Thread) SetQualityOfService(value IQualityOfService) {
+func (t_ Thread) SetQualityOfService(value NSQualityOfService) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -404,7 +404,7 @@ func (t_ Thread) SetStackSize(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadDictionary
-func (t_ Thread) ThreadDictionary() NSMutableDictionary {
+func (t_ Thread) ThreadDictionary() IMutableDictionary {
 	rv := objc.Send[NSMutableDictionary](t_.ID, objc.Sel("threadDictionary"))
 	return rv
 }

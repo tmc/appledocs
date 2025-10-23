@@ -45,7 +45,6 @@ type IMatchmaker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker
-
 type Matchmaker struct {
 	objectivec.Object
 }
@@ -90,23 +89,19 @@ func NewMatchmaker() Matchmaker {
 
 
 
-
 // Invites additional players to an existing match.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)
-
 func (m_ Matchmaker) AddPlayersToMatchMatchRequestCompletionHandler(match IGKMatch, matchRequest IGKMatchRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addPlayersToMatch:matchRequest:completionHandler:"), match, matchRequest, completionHandler)
 }
-
 
 
 // Initiates a request to find players for a hosted match.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker/findPlayers(forHostedMatchRequest:withCompletionHandler:)
-
 func (m_ Matchmaker) FindPlayersForHostedMatchRequestWithCompletionHandler(request IGKMatchRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("findPlayersForHostedMatchRequest:withCompletionHandler:"), request, completionHandler)
 }
@@ -116,7 +111,6 @@ func (m_ Matchmaker) FindPlayersForHostedMatchRequestWithCompletionHandler(reque
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-
 func (m_ Matchmaker) ExpectedPlayerCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
 	return rv
@@ -127,7 +121,6 @@ func (m_ Matchmaker) ExpectedPlayerCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-
 func (m_ Matchmaker) SetExpectedPlayerCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
 }

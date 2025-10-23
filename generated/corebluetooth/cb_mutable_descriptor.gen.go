@@ -43,7 +43,6 @@ type ICBMutableDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableDescriptor
-
 type CBMutableDescriptor struct {
 	CBDescriptor
 }
@@ -90,12 +89,10 @@ func NewCBMutableDescriptor() CBMutableDescriptor {
 
 
 
-
 // Creates a mutable descriptor with a specified value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableDescriptor/init(type:value:)
-
 func NewCBMutableDescriptorWithTypeValue(UUID ICBUUID, value objectivec.IObject) CBMutableDescriptor {
 	instance := getCBMutableDescriptorClass().Alloc()
 	rv := objc.Send[CBMutableDescriptor](instance.ID, objc.Sel("initWithType:value:"), UUID, value)
@@ -109,7 +106,6 @@ func NewCBMutableDescriptorWithTypeValue(UUID ICBUUID, value objectivec.IObject)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
-
 func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
 	return rv
@@ -120,7 +116,6 @@ func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
-
 func (c_ CBMutableDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
 	return rv

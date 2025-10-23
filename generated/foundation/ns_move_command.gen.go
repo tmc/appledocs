@@ -30,7 +30,7 @@ type _MoveCommandClass struct {
 type IMoveCommand interface {
 	IScriptCommand
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
-	KeySpecifier() NSScriptObjectSpecifier
+	KeySpecifier() IScriptObjectSpecifier
 }
 
 // A command that moves one or more scriptable objects.
@@ -101,7 +101,7 @@ func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/keySpecifier
-func (m_ MoveCommand) KeySpecifier() NSScriptObjectSpecifier {
+func (m_ MoveCommand) KeySpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](m_.ID, objc.Sel("keySpecifier"))
 	return rv
 }

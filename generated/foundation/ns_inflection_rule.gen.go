@@ -117,7 +117,7 @@ func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/automaticRule
-func (i_ InflectionRule) AutomaticRule() NSInflectionRule {
+func (i_ InflectionRule) AutomaticRule() IInflectionRule {
 	rv := objc.Send[NSInflectionRule](i_.ID, objc.Sel("automaticRule"))
 	return rv
 }

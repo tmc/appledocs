@@ -51,7 +51,6 @@ type IHKSourceRevision interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSourceRevision
-
 type HKSourceRevision struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewHKSourceRevision() HKSourceRevision {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
-
 func (h_ HKSourceRevision) SourceRevision() HKSourceRevision {
 	rv := objc.Send[HKSourceRevision](h_.ID, objc.Sel("sourceRevision"))
 	return rv
@@ -111,7 +109,6 @@ func (h_ HKSourceRevision) SourceRevision() HKSourceRevision {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
-
 func (h_ HKSourceRevision) SetSourceRevision(value IHKSourceRevision) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceRevision:"), value)
 }
@@ -121,7 +118,6 @@ func (h_ HKSourceRevision) SetSourceRevision(value IHKSourceRevision) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/operatingsystemversion
-
 func (h_ HKSourceRevision) OperatingSystemVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("operatingSystemVersion"))
 	return rv
@@ -132,7 +128,6 @@ func (h_ HKSourceRevision) OperatingSystemVersion() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/operatingsystemversion
-
 func (h_ HKSourceRevision) SetOperatingSystemVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setOperatingSystemVersion:"), value)
 }
@@ -142,7 +137,6 @@ func (h_ HKSourceRevision) SetOperatingSystemVersion(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
-
 func (h_ HKSourceRevision) ProductType() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("productType"))
 	return rv
@@ -153,7 +147,6 @@ func (h_ HKSourceRevision) ProductType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
-
 func (h_ HKSourceRevision) SetProductType(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setProductType:"), objc.String(value))
 }
@@ -163,7 +156,6 @@ func (h_ HKSourceRevision) SetProductType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/source
-
 func (h_ HKSourceRevision) Source() HKSource {
 	rv := objc.Send[HKSource](h_.ID, objc.Sel("source"))
 	return rv
@@ -174,7 +166,6 @@ func (h_ HKSourceRevision) Source() HKSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/source
-
 func (h_ HKSourceRevision) SetSource(value IHKSource) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSource:"), value)
 }
@@ -184,7 +175,6 @@ func (h_ HKSourceRevision) SetSource(value IHKSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
-
 func (h_ HKSourceRevision) Version() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv
@@ -195,7 +185,6 @@ func (h_ HKSourceRevision) Version() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
-
 func (h_ HKSourceRevision) SetVersion(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), objc.String(value))
 }

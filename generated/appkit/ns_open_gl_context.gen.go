@@ -36,7 +36,7 @@ type IOpenGLContext interface {
 	CurrentVirtualScreen() unsafe.Pointer
 	SetCurrentVirtualScreen(value unsafe.Pointer)
 	PixelFormat() NSOpenGLPixelFormat
-	SetPixelFormat(value NSOpenGLPixelFormat)
+	SetPixelFormat(value IOpenGLPixelFormat)
 	View() NSView
 	SetView(value IView)
 }
@@ -50,7 +50,6 @@ type IOpenGLContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext
-
 type OpenGLContext struct {
 	objectivec.Object
 }
@@ -95,23 +94,19 @@ func NewOpenGLContext() OpenGLContext {
 
 
 
-
 // Disassociates the OpenGL context from its viewport.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/clearDrawable()
-
 func (o_ OpenGLContext) ClearDrawable() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("clearDrawable"))
 }
-
 
 
 // Copies selected groups of state variables to the OpenGL context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/copyAttributesFromContext:withMask:
-
 func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("copyAttributesFromContext:withMask:"), context, mask)
 }
@@ -121,7 +116,6 @@ func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context IOpenGLContext
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/cglContextObj
-
 func (o_ OpenGLContext) CGLContextObj() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLContextObj"))
 	return rv
@@ -132,7 +126,6 @@ func (o_ OpenGLContext) CGLContextObj() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/currentVirtualScreen
-
 func (o_ OpenGLContext) CurrentVirtualScreen() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("currentVirtualScreen"))
 	return rv
@@ -143,7 +136,6 @@ func (o_ OpenGLContext) CurrentVirtualScreen() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/currentVirtualScreen
-
 func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCurrentVirtualScreen:"), value)
 }
@@ -153,7 +145,6 @@ func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
-
 func (o_ OpenGLContext) PixelFormat() NSOpenGLPixelFormat {
 	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
@@ -164,8 +155,7 @@ func (o_ OpenGLContext) PixelFormat() NSOpenGLPixelFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
-
-func (o_ OpenGLContext) SetPixelFormat(value NSOpenGLPixelFormat) {
+func (o_ OpenGLContext) SetPixelFormat(value IOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
 }
 
@@ -174,7 +164,6 @@ func (o_ OpenGLContext) SetPixelFormat(value NSOpenGLPixelFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
-
 func (o_ OpenGLContext) View() NSView {
 	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
 	return rv
@@ -185,7 +174,6 @@ func (o_ OpenGLContext) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
-
 func (o_ OpenGLContext) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }

@@ -45,7 +45,6 @@ type IEPSImageRep interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep
-
 type EPSImageRep struct {
 	ImageRep
 }
@@ -92,12 +91,10 @@ func NewEPSImageRep() EPSImageRep {
 
 
 
-
 // Implemented by subclasses to configure the graphics state prior to drawing.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/prepareGState()
-
 func (e_ EPSImageRep) PrepareGState() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("prepareGState"))
 }
@@ -107,7 +104,6 @@ func (e_ EPSImageRep) PrepareGState() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
-
 func (e_ EPSImageRep) BoundingBox() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](e_.ID, objc.Sel("boundingBox"))
 	return rv
@@ -118,7 +114,6 @@ func (e_ EPSImageRep) BoundingBox() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
-
 func (e_ EPSImageRep) SetBoundingBox(value coregraphics.CGRect) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setBoundingBox:"), value)
 }
@@ -128,7 +123,6 @@ func (e_ EPSImageRep) SetBoundingBox(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-
 func (e_ EPSImageRep) EpsRepresentation() foundation.Data {
 	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("epsRepresentation"))
 	return rv
@@ -139,7 +133,6 @@ func (e_ EPSImageRep) EpsRepresentation() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-
 func (e_ EPSImageRep) SetEpsRepresentation(value foundation.IData) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEpsRepresentation:"), value)
 }

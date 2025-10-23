@@ -50,7 +50,6 @@ type ICWMutableConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration
-
 type CWMutableConfiguration struct {
 	CWConfiguration
 }
@@ -101,7 +100,6 @@ func NewCWMutableConfiguration() CWMutableConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/networkProfiles
-
 func (c_ CWMutableConfiguration) NetworkProfiles() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkProfiles"))
 	return rv
@@ -112,7 +110,6 @@ func (c_ CWMutableConfiguration) NetworkProfiles() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/networkProfiles
-
 func (c_ CWMutableConfiguration) SetNetworkProfiles(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }
@@ -122,7 +119,6 @@ func (c_ CWMutableConfiguration) SetNetworkProfiles(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
-
 func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rememberJoinedNetworks"))
 	return rv
@@ -133,7 +129,6 @@ func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
-
 func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRememberJoinedNetworks:"), value)
 }
@@ -143,7 +138,6 @@ func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
-
 func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForAssociation"))
 	return rv
@@ -154,7 +148,6 @@ func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
-
 func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForAssociation:"), value)
 }
@@ -164,7 +157,6 @@ func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
-
 func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForIBSSMode"))
 	return rv
@@ -175,7 +167,6 @@ func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
-
 func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForIBSSMode:"), value)
 }
@@ -185,7 +176,6 @@ func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
-
 func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForPower"))
 	return rv
@@ -196,7 +186,6 @@ func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
-
 func (c_ CWMutableConfiguration) SetRequireAdministratorForPower(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForPower:"), value)
 }

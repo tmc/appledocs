@@ -50,7 +50,6 @@ type IContentProposalViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController
-
 type ContentProposalViewController struct {
 	appkit.ViewController
 }
@@ -97,12 +96,10 @@ func NewContentProposalViewController() ContentProposalViewController {
 
 
 
-
 // Dismisses the current content proposal.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dismissContentProposal(for:animated:completion:)
-
 func (c_ ContentProposalViewController) DismissContentProposalForActionAnimatedCompletion(action IContentProposalAction, animated bool, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("dismissContentProposalForAction:animated:completion:"), action, animated, block)
 }
@@ -112,7 +109,6 @@ func (c_ ContentProposalViewController) DismissContentProposalForActionAnimatedC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/contentProposal
-
 func (c_ ContentProposalViewController) ContentProposal() AVContentProposal {
 	rv := objc.Send[AVContentProposal](c_.ID, objc.Sel("contentProposal"))
 	return rv
@@ -123,7 +119,6 @@ func (c_ ContentProposalViewController) ContentProposal() AVContentProposal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
-
 func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
 	return rv
@@ -134,7 +129,6 @@ func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
-
 func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
@@ -144,7 +138,6 @@ func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerLayoutGuide
-
 func (c_ ContentProposalViewController) PlayerLayoutGuide() appkit.LayoutGuide {
 	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
@@ -155,7 +148,6 @@ func (c_ ContentProposalViewController) PlayerLayoutGuide() appkit.LayoutGuide {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerViewController
-
 func (c_ ContentProposalViewController) PlayerViewController() AVPlayerViewController {
 	rv := objc.Send[AVPlayerViewController](c_.ID, objc.Sel("playerViewController"))
 	return rv
@@ -166,7 +158,6 @@ func (c_ ContentProposalViewController) PlayerViewController() AVPlayerViewContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/preferredPlayerViewFrame
-
 func (c_ ContentProposalViewController) PreferredPlayerViewFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
 	return rv

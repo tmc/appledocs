@@ -33,8 +33,8 @@ type ISFAuthorization interface {
 	objectivec.IObject
 	AuthorizationRef() unsafe.Pointer
 	InvalidateCredentials()
-	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.IError) bool
-	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.IError) bool
+	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.NSError) bool
+	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.NSError) bool
 	PermitWithRightFlags(rightName unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer
 	PermitWithRightsFlagsEnvironmentAuthorizedRights(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer) unsafe.Pointer
 }
@@ -48,7 +48,6 @@ type ISFAuthorization interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization
-
 type SFAuthorization struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewSFAuthorization() SFAuthorization {
 
 
 
-
 // Initializes an authorization object with the specified flags, rights, and environment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/init(flags:rights:environment:)
-
 func NewSFAuthorizationWithFlagsRightsEnvironment(flags unsafe.Pointer, rights unsafe.Pointer, environment unsafe.Pointer) SFAuthorization {
 	instance := getSFAuthorizationClass().Alloc()
 	rv := objc.Send[SFAuthorization](instance.ID, objc.Sel("initWithFlags:rights:environment:"), flags, rights, environment)
@@ -112,7 +109,6 @@ func NewSFAuthorizationWithFlagsRightsEnvironment(flags unsafe.Pointer, rights u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/authorization()
-
 func (sc _SFAuthorizationClass) Authorization() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("authorization"))
 	return rv
@@ -123,78 +119,65 @@ func (sc _SFAuthorizationClass) Authorization() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/authorization(with:rights:environment:)
-
 func (sc _SFAuthorizationClass) AuthorizationWithFlagsRightsEnvironment(flags unsafe.Pointer, rights unsafe.Pointer, environment unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("authorizationWithFlags:rights:environment:"), flags, rights, environment)
 	return rv
 }
 
 
-
 // Returns the authorization reference for this object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/authorizationRef()
-
 func (s_ SFAuthorization) AuthorizationRef() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("authorizationRef"))
 	return rv
 }
 
 
-
 // Prevents any rights that were obtained by this object from being preserved.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/invalidateCredentials()
-
 func (s_ SFAuthorization) InvalidateCredentials() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateCredentials"))
 }
-
 
 
 // Authorizes and preauthorizes one specific right.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRight:flags:)
-
-func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.IError) bool {
+func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.NSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRight:flags:error:"), rightName, flags, error_)
 	return rv
 }
-
 
 
 // Authorizes and preauthorizes rights to access a privileged operation and returns the granted rights.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRights:flags:environment:authorizedRights:)
-
-func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.IError) bool {
+func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.NSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRights:flags:environment:authorizedRights:error:"), rights, flags, environment, authorizedRights, error_)
 	return rv
 }
-
 
 
 // Authorizes and preauthorizes one specific right.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/permitWithRight:flags:
-
 func (s_ SFAuthorization) PermitWithRightFlags(rightName unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("permitWithRight:flags:"), rightName, flags)
 	return rv
 }
 
 
-
 // Authorizes and preauthorizes rights to access a privileged operation and returns the granted rights.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/permitWithRights:flags:environment:authorizedRights:
-
 func (s_ SFAuthorization) PermitWithRightsFlagsEnvironmentAuthorizedRights(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("permitWithRights:flags:environment:authorizedRights:"), rights, flags, environment, authorizedRights)
 	return rv

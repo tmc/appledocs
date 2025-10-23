@@ -43,7 +43,6 @@ type ISActivityItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem
-
 type SActivityItem struct {
 	SObject
 }
@@ -94,7 +93,6 @@ func NewSActivityItem() SActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/identifier
-
 func (s_ SActivityItem) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
@@ -105,7 +103,6 @@ func (s_ SActivityItem) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-
 func (s_ SActivityItem) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
@@ -116,7 +113,6 @@ func (s_ SActivityItem) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-
 func (s_ SActivityItem) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

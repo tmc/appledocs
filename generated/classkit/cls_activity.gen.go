@@ -55,7 +55,6 @@ type ISActivity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity
-
 type SActivity struct {
 	SObject
 }
@@ -102,56 +101,46 @@ func NewSActivity() SActivity {
 
 
 
-
 // Adds an activity item to an activity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/addAdditionalActivityItem(_:)
-
 func (s_ SActivity) AddAdditionalActivityItem(activityItem ICLSActivityItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addAdditionalActivityItem:"), activityItem)
 }
-
 
 
 // Adds a progress range to a given activity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/addProgressRange(fromStart:toEnd:)
-
 func (s_ SActivity) AddProgressRangeFromStartToEnd(start float64, end float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addProgressRangeFromStart:toEnd:"), start, end)
 }
-
 
 
 // Deletes all activity items associated with the current activity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/removeAllActivityItems()
-
 func (s_ SActivity) RemoveAllActivityItems() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeAllActivityItems"))
 }
-
 
 
 // Tells an activity to start recording duration and progress for a task.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/start()
-
 func (s_ SActivity) Start() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("start"))
 }
-
 
 
 // Tells an activity to stop or pause recording duration and progress for a task.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/stop()
-
 func (s_ SActivity) Stop() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stop"))
 }
@@ -161,7 +150,6 @@ func (s_ SActivity) Stop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/additionalActivityItems
-
 func (s_ SActivity) AdditionalActivityItems() []SActivityItem {
 	rv := objc.Send[[]SActivityItem](s_.ID, objc.Sel("additionalActivityItems"))
 	return rv
@@ -172,7 +160,6 @@ func (s_ SActivity) AdditionalActivityItems() []SActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/duration
-
 func (s_ SActivity) Duration() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("duration"))
 	return rv
@@ -183,7 +170,6 @@ func (s_ SActivity) Duration() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/isStarted
-
 func (s_ SActivity) Started() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("started"))
 	return rv
@@ -194,7 +180,6 @@ func (s_ SActivity) Started() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
-
 func (s_ SActivity) PrimaryActivityItem() CLSActivityItem {
 	rv := objc.Send[CLSActivityItem](s_.ID, objc.Sel("primaryActivityItem"))
 	return rv
@@ -205,7 +190,6 @@ func (s_ SActivity) PrimaryActivityItem() CLSActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
-
 func (s_ SActivity) SetPrimaryActivityItem(value ICLSActivityItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryActivityItem:"), value)
 }
@@ -215,7 +199,6 @@ func (s_ SActivity) SetPrimaryActivityItem(value ICLSActivityItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
-
 func (s_ SActivity) Progress() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("progress"))
 	return rv
@@ -226,7 +209,6 @@ func (s_ SActivity) Progress() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
-
 func (s_ SActivity) SetProgress(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgress:"), value)
 }
@@ -236,7 +218,6 @@ func (s_ SActivity) SetProgress(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
-
 func (s_ SActivity) IsStarted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isStarted"))
 	return rv
@@ -247,7 +228,6 @@ func (s_ SActivity) IsStarted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsactivity/isstarted
-
 func (s_ SActivity) SetIsStarted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsStarted:"), value)
 }

@@ -43,7 +43,6 @@ type IModelStructureNeuralNetworkLayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer
-
 type ModelStructureNeuralNetworkLayer struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewModelStructureNeuralNetworkLayer() ModelStructureNeuralNetworkLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/inputNames
-
 func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("inputNames"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/name
-
 func (m_ ModelStructureNeuralNetworkLayer) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -114,7 +111,6 @@ func (m_ ModelStructureNeuralNetworkLayer) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/outputNames
-
 func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("outputNames"))
 	return rv
@@ -125,7 +121,6 @@ func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/type
-
 func (m_ ModelStructureNeuralNetworkLayer) Type() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("type"))
 	return rv

@@ -2,11 +2,14 @@
 
 // Package identitydocumentservices provides Go bindings for the IdentityDocumentServices framework.
 //
-// Share mobile documents using the Digital Credentials API. [Full Topic]
+// Share mobile documents using the Digital Credentials API.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IdentityDocumentServices without requiring cgo.
+
+// Share mobile documents using the Digital Credentials API.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityDocumentServices
 package identitydocumentservices
 

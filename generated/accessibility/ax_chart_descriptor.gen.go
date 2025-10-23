@@ -37,7 +37,7 @@ type IAXChartDescriptor interface {
 	AttributedTitle() foundation.AttributedString
 	SetAttributedTitle(value foundation.IAttributedString)
 	ContentDirection() AXChartDescriptorContentDirection
-	SetContentDirection(value AXChartDescriptorContentDirection)
+	SetContentDirection(value IAXChartDescriptorContentDirection)
 	ContentFrame() coregraphics.CGRect
 	SetContentFrame(value coregraphics.CGRect)
 	Series() []AXDataSeriesDescriptor
@@ -59,7 +59,6 @@ type IAXChartDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor
-
 type AXChartDescriptor struct {
 	objectivec.Object
 }
@@ -104,12 +103,10 @@ func NewAXChartDescriptor() AXChartDescriptor {
 
 
 
-
 // Creates a chart descriptor with the specified attributed title, summary, x-axis descriptor, y-axis descriptor, descriptors for additional axes, and array of data series.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:
-
 func NewAXChartDescriptorWithAttributedTitleSummaryXAxisDescriptorYAxisDescriptorAdditionalAxesSeries(attributedTitle foundation.IAttributedString, summary string, xAxis objectivec.IObject, yAxis IAXNumericDataAxisDescriptor, additionalAxes []objc.ID, series []AXDataSeriesDescriptor) AXChartDescriptor {
 	instance := getAXChartDescriptorClass().Alloc()
 	rv := objc.Send[AXChartDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:"), attributedTitle, objc.String(summary), xAxis, yAxis, additionalAxes, series)
@@ -118,12 +115,10 @@ func NewAXChartDescriptorWithAttributedTitleSummaryXAxisDescriptorYAxisDescripto
 }
 
 
-
 // Creates a chart descriptor with the specified attributed title, summary, x-axis descriptor, y-axis descriptor, and array of data series.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:
-
 func NewAXChartDescriptorWithAttributedTitleSummaryXAxisDescriptorYAxisDescriptorSeries(attributedTitle foundation.IAttributedString, summary string, xAxis objectivec.IObject, yAxis IAXNumericDataAxisDescriptor, series []AXDataSeriesDescriptor) AXChartDescriptor {
 	instance := getAXChartDescriptorClass().Alloc()
 	rv := objc.Send[AXChartDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:"), attributedTitle, objc.String(summary), xAxis, yAxis, series)
@@ -132,12 +127,10 @@ func NewAXChartDescriptorWithAttributedTitleSummaryXAxisDescriptorYAxisDescripto
 }
 
 
-
 // Creates a chart descriptor with the specified title, summary, x-axis descriptor, y-axis descriptor, descriptors for additional axes, and array of data series.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:
-
 func NewAXChartDescriptorWithTitleSummaryXAxisDescriptorYAxisDescriptorAdditionalAxesSeries(title string, summary string, xAxis objectivec.IObject, yAxis IAXNumericDataAxisDescriptor, additionalAxes []objc.ID, series []AXDataSeriesDescriptor) AXChartDescriptor {
 	instance := getAXChartDescriptorClass().Alloc()
 	rv := objc.Send[AXChartDescriptor](instance.ID, objc.Sel("initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:"), objc.String(title), objc.String(summary), xAxis, yAxis, additionalAxes, series)
@@ -146,12 +139,10 @@ func NewAXChartDescriptorWithTitleSummaryXAxisDescriptorYAxisDescriptorAdditiona
 }
 
 
-
 // Creates a chart descriptor with the specified title, summary, x-axis descriptor, y-axis descriptor, descriptors for additional axes, and array of data series.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:
-
 func NewAXChartDescriptorWithTitleSummaryXAxisDescriptorYAxisDescriptorSeries(title string, summary string, xAxis objectivec.IObject, yAxis IAXNumericDataAxisDescriptor, series []AXDataSeriesDescriptor) AXChartDescriptor {
 	instance := getAXChartDescriptorClass().Alloc()
 	rv := objc.Send[AXChartDescriptor](instance.ID, objc.Sel("initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:"), objc.String(title), objc.String(summary), xAxis, yAxis, series)
@@ -165,7 +156,6 @@ func NewAXChartDescriptorWithTitleSummaryXAxisDescriptorYAxisDescriptorSeries(ti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/additionalAxes-9ldc0
-
 func (a_ AXChartDescriptor) AdditionalAxes() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("additionalAxes"))
 	return rv
@@ -176,7 +166,6 @@ func (a_ AXChartDescriptor) AdditionalAxes() []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/additionalAxes-9ldc0
-
 func (a_ AXChartDescriptor) SetAdditionalAxes(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -196,7 +185,6 @@ func (a_ AXChartDescriptor) SetAdditionalAxes(value []objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/attributedTitle
-
 func (a_ AXChartDescriptor) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedTitle"))
 	return rv
@@ -207,7 +195,6 @@ func (a_ AXChartDescriptor) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/attributedTitle
-
 func (a_ AXChartDescriptor) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedTitle:"), value)
 }
@@ -217,7 +204,6 @@ func (a_ AXChartDescriptor) SetAttributedTitle(value foundation.IAttributedStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/contentDirection-swift.property
-
 func (a_ AXChartDescriptor) ContentDirection() AXChartDescriptorContentDirection {
 	rv := objc.Send[AXChartDescriptorContentDirection](a_.ID, objc.Sel("contentDirection"))
 	return rv
@@ -228,8 +214,7 @@ func (a_ AXChartDescriptor) ContentDirection() AXChartDescriptorContentDirection
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/contentDirection-swift.property
-
-func (a_ AXChartDescriptor) SetContentDirection(value AXChartDescriptorContentDirection) {
+func (a_ AXChartDescriptor) SetContentDirection(value IAXChartDescriptorContentDirection) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContentDirection:"), value)
 }
 
@@ -238,7 +223,6 @@ func (a_ AXChartDescriptor) SetContentDirection(value AXChartDescriptorContentDi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/contentFrame
-
 func (a_ AXChartDescriptor) ContentFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("contentFrame"))
 	return rv
@@ -249,7 +233,6 @@ func (a_ AXChartDescriptor) ContentFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/contentFrame
-
 func (a_ AXChartDescriptor) SetContentFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContentFrame:"), value)
 }
@@ -259,7 +242,6 @@ func (a_ AXChartDescriptor) SetContentFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/series
-
 func (a_ AXChartDescriptor) Series() []AXDataSeriesDescriptor {
 	rv := objc.Send[[]AXDataSeriesDescriptor](a_.ID, objc.Sel("series"))
 	return rv
@@ -270,7 +252,6 @@ func (a_ AXChartDescriptor) Series() []AXDataSeriesDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/series
-
 func (a_ AXChartDescriptor) SetSeries(value []AXDataSeriesDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -290,7 +271,6 @@ func (a_ AXChartDescriptor) SetSeries(value []AXDataSeriesDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/summary
-
 func (a_ AXChartDescriptor) Summary() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("summary"))
 	return rv
@@ -301,7 +281,6 @@ func (a_ AXChartDescriptor) Summary() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/summary
-
 func (a_ AXChartDescriptor) SetSummary(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSummary:"), objc.String(value))
 }
@@ -311,7 +290,6 @@ func (a_ AXChartDescriptor) SetSummary(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/title
-
 func (a_ AXChartDescriptor) Title() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("title"))
 	return rv
@@ -322,7 +300,6 @@ func (a_ AXChartDescriptor) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/title
-
 func (a_ AXChartDescriptor) SetTitle(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -332,7 +309,6 @@ func (a_ AXChartDescriptor) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/xAxis-6dnxd
-
 func (a_ AXChartDescriptor) XAxis() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("xAxis"))
 	return rv
@@ -343,7 +319,6 @@ func (a_ AXChartDescriptor) XAxis() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/xAxis-6dnxd
-
 func (a_ AXChartDescriptor) SetXAxis(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setXAxis:"), value)
 }
@@ -353,7 +328,6 @@ func (a_ AXChartDescriptor) SetXAxis(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/yAxis
-
 func (a_ AXChartDescriptor) YAxis() AXNumericDataAxisDescriptor {
 	rv := objc.Send[AXNumericDataAxisDescriptor](a_.ID, objc.Sel("yAxis"))
 	return rv
@@ -364,7 +338,6 @@ func (a_ AXChartDescriptor) YAxis() AXNumericDataAxisDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXChartDescriptor/yAxis
-
 func (a_ AXChartDescriptor) SetYAxis(value IAXNumericDataAxisDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setYAxis:"), value)
 }

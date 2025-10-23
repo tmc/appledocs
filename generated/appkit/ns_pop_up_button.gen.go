@@ -85,7 +85,6 @@ type IPopUpButton interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton
-
 type PopUpButton struct {
 	Button
 }
@@ -132,12 +131,10 @@ func NewPopUpButton() PopUpButton {
 
 
 
-
 // Returns an object initialized to the specified dimensions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/init(frame:pullsDown:)
-
 func NewPopUpButtonWithFramePullsDown(buttonFrame coregraphics.CGRect, flag bool) PopUpButton {
 	instance := getPopUpButtonClass().Alloc()
 	rv := objc.Send[PopUpButton](instance.ID, objc.Sel("initWithFrame:pullsDown:"), buttonFrame, flag)
@@ -151,7 +148,6 @@ func NewPopUpButtonWithFramePullsDown(buttonFrame coregraphics.CGRect, flag bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/popUpButtonWithMenu:target:action:
-
 func (pc _PopUpButtonClass) PopUpButtonWithMenuTargetAction(menu IMenu, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("popUpButtonWithMenu:target:action:"), menu, target, action)
 	return rv
@@ -162,7 +158,6 @@ func (pc _PopUpButtonClass) PopUpButtonWithMenuTargetAction(menu IMenu, target o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullDownButtonWithImage:menu:
-
 func (pc _PopUpButtonClass) PullDownButtonWithImageMenu(image IImage, menu IMenu) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pullDownButtonWithImage:menu:"), image, menu)
 	return rv
@@ -173,7 +168,6 @@ func (pc _PopUpButtonClass) PullDownButtonWithImageMenu(image IImage, menu IMenu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullDownButtonWithTitle:image:menu:
-
 func (pc _PopUpButtonClass) PullDownButtonWithTitleImageMenu(title string, image IImage, menu IMenu) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pullDownButtonWithTitle:image:menu:"), objc.String(title), image, menu)
 	return rv
@@ -184,237 +178,196 @@ func (pc _PopUpButtonClass) PullDownButtonWithTitleImageMenu(title string, image
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullDownButtonWithTitle:menu:
-
 func (pc _PopUpButtonClass) PullDownButtonWithTitleMenu(title string, menu IMenu) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pullDownButtonWithTitle:menu:"), objc.String(title), menu)
 	return rv
 }
 
 
-
 // Adds an item with the specified title to the end of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/addItem(withTitle:)
-
 func (p_ PopUpButton) AddItemWithTitle(title string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addItemWithTitle:"), objc.String(title))
 }
-
 
 
 // Adds multiple items to the end of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/addItems(withTitles:)
-
 func (p_ PopUpButton) AddItemsWithTitles(itemTitles []string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addItemsWithTitles:"), itemTitles)
 }
-
 
 
 // Returns the index of the specified menu item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/index(of:)
-
 func (p_ PopUpButton) IndexOfItem(item IMenuItem) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItem:"), item)
 	return rv
 }
 
 
-
 // Returns the index of the menu item that holds the specified represented object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withRepresentedObject:)
-
 func (p_ PopUpButton) IndexOfItemWithRepresentedObject(obj objectivec.IObject) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithRepresentedObject:"), obj)
 	return rv
 }
 
 
-
 // Returns the index of the menu item with the specified tag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withTag:)
-
 func (p_ PopUpButton) IndexOfItemWithTag(tag int) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTag:"), tag)
 	return rv
 }
 
 
-
 // Returns the index of the menu item with the specified target and action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withTarget:andAction:)
-
 func (p_ PopUpButton) IndexOfItemWithTargetAndAction(target objectivec.IObject, actionSelector objc.SEL) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTarget:andAction:"), target, actionSelector)
 	return rv
 }
 
 
-
 // Returns the index of the item with the specified title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withTitle:)
-
 func (p_ PopUpButton) IndexOfItemWithTitle(title string) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTitle:"), objc.String(title))
 	return rv
 }
 
 
-
 // Inserts an item at the specified position in the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/insertItem(withTitle:at:)
-
 func (p_ PopUpButton) InsertItemWithTitleAtIndex(title string, index int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("insertItemWithTitle:atIndex:"), objc.String(title), index)
 }
-
 
 
 // Returns the menu item at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/item(at:)
-
 func (p_ PopUpButton) ItemAtIndex(index int) MenuItem {
 	rv := objc.Send[MenuItem](p_.ID, objc.Sel("itemAtIndex:"), index)
 	return rv
 }
 
 
-
 // Returns the menu item with the specified title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/item(withTitle:)
-
 func (p_ PopUpButton) ItemWithTitle(title string) MenuItem {
 	rv := objc.Send[MenuItem](p_.ID, objc.Sel("itemWithTitle:"), objc.String(title))
 	return rv
 }
 
 
-
 // Returns the title of the item at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/itemTitle(at:)
-
 func (p_ PopUpButton) ItemTitleAtIndex(index int) foundation.String {
 	rv := objc.Send[foundation.String](p_.ID, objc.Sel("itemTitleAtIndex:"), index)
 	return rv
 }
 
 
-
 // Removes all items in the receiver’s item menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/removeAllItems()
-
 func (p_ PopUpButton) RemoveAllItems() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeAllItems"))
 }
-
 
 
 // Removes the item at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/removeItem(at:)
-
 func (p_ PopUpButton) RemoveItemAtIndex(index int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeItemAtIndex:"), index)
 }
-
 
 
 // Removes the item with the specified title from the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/removeItem(withTitle:)
-
 func (p_ PopUpButton) RemoveItemWithTitle(title string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeItemWithTitle:"), objc.String(title))
 }
-
 
 
 // Selects the specified menu item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/select(_:)
-
 func (p_ PopUpButton) SelectItem(item IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectItem:"), item)
 }
-
 
 
 // Selects the item in the menu at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectItem(at:)
-
 func (p_ PopUpButton) SelectItemAtIndex(index int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectItemAtIndex:"), index)
 }
-
 
 
 // Selects the menu item with the specified tag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectItem(withTag:)
-
 func (p_ PopUpButton) SelectItemWithTag(tag int) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("selectItemWithTag:"), tag)
 	return rv
 }
 
 
-
 // Selects the item with the specified title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectItem(withTitle:)
-
 func (p_ PopUpButton) SelectItemWithTitle(title string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectItemWithTitle:"), objc.String(title))
 }
-
 
 
 // Sets the string displayed in the receiver when the user isn’t pressing the mouse button.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/setTitle(_:)
-
 func (p_ PopUpButton) SetTitle(string_ string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(string_))
 }
-
 
 
 // Ensures that the item being displayed by the receiver agrees with the selected item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/synchronizeTitleAndSelectedItem()
-
 func (p_ PopUpButton) SynchronizeTitleAndSelectedItem() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("synchronizeTitleAndSelectedItem"))
 }
@@ -424,7 +377,6 @@ func (p_ PopUpButton) SynchronizeTitleAndSelectedItem() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/altersStateOfSelectedItem
-
 func (p_ PopUpButton) AltersStateOfSelectedItem() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("altersStateOfSelectedItem"))
 	return rv
@@ -435,7 +387,6 @@ func (p_ PopUpButton) AltersStateOfSelectedItem() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/altersStateOfSelectedItem
-
 func (p_ PopUpButton) SetAltersStateOfSelectedItem(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAltersStateOfSelectedItem:"), value)
 }
@@ -445,7 +396,6 @@ func (p_ PopUpButton) SetAltersStateOfSelectedItem(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/autoenablesItems
-
 func (p_ PopUpButton) AutoenablesItems() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("autoenablesItems"))
 	return rv
@@ -456,7 +406,6 @@ func (p_ PopUpButton) AutoenablesItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/autoenablesItems
-
 func (p_ PopUpButton) SetAutoenablesItems(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutoenablesItems:"), value)
 }
@@ -466,7 +415,6 @@ func (p_ PopUpButton) SetAutoenablesItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfSelectedItem
-
 func (p_ PopUpButton) IndexOfSelectedItem() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfSelectedItem"))
 	return rv
@@ -477,7 +425,6 @@ func (p_ PopUpButton) IndexOfSelectedItem() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/itemArray
-
 func (p_ PopUpButton) ItemArray() []MenuItem {
 	rv := objc.Send[[]MenuItem](p_.ID, objc.Sel("itemArray"))
 	return rv
@@ -488,7 +435,6 @@ func (p_ PopUpButton) ItemArray() []MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/itemTitles
-
 func (p_ PopUpButton) ItemTitles() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("itemTitles"))
 	return rv
@@ -499,7 +445,6 @@ func (p_ PopUpButton) ItemTitles() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/lastItem
-
 func (p_ PopUpButton) LastItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("lastItem"))
 	return rv
@@ -510,7 +455,6 @@ func (p_ PopUpButton) LastItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/menu
-
 func (p_ PopUpButton) Menu() NSMenu {
 	rv := objc.Send[NSMenu](p_.ID, objc.Sel("menu"))
 	return rv
@@ -521,7 +465,6 @@ func (p_ PopUpButton) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/menu
-
 func (p_ PopUpButton) SetMenu(value IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
 }
@@ -531,7 +474,6 @@ func (p_ PopUpButton) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/numberOfItems
-
 func (p_ PopUpButton) NumberOfItems() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfItems"))
 	return rv
@@ -542,7 +484,6 @@ func (p_ PopUpButton) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/preferredEdge
-
 func (p_ PopUpButton) PreferredEdge() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("preferredEdge"))
 	return rv
@@ -553,7 +494,6 @@ func (p_ PopUpButton) PreferredEdge() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/preferredEdge
-
 func (p_ PopUpButton) SetPreferredEdge(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredEdge:"), value)
 }
@@ -563,7 +503,6 @@ func (p_ PopUpButton) SetPreferredEdge(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullsDown
-
 func (p_ PopUpButton) PullsDown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pullsDown"))
 	return rv
@@ -574,7 +513,6 @@ func (p_ PopUpButton) PullsDown() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullsDown
-
 func (p_ PopUpButton) SetPullsDown(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPullsDown:"), value)
 }
@@ -584,7 +522,6 @@ func (p_ PopUpButton) SetPullsDown(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectedItem
-
 func (p_ PopUpButton) SelectedItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("selectedItem"))
 	return rv
@@ -595,7 +532,6 @@ func (p_ PopUpButton) SelectedItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectedTag
-
 func (p_ PopUpButton) SelectedTag() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("selectedTag"))
 	return rv
@@ -606,7 +542,6 @@ func (p_ PopUpButton) SelectedTag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/titleOfSelectedItem
-
 func (p_ PopUpButton) TitleOfSelectedItem() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("titleOfSelectedItem"))
 	return rv
@@ -617,7 +552,6 @@ func (p_ PopUpButton) TitleOfSelectedItem() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/usesItemFromMenu
-
 func (p_ PopUpButton) UsesItemFromMenu() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesItemFromMenu"))
 	return rv
@@ -628,7 +562,6 @@ func (p_ PopUpButton) UsesItemFromMenu() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/usesItemFromMenu
-
 func (p_ PopUpButton) SetUsesItemFromMenu(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesItemFromMenu:"), value)
 }
@@ -638,7 +571,6 @@ func (p_ PopUpButton) SetUsesItemFromMenu(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/image
-
 func (p_ PopUpButton) Image() Image {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
@@ -649,7 +581,6 @@ func (p_ PopUpButton) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/image
-
 func (p_ PopUpButton) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }

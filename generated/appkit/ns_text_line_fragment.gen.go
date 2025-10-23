@@ -49,7 +49,6 @@ type ITextLineFragment interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment
-
 type TextLineFragment struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewTextLineFragment() TextLineFragment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-
 func (t_ TextLineFragment) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
@@ -109,7 +107,6 @@ func (t_ TextLineFragment) AttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-
 func (t_ TextLineFragment) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
@@ -119,7 +116,6 @@ func (t_ TextLineFragment) SetAttributedString(value foundation.IAttributedStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/characterrange
-
 func (t_ TextLineFragment) CharacterRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("characterRange"))
 	return rv
@@ -130,7 +126,6 @@ func (t_ TextLineFragment) CharacterRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/characterrange
-
 func (t_ TextLineFragment) SetCharacterRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacterRange:"), value)
 }
@@ -140,7 +135,6 @@ func (t_ TextLineFragment) SetCharacterRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/glyphorigin
-
 func (t_ TextLineFragment) GlyphOrigin() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("glyphOrigin"))
 	return rv
@@ -151,7 +145,6 @@ func (t_ TextLineFragment) GlyphOrigin() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/glyphorigin
-
 func (t_ TextLineFragment) SetGlyphOrigin(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGlyphOrigin:"), value)
 }
@@ -161,7 +154,6 @@ func (t_ TextLineFragment) SetGlyphOrigin(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/typographicbounds
-
 func (t_ TextLineFragment) TypographicBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("typographicBounds"))
 	return rv
@@ -172,7 +164,6 @@ func (t_ TextLineFragment) TypographicBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/typographicbounds
-
 func (t_ TextLineFragment) SetTypographicBounds(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypographicBounds:"), value)
 }

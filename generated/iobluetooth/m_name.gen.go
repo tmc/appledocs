@@ -32,7 +32,9 @@ type ImName interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mName
 type mName struct {
 	objectivec.Object

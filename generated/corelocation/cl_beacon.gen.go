@@ -50,7 +50,6 @@ type IBeacon interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon
-
 type Beacon struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewBeacon() Beacon {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/accuracy
-
 func (b_ Beacon) Accuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("accuracy"))
 	return rv
@@ -110,7 +108,6 @@ func (b_ Beacon) Accuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/major
-
 func (b_ Beacon) Major() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
@@ -121,7 +118,6 @@ func (b_ Beacon) Major() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/minor
-
 func (b_ Beacon) Minor() foundation.Number {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
@@ -132,7 +128,6 @@ func (b_ Beacon) Minor() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximity
-
 func (b_ Beacon) Proximity() Proximity {
 	rv := objc.Send[Proximity](b_.ID, objc.Sel("proximity"))
 	return rv
@@ -143,7 +138,6 @@ func (b_ Beacon) Proximity() Proximity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximityUUID
-
 func (b_ Beacon) ProximityUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
@@ -154,7 +148,6 @@ func (b_ Beacon) ProximityUUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/rssi
-
 func (b_ Beacon) Rssi() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("rssi"))
 	return rv
@@ -165,7 +158,6 @@ func (b_ Beacon) Rssi() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/timestamp
-
 func (b_ Beacon) Timestamp() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](b_.ID, objc.Sel("timestamp"))
 	return rv
@@ -176,7 +168,6 @@ func (b_ Beacon) Timestamp() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/uuid
-
 func (b_ Beacon) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv

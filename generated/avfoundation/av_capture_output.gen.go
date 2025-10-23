@@ -30,7 +30,7 @@ type _CaptureOutputClass struct {
 // An interface definition for the [CaptureOutput] class.
 type ICaptureOutput interface {
 	objectivec.IObject
-	Connections() AVCaptureConnection
+	Connections() IAVCaptureConnection
 	SetConnections(value IAVCaptureConnection)
 	IsDeferredStartEnabled() bool
 	SetIsDeferredStartEnabled(value bool)
@@ -47,7 +47,6 @@ type ICaptureOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput
-
 type CaptureOutput struct {
 	objectivec.Object
 }
@@ -96,8 +95,7 @@ func NewCaptureOutput() CaptureOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
-
-func (c_ CaptureOutput) Connections() AVCaptureConnection {
+func (c_ CaptureOutput) Connections() IAVCaptureConnection {
 	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
@@ -107,7 +105,6 @@ func (c_ CaptureOutput) Connections() AVCaptureConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
-
 func (c_ CaptureOutput) SetConnections(value IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConnections:"), value)
 }
@@ -117,7 +114,6 @@ func (c_ CaptureOutput) SetConnections(value IAVCaptureConnection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartenabled
-
 func (c_ CaptureOutput) IsDeferredStartEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
 	return rv
@@ -128,7 +124,6 @@ func (c_ CaptureOutput) IsDeferredStartEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartenabled
-
 func (c_ CaptureOutput) SetIsDeferredStartEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
 }
@@ -138,7 +133,6 @@ func (c_ CaptureOutput) SetIsDeferredStartEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartsupported
-
 func (c_ CaptureOutput) IsDeferredStartSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
 	return rv
@@ -149,7 +143,6 @@ func (c_ CaptureOutput) IsDeferredStartSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartsupported
-
 func (c_ CaptureOutput) SetIsDeferredStartSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
 }

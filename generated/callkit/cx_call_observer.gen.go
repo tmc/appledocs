@@ -45,7 +45,6 @@ type ICXCallObserver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver
-
 type CXCallObserver struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewCXCallObserver() CXCallObserver {
 
 
 
-
 // Sets a call observer delegate, specifying an optional queue on which to execute delegate methods.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/setDelegate(_:queue:)
-
 func (c_ CXCallObserver) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
@@ -105,7 +102,6 @@ func (c_ CXCallObserver) SetDelegateQueue(delegate objectivec.IObject, queue uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/calls
-
 func (c_ CXCallObserver) Calls() []CXCall {
 	rv := objc.Send[[]CXCall](c_.ID, objc.Sel("calls"))
 	return rv
@@ -116,7 +112,6 @@ func (c_ CXCallObserver) Calls() []CXCall {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
-
 func (c_ CXCallObserver) CallObserver() CXCallObserver {
 	rv := objc.Send[CXCallObserver](c_.ID, objc.Sel("callObserver"))
 	return rv
@@ -127,7 +122,6 @@ func (c_ CXCallObserver) CallObserver() CXCallObserver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
-
 func (c_ CXCallObserver) SetCallObserver(value ICXCallObserver) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallObserver:"), value)
 }

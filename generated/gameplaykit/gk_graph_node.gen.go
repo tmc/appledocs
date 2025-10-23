@@ -48,7 +48,6 @@ type IGraphNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode
-
 type GraphNode struct {
 	objectivec.Object
 }
@@ -93,71 +92,59 @@ func NewGraphNode() GraphNode {
 
 
 
-
 // Connects this node to all nodes in the specified list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/addConnections(to:bidirectional:)
-
 func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addConnectionsToNodes:bidirectional:"), nodes, bidirectional)
 }
-
 
 
 // Returns the cost to travel from this node to the specified, directly connected, node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/cost(to:)
-
 func (g_ GraphNode) CostToNode(node IGKGraphNode) float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("costToNode:"), node)
 	return rv
 }
 
 
-
 // Returns an underestimate of the cost of travel from this node to the specified node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/estimatedCost(to:)
-
 func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("estimatedCostToNode:"), node)
 	return rv
 }
 
 
-
 // Computes and returns a sequence of nodes that represents the lowest-cost graph traversal from the specified node to this node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/findPath(from:)
-
 func (g_ GraphNode) FindPathFromNode(startNode IGKGraphNode) []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:"), startNode)
 	return rv
 }
 
 
-
 // Computes and returns a sequence of nodes that represents the lowest-cost graph traversal from this node to the specified node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/findPath(to:)
-
 func (g_ GraphNode) FindPathToNode(goalNode IGKGraphNode) []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathToNode:"), goalNode)
 	return rv
 }
 
 
-
 // Removes the connections from this node to the specified nodes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/removeConnections(to:bidirectional:)
-
 func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeConnectionsToNodes:bidirectional:"), nodes, bidirectional)
 }
@@ -167,7 +154,6 @@ func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bid
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/connectedNodes
-
 func (g_ GraphNode) ConnectedNodes() []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("connectedNodes"))
 	return rv

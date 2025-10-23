@@ -33,7 +33,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
 	if os.Getenv("DEBUG_TYPEMAP") == "1" {
-		if strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(objcType, "Broadcast") || (framework == "Foundation" && strings.Contains(objcType, "NE")) {
+		if strings.Contains(objcType, "NSCharacterSet") || strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(objcType, "Broadcast") || (framework == "Foundation" && strings.Contains(objcType, "NE")) || strings.Contains(objcType, "CGFloat") {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%s\n", objcType, framework)
 		}
 	}
@@ -214,14 +214,23 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// This is especially common for return types and property types
 	if !isPointer && objcType != "" {
 		strippedType := stripObjCPrefix(objcType)
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo NON-POINTER: objcType=%s strippedType=%s\n", objcType, strippedType)
+		}
 		if strippedType != objcType {
 			// Successfully stripped a prefix - check if this is a known type
 			// in the current framework or type registry
 			if mappedGoType, found := lookupTypeMapping(strippedType, framework); found {
+				if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
+					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: lookupTypeMapping found %s -> %s\n", strippedType, mappedGoType)
+				}
 				return mappedGoType
 			}
 			// Let it fall through to use strippedType and then resolve it
 			resolvedType := resolveType(framework, strippedType)
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
+				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: resolveType(%s, %s) -> %s\n", framework, strippedType, resolvedType)
+			}
 			return resolvedType
 		}
 	}
@@ -232,15 +241,15 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	if isPointer && objcTypeNoPtr != "" {
 		strippedType := stripObjCPrefix(objcTypeNoPtr)
 		// Debug ALL pointer types when framework is Foundation
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo pointer: objcType=%s objcTypeNoPtr=%s strippedType=%s\n",
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo POINTER: objcType=%s objcTypeNoPtr=%s strippedType=%s\n",
 				objcType, objcTypeNoPtr, strippedType)
 		}
 		if strippedType != objcTypeNoPtr {
 			// Successfully stripped a prefix - this is likely an ObjC class type
 			// Use the stripped type and let resolveType find the right framework
 			goType = strippedType
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" {
+			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
 				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: set goType=%s from %s\n", goType, objcType)
 			}
 		}
@@ -306,54 +315,54 @@ func getFrameworkLevel(framework string) int {
 	// We need to import this or duplicate the levels here
 	// For now, duplicate the essential levels
 	levels := map[string]int{
-		"objc":             0,
-		"objectivec":       0,
-		"coregraphics":     1,
-		"corefoundation":   1,
-		"foundation":       1,
-		"coretext":         1,
-		"iosurface":        1,
-		"coreimage":        2,
-		"quartzcore":       2,
-		"coreaudio":        2,
-		"coremidi":         2,
-		"imageio":          2,
-		"coredata":         2,
-		"corelocation":     2,
-		"corespotlight":    2,
-		"network":          2,
-		"security":         2,
-		"corebluetooth":    2,
-		"corevideo":        2,
-		"coreml":           2,
-		"vision":           2,
-		"naturallanguage":  2,
-		"appkit":           3,
-		"uikit":            3,
-		"webkit":           3,
-		"pdfkit":           3,
-		"networkextension": 3,
-		"avfoundation":     4,
-		"avfaudio":         4,
-		"avkit":            4,
-		"avrouting":        4,
-		"audiotoolbox":     4,
-		"cloudkit":         4,
-		"contacts":         4,
-		"contactsui":       4,
-		"gameplaykit":      4,
-		"intents":          4,
-		"intentsui":        4,
-		"metal":            4,
-		"metalkit":         4,
-		"eventkit":         4,
-		"healthkit":        4,
-		"homekit":          4,
-		"mapkit":           4,
-		"messages":         4,
-		"storekit":         4,
+		"objc":              0,
+		"objectivec":        0,
+		"coregraphics":      1,
+		"corefoundation":    1,
+		"foundation":        1,
+		"coretext":          1,
+		"iosurface":         1,
+		"coreimage":         2,
+		"quartzcore":        2,
+		"coreaudio":         2,
+		"coremidi":          2,
+		"imageio":           2,
+		"coredata":          2,
+		"corelocation":      2,
+		"corespotlight":     2,
+		"network":           2,
+		"security":          2,
+		"corebluetooth":     2,
+		"corevideo":         2,
+		"coreml":            2,
+		"vision":            2,
+		"naturallanguage":   2,
+		"appkit":            3,
+		"uikit":             3,
+		"webkit":            3,
+		"pdfkit":            3,
+		"networkextension":  3,
+		"avfoundation":      4,
+		"avfaudio":          4,
+		"avkit":             4,
+		"avrouting":         4,
+		"audiotoolbox":      4,
+		"cloudkit":          4,
+		"contacts":          4,
+		"contactsui":        4,
+		"gameplaykit":       4,
+		"intents":           4,
+		"intentsui":         4,
+		"metal":             4,
+		"metalkit":          4,
+		"eventkit":          4,
+		"healthkit":         4,
+		"homekit":           4,
+		"mapkit":            4,
+		"messages":          4,
+		"storekit":          4,
 		"usernotifications": 4,
-		"replaykit":        4,
+		"replaykit":         4,
 	}
 	if level, ok := levels[strings.ToLower(framework)]; ok {
 		return level

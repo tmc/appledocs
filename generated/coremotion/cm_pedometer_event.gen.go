@@ -42,7 +42,6 @@ type IPedometerEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent
-
 type PedometerEvent struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewPedometerEvent() PedometerEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent/date
-
 func (p_ PedometerEvent) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("date"))
 	return rv
@@ -102,7 +100,6 @@ func (p_ PedometerEvent) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent/type
-
 func (p_ PedometerEvent) Type() PedometerEventType {
 	rv := objc.Send[PedometerEventType](p_.ID, objc.Sel("type"))
 	return rv

@@ -39,7 +39,6 @@ type IHapticFeedbackManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager
-
 type HapticFeedbackManager struct {
 	objectivec.Object
 }
@@ -88,7 +87,6 @@ func NewHapticFeedbackManager() HapticFeedbackManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/defaultPerformer
-
 func (hc _HapticFeedbackManagerClass) DefaultPerformer() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("defaultPerformer"))
 	return rv
@@ -98,7 +96,6 @@ func (hc _HapticFeedbackManagerClass) DefaultPerformer() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/defaultPerformer
-
 func (h_ HapticFeedbackManager) DefaultPerformer() objc.ID {
 	rv := objc.Send[objc.ID](h_.ID, objc.Sel("defaultPerformer"))
 	return rv

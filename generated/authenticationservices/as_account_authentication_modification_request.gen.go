@@ -41,7 +41,6 @@ type IAccountAuthenticationModificationRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationRequest
-
 type AccountAuthenticationModificationRequest struct {
 	objectivec.Object
 }

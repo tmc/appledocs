@@ -48,10 +48,10 @@ type IMetadataQuery interface {
 	Started() bool
 	Stopped() bool
 	NotificationBatchingInterval() TimeInterval
-	SetNotificationBatchingInterval(value ITimeInterval)
-	OperationQueue() NSOperationQueue
+	SetNotificationBatchingInterval(value TimeInterval)
+	OperationQueue() IOperationQueue
 	SetOperationQueue(value IOperationQueue)
-	Predicate() NSPredicate
+	Predicate() IPredicate
 	SetPredicate(value IPredicate)
 	ResultCount() uint
 	Results() objc.ID
@@ -312,7 +312,7 @@ func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/notificationBatchingInterval
-func (m_ MetadataQuery) SetNotificationBatchingInterval(value ITimeInterval) {
+func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotificationBatchingInterval:"), value)
 }
 
@@ -321,7 +321,7 @@ func (m_ MetadataQuery) SetNotificationBatchingInterval(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
-func (m_ MetadataQuery) OperationQueue() NSOperationQueue {
+func (m_ MetadataQuery) OperationQueue() IOperationQueue {
 	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
@@ -340,7 +340,7 @@ func (m_ MetadataQuery) SetOperationQueue(value IOperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
-func (m_ MetadataQuery) Predicate() NSPredicate {
+func (m_ MetadataQuery) Predicate() IPredicate {
 	rv := objc.Send[NSPredicate](m_.ID, objc.Sel("predicate"))
 	return rv
 }

@@ -41,7 +41,11 @@ type IINPersonHandle interface {
 // The identifying information for a user of your app.
 //
 // An object contains information that you use to uniquely identify a user of your app. When resolving a person associated with an intent, you might create instances of this class and add them to an object when resolving an intent involving that person. Handles contain unique information such as an email address or phone number.
+
+
+// The identifying information for a user of your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPersonHandle
 type INPersonHandle struct {
 	objectivec.Object
@@ -86,8 +90,10 @@ func NewINPersonHandle() INPersonHandle {
 }
 
 
+
 // A standard label that describes the meaning of the information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/label
 func (i_ INPersonHandle) Label() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("label"))
@@ -95,17 +101,18 @@ func (i_ INPersonHandle) Label() unsafe.Pointer {
 }
 
 
-// SetLabel sets the value of the label property.
 // A standard label that describes the meaning of the information.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/label
 func (i_ INPersonHandle) SetLabel(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), value)
 }
 
+
 // The type of information contained in the handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/type
 func (i_ INPersonHandle) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
@@ -113,17 +120,18 @@ func (i_ INPersonHandle) Type() unsafe.Pointer {
 }
 
 
-// SetType sets the value of the type property.
 // The type of information contained in the handle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/type
 func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
 
+
 // The data for the handle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
 func (i_ INPersonHandle) Value() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("value"))
@@ -131,10 +139,9 @@ func (i_ INPersonHandle) Value() string {
 }
 
 
-// SetValue sets the value of the value property.
 // The data for the handle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
 func (i_ INPersonHandle) SetValue(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))

@@ -56,7 +56,6 @@ type IGCDirectionalGamepad interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDirectionalGamepad
-
 type GCDirectionalGamepad struct {
 	GCMicroGamepad
 }
@@ -107,7 +106,6 @@ func NewGCDirectionalGamepad() GCDirectionalGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-
 func (g_ GCDirectionalGamepad) ExtendedGamepad() GCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
@@ -118,7 +116,6 @@ func (g_ GCDirectionalGamepad) ExtendedGamepad() GCExtendedGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-
 func (g_ GCDirectionalGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
@@ -128,7 +125,6 @@ func (g_ GCDirectionalGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-
 func (g_ GCDirectionalGamepad) Gamepad() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
 	return rv
@@ -139,7 +135,6 @@ func (g_ GCDirectionalGamepad) Gamepad() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-
 func (g_ GCDirectionalGamepad) SetGamepad(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
 }
@@ -149,7 +144,6 @@ func (g_ GCDirectionalGamepad) SetGamepad(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-
 func (g_ GCDirectionalGamepad) MicroGamepad() GCMicroGamepad {
 	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
@@ -160,7 +154,6 @@ func (g_ GCDirectionalGamepad) MicroGamepad() GCMicroGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-
 func (g_ GCDirectionalGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
@@ -170,7 +163,6 @@ func (g_ GCDirectionalGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCDirectionalGamepad) Motion() GCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
@@ -181,7 +173,6 @@ func (g_ GCDirectionalGamepad) Motion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCDirectionalGamepad) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
@@ -191,7 +182,6 @@ func (g_ GCDirectionalGamepad) SetMotion(value IGCMotion) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-
 func (g_ GCDirectionalGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
 	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
@@ -202,7 +192,6 @@ func (g_ GCDirectionalGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-
 func (g_ GCDirectionalGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
@@ -212,7 +201,6 @@ func (g_ GCDirectionalGamepad) SetPhysicalInputProfile(value IGCPhysicalInputPro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
-
 func (g_ GCDirectionalGamepad) IsAnalog() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isAnalog"))
 	return rv
@@ -223,7 +211,6 @@ func (g_ GCDirectionalGamepad) IsAnalog() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
-
 func (g_ GCDirectionalGamepad) SetIsAnalog(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAnalog:"), value)
 }
@@ -233,7 +220,6 @@ func (g_ GCDirectionalGamepad) SetIsAnalog(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation
-
 func (g_ GCDirectionalGamepad) AllowsRotation() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("allowsRotation"))
 	return rv
@@ -244,7 +230,6 @@ func (g_ GCDirectionalGamepad) AllowsRotation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation
-
 func (g_ GCDirectionalGamepad) SetAllowsRotation(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllowsRotation:"), value)
 }
@@ -254,7 +239,6 @@ func (g_ GCDirectionalGamepad) SetAllowsRotation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/reportsabsolutedpadvalues
-
 func (g_ GCDirectionalGamepad) ReportsAbsoluteDpadValues() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reportsAbsoluteDpadValues"))
 	return rv
@@ -265,7 +249,6 @@ func (g_ GCDirectionalGamepad) ReportsAbsoluteDpadValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/reportsabsolutedpadvalues
-
 func (g_ GCDirectionalGamepad) SetReportsAbsoluteDpadValues(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReportsAbsoluteDpadValues:"), value)
 }

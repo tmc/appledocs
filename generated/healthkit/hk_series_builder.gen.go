@@ -43,7 +43,6 @@ type IHKSeriesBuilder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesBuilder
-
 type HKSeriesBuilder struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewHKSeriesBuilder() HKSeriesBuilder {
 
 
 
-
 // Invalidates the builder and discards the collected data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesBuilder/discard()
-
 func (h_ HKSeriesBuilder) Discard() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("discard"))
 }
@@ -103,7 +100,6 @@ func (h_ HKSeriesBuilder) Discard() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-
 func (h_ HKSeriesBuilder) HKWorkoutRouteTypeIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv

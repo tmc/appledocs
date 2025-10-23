@@ -53,7 +53,6 @@ type IGridColumn interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn
-
 type GridColumn struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewGridColumn() GridColumn {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
-
 func (g_ GridColumn) LeadingPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("leadingPadding"))
 	return rv
@@ -109,7 +107,6 @@ func (g_ GridColumn) LeadingPadding() float64 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
-
 func (g_ GridColumn) SetLeadingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeadingPadding:"), value)
 }
@@ -117,7 +114,6 @@ func (g_ GridColumn) SetLeadingPadding(value float64) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
-
 func (g_ GridColumn) TrailingPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("trailingPadding"))
 	return rv
@@ -126,7 +122,6 @@ func (g_ GridColumn) TrailingPadding() float64 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/trailingPadding
-
 func (g_ GridColumn) SetTrailingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTrailingPadding:"), value)
 }
@@ -134,7 +129,6 @@ func (g_ GridColumn) SetTrailingPadding(value float64) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
-
 func (g_ GridColumn) XPlacement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xPlacement"))
 	return rv
@@ -143,7 +137,6 @@ func (g_ GridColumn) XPlacement() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
-
 func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
 }
@@ -151,7 +144,6 @@ func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
-
 func (g_ GridColumn) GridView() NSGridView {
 	rv := objc.Send[NSGridView](g_.ID, objc.Sel("gridView"))
 	return rv
@@ -160,7 +152,6 @@ func (g_ GridColumn) GridView() NSGridView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
-
 func (g_ GridColumn) SetGridView(value IGridView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGridView:"), value)
 }
@@ -168,7 +159,6 @@ func (g_ GridColumn) SetGridView(value IGridView) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/ishidden
-
 func (g_ GridColumn) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
@@ -177,7 +167,6 @@ func (g_ GridColumn) IsHidden() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/ishidden
-
 func (g_ GridColumn) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -185,7 +174,6 @@ func (g_ GridColumn) SetIsHidden(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/numberofcells
-
 func (g_ GridColumn) NumberOfCells() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfCells"))
 	return rv
@@ -194,7 +182,6 @@ func (g_ GridColumn) NumberOfCells() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/numberofcells
-
 func (g_ GridColumn) SetNumberOfCells(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setNumberOfCells:"), value)
 }
@@ -202,7 +189,6 @@ func (g_ GridColumn) SetNumberOfCells(value int) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/width
-
 func (g_ GridColumn) Width() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("width"))
 	return rv
@@ -211,7 +197,6 @@ func (g_ GridColumn) Width() float64 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/width
-
 func (g_ GridColumn) SetWidth(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWidth:"), value)
 }

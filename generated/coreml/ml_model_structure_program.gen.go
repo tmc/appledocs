@@ -40,7 +40,6 @@ type IModelStructureProgram interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram
-
 type ModelStructureProgram struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewModelStructureProgram() ModelStructureProgram {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram/functions
-
 func (m_ ModelStructureProgram) Functions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("functions"))
 	return rv

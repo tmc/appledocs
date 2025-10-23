@@ -41,7 +41,7 @@ type ICaptureSession interface {
 	CanAddControl(control unsafe.Pointer) bool
 	CanAddInput(input IAVCaptureInput) bool
 	CanAddOutput(output IAVCaptureOutput) bool
-	CanSetSessionPreset(preset ICaptureSessionPreset) bool
+	CanSetSessionPreset(preset CaptureSessionPreset) bool
 	CommitConfiguration()
 	RemoveConnection(connection IAVCaptureConnection)
 	RemoveControl(control unsafe.Pointer)
@@ -80,7 +80,7 @@ type ICaptureSession interface {
 	MaxControlsCount() int
 	Outputs() []CaptureOutput
 	SessionPreset() CaptureSessionPreset
-	SetSessionPreset(value ICaptureSessionPreset)
+	SetSessionPreset(value CaptureSessionPreset)
 	SupportsControls() bool
 	SynchronizationClock() unsafe.Pointer
 	UsesApplicationAudioSession() bool
@@ -106,7 +106,6 @@ type ICaptureSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession
-
 type CaptureSession struct {
 	objectivec.Object
 }
@@ -151,248 +150,204 @@ func NewCaptureSession() CaptureSession {
 
 
 
-
 // Adds a connection to the capture session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addConnection(_:)
-
 func (c_ CaptureSession) AddConnection(connection IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addConnection:"), connection)
 }
-
 
 
 // Adds a control to a capture session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addControl(_:)
-
 func (c_ CaptureSession) AddControl(control unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addControl:"), control)
 }
-
 
 
 // Adds a capture input to the session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addInput(_:)
-
 func (c_ CaptureSession) AddInput(input IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addInput:"), input)
 }
-
 
 
 // Adds a capture input to a session without forming any connections.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addInputWithNoConnections(_:)
-
 func (c_ CaptureSession) AddInputWithNoConnections(input IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addInputWithNoConnections:"), input)
 }
-
 
 
 // Adds an output to the capture session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addOutput(_:)
-
 func (c_ CaptureSession) AddOutput(output IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addOutput:"), output)
 }
-
 
 
 // Adds a capture output to the session without forming any connections.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addOutputWithNoConnections(_:)
-
 func (c_ CaptureSession) AddOutputWithNoConnections(output IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addOutputWithNoConnections:"), output)
 }
-
 
 
 // Marks the beginning of changes to a running capture session’s configuration to perform in a single atomic update.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/beginConfiguration()
-
 func (c_ CaptureSession) BeginConfiguration() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("beginConfiguration"))
 }
-
 
 
 // Determines whether a you can add a connection to a capture session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddConnection(_:)
-
 func (c_ CaptureSession) CanAddConnection(connection IAVCaptureConnection) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddConnection:"), connection)
 	return rv
 }
 
 
-
 // Returns a Boolean value that indicates whether a capture session add the specified control.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddControl(_:)
-
 func (c_ CaptureSession) CanAddControl(control unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddControl:"), control)
 	return rv
 }
 
 
-
 // Determines whether you can add an input to a session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddInput(_:)
-
 func (c_ CaptureSession) CanAddInput(input IAVCaptureInput) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddInput:"), input)
 	return rv
 }
 
 
-
 // Determines whether you can add an output to a session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddOutput(_:)
-
 func (c_ CaptureSession) CanAddOutput(output IAVCaptureOutput) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddOutput:"), output)
 	return rv
 }
 
 
-
 // Determines whether you can configure a capture session with the specified preset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canSetSessionPreset(_:)
-
-func (c_ CaptureSession) CanSetSessionPreset(preset ICaptureSessionPreset) bool {
+func (c_ CaptureSession) CanSetSessionPreset(preset CaptureSessionPreset) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canSetSessionPreset:"), preset)
 	return rv
 }
-
 
 
 // Commits one or more changes to a running capture session’s configuration in a single atomic update.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/commitConfiguration()
-
 func (c_ CaptureSession) CommitConfiguration() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("commitConfiguration"))
 }
-
 
 
 // Removes a capture connection from the session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeConnection(_:)
-
 func (c_ CaptureSession) RemoveConnection(connection IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeConnection:"), connection)
 }
-
 
 
 // Removes a control from a capture session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeControl(_:)
-
 func (c_ CaptureSession) RemoveControl(control unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeControl:"), control)
 }
-
 
 
 // Removes an input from the session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeInput(_:)
-
 func (c_ CaptureSession) RemoveInput(input IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeInput:"), input)
 }
-
 
 
 // Removes an output from a capture session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeOutput(_:)
-
 func (c_ CaptureSession) RemoveOutput(output IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeOutput:"), output)
 }
-
 
 
 // Tells the session to run deferred start when appropriate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/runDeferredStartWhenNeeded()
-
 func (c_ CaptureSession) RunDeferredStartWhenNeeded() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("runDeferredStartWhenNeeded"))
 }
-
 
 
 // Sets a delegate object for the system to call when it activates and presents controls.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/setControlsDelegate(_:queue:)
-
 func (c_ CaptureSession) SetControlsDelegateQueue(controlsDelegate objectivec.IObject, controlsDelegateCallbackQueue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlsDelegate:queue:"), controlsDelegate, controlsDelegateCallbackQueue)
 }
-
 
 
 // Sets a delegate object for the session to call when performing deferred start.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/setDeferredStartDelegate(_:deferredStartDelegateCallbackQueue:)
-
 func (c_ CaptureSession) SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objectivec.IObject, deferredStartDelegateCallbackQueue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeferredStartDelegate:deferredStartDelegateCallbackQueue:"), deferredStartDelegate, deferredStartDelegateCallbackQueue)
 }
-
 
 
 // Starts the flow of data through the capture pipeline.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/startRunning()
-
 func (c_ CaptureSession) StartRunning() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("startRunning"))
 }
-
 
 
 // Stops the flow of data through the capture pipeline.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/stopRunning()
-
 func (c_ CaptureSession) StopRunning() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopRunning"))
 }
@@ -402,7 +357,6 @@ func (c_ CaptureSession) StopRunning() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresApplicationAudioSession
-
 func (c_ CaptureSession) AutomaticallyConfiguresApplicationAudioSession() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyConfiguresApplicationAudioSession"))
 	return rv
@@ -413,7 +367,6 @@ func (c_ CaptureSession) AutomaticallyConfiguresApplicationAudioSession() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresApplicationAudioSession
-
 func (c_ CaptureSession) SetAutomaticallyConfiguresApplicationAudioSession(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresApplicationAudioSession:"), value)
 }
@@ -423,7 +376,6 @@ func (c_ CaptureSession) SetAutomaticallyConfiguresApplicationAudioSession(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresCaptureDeviceForWideColor
-
 func (c_ CaptureSession) AutomaticallyConfiguresCaptureDeviceForWideColor() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyConfiguresCaptureDeviceForWideColor"))
 	return rv
@@ -434,7 +386,6 @@ func (c_ CaptureSession) AutomaticallyConfiguresCaptureDeviceForWideColor() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresCaptureDeviceForWideColor
-
 func (c_ CaptureSession) SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresCaptureDeviceForWideColor:"), value)
 }
@@ -444,7 +395,6 @@ func (c_ CaptureSession) SetAutomaticallyConfiguresCaptureDeviceForWideColor(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyRunsDeferredStart
-
 func (c_ CaptureSession) AutomaticallyRunsDeferredStart() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyRunsDeferredStart"))
 	return rv
@@ -455,7 +405,6 @@ func (c_ CaptureSession) AutomaticallyRunsDeferredStart() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyRunsDeferredStart
-
 func (c_ CaptureSession) SetAutomaticallyRunsDeferredStart(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyRunsDeferredStart:"), value)
 }
@@ -465,7 +414,6 @@ func (c_ CaptureSession) SetAutomaticallyRunsDeferredStart(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionForBluetoothHighQualityRecording
-
 func (c_ CaptureSession) ConfiguresApplicationAudioSessionForBluetoothHighQualityRecording() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("configuresApplicationAudioSessionForBluetoothHighQualityRecording"))
 	return rv
@@ -476,7 +424,6 @@ func (c_ CaptureSession) ConfiguresApplicationAudioSessionForBluetoothHighQualit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionForBluetoothHighQualityRecording
-
 func (c_ CaptureSession) SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:"), value)
 }
@@ -486,7 +433,6 @@ func (c_ CaptureSession) SetConfiguresApplicationAudioSessionForBluetoothHighQua
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionToMixWithOthers
-
 func (c_ CaptureSession) ConfiguresApplicationAudioSessionToMixWithOthers() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("configuresApplicationAudioSessionToMixWithOthers"))
 	return rv
@@ -497,7 +443,6 @@ func (c_ CaptureSession) ConfiguresApplicationAudioSessionToMixWithOthers() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionToMixWithOthers
-
 func (c_ CaptureSession) SetConfiguresApplicationAudioSessionToMixWithOthers(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguresApplicationAudioSessionToMixWithOthers:"), value)
 }
@@ -507,7 +452,6 @@ func (c_ CaptureSession) SetConfiguresApplicationAudioSessionToMixWithOthers(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/connections
-
 func (c_ CaptureSession) Connections() []CaptureConnection {
 	rv := objc.Send[[]CaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
@@ -518,7 +462,6 @@ func (c_ CaptureSession) Connections() []CaptureConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controls
-
 func (c_ CaptureSession) Controls() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("controls"))
 	return rv
@@ -529,7 +472,6 @@ func (c_ CaptureSession) Controls() []unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controlsDelegate
-
 func (c_ CaptureSession) ControlsDelegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("controlsDelegate"))
 	return rv
@@ -540,7 +482,6 @@ func (c_ CaptureSession) ControlsDelegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controlsDelegateCallbackQueue
-
 func (c_ CaptureSession) ControlsDelegateCallbackQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlsDelegateCallbackQueue"))
 	return rv
@@ -551,7 +492,6 @@ func (c_ CaptureSession) ControlsDelegateCallbackQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/deferredStartDelegate
-
 func (c_ CaptureSession) DeferredStartDelegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("deferredStartDelegate"))
 	return rv
@@ -562,7 +502,6 @@ func (c_ CaptureSession) DeferredStartDelegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/deferredStartDelegateCallbackQueue
-
 func (c_ CaptureSession) DeferredStartDelegateCallbackQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deferredStartDelegateCallbackQueue"))
 	return rv
@@ -573,7 +512,6 @@ func (c_ CaptureSession) DeferredStartDelegateCallbackQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/hardwareCost
-
 func (c_ CaptureSession) HardwareCost() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
 	return rv
@@ -584,7 +522,6 @@ func (c_ CaptureSession) HardwareCost() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/inputs
-
 func (c_ CaptureSession) Inputs() []CaptureInput {
 	rv := objc.Send[[]CaptureInput](c_.ID, objc.Sel("inputs"))
 	return rv
@@ -595,7 +532,6 @@ func (c_ CaptureSession) Inputs() []CaptureInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isInterrupted
-
 func (c_ CaptureSession) Interrupted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("interrupted"))
 	return rv
@@ -606,7 +542,6 @@ func (c_ CaptureSession) Interrupted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isManualDeferredStartSupported
-
 func (c_ CaptureSession) ManualDeferredStartSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("manualDeferredStartSupported"))
 	return rv
@@ -617,7 +552,6 @@ func (c_ CaptureSession) ManualDeferredStartSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled
-
 func (c_ CaptureSession) MultitaskingCameraAccessEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multitaskingCameraAccessEnabled"))
 	return rv
@@ -628,7 +562,6 @@ func (c_ CaptureSession) MultitaskingCameraAccessEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled
-
 func (c_ CaptureSession) SetMultitaskingCameraAccessEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMultitaskingCameraAccessEnabled:"), value)
 }
@@ -638,7 +571,6 @@ func (c_ CaptureSession) SetMultitaskingCameraAccessEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported
-
 func (c_ CaptureSession) MultitaskingCameraAccessSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multitaskingCameraAccessSupported"))
 	return rv
@@ -649,7 +581,6 @@ func (c_ CaptureSession) MultitaskingCameraAccessSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isRunning
-
 func (c_ CaptureSession) Running() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("running"))
 	return rv
@@ -660,7 +591,6 @@ func (c_ CaptureSession) Running() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/masterClock
-
 func (c_ CaptureSession) MasterClock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("masterClock"))
 	return rv
@@ -671,7 +601,6 @@ func (c_ CaptureSession) MasterClock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/maxControlsCount
-
 func (c_ CaptureSession) MaxControlsCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxControlsCount"))
 	return rv
@@ -682,7 +611,6 @@ func (c_ CaptureSession) MaxControlsCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/outputs
-
 func (c_ CaptureSession) Outputs() []CaptureOutput {
 	rv := objc.Send[[]CaptureOutput](c_.ID, objc.Sel("outputs"))
 	return rv
@@ -693,7 +621,6 @@ func (c_ CaptureSession) Outputs() []CaptureOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-
 func (c_ CaptureSession) SessionPreset() CaptureSessionPreset {
 	rv := objc.Send[CaptureSessionPreset](c_.ID, objc.Sel("sessionPreset"))
 	return rv
@@ -704,8 +631,7 @@ func (c_ CaptureSession) SessionPreset() CaptureSessionPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-
-func (c_ CaptureSession) SetSessionPreset(value ICaptureSessionPreset) {
+func (c_ CaptureSession) SetSessionPreset(value CaptureSessionPreset) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSessionPreset:"), value)
 }
 
@@ -714,7 +640,6 @@ func (c_ CaptureSession) SetSessionPreset(value ICaptureSessionPreset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/supportsControls
-
 func (c_ CaptureSession) SupportsControls() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsControls"))
 	return rv
@@ -725,7 +650,6 @@ func (c_ CaptureSession) SupportsControls() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/synchronizationClock
-
 func (c_ CaptureSession) SynchronizationClock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("synchronizationClock"))
 	return rv
@@ -736,7 +660,6 @@ func (c_ CaptureSession) SynchronizationClock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/usesApplicationAudioSession
-
 func (c_ CaptureSession) UsesApplicationAudioSession() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("usesApplicationAudioSession"))
 	return rv
@@ -747,7 +670,6 @@ func (c_ CaptureSession) UsesApplicationAudioSession() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/usesApplicationAudioSession
-
 func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
 }
@@ -757,7 +679,6 @@ func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isinterrupted
-
 func (c_ CaptureSession) IsInterrupted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isInterrupted"))
 	return rv
@@ -768,7 +689,6 @@ func (c_ CaptureSession) IsInterrupted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isinterrupted
-
 func (c_ CaptureSession) SetIsInterrupted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsInterrupted:"), value)
 }
@@ -778,7 +698,6 @@ func (c_ CaptureSession) SetIsInterrupted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismanualdeferredstartsupported
-
 func (c_ CaptureSession) IsManualDeferredStartSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isManualDeferredStartSupported"))
 	return rv
@@ -789,7 +708,6 @@ func (c_ CaptureSession) IsManualDeferredStartSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismanualdeferredstartsupported
-
 func (c_ CaptureSession) SetIsManualDeferredStartSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsManualDeferredStartSupported:"), value)
 }
@@ -799,7 +717,6 @@ func (c_ CaptureSession) SetIsManualDeferredStartSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled
-
 func (c_ CaptureSession) IsMultitaskingCameraAccessEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultitaskingCameraAccessEnabled"))
 	return rv
@@ -810,7 +727,6 @@ func (c_ CaptureSession) IsMultitaskingCameraAccessEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled
-
 func (c_ CaptureSession) SetIsMultitaskingCameraAccessEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultitaskingCameraAccessEnabled:"), value)
 }
@@ -820,7 +736,6 @@ func (c_ CaptureSession) SetIsMultitaskingCameraAccessEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccesssupported
-
 func (c_ CaptureSession) IsMultitaskingCameraAccessSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultitaskingCameraAccessSupported"))
 	return rv
@@ -831,7 +746,6 @@ func (c_ CaptureSession) IsMultitaskingCameraAccessSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccesssupported
-
 func (c_ CaptureSession) SetIsMultitaskingCameraAccessSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultitaskingCameraAccessSupported:"), value)
 }
@@ -841,7 +755,6 @@ func (c_ CaptureSession) SetIsMultitaskingCameraAccessSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isrunning
-
 func (c_ CaptureSession) IsRunning() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRunning"))
 	return rv
@@ -852,7 +765,6 @@ func (c_ CaptureSession) IsRunning() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isrunning
-
 func (c_ CaptureSession) SetIsRunning(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRunning:"), value)
 }

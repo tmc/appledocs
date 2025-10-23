@@ -49,7 +49,6 @@ type IRegion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion
-
 type Region struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewRegion() Region {
 
 
 
-
 // Initializes and returns a region object defining a circular area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
-
 func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) Region {
 	instance := getRegionClass().Alloc()
 	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
@@ -109,12 +106,10 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, ra
 
 
 
-
 // Returns a Boolean value indicating whether the region contains the specified coordinate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/contains(_:)
-
 func (r_ Region) ContainsCoordinate(coordinate unsafe.Pointer) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("containsCoordinate:"), coordinate)
 	return rv
@@ -125,7 +120,6 @@ func (r_ Region) ContainsCoordinate(coordinate unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/center
-
 func (r_ Region) Center() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("center"))
 	return rv
@@ -136,7 +130,6 @@ func (r_ Region) Center() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
-
 func (r_ Region) Identifier() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("identifier"))
 	return rv
@@ -147,7 +140,6 @@ func (r_ Region) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
-
 func (r_ Region) NotifyOnEntry() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnEntry"))
 	return rv
@@ -158,7 +150,6 @@ func (r_ Region) NotifyOnEntry() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
-
 func (r_ Region) SetNotifyOnEntry(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnEntry:"), value)
 }
@@ -168,7 +159,6 @@ func (r_ Region) SetNotifyOnEntry(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
-
 func (r_ Region) NotifyOnExit() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnExit"))
 	return rv
@@ -179,7 +169,6 @@ func (r_ Region) NotifyOnExit() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
-
 func (r_ Region) SetNotifyOnExit(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnExit:"), value)
 }
@@ -189,7 +178,6 @@ func (r_ Region) SetNotifyOnExit(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/radius
-
 func (r_ Region) Radius() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("radius"))
 	return rv

@@ -32,7 +32,7 @@ type _INRidePartySizeOptionClass struct {
 type IINRidePartySizeOption interface {
 	objectivec.IObject
 	PartySizeRange() foundation.Range
-	SetPartySizeRange(value foundation.IRange)
+	SetPartySizeRange(value foundation.Range)
 	PriceRange() unsafe.Pointer
 	SetPriceRange(value unsafe.Pointer)
 	SizeDescription() string
@@ -42,7 +42,11 @@ type IINRidePartySizeOption interface {
 // The price of a ride involving the specified number of people.
 //
 // An object describes many passengers and the special pricing that applies to a party of that size. When configuring a object, you create one or more instances of this class to specify pricing for the user’s party. Present this information to the user along with the other ride option information.
+
+
+// The price of a ride involving the specified number of people.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRidePartySizeOption
 type INRidePartySizeOption struct {
 	objectivec.Object
@@ -87,8 +91,10 @@ func NewINRidePartySizeOption() INRidePartySizeOption {
 }
 
 
+
 // The number of people in the party, specified as a minimum and maximum value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
 func (i_ INRidePartySizeOption) PartySizeRange() foundation.Range {
 	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("partySizeRange"))
@@ -96,17 +102,18 @@ func (i_ INRidePartySizeOption) PartySizeRange() foundation.Range {
 }
 
 
-// SetPartySizeRange sets the value of the partySizeRange property.
 // The number of people in the party, specified as a minimum and maximum value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) SetPartySizeRange(value foundation.IRange) {
+func (i_ INRidePartySizeOption) SetPartySizeRange(value foundation.Range) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySizeRange:"), value)
 }
 
+
 // The pricing information for parties of the specified size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/pricerange
 func (i_ INRidePartySizeOption) PriceRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("priceRange"))
@@ -114,17 +121,18 @@ func (i_ INRidePartySizeOption) PriceRange() unsafe.Pointer {
 }
 
 
-// SetPriceRange sets the value of the priceRange property.
 // The pricing information for parties of the specified size.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/pricerange
 func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPriceRange:"), value)
 }
 
+
 // The user-visible description of the party size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
 func (i_ INRidePartySizeOption) SizeDescription() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("sizeDescription"))
@@ -132,10 +140,9 @@ func (i_ INRidePartySizeOption) SizeDescription() string {
 }
 
 
-// SetSizeDescription sets the value of the sizeDescription property.
 // The user-visible description of the party size.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
 func (i_ INRidePartySizeOption) SetSizeDescription(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), objc.String(value))

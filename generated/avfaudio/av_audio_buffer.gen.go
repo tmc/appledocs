@@ -42,7 +42,6 @@ type IAudioBuffer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer
-
 type AudioBuffer struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewAudioBuffer() AudioBuffer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/audioBufferList
-
 func (a_ AudioBuffer) AudioBufferList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioBufferList"))
 	return rv
@@ -102,7 +100,6 @@ func (a_ AudioBuffer) AudioBufferList() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/format
-
 func (a_ AudioBuffer) Format() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("format"))
 	return rv
@@ -113,7 +110,6 @@ func (a_ AudioBuffer) Format() AVAudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/mutableAudioBufferList
-
 func (a_ AudioBuffer) MutableAudioBufferList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mutableAudioBufferList"))
 	return rv

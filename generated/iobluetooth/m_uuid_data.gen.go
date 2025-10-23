@@ -32,7 +32,9 @@ type ImUUIDData interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/mUUIDData
 type mUUIDData struct {
 	objectivec.Object

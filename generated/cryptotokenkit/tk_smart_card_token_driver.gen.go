@@ -38,7 +38,6 @@ type ITKSmartCardTokenDriver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenDriver
-
 type TKSmartCardTokenDriver struct {
 	TKTokenDriver
 }

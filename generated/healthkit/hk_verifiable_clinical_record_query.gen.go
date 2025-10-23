@@ -45,7 +45,6 @@ type IHKVerifiableClinicalRecordQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordQuery
-
 type HKVerifiableClinicalRecordQuery struct {
 	HKQuery
 }
@@ -92,12 +91,10 @@ func NewHKVerifiableClinicalRecordQuery() HKVerifiableClinicalRecordQuery {
 
 
 
-
 // Creates a query for one-time access to a verifiable clinical record.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordQuery/init(recordTypes:sourceTypes:predicate:resultsHandler:)
-
 func NewHKVerifiableClinicalRecordQueryWithRecordTypesSourceTypesPredicateResultsHandler(recordTypes []string, sourceTypes []string, predicate foundation.IPredicate, resultsHandler unsafe.Pointer) HKVerifiableClinicalRecordQuery {
 	instance := getHKVerifiableClinicalRecordQueryClass().Alloc()
 	rv := objc.Send[HKVerifiableClinicalRecordQuery](instance.ID, objc.Sel("initWithRecordTypes:sourceTypes:predicate:resultsHandler:"), recordTypes, sourceTypes, predicate, resultsHandler)
@@ -111,7 +108,6 @@ func NewHKVerifiableClinicalRecordQueryWithRecordTypesSourceTypesPredicateResult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
-
 func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
 	return rv
@@ -122,7 +118,6 @@ func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
-
 func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
 }
@@ -132,7 +127,6 @@ func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/sourcetypes
-
 func (h_ HKVerifiableClinicalRecordQuery) SourceTypes() HKVerifiableClinicalRecordSourceType {
 	rv := objc.Send[HKVerifiableClinicalRecordSourceType](h_.ID, objc.Sel("sourceTypes"))
 	return rv
@@ -143,7 +137,6 @@ func (h_ HKVerifiableClinicalRecordQuery) SourceTypes() HKVerifiableClinicalReco
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/sourcetypes
-
 func (h_ HKVerifiableClinicalRecordQuery) SetSourceTypes(value HKVerifiableClinicalRecordSourceType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceTypes:"), value)
 }

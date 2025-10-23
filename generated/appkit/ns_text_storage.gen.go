@@ -69,7 +69,6 @@ type ITextStorage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage
-
 type TextStorage struct {
 	MutableAttributedString
 }
@@ -120,7 +119,6 @@ func NewTextStorage() TextStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/characters
-
 func (t_ TextStorage) Characters() []TextStorage {
 	rv := objc.Send[[]TextStorage](t_.ID, objc.Sel("characters"))
 	return rv
@@ -131,7 +129,6 @@ func (t_ TextStorage) Characters() []TextStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/characters
-
 func (t_ TextStorage) SetCharacters(value []TextStorage) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -151,7 +148,6 @@ func (t_ TextStorage) SetCharacters(value []TextStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/textStorageObserver
-
 func (t_ TextStorage) TextStorageObserver() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("textStorageObserver"))
 	return rv
@@ -162,7 +158,6 @@ func (t_ TextStorage) TextStorageObserver() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/textStorageObserver
-
 func (t_ TextStorage) SetTextStorageObserver(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStorageObserver:"), value)
 }
@@ -172,7 +167,6 @@ func (t_ TextStorage) SetTextStorageObserver(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/attributeruns
-
 func (t_ TextStorage) AttributeRuns() NSTextStorage {
 	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("attributeRuns"))
 	return rv
@@ -183,7 +177,6 @@ func (t_ TextStorage) AttributeRuns() NSTextStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/attributeruns
-
 func (t_ TextStorage) SetAttributeRuns(value ITextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributeRuns:"), value)
 }
@@ -193,7 +186,6 @@ func (t_ TextStorage) SetAttributeRuns(value ITextStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/changeinlength
-
 func (t_ TextStorage) ChangeInLength() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("changeInLength"))
 	return rv
@@ -204,7 +196,6 @@ func (t_ TextStorage) ChangeInLength() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/changeinlength
-
 func (t_ TextStorage) SetChangeInLength(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChangeInLength:"), value)
 }
@@ -214,7 +205,6 @@ func (t_ TextStorage) SetChangeInLength(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/delegate
-
 func (t_ TextStorage) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -225,7 +215,6 @@ func (t_ TextStorage) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/delegate
-
 func (t_ TextStorage) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -235,7 +224,6 @@ func (t_ TextStorage) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedmask
-
 func (t_ TextStorage) EditedMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("editedMask"))
 	return rv
@@ -246,7 +234,6 @@ func (t_ TextStorage) EditedMask() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedmask
-
 func (t_ TextStorage) SetEditedMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedMask:"), value)
 }
@@ -256,7 +243,6 @@ func (t_ TextStorage) SetEditedMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-
 func (t_ TextStorage) EditedRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("editedRange"))
 	return rv
@@ -267,7 +253,6 @@ func (t_ TextStorage) EditedRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-
 func (t_ TextStorage) SetEditedRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedRange:"), value)
 }
@@ -277,7 +262,6 @@ func (t_ TextStorage) SetEditedRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/fixesattributeslazily
-
 func (t_ TextStorage) FixesAttributesLazily() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("fixesAttributesLazily"))
 	return rv
@@ -288,7 +272,6 @@ func (t_ TextStorage) FixesAttributesLazily() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/fixesattributeslazily
-
 func (t_ TextStorage) SetFixesAttributesLazily(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFixesAttributesLazily:"), value)
 }
@@ -298,7 +281,6 @@ func (t_ TextStorage) SetFixesAttributesLazily(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/font
-
 func (t_ TextStorage) Font() NSFont {
 	rv := objc.Send[NSFont](t_.ID, objc.Sel("font"))
 	return rv
@@ -309,7 +291,6 @@ func (t_ TextStorage) Font() NSFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/font
-
 func (t_ TextStorage) SetFont(value IFont) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:"), value)
 }
@@ -319,7 +300,6 @@ func (t_ TextStorage) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/foregroundcolor
-
 func (t_ TextStorage) ForegroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("foregroundColor"))
 	return rv
@@ -330,7 +310,6 @@ func (t_ TextStorage) ForegroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/foregroundcolor
-
 func (t_ TextStorage) SetForegroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setForegroundColor:"), value)
 }
@@ -340,7 +319,6 @@ func (t_ TextStorage) SetForegroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/layoutmanagers
-
 func (t_ TextStorage) LayoutManagers() NSLayoutManager {
 	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManagers"))
 	return rv
@@ -351,7 +329,6 @@ func (t_ TextStorage) LayoutManagers() NSLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/layoutmanagers
-
 func (t_ TextStorage) SetLayoutManagers(value ILayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManagers:"), value)
 }
@@ -361,7 +338,6 @@ func (t_ TextStorage) SetLayoutManagers(value ILayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/paragraphs
-
 func (t_ TextStorage) Paragraphs() NSTextStorage {
 	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("paragraphs"))
 	return rv
@@ -372,7 +348,6 @@ func (t_ TextStorage) Paragraphs() NSTextStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/paragraphs
-
 func (t_ TextStorage) SetParagraphs(value ITextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphs:"), value)
 }
@@ -382,7 +357,6 @@ func (t_ TextStorage) SetParagraphs(value ITextStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/words
-
 func (t_ TextStorage) Words() NSTextStorage {
 	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("words"))
 	return rv
@@ -393,7 +367,6 @@ func (t_ TextStorage) Words() NSTextStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/words
-
 func (t_ TextStorage) SetWords(value ITextStorage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWords:"), value)
 }
@@ -403,7 +376,6 @@ func (t_ TextStorage) SetWords(value ITextStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-
 func (t_ TextStorage) String() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
@@ -414,7 +386,6 @@ func (t_ TextStorage) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-
 func (t_ TextStorage) SetString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }

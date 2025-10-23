@@ -2,11 +2,14 @@
 
 // Package lightweightcoderequirements provides Go bindings for the LightweightCodeRequirements framework.
 //
-// Test the identity of executable code on disk and in running processes. [Full Topic]
+// Test the identity of executable code on disk and in running processes.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LightweightCodeRequirements without requiring cgo.
+
+// Test the identity of executable code on disk and in running processes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LightweightCodeRequirements
 package lightweightcoderequirements
 

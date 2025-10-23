@@ -44,7 +44,6 @@ type IMIDICIProfile interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfile
-
 type MIDICIProfile struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewMIDICIProfile() MIDICIProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-
 func (m_ MIDICIProfile) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -104,7 +102,6 @@ func (m_ MIDICIProfile) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-
 func (m_ MIDICIProfile) SetName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -114,7 +111,6 @@ func (m_ MIDICIProfile) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-
 func (m_ MIDICIProfile) ProfileID() foundation.Data {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("profileID"))
 	return rv
@@ -125,7 +121,6 @@ func (m_ MIDICIProfile) ProfileID() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-
 func (m_ MIDICIProfile) SetProfileID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileID:"), value)
 }

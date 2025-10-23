@@ -30,7 +30,7 @@ type _XMLParserClass struct {
 // An interface definition for the [XMLParser] class.
 type IXMLParser interface {
 	objectivec.IObject
-	AllowedExternalEntityURLs() URL
+	AllowedExternalEntityURLs() IURL
 	SetAllowedExternalEntityURLs(value IURL)
 	ColumnNumber() int
 	SetColumnNumber(value int)
@@ -40,7 +40,7 @@ type IXMLParser interface {
 	SetExternalEntityResolvingPolicy(value unsafe.Pointer)
 	LineNumber() int
 	SetLineNumber(value int)
-	ParserError() Error
+	ParserError() IError
 	SetParserError(value IError)
 	PublicID() string
 	SetPublicID(value string)
@@ -122,7 +122,7 @@ func NewXMLParserWithContentsOfURL(url IURL) XMLParser {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/allowedexternalentityurls
-func (x_ XMLParser) AllowedExternalEntityURLs() URL {
+func (x_ XMLParser) AllowedExternalEntityURLs() IURL {
 	rv := objc.Send[URL](x_.ID, objc.Sel("allowedExternalEntityURLs"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (x_ XMLParser) SetLineNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
-func (x_ XMLParser) ParserError() Error {
+func (x_ XMLParser) ParserError() IError {
 	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
 	return rv
 }

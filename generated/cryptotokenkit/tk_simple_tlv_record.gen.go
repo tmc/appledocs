@@ -39,7 +39,6 @@ type ITKSimpleTLVRecord interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSimpleTLVRecord
-
 type TKSimpleTLVRecord struct {
 	objectivec.Object
 }

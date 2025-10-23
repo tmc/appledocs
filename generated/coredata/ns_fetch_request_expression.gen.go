@@ -57,7 +57,6 @@ type IFetchRequestExpression interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression
-
 type FetchRequestExpression struct {
 	Expression
 }
@@ -108,7 +107,6 @@ func NewFetchRequestExpression() FetchRequestExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/expression(forFetch:context:countOnly:)
-
 func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch IExpression, context IExpression, countFlag bool) Expression {
 	rv := objc.Send[Expression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
 	return rv
@@ -119,7 +117,6 @@ func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/contextExpression
-
 func (f_ FetchRequestExpression) ContextExpression() Expression {
 	rv := objc.Send[Expression](f_.ID, objc.Sel("contextExpression"))
 	return rv
@@ -130,7 +127,6 @@ func (f_ FetchRequestExpression) ContextExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/isCountOnlyRequest
-
 func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("countOnlyRequest"))
 	return rv
@@ -141,7 +137,6 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/requestExpression
-
 func (f_ FetchRequestExpression) RequestExpression() Expression {
 	rv := objc.Send[Expression](f_.ID, objc.Sel("requestExpression"))
 	return rv
@@ -152,7 +147,6 @@ func (f_ FetchRequestExpression) RequestExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-
 func (f_ FetchRequestExpression) AffectedStores() NSPersistentStore {
 	rv := objc.Send[NSPersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
@@ -163,7 +157,6 @@ func (f_ FetchRequestExpression) AffectedStores() NSPersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-
 func (f_ FetchRequestExpression) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
 }
@@ -173,7 +166,6 @@ func (f_ FetchRequestExpression) SetAffectedStores(value IPersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-
 func (f_ FetchRequestExpression) FetchBatchSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
@@ -184,7 +176,6 @@ func (f_ FetchRequestExpression) FetchBatchSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-
 func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
@@ -194,7 +185,6 @@ func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-
 func (f_ FetchRequestExpression) FetchLimit() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
 	return rv
@@ -205,7 +195,6 @@ func (f_ FetchRequestExpression) FetchLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-
 func (f_ FetchRequestExpression) SetFetchLimit(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
@@ -215,7 +204,6 @@ func (f_ FetchRequestExpression) SetFetchLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-
 func (f_ FetchRequestExpression) FetchOffset() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
 	return rv
@@ -226,7 +214,6 @@ func (f_ FetchRequestExpression) FetchOffset() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-
 func (f_ FetchRequestExpression) SetFetchOffset(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
@@ -236,7 +223,6 @@ func (f_ FetchRequestExpression) SetFetchOffset(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-
 func (f_ FetchRequestExpression) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
@@ -247,7 +233,6 @@ func (f_ FetchRequestExpression) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-
 func (f_ FetchRequestExpression) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
@@ -257,7 +242,6 @@ func (f_ FetchRequestExpression) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
-
 func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isCountOnlyRequest"))
 	return rv
@@ -268,7 +252,6 @@ func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
-
 func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsCountOnlyRequest:"), value)
 }
@@ -278,7 +261,6 @@ func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpressiontype
-
 func (f_ FetchRequestExpression) NSFetchRequestExpressionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFetchRequestExpressionType"))
 	return rv

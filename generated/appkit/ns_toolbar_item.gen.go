@@ -103,7 +103,6 @@ type IToolbarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem
-
 type ToolbarItem struct {
 	objectivec.Object
 }
@@ -148,12 +147,10 @@ func NewToolbarItem() ToolbarItem {
 
 
 
-
 // Creates a toolbar item with the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:)
-
 func NewToolbarItemWithItemIdentifier(itemIdentifier IToolbarItemIdentifier) ToolbarItem {
 	instance := getToolbarItemClass().Alloc()
 	rv := objc.Send[ToolbarItem](instance.ID, objc.Sel("initWithItemIdentifier:"), itemIdentifier)
@@ -162,12 +159,10 @@ func NewToolbarItemWithItemIdentifier(itemIdentifier IToolbarItemIdentifier) Too
 }
 
 
-
 // Creates a toolbar item with property values from the specified bar button item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
-
 func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier IToolbarItemIdentifier, barButtonItem unsafe.Pointer) ToolbarItem {
 	rv := objc.Send[ToolbarItem](objc.ID(getToolbarItemClass().class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
@@ -179,19 +174,16 @@ func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier IToolbarItemId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
-
 func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier IToolbarItemIdentifier, barButtonItem unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
 }
 
 
-
 // Validates the toolbar item’s menu and its ability to perfrom its action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/validate()
-
 func (t_ ToolbarItem) Validate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("validate"))
 }
@@ -201,7 +193,6 @@ func (t_ ToolbarItem) Validate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/action
-
 func (t_ ToolbarItem) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](t_.ID, objc.Sel("action"))
 	return rv
@@ -212,7 +203,6 @@ func (t_ ToolbarItem) Action() objc.SEL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/action
-
 func (t_ ToolbarItem) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAction:"), value)
 }
@@ -222,7 +212,6 @@ func (t_ ToolbarItem) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/allowsDuplicatesInToolbar
-
 func (t_ ToolbarItem) AllowsDuplicatesInToolbar() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsDuplicatesInToolbar"))
 	return rv
@@ -233,7 +222,6 @@ func (t_ ToolbarItem) AllowsDuplicatesInToolbar() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/autovalidates
-
 func (t_ ToolbarItem) Autovalidates() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("autovalidates"))
 	return rv
@@ -244,7 +232,6 @@ func (t_ ToolbarItem) Autovalidates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/autovalidates
-
 func (t_ ToolbarItem) SetAutovalidates(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutovalidates:"), value)
 }
@@ -252,7 +239,6 @@ func (t_ ToolbarItem) SetAutovalidates(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
-
 func (t_ ToolbarItem) BackgroundTintColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundTintColor"))
 	return rv
@@ -261,7 +247,6 @@ func (t_ ToolbarItem) BackgroundTintColor() NSColor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
-
 func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundTintColor:"), value)
 }
@@ -271,7 +256,6 @@ func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/badge-2b38p
-
 func (t_ ToolbarItem) Badge() NSItemBadge {
 	rv := objc.Send[NSItemBadge](t_.ID, objc.Sel("badge"))
 	return rv
@@ -282,7 +266,6 @@ func (t_ ToolbarItem) Badge() NSItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/badge-2b38p
-
 func (t_ ToolbarItem) SetBadge(value IItemBadge) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBadge:"), value)
 }
@@ -292,7 +275,6 @@ func (t_ ToolbarItem) SetBadge(value IItemBadge) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
-
 func (t_ ToolbarItem) Image() Image {
 	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
@@ -303,7 +285,6 @@ func (t_ ToolbarItem) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
-
 func (t_ ToolbarItem) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
@@ -313,7 +294,6 @@ func (t_ ToolbarItem) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isBordered
-
 func (t_ ToolbarItem) Bordered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("bordered"))
 	return rv
@@ -324,7 +304,6 @@ func (t_ ToolbarItem) Bordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isBordered
-
 func (t_ ToolbarItem) SetBordered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBordered:"), value)
 }
@@ -334,7 +313,6 @@ func (t_ ToolbarItem) SetBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isEnabled
-
 func (t_ ToolbarItem) Enabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("enabled"))
 	return rv
@@ -345,7 +323,6 @@ func (t_ ToolbarItem) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isEnabled
-
 func (t_ ToolbarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -353,7 +330,6 @@ func (t_ ToolbarItem) SetEnabled(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isHidden
-
 func (t_ ToolbarItem) Hidden() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hidden"))
 	return rv
@@ -362,7 +338,6 @@ func (t_ ToolbarItem) Hidden() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isHidden
-
 func (t_ ToolbarItem) SetHidden(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHidden:"), value)
 }
@@ -372,7 +347,6 @@ func (t_ ToolbarItem) SetHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isNavigational
-
 func (t_ ToolbarItem) Navigational() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("navigational"))
 	return rv
@@ -383,7 +357,6 @@ func (t_ ToolbarItem) Navigational() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isNavigational
-
 func (t_ ToolbarItem) SetNavigational(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNavigational:"), value)
 }
@@ -393,7 +366,6 @@ func (t_ ToolbarItem) SetNavigational(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isVisible
-
 func (t_ ToolbarItem) Visible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
 	return rv
@@ -404,7 +376,6 @@ func (t_ ToolbarItem) Visible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/itemIdentifier
-
 func (t_ ToolbarItem) ItemIdentifier() ToolbarItemIdentifier {
 	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("itemIdentifier"))
 	return rv
@@ -415,7 +386,6 @@ func (t_ ToolbarItem) ItemIdentifier() ToolbarItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/itemMenuFormRepresentation
-
 func (t_ ToolbarItem) ItemMenuFormRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemMenuFormRepresentation"))
 	return rv
@@ -426,7 +396,6 @@ func (t_ ToolbarItem) ItemMenuFormRepresentation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/itemMenuFormRepresentation
-
 func (t_ ToolbarItem) SetItemMenuFormRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItemMenuFormRepresentation:"), value)
 }
@@ -436,7 +405,6 @@ func (t_ ToolbarItem) SetItemMenuFormRepresentation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
-
 func (t_ ToolbarItem) Label() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("label"))
 	return rv
@@ -447,7 +415,6 @@ func (t_ ToolbarItem) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
-
 func (t_ ToolbarItem) SetLabel(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -457,7 +424,6 @@ func (t_ ToolbarItem) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/maxSize
-
 func (t_ ToolbarItem) MaxSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("maxSize"))
 	return rv
@@ -468,7 +434,6 @@ func (t_ ToolbarItem) MaxSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/maxSize
-
 func (t_ ToolbarItem) SetMaxSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxSize:"), value)
 }
@@ -478,7 +443,6 @@ func (t_ ToolbarItem) SetMaxSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
-
 func (t_ ToolbarItem) MenuFormRepresentation() NSMenuItem {
 	rv := objc.Send[NSMenuItem](t_.ID, objc.Sel("menuFormRepresentation"))
 	return rv
@@ -489,7 +453,6 @@ func (t_ ToolbarItem) MenuFormRepresentation() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
-
 func (t_ ToolbarItem) SetMenuFormRepresentation(value IMenuItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMenuFormRepresentation:"), value)
 }
@@ -499,7 +462,6 @@ func (t_ ToolbarItem) SetMenuFormRepresentation(value IMenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
-
 func (t_ ToolbarItem) MinSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("minSize"))
 	return rv
@@ -510,7 +472,6 @@ func (t_ ToolbarItem) MinSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
-
 func (t_ ToolbarItem) SetMinSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinSize:"), value)
 }
@@ -520,7 +481,6 @@ func (t_ ToolbarItem) SetMinSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
-
 func (t_ ToolbarItem) PaletteLabel() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("paletteLabel"))
 	return rv
@@ -531,7 +491,6 @@ func (t_ ToolbarItem) PaletteLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
-
 func (t_ ToolbarItem) SetPaletteLabel(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), objc.String(value))
 }
@@ -541,7 +500,6 @@ func (t_ ToolbarItem) SetPaletteLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/possibleLabels
-
 func (t_ ToolbarItem) PossibleLabels() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("possibleLabels"))
 	return rv
@@ -552,7 +510,6 @@ func (t_ ToolbarItem) PossibleLabels() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/possibleLabels
-
 func (t_ ToolbarItem) SetPossibleLabels(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPossibleLabels:"), value)
 }
@@ -562,7 +519,6 @@ func (t_ ToolbarItem) SetPossibleLabels(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
-
 func (t_ ToolbarItem) Style() ToolbarItemStyle {
 	rv := objc.Send[ToolbarItemStyle](t_.ID, objc.Sel("style"))
 	return rv
@@ -573,7 +529,6 @@ func (t_ ToolbarItem) Style() ToolbarItemStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
-
 func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
 }
@@ -583,7 +538,6 @@ func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/tag
-
 func (t_ ToolbarItem) Tag() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("tag"))
 	return rv
@@ -594,7 +548,6 @@ func (t_ ToolbarItem) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/tag
-
 func (t_ ToolbarItem) SetTag(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTag:"), value)
 }
@@ -604,7 +557,6 @@ func (t_ ToolbarItem) SetTag(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/target
-
 func (t_ ToolbarItem) Target() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("target"))
 	return rv
@@ -615,7 +567,6 @@ func (t_ ToolbarItem) Target() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/target
-
 func (t_ ToolbarItem) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTarget:"), value)
 }
@@ -625,7 +576,6 @@ func (t_ ToolbarItem) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
-
 func (t_ ToolbarItem) Title() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("title"))
 	return rv
@@ -636,7 +586,6 @@ func (t_ ToolbarItem) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
-
 func (t_ ToolbarItem) SetTitle(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -646,7 +595,6 @@ func (t_ ToolbarItem) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
-
 func (t_ ToolbarItem) ToolTip() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("toolTip"))
 	return rv
@@ -657,7 +605,6 @@ func (t_ ToolbarItem) ToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
-
 func (t_ ToolbarItem) SetToolTip(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
@@ -667,7 +614,6 @@ func (t_ ToolbarItem) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolbar
-
 func (t_ ToolbarItem) Toolbar() NSToolbar {
 	rv := objc.Send[NSToolbar](t_.ID, objc.Sel("toolbar"))
 	return rv
@@ -678,7 +624,6 @@ func (t_ ToolbarItem) Toolbar() NSToolbar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/view
-
 func (t_ ToolbarItem) View() NSView {
 	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
 	return rv
@@ -689,7 +634,6 @@ func (t_ ToolbarItem) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/view
-
 func (t_ ToolbarItem) SetView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
 }
@@ -699,7 +643,6 @@ func (t_ ToolbarItem) SetView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
-
 func (t_ ToolbarItem) VisibilityPriority() ToolbarItemVisibilityPriority {
 	rv := objc.Send[ToolbarItemVisibilityPriority](t_.ID, objc.Sel("visibilityPriority"))
 	return rv
@@ -710,7 +653,6 @@ func (t_ ToolbarItem) VisibilityPriority() ToolbarItemVisibilityPriority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
-
 func (t_ ToolbarItem) SetVisibilityPriority(value ToolbarItemVisibilityPriority) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
@@ -720,7 +662,6 @@ func (t_ ToolbarItem) SetVisibilityPriority(value ToolbarItemVisibilityPriority)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
-
 func (t_ ToolbarItem) IsBordered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isBordered"))
 	return rv
@@ -731,7 +672,6 @@ func (t_ ToolbarItem) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
-
 func (t_ ToolbarItem) SetIsBordered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBordered:"), value)
 }
@@ -741,7 +681,6 @@ func (t_ ToolbarItem) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
-
 func (t_ ToolbarItem) IsEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -752,7 +691,6 @@ func (t_ ToolbarItem) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
-
 func (t_ ToolbarItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -760,7 +698,6 @@ func (t_ ToolbarItem) SetIsEnabled(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
-
 func (t_ ToolbarItem) IsHidden() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
 	return rv
@@ -769,7 +706,6 @@ func (t_ ToolbarItem) IsHidden() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
-
 func (t_ ToolbarItem) SetIsHidden(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -779,7 +715,6 @@ func (t_ ToolbarItem) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
-
 func (t_ ToolbarItem) IsNavigational() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isNavigational"))
 	return rv
@@ -790,7 +725,6 @@ func (t_ ToolbarItem) IsNavigational() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
-
 func (t_ ToolbarItem) SetIsNavigational(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsNavigational:"), value)
 }
@@ -800,7 +734,6 @@ func (t_ ToolbarItem) SetIsNavigational(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
-
 func (t_ ToolbarItem) IsVisible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
 	return rv
@@ -811,7 +744,6 @@ func (t_ ToolbarItem) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
-
 func (t_ ToolbarItem) SetIsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
 }

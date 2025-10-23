@@ -35,7 +35,7 @@ type IPDFInfo interface {
 	FileExtensionHidden() bool
 	SetFileExtensionHidden(value bool)
 	Orientation() PaperOrientation
-	SetOrientation(value PaperOrientation)
+	SetOrientation(value IPaperOrientation)
 	TagNames() []string
 	SetTagNames(value []string)
 	Attributes() foundation.MutableDictionary
@@ -57,7 +57,6 @@ type IPDFInfo interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo
-
 type PDFInfo struct {
 	objectivec.Object
 }
@@ -106,7 +105,6 @@ func NewPDFInfo() PDFInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
-
 func (p_ PDFInfo) FileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("fileExtensionHidden"))
 	return rv
@@ -117,7 +115,6 @@ func (p_ PDFInfo) FileExtensionHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
-
 func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileExtensionHidden:"), value)
 }
@@ -127,7 +124,6 @@ func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
-
 func (p_ PDFInfo) Orientation() PaperOrientation {
 	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
 	return rv
@@ -138,8 +134,7 @@ func (p_ PDFInfo) Orientation() PaperOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
-
-func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
+func (p_ PDFInfo) SetOrientation(value IPaperOrientation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -148,7 +143,6 @@ func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
-
 func (p_ PDFInfo) TagNames() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("tagNames"))
 	return rv
@@ -159,7 +153,6 @@ func (p_ PDFInfo) TagNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
-
 func (p_ PDFInfo) SetTagNames(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -179,7 +172,6 @@ func (p_ PDFInfo) SetTagNames(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-
 func (p_ PDFInfo) Attributes() foundation.MutableDictionary {
 	rv := objc.Send[foundation.MutableDictionary](p_.ID, objc.Sel("attributes"))
 	return rv
@@ -190,7 +182,6 @@ func (p_ PDFInfo) Attributes() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-
 func (p_ PDFInfo) SetAttributes(value foundation.IMutableDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributes:"), value)
 }
@@ -200,7 +191,6 @@ func (p_ PDFInfo) SetAttributes(value foundation.IMutableDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
-
 func (p_ PDFInfo) IsFileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFileExtensionHidden"))
 	return rv
@@ -211,7 +201,6 @@ func (p_ PDFInfo) IsFileExtensionHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
-
 func (p_ PDFInfo) SetIsFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFileExtensionHidden:"), value)
 }
@@ -221,7 +210,6 @@ func (p_ PDFInfo) SetIsFileExtensionHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
-
 func (p_ PDFInfo) PaperSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("paperSize"))
 	return rv
@@ -232,7 +220,6 @@ func (p_ PDFInfo) PaperSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
-
 func (p_ PDFInfo) SetPaperSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperSize:"), value)
 }
@@ -242,7 +229,6 @@ func (p_ PDFInfo) SetPaperSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-
 func (p_ PDFInfo) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
@@ -253,7 +239,6 @@ func (p_ PDFInfo) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-
 func (p_ PDFInfo) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }

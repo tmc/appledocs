@@ -180,7 +180,7 @@ func (uc _UnitPressureClass) PoundsForcePerSquareInch() UnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/bars
-func (u_ UnitPressure) Bars() NSUnitPressure {
+func (u_ UnitPressure) Bars() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("bars"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (u_ UnitPressure) Bars() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/gigapascals
-func (u_ UnitPressure) Gigapascals() NSUnitPressure {
+func (u_ UnitPressure) Gigapascals() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("gigapascals"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (u_ UnitPressure) Gigapascals() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/hectopascals
-func (u_ UnitPressure) Hectopascals() NSUnitPressure {
+func (u_ UnitPressure) Hectopascals() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("hectopascals"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (u_ UnitPressure) Hectopascals() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/inchesOfMercury
-func (u_ UnitPressure) InchesOfMercury() NSUnitPressure {
+func (u_ UnitPressure) InchesOfMercury() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("inchesOfMercury"))
 	return rv
 }
@@ -220,7 +220,7 @@ func (u_ UnitPressure) InchesOfMercury() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/kilopascals
-func (u_ UnitPressure) Kilopascals() NSUnitPressure {
+func (u_ UnitPressure) Kilopascals() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("kilopascals"))
 	return rv
 }
@@ -230,7 +230,7 @@ func (u_ UnitPressure) Kilopascals() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/megapascals
-func (u_ UnitPressure) Megapascals() NSUnitPressure {
+func (u_ UnitPressure) Megapascals() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("megapascals"))
 	return rv
 }
@@ -240,7 +240,7 @@ func (u_ UnitPressure) Megapascals() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millibars
-func (u_ UnitPressure) Millibars() NSUnitPressure {
+func (u_ UnitPressure) Millibars() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("millibars"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (u_ UnitPressure) Millibars() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
-func (u_ UnitPressure) MillimetersOfMercury() NSUnitPressure {
+func (u_ UnitPressure) MillimetersOfMercury() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("millimetersOfMercury"))
 	return rv
 }
@@ -260,7 +260,7 @@ func (u_ UnitPressure) MillimetersOfMercury() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
-func (u_ UnitPressure) NewtonsPerMetersSquared() NSUnitPressure {
+func (u_ UnitPressure) NewtonsPerMetersSquared() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (u_ UnitPressure) NewtonsPerMetersSquared() NSUnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/poundsForcePerSquareInch
-func (u_ UnitPressure) PoundsForcePerSquareInch() NSUnitPressure {
+func (u_ UnitPressure) PoundsForcePerSquareInch() IUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("poundsForcePerSquareInch"))
 	return rv
 }

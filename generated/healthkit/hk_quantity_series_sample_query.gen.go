@@ -44,7 +44,6 @@ type IHKQuantitySeriesSampleQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySeriesSampleQuery
-
 type HKQuantitySeriesSampleQuery struct {
 	HKQuery
 }
@@ -95,7 +94,6 @@ func NewHKQuantitySeriesSampleQuery() HKQuantitySeriesSampleQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/includesample
-
 func (h_ HKQuantitySeriesSampleQuery) IncludeSample() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("includeSample"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HKQuantitySeriesSampleQuery) IncludeSample() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/includesample
-
 func (h_ HKQuantitySeriesSampleQuery) SetIncludeSample(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeSample:"), value)
 }
@@ -116,7 +113,6 @@ func (h_ HKQuantitySeriesSampleQuery) SetIncludeSample(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/orderbyquantitysamplestartdate
-
 func (h_ HKQuantitySeriesSampleQuery) OrderByQuantitySampleStartDate() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("orderByQuantitySampleStartDate"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKQuantitySeriesSampleQuery) OrderByQuantitySampleStartDate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/orderbyquantitysamplestartdate
-
 func (h_ HKQuantitySeriesSampleQuery) SetOrderByQuantitySampleStartDate(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setOrderByQuantitySampleStartDate:"), value)
 }

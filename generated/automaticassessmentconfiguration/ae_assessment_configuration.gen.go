@@ -67,7 +67,6 @@ type IAEAssessmentConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration
-
 type AEAssessmentConfiguration struct {
 	objectivec.Object
 }
@@ -112,23 +111,19 @@ func NewAEAssessmentConfiguration() AEAssessmentConfiguration {
 
 
 
-
 // Removes the availability of a previously allowed app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/remove(_:)
-
 func (a_ AEAssessmentConfiguration) RemoveApplication(application IAEAssessmentApplication) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeApplication:"), application)
 }
-
 
 
 // Adds an app to the list of apps available during an assessment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/setConfiguration(_:for:)
-
 func (a_ AEAssessmentConfiguration) SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfiguration:forApplication:"), configuration, application)
 }
@@ -138,7 +133,6 @@ func (a_ AEAssessmentConfiguration) SetConfigurationForApplication(configuration
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech
-
 func (a_ AEAssessmentConfiguration) AllowsAccessibilitySpeech() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilitySpeech"))
 	return rv
@@ -149,7 +143,6 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilitySpeech() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech
-
 func (a_ AEAssessmentConfiguration) SetAllowsAccessibilitySpeech(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilitySpeech:"), value)
 }
@@ -159,7 +152,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsAccessibilitySpeech(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilityTypingFeedback
-
 func (a_ AEAssessmentConfiguration) AllowsAccessibilityTypingFeedback() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityTypingFeedback"))
 	return rv
@@ -170,7 +162,6 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilityTypingFeedback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilityTypingFeedback
-
 func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityTypingFeedback(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityTypingFeedback:"), value)
 }
@@ -180,7 +171,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityTypingFeedback(value b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation
-
 func (a_ AEAssessmentConfiguration) AllowsActivityContinuation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsActivityContinuation"))
 	return rv
@@ -191,7 +181,6 @@ func (a_ AEAssessmentConfiguration) AllowsActivityContinuation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation
-
 func (a_ AEAssessmentConfiguration) SetAllowsActivityContinuation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsActivityContinuation:"), value)
 }
@@ -201,7 +190,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsActivityContinuation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard
-
 func (a_ AEAssessmentConfiguration) AllowsContinuousPathKeyboard() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsContinuousPathKeyboard"))
 	return rv
@@ -212,7 +200,6 @@ func (a_ AEAssessmentConfiguration) AllowsContinuousPathKeyboard() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard
-
 func (a_ AEAssessmentConfiguration) SetAllowsContinuousPathKeyboard(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsContinuousPathKeyboard:"), value)
 }
@@ -222,7 +209,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsContinuousPathKeyboard(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation
-
 func (a_ AEAssessmentConfiguration) AllowsDictation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsDictation"))
 	return rv
@@ -233,7 +219,6 @@ func (a_ AEAssessmentConfiguration) AllowsDictation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation
-
 func (a_ AEAssessmentConfiguration) SetAllowsDictation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsDictation:"), value)
 }
@@ -243,7 +228,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsDictation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts
-
 func (a_ AEAssessmentConfiguration) AllowsKeyboardShortcuts() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsKeyboardShortcuts"))
 	return rv
@@ -254,7 +238,6 @@ func (a_ AEAssessmentConfiguration) AllowsKeyboardShortcuts() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts
-
 func (a_ AEAssessmentConfiguration) SetAllowsKeyboardShortcuts(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsKeyboardShortcuts:"), value)
 }
@@ -264,7 +247,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsKeyboardShortcuts(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill
-
 func (a_ AEAssessmentConfiguration) AllowsPasswordAutoFill() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsPasswordAutoFill"))
 	return rv
@@ -275,7 +257,6 @@ func (a_ AEAssessmentConfiguration) AllowsPasswordAutoFill() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill
-
 func (a_ AEAssessmentConfiguration) SetAllowsPasswordAutoFill(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsPasswordAutoFill:"), value)
 }
@@ -285,7 +266,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsPasswordAutoFill(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard
-
 func (a_ AEAssessmentConfiguration) AllowsPredictiveKeyboard() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsPredictiveKeyboard"))
 	return rv
@@ -296,7 +276,6 @@ func (a_ AEAssessmentConfiguration) AllowsPredictiveKeyboard() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard
-
 func (a_ AEAssessmentConfiguration) SetAllowsPredictiveKeyboard(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsPredictiveKeyboard:"), value)
 }
@@ -306,7 +285,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsPredictiveKeyboard(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsScreenshots
-
 func (a_ AEAssessmentConfiguration) AllowsScreenshots() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsScreenshots"))
 	return rv
@@ -317,7 +295,6 @@ func (a_ AEAssessmentConfiguration) AllowsScreenshots() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsScreenshots
-
 func (a_ AEAssessmentConfiguration) SetAllowsScreenshots(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsScreenshots:"), value)
 }
@@ -327,7 +304,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsScreenshots(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck
-
 func (a_ AEAssessmentConfiguration) AllowsSpellCheck() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsSpellCheck"))
 	return rv
@@ -338,7 +314,6 @@ func (a_ AEAssessmentConfiguration) AllowsSpellCheck() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck
-
 func (a_ AEAssessmentConfiguration) SetAllowsSpellCheck(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsSpellCheck:"), value)
 }
@@ -348,7 +323,6 @@ func (a_ AEAssessmentConfiguration) SetAllowsSpellCheck(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property
-
 func (a_ AEAssessmentConfiguration) AutocorrectMode() AEAutocorrectMode {
 	rv := objc.Send[AEAutocorrectMode](a_.ID, objc.Sel("autocorrectMode"))
 	return rv
@@ -359,7 +333,6 @@ func (a_ AEAssessmentConfiguration) AutocorrectMode() AEAutocorrectMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property
-
 func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value AEAutocorrectMode) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutocorrectMode:"), value)
 }
@@ -369,7 +342,6 @@ func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value AEAutocorrectMode) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication
-
 func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
@@ -380,7 +352,6 @@ func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration
-
 func (a_ AEAssessmentConfiguration) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv

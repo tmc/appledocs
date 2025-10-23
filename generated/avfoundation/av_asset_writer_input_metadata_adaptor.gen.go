@@ -43,7 +43,6 @@ type IAssetWriterInputMetadataAdaptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor
-
 type AssetWriterInputMetadataAdaptor struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewAssetWriterInputMetadataAdaptor() AssetWriterInputMetadataAdaptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
-
 func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() AVAssetWriterInput {
 	rv := objc.Send[AVAssetWriterInput](a_.ID, objc.Sel("assetWriterInput"))
 	return rv
@@ -103,7 +101,6 @@ func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() AVAssetWriterInput 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
-
 func (a_ AssetWriterInputMetadataAdaptor) SetAssetWriterInput(value IAVAssetWriterInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAssetWriterInput:"), value)
 }

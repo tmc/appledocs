@@ -40,7 +40,6 @@ type IAsynchronousFetchResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult
-
 type AsynchronousFetchResult struct {
 	PersistentStoreAsynchronousResult
 }
@@ -91,7 +90,6 @@ func NewAsynchronousFetchResult() AsynchronousFetchResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/fetchRequest
-
 func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fetchRequest"))
 	return rv
@@ -102,7 +100,6 @@ func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/finalResult
-
 func (a_ AsynchronousFetchResult) FinalResult() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("finalResult"))
 	return rv

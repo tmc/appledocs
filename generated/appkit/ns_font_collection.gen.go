@@ -47,7 +47,6 @@ type IFontCollection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollection
-
 type FontCollection struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewFontCollection() FontCollection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/exclusiondescriptors
-
 func (f_ FontCollection) ExclusionDescriptors() NSFontDescriptor {
 	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("exclusionDescriptors"))
 	return rv
@@ -107,7 +105,6 @@ func (f_ FontCollection) ExclusionDescriptors() NSFontDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/exclusiondescriptors
-
 func (f_ FontCollection) SetExclusionDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setExclusionDescriptors:"), value)
 }
@@ -117,7 +114,6 @@ func (f_ FontCollection) SetExclusionDescriptors(value IFontDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors
-
 func (f_ FontCollection) MatchingDescriptors() NSFontDescriptor {
 	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("matchingDescriptors"))
 	return rv
@@ -128,7 +124,6 @@ func (f_ FontCollection) MatchingDescriptors() NSFontDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors
-
 func (f_ FontCollection) SetMatchingDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMatchingDescriptors:"), value)
 }
@@ -138,7 +133,6 @@ func (f_ FontCollection) SetMatchingDescriptors(value IFontDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/querydescriptors
-
 func (f_ FontCollection) QueryDescriptors() NSFontDescriptor {
 	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("queryDescriptors"))
 	return rv
@@ -149,7 +143,6 @@ func (f_ FontCollection) QueryDescriptors() NSFontDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/querydescriptors
-
 func (f_ FontCollection) SetQueryDescriptors(value IFontDescriptor) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQueryDescriptors:"), value)
 }

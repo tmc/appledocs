@@ -36,7 +36,11 @@ type IBluetoothUserNotification interface {
 // Represents a registered notification.
 //
 // When registering for various notifications in the system, an IOBluetoothUserNotification object is returned. To unregister from the notification, call -unregister on the IOBluetoothUserNotification object. Once -unregister is called, the object will no longer be valid.
+
+
+// Represents a registered notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotification
 type BluetoothUserNotification struct {
 	objectivec.Object
@@ -81,8 +85,10 @@ func NewBluetoothUserNotification() BluetoothUserNotification {
 }
 
 
+
 // Called to unregister the target notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotification/unregister()
 func (b_ BluetoothUserNotification) Unregister() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("unregister"))

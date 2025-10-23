@@ -56,7 +56,6 @@ type IHKDevice interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDevice
-
 type HKDevice struct {
 	objectivec.Object
 }
@@ -105,7 +104,6 @@ func NewHKDevice() HKDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDevice/localIdentifier
-
 func (h_ HKDevice) LocalIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("localIdentifier"))
 	return rv
@@ -116,7 +114,6 @@ func (h_ HKDevice) LocalIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/firmwareversion
-
 func (h_ HKDevice) FirmwareVersion() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("firmwareVersion"))
 	return rv
@@ -127,7 +124,6 @@ func (h_ HKDevice) FirmwareVersion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/firmwareversion
-
 func (h_ HKDevice) SetFirmwareVersion(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFirmwareVersion:"), objc.String(value))
 }
@@ -137,7 +133,6 @@ func (h_ HKDevice) SetFirmwareVersion(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
-
 func (h_ HKDevice) HardwareVersion() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("hardwareVersion"))
 	return rv
@@ -148,7 +143,6 @@ func (h_ HKDevice) HardwareVersion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
-
 func (h_ HKDevice) SetHardwareVersion(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHardwareVersion:"), objc.String(value))
 }
@@ -158,7 +152,6 @@ func (h_ HKDevice) SetHardwareVersion(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/manufacturer
-
 func (h_ HKDevice) Manufacturer() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("manufacturer"))
 	return rv
@@ -169,7 +162,6 @@ func (h_ HKDevice) Manufacturer() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/manufacturer
-
 func (h_ HKDevice) SetManufacturer(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setManufacturer:"), objc.String(value))
 }
@@ -179,7 +171,6 @@ func (h_ HKDevice) SetManufacturer(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
-
 func (h_ HKDevice) Model() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("model"))
 	return rv
@@ -190,7 +181,6 @@ func (h_ HKDevice) Model() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
-
 func (h_ HKDevice) SetModel(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setModel:"), objc.String(value))
 }
@@ -200,7 +190,6 @@ func (h_ HKDevice) SetModel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
-
 func (h_ HKDevice) Name() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
@@ -211,7 +200,6 @@ func (h_ HKDevice) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
-
 func (h_ HKDevice) SetName(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -221,7 +209,6 @@ func (h_ HKDevice) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
-
 func (h_ HKDevice) SoftwareVersion() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("softwareVersion"))
 	return rv
@@ -232,7 +219,6 @@ func (h_ HKDevice) SoftwareVersion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
-
 func (h_ HKDevice) SetSoftwareVersion(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSoftwareVersion:"), objc.String(value))
 }
@@ -242,7 +228,6 @@ func (h_ HKDevice) SetSoftwareVersion(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
-
 func (h_ HKDevice) UdiDeviceIdentifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("udiDeviceIdentifier"))
 	return rv
@@ -253,7 +238,6 @@ func (h_ HKDevice) UdiDeviceIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
-
 func (h_ HKDevice) SetUdiDeviceIdentifier(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUdiDeviceIdentifier:"), objc.String(value))
 }

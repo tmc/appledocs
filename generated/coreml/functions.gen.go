@@ -48,7 +48,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLAllComputeDevices
-
 func MLAllComputeDevices() unsafe.Pointer {
 	return _MLAllComputeDevices()
 	}

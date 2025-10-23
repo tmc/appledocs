@@ -35,8 +35,7 @@ type IcolumnCount interface {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/columnCount-c.ivar
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/columnCount-c.ivar
 type columnCount struct {
 	objectivec.Object
 }

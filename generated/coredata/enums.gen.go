@@ -12,63 +12,63 @@ const (
 	// URIAttributeType - An attribute that stores a uniform resource identifier.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/URIAttributeType
-	URIAttributeType AttributeType = 0
+	URIAttributeType AttributeType = 1002
 	// UUIDAttributeType - An attribute that stores a universally unique identifier.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/UUIDAttributeType
-	UUIDAttributeType AttributeType = 0
+	UUIDAttributeType AttributeType = 1001
 	// BinaryDataAttributeType - An attribute that stores binary data.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/binaryDataAttributeType
-	BinaryDataAttributeType AttributeType = 0
+	BinaryDataAttributeType AttributeType = 1000
 	// BooleanAttributeType - An attribute that stores a Boolean value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/booleanAttributeType
-	BooleanAttributeType AttributeType = 0
+	BooleanAttributeType AttributeType = 800
 	// CompositeAttributeType - An attribute that derives its value by composing other attributes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/compositeAttributeType
-	CompositeAttributeType AttributeType = 0
+	CompositeAttributeType AttributeType = 1005
 	// DateAttributeType - An attribute that stores a date.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/dateAttributeType
-	DateAttributeType AttributeType = 0
+	DateAttributeType AttributeType = 900
 	// DecimalAttributeType - An attribute that stores a decimal value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/decimalAttributeType
-	DecimalAttributeType AttributeType = 0
+	DecimalAttributeType AttributeType = 400
 	// DoubleAttributeType - An attribute that stores a double value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/doubleAttributeType
-	DoubleAttributeType AttributeType = 0
+	DoubleAttributeType AttributeType = 500
 	// FloatAttributeType - An attribute that stores a float value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/floatAttributeType
-	FloatAttributeType AttributeType = 0
+	FloatAttributeType AttributeType = 600
 	// Integer16AttributeType - An attribute that stores a 16-bit signed integer value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/integer16AttributeType
-	Integer16AttributeType AttributeType = 0
+	Integer16AttributeType AttributeType = 100
 	// Integer32AttributeType - An attribute that stores a 32-bit signed integer value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/integer32AttributeType
-	Integer32AttributeType AttributeType = 0
+	Integer32AttributeType AttributeType = 200
 	// Integer64AttributeType - An attribute that stores a 64-bit signed integer value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/integer64AttributeType
-	Integer64AttributeType AttributeType = 0
+	Integer64AttributeType AttributeType = 300
 	// ObjectIDAttributeType - An attribute that stores a managed object’s ID.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/objectIDAttributeType
-	ObjectIDAttributeType AttributeType = 0
+	ObjectIDAttributeType AttributeType = 1004
 	// StringAttributeType - An attribute that stores a string.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/stringAttributeType
-	StringAttributeType AttributeType = 0
+	StringAttributeType AttributeType = 700
 	// TransformableAttributeType - An attribute that uses a value transformer to derive its value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/transformableAttributeType
-	TransformableAttributeType AttributeType = 0
+	TransformableAttributeType AttributeType = 1003
 	// UndefinedAttributeType - An attribute that doesn’t have an explicit type.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeType/undefinedAttributeType
@@ -116,11 +116,11 @@ const (
 	// CascadeDeleteRule - A rule that deletes the referenced managed objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDeleteRule/cascadeDeleteRule
-	CascadeDeleteRule DeleteRule = 0
+	CascadeDeleteRule DeleteRule = 2
 	// DenyDeleteRule - A rule that prevents the deletion of the owning managed object if the relationship has references to other objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDeleteRule/denyDeleteRule
-	DenyDeleteRule DeleteRule = 0
+	DenyDeleteRule DeleteRule = 3
 	// NoActionDeleteRule - A rule that prevents modification of the referenced managed objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDeleteRule/noActionDeleteRule
@@ -128,7 +128,7 @@ const (
 	// NullifyDeleteRule - A rule that nullifies the inverse relationship of the referenced managed objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDeleteRule/nullifyDeleteRule
-	NullifyDeleteRule DeleteRule = 0
+	NullifyDeleteRule DeleteRule = 1
 )
 
 // NSEntityMappingType - The types for mapping an entity between a source model and a destination model.
@@ -172,11 +172,11 @@ const (
 	// CountResultType - The request returns the count of the objects that match the request.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestResultType/countResultType
-	CountResultType FetchRequestResultType = 0
+	CountResultType FetchRequestResultType = 2
 	// DictionaryResultType - The request returns dictionaries.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestResultType/dictionaryResultType
-	DictionaryResultType FetchRequestResultType = 0
+	DictionaryResultType FetchRequestResultType = 1
 	// ManagedObjectIDResultType - The request returns managed object IDs.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestResultType/managedObjectIDResultType
@@ -196,19 +196,19 @@ const (
 	// FetchedResultsChangeDelete - Specifies that an object was deleted.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsChangeType/delete
-	FetchedResultsChangeDelete FetchedResultsChangeType = 0
+	FetchedResultsChangeDelete FetchedResultsChangeType = 2
 	// FetchedResultsChangeInsert - Specifies that an object was inserted.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsChangeType/insert
-	FetchedResultsChangeInsert FetchedResultsChangeType = 0
+	FetchedResultsChangeInsert FetchedResultsChangeType = 1
 	// FetchedResultsChangeMove - Specifies that an object was moved.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsChangeType/move
-	FetchedResultsChangeMove FetchedResultsChangeType = 0
+	FetchedResultsChangeMove FetchedResultsChangeType = 3
 	// FetchedResultsChangeUpdate - Specifies that an object was changed.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsChangeType/update
-	FetchedResultsChangeUpdate FetchedResultsChangeType = 0
+	FetchedResultsChangeUpdate FetchedResultsChangeType = 4
 )
 
 // NSManagedObjectContextConcurrencyType - The concurrency types you can use with a managed object context.
@@ -268,17 +268,27 @@ const (
 	// PersistentCloudKitContainerEventTypeExport - An event the persistent CloudKit container generates when exporting managed objects from a store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/EventType/export
-	PersistentCloudKitContainerEventTypeExport PersistentCloudKitContainerEventType = 0
+	PersistentCloudKitContainerEventTypeExport PersistentCloudKitContainerEventType = 2
 	// PersistentCloudKitContainerEventTypeImport - An event the persistent CloudKit container generates when importing records into a store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/EventType/import
-	PersistentCloudKitContainerEventTypeImport PersistentCloudKitContainerEventType = 0
+	PersistentCloudKitContainerEventTypeImport PersistentCloudKitContainerEventType = 1
 )
 
 // NSPersistentCloudKitContainerEventResultType - The types of results from a persistent CloudKit container event fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/ResultType-swift.enum
 type PersistentCloudKitContainerEventResultType uint
+
+const (
+	PersistentCloudKitContainerEventResultTypeEvents PersistentCloudKitContainerEventResultType = 0
+	PersistentCloudKitContainerEventResultTypeCountEvents PersistentCloudKitContainerEventResultType = 1
+	ErrorMergePolicyType PersistentCloudKitContainerEventResultType = 0
+	MergeByPropertyStoreTrumpMergePolicyType PersistentCloudKitContainerEventResultType = 0
+	MergeByPropertyObjectTrumpMergePolicyType PersistentCloudKitContainerEventResultType = 0
+	OverwriteMergePolicyType PersistentCloudKitContainerEventResultType = 0
+	RollbackMergePolicyType PersistentCloudKitContainerEventResultType = 0
+)
 
 // NSPersistentCloudKitContainerSchemaInitializationOptions - Options that control the behavior when promoting the container’s schema to CloudKit.
 //
@@ -293,11 +303,11 @@ const (
 	// PersistentCloudKitContainerSchemaInitializationOptionsDryRun - A flag that indicates the container validates the model and generates the records, but doesn’t upload them to CloudKit.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerSchemaInitializationOptions/dryRun
-	PersistentCloudKitContainerSchemaInitializationOptionsDryRun PersistentCloudKitContainerSchemaInitializationOptions = 0
+	PersistentCloudKitContainerSchemaInitializationOptionsDryRun PersistentCloudKitContainerSchemaInitializationOptions = 1
 	// PersistentCloudKitContainerSchemaInitializationOptionsPrintSchema - Prints the generated records to the console.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerSchemaInitializationOptions/printSchema
-	PersistentCloudKitContainerSchemaInitializationOptionsPrintSchema PersistentCloudKitContainerSchemaInitializationOptions = 0
+	PersistentCloudKitContainerSchemaInitializationOptionsPrintSchema PersistentCloudKitContainerSchemaInitializationOptions = 1
 )
 
 // NSPersistentHistoryChangeType - The types of changes to managed objects reflected in persistent history.
@@ -309,7 +319,7 @@ const (
 	// PersistentHistoryChangeTypeDelete - The deletion of a managed object from the persistent store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeType/delete
-	PersistentHistoryChangeTypeDelete PersistentHistoryChangeType = 0
+	PersistentHistoryChangeTypeDelete PersistentHistoryChangeType = 2
 	// PersistentHistoryChangeTypeInsert - The insertion of a managed object into the persistent store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeType/insert
@@ -317,13 +327,29 @@ const (
 	// PersistentHistoryChangeTypeUpdate - An update to a managed object’s properties in the persistent store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeType/update
-	PersistentHistoryChangeTypeUpdate PersistentHistoryChangeType = 0
+	PersistentHistoryChangeTypeUpdate PersistentHistoryChangeType = 1
 )
 
 // NSPersistentHistoryResultType - The types of results from a persistent history change request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResultType
 type PersistentHistoryResultType uint
+
+const (
+	PersistentHistoryResultTypeStatusOnly PersistentHistoryResultType = 0
+	PersistentHistoryResultTypeObjectIDs PersistentHistoryResultType = 0
+	PersistentHistoryResultTypeCount PersistentHistoryResultType = 0
+	PersistentHistoryResultTypeTransactionsOnly PersistentHistoryResultType = 0
+	PersistentHistoryResultTypeChangesOnly PersistentHistoryResultType = 0
+	PersistentHistoryResultTypeTransactionsAndChanges PersistentHistoryResultType = 0
+	PersistentCloudKitContainerEventResultTypeEvents PersistentHistoryResultType = 0
+	PersistentCloudKitContainerEventResultTypeCountEvents PersistentHistoryResultType = 1
+	ErrorMergePolicyType PersistentHistoryResultType = 0
+	MergeByPropertyStoreTrumpMergePolicyType PersistentHistoryResultType = 0
+	MergeByPropertyObjectTrumpMergePolicyType PersistentHistoryResultType = 0
+	OverwriteMergePolicyType PersistentHistoryResultType = 0
+	RollbackMergePolicyType PersistentHistoryResultType = 0
+)
 
 // NSPersistentStoreRequestType - Constants that specify the types of fetch requests.
 //
@@ -334,23 +360,23 @@ const (
 	// BatchDeleteRequestType - A request that deletes data for multiple managed objects from a persistent store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequestType/batchDeleteRequestType
-	BatchDeleteRequestType PersistentStoreRequestType = 0
+	BatchDeleteRequestType PersistentStoreRequestType = 5
 	// BatchInsertRequestType - A request that inserts data into a persistent store using a batch of managed objects or dictionaries.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequestType/batchInsertRequestType
-	BatchInsertRequestType PersistentStoreRequestType = 0
+	BatchInsertRequestType PersistentStoreRequestType = 3
 	// BatchUpdateRequestType - A request that updates data for multiple managed objects in a persistent store.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequestType/batchUpdateRequestType
-	BatchUpdateRequestType PersistentStoreRequestType = 0
+	BatchUpdateRequestType PersistentStoreRequestType = 4
 	// FetchRequestType - Specifies that the request returns managed objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequestType/fetchRequestType
-	FetchRequestType PersistentStoreRequestType = 0
+	FetchRequestType PersistentStoreRequestType = 1
 	// SaveRequestType - Specifies that the request saves managed objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequestType/saveRequestType
-	SaveRequestType PersistentStoreRequestType = 0
+	SaveRequestType PersistentStoreRequestType = 2
 )
 
 

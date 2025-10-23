@@ -32,7 +32,7 @@ type IMeasurement interface {
 	objectivec.IObject
 	MeasurementByAddingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
 	CanBeConvertedToUnit(unit IUnit) bool
-	MeasurementByConvertingToUnit(unit IUnit) Measurement
+	MeasurementByConvertingToUnit(unit IUnit) IMeasurement
 	MeasurementBySubtractingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
 	DoubleValue() float64
 	Unit() unsafe.Pointer
@@ -128,7 +128,7 @@ func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/converting(to:)
-func (m_ Measurement) MeasurementByConvertingToUnit(unit IUnit) Measurement {
+func (m_ Measurement) MeasurementByConvertingToUnit(unit IUnit) IMeasurement {
 	rv := objc.Send[Measurement](m_.ID, objc.Sel("measurementByConvertingToUnit:"), unit)
 	return rv
 }

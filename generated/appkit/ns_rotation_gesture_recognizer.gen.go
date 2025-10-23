@@ -46,7 +46,6 @@ type IRotationGestureRecognizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer
-
 type RotationGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -97,7 +96,6 @@ func NewRotationGestureRecognizer() RotationGestureRecognizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysrotationevents
-
 func (r_ RotationGestureRecognizer) DelaysRotationEvents() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("delaysRotationEvents"))
 	return rv
@@ -108,7 +106,6 @@ func (r_ RotationGestureRecognizer) DelaysRotationEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysrotationevents
-
 func (r_ RotationGestureRecognizer) SetDelaysRotationEvents(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelaysRotationEvents:"), value)
 }
@@ -118,7 +115,6 @@ func (r_ RotationGestureRecognizer) SetDelaysRotationEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotation
-
 func (r_ RotationGestureRecognizer) Rotation() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("rotation"))
 	return rv
@@ -129,7 +125,6 @@ func (r_ RotationGestureRecognizer) Rotation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotation
-
 func (r_ RotationGestureRecognizer) SetRotation(value float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotation:"), value)
 }
@@ -139,7 +134,6 @@ func (r_ RotationGestureRecognizer) SetRotation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotationindegrees
-
 func (r_ RotationGestureRecognizer) RotationInDegrees() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("rotationInDegrees"))
 	return rv
@@ -150,7 +144,6 @@ func (r_ RotationGestureRecognizer) RotationInDegrees() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotationindegrees
-
 func (r_ RotationGestureRecognizer) SetRotationInDegrees(value float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationInDegrees:"), value)
 }

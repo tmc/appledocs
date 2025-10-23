@@ -47,7 +47,6 @@ type IStatusBar interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar
-
 type StatusBar struct {
 	objectivec.Object
 }
@@ -96,29 +95,24 @@ func NewStatusBar() StatusBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
-
 func (sc _StatusBarClass) SystemStatusBar() StatusBar {
 	rv := objc.Send[NSStatusBar](objc.ID(sc.class), objc.Sel("systemStatusBar"))
 	return rv
 }
 
-
 // Removes the specified status item from the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/removeStatusItem(_:)
-
 func (s_ StatusBar) RemoveStatusItem(item IStatusItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeStatusItem:"), item)
 }
-
 
 
 // Returns a newly created status item that has been allotted a specified space within the status bar.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/statusItem(withLength:)
-
 func (s_ StatusBar) StatusItemWithLength(length float64) StatusItem {
 	rv := objc.Send[StatusItem](s_.ID, objc.Sel("statusItemWithLength:"), length)
 	return rv
@@ -129,7 +123,6 @@ func (s_ StatusBar) StatusItemWithLength(length float64) StatusItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/isVertical
-
 func (s_ StatusBar) Vertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("vertical"))
 	return rv
@@ -140,7 +133,6 @@ func (s_ StatusBar) Vertical() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/system
-
 func (s_ StatusBar) SystemStatusBar() NSStatusBar {
 	rv := objc.Send[NSStatusBar](s_.ID, objc.Sel("systemStatusBar"))
 	return rv
@@ -151,7 +143,6 @@ func (s_ StatusBar) SystemStatusBar() NSStatusBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar/thickness
-
 func (s_ StatusBar) Thickness() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("thickness"))
 	return rv
@@ -162,7 +153,6 @@ func (s_ StatusBar) Thickness() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/isvertical
-
 func (s_ StatusBar) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
@@ -173,7 +163,6 @@ func (s_ StatusBar) IsVertical() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusbar/isvertical
-
 func (s_ StatusBar) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }

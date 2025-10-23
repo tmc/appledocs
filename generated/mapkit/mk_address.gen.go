@@ -37,7 +37,11 @@ type IMKAddress interface {
 }
 
 // A class that contains a full address, and, optionally, a short address.
+
+
+// A class that contains a full address, and, optionally, a short address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAddress
 type MKAddress struct {
 	objectivec.Object
@@ -83,9 +87,9 @@ func NewMKAddress() MKAddress {
 
 
 
-
 // Initializes a new address with a location’s full address using a string and a short address that provides an abbreviated form of the address such as a street address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAddress/init(fullAddress:shortAddress:)
 func NewMKAddressWithFullAddressShortAddress(fullAddress string, shortAddress string) MKAddress {
 	instance := getMKAddressClass().Alloc()
@@ -95,8 +99,10 @@ func NewMKAddressWithFullAddressShortAddress(fullAddress string, shortAddress st
 }
 
 
+
 // A string that represents a place’s full address
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
 func (m_ MKAddress) FullAddress() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("fullAddress"))
@@ -104,17 +110,18 @@ func (m_ MKAddress) FullAddress() string {
 }
 
 
-// SetFullAddress sets the value of the fullAddress property.
 // A string that represents a place’s full address
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
 func (m_ MKAddress) SetFullAddress(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), objc.String(value))
 }
 
+
 // A string that represents the short address of a location, such as it’s street address and city.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
 func (m_ MKAddress) ShortAddress() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("shortAddress"))
@@ -122,10 +129,9 @@ func (m_ MKAddress) ShortAddress() string {
 }
 
 
-// SetShortAddress sets the value of the shortAddress property.
 // A string that represents the short address of a location, such as it’s street address and city.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
 func (m_ MKAddress) SetShortAddress(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), objc.String(value))

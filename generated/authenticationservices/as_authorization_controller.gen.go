@@ -50,7 +50,6 @@ type IAuthorizationController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController
-
 type AuthorizationController struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewAuthorizationController() AuthorizationController {
 
 
 
-
 // Cancels any active authorization requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/cancel()
-
 func (a_ AuthorizationController) Cancel() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("cancel"))
 }
@@ -110,7 +107,6 @@ func (a_ AuthorizationController) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
-
 func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("customAuthorizationMethods"))
 	return rv
@@ -121,7 +117,6 @@ func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
-
 func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -141,7 +136,6 @@ func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
-
 func (a_ AuthorizationController) PresentationContextProvider() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("presentationContextProvider"))
 	return rv
@@ -152,7 +146,6 @@ func (a_ AuthorizationController) PresentationContextProvider() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
-
 func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
@@ -162,7 +155,6 @@ func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-
 func (a_ AuthorizationController) AuthorizationRequests() ASAuthorizationRequest {
 	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
@@ -173,7 +165,6 @@ func (a_ AuthorizationController) AuthorizationRequests() ASAuthorizationRequest
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-
 func (a_ AuthorizationController) SetAuthorizationRequests(value IASAuthorizationRequest) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
@@ -183,7 +174,6 @@ func (a_ AuthorizationController) SetAuthorizationRequests(value IASAuthorizatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
-
 func (a_ AuthorizationController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -194,7 +184,6 @@ func (a_ AuthorizationController) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
-
 func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }

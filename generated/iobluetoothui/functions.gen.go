@@ -44,30 +44,33 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// IOBluetoothGetDeviceSelectorController is a IOBluetoothUI function. [Full Topic]
+// IOBluetoothGetDeviceSelectorController is a IOBluetoothUI function.
 //
 // Added in macOS 10.2.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothGetDeviceSelectorController()
 func IOBluetoothGetDeviceSelectorController() unsafe.Pointer {
 	return _IOBluetoothGetDeviceSelectorController()
 	}
 
 
-// IOBluetoothGetPairingController is a IOBluetoothUI function. [Full Topic]
+// IOBluetoothGetPairingController is a IOBluetoothUI function.
 //
 // Added in macOS 10.2.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothGetPairingController()
 func IOBluetoothGetPairingController() unsafe.Pointer {
 	return _IOBluetoothGetPairingController()
 	}
 
 
-// IOBluetoothValidateHardwareWithDescription is a IOBluetoothUI function. [Full Topic]
+// IOBluetoothValidateHardwareWithDescription is a IOBluetoothUI function.
 //
 // Added in macOS 10.7.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothValidateHardwareWithDescription(_:_:)
 func IOBluetoothValidateHardwareWithDescription(cancelButtonTitle unsafe.Pointer, descriptionText unsafe.Pointer) unsafe.Pointer {
 	return _IOBluetoothValidateHardwareWithDescription(cancelButtonTitle, descriptionText)

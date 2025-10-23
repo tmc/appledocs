@@ -38,7 +38,11 @@ type IINSearchForBillsIntentResponse interface {
 // Your app’s response to a request to a search for bills.
 //
 // Use an object to return the list of bills found during a search operation. After performing a search using the criteria specified in an object, create an instance of this class and fill it with the results of that search. Siri communicates the information from your response to the user at appropriate times. You create an object in the and methods of your search for bills handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a request to a search for bills.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntentResponse
 type INSearchForBillsIntentResponse struct {
 	INIntentResponse
@@ -85,8 +89,10 @@ func NewINSearchForBillsIntentResponse() INSearchForBillsIntentResponse {
 }
 
 
+
 // The bills found during the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/bills
 func (i_ INSearchForBillsIntentResponse) Bills() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bills"))
@@ -94,17 +100,18 @@ func (i_ INSearchForBillsIntentResponse) Bills() unsafe.Pointer {
 }
 
 
-// SetBills sets the value of the bills property.
 // The bills found during the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/bills
 func (i_ INSearchForBillsIntentResponse) SetBills(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBills:"), value)
 }
 
+
 // The code indicating whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/code
 func (i_ INSearchForBillsIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -112,10 +119,9 @@ func (i_ INSearchForBillsIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code indicating whether you successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintentresponse/code
 func (i_ INSearchForBillsIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)

@@ -41,7 +41,11 @@ type IPrivateKey interface {
 }
 
 // The private portion of an asymmetric key pair.
+
+
+// The private portion of an asymmetric key pair.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey
 type PrivateKey struct {
 	objectivec.Object
@@ -86,53 +90,67 @@ func NewPrivateKey() PrivateKey {
 }
 
 
+
 // Checks whether the algorithm you supply is valid for decrypting data with the key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/canDecrypt(using:)
 func (p_ PrivateKey) CanDecryptUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canDecryptUsingSecKeyAlgorithm:"), algorithm)
 	return rv
 }
 
+
 // Checks whether the algorithm you supply is valid for performing key exchanges.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/canExchangeKeys(using:)
 func (p_ PrivateKey) CanExchangeKeysUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canExchangeKeysUsingSecKeyAlgorithm:"), algorithm)
 	return rv
 }
 
+
 // Checks whether the algorithm you supply is valid for signing data with the key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/canSign(using:)
 func (p_ PrivateKey) CanSignUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canSignUsingSecKeyAlgorithm:"), algorithm)
 	return rv
 }
 
+
 // Decrypts the data you supply with a given algorithm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/decrypt(_:algorithm:completion:)
 func (p_ PrivateKey) DecryptDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("decryptData:secKeyAlgorithm:completion:"), data, algorithm, handler)
 }
 
+
 // Performs a Diffie-Hellman style key exchange operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/exchangeKeys(publicKey:algorithm:parameters:completion:)
 func (p_ PrivateKey) ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey foundation.IData, algorithm unsafe.Pointer, parameters objectivec.IObject, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:"), publicKey, algorithm, parameters, handler)
 }
 
+
 // Generates a digital signature for the data you supply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/sign(_:algorithm:completion:)
 func (p_ PrivateKey) SignDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("signData:secKeyAlgorithm:completion:"), data, algorithm, handler)
 }
 
+
 // The public key that corresponds with the private key in a key pair.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/publicKey
 func (p_ PrivateKey) PublicKey() LAPublicKey {
 	rv := objc.Send[LAPublicKey](p_.ID, objc.Sel("publicKey"))

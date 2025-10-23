@@ -65,7 +65,6 @@ type IPathControl interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl
-
 type PathControl struct {
 	Control
 }
@@ -114,7 +113,6 @@ func NewPathControl() PathControl {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/allowedtypes
-
 func (p_ PathControl) AllowedTypes() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
 	return rv
@@ -123,7 +121,6 @@ func (p_ PathControl) AllowedTypes() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/allowedtypes
-
 func (p_ PathControl) SetAllowedTypes(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
 }
@@ -133,7 +130,6 @@ func (p_ PathControl) SetAllowedTypes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/backgroundcolor
-
 func (p_ PathControl) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](p_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -144,7 +140,6 @@ func (p_ PathControl) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/backgroundcolor
-
 func (p_ PathControl) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -152,7 +147,6 @@ func (p_ PathControl) SetBackgroundColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/clickedpathitem
-
 func (p_ PathControl) ClickedPathItem() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("clickedPathItem"))
 	return rv
@@ -161,7 +155,6 @@ func (p_ PathControl) ClickedPathItem() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/clickedpathitem
-
 func (p_ PathControl) SetClickedPathItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClickedPathItem:"), value)
 }
@@ -171,7 +164,6 @@ func (p_ PathControl) SetClickedPathItem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/delegate
-
 func (p_ PathControl) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
@@ -182,7 +174,6 @@ func (p_ PathControl) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/delegate
-
 func (p_ PathControl) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -192,7 +183,6 @@ func (p_ PathControl) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/doubleaction
-
 func (p_ PathControl) DoubleAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("doubleAction"))
 	return rv
@@ -203,7 +193,6 @@ func (p_ PathControl) DoubleAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/doubleaction
-
 func (p_ PathControl) SetDoubleAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleAction:"), value)
 }
@@ -211,7 +200,6 @@ func (p_ PathControl) SetDoubleAction(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
-
 func (p_ PathControl) IsEditable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
 	return rv
@@ -220,7 +208,6 @@ func (p_ PathControl) IsEditable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
-
 func (p_ PathControl) SetIsEditable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
 }
@@ -230,7 +217,6 @@ func (p_ PathControl) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/menu
-
 func (p_ PathControl) Menu() NSMenu {
 	rv := objc.Send[NSMenu](p_.ID, objc.Sel("menu"))
 	return rv
@@ -241,7 +227,6 @@ func (p_ PathControl) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/menu
-
 func (p_ PathControl) SetMenu(value IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
 }
@@ -249,7 +234,6 @@ func (p_ PathControl) SetMenu(value IMenu) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathitems
-
 func (p_ PathControl) PathItems() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathItems"))
 	return rv
@@ -258,7 +242,6 @@ func (p_ PathControl) PathItems() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathitems
-
 func (p_ PathControl) SetPathItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPathItems:"), value)
 }
@@ -268,7 +251,6 @@ func (p_ PathControl) SetPathItems(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathstyle
-
 func (p_ PathControl) PathStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pathStyle"))
 	return rv
@@ -279,7 +261,6 @@ func (p_ PathControl) PathStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/pathstyle
-
 func (p_ PathControl) SetPathStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPathStyle:"), value)
 }
@@ -287,7 +268,6 @@ func (p_ PathControl) SetPathStyle(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
-
 func (p_ PathControl) PlaceholderAttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
@@ -296,7 +276,6 @@ func (p_ PathControl) PlaceholderAttributedString() foundation.AttributedString 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
-
 func (p_ PathControl) SetPlaceholderAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
@@ -304,7 +283,6 @@ func (p_ PathControl) SetPlaceholderAttributedString(value foundation.IAttribute
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderstring
-
 func (p_ PathControl) PlaceholderString() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
 	return rv
@@ -313,7 +291,6 @@ func (p_ PathControl) PlaceholderString() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderstring
-
 func (p_ PathControl) SetPlaceholderString(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
@@ -323,7 +300,6 @@ func (p_ PathControl) SetPlaceholderString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
-
 func (p_ PathControl) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
@@ -334,7 +310,6 @@ func (p_ PathControl) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
-
 func (p_ PathControl) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }

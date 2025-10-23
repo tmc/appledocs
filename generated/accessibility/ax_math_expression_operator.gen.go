@@ -36,7 +36,6 @@ type IAXMathExpressionOperator interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator
-
 type AXMathExpressionOperator struct {
 	AXMathExpression
 }
@@ -81,10 +80,8 @@ func NewAXMathExpressionOperator() AXMathExpressionOperator {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/init(content:)
-
 func NewAXMathExpressionOperatorWithContent(content string) AXMathExpressionOperator {
 	instance := getAXMathExpressionOperatorClass().Alloc()
 	rv := objc.Send[AXMathExpressionOperator](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
@@ -96,7 +93,6 @@ func NewAXMathExpressionOperatorWithContent(content string) AXMathExpressionOper
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/content
-
 func (a_ AXMathExpressionOperator) Content() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv

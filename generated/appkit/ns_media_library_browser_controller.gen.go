@@ -51,7 +51,6 @@ type IMediaLibraryBrowserController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController
-
 type MediaLibraryBrowserController struct {
 	objectivec.Object
 }
@@ -100,18 +99,15 @@ func NewMediaLibraryBrowserController() MediaLibraryBrowserController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/shared
-
 func (mc _MediaLibraryBrowserControllerClass) SharedMediaLibraryBrowserController() MediaLibraryBrowserController {
 	rv := objc.Send[NSMediaLibraryBrowserController](objc.ID(mc.class), objc.Sel("sharedMediaLibraryBrowserController"))
 	return rv
 }
 
-
 // Toggles the visibility of the Media Library Browser.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/togglePanel(_:)
-
 func (m_ MediaLibraryBrowserController) TogglePanel(sender objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("togglePanel:"), sender)
 }
@@ -121,7 +117,6 @@ func (m_ MediaLibraryBrowserController) TogglePanel(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/frame
-
 func (m_ MediaLibraryBrowserController) Frame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("frame"))
 	return rv
@@ -132,7 +127,6 @@ func (m_ MediaLibraryBrowserController) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/frame
-
 func (m_ MediaLibraryBrowserController) SetFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFrame:"), value)
 }
@@ -142,7 +136,6 @@ func (m_ MediaLibraryBrowserController) SetFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/isVisible
-
 func (m_ MediaLibraryBrowserController) Visible() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("visible"))
 	return rv
@@ -153,7 +146,6 @@ func (m_ MediaLibraryBrowserController) Visible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/isVisible
-
 func (m_ MediaLibraryBrowserController) SetVisible(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVisible:"), value)
 }
@@ -163,7 +155,6 @@ func (m_ MediaLibraryBrowserController) SetVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/mediaLibraries
-
 func (m_ MediaLibraryBrowserController) MediaLibraries() MediaLibrary {
 	rv := objc.Send[MediaLibrary](m_.ID, objc.Sel("mediaLibraries"))
 	return rv
@@ -174,7 +165,6 @@ func (m_ MediaLibraryBrowserController) MediaLibraries() MediaLibrary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/mediaLibraries
-
 func (m_ MediaLibraryBrowserController) SetMediaLibraries(value IMediaLibrary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibraries:"), value)
 }
@@ -184,7 +174,6 @@ func (m_ MediaLibraryBrowserController) SetMediaLibraries(value IMediaLibrary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/shared
-
 func (m_ MediaLibraryBrowserController) SharedMediaLibraryBrowserController() NSMediaLibraryBrowserController {
 	rv := objc.Send[NSMediaLibraryBrowserController](m_.ID, objc.Sel("sharedMediaLibraryBrowserController"))
 	return rv
@@ -195,7 +184,6 @@ func (m_ MediaLibraryBrowserController) SharedMediaLibraryBrowserController() NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
-
 func (m_ MediaLibraryBrowserController) IsVisible() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isVisible"))
 	return rv
@@ -206,7 +194,6 @@ func (m_ MediaLibraryBrowserController) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
-
 func (m_ MediaLibraryBrowserController) SetIsVisible(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsVisible:"), value)
 }

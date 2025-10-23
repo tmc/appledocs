@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // applicationProtocol is the application: protocol.
 //
 // Availability:
-//   - macOS 10.7+
+//   - macOS 10.10+
 //
 // Use this protocol when registering custom classes that conform to application:.
 var applicationProtocol *objc.Protocol

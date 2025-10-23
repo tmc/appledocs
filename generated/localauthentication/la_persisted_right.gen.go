@@ -36,7 +36,11 @@ type IPersistedRight interface {
 // A right that gates access to a key and a secret.
 //
 // An is a right that’s backed by a unique key in the Secure Enclave with an access control list that matches the authorization requirements of the right. You can access the key that backs a right to perform cryptographic operations like encryption, decryption, signing, and verification. You can use the key that backs an to perform both public key and private key operations, but private key operations — like decryption, signing, and key exchange — are only available after you authorize the right. Public key operations like encryption and verification are always available. The following generates a right with the default authorization requirements, stores it in the , and exports the public key so that you can use it to verify signatures that the corresponding private key produces: The following uses the private key associated with the right from the previous example to sign a challenge issued by a server: The signature operation occurs after verifying that the user has the proper authorization and confirming that the private key supports the given signing algorithm.
+
+
+// A right that gates access to a key and a secret.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight
 type PersistedRight struct {
 	Right
@@ -83,16 +87,20 @@ func NewPersistedRight() PersistedRight {
 }
 
 
+
 // The private key that’s persisted by the right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight/key
 func (p_ PersistedRight) Key() LAPrivateKey {
 	rv := objc.Send[LAPrivateKey](p_.ID, objc.Sel("key"))
 	return rv
 }
 
+
 // The data kept secret by the right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight/secret
 func (p_ PersistedRight) Secret() LASecret {
 	rv := objc.Send[LASecret](p_.ID, objc.Sel("secret"))

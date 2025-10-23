@@ -45,7 +45,6 @@ type IModelAsset interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset
-
 type ModelAsset struct {
 	objectivec.Object
 }
@@ -90,36 +89,30 @@ func NewModelAsset() ModelAsset {
 
 
 
-
 // Construct a model asset from an ML Program specification by replacing blob file references with corresponding in-memory blobs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:blobMapping:)
-
 func NewModelAssetWithSpecificationDataBlobMappingError(specificationData foundation.IData, blobMapping unsafe.Pointer, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:blobMapping:error:"), specificationData, blobMapping, error_)
 	return rv
 }
 
 
-
 // Creates a model asset from an in-memory model specification.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:)
-
 func NewModelAssetWithSpecificationDataError(specificationData foundation.IData, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:error:"), specificationData, error_)
 	return rv
 }
 
 
-
 // Constructs a ModelAsset from a compiled model URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(url:)
-
 func NewModelAssetWithURLError(compiledModelURL foundation.IURL, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithURL:error:"), compiledModelURL, error_)
 	return rv
@@ -131,7 +124,6 @@ func NewModelAssetWithURLError(compiledModelURL foundation.IURL, error_ unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:)
-
 func (mc _ModelAssetClass) ModelAssetWithSpecificationDataError(specificationData foundation.IData, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithSpecificationData:error:"), specificationData, error_)
 	return rv
@@ -142,7 +134,6 @@ func (mc _ModelAssetClass) ModelAssetWithSpecificationDataError(specificationDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:blobMapping:)
-
 func (mc _ModelAssetClass) ModelAssetWithSpecificationDataBlobMappingError(specificationData foundation.IData, blobMapping unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithSpecificationData:blobMapping:error:"), specificationData, blobMapping, error_)
 	return rv
@@ -153,41 +144,34 @@ func (mc _ModelAssetClass) ModelAssetWithSpecificationDataBlobMappingError(speci
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(url:)
-
 func (mc _ModelAssetClass) ModelAssetWithURLError(compiledModelURL foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithURL:error:"), compiledModelURL, error_)
 	return rv
 }
 
 
-
 // The list of function names in the model asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/functionNames(completionHandler:)
-
 func (m_ ModelAsset) FunctionNamesWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("functionNamesWithCompletionHandler:"), handler)
 }
-
 
 
 // The default model descripton.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/modelDescription(completionHandler:)
-
 func (m_ ModelAsset) ModelDescriptionWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("modelDescriptionWithCompletionHandler:"), handler)
 }
-
 
 
 // The model descripton for a specified function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/modelDescription(ofFunctionNamed:completionHandler:)
-
 func (m_ ModelAsset) ModelDescriptionOfFunctionNamedCompletionHandler(functionName string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("modelDescriptionOfFunctionNamed:completionHandler:"), objc.String(functionName), handler)
 }

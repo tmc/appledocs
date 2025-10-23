@@ -121,7 +121,7 @@ func NewMachPortWithMachPortOptions(machPort uint32, f NSMachPortOptions) MachPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:)
-func (mc _MachPortClass) PortWithMachPort(machPort uint32) Port {
+func (mc _MachPortClass) PortWithMachPort(machPort uint32) IPort {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:"), machPort)
 	return rv
 }
@@ -131,7 +131,7 @@ func (mc _MachPortClass) PortWithMachPort(machPort uint32) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:options:)
-func (mc _MachPortClass) PortWithMachPortOptions(machPort uint32, f NSMachPortOptions) Port {
+func (mc _MachPortClass) PortWithMachPortOptions(machPort uint32, f NSMachPortOptions) IPort {
 	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:options:"), machPort, f)
 	return rv
 }

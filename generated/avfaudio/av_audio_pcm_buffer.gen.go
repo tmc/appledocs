@@ -47,7 +47,6 @@ type IAudioPCMBuffer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer
-
 type AudioPCMBuffer struct {
 	AudioBuffer
 }
@@ -94,13 +93,11 @@ func NewAudioPCMBuffer() AudioPCMBuffer {
 
 
 
-
 // Creates a PCM audio buffer instance without copying samples, for PCM audio data, with a specified buffer list and a deallocator closure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/init(pcmFormat:bufferListNoCopy:deallocator:)
-
-func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format AVAudioFormat, bufferList unsafe.Pointer, deallocator unsafe.Pointer) AudioPCMBuffer {
+func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format IAVAudioFormat, bufferList unsafe.Pointer, deallocator unsafe.Pointer) AudioPCMBuffer {
 	instance := getAudioPCMBufferClass().Alloc()
 	rv := objc.Send[AudioPCMBuffer](instance.ID, objc.Sel("initWithPCMFormat:bufferListNoCopy:deallocator:"), format, bufferList, deallocator)
 	rv.Autorelease()
@@ -108,13 +105,11 @@ func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format AVAudioFor
 }
 
 
-
 // Creates a PCM audio buffer instance for PCM audio data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/init(pcmFormat:frameCapacity:)
-
-func NewAudioPCMBufferWithPCMFormatFrameCapacity(format AVAudioFormat, frameCapacity IAudioFrameCount) AudioPCMBuffer {
+func NewAudioPCMBufferWithPCMFormatFrameCapacity(format IAVAudioFormat, frameCapacity IAudioFrameCount) AudioPCMBuffer {
 	instance := getAudioPCMBufferClass().Alloc()
 	rv := objc.Send[AudioPCMBuffer](instance.ID, objc.Sel("initWithPCMFormat:frameCapacity:"), format, frameCapacity)
 	rv.Autorelease()
@@ -127,7 +122,6 @@ func NewAudioPCMBufferWithPCMFormatFrameCapacity(format AVAudioFormat, frameCapa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/floatChannelData
-
 func (a_ AudioPCMBuffer) FloatChannelData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("floatChannelData"))
 	return rv
@@ -138,7 +132,6 @@ func (a_ AudioPCMBuffer) FloatChannelData() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameCapacity
-
 func (a_ AudioPCMBuffer) FrameCapacity() AudioFrameCount {
 	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("frameCapacity"))
 	return rv
@@ -149,7 +142,6 @@ func (a_ AudioPCMBuffer) FrameCapacity() AudioFrameCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameLength
-
 func (a_ AudioPCMBuffer) FrameLength() AudioFrameCount {
 	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("frameLength"))
 	return rv
@@ -160,7 +152,6 @@ func (a_ AudioPCMBuffer) FrameLength() AudioFrameCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameLength
-
 func (a_ AudioPCMBuffer) SetFrameLength(value IAudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameLength:"), value)
 }
@@ -170,7 +161,6 @@ func (a_ AudioPCMBuffer) SetFrameLength(value IAudioFrameCount) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/int16ChannelData
-
 func (a_ AudioPCMBuffer) Int16ChannelData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("int16ChannelData"))
 	return rv
@@ -181,7 +171,6 @@ func (a_ AudioPCMBuffer) Int16ChannelData() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/int32ChannelData
-
 func (a_ AudioPCMBuffer) Int32ChannelData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("int32ChannelData"))
 	return rv
@@ -192,7 +181,6 @@ func (a_ AudioPCMBuffer) Int32ChannelData() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/stride
-
 func (a_ AudioPCMBuffer) Stride() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("stride"))
 	return rv

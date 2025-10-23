@@ -288,7 +288,7 @@ func (uc _UnitLengthClass) Yards() UnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/astronomicalUnits
-func (u_ UnitLength) AstronomicalUnits() NSUnitLength {
+func (u_ UnitLength) AstronomicalUnits() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("astronomicalUnits"))
 	return rv
 }
@@ -298,7 +298,7 @@ func (u_ UnitLength) AstronomicalUnits() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/centimeters
-func (u_ UnitLength) Centimeters() NSUnitLength {
+func (u_ UnitLength) Centimeters() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("centimeters"))
 	return rv
 }
@@ -308,7 +308,7 @@ func (u_ UnitLength) Centimeters() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/decameters
-func (u_ UnitLength) Decameters() NSUnitLength {
+func (u_ UnitLength) Decameters() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("decameters"))
 	return rv
 }
@@ -318,7 +318,7 @@ func (u_ UnitLength) Decameters() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/decimeters
-func (u_ UnitLength) Decimeters() NSUnitLength {
+func (u_ UnitLength) Decimeters() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("decimeters"))
 	return rv
 }
@@ -328,7 +328,7 @@ func (u_ UnitLength) Decimeters() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/fathoms
-func (u_ UnitLength) Fathoms() NSUnitLength {
+func (u_ UnitLength) Fathoms() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("fathoms"))
 	return rv
 }
@@ -338,7 +338,7 @@ func (u_ UnitLength) Fathoms() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/feet
-func (u_ UnitLength) Feet() NSUnitLength {
+func (u_ UnitLength) Feet() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("feet"))
 	return rv
 }
@@ -348,7 +348,7 @@ func (u_ UnitLength) Feet() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/furlongs
-func (u_ UnitLength) Furlongs() NSUnitLength {
+func (u_ UnitLength) Furlongs() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("furlongs"))
 	return rv
 }
@@ -358,7 +358,7 @@ func (u_ UnitLength) Furlongs() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
-func (u_ UnitLength) Hectometers() NSUnitLength {
+func (u_ UnitLength) Hectometers() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("hectometers"))
 	return rv
 }
@@ -368,7 +368,7 @@ func (u_ UnitLength) Hectometers() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/inches
-func (u_ UnitLength) Inches() NSUnitLength {
+func (u_ UnitLength) Inches() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("inches"))
 	return rv
 }
@@ -378,7 +378,7 @@ func (u_ UnitLength) Inches() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/kilometers
-func (u_ UnitLength) Kilometers() NSUnitLength {
+func (u_ UnitLength) Kilometers() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("kilometers"))
 	return rv
 }
@@ -388,7 +388,7 @@ func (u_ UnitLength) Kilometers() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/lightyears
-func (u_ UnitLength) Lightyears() NSUnitLength {
+func (u_ UnitLength) Lightyears() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("lightyears"))
 	return rv
 }
@@ -398,7 +398,7 @@ func (u_ UnitLength) Lightyears() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/megameters
-func (u_ UnitLength) Megameters() NSUnitLength {
+func (u_ UnitLength) Megameters() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("megameters"))
 	return rv
 }
@@ -408,7 +408,7 @@ func (u_ UnitLength) Megameters() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/meters
-func (u_ UnitLength) Meters() NSUnitLength {
+func (u_ UnitLength) Meters() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("meters"))
 	return rv
 }
@@ -418,7 +418,7 @@ func (u_ UnitLength) Meters() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/micrometers
-func (u_ UnitLength) Micrometers() NSUnitLength {
+func (u_ UnitLength) Micrometers() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("micrometers"))
 	return rv
 }
@@ -428,7 +428,7 @@ func (u_ UnitLength) Micrometers() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/miles
-func (u_ UnitLength) Miles() NSUnitLength {
+func (u_ UnitLength) Miles() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("miles"))
 	return rv
 }
@@ -438,7 +438,7 @@ func (u_ UnitLength) Miles() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/millimeters
-func (u_ UnitLength) Millimeters() NSUnitLength {
+func (u_ UnitLength) Millimeters() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("millimeters"))
 	return rv
 }
@@ -448,7 +448,7 @@ func (u_ UnitLength) Millimeters() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/nanometers
-func (u_ UnitLength) Nanometers() NSUnitLength {
+func (u_ UnitLength) Nanometers() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("nanometers"))
 	return rv
 }
@@ -458,7 +458,7 @@ func (u_ UnitLength) Nanometers() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/nauticalMiles
-func (u_ UnitLength) NauticalMiles() NSUnitLength {
+func (u_ UnitLength) NauticalMiles() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("nauticalMiles"))
 	return rv
 }
@@ -468,7 +468,7 @@ func (u_ UnitLength) NauticalMiles() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/parsecs
-func (u_ UnitLength) Parsecs() NSUnitLength {
+func (u_ UnitLength) Parsecs() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("parsecs"))
 	return rv
 }
@@ -478,7 +478,7 @@ func (u_ UnitLength) Parsecs() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/picometers
-func (u_ UnitLength) Picometers() NSUnitLength {
+func (u_ UnitLength) Picometers() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("picometers"))
 	return rv
 }
@@ -488,7 +488,7 @@ func (u_ UnitLength) Picometers() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/scandinavianMiles
-func (u_ UnitLength) ScandinavianMiles() NSUnitLength {
+func (u_ UnitLength) ScandinavianMiles() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("scandinavianMiles"))
 	return rv
 }
@@ -498,7 +498,7 @@ func (u_ UnitLength) ScandinavianMiles() NSUnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/yards
-func (u_ UnitLength) Yards() NSUnitLength {
+func (u_ UnitLength) Yards() IUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("yards"))
 	return rv
 }

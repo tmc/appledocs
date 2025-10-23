@@ -43,7 +43,11 @@ type IBluetoothDeviceSelectorController interface {
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
 //
 // Implementation of a window controller to return a NSArray of selected bluetooth devices. This class will handle connecting to the Bluetooth Daemon for the purposes of searches, and displaying the results. This controller will return a NSArray of IOBluetoothDevice objects to the user.
+
+
+// A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController
 type BluetoothDeviceSelectorController struct {
 	appkit.WindowController
@@ -90,46 +94,58 @@ func NewBluetoothDeviceSelectorController() BluetoothDeviceSelectorController {
 }
 
 
+
 // Adds a UUID to the list of UUIDs that are used to validate the user’s selection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/addAllowedUUID(_:)
 func (b_ BluetoothDeviceSelectorController) AddAllowedUUID(allowedUUID iobluetooth.IBluetoothSDPUUID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("addAllowedUUID:"), allowedUUID)
 }
 
+
 // Returns the option bits that control the panel’s behavior.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getOptions()
 func (b_ BluetoothDeviceSelectorController) GetOptions() BluetoothServiceBrowserControllerOptions {
 	rv := objc.Send[BluetoothServiceBrowserControllerOptions](b_.ID, objc.Sel("getOptions"))
 	return rv
 }
 
+
 // Returns the title of the default/select button in the device selector panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getPrompt()
 func (b_ BluetoothDeviceSelectorController) GetPrompt() foundation.String {
 	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }
 
+
 // Returns the search attributes that control the panel’s search/inquiry behavior.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getSearchAttributes()
 func (b_ BluetoothDeviceSelectorController) GetSearchAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getSearchAttributes"))
 	return rv
 }
 
+
 // Sets the search attributes that control the panel’s search/inquiry behavior.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/setSearchAttributes(_:)
 func (b_ BluetoothDeviceSelectorController) SetSearchAttributes(searchAttributes unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchAttributes:"), searchAttributes)
 }
 
+
 // Sets the title of the panel when not run as a sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/setTitle(_:)
 func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(windowTitle))

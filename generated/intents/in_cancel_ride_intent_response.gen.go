@@ -41,7 +41,11 @@ type IINCancelRideIntentResponse interface {
 // Your app’s response to a cancel ride intent.
 //
 // An object contains your app’s response to the cancellation of a ride. After creating the response object, specify any cancellation-related fees using the properties of this object. Siri and Maps display your response information to the user during the confirmation phase. You create an object in the and methods of your handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a cancel ride intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntentResponse
 type INCancelRideIntentResponse struct {
 	INIntentResponse
@@ -88,8 +92,10 @@ func NewINCancelRideIntentResponse() INCancelRideIntentResponse {
 }
 
 
+
 // The cancellation fee charged by your service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfee
 func (i_ INCancelRideIntentResponse) CancellationFee() INCurrencyAmount {
 	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("cancellationFee"))
@@ -97,17 +103,18 @@ func (i_ INCancelRideIntentResponse) CancellationFee() INCurrencyAmount {
 }
 
 
-// SetCancellationFee sets the value of the cancellationFee property.
 // The cancellation fee charged by your service.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfee
 func (i_ INCancelRideIntentResponse) SetCancellationFee(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFee:"), value)
 }
 
+
 // The amount of time that must elapse before cancellation fees apply.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfeethreshold
 func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("cancellationFeeThreshold"))
@@ -115,17 +122,18 @@ func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() foundation.DateC
 }
 
 
-// SetCancellationFeeThreshold sets the value of the cancellationFeeThreshold property.
 // The amount of time that must elapse before cancellation fees apply.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfeethreshold
 func (i_ INCancelRideIntentResponse) SetCancellationFeeThreshold(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFeeThreshold:"), value)
 }
 
+
 // The code indicating whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/code
 func (i_ INCancelRideIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -133,10 +141,9 @@ func (i_ INCancelRideIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code indicating whether you successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/code
 func (i_ INCancelRideIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)

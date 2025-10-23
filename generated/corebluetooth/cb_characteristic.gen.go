@@ -47,7 +47,6 @@ type ICBCharacteristic interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic
-
 type CBCharacteristic struct {
 	CBAttribute
 }
@@ -98,7 +97,6 @@ func NewCBCharacteristic() CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/descriptors
-
 func (c_ CBCharacteristic) Descriptors() []CBDescriptor {
 	rv := objc.Send[[]CBDescriptor](c_.ID, objc.Sel("descriptors"))
 	return rv
@@ -109,7 +107,6 @@ func (c_ CBCharacteristic) Descriptors() []CBDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/isBroadcasted
-
 func (c_ CBCharacteristic) IsBroadcasted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBroadcasted"))
 	return rv
@@ -120,7 +117,6 @@ func (c_ CBCharacteristic) IsBroadcasted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/isNotifying
-
 func (c_ CBCharacteristic) IsNotifying() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isNotifying"))
 	return rv
@@ -131,7 +127,6 @@ func (c_ CBCharacteristic) IsNotifying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/properties
-
 func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
 	rv := objc.Send[CBCharacteristicProperties](c_.ID, objc.Sel("properties"))
 	return rv
@@ -142,7 +137,6 @@ func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/service
-
 func (c_ CBCharacteristic) Service() CBService {
 	rv := objc.Send[CBService](c_.ID, objc.Sel("service"))
 	return rv
@@ -153,7 +147,6 @@ func (c_ CBCharacteristic) Service() CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/value
-
 func (c_ CBCharacteristic) Value() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv

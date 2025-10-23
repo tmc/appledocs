@@ -32,7 +32,9 @@ type ImResponsePacketDataLengthExpected interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mResponsePacketDataLengthExpected
 type mResponsePacketDataLengthExpected struct {
 	objectivec.Object

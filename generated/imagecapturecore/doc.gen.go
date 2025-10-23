@@ -2,11 +2,14 @@
 
 // Package imagecapturecore provides Go bindings for the ImageCaptureCore framework.
 //
-// Browse for media devices and control them programmatically from your app. [Full Topic]
+// Browse for media devices and control them programmatically from your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImageCaptureCore without requiring cgo.
+
+// Browse for media devices and control them programmatically from your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore
 package imagecapturecore
 

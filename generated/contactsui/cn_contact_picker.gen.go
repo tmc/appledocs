@@ -49,7 +49,6 @@ type ICNContactPicker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker
-
 type CNContactPicker struct {
 	objectivec.Object
 }
@@ -94,23 +93,19 @@ func NewCNContactPicker() CNContactPicker {
 
 
 
-
 // Closes the popover.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/close()
-
 func (c_ CNContactPicker) Close() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("close"))
 }
-
 
 
 // Shows the picker popover anchored to the specified view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/showRelative(to:of:preferredEdge:)
-
 func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
@@ -120,7 +115,6 @@ func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/delegate
-
 func (c_ CNContactPicker) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -131,7 +125,6 @@ func (c_ CNContactPicker) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/delegate
-
 func (c_ CNContactPicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -141,7 +134,6 @@ func (c_ CNContactPicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
-
 func (c_ CNContactPicker) DisplayedKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("displayedKeys"))
 	return rv
@@ -152,7 +144,6 @@ func (c_ CNContactPicker) DisplayedKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
-
 func (c_ CNContactPicker) SetDisplayedKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

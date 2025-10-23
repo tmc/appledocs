@@ -78,7 +78,6 @@ type ICKNotification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification
-
 type CKNotification struct {
 	objectivec.Object
 }
@@ -123,12 +122,10 @@ func NewCKNotification() CKNotification {
 
 
 
-
 // Creates a new notification using the specified payload data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/init(fromRemoteNotificationDictionary:)
-
 func NewCKNotificationFromRemoteNotificationDictionary(notificationDictionary objectivec.IObject) CKNotification {
 	rv := objc.Send[CKNotification](objc.ID(getCKNotificationClass().class), objc.Sel("notificationFromRemoteNotificationDictionary:"), notificationDictionary)
 	return rv
@@ -140,7 +137,6 @@ func NewCKNotificationFromRemoteNotificationDictionary(notificationDictionary ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/init(fromRemoteNotificationDictionary:)
-
 func (cc _CKNotificationClass) NotificationFromRemoteNotificationDictionary(notificationDictionary objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("notificationFromRemoteNotificationDictionary:"), notificationDictionary)
 	return rv
@@ -151,7 +147,6 @@ func (cc _CKNotificationClass) NotificationFromRemoteNotificationDictionary(noti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/containerIdentifier
-
 func (c_ CKNotification) ContainerIdentifier() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
@@ -162,7 +157,6 @@ func (c_ CKNotification) ContainerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/notificationID
-
 func (c_ CKNotification) NotificationID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationID"))
 	return rv
@@ -173,7 +167,6 @@ func (c_ CKNotification) NotificationID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/notificationType-swift.property
-
 func (c_ CKNotification) NotificationType() CKNotificationType {
 	rv := objc.Send[CKNotificationType](c_.ID, objc.Sel("notificationType"))
 	return rv
@@ -184,7 +177,6 @@ func (c_ CKNotification) NotificationType() CKNotificationType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/subscriptionOwnerUserRecordID
-
 func (c_ CKNotification) SubscriptionOwnerUserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("subscriptionOwnerUserRecordID"))
 	return rv
@@ -195,7 +187,6 @@ func (c_ CKNotification) SubscriptionOwnerUserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertactionlocalizationkey
-
 func (c_ CKNotification) AlertActionLocalizationKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("alertActionLocalizationKey"))
 	return rv
@@ -206,7 +197,6 @@ func (c_ CKNotification) AlertActionLocalizationKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertactionlocalizationkey
-
 func (c_ CKNotification) SetAlertActionLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertActionLocalizationKey:"), objc.String(value))
 }
@@ -216,7 +206,6 @@ func (c_ CKNotification) SetAlertActionLocalizationKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertbody
-
 func (c_ CKNotification) AlertBody() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("alertBody"))
 	return rv
@@ -227,7 +216,6 @@ func (c_ CKNotification) AlertBody() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertbody
-
 func (c_ CKNotification) SetAlertBody(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertBody:"), objc.String(value))
 }
@@ -237,7 +225,6 @@ func (c_ CKNotification) SetAlertBody(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlaunchimage
-
 func (c_ CKNotification) AlertLaunchImage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("alertLaunchImage"))
 	return rv
@@ -248,7 +235,6 @@ func (c_ CKNotification) AlertLaunchImage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlaunchimage
-
 func (c_ CKNotification) SetAlertLaunchImage(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLaunchImage:"), objc.String(value))
 }
@@ -258,7 +244,6 @@ func (c_ CKNotification) SetAlertLaunchImage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationargs
-
 func (c_ CKNotification) AlertLocalizationArgs() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("alertLocalizationArgs"))
 	return rv
@@ -269,7 +254,6 @@ func (c_ CKNotification) AlertLocalizationArgs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationargs
-
 func (c_ CKNotification) SetAlertLocalizationArgs(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationArgs:"), objc.String(value))
 }
@@ -279,7 +263,6 @@ func (c_ CKNotification) SetAlertLocalizationArgs(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationkey
-
 func (c_ CKNotification) AlertLocalizationKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("alertLocalizationKey"))
 	return rv
@@ -290,7 +273,6 @@ func (c_ CKNotification) AlertLocalizationKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationkey
-
 func (c_ CKNotification) SetAlertLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationKey:"), objc.String(value))
 }
@@ -300,7 +282,6 @@ func (c_ CKNotification) SetAlertLocalizationKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/badge
-
 func (c_ CKNotification) Badge() foundation.Number {
 	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("badge"))
 	return rv
@@ -311,7 +292,6 @@ func (c_ CKNotification) Badge() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/badge
-
 func (c_ CKNotification) SetBadge(value foundation.INumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBadge:"), value)
 }
@@ -321,7 +301,6 @@ func (c_ CKNotification) SetBadge(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/category
-
 func (c_ CKNotification) Category() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("category"))
 	return rv
@@ -332,7 +311,6 @@ func (c_ CKNotification) Category() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/category
-
 func (c_ CKNotification) SetCategory(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCategory:"), objc.String(value))
 }
@@ -342,7 +320,6 @@ func (c_ CKNotification) SetCategory(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-
 func (c_ CKNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
@@ -353,7 +330,6 @@ func (c_ CKNotification) IsPruned() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-
 func (c_ CKNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
@@ -363,7 +339,6 @@ func (c_ CKNotification) SetIsPruned(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/soundname
-
 func (c_ CKNotification) SoundName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("soundName"))
 	return rv
@@ -374,7 +349,6 @@ func (c_ CKNotification) SoundName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/soundname
-
 func (c_ CKNotification) SetSoundName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
@@ -384,7 +358,6 @@ func (c_ CKNotification) SetSoundName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subscriptionid-16ygj
-
 func (c_ CKNotification) SubscriptionID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionID"))
 	return rv
@@ -395,7 +368,6 @@ func (c_ CKNotification) SubscriptionID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subscriptionid-16ygj
-
 func (c_ CKNotification) SetSubscriptionID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionID:"), value)
 }
@@ -405,7 +377,6 @@ func (c_ CKNotification) SetSubscriptionID(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitle
-
 func (c_ CKNotification) Subtitle() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
 	return rv
@@ -416,7 +387,6 @@ func (c_ CKNotification) Subtitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitle
-
 func (c_ CKNotification) SetSubtitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
@@ -426,7 +396,6 @@ func (c_ CKNotification) SetSubtitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationargs
-
 func (c_ CKNotification) SubtitleLocalizationArgs() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subtitleLocalizationArgs"))
 	return rv
@@ -437,7 +406,6 @@ func (c_ CKNotification) SubtitleLocalizationArgs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationargs
-
 func (c_ CKNotification) SetSubtitleLocalizationArgs(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationArgs:"), objc.String(value))
 }
@@ -447,7 +415,6 @@ func (c_ CKNotification) SetSubtitleLocalizationArgs(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationkey
-
 func (c_ CKNotification) SubtitleLocalizationKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subtitleLocalizationKey"))
 	return rv
@@ -458,7 +425,6 @@ func (c_ CKNotification) SubtitleLocalizationKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationkey
-
 func (c_ CKNotification) SetSubtitleLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationKey:"), objc.String(value))
 }
@@ -468,7 +434,6 @@ func (c_ CKNotification) SetSubtitleLocalizationKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/title
-
 func (c_ CKNotification) Title() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
@@ -479,7 +444,6 @@ func (c_ CKNotification) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/title
-
 func (c_ CKNotification) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -489,7 +453,6 @@ func (c_ CKNotification) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationargs
-
 func (c_ CKNotification) TitleLocalizationArgs() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("titleLocalizationArgs"))
 	return rv
@@ -500,7 +463,6 @@ func (c_ CKNotification) TitleLocalizationArgs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationargs
-
 func (c_ CKNotification) SetTitleLocalizationArgs(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationArgs:"), objc.String(value))
 }
@@ -510,7 +472,6 @@ func (c_ CKNotification) SetTitleLocalizationArgs(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationkey
-
 func (c_ CKNotification) TitleLocalizationKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("titleLocalizationKey"))
 	return rv
@@ -521,7 +482,6 @@ func (c_ CKNotification) TitleLocalizationKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationkey
-
 func (c_ CKNotification) SetTitleLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), objc.String(value))
 }

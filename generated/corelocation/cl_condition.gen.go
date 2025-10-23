@@ -39,7 +39,6 @@ type ICondition interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCondition-c.class
-
 type Condition struct {
 	objectivec.Object
 }

@@ -47,7 +47,6 @@ type ICBATTRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest
-
 type CBATTRequest struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewCBATTRequest() CBATTRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/central
-
 func (c_ CBATTRequest) Central() CBCentral {
 	rv := objc.Send[CBCentral](c_.ID, objc.Sel("central"))
 	return rv
@@ -107,7 +105,6 @@ func (c_ CBATTRequest) Central() CBCentral {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/characteristic
-
 func (c_ CBATTRequest) Characteristic() CBCharacteristic {
 	rv := objc.Send[CBCharacteristic](c_.ID, objc.Sel("characteristic"))
 	return rv
@@ -118,7 +115,6 @@ func (c_ CBATTRequest) Characteristic() CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/offset
-
 func (c_ CBATTRequest) Offset() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("offset"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CBATTRequest) Offset() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/value
-
 func (c_ CBATTRequest) Value() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
@@ -140,7 +135,6 @@ func (c_ CBATTRequest) Value() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/value
-
 func (c_ CBATTRequest) SetValue(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }

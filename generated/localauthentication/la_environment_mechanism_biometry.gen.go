@@ -37,7 +37,9 @@ type IEnvironmentMechanismBiometry interface {
 	StateHash() foundation.NSData
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry
 type EnvironmentMechanismBiometry struct {
 	EnvironmentMechanism
@@ -82,35 +84,40 @@ func NewEnvironmentMechanismBiometry() EnvironmentMechanismBiometry {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/biometryType
 func (e_ EnvironmentMechanismBiometry) BiometryType() BiometryType {
 	rv := objc.Send[BiometryType](e_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/builtInSensorInaccessible
 func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("builtInSensorInaccessible"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/isEnrolled
 func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isEnrolled"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/isLockedOut
 func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isLockedOut"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/stateHash
 func (e_ EnvironmentMechanismBiometry) StateHash() foundation.NSData {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("stateHash"))

@@ -117,7 +117,7 @@ func (uc _UnitTemperatureClass) Kelvin() UnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
-func (u_ UnitTemperature) Celsius() NSUnitTemperature {
+func (u_ UnitTemperature) Celsius() IUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("celsius"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (u_ UnitTemperature) Celsius() NSUnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
-func (u_ UnitTemperature) Fahrenheit() NSUnitTemperature {
+func (u_ UnitTemperature) Fahrenheit() IUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("fahrenheit"))
 	return rv
 }
@@ -137,7 +137,7 @@ func (u_ UnitTemperature) Fahrenheit() NSUnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
-func (u_ UnitTemperature) Kelvin() NSUnitTemperature {
+func (u_ UnitTemperature) Kelvin() IUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("kelvin"))
 	return rv
 }

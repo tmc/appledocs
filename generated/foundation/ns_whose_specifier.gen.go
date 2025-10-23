@@ -29,15 +29,15 @@ type _WhoseSpecifierClass struct {
 // An interface definition for the [WhoseSpecifier] class.
 type IWhoseSpecifier interface {
 	IScriptObjectSpecifier
-	EndSubelementIdentifier() WhoseSubelementIdentifier
-	SetEndSubelementIdentifier(value IWhoseSubelementIdentifier)
+	EndSubelementIdentifier() NSWhoseSubelementIdentifier
+	SetEndSubelementIdentifier(value NSWhoseSubelementIdentifier)
 	EndSubelementIndex() int
 	SetEndSubelementIndex(value int)
-	StartSubelementIdentifier() WhoseSubelementIdentifier
-	SetStartSubelementIdentifier(value IWhoseSubelementIdentifier)
+	StartSubelementIdentifier() NSWhoseSubelementIdentifier
+	SetStartSubelementIdentifier(value NSWhoseSubelementIdentifier)
 	StartSubelementIndex() int
 	SetStartSubelementIndex(value int)
-	Test() NSScriptWhoseTest
+	Test() IScriptWhoseTest
 	SetTest(value IScriptWhoseTest)
 }
 
@@ -123,7 +123,7 @@ func NewWhoseSpecifierWithContainerClassDescriptionContainerSpecifierKeyTest(cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/endSubelementIdentifier
-func (w_ WhoseSpecifier) EndSubelementIdentifier() WhoseSubelementIdentifier {
+func (w_ WhoseSpecifier) EndSubelementIdentifier() NSWhoseSubelementIdentifier {
 	rv := objc.Send[WhoseSubelementIdentifier](w_.ID, objc.Sel("endSubelementIdentifier"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (w_ WhoseSpecifier) EndSubelementIdentifier() WhoseSubelementIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/endSubelementIdentifier
-func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value IWhoseSubelementIdentifier) {
+func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value NSWhoseSubelementIdentifier) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIdentifier:"), value)
 }
 
@@ -161,7 +161,7 @@ func (w_ WhoseSpecifier) SetEndSubelementIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/startSubelementIdentifier
-func (w_ WhoseSpecifier) StartSubelementIdentifier() WhoseSubelementIdentifier {
+func (w_ WhoseSpecifier) StartSubelementIdentifier() NSWhoseSubelementIdentifier {
 	rv := objc.Send[WhoseSubelementIdentifier](w_.ID, objc.Sel("startSubelementIdentifier"))
 	return rv
 }
@@ -171,7 +171,7 @@ func (w_ WhoseSpecifier) StartSubelementIdentifier() WhoseSubelementIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/startSubelementIdentifier
-func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value IWhoseSubelementIdentifier) {
+func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value NSWhoseSubelementIdentifier) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIdentifier:"), value)
 }
 
@@ -199,7 +199,7 @@ func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/test
-func (w_ WhoseSpecifier) Test() NSScriptWhoseTest {
+func (w_ WhoseSpecifier) Test() IScriptWhoseTest {
 	rv := objc.Send[NSScriptWhoseTest](w_.ID, objc.Sel("test"))
 	return rv
 }

@@ -41,20 +41,20 @@ type ITask interface {
 	SetArguments(value []string)
 	CurrentDirectoryPath() string
 	SetCurrentDirectoryPath(value string)
-	CurrentDirectoryURL() URL
+	CurrentDirectoryURL() IURL
 	SetCurrentDirectoryURL(value IURL)
 	Environment() IDictionary
 	SetEnvironment(value IDictionary)
-	ExecutableURL() URL
+	ExecutableURL() IURL
 	SetExecutableURL(value IURL)
 	Running() bool
 	LaunchPath() string
 	SetLaunchPath(value string)
-	LaunchRequirementData() NSData
+	LaunchRequirementData() IData
 	SetLaunchRequirementData(value IData)
 	ProcessIdentifier() int
-	QualityOfService() QualityOfService
-	SetQualityOfService(value IQualityOfService)
+	QualityOfService() NSQualityOfService
+	SetQualityOfService(value NSQualityOfService)
 	StandardError() objc.ID
 	SetStandardError(value objc.ID)
 	StandardInput() objc.ID
@@ -63,7 +63,7 @@ type ITask interface {
 	SetStandardOutput(value objc.ID)
 	TerminationHandler() unsafe.Pointer
 	SetTerminationHandler(value unsafe.Pointer)
-	TerminationReason() TaskTerminationReason
+	TerminationReason() NSTaskTerminationReason
 	TerminationStatus() int
 	IsRunning() bool
 	SetIsRunning(value bool)
@@ -129,7 +129,7 @@ func NewTask() Task {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchedProcess(launchPath:arguments:)
-func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path string, arguments []string) Task {
+func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path string, arguments []string) ITask {
 	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("launchedTaskWithLaunchPath:arguments:"), objc.String(path), arguments)
 	return rv
 }
@@ -139,7 +139,7 @@ func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path string, arguments 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run(_:arguments:terminationHandler:)
-func (tc _TaskClass) LaunchedTaskWithExecutableURLArgumentsErrorTerminationHandler(url IURL, arguments []string, error_ IError, terminationHandler unsafe.Pointer) Task {
+func (tc _TaskClass) LaunchedTaskWithExecutableURLArgumentsErrorTerminationHandler(url IURL, arguments []string, error_ IError, terminationHandler unsafe.Pointer) ITask {
 	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("launchedTaskWithExecutableURL:arguments:error:terminationHandler:"), url, arguments, error_, terminationHandler)
 	return rv
 }
@@ -263,7 +263,7 @@ func (t_ Task) SetCurrentDirectoryPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/currentDirectoryURL
-func (t_ Task) CurrentDirectoryURL() URL {
+func (t_ Task) CurrentDirectoryURL() IURL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("currentDirectoryURL"))
 	return rv
 }
@@ -301,7 +301,7 @@ func (t_ Task) SetEnvironment(value IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
-func (t_ Task) ExecutableURL() URL {
+func (t_ Task) ExecutableURL() IURL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("executableURL"))
 	return rv
 }
@@ -347,7 +347,7 @@ func (t_ Task) SetLaunchPath(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-func (t_ Task) LaunchRequirementData() NSData {
+func (t_ Task) LaunchRequirementData() IData {
 	rv := objc.Send[NSData](t_.ID, objc.Sel("launchRequirementData"))
 	return rv
 }
@@ -374,7 +374,7 @@ func (t_ Task) ProcessIdentifier() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/qualityOfService
-func (t_ Task) QualityOfService() QualityOfService {
+func (t_ Task) QualityOfService() NSQualityOfService {
 	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
@@ -384,7 +384,7 @@ func (t_ Task) QualityOfService() QualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/qualityOfService
-func (t_ Task) SetQualityOfService(value IQualityOfService) {
+func (t_ Task) SetQualityOfService(value NSQualityOfService) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -469,7 +469,7 @@ func (t_ Task) SetTerminationHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationReason-swift.property
-func (t_ Task) TerminationReason() TaskTerminationReason {
+func (t_ Task) TerminationReason() NSTaskTerminationReason {
 	rv := objc.Send[TaskTerminationReason](t_.ID, objc.Sel("terminationReason"))
 	return rv
 }

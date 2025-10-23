@@ -39,7 +39,6 @@ type IAuthorizationProviderExtensionUserLoginConfiguration interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration
-
 type AuthorizationProviderExtensionUserLoginConfiguration struct {
 	objectivec.Object
 }
@@ -82,10 +81,8 @@ func NewAuthorizationProviderExtensionUserLoginConfiguration() AuthorizationProv
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/setCustomAssertionRequestHeaderClaims(_:)
-
 func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetCustomAssertionRequestHeaderClaimsReturningError(claims unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCustomAssertionRequestHeaderClaims:returningError:"), claims, error_)
 	return rv
@@ -94,7 +91,6 @@ func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetCustomAssertio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-
 func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
 	return rv
@@ -103,7 +99,6 @@ func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() s
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-
 func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
 }

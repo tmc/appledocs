@@ -53,7 +53,6 @@ type IEKRecurrenceRule interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule
-
 type EKRecurrenceRule struct {
 	EKObject
 }
@@ -100,12 +99,10 @@ func NewEKRecurrenceRule() EKRecurrenceRule {
 
 
 
-
 // Initializes and returns a recurrence rule with a given frequency and additional scheduling information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)
-
 func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ IEKRecurrenceFrequency, interval int, days []EKRecurrenceDayOfWeek, monthDays []foundation.INumber, months []foundation.INumber, weeksOfTheYear []foundation.INumber, daysOfTheYear []foundation.INumber, setPositions []foundation.INumber, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"), type_, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end)
@@ -114,12 +111,10 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMon
 }
 
 
-
 // Initializes and returns a simple recurrence rule with a given frequency, interval, and end.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)
-
 func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ IEKRecurrenceFrequency, interval int, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:end:"), type_, interval, end)
@@ -133,7 +128,6 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ IEKRecurrenceFr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/calendarIdentifier
-
 func (e_ EKRecurrenceRule) CalendarIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
@@ -144,7 +138,6 @@ func (e_ EKRecurrenceRule) CalendarIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheMonth
-
 func (e_ EKRecurrenceRule) DaysOfTheMonth() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("daysOfTheMonth"))
 	return rv
@@ -155,7 +148,6 @@ func (e_ EKRecurrenceRule) DaysOfTheMonth() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheWeek
-
 func (e_ EKRecurrenceRule) DaysOfTheWeek() []EKRecurrenceDayOfWeek {
 	rv := objc.Send[[]EKRecurrenceDayOfWeek](e_.ID, objc.Sel("daysOfTheWeek"))
 	return rv
@@ -166,7 +158,6 @@ func (e_ EKRecurrenceRule) DaysOfTheWeek() []EKRecurrenceDayOfWeek {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheYear
-
 func (e_ EKRecurrenceRule) DaysOfTheYear() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("daysOfTheYear"))
 	return rv
@@ -177,7 +168,6 @@ func (e_ EKRecurrenceRule) DaysOfTheYear() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/firstDayOfTheWeek
-
 func (e_ EKRecurrenceRule) FirstDayOfTheWeek() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("firstDayOfTheWeek"))
 	return rv
@@ -188,7 +178,6 @@ func (e_ EKRecurrenceRule) FirstDayOfTheWeek() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/frequency
-
 func (e_ EKRecurrenceRule) Frequency() EKRecurrenceFrequency {
 	rv := objc.Send[EKRecurrenceFrequency](e_.ID, objc.Sel("frequency"))
 	return rv
@@ -199,7 +188,6 @@ func (e_ EKRecurrenceRule) Frequency() EKRecurrenceFrequency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/interval
-
 func (e_ EKRecurrenceRule) Interval() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("interval"))
 	return rv
@@ -210,7 +198,6 @@ func (e_ EKRecurrenceRule) Interval() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/monthsOfTheYear
-
 func (e_ EKRecurrenceRule) MonthsOfTheYear() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("monthsOfTheYear"))
 	return rv
@@ -221,7 +208,6 @@ func (e_ EKRecurrenceRule) MonthsOfTheYear() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/recurrenceEnd
-
 func (e_ EKRecurrenceRule) RecurrenceEnd() EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](e_.ID, objc.Sel("recurrenceEnd"))
 	return rv
@@ -232,7 +218,6 @@ func (e_ EKRecurrenceRule) RecurrenceEnd() EKRecurrenceEnd {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/recurrenceEnd
-
 func (e_ EKRecurrenceRule) SetRecurrenceEnd(value IEKRecurrenceEnd) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRecurrenceEnd:"), value)
 }
@@ -242,7 +227,6 @@ func (e_ EKRecurrenceRule) SetRecurrenceEnd(value IEKRecurrenceEnd) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/setPositions
-
 func (e_ EKRecurrenceRule) SetPositions() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("setPositions"))
 	return rv
@@ -253,7 +237,6 @@ func (e_ EKRecurrenceRule) SetPositions() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/weeksOfTheYear
-
 func (e_ EKRecurrenceRule) WeeksOfTheYear() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("weeksOfTheYear"))
 	return rv

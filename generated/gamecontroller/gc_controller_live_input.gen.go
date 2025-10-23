@@ -49,7 +49,6 @@ type IGCControllerLiveInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput
-
 type GCControllerLiveInput struct {
 	GCControllerInputState
 }
@@ -96,24 +95,20 @@ func NewGCControllerLiveInput() GCControllerLiveInput {
 
 
 
-
 // Returns a snapshot of the physical device inputs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/capture()
-
 func (g_ GCControllerLiveInput) Capture() GCControllerInputState {
 	rv := objc.Send[GCControllerInputState](g_.ID, objc.Sel("capture"))
 	return rv
 }
 
 
-
 // Returns the next device input state from the queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/nextInputState()
-
 func (g_ GCControllerLiveInput) NextInputState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("nextInputState"))
 	return rv
@@ -124,7 +119,6 @@ func (g_ GCControllerLiveInput) NextInputState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/unmapped
-
 func (g_ GCControllerLiveInput) UnmappedInput() GCControllerLiveInput {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("unmappedInput"))
 	return rv
@@ -135,7 +129,6 @@ func (g_ GCControllerLiveInput) UnmappedInput() GCControllerLiveInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-
 func (g_ GCControllerLiveInput) Input() GCControllerLiveInput {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("input"))
 	return rv
@@ -146,7 +139,6 @@ func (g_ GCControllerLiveInput) Input() GCControllerLiveInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-
 func (g_ GCControllerLiveInput) SetInput(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
@@ -156,7 +148,6 @@ func (g_ GCControllerLiveInput) SetInput(value IGCControllerLiveInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
-
 func (g_ GCControllerLiveInput) Unmapped() GCControllerLiveInput {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("unmapped"))
 	return rv
@@ -167,7 +158,6 @@ func (g_ GCControllerLiveInput) Unmapped() GCControllerLiveInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
-
 func (g_ GCControllerLiveInput) SetUnmapped(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmapped:"), value)
 }
@@ -177,7 +167,6 @@ func (g_ GCControllerLiveInput) SetUnmapped(value IGCControllerLiveInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
-
 func (g_ GCControllerLiveInput) InputStateQueueDepth() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("inputStateQueueDepth"))
 	return rv
@@ -188,7 +177,6 @@ func (g_ GCControllerLiveInput) InputStateQueueDepth() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth
-
 func (g_ GCControllerLiveInput) SetInputStateQueueDepth(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputStateQueueDepth:"), value)
 }

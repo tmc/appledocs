@@ -45,7 +45,6 @@ type IAudioUnitComponentManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitComponentManager
-
 type AudioUnitComponentManager struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewAudioUnitComponentManager() AudioUnitComponentManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/standardlocalizedtagnames
-
 func (a_ AudioUnitComponentManager) StandardLocalizedTagNames() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("standardLocalizedTagNames"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AudioUnitComponentManager) StandardLocalizedTagNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/standardlocalizedtagnames
-
 func (a_ AudioUnitComponentManager) SetStandardLocalizedTagNames(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStandardLocalizedTagNames:"), objc.String(value))
 }
@@ -115,7 +112,6 @@ func (a_ AudioUnitComponentManager) SetStandardLocalizedTagNames(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/tagnames
-
 func (a_ AudioUnitComponentManager) TagNames() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("tagNames"))
 	return rv
@@ -126,7 +122,6 @@ func (a_ AudioUnitComponentManager) TagNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/tagnames
-
 func (a_ AudioUnitComponentManager) SetTagNames(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTagNames:"), objc.String(value))
 }

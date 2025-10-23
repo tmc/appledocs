@@ -32,7 +32,9 @@ type IBluetoothAccessibilityIgnoredTextFieldCell interface {
 	appkit.ITextFieldCell
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothAccessibilityIgnoredTextFieldCell
 type BluetoothAccessibilityIgnoredTextFieldCell struct {
 	appkit.TextFieldCell

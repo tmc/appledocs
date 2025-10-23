@@ -77,7 +77,6 @@ type IFSItemAttributes interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes
-
 type FSItemAttributes struct {
 	objectivec.Object
 }
@@ -122,23 +121,19 @@ func NewFSItemAttributes() FSItemAttributes {
 
 
 
-
 // Marks all attributes inactive.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/invalidateAllProperties()
-
 func (f_ FSItemAttributes) InvalidateAllProperties() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("invalidateAllProperties"))
 }
-
 
 
 // Returns a Boolean value that indicates whether the attribute is valid.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/isValid(_:)
-
 func (f_ FSItemAttributes) IsValid(attribute FSItemAttribute) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isValid:"), attribute)
 	return rv
@@ -149,7 +144,6 @@ func (f_ FSItemAttributes) IsValid(attribute FSItemAttribute) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/addedTime
-
 func (f_ FSItemAttributes) AddedTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("addedTime"))
 	return rv
@@ -160,7 +154,6 @@ func (f_ FSItemAttributes) AddedTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/addedTime
-
 func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAddedTime:"), value)
 }
@@ -170,7 +163,6 @@ func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
-
 func (f_ FSItemAttributes) FileID() FSItemID {
 	rv := objc.Send[FSItemID](f_.ID, objc.Sel("fileID"))
 	return rv
@@ -181,7 +173,6 @@ func (f_ FSItemAttributes) FileID() FSItemID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
-
 func (f_ FSItemAttributes) SetFileID(value IFSItemID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileID:"), value)
 }
@@ -191,7 +182,6 @@ func (f_ FSItemAttributes) SetFileID(value IFSItemID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
-
 func (f_ FSItemAttributes) Mode() uint32 {
 	rv := objc.Send[uint32](f_.ID, objc.Sel("mode"))
 	return rv
@@ -202,7 +192,6 @@ func (f_ FSItemAttributes) Mode() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
-
 func (f_ FSItemAttributes) SetMode(value Iuint32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMode:"), value)
 }
@@ -212,7 +201,6 @@ func (f_ FSItemAttributes) SetMode(value Iuint32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/supportsLimitedXAttrs
-
 func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsLimitedXAttrs"))
 	return rv
@@ -223,7 +211,6 @@ func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/supportsLimitedXAttrs
-
 func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsLimitedXAttrs:"), value)
 }
@@ -233,7 +220,6 @@ func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/accesstime
-
 func (f_ FSItemAttributes) AccessTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("accessTime"))
 	return rv
@@ -244,7 +230,6 @@ func (f_ FSItemAttributes) AccessTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/accesstime
-
 func (f_ FSItemAttributes) SetAccessTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAccessTime:"), value)
 }
@@ -254,7 +239,6 @@ func (f_ FSItemAttributes) SetAccessTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/allocsize
-
 func (f_ FSItemAttributes) AllocSize() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("allocSize"))
 	return rv
@@ -265,7 +249,6 @@ func (f_ FSItemAttributes) AllocSize() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/allocsize
-
 func (f_ FSItemAttributes) SetAllocSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAllocSize:"), value)
 }
@@ -275,7 +258,6 @@ func (f_ FSItemAttributes) SetAllocSize(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/backuptime
-
 func (f_ FSItemAttributes) BackupTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("backupTime"))
 	return rv
@@ -286,7 +268,6 @@ func (f_ FSItemAttributes) BackupTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/backuptime
-
 func (f_ FSItemAttributes) SetBackupTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBackupTime:"), value)
 }
@@ -296,7 +277,6 @@ func (f_ FSItemAttributes) SetBackupTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/birthtime
-
 func (f_ FSItemAttributes) BirthTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("birthTime"))
 	return rv
@@ -307,7 +287,6 @@ func (f_ FSItemAttributes) BirthTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/birthtime
-
 func (f_ FSItemAttributes) SetBirthTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBirthTime:"), value)
 }
@@ -317,7 +296,6 @@ func (f_ FSItemAttributes) SetBirthTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/changetime
-
 func (f_ FSItemAttributes) ChangeTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("changeTime"))
 	return rv
@@ -328,7 +306,6 @@ func (f_ FSItemAttributes) ChangeTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/changetime
-
 func (f_ FSItemAttributes) SetChangeTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setChangeTime:"), value)
 }
@@ -338,7 +315,6 @@ func (f_ FSItemAttributes) SetChangeTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/flags
-
 func (f_ FSItemAttributes) Flags() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("flags"))
 	return rv
@@ -349,7 +325,6 @@ func (f_ FSItemAttributes) Flags() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/flags
-
 func (f_ FSItemAttributes) SetFlags(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFlags:"), value)
 }
@@ -359,7 +334,6 @@ func (f_ FSItemAttributes) SetFlags(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/gid
-
 func (f_ FSItemAttributes) Gid() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("gid"))
 	return rv
@@ -370,7 +344,6 @@ func (f_ FSItemAttributes) Gid() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/gid
-
 func (f_ FSItemAttributes) SetGid(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setGid:"), value)
 }
@@ -380,7 +353,6 @@ func (f_ FSItemAttributes) SetGid(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/inhibitkerneloffloadedio
-
 func (f_ FSItemAttributes) InhibitKernelOffloadedIO() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("inhibitKernelOffloadedIO"))
 	return rv
@@ -391,7 +363,6 @@ func (f_ FSItemAttributes) InhibitKernelOffloadedIO() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/inhibitkerneloffloadedio
-
 func (f_ FSItemAttributes) SetInhibitKernelOffloadedIO(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInhibitKernelOffloadedIO:"), value)
 }
@@ -401,7 +372,6 @@ func (f_ FSItemAttributes) SetInhibitKernelOffloadedIO(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/linkcount
-
 func (f_ FSItemAttributes) LinkCount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("linkCount"))
 	return rv
@@ -412,7 +382,6 @@ func (f_ FSItemAttributes) LinkCount() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/linkcount
-
 func (f_ FSItemAttributes) SetLinkCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLinkCount:"), value)
 }
@@ -422,7 +391,6 @@ func (f_ FSItemAttributes) SetLinkCount(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/modifytime
-
 func (f_ FSItemAttributes) ModifyTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("modifyTime"))
 	return rv
@@ -433,7 +401,6 @@ func (f_ FSItemAttributes) ModifyTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/modifytime
-
 func (f_ FSItemAttributes) SetModifyTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setModifyTime:"), value)
 }
@@ -443,7 +410,6 @@ func (f_ FSItemAttributes) SetModifyTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/parentid
-
 func (f_ FSItemAttributes) ParentID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("parentID"))
 	return rv
@@ -454,7 +420,6 @@ func (f_ FSItemAttributes) ParentID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/parentid
-
 func (f_ FSItemAttributes) SetParentID(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setParentID:"), value)
 }
@@ -464,7 +429,6 @@ func (f_ FSItemAttributes) SetParentID(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/size
-
 func (f_ FSItemAttributes) Size() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("size"))
 	return rv
@@ -475,7 +439,6 @@ func (f_ FSItemAttributes) Size() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/size
-
 func (f_ FSItemAttributes) SetSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSize:"), value)
 }
@@ -485,7 +448,6 @@ func (f_ FSItemAttributes) SetSize(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/type
-
 func (f_ FSItemAttributes) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
 	return rv
@@ -496,7 +458,6 @@ func (f_ FSItemAttributes) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/type
-
 func (f_ FSItemAttributes) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setType:"), value)
 }
@@ -506,7 +467,6 @@ func (f_ FSItemAttributes) SetType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/uid
-
 func (f_ FSItemAttributes) Uid() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("uid"))
 	return rv
@@ -517,7 +477,6 @@ func (f_ FSItemAttributes) Uid() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/uid
-
 func (f_ FSItemAttributes) SetUid(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUid:"), value)
 }

@@ -24,20 +24,20 @@ var frameworkLevels = map[string]int{
 	"iosurface":      1,
 
 	// Level 2: Media and core services
-	"coreimage":      2,
-	"quartzcore":     2,
-	"coreaudio":      2,
-	"coremidi":       2,
-	"imageio":        2,
-	"coredata":       2,
-	"corelocation":   2,
-	"corespotlight":  2,
-	"network":        2,
-	"security":       2,
-	"corebluetooth":  2,
-	"corevideo":      2,
-	"coreml":         2,
-	"vision":         2,
+	"coreimage":       2,
+	"quartzcore":      2,
+	"coreaudio":       2,
+	"coremidi":        2,
+	"imageio":         2,
+	"coredata":        2,
+	"corelocation":    2,
+	"corespotlight":   2,
+	"network":         2,
+	"security":        2,
+	"corebluetooth":   2,
+	"corevideo":       2,
+	"coreml":          2,
+	"vision":          2,
 	"naturallanguage": 2,
 
 	// Level 3: Application frameworks and UI
@@ -48,28 +48,28 @@ var frameworkLevels = map[string]int{
 	"networkextension": 3,
 
 	// Level 4: Higher-level application services
-	"avfoundation": 4,
-	"avfaudio":     4,
-	"avkit":        4,
-	"avrouting":    4,
-	"audiotoolbox": 4,
-	"cloudkit":     4,
-	"contacts":     4,
-	"contactsui":   4,
-	"gameplaykit":  4,
-	"intents":      4,
-	"intentsui":    4,
-	"metal":        4,
-	"metalkit":     4,
-	"eventkit":     4,
-	"eventkit ui":  4,
-	"healthkit":    4,
-	"homekit":      4,
-	"mapkit":       4,
-	"messages":     4,
-	"storekit":     4,
+	"avfoundation":      4,
+	"avfaudio":          4,
+	"avkit":             4,
+	"avrouting":         4,
+	"audiotoolbox":      4,
+	"cloudkit":          4,
+	"contacts":          4,
+	"contactsui":        4,
+	"gameplaykit":       4,
+	"intents":           4,
+	"intentsui":         4,
+	"metal":             4,
+	"metalkit":          4,
+	"eventkit":          4,
+	"eventkit ui":       4,
+	"healthkit":         4,
+	"homekit":           4,
+	"mapkit":            4,
+	"messages":          4,
+	"storekit":          4,
 	"usernotifications": 4,
-	"replaykit":    4,
+	"replaykit":         4,
 }
 
 // RelaxMethodParameters marks parameters that violate hierarchy with relaxed types.
@@ -94,16 +94,16 @@ func RelaxMethodParameters(methods []*occ2go.ParsedMethod, currentFramework stri
 		for i := range method.Parameters {
 			param := &method.Parameters[i]
 			if violatesHierarchy(param.Type, currentFramework, currentLevel) {
-// 				// Get the expected Go type (with cross-framework reference)
-// 				expectedType := mapObjCTypeToGo(param.Type, currentFramework)
+				// 				// Get the expected Go type (with cross-framework reference)
+				// 				expectedType := mapObjCTypeToGo(param.Type, currentFramework)
 
 				// Mark this parameter as relaxed
 				// Store original type in a custom field for documentation
-// 				if param.Metadata == nil {
-// 					param.Metadata = make(map[string]string)
-// 				}
-// 				param.Metadata["ExpectedType"] = expectedType
-// 				param.Metadata["OriginalObjCType"] = param.Type
+				// 				if param.Metadata == nil {
+				// 					param.Metadata = make(map[string]string)
+				// 				}
+				// 				param.Metadata["ExpectedType"] = expectedType
+				// 				param.Metadata["OriginalObjCType"] = param.Type
 
 				// Relax the type to objectivec.IObject
 				// We set the Type to a marker that the type mapper will recognize

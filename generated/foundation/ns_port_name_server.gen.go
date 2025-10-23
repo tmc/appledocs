@@ -30,8 +30,8 @@ type _PortNameServerClass struct {
 // An interface definition for the [PortNameServer] class.
 type IPortNameServer interface {
 	objectivec.IObject
-	PortForName(name string) Port
-	PortForNameHost(name string, host string) Port
+	PortForName(name string) IPort
+	PortForNameHost(name string, host string) IPort
 	RegisterPortName(port IPort, name string) bool
 	RemovePortForName(name string) bool
 }
@@ -93,7 +93,7 @@ func NewPortNameServer() PortNameServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/systemDefaultPortNameServer
-func (pc _PortNameServerClass) SystemDefaultPortNameServer() PortNameServer {
+func (pc _PortNameServerClass) SystemDefaultPortNameServer() IPortNameServer {
 	rv := objc.Send[PortNameServer](objc.ID(pc.class), objc.Sel("systemDefaultPortNameServer"))
 	return rv
 }
@@ -103,7 +103,7 @@ func (pc _PortNameServerClass) SystemDefaultPortNameServer() PortNameServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/portForName:
-func (p_ PortNameServer) PortForName(name string) Port {
+func (p_ PortNameServer) PortForName(name string) IPort {
 	rv := objc.Send[Port](p_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
@@ -113,7 +113,7 @@ func (p_ PortNameServer) PortForName(name string) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/portForName:host:
-func (p_ PortNameServer) PortForNameHost(name string, host string) Port {
+func (p_ PortNameServer) PortForNameHost(name string, host string) IPort {
 	rv := objc.Send[Port](p_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }

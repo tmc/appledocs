@@ -52,7 +52,6 @@ type IImageSizeConstraint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint
-
 type ImageSizeConstraint struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewImageSizeConstraint() ImageSizeConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/enumeratedImageSizes
-
 func (i_ ImageSizeConstraint) EnumeratedImageSizes() []ImageSize {
 	rv := objc.Send[[]ImageSize](i_.ID, objc.Sel("enumeratedImageSizes"))
 	return rv
@@ -112,7 +110,6 @@ func (i_ ImageSizeConstraint) EnumeratedImageSizes() []ImageSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsHighRange
-
 func (i_ ImageSizeConstraint) PixelsHighRange() foundation.Range {
 	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsHighRange"))
 	return rv
@@ -123,7 +120,6 @@ func (i_ ImageSizeConstraint) PixelsHighRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/pixelsWideRange
-
 func (i_ ImageSizeConstraint) PixelsWideRange() foundation.Range {
 	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("pixelsWideRange"))
 	return rv
@@ -134,7 +130,6 @@ func (i_ ImageSizeConstraint) PixelsWideRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/type
-
 func (i_ ImageSizeConstraint) Type() ImageSizeConstraintType {
 	rv := objc.Send[ImageSizeConstraintType](i_.ID, objc.Sel("type"))
 	return rv
@@ -145,7 +140,6 @@ func (i_ ImageSizeConstraint) Type() ImageSizeConstraintType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
-
 func (i_ ImageSizeConstraint) PixelsHigh() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
@@ -156,7 +150,6 @@ func (i_ ImageSizeConstraint) PixelsHigh() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
-
 func (i_ ImageSizeConstraint) SetPixelsHigh(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
 }
@@ -166,7 +159,6 @@ func (i_ ImageSizeConstraint) SetPixelsHigh(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
-
 func (i_ ImageSizeConstraint) PixelsWide() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
@@ -177,7 +169,6 @@ func (i_ ImageSizeConstraint) PixelsWide() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
-
 func (i_ ImageSizeConstraint) SetPixelsWide(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
 }
@@ -187,7 +178,6 @@ func (i_ ImageSizeConstraint) SetPixelsWide(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
-
 func (i_ ImageSizeConstraint) SizeConstraint() MLImageSizeConstraint {
 	rv := objc.Send[MLImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
 	return rv
@@ -198,7 +188,6 @@ func (i_ ImageSizeConstraint) SizeConstraint() MLImageSizeConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
-
 func (i_ ImageSizeConstraint) SetSizeConstraint(value IMLImageSizeConstraint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeConstraint:"), value)
 }

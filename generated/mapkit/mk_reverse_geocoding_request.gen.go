@@ -43,7 +43,11 @@ type IMKReverseGeocodingRequest interface {
 }
 
 // A class that looks up address strings for the provided geographic coordinates.
+
+
+// A class that looks up address strings for the provided geographic coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKReverseGeocodingRequest
 type MKReverseGeocodingRequest struct {
 	objectivec.Object
@@ -88,8 +92,10 @@ func NewMKReverseGeocodingRequest() MKReverseGeocodingRequest {
 }
 
 
+
 // A Boolean value that indicates whether the current reverse geocoding request is in a cancelled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/iscancelled
 func (m_ MKReverseGeocodingRequest) IsCancelled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
@@ -97,17 +103,18 @@ func (m_ MKReverseGeocodingRequest) IsCancelled() bool {
 }
 
 
-// SetIsCancelled sets the value of the isCancelled property.
 // A Boolean value that indicates whether the current reverse geocoding request is in a cancelled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/iscancelled
 func (m_ MKReverseGeocodingRequest) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
+
 // A Boolean value that indicates whether the current reverse geocoding request is in a loading state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/isloading
 func (m_ MKReverseGeocodingRequest) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
@@ -115,17 +122,18 @@ func (m_ MKReverseGeocodingRequest) IsLoading() bool {
 }
 
 
-// SetIsLoading sets the value of the isLoading property.
 // A Boolean value that indicates whether the current reverse geocoding request is in a loading state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/isloading
 func (m_ MKReverseGeocodingRequest) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 
+
 // The location provided to the initializer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/location
 func (m_ MKReverseGeocodingRequest) Location() corelocation.Location {
 	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
@@ -133,17 +141,18 @@ func (m_ MKReverseGeocodingRequest) Location() corelocation.Location {
 }
 
 
-// SetLocation sets the value of the location property.
 // The location provided to the initializer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/location
 func (m_ MKReverseGeocodingRequest) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), value)
 }
 
+
 // A value that indicates the preferred locale for the addresses the request returns, or
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
 func (m_ MKReverseGeocodingRequest) PreferredLocale() foundation.Locale {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("preferredLocale"))
@@ -151,10 +160,9 @@ func (m_ MKReverseGeocodingRequest) PreferredLocale() foundation.Locale {
 }
 
 
-// SetPreferredLocale sets the value of the preferredLocale property.
 // A value that indicates the preferred locale for the addresses the request returns, or
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
 func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)

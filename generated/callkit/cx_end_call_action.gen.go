@@ -42,7 +42,6 @@ type ICXEndCallAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction
-
 type CXEndCallAction struct {
 	CXCallAction
 }
@@ -89,12 +88,10 @@ func NewCXEndCallAction() CXEndCallAction {
 
 
 
-
 // Reports the successful execution of the action at the specified time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction/fulfill(withDateEnded:)
-
 func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateEnded:"), dateEnded)
 }

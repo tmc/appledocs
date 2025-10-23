@@ -41,7 +41,6 @@ type IModelStructureProgramNamedValueType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType
-
 type ModelStructureProgramNamedValueType struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
-
 func (m_ ModelStructureProgramNamedValueType) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -101,7 +99,6 @@ func (m_ ModelStructureProgramNamedValueType) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/type
-
 func (m_ ModelStructureProgramNamedValueType) Type() MLModelStructureProgramValueType {
 	rv := objc.Send[MLModelStructureProgramValueType](m_.ID, objc.Sel("type"))
 	return rv

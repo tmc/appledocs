@@ -41,7 +41,6 @@ type IDispatchSemaphore interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchSemaphore
-
 type DispatchSemaphore struct {
 	objectivec.Object
 }

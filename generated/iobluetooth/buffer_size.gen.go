@@ -32,7 +32,9 @@ type IbufferSize interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/bufferSize
 type bufferSize struct {
 	objectivec.Object

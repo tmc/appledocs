@@ -42,7 +42,11 @@ type IINSearchForBillsIntent interface {
 // A request for the list of bills matching the specified criteria.
 //
 // Siri creates an object when the user asks to see pending or already paid bills. The intent object contains the values to match when searching for bills. Users can search for bills based on the due date, the payee, the type, and whether they’re pending or already paid. When performing the search, use only the provided parameters to filter the search results and ignore any parameters that have a missing or unknown value. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of the search. For successful searches, Siri offers a way for the user to view the results.
+
+
+// A request for the list of bills matching the specified criteria.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent
 type INSearchForBillsIntent struct {
 	INIntent
@@ -90,9 +94,9 @@ func NewINSearchForBillsIntent() INSearchForBillsIntent {
 
 
 
-
 // Initializes an intent object that describes a search for bill details with the specified search parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/init(billPayee:paymentDateRange:billType:status:dueDateRange:)
 func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDateRange(billPayee unsafe.Pointer, paymentDateRange INDateComponentsRange, billType unsafe.Pointer, status unsafe.Pointer, dueDateRange INDateComponentsRange) INSearchForBillsIntent {
 	instance := getINSearchForBillsIntentClass().Alloc()
@@ -102,24 +106,30 @@ func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDate
 }
 
 
+
 // The type of the bill.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/billType
 func (i_ INSearchForBillsIntent) BillType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billType"))
 	return rv
 }
 
+
 // The range of due dates in which to search for bills.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/dueDateRange
 func (i_ INSearchForBillsIntent) DueDateRange() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dueDateRange"))
 	return rv
 }
 
+
 // The recipient of the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/billpayee
 func (i_ INSearchForBillsIntent) BillPayee() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billPayee"))
@@ -127,17 +137,18 @@ func (i_ INSearchForBillsIntent) BillPayee() unsafe.Pointer {
 }
 
 
-// SetBillPayee sets the value of the billPayee property.
 // The recipient of the payment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/billpayee
 func (i_ INSearchForBillsIntent) SetBillPayee(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBillPayee:"), value)
 }
 
+
 // The range of payment dates in which to search for bills.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/paymentdaterange
 func (i_ INSearchForBillsIntent) PaymentDateRange() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("paymentDateRange"))
@@ -145,17 +156,18 @@ func (i_ INSearchForBillsIntent) PaymentDateRange() INDateComponentsRange {
 }
 
 
-// SetPaymentDateRange sets the value of the paymentDateRange property.
 // The range of payment dates in which to search for bills.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/paymentdaterange
 func (i_ INSearchForBillsIntent) SetPaymentDateRange(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentDateRange:"), value)
 }
 
+
 // The status of the bill.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/status
 func (i_ INSearchForBillsIntent) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("status"))
@@ -163,10 +175,9 @@ func (i_ INSearchForBillsIntent) Status() unsafe.Pointer {
 }
 
 
-// SetStatus sets the value of the status property.
 // The status of the bill.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/status
 func (i_ INSearchForBillsIntent) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)

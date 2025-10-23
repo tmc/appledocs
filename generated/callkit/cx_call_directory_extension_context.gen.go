@@ -53,7 +53,6 @@ type ICXCallDirectoryExtensionContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext
-
 type CXCallDirectoryExtensionContext struct {
 	ExtensionContext
 }
@@ -100,78 +99,64 @@ func NewCXCallDirectoryExtensionContext() CXCallDirectoryExtensionContext {
 
 
 
-
 // Adds a blocking entry with the specified phone number.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)
-
 func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addBlockingEntryWithNextSequentialPhoneNumber:"), phoneNumber)
 }
-
 
 
 // Adds an identification entry with the specified phone number and label.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)
-
 func (c_ CXCallDirectoryExtensionContext) AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber ICXCallDirectoryPhoneNumber, label string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addIdentificationEntryWithNextSequentialPhoneNumber:label:"), phoneNumber, objc.String(label))
 }
-
 
 
 // Completes the request to the extension context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/completeRequest(completionHandler:)
-
 func (c_ CXCallDirectoryExtensionContext) CompleteRequestWithCompletionHandler(completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("completeRequestWithCompletionHandler:"), completion)
 }
-
 
 
 // Removes all stored blocking entries.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeAllBlockingEntries()
-
 func (c_ CXCallDirectoryExtensionContext) RemoveAllBlockingEntries() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeAllBlockingEntries"))
 }
-
 
 
 // Removes all stored identification entries.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeAllIdentificationEntries()
-
 func (c_ CXCallDirectoryExtensionContext) RemoveAllIdentificationEntries() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeAllIdentificationEntries"))
 }
-
 
 
 // Removes a blocking entry that contains the specified phone number.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeBlockingEntry(withPhoneNumber:)
-
 func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeBlockingEntryWithPhoneNumber:"), phoneNumber)
 }
-
 
 
 // Removes an identification entry that contains the specified phone number.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeIdentificationEntry(withPhoneNumber:)
-
 func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeIdentificationEntryWithPhoneNumber:"), phoneNumber)
 }
@@ -181,7 +166,6 @@ func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/delegate
-
 func (c_ CXCallDirectoryExtensionContext) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -192,7 +176,6 @@ func (c_ CXCallDirectoryExtensionContext) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/delegate
-
 func (c_ CXCallDirectoryExtensionContext) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -202,7 +185,6 @@ func (c_ CXCallDirectoryExtensionContext) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/isIncremental
-
 func (c_ CXCallDirectoryExtensionContext) Incremental() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("incremental"))
 	return rv
@@ -213,7 +195,6 @@ func (c_ CXCallDirectoryExtensionContext) Incremental() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext/isincremental
-
 func (c_ CXCallDirectoryExtensionContext) IsIncremental() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isIncremental"))
 	return rv
@@ -224,7 +205,6 @@ func (c_ CXCallDirectoryExtensionContext) IsIncremental() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext/isincremental
-
 func (c_ CXCallDirectoryExtensionContext) SetIsIncremental(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIncremental:"), value)
 }
@@ -234,7 +214,6 @@ func (c_ CXCallDirectoryExtensionContext) SetIsIncremental(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumbermax
-
 func (c_ CXCallDirectoryExtensionContext) CXCallDirectoryPhoneNumberMax() CXCallDirectoryPhoneNumber {
 	rv := objc.Send[CXCallDirectoryPhoneNumber](c_.ID, objc.Sel("CXCallDirectoryPhoneNumberMax"))
 	return rv

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,6 +31,10 @@ type _TextAttachmentViewProviderClass struct {
 // An interface definition for the [TextAttachmentViewProvider] class.
 type ITextAttachmentViewProvider interface {
 	objectivec.IObject
+	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes unsafe.Pointer, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect
+	LoadView()
+	View() NSView
+	SetView(value IView)
 	Location() unsafe.Pointer
 	SetLocation(value unsafe.Pointer)
 	TextAttachment() NSTextAttachment
@@ -38,8 +43,6 @@ type ITextAttachmentViewProvider interface {
 	SetTextLayoutManager(value ITextLayoutManager)
 	TracksTextAttachmentViewBounds() bool
 	SetTracksTextAttachmentViewBounds(value bool)
-	View() NSView
-	SetView(value IView)
 }
 
 // A container object that associates a text attachment at a particular document location with a view object.
@@ -51,7 +54,6 @@ type ITextAttachmentViewProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider
-
 type TextAttachmentViewProvider struct {
 	objectivec.Object
 }
@@ -96,11 +98,48 @@ func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 
 
 
+// Returns the layout bounds for an attachment at a specific text location that contains the text attributes you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/attachmentBounds(for:location:textContainer:proposedLineFragment:position:)
+func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes unsafe.Pointer, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
+	return rv
+}
+
+
+// Draws the custom view hierarchy that text attachment view subclasses implement.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/loadView()
+func (t_ TextAttachmentViewProvider) LoadView() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("loadView"))
+}
+
+
+// The text attachment’s view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/view
+func (t_ TextAttachmentViewProvider) View() NSView {
+	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// The text attachment’s view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/view
+func (t_ TextAttachmentViewProvider) SetView(value IView) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
+}
+
+
 // The location that indicates the start of the text attachment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/location
-
 func (t_ TextAttachmentViewProvider) Location() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("location"))
 	return rv
@@ -111,7 +150,6 @@ func (t_ TextAttachmentViewProvider) Location() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/location
-
 func (t_ TextAttachmentViewProvider) SetLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
 }
@@ -121,7 +159,6 @@ func (t_ TextAttachmentViewProvider) SetLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
-
 func (t_ TextAttachmentViewProvider) TextAttachment() NSTextAttachment {
 	rv := objc.Send[NSTextAttachment](t_.ID, objc.Sel("textAttachment"))
 	return rv
@@ -132,7 +169,6 @@ func (t_ TextAttachmentViewProvider) TextAttachment() NSTextAttachment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
-
 func (t_ TextAttachmentViewProvider) SetTextAttachment(value ITextAttachment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachment:"), value)
 }
@@ -142,7 +178,6 @@ func (t_ TextAttachmentViewProvider) SetTextAttachment(value ITextAttachment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
-
 func (t_ TextAttachmentViewProvider) TextLayoutManager() NSTextLayoutManager {
 	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
@@ -153,7 +188,6 @@ func (t_ TextAttachmentViewProvider) TextLayoutManager() NSTextLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
-
 func (t_ TextAttachmentViewProvider) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
@@ -163,7 +197,6 @@ func (t_ TextAttachmentViewProvider) SetTextLayoutManager(value ITextLayoutManag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/trackstextattachmentviewbounds
-
 func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("tracksTextAttachmentViewBounds"))
 	return rv
@@ -174,30 +207,8 @@ func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/trackstextattachmentviewbounds
-
 func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTracksTextAttachmentViewBounds:"), value)
-}
-
-
-// The text attachment’s view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/view
-
-func (t_ TextAttachmentViewProvider) View() NSView {
-	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
-	return rv
-}
-
-
-// The text attachment’s view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/view
-
-func (t_ TextAttachmentViewProvider) SetView(value IView) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
 }
 
 

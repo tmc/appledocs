@@ -45,7 +45,6 @@ type IDCDevice interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice
-
 type DCDevice struct {
 	objectivec.Object
 }
@@ -94,18 +93,15 @@ func NewDCDevice() DCDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
-
 func (dc _DCDeviceClass) CurrentDevice() DCDevice {
 	rv := objc.Send[DCDevice](objc.ID(dc.class), objc.Sel("currentDevice"))
 	return rv
 }
 
-
 // Generates a token that identifies the current device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/generateToken(completionHandler:)
-
 func (d_ DCDevice) GenerateTokenWithCompletionHandler(completion unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateTokenWithCompletionHandler:"), completion)
 }
@@ -115,7 +111,6 @@ func (d_ DCDevice) GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
-
 func (d_ DCDevice) CurrentDevice() DCDevice {
 	rv := objc.Send[DCDevice](d_.ID, objc.Sel("currentDevice"))
 	return rv
@@ -126,7 +121,6 @@ func (d_ DCDevice) CurrentDevice() DCDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/isSupported
-
 func (d_ DCDevice) Supported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
@@ -137,7 +131,6 @@ func (d_ DCDevice) Supported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
-
 func (d_ DCDevice) IsSupported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
 	return rv
@@ -148,7 +141,6 @@ func (d_ DCDevice) IsSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
-
 func (d_ DCDevice) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
 }

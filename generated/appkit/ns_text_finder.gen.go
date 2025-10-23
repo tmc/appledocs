@@ -72,7 +72,6 @@ type ITextFinder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFinder
-
 type TextFinder struct {
 	objectivec.Object
 }
@@ -121,7 +120,6 @@ func NewTextFinder() TextFinder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.property
-
 func (t_ TextFinder) FindBarPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("findBarPosition"))
 	return rv
@@ -132,7 +130,6 @@ func (t_ TextFinder) FindBarPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.property
-
 func (t_ TextFinder) SetFindBarPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFindBarPosition:"), value)
 }
@@ -142,7 +139,6 @@ func (t_ TextFinder) SetFindBarPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/client
-
 func (t_ TextFinder) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("client"))
 	return rv
@@ -153,7 +149,6 @@ func (t_ TextFinder) Client() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/client
-
 func (t_ TextFinder) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
 }
@@ -163,7 +158,6 @@ func (t_ TextFinder) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findbarcontainer
-
 func (t_ TextFinder) FindBarContainer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("findBarContainer"))
 	return rv
@@ -174,7 +168,6 @@ func (t_ TextFinder) FindBarContainer() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findbarcontainer
-
 func (t_ TextFinder) SetFindBarContainer(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFindBarContainer:"), value)
 }
@@ -184,7 +177,6 @@ func (t_ TextFinder) SetFindBarContainer(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findindicatorneedsupdate
-
 func (t_ TextFinder) FindIndicatorNeedsUpdate() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("findIndicatorNeedsUpdate"))
 	return rv
@@ -195,7 +187,6 @@ func (t_ TextFinder) FindIndicatorNeedsUpdate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/findindicatorneedsupdate
-
 func (t_ TextFinder) SetFindIndicatorNeedsUpdate(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFindIndicatorNeedsUpdate:"), value)
 }
@@ -205,7 +196,6 @@ func (t_ TextFinder) SetFindIndicatorNeedsUpdate(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
-
 func (t_ TextFinder) IncrementalMatchRanges() foundation.Value {
 	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("incrementalMatchRanges"))
 	return rv
@@ -216,7 +206,6 @@ func (t_ TextFinder) IncrementalMatchRanges() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
-
 func (t_ TextFinder) SetIncrementalMatchRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncrementalMatchRanges:"), value)
 }
@@ -226,7 +215,6 @@ func (t_ TextFinder) SetIncrementalMatchRanges(value foundation.IValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalsearchingshoulddimcontentview
-
 func (t_ TextFinder) IncrementalSearchingShouldDimContentView() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("incrementalSearchingShouldDimContentView"))
 	return rv
@@ -237,7 +225,6 @@ func (t_ TextFinder) IncrementalSearchingShouldDimContentView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalsearchingshoulddimcontentview
-
 func (t_ TextFinder) SetIncrementalSearchingShouldDimContentView(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncrementalSearchingShouldDimContentView:"), value)
 }
@@ -247,7 +234,6 @@ func (t_ TextFinder) SetIncrementalSearchingShouldDimContentView(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/isincrementalsearchingenabled
-
 func (t_ TextFinder) IsIncrementalSearchingEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isIncrementalSearchingEnabled"))
 	return rv
@@ -258,7 +244,6 @@ func (t_ TextFinder) IsIncrementalSearchingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/isincrementalsearchingenabled
-
 func (t_ TextFinder) SetIsIncrementalSearchingEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsIncrementalSearchingEnabled:"), value)
 }
@@ -268,7 +253,6 @@ func (t_ TextFinder) SetIsIncrementalSearchingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/findbarview
-
 func (t_ TextFinder) FindBarView() NSView {
 	rv := objc.Send[NSView](t_.ID, objc.Sel("findBarView"))
 	return rv
@@ -279,7 +263,6 @@ func (t_ TextFinder) FindBarView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/findbarview
-
 func (t_ TextFinder) SetFindBarView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFindBarView:"), value)
 }
@@ -289,7 +272,6 @@ func (t_ TextFinder) SetFindBarView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/isfindbarvisible
-
 func (t_ TextFinder) IsFindBarVisible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isFindBarVisible"))
 	return rv
@@ -300,7 +282,6 @@ func (t_ TextFinder) IsFindBarVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer/isfindbarvisible
-
 func (t_ TextFinder) SetIsFindBarVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFindBarVisible:"), value)
 }
@@ -310,7 +291,6 @@ func (t_ TextFinder) SetIsFindBarVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/allowsmultipleselection
-
 func (t_ TextFinder) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
@@ -321,7 +301,6 @@ func (t_ TextFinder) AllowsMultipleSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/allowsmultipleselection
-
 func (t_ TextFinder) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
@@ -331,7 +310,6 @@ func (t_ TextFinder) SetAllowsMultipleSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/firstselectedrange
-
 func (t_ TextFinder) FirstSelectedRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("firstSelectedRange"))
 	return rv
@@ -342,7 +320,6 @@ func (t_ TextFinder) FirstSelectedRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/firstselectedrange
-
 func (t_ TextFinder) SetFirstSelectedRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFirstSelectedRange:"), value)
 }
@@ -352,7 +329,6 @@ func (t_ TextFinder) SetFirstSelectedRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/isselectable
-
 func (t_ TextFinder) IsSelectable() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
 	return rv
@@ -363,7 +339,6 @@ func (t_ TextFinder) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/isselectable
-
 func (t_ TextFinder) SetIsSelectable(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
 }
@@ -373,7 +348,6 @@ func (t_ TextFinder) SetIsSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
-
 func (t_ TextFinder) SelectedRanges() foundation.Value {
 	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
@@ -384,7 +358,6 @@ func (t_ TextFinder) SelectedRanges() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
-
 func (t_ TextFinder) SetSelectedRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), value)
 }
@@ -394,7 +367,6 @@ func (t_ TextFinder) SetSelectedRanges(value foundation.IValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
-
 func (t_ TextFinder) VisibleCharacterRanges() foundation.Value {
 	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("visibleCharacterRanges"))
 	return rv
@@ -405,7 +377,6 @@ func (t_ TextFinder) VisibleCharacterRanges() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
-
 func (t_ TextFinder) SetVisibleCharacterRanges(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleCharacterRanges:"), value)
 }
@@ -415,7 +386,6 @@ func (t_ TextFinder) SetVisibleCharacterRanges(value foundation.IValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindbar
-
 func (t_ TextFinder) UsesFindBar() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFindBar"))
 	return rv
@@ -426,7 +396,6 @@ func (t_ TextFinder) UsesFindBar() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindbar
-
 func (t_ TextFinder) SetUsesFindBar(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFindBar:"), value)
 }

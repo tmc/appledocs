@@ -56,7 +56,6 @@ type IGCDualShockGamepad interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualShockGamepad
-
 type GCDualShockGamepad struct {
 	GCExtendedGamepad
 }
@@ -107,7 +106,6 @@ func NewGCDualShockGamepad() GCDualShockGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-
 func (g_ GCDualShockGamepad) ExtendedGamepad() GCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
@@ -118,7 +116,6 @@ func (g_ GCDualShockGamepad) ExtendedGamepad() GCExtendedGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-
 func (g_ GCDualShockGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
@@ -128,7 +125,6 @@ func (g_ GCDualShockGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-
 func (g_ GCDualShockGamepad) Gamepad() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
 	return rv
@@ -139,7 +135,6 @@ func (g_ GCDualShockGamepad) Gamepad() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-
 func (g_ GCDualShockGamepad) SetGamepad(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
 }
@@ -149,7 +144,6 @@ func (g_ GCDualShockGamepad) SetGamepad(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-
 func (g_ GCDualShockGamepad) MicroGamepad() GCMicroGamepad {
 	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
@@ -160,7 +154,6 @@ func (g_ GCDualShockGamepad) MicroGamepad() GCMicroGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-
 func (g_ GCDualShockGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
@@ -170,7 +163,6 @@ func (g_ GCDualShockGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCDualShockGamepad) Motion() GCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
@@ -181,7 +173,6 @@ func (g_ GCDualShockGamepad) Motion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCDualShockGamepad) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
@@ -191,7 +182,6 @@ func (g_ GCDualShockGamepad) SetMotion(value IGCMotion) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-
 func (g_ GCDualShockGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
 	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
@@ -202,7 +192,6 @@ func (g_ GCDualShockGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-
 func (g_ GCDualShockGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
@@ -212,7 +201,6 @@ func (g_ GCDualShockGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadbutton
-
 func (g_ GCDualShockGamepad) TouchpadButton() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("touchpadButton"))
 	return rv
@@ -223,7 +211,6 @@ func (g_ GCDualShockGamepad) TouchpadButton() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadbutton
-
 func (g_ GCDualShockGamepad) SetTouchpadButton(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpadButton:"), value)
 }
@@ -233,7 +220,6 @@ func (g_ GCDualShockGamepad) SetTouchpadButton(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadprimary
-
 func (g_ GCDualShockGamepad) TouchpadPrimary() GCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("touchpadPrimary"))
 	return rv
@@ -244,7 +230,6 @@ func (g_ GCDualShockGamepad) TouchpadPrimary() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadprimary
-
 func (g_ GCDualShockGamepad) SetTouchpadPrimary(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpadPrimary:"), value)
 }
@@ -254,7 +239,6 @@ func (g_ GCDualShockGamepad) SetTouchpadPrimary(value IGCControllerDirectionPad)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadsecondary
-
 func (g_ GCDualShockGamepad) TouchpadSecondary() GCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("touchpadSecondary"))
 	return rv
@@ -265,7 +249,6 @@ func (g_ GCDualShockGamepad) TouchpadSecondary() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad/touchpadsecondary
-
 func (g_ GCDualShockGamepad) SetTouchpadSecondary(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpadSecondary:"), value)
 }

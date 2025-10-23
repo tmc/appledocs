@@ -36,7 +36,9 @@ type IDomainStateCompanion interface {
 	StateHash() foundation.NSData
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion
 type DomainStateCompanion struct {
 	objectivec.Object
@@ -79,24 +81,30 @@ func NewDomainStateCompanion() DomainStateCompanion {
 }
 
 
+
 // Returns state hash data for the given companion type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash(for:)
 func (d_ DomainStateCompanion) StateHashForCompanionType(companionType CompanionType) foundation.Data {
 	rv := objc.Send[foundation.Data](d_.ID, objc.Sel("stateHashForCompanionType:"), companionType)
 	return rv
 }
 
+
 // Indicates types of companions paired with the device. The elements are NSNumber-wrapped instances of @c .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/availableCompanionTypes-1ggnh
 func (d_ DomainStateCompanion) AvailableCompanionTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("availableCompanionTypes"))
 	return rv
 }
 
+
 // Contains combined state hash data for all available companion types. . Returns if no companion devices are paired.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash
 func (d_ DomainStateCompanion) StateHash() foundation.NSData {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))

@@ -44,7 +44,6 @@ type IFSProbeResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult
-
 type FSProbeResult struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewFSProbeResult() FSProbeResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/recognized(name:containerID:)
-
 func (fc _FSProbeResultClass) RecognizedProbeResultWithNameContainerID(name string, containerID IFSContainerIdentifier) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("recognizedProbeResultWithName:containerID:"), objc.String(name), containerID)
 	return rv
@@ -104,7 +102,6 @@ func (fc _FSProbeResultClass) RecognizedProbeResultWithNameContainerID(name stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usable(name:containerID:)
-
 func (fc _FSProbeResultClass) UsableProbeResultWithNameContainerID(name string, containerID IFSContainerIdentifier) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableProbeResultWithName:containerID:"), objc.String(name), containerID)
 	return rv
@@ -115,7 +112,6 @@ func (fc _FSProbeResultClass) UsableProbeResultWithNameContainerID(name string, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited(name:containerID:)
-
 func (fc _FSProbeResultClass) UsableButLimitedProbeResultWithNameContainerID(name string, containerID IFSContainerIdentifier) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResultWithName:containerID:"), objc.String(name), containerID)
 	return rv
@@ -126,7 +122,6 @@ func (fc _FSProbeResultClass) UsableButLimitedProbeResultWithNameContainerID(nam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/notRecognized
-
 func (fc _FSProbeResultClass) NotRecognizedProbeResult() FSProbeResult {
 	rv := objc.Send[FSProbeResult](objc.ID(fc.class), objc.Sel("notRecognizedProbeResult"))
 	return rv
@@ -136,7 +131,6 @@ func (fc _FSProbeResultClass) NotRecognizedProbeResult() FSProbeResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited
-
 func (fc _FSProbeResultClass) UsableButLimitedProbeResult() FSProbeResult {
 	rv := objc.Send[FSProbeResult](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResult"))
 	return rv
@@ -146,7 +140,6 @@ func (fc _FSProbeResultClass) UsableButLimitedProbeResult() FSProbeResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/containerID
-
 func (f_ FSProbeResult) ContainerID() FSContainerIdentifier {
 	rv := objc.Send[FSContainerIdentifier](f_.ID, objc.Sel("containerID"))
 	return rv
@@ -157,7 +150,6 @@ func (f_ FSProbeResult) ContainerID() FSContainerIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/name
-
 func (f_ FSProbeResult) Name() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
@@ -168,7 +160,6 @@ func (f_ FSProbeResult) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/notRecognized
-
 func (f_ FSProbeResult) NotRecognizedProbeResult() FSProbeResult {
 	rv := objc.Send[FSProbeResult](f_.ID, objc.Sel("notRecognizedProbeResult"))
 	return rv
@@ -179,7 +170,6 @@ func (f_ FSProbeResult) NotRecognizedProbeResult() FSProbeResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/result
-
 func (f_ FSProbeResult) Result() FSMatchResult {
 	rv := objc.Send[FSMatchResult](f_.ID, objc.Sel("result"))
 	return rv
@@ -190,7 +180,6 @@ func (f_ FSProbeResult) Result() FSMatchResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited
-
 func (f_ FSProbeResult) UsableButLimitedProbeResult() FSProbeResult {
 	rv := objc.Send[FSProbeResult](f_.ID, objc.Sel("usableButLimitedProbeResult"))
 	return rv

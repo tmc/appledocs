@@ -34,7 +34,11 @@ type IMKMapItemAnnotation interface {
 }
 
 // An annotation that represents a map item
+
+
+// An annotation that represents a map item
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemAnnotation
 type MKMapItemAnnotation struct {
 	objectivec.Object
@@ -80,9 +84,9 @@ func NewMKMapItemAnnotation() MKMapItemAnnotation {
 
 
 
-
 // Creates a map item annotation
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemAnnotation/init(mapItem:)
 func NewMKMapItemAnnotationWithMapItem(mapItem IMKMapItem) MKMapItemAnnotation {
 	instance := getMKMapItemAnnotationClass().Alloc()
@@ -92,8 +96,10 @@ func NewMKMapItemAnnotationWithMapItem(mapItem IMKMapItem) MKMapItemAnnotation {
 }
 
 
+
 // The map item represented by this annotation
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemAnnotation/mapItem
 func (m_ MKMapItemAnnotation) MapItem() MKMapItem {
 	rv := objc.Send[MKMapItem](m_.ID, objc.Sel("mapItem"))

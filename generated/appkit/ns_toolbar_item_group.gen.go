@@ -48,7 +48,6 @@ type IToolbarItemGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup
-
 type ToolbarItemGroup struct {
 	ToolbarItem
 }
@@ -99,7 +98,6 @@ func NewToolbarItemGroup() ToolbarItemGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
-
 func (t_ ToolbarItemGroup) SelectedIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedIndex"))
 	return rv
@@ -110,7 +108,6 @@ func (t_ ToolbarItemGroup) SelectedIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
-
 func (t_ ToolbarItemGroup) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedIndex:"), value)
 }
@@ -120,7 +117,6 @@ func (t_ ToolbarItemGroup) SetSelectedIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.property
-
 func (t_ ToolbarItemGroup) ControlRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("controlRepresentation"))
 	return rv
@@ -131,7 +127,6 @@ func (t_ ToolbarItemGroup) ControlRepresentation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.property
-
 func (t_ ToolbarItemGroup) SetControlRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setControlRepresentation:"), value)
 }
@@ -141,7 +136,6 @@ func (t_ ToolbarItemGroup) SetControlRepresentation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.property
-
 func (t_ ToolbarItemGroup) SelectionMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionMode"))
 	return rv
@@ -152,7 +146,6 @@ func (t_ ToolbarItemGroup) SelectionMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.property
-
 func (t_ ToolbarItemGroup) SetSelectionMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionMode:"), value)
 }
@@ -162,7 +155,6 @@ func (t_ ToolbarItemGroup) SetSelectionMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
-
 func (t_ ToolbarItemGroup) Subitems() NSToolbarItem {
 	rv := objc.Send[NSToolbarItem](t_.ID, objc.Sel("subitems"))
 	return rv
@@ -173,7 +165,6 @@ func (t_ ToolbarItemGroup) Subitems() NSToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
-
 func (t_ ToolbarItemGroup) SetSubitems(value IToolbarItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSubitems:"), value)
 }

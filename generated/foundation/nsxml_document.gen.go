@@ -29,14 +29,14 @@ type _XMLDocumentClass struct {
 // An interface definition for the [XMLDocument] class.
 type IXMLDocument interface {
 	IXMLNode
-	RootElement() XMLElement
+	RootElement() IXMLElement
 	SetRootElement(root IXMLElement)
 	ValidateAndReturnError(error_ IError) bool
 	CharacterEncoding() string
 	SetCharacterEncoding(value string)
 	DocumentContentKind() unsafe.Pointer
 	SetDocumentContentKind(value unsafe.Pointer)
-	DTD() NSXMLDTD
+	DTD() IXMLDTD
 	SetDTD(value IXMLDTD)
 	Version() string
 	SetVersion(value string)
@@ -44,7 +44,7 @@ type IXMLDocument interface {
 	SetIsStandalone(value bool)
 	MimeType() string
 	SetMimeType(value string)
-	XmlData() Data
+	XmlData() IData
 	SetXmlData(value IData)
 }
 
@@ -166,7 +166,7 @@ func (xc _XMLDocumentClass) ReplacementClassForClass(cls objc.Class) objc.Class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/rootElement()
-func (x_ XMLDocument) RootElement() XMLElement {
+func (x_ XMLDocument) RootElement() IXMLElement {
 	rv := objc.Send[XMLElement](x_.ID, objc.Sel("rootElement"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (x_ XMLDocument) SetDocumentContentKind(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/dtd
-func (x_ XMLDocument) DTD() NSXMLDTD {
+func (x_ XMLDocument) DTD() IXMLDTD {
 	rv := objc.Send[NSXMLDTD](x_.ID, objc.Sel("DTD"))
 	return rv
 }
@@ -309,7 +309,7 @@ func (x_ XMLDocument) SetMimeType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/xmldata
-func (x_ XMLDocument) XmlData() Data {
+func (x_ XMLDocument) XmlData() IData {
 	rv := objc.Send[Data](x_.ID, objc.Sel("xmlData"))
 	return rv
 }

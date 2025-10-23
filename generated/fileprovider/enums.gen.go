@@ -8,6 +8,13 @@ package fileprovider
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderContentPolicy
 type FileProviderContentPolicy uint
 
+const (
+	FileProviderContentPolicyInherited FileProviderContentPolicy = 0
+	FileProviderContentPolicyDownloadLazily FileProviderContentPolicy = 1
+	FileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate FileProviderContentPolicy = 2
+	FileProviderContentPolicyDownloadEagerlyAndKeepDownloaded FileProviderContentPolicy = 3
+)
+
 // NSFileProviderCreateItemOptions - Options for creating items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderCreateItemOptions
@@ -17,7 +24,7 @@ const (
 	// FileProviderCreateItemMayAlreadyExist - An option indicating that the item may already exist in your remote storage.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderCreateItemOptions/mayAlreadyExist
-	FileProviderCreateItemMayAlreadyExist FileProviderCreateItemOptions = 0
+	FileProviderCreateItemMayAlreadyExist FileProviderCreateItemOptions = 1
 )
 
 // NSFileProviderDeleteItemOptions - Options for deleting items.
@@ -25,10 +32,31 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDeleteItemOptions
 type FileProviderDeleteItemOptions uint
 
+const (
+	FileProviderDeleteItemRecursive FileProviderDeleteItemOptions = 1
+	FileProviderTestingOperationTypeIngestion FileProviderDeleteItemOptions = 0
+	FileProviderTestingOperationTypeLookup FileProviderDeleteItemOptions = 1
+	FileProviderTestingOperationTypeCreation FileProviderDeleteItemOptions = 2
+	FileProviderTestingOperationTypeModification FileProviderDeleteItemOptions = 3
+	FileProviderTestingOperationTypeDeletion FileProviderDeleteItemOptions = 4
+	FileProviderTestingOperationTypeContentFetch FileProviderDeleteItemOptions = 5
+	FileProviderTestingOperationTypeChildrenEnumeration FileProviderDeleteItemOptions = 6
+	FileProviderTestingOperationTypeCollisionResolution FileProviderDeleteItemOptions = 7
+	FileProviderTestingOperationSideDisk FileProviderDeleteItemOptions = 0
+	FileProviderTestingOperationSideFileProvider FileProviderDeleteItemOptions = 1
+)
+
 // NSFileProviderDomainTestingModes - Modes that modify the system’s behavior while testing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/TestingModes-swift.struct
 type FileProviderDomainTestingModes uint
+
+const (
+	FileProviderDomainTestingModeAlwaysEnabled FileProviderDomainTestingModes = 1
+	FileProviderDomainTestingModeInteractive FileProviderDomainTestingModes = 1
+	FileProviderDesktop FileProviderDomainTestingModes = 1
+	FileProviderDocuments FileProviderDomainTestingModes = 1
+)
 
 // NSFileProviderErrorCode - The error codes for the File Provider extension.
 //
@@ -137,6 +165,14 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderFileSystemFlags
 type FileProviderFileSystemFlags uint
 
+const (
+	FileProviderFileSystemUserExecutable FileProviderFileSystemFlags = 1
+	FileProviderFileSystemUserReadable FileProviderFileSystemFlags = 1
+	FileProviderFileSystemUserWritable FileProviderFileSystemFlags = 1
+	FileProviderFileSystemHidden FileProviderFileSystemFlags = 1
+	FileProviderFileSystemPathExtensionHidden FileProviderFileSystemFlags = 1
+)
+
 // NSFileProviderItemCapabilities - An item’s capabilities, which define the actions that the user can perform in the document browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities
@@ -150,7 +186,7 @@ const (
 	// FileProviderItemCapabilitiesAllowsAll - A convenience value for enabling all capabilities.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsAll
-	FileProviderItemCapabilitiesAllowsAll FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsAll FileProviderItemCapabilities = 4
 	// FileProviderItemCapabilitiesAllowsContentEnumerating - A value indicating that the item’s contents can be enumerated.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsContentEnumerating
@@ -158,41 +194,60 @@ const (
 	// FileProviderItemCapabilitiesAllowsDeleting - A value indicating that the item can be deleted.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsDeleting
-	FileProviderItemCapabilitiesAllowsDeleting FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsDeleting FileProviderItemCapabilities = 1
 	// FileProviderItemCapabilitiesAllowsEvicting - A value indicating that the system can delete the local copy of the item.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsEvicting
-	FileProviderItemCapabilitiesAllowsEvicting FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsEvicting FileProviderItemCapabilities = 2
 	// FileProviderItemCapabilitiesAllowsExcludingFromSync - A value indicating that the user can exclude the item from sync operations.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsExcludingFromSync
-	FileProviderItemCapabilitiesAllowsExcludingFromSync FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsExcludingFromSync FileProviderItemCapabilities = 3
 	// FileProviderItemCapabilitiesAllowsReading - A value indicating that the value can be read from.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsReading
-	FileProviderItemCapabilitiesAllowsReading FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsReading FileProviderItemCapabilities = 5
 	// FileProviderItemCapabilitiesAllowsRenaming - A value indicating that the item can be renamed.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsRenaming
-	FileProviderItemCapabilitiesAllowsRenaming FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsRenaming FileProviderItemCapabilities = 1
 	// FileProviderItemCapabilitiesAllowsReparenting - A value indicating that the item can be moved.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsReparenting
-	FileProviderItemCapabilitiesAllowsReparenting FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsReparenting FileProviderItemCapabilities = 1
 	// FileProviderItemCapabilitiesAllowsTrashing - A value indicating that the item can be moved to the trash.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsTrashing
-	FileProviderItemCapabilitiesAllowsTrashing FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsTrashing FileProviderItemCapabilities = 1
 	// FileProviderItemCapabilitiesAllowsWriting - A value indicating that the item can be written to.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemCapabilities/allowsWriting
-	FileProviderItemCapabilitiesAllowsWriting FileProviderItemCapabilities = 0
+	FileProviderItemCapabilitiesAllowsWriting FileProviderItemCapabilities = 1
 )
 
 // NSFileProviderItemFields - Fields that specify which of the item’s properties have changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemFields
 type FileProviderItemFields uint
+
+const (
+	FileProviderItemContents FileProviderItemFields = 1
+	FileProviderItemFilename FileProviderItemFields = 1
+	FileProviderItemParentItemIdentifier FileProviderItemFields = 1
+	FileProviderItemLastUsedDate FileProviderItemFields = 1
+	FileProviderItemTagData FileProviderItemFields = 1
+	FileProviderItemFavoriteRank FileProviderItemFields = 1
+	FileProviderItemCreationDate FileProviderItemFields = 1
+	FileProviderItemContentModificationDate FileProviderItemFields = 1
+	FileProviderItemFileSystemFlags FileProviderItemFields = 1
+	FileProviderItemExtendedAttributes FileProviderItemFields = 1
+	FileProviderItemTypeAndCreator FileProviderItemFields = 2
+	FileProviderFileSystemUserExecutable FileProviderItemFields = 1
+	FileProviderFileSystemUserReadable FileProviderItemFields = 1
+	FileProviderFileSystemUserWritable FileProviderItemFields = 1
+	FileProviderFileSystemHidden FileProviderItemFields = 1
+	FileProviderFileSystemPathExtensionHidden FileProviderItemFields = 1
+)
 
 // NSFileProviderKnownFolders - Constants that identify known folders.
 //
@@ -202,10 +257,10 @@ type FileProviderKnownFolders uint
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolders/desktop
-	FileProviderDesktop FileProviderKnownFolders = 0
+	FileProviderDesktop FileProviderKnownFolders = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolders/documents
-	FileProviderDocuments FileProviderKnownFolders = 0
+	FileProviderDocuments FileProviderKnownFolders = 1
 )
 
 // NSFileProviderManagerDisconnectionOptions - Options for disconnecting a domain from the extension.
@@ -213,10 +268,61 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/DisconnectionOptions
 type FileProviderManagerDisconnectionOptions uint
 
+const (
+	FileProviderManagerDisconnectionOptionsTemporary FileProviderManagerDisconnectionOptions = 1
+	FileProviderVolumeUnsupportedReasonNone FileProviderManagerDisconnectionOptions = 0
+	FileProviderVolumeUnsupportedReasonUnknown FileProviderManagerDisconnectionOptions = 1
+	FileProviderVolumeUnsupportedReasonNonAPFS FileProviderManagerDisconnectionOptions = 1
+	FileProviderVolumeUnsupportedReasonNonEncrypted FileProviderManagerDisconnectionOptions = 1
+	FileProviderVolumeUnsupportedReasonReadOnly FileProviderManagerDisconnectionOptions = 1
+	FileProviderVolumeUnsupportedReasonNetwork FileProviderManagerDisconnectionOptions = 1
+	FileProviderVolumeUnsupportedReasonQuarantined FileProviderManagerDisconnectionOptions = 1
+	FileProviderCreateItemMayAlreadyExist FileProviderManagerDisconnectionOptions = 1
+	FileProviderCreateItemDeletionConflicted FileProviderManagerDisconnectionOptions = 2
+	FileProviderDeleteItemRecursive FileProviderManagerDisconnectionOptions = 1
+	FileProviderTestingOperationTypeIngestion FileProviderManagerDisconnectionOptions = 0
+	FileProviderTestingOperationTypeLookup FileProviderManagerDisconnectionOptions = 1
+	FileProviderTestingOperationTypeCreation FileProviderManagerDisconnectionOptions = 2
+	FileProviderTestingOperationTypeModification FileProviderManagerDisconnectionOptions = 3
+	FileProviderTestingOperationTypeDeletion FileProviderManagerDisconnectionOptions = 4
+	FileProviderTestingOperationTypeContentFetch FileProviderManagerDisconnectionOptions = 5
+	FileProviderTestingOperationTypeChildrenEnumeration FileProviderManagerDisconnectionOptions = 6
+	FileProviderTestingOperationTypeCollisionResolution FileProviderManagerDisconnectionOptions = 7
+	FileProviderTestingOperationSideDisk FileProviderManagerDisconnectionOptions = 0
+	FileProviderTestingOperationSideFileProvider FileProviderManagerDisconnectionOptions = 1
+)
+
 // NSFileProviderDomainRemovalMode - A mode indicating how the system handles user data when removing a domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/DomainRemovalMode
 type FileProviderDomainRemovalMode uint
+
+const (
+	FileProviderDomainRemovalModeRemoveAll FileProviderDomainRemovalMode = 0
+	FileProviderDomainRemovalModePreserveDirtyUserData FileProviderDomainRemovalMode = 1
+	FileProviderDomainRemovalModePreserveDownloadedUserData FileProviderDomainRemovalMode = 2
+	FileProviderManagerDisconnectionOptionsTemporary FileProviderDomainRemovalMode = 1
+	FileProviderVolumeUnsupportedReasonNone FileProviderDomainRemovalMode = 0
+	FileProviderVolumeUnsupportedReasonUnknown FileProviderDomainRemovalMode = 1
+	FileProviderVolumeUnsupportedReasonNonAPFS FileProviderDomainRemovalMode = 1
+	FileProviderVolumeUnsupportedReasonNonEncrypted FileProviderDomainRemovalMode = 1
+	FileProviderVolumeUnsupportedReasonReadOnly FileProviderDomainRemovalMode = 1
+	FileProviderVolumeUnsupportedReasonNetwork FileProviderDomainRemovalMode = 1
+	FileProviderVolumeUnsupportedReasonQuarantined FileProviderDomainRemovalMode = 1
+	FileProviderCreateItemMayAlreadyExist FileProviderDomainRemovalMode = 1
+	FileProviderCreateItemDeletionConflicted FileProviderDomainRemovalMode = 2
+	FileProviderDeleteItemRecursive FileProviderDomainRemovalMode = 1
+	FileProviderTestingOperationTypeIngestion FileProviderDomainRemovalMode = 0
+	FileProviderTestingOperationTypeLookup FileProviderDomainRemovalMode = 1
+	FileProviderTestingOperationTypeCreation FileProviderDomainRemovalMode = 2
+	FileProviderTestingOperationTypeModification FileProviderDomainRemovalMode = 3
+	FileProviderTestingOperationTypeDeletion FileProviderDomainRemovalMode = 4
+	FileProviderTestingOperationTypeContentFetch FileProviderDomainRemovalMode = 5
+	FileProviderTestingOperationTypeChildrenEnumeration FileProviderDomainRemovalMode = 6
+	FileProviderTestingOperationTypeCollisionResolution FileProviderDomainRemovalMode = 7
+	FileProviderTestingOperationSideDisk FileProviderDomainRemovalMode = 0
+	FileProviderTestingOperationSideFileProvider FileProviderDomainRemovalMode = 1
+)
 
 // NSFileProviderModifyItemOptions - Options for modifying items.
 //
@@ -227,7 +333,7 @@ const (
 	// FileProviderModifyItemMayAlreadyExist - An option that indicates the changes may already exist in your remote storage.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderModifyItemOptions/mayAlreadyExist
-	FileProviderModifyItemMayAlreadyExist FileProviderModifyItemOptions = 0
+	FileProviderModifyItemMayAlreadyExist FileProviderModifyItemOptions = 1
 )
 
 // NSFileProviderTestingOperationSide - The location where the operation takes place.
@@ -235,10 +341,28 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderTestingOperationSide
 type FileProviderTestingOperationSide uint
 
+const (
+	FileProviderTestingOperationSideDisk FileProviderTestingOperationSide = 0
+	FileProviderTestingOperationSideFileProvider FileProviderTestingOperationSide = 1
+)
+
 // NSFileProviderTestingOperationType - The action that an operation performs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderTestingOperationType
 type FileProviderTestingOperationType uint
+
+const (
+	FileProviderTestingOperationTypeIngestion FileProviderTestingOperationType = 0
+	FileProviderTestingOperationTypeLookup FileProviderTestingOperationType = 1
+	FileProviderTestingOperationTypeCreation FileProviderTestingOperationType = 2
+	FileProviderTestingOperationTypeModification FileProviderTestingOperationType = 3
+	FileProviderTestingOperationTypeDeletion FileProviderTestingOperationType = 4
+	FileProviderTestingOperationTypeContentFetch FileProviderTestingOperationType = 5
+	FileProviderTestingOperationTypeChildrenEnumeration FileProviderTestingOperationType = 6
+	FileProviderTestingOperationTypeCollisionResolution FileProviderTestingOperationType = 7
+	FileProviderTestingOperationSideDisk FileProviderTestingOperationType = 0
+	FileProviderTestingOperationSideFileProvider FileProviderTestingOperationType = 1
+)
 
 // NSFileProviderVolumeUnsupportedReason - Constants that describe why an external volume might not be eligible for storing a domain.
 //
@@ -251,22 +375,22 @@ const (
 	FileProviderVolumeUnsupportedReasonNone FileProviderVolumeUnsupportedReason = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason/network
-	FileProviderVolumeUnsupportedReasonNetwork FileProviderVolumeUnsupportedReason = 0
+	FileProviderVolumeUnsupportedReasonNetwork FileProviderVolumeUnsupportedReason = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason/nonAPFS
-	FileProviderVolumeUnsupportedReasonNonAPFS FileProviderVolumeUnsupportedReason = 0
+	FileProviderVolumeUnsupportedReasonNonAPFS FileProviderVolumeUnsupportedReason = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason/nonEncrypted
-	FileProviderVolumeUnsupportedReasonNonEncrypted FileProviderVolumeUnsupportedReason = 0
+	FileProviderVolumeUnsupportedReasonNonEncrypted FileProviderVolumeUnsupportedReason = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason/quarantined
-	FileProviderVolumeUnsupportedReasonQuarantined FileProviderVolumeUnsupportedReason = 0
+	FileProviderVolumeUnsupportedReasonQuarantined FileProviderVolumeUnsupportedReason = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason/readOnly
-	FileProviderVolumeUnsupportedReasonReadOnly FileProviderVolumeUnsupportedReason = 0
+	FileProviderVolumeUnsupportedReasonReadOnly FileProviderVolumeUnsupportedReason = 1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason/unknown
-	FileProviderVolumeUnsupportedReasonUnknown FileProviderVolumeUnsupportedReason = 0
+	FileProviderVolumeUnsupportedReasonUnknown FileProviderVolumeUnsupportedReason = 1
 )
 
 

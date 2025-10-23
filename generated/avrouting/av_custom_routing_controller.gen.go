@@ -51,7 +51,6 @@ type ICustomRoutingController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController
-
 type CustomRoutingController struct {
 	objectivec.Object
 }
@@ -96,23 +95,19 @@ func NewCustomRoutingController() CustomRoutingController {
 
 
 
-
 // Revokes an app’s authorization to connect to a route.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/invalidateAuthorization(for:)
-
 func (c_ CustomRoutingController) InvalidateAuthorizationForRoute(route IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateAuthorizationForRoute:"), route)
 }
-
 
 
 // Sets the active state of a route.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/setActive(_:for:)
-
 func (c_ CustomRoutingController) SetActiveForRoute(active bool, route IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActive:forRoute:"), active, route)
 }
@@ -122,7 +117,6 @@ func (c_ CustomRoutingController) SetActiveForRoute(active bool, route IAVCustom
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/customActionItems
-
 func (c_ CustomRoutingController) CustomActionItems() []CustomRoutingActionItem {
 	rv := objc.Send[[]CustomRoutingActionItem](c_.ID, objc.Sel("customActionItems"))
 	return rv
@@ -133,7 +127,6 @@ func (c_ CustomRoutingController) CustomActionItems() []CustomRoutingActionItem 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/customActionItems
-
 func (c_ CustomRoutingController) SetCustomActionItems(value []CustomRoutingActionItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -153,7 +146,6 @@ func (c_ CustomRoutingController) SetCustomActionItems(value []CustomRoutingActi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/delegate
-
 func (c_ CustomRoutingController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -164,7 +156,6 @@ func (c_ CustomRoutingController) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/delegate
-
 func (c_ CustomRoutingController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -174,7 +165,6 @@ func (c_ CustomRoutingController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-
 func (c_ CustomRoutingController) AuthorizedRoutes() AVCustomDeviceRoute {
 	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("authorizedRoutes"))
 	return rv
@@ -185,7 +175,6 @@ func (c_ CustomRoutingController) AuthorizedRoutes() AVCustomDeviceRoute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-
 func (c_ CustomRoutingController) SetAuthorizedRoutes(value IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAuthorizedRoutes:"), value)
 }
@@ -195,7 +184,6 @@ func (c_ CustomRoutingController) SetAuthorizedRoutes(value IAVCustomDeviceRoute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-
 func (c_ CustomRoutingController) KnownRouteIPs() AVCustomRoutingPartialIP {
 	rv := objc.Send[AVCustomRoutingPartialIP](c_.ID, objc.Sel("knownRouteIPs"))
 	return rv
@@ -206,7 +194,6 @@ func (c_ CustomRoutingController) KnownRouteIPs() AVCustomRoutingPartialIP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-
 func (c_ CustomRoutingController) SetKnownRouteIPs(value IAVCustomRoutingPartialIP) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
 }

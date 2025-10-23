@@ -51,7 +51,6 @@ type ICNContactFetchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest
-
 type CNContactFetchRequest struct {
 	CNFetchRequest
 }
@@ -98,12 +97,10 @@ func NewCNContactFetchRequest() CNContactFetchRequest {
 
 
 
-
 // Creates a fetch request for the specified keys.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/init(keysToFetch:)
-
 func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFetchRequest {
 	instance := getCNContactFetchRequestClass().Alloc()
 	rv := objc.Send[CNContactFetchRequest](instance.ID, objc.Sel("initWithKeysToFetch:"), keysToFetch)
@@ -117,7 +114,6 @@ func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
-
 func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("keysToFetch"))
 	return rv
@@ -128,7 +124,6 @@ func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
-
 func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -148,7 +143,6 @@ func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
-
 func (c_ CNContactFetchRequest) MutableObjects() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("mutableObjects"))
 	return rv
@@ -159,7 +153,6 @@ func (c_ CNContactFetchRequest) MutableObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
-
 func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
@@ -169,7 +162,6 @@ func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-
 func (c_ CNContactFetchRequest) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
@@ -180,7 +172,6 @@ func (c_ CNContactFetchRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-
 func (c_ CNContactFetchRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
@@ -190,7 +181,6 @@ func (c_ CNContactFetchRequest) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
-
 func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
 	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv
@@ -201,7 +191,6 @@ func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
-
 func (c_ CNContactFetchRequest) SetSortOrder(value ICNContactSortOrder) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortOrder:"), value)
 }
@@ -211,7 +200,6 @@ func (c_ CNContactFetchRequest) SetSortOrder(value ICNContactSortOrder) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
-
 func (c_ CNContactFetchRequest) UnifyResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("unifyResults"))
 	return rv
@@ -222,7 +210,6 @@ func (c_ CNContactFetchRequest) UnifyResults() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
-
 func (c_ CNContactFetchRequest) SetUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnifyResults:"), value)
 }

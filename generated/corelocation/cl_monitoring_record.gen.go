@@ -43,7 +43,6 @@ type IMonitoringRecord interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord
-
 type MonitoringRecord struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewMonitoringRecord() MonitoringRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord/condition
-
 func (m_ MonitoringRecord) Condition() CLCondition {
 	rv := objc.Send[CLCondition](m_.ID, objc.Sel("condition"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ MonitoringRecord) Condition() CLCondition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord/lastEvent
-
 func (m_ MonitoringRecord) LastEvent() CLMonitoringEvent {
 	rv := objc.Send[CLMonitoringEvent](m_.ID, objc.Sel("lastEvent"))
 	return rv

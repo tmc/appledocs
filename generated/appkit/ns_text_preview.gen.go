@@ -49,7 +49,6 @@ type ITextPreview interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview
-
 type TextPreview struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewTextPreview() TextPreview {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-
 func (t_ TextPreview) CandidateRects() foundation.Value {
 	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("candidateRects"))
 	return rv
@@ -109,7 +107,6 @@ func (t_ TextPreview) CandidateRects() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-
 func (t_ TextPreview) SetCandidateRects(value foundation.IValue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateRects:"), value)
 }
@@ -119,7 +116,6 @@ func (t_ TextPreview) SetCandidateRects(value foundation.IValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
-
 func (t_ TextPreview) PresentationFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("presentationFrame"))
 	return rv
@@ -130,7 +126,6 @@ func (t_ TextPreview) PresentationFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
-
 func (t_ TextPreview) SetPresentationFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPresentationFrame:"), value)
 }
@@ -140,7 +135,6 @@ func (t_ TextPreview) SetPresentationFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-
 func (t_ TextPreview) PreviewImage() Image {
 	rv := objc.Send[Image](t_.ID, objc.Sel("previewImage"))
 	return rv
@@ -151,7 +145,6 @@ func (t_ TextPreview) PreviewImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-
 func (t_ TextPreview) SetPreviewImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreviewImage:"), value)
 }

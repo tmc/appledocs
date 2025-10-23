@@ -45,7 +45,6 @@ type IDataMatrixCodeDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor
-
 type DataMatrixCodeDescriptor struct {
 	BarcodeDescriptor
 }
@@ -92,12 +91,10 @@ func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 
 
 
-
 // Initializes a Data Matrix code descriptor for the given payload and parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/init(payload:rowCount:columnCount:eccVersion:)
-
 func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.IData, rowCount int, columnCount int, eccVersion IDataMatrixCodeECCVersion) DataMatrixCodeDescriptor {
 	instance := getDataMatrixCodeDescriptorClass().Alloc()
 	rv := objc.Send[DataMatrixCodeDescriptor](instance.ID, objc.Sel("initWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
@@ -111,7 +108,6 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/descriptorWithPayload:rowCount:columnCount:eccVersion:
-
 func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.IData, rowCount int, columnCount int, eccVersion IDataMatrixCodeECCVersion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("descriptorWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	return rv
@@ -122,7 +118,6 @@ func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCoun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/columnCount-swift.property
-
 func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("columnCount"))
 	return rv
@@ -133,7 +128,6 @@ func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-swift.property
-
 func (d_ DataMatrixCodeDescriptor) EccVersion() DataMatrixCodeECCVersion {
 	rv := objc.Send[DataMatrixCodeECCVersion](d_.ID, objc.Sel("eccVersion"))
 	return rv
@@ -144,7 +138,6 @@ func (d_ DataMatrixCodeDescriptor) EccVersion() DataMatrixCodeECCVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/errorCorrectedPayload-swift.property
-
 func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
@@ -155,7 +148,6 @@ func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/rowCount-swift.property
-
 func (d_ DataMatrixCodeDescriptor) RowCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("rowCount"))
 	return rv

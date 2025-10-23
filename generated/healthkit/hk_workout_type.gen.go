@@ -40,7 +40,6 @@ type IHKWorkoutType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutType
-
 type HKWorkoutType struct {
 	HKSampleType
 }

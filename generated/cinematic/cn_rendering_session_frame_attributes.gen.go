@@ -46,7 +46,6 @@ type ICNRenderingSessionFrameAttributes interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes
-
 type CNRenderingSessionFrameAttributes struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewCNRenderingSessionFrameAttributes() CNRenderingSessionFrameAttributes {
 
 
 
-
 // Initializes the rendering frame attributes from a sample buffer read from a Cinematic metadata track.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithSampleBuffer:sessionAttributes:
-
 func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithSampleBuffer:sessionAttributes:"), sampleBuffer, sessionAttributes)
@@ -105,12 +102,10 @@ func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampl
 }
 
 
-
 // Initializes the rendering frame attributes from a timed metadata group read from a Cinematic metadata track.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
-
 func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup avfoundation.ITimedMetadataGroup, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
@@ -124,7 +119,6 @@ func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/fNumber
-
 func (c_ CNRenderingSessionFrameAttributes) FNumber() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("fNumber"))
 	return rv
@@ -135,7 +129,6 @@ func (c_ CNRenderingSessionFrameAttributes) FNumber() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/fNumber
-
 func (c_ CNRenderingSessionFrameAttributes) SetFNumber(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFNumber:"), value)
 }
@@ -145,7 +138,6 @@ func (c_ CNRenderingSessionFrameAttributes) SetFNumber(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
-
 func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
@@ -156,7 +148,6 @@ func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
-
 func (c_ CNRenderingSessionFrameAttributes) SetFocusDisparity(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusDisparity:"), value)
 }

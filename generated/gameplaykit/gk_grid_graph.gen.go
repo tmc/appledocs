@@ -47,7 +47,6 @@ type IGridGraph interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph
-
 type GridGraph struct {
 	Graph
 }
@@ -94,12 +93,10 @@ func NewGridGraph() GridGraph {
 
 
 
-
 // Initializes a graph that describes an integer grid with the specified dimensions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/init(fromGridStartingAt:width:height:diagonalsAllowed:)
-
 func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.Pointer, width int, height int, diagonalsAllowed bool) GridGraph {
 	instance := getGridGraphClass().Alloc()
 	rv := objc.Send[GridGraph](instance.ID, objc.Sel("initFromGridStartingAt:width:height:diagonalsAllowed:"), position, width, height, diagonalsAllowed)
@@ -108,12 +105,10 @@ func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.P
 }
 
 
-
 // Initializes a graph that describes an integer grid with the specified dimensions, using the specified node class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/init(fromGridStartingAt:width:height:diagonalsAllowed:nodeClass:)
-
 func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position unsafe.Pointer, width int, height int, diagonalsAllowed bool, nodeClass objc.Class) GridGraph {
 	instance := getGridGraphClass().Alloc()
 	rv := objc.Send[GridGraph](instance.ID, objc.Sel("initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:"), position, width, height, diagonalsAllowed, nodeClass)
@@ -127,7 +122,6 @@ func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/graphFromGridStartingAt:width:height:diagonalsAllowed:
-
 func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.Pointer, width int, height int, diagonalsAllowed bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphFromGridStartingAt:width:height:diagonalsAllowed:"), position, width, height, diagonalsAllowed)
 	return rv
@@ -138,40 +132,33 @@ func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowed(pos
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:
-
 func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position unsafe.Pointer, width int, height int, diagonalsAllowed bool, nodeClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:"), position, width, height, diagonalsAllowed, nodeClass)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/classForGenericArgument(at:)
-
 func (g_ GridGraph) ClassForGenericArgumentAtIndex(index uint) objc.Class {
 	rv := objc.Send[objc.Class](g_.ID, objc.Sel("classForGenericArgumentAtIndex:"), index)
 	return rv
 }
 
 
-
 // Adds the specified node to the graph, connecting it to its nearest neighbors in the grid.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/connectToAdjacentNodes(node:)
-
 func (g_ GridGraph) ConnectNodeToAdjacentNodes(node IGKGridGraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectNodeToAdjacentNodes:"), node)
 }
-
 
 
 // Returns the node in the graph at the specified grid coordinates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/node(atGridPosition:)
-
 func (g_ GridGraph) NodeAtGridPosition(position unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("nodeAtGridPosition:"), position)
 	return rv
@@ -182,7 +169,6 @@ func (g_ GridGraph) NodeAtGridPosition(position unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/diagonalsAllowed
-
 func (g_ GridGraph) DiagonalsAllowed() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("diagonalsAllowed"))
 	return rv
@@ -193,7 +179,6 @@ func (g_ GridGraph) DiagonalsAllowed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/gridHeight
-
 func (g_ GridGraph) GridHeight() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("gridHeight"))
 	return rv
@@ -204,7 +189,6 @@ func (g_ GridGraph) GridHeight() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/gridOrigin
-
 func (g_ GridGraph) GridOrigin() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gridOrigin"))
 	return rv
@@ -215,7 +199,6 @@ func (g_ GridGraph) GridOrigin() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/gridWidth
-
 func (g_ GridGraph) GridWidth() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("gridWidth"))
 	return rv

@@ -40,7 +40,6 @@ type ITextAttachmentCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell-swift.class
-
 type TextAttachmentCell struct {
 	Cell
 }

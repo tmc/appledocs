@@ -40,7 +40,11 @@ type IINCreateTaskListIntent interface {
 // A request to create a new task list.
 //
 // Siri creates an object when the user asks to create a new task list. The intent object can contain the title of the task list, a set of initial tasks, and possibly the group in which to create the task list. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task list.
+
+
+// A request to create a new task list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCreateTaskListIntent
 type INCreateTaskListIntent struct {
 	INIntent
@@ -87,8 +91,10 @@ func NewINCreateTaskListIntent() INCreateTaskListIntent {
 }
 
 
+
 // The group that contains the task list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/groupname
 func (i_ INCreateTaskListIntent) GroupName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("groupName"))
@@ -96,17 +102,18 @@ func (i_ INCreateTaskListIntent) GroupName() INSpeakableString {
 }
 
 
-// SetGroupName sets the value of the groupName property.
 // The group that contains the task list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/groupname
 func (i_ INCreateTaskListIntent) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
 
+
 // An array of strings containing the titles for individual tasks to add to the new task list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
 func (i_ INCreateTaskListIntent) TaskTitles() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("taskTitles"))
@@ -114,17 +121,18 @@ func (i_ INCreateTaskListIntent) TaskTitles() INSpeakableString {
 }
 
 
-// SetTaskTitles sets the value of the taskTitles property.
 // An array of strings containing the titles for individual tasks to add to the new task list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
 func (i_ INCreateTaskListIntent) SetTaskTitles(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
 
+
 // The title of the task list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/title
 func (i_ INCreateTaskListIntent) Title() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("title"))
@@ -132,10 +140,9 @@ func (i_ INCreateTaskListIntent) Title() INSpeakableString {
 }
 
 
-// SetTitle sets the value of the title property.
 // The title of the task list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/title
 func (i_ INCreateTaskListIntent) SetTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)

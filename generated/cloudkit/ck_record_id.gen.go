@@ -59,7 +59,6 @@ type ICKRecordID interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID
-
 type CKRecordID struct {
 	objectivec.Object
 }
@@ -104,12 +103,10 @@ func NewCKRecordID() CKRecordID {
 
 
 
-
 // Creates a new record ID with the specified name in the default zone.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/init(recordName:)
-
 func NewCKRecordIDWithRecordName(recordName string) CKRecordID {
 	instance := getCKRecordIDClass().Alloc()
 	rv := objc.Send[CKRecordID](instance.ID, objc.Sel("initWithRecordName:"), objc.String(recordName))
@@ -118,12 +115,10 @@ func NewCKRecordIDWithRecordName(recordName string) CKRecordID {
 }
 
 
-
 // Creates a new record ID with the specified name and zone information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordID/initWithRecordName:zoneID:
-
 func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID ICKRecordZoneID) CKRecordID {
 	instance := getCKRecordIDClass().Alloc()
 	rv := objc.Send[CKRecordID](instance.ID, objc.Sel("initWithRecordName:zoneID:"), objc.String(recordName), zoneID)
@@ -137,7 +132,6 @@ func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID ICKRecordZoneID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/recordName
-
 func (c_ CKRecordID) RecordName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordName"))
 	return rv
@@ -148,7 +142,6 @@ func (c_ CKRecordID) RecordName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/zoneID
-
 func (c_ CKRecordID) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
@@ -159,7 +152,6 @@ func (c_ CKRecordID) ZoneID() CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-
 func (c_ CKRecordID) CreationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("creationDate"))
 	return rv
@@ -170,7 +162,6 @@ func (c_ CKRecordID) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-
 func (c_ CKRecordID) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
 }
@@ -180,7 +171,6 @@ func (c_ CKRecordID) SetCreationDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-
 func (c_ CKRecordID) CreatorUserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("creatorUserRecordID"))
 	return rv
@@ -191,7 +181,6 @@ func (c_ CKRecordID) CreatorUserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-
 func (c_ CKRecordID) SetCreatorUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreatorUserRecordID:"), value)
 }
@@ -201,7 +190,6 @@ func (c_ CKRecordID) SetCreatorUserRecordID(value ICKRecordID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
-
 func (c_ CKRecordID) LastModifiedUserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("lastModifiedUserRecordID"))
 	return rv
@@ -212,7 +200,6 @@ func (c_ CKRecordID) LastModifiedUserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
-
 func (c_ CKRecordID) SetLastModifiedUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLastModifiedUserRecordID:"), value)
 }
@@ -222,7 +209,6 @@ func (c_ CKRecordID) SetLastModifiedUserRecordID(value ICKRecordID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-
 func (c_ CKRecordID) ModificationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("modificationDate"))
 	return rv
@@ -233,7 +219,6 @@ func (c_ CKRecordID) ModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-
 func (c_ CKRecordID) SetModificationDate(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
 }
@@ -243,7 +228,6 @@ func (c_ CKRecordID) SetModificationDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-
 func (c_ CKRecordID) RecordChangeTag() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
@@ -254,7 +238,6 @@ func (c_ CKRecordID) RecordChangeTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-
 func (c_ CKRecordID) SetRecordChangeTag(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
 }
@@ -264,7 +247,6 @@ func (c_ CKRecordID) SetRecordChangeTag(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-
 func (c_ CKRecordID) RecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
@@ -275,7 +257,6 @@ func (c_ CKRecordID) RecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-
 func (c_ CKRecordID) SetRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
 }
@@ -285,7 +266,6 @@ func (c_ CKRecordID) SetRecordID(value ICKRecordID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
-
 func (c_ CKRecordID) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
@@ -296,7 +276,6 @@ func (c_ CKRecordID) RecordType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
-
 func (c_ CKRecordID) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
@@ -306,7 +285,6 @@ func (c_ CKRecordID) SetRecordType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare
-
 func (c_ CKRecordID) CKRecordNameZoneWideShare() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKRecordNameZoneWideShare"))
 	return rv

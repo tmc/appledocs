@@ -41,7 +41,6 @@ type IObstacle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacle
-
 type Obstacle struct {
 	objectivec.Object
 }

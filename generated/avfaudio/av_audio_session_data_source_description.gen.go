@@ -61,7 +61,6 @@ type IAudioSessionDataSourceDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription
-
 type AudioSessionDataSourceDescription struct {
 	objectivec.Object
 }
@@ -106,12 +105,10 @@ func NewAudioSessionDataSourceDescription() AudioSessionDataSourceDescription {
 
 
 
-
 // Selects the preferred directivity configuration for the data source.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/setPreferredPolarPattern(_:)
-
 func (a_ AudioSessionDataSourceDescription) SetPreferredPolarPatternError(pattern IAudioSessionPolarPattern, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredPolarPattern:error:"), pattern, outError)
 	return rv
@@ -122,7 +119,6 @@ func (a_ AudioSessionDataSourceDescription) SetPreferredPolarPatternError(patter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/preferredPolarPattern
-
 func (a_ AudioSessionDataSourceDescription) PreferredPolarPattern() AudioSessionPolarPattern {
 	rv := objc.Send[AudioSessionPolarPattern](a_.ID, objc.Sel("preferredPolarPattern"))
 	return rv
@@ -133,7 +129,6 @@ func (a_ AudioSessionDataSourceDescription) PreferredPolarPattern() AudioSession
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/selectedPolarPattern
-
 func (a_ AudioSessionDataSourceDescription) SelectedPolarPattern() AudioSessionPolarPattern {
 	rv := objc.Send[AudioSessionPolarPattern](a_.ID, objc.Sel("selectedPolarPattern"))
 	return rv
@@ -144,7 +139,6 @@ func (a_ AudioSessionDataSourceDescription) SelectedPolarPattern() AudioSessionP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/supportedPolarPatterns
-
 func (a_ AudioSessionDataSourceDescription) SupportedPolarPatterns() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("supportedPolarPatterns"))
 	return rv
@@ -155,7 +149,6 @@ func (a_ AudioSessionDataSourceDescription) SupportedPolarPatterns() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasource
-
 func (a_ AudioSessionDataSourceDescription) OutputDataSource() AVAudioSessionDataSourceDescription {
 	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSource"))
 	return rv
@@ -166,7 +159,6 @@ func (a_ AudioSessionDataSourceDescription) OutputDataSource() AVAudioSessionDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasource
-
 func (a_ AudioSessionDataSourceDescription) SetOutputDataSource(value IAVAudioSessionDataSourceDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputDataSource:"), value)
 }
@@ -176,7 +168,6 @@ func (a_ AudioSessionDataSourceDescription) SetOutputDataSource(value IAVAudioSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasources
-
 func (a_ AudioSessionDataSourceDescription) OutputDataSources() AVAudioSessionDataSourceDescription {
 	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSources"))
 	return rv
@@ -187,7 +178,6 @@ func (a_ AudioSessionDataSourceDescription) OutputDataSources() AVAudioSessionDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasources
-
 func (a_ AudioSessionDataSourceDescription) SetOutputDataSources(value IAVAudioSessionDataSourceDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputDataSources:"), value)
 }
@@ -197,7 +187,6 @@ func (a_ AudioSessionDataSourceDescription) SetOutputDataSources(value IAVAudioS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
-
 func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("dataSourceID"))
 	return rv
@@ -208,7 +197,6 @@ func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
-
 func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceID:"), value)
 }
@@ -218,7 +206,6 @@ func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.INu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
-
 func (a_ AudioSessionDataSourceDescription) DataSourceName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("dataSourceName"))
 	return rv
@@ -229,7 +216,6 @@ func (a_ AudioSessionDataSourceDescription) DataSourceName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
-
 func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceName:"), objc.String(value))
 }
@@ -239,7 +225,6 @@ func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
-
 func (a_ AudioSessionDataSourceDescription) Location() corelocation.Location {
 	rv := objc.Send[corelocation.Location](a_.ID, objc.Sel("location"))
 	return rv
@@ -250,7 +235,6 @@ func (a_ AudioSessionDataSourceDescription) Location() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
-
 func (a_ AudioSessionDataSourceDescription) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
@@ -260,7 +244,6 @@ func (a_ AudioSessionDataSourceDescription) SetLocation(value corelocation.ILoca
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/orientation
-
 func (a_ AudioSessionDataSourceDescription) Orientation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("orientation"))
 	return rv
@@ -271,7 +254,6 @@ func (a_ AudioSessionDataSourceDescription) Orientation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/orientation
-
 func (a_ AudioSessionDataSourceDescription) SetOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOrientation:"), value)
 }
@@ -281,7 +263,6 @@ func (a_ AudioSessionDataSourceDescription) SetOrientation(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-
 func (a_ AudioSessionDataSourceDescription) DataSources() AVAudioSessionDataSourceDescription {
 	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("dataSources"))
 	return rv
@@ -292,7 +273,6 @@ func (a_ AudioSessionDataSourceDescription) DataSources() AVAudioSessionDataSour
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-
 func (a_ AudioSessionDataSourceDescription) SetDataSources(value IAVAudioSessionDataSourceDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSources:"), value)
 }

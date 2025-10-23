@@ -46,7 +46,6 @@ type IAltimeter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter
-
 type Altimeter struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewAltimeter() Altimeter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/authorizationStatus()
-
 func (ac _AltimeterClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(ac.class), objc.Sel("authorizationStatus"))
 	return rv
@@ -106,7 +104,6 @@ func (ac _AltimeterClass) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/isAbsoluteAltitudeAvailable()
-
 func (ac _AltimeterClass) IsAbsoluteAltitudeAvailable() bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("isAbsoluteAltitudeAvailable"))
 	return rv
@@ -117,52 +114,43 @@ func (ac _AltimeterClass) IsAbsoluteAltitudeAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/isRelativeAltitudeAvailable()
-
 func (ac _AltimeterClass) IsRelativeAltitudeAvailable() bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("isRelativeAltitudeAvailable"))
 	return rv
 }
 
 
-
 // Starts the delivery of absolute altitude data to the specified handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startAbsoluteAltitudeUpdates(to:withHandler:)
-
 func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startAbsoluteAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
-
 
 
 // Starts the delivery of relative altitude data to the specified handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startRelativeAltitudeUpdates(to:withHandler:)
-
 func (a_ Altimeter) StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startRelativeAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
-
 
 
 // Stops the delivery of absolute altitude data for this altimeter object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/stopAbsoluteAltitudeUpdates()
-
 func (a_ Altimeter) StopAbsoluteAltitudeUpdates() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stopAbsoluteAltitudeUpdates"))
 }
-
 
 
 // Stops the delivery of relative altitude data for the altimeter object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/stopRelativeAltitudeUpdates()
-
 func (a_ Altimeter) StopRelativeAltitudeUpdates() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stopRelativeAltitudeUpdates"))
 }

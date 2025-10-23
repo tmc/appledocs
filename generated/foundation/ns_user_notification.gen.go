@@ -32,16 +32,16 @@ type IUserNotification interface {
 	objectivec.IObject
 	ActionButtonTitle() string
 	SetActionButtonTitle(value string)
-	ActivationType() UserNotificationActivationType
-	ActualDeliveryDate() NSDate
+	ActivationType() NSUserNotificationActivationType
+	ActualDeliveryDate() IDate
 	AdditionalActions() []UserNotificationAction
 	SetAdditionalActions(value []UserNotificationAction)
-	AdditionalActivationAction() NSUserNotificationAction
-	DeliveryDate() NSDate
+	AdditionalActivationAction() IUserNotificationAction
+	DeliveryDate() IDate
 	SetDeliveryDate(value IDate)
-	DeliveryRepeatInterval() NSDateComponents
+	DeliveryRepeatInterval() IDateComponents
 	SetDeliveryRepeatInterval(value IDateComponents)
-	DeliveryTimeZone() NSTimeZone
+	DeliveryTimeZone() ITimeZone
 	SetDeliveryTimeZone(value ITimeZone)
 	HasActionButton() bool
 	SetHasActionButton(value bool)
@@ -55,7 +55,7 @@ type IUserNotification interface {
 	Remote() bool
 	OtherButtonTitle() string
 	SetOtherButtonTitle(value string)
-	Response() NSAttributedString
+	Response() IAttributedString
 	ResponsePlaceholder() string
 	SetResponsePlaceholder(value string)
 	SoundName() string
@@ -150,7 +150,7 @@ func (u_ UserNotification) SetActionButtonTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/activationType-swift.property
-func (u_ UserNotification) ActivationType() UserNotificationActivationType {
+func (u_ UserNotification) ActivationType() NSUserNotificationActivationType {
 	rv := objc.Send[UserNotificationActivationType](u_.ID, objc.Sel("activationType"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (u_ UserNotification) ActivationType() UserNotificationActivationType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actualDeliveryDate
-func (u_ UserNotification) ActualDeliveryDate() NSDate {
+func (u_ UserNotification) ActualDeliveryDate() IDate {
 	rv := objc.Send[NSDate](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
 }
@@ -199,7 +199,7 @@ func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActivationAction
-func (u_ UserNotification) AdditionalActivationAction() NSUserNotificationAction {
+func (u_ UserNotification) AdditionalActivationAction() IUserNotificationAction {
 	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (u_ UserNotification) AdditionalActivationAction() NSUserNotificationAction
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryDate
-func (u_ UserNotification) DeliveryDate() NSDate {
+func (u_ UserNotification) DeliveryDate() IDate {
 	rv := objc.Send[NSDate](u_.ID, objc.Sel("deliveryDate"))
 	return rv
 }
@@ -228,7 +228,7 @@ func (u_ UserNotification) SetDeliveryDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryRepeatInterval
-func (u_ UserNotification) DeliveryRepeatInterval() NSDateComponents {
+func (u_ UserNotification) DeliveryRepeatInterval() IDateComponents {
 	rv := objc.Send[NSDateComponents](u_.ID, objc.Sel("deliveryRepeatInterval"))
 	return rv
 }
@@ -247,7 +247,7 @@ func (u_ UserNotification) SetDeliveryRepeatInterval(value IDateComponents) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryTimeZone
-func (u_ UserNotification) DeliveryTimeZone() NSTimeZone {
+func (u_ UserNotification) DeliveryTimeZone() ITimeZone {
 	rv := objc.Send[NSTimeZone](u_.ID, objc.Sel("deliveryTimeZone"))
 	return rv
 }
@@ -381,7 +381,7 @@ func (u_ UserNotification) SetOtherButtonTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/response
-func (u_ UserNotification) Response() NSAttributedString {
+func (u_ UserNotification) Response() IAttributedString {
 	rv := objc.Send[NSAttributedString](u_.ID, objc.Sel("response"))
 	return rv
 }

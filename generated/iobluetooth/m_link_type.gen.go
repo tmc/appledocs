@@ -32,7 +32,9 @@ type ImLinkType interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mLinkType
 type mLinkType struct {
 	objectivec.Object

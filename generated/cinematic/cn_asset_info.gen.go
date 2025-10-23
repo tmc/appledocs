@@ -42,7 +42,6 @@ type ICNAssetInfo interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t
-
 type CNAssetInfo struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewCNAssetInfo() CNAssetInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/checkIfCinematic:completionHandler:
-
 func (cc _CNAssetInfoClass) CheckIfCinematicCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("checkIfCinematic:completionHandler:"), asset, completionHandler)
 }
@@ -101,7 +99,6 @@ func (cc _CNAssetInfoClass) CheckIfCinematicCompletionHandler(asset avfoundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/frameTimingTrack
-
 func (c_ CNAssetInfo) FrameTimingTrack() avfoundation.AssetTrack {
 	rv := objc.Send[avfoundation.AssetTrack](c_.ID, objc.Sel("frameTimingTrack"))
 	return rv
@@ -112,7 +109,6 @@ func (c_ CNAssetInfo) FrameTimingTrack() avfoundation.AssetTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/videoCompositionTracks
-
 func (c_ CNAssetInfo) VideoCompositionTracks() []avfoundation.AssetTrack {
 	rv := objc.Send[[]avfoundation.AssetTrack](c_.ID, objc.Sel("videoCompositionTracks"))
 	return rv

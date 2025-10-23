@@ -49,7 +49,6 @@ type ICollectionLayoutAnchor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor
-
 type CollectionLayoutAnchor struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewCollectionLayoutAnchor() CollectionLayoutAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/isFractionalOffset
-
 func (c_ CollectionLayoutAnchor) IsFractionalOffset() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFractionalOffset"))
 	return rv
@@ -109,7 +107,6 @@ func (c_ CollectionLayoutAnchor) IsFractionalOffset() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/edges
-
 func (c_ CollectionLayoutAnchor) Edges() DirectionalRectEdge {
 	rv := objc.Send[DirectionalRectEdge](c_.ID, objc.Sel("edges"))
 	return rv
@@ -120,7 +117,6 @@ func (c_ CollectionLayoutAnchor) Edges() DirectionalRectEdge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/edges
-
 func (c_ CollectionLayoutAnchor) SetEdges(value IDirectionalRectEdge) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEdges:"), value)
 }
@@ -130,7 +126,6 @@ func (c_ CollectionLayoutAnchor) SetEdges(value IDirectionalRectEdge) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isabsoluteoffset
-
 func (c_ CollectionLayoutAnchor) IsAbsoluteOffset() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAbsoluteOffset"))
 	return rv
@@ -141,7 +136,6 @@ func (c_ CollectionLayoutAnchor) IsAbsoluteOffset() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isabsoluteoffset
-
 func (c_ CollectionLayoutAnchor) SetIsAbsoluteOffset(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAbsoluteOffset:"), value)
 }
@@ -151,7 +145,6 @@ func (c_ CollectionLayoutAnchor) SetIsAbsoluteOffset(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/offset
-
 func (c_ CollectionLayoutAnchor) Offset() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("offset"))
 	return rv
@@ -162,7 +155,6 @@ func (c_ CollectionLayoutAnchor) Offset() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/offset
-
 func (c_ CollectionLayoutAnchor) SetOffset(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOffset:"), value)
 }

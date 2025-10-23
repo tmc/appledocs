@@ -48,7 +48,7 @@ type IPersistentStoreDescription interface {
 	SetShouldMigrateStoreAutomatically(value bool)
 	SqlitePragmas() unsafe.Pointer
 	Timeout() foundation.TimeInterval
-	SetTimeout(value foundation.TimeInterval)
+	SetTimeout(value foundation.ITimeInterval)
 	URL() foundation.URL
 	SetURL(value foundation.IURL)
 	IsReadOnly() bool
@@ -64,7 +64,6 @@ type IPersistentStoreDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription
-
 type PersistentStoreDescription struct {
 	objectivec.Object
 }
@@ -109,12 +108,10 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 
 
 
-
 // Initializes the receiver with a URL for the store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/init(url:)
-
 func NewPersistentStoreDescriptionWithURL(url foundation.IURL) PersistentStoreDescription {
 	instance := getPersistentStoreDescriptionClass().Alloc()
 	rv := objc.Send[PersistentStoreDescription](instance.ID, objc.Sel("initWithURL:"), url)
@@ -128,30 +125,25 @@ func NewPersistentStoreDescriptionWithURL(url foundation.IURL) PersistentStoreDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/persistentStoreDescriptionWithURL:
-
 func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentStoreDescriptionWithURL:"), URL)
 	return rv
 }
 
 
-
 // Sets an option on the store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setOption(_:forKey:)
-
 func (p_ PersistentStoreDescription) SetOptionForKey(option objectivec.IObject, key string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOption:forKey:"), option, objc.String(key))
 }
-
 
 
 // Allows you to set pragmas for the SQLite store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setValue(_:forPragmaNamed:)
-
 func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value objectivec.IObject, name string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, objc.String(name))
 }
@@ -161,7 +153,6 @@ func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value objectivec.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
-
 func (p_ PersistentStoreDescription) CloudKitContainerOptions() NSPersistentCloudKitContainerOptions {
 	rv := objc.Send[NSPersistentCloudKitContainerOptions](p_.ID, objc.Sel("cloudKitContainerOptions"))
 	return rv
@@ -172,7 +163,6 @@ func (p_ PersistentStoreDescription) CloudKitContainerOptions() NSPersistentClou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
-
 func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value NSPersistentCloudKitContainerOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudKitContainerOptions:"), value)
 }
@@ -182,7 +172,6 @@ func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value NSPersist
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/configuration
-
 func (p_ PersistentStoreDescription) Configuration() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("configuration"))
 	return rv
@@ -193,7 +182,6 @@ func (p_ PersistentStoreDescription) Configuration() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/configuration
-
 func (p_ PersistentStoreDescription) SetConfiguration(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), objc.String(value))
 }
@@ -203,7 +191,6 @@ func (p_ PersistentStoreDescription) SetConfiguration(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/isReadOnly
-
 func (p_ PersistentStoreDescription) ReadOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("readOnly"))
 	return rv
@@ -214,7 +201,6 @@ func (p_ PersistentStoreDescription) ReadOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/isReadOnly
-
 func (p_ PersistentStoreDescription) SetReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReadOnly:"), value)
 }
@@ -224,7 +210,6 @@ func (p_ PersistentStoreDescription) SetReadOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/options
-
 func (p_ PersistentStoreDescription) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
 	return rv
@@ -235,7 +220,6 @@ func (p_ PersistentStoreDescription) Options() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldAddStoreAsynchronously
-
 func (p_ PersistentStoreDescription) ShouldAddStoreAsynchronously() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shouldAddStoreAsynchronously"))
 	return rv
@@ -246,7 +230,6 @@ func (p_ PersistentStoreDescription) ShouldAddStoreAsynchronously() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldAddStoreAsynchronously
-
 func (p_ PersistentStoreDescription) SetShouldAddStoreAsynchronously(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldAddStoreAsynchronously:"), value)
 }
@@ -256,7 +239,6 @@ func (p_ PersistentStoreDescription) SetShouldAddStoreAsynchronously(value bool)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldInferMappingModelAutomatically
-
 func (p_ PersistentStoreDescription) ShouldInferMappingModelAutomatically() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shouldInferMappingModelAutomatically"))
 	return rv
@@ -267,7 +249,6 @@ func (p_ PersistentStoreDescription) ShouldInferMappingModelAutomatically() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldInferMappingModelAutomatically
-
 func (p_ PersistentStoreDescription) SetShouldInferMappingModelAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldInferMappingModelAutomatically:"), value)
 }
@@ -277,7 +258,6 @@ func (p_ PersistentStoreDescription) SetShouldInferMappingModelAutomatically(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldMigrateStoreAutomatically
-
 func (p_ PersistentStoreDescription) ShouldMigrateStoreAutomatically() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shouldMigrateStoreAutomatically"))
 	return rv
@@ -288,7 +268,6 @@ func (p_ PersistentStoreDescription) ShouldMigrateStoreAutomatically() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/shouldMigrateStoreAutomatically
-
 func (p_ PersistentStoreDescription) SetShouldMigrateStoreAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldMigrateStoreAutomatically:"), value)
 }
@@ -298,7 +277,6 @@ func (p_ PersistentStoreDescription) SetShouldMigrateStoreAutomatically(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/sqlitePragmas
-
 func (p_ PersistentStoreDescription) SqlitePragmas() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sqlitePragmas"))
 	return rv
@@ -309,7 +287,6 @@ func (p_ PersistentStoreDescription) SqlitePragmas() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
-
 func (p_ PersistentStoreDescription) Timeout() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](p_.ID, objc.Sel("timeout"))
 	return rv
@@ -320,8 +297,7 @@ func (p_ PersistentStoreDescription) Timeout() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
-
-func (p_ PersistentStoreDescription) SetTimeout(value foundation.TimeInterval) {
+func (p_ PersistentStoreDescription) SetTimeout(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeout:"), value)
 }
 
@@ -330,7 +306,6 @@ func (p_ PersistentStoreDescription) SetTimeout(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
-
 func (p_ PersistentStoreDescription) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("URL"))
 	return rv
@@ -341,7 +316,6 @@ func (p_ PersistentStoreDescription) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
-
 func (p_ PersistentStoreDescription) SetURL(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
 }
@@ -351,7 +325,6 @@ func (p_ PersistentStoreDescription) SetURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
-
 func (p_ PersistentStoreDescription) IsReadOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
 	return rv
@@ -362,7 +335,6 @@ func (p_ PersistentStoreDescription) IsReadOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/isreadonly
-
 func (p_ PersistentStoreDescription) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
 }
@@ -372,7 +344,6 @@ func (p_ PersistentStoreDescription) SetIsReadOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
-
 func (p_ PersistentStoreDescription) Type() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
@@ -383,7 +354,6 @@ func (p_ PersistentStoreDescription) Type() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
-
 func (p_ PersistentStoreDescription) SetType(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }

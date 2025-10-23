@@ -41,7 +41,6 @@ type ICBCentral interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentral
-
 type CBCentral struct {
 	CBPeer
 }
@@ -92,7 +91,6 @@ func NewCBCentral() CBCentral {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentral/maximumUpdateValueLength
-
 func (c_ CBCentral) MaximumUpdateValueLength() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumUpdateValueLength"))
 	return rv

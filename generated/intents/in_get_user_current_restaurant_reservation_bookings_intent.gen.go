@@ -43,7 +43,11 @@ type IINGetUserCurrentRestaurantReservationBookingsIntent interface {
 // A request for the list of the user’s current reservations.
 //
 // An object asks you to retrieve the current restaurant reservations associated with the user. Maps sends this intent to your Intents extension when it needs information about all of the user’s current reservations, or when it needs information about one or more specific reservations. Use the properties of this object to determine which reservations to return. When searching for reservations, use the properties to fetch only the specified reservation, or use the property to fetch pending reservations only at the specified restaurant. If both of those properties are , retrieve all of the user’s currently pending reservations. After fetching the appropriate set of reservations, use the and properties to limit the set of results you return as part of your response. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm any parameters and create an object using the found results.
+
+
+// A request for the list of the user’s current reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent
 type INGetUserCurrentRestaurantReservationBookingsIntent struct {
 	INIntent
@@ -90,8 +94,10 @@ func NewINGetUserCurrentRestaurantReservationBookingsIntent() INGetUserCurrentRe
 }
 
 
+
 // An identifier to use when searching for the user’s reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/reservationIdentifier
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("reservationIdentifier"))
@@ -99,17 +105,18 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentif
 }
 
 
-// SetReservationIdentifier sets the value of the reservationIdentifier property.
 // An identifier to use when searching for the user’s reservations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/reservationIdentifier
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), objc.String(value))
 }
 
+
 // A restaurant to use as a filter when searching for reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/restaurant
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) Restaurant() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurant"))
@@ -117,17 +124,18 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) Restaurant() unsaf
 }
 
 
-// SetRestaurant sets the value of the restaurant property.
 // A restaurant to use as a filter when searching for reservations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/restaurant
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
 }
 
+
 // The earliest date to associate with any reservations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDateForResults() foundation.Date {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("earliestBookingDateForResults"))
@@ -135,17 +143,18 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDat
 }
 
 
-// SetEarliestBookingDateForResults sets the value of the earliestBookingDateForResults property.
 // The earliest date to associate with any reservations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
 }
 
+
 // The maximum number of reservations to include in your response object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/maximumnumberofresults
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) MaximumNumberOfResults() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("maximumNumberOfResults"))
@@ -153,10 +162,9 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) MaximumNumberOfRes
 }
 
 
-// SetMaximumNumberOfResults sets the value of the maximumNumberOfResults property.
 // The maximum number of reservations to include in your response object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/maximumnumberofresults
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)

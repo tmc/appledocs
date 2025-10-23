@@ -124,7 +124,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1452794-dispatch_group_wait
-
 func dispatch_group_wait(p0 unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_group_wait(p0)
 	}
@@ -138,7 +137,6 @@ func dispatch_group_wait(p0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1452797-dispatch_barrier_async
-
 func dispatch_barrier_async(p0 unsafe.Pointer) {
 	_dispatch_barrier_async(p0)
 	}
@@ -152,7 +150,6 @@ func dispatch_barrier_async(p0 unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1452876-dispatch_after
-
 func dispatch_after(p0 unsafe.Pointer) {
 	_dispatch_after(p0)
 	}
@@ -166,7 +163,6 @@ func dispatch_after(p0 unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1453057-dispatch_async
-
 func dispatch_async(p0 unsafe.Pointer) {
 	_dispatch_async(p0)
 	}
@@ -180,7 +176,6 @@ func dispatch_async(p0 unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1453087-dispatch_semaphore_wait
-
 func dispatch_semaphore_wait(p0 unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_semaphore_wait(p0)
 	}
@@ -194,7 +189,6 @@ func dispatch_semaphore_wait(p0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1496306-dispatch_retain
-
 func dispatch_retain(p0 unsafe.Pointer) {
 	_dispatch_retain(p0)
 	}
@@ -208,7 +202,6 @@ func dispatch_retain(p0 unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/dispatch/1496328-dispatch_release
-
 func dispatch_release(p0 unsafe.Pointer) {
 	_dispatch_release(p0)
 	}
@@ -222,7 +215,6 @@ func dispatch_release(p0 unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchGroup/enter()
-
 func dispatch_group_enter(group unsafe.Pointer) {
 	_dispatch_group_enter(group)
 	}
@@ -236,7 +228,6 @@ func dispatch_group_enter(group unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchGroup/leave()
-
 func dispatch_group_leave(group unsafe.Pointer) {
 	_dispatch_group_leave(group)
 	}
@@ -250,7 +241,6 @@ func dispatch_group_leave(group unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject/activate()
-
 func dispatch_activate(object unsafe.Pointer) {
 	_dispatch_activate(object)
 	}
@@ -264,7 +254,6 @@ func dispatch_activate(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject/resume()
-
 func dispatch_resume(object unsafe.Pointer) {
 	_dispatch_resume(object)
 	}
@@ -278,7 +267,6 @@ func dispatch_resume(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject/suspend()
-
 func dispatch_suspend(object unsafe.Pointer) {
 	_dispatch_suspend(object)
 	}
@@ -292,7 +280,6 @@ func dispatch_suspend(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatchMain()
-
 func dispatch_main() {
 	_dispatch_main()
 	}
@@ -306,7 +293,6 @@ func dispatch_main() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_after_f
-
 func dispatch_after_f(when unsafe.Pointer, queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_after_f(when, queue, context, work)
 	}
@@ -318,7 +304,6 @@ func dispatch_after_f(when unsafe.Pointer, queue unsafe.Pointer, context unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_allow_send_signals(_:)
-
 func dispatch_allow_send_signals(preserve_signum int) int {
 	return _dispatch_allow_send_signals(preserve_signum)
 	}
@@ -332,7 +317,6 @@ func dispatch_allow_send_signals(preserve_signum int) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_async_f
-
 func dispatch_async_f(queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_async_f(queue, context, work)
 	}
@@ -346,7 +330,6 @@ func dispatch_async_f(queue unsafe.Pointer, context unsafe.Pointer, work unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_barrier_async_and_wait
-
 func dispatch_barrier_async_and_wait(queue unsafe.Pointer, block unsafe.Pointer) {
 	_dispatch_barrier_async_and_wait(queue, block)
 	}
@@ -360,7 +343,6 @@ func dispatch_barrier_async_and_wait(queue unsafe.Pointer, block unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_block_create_with_qos_class
-
 func dispatch_block_create_with_qos_class(flags unsafe.Pointer, qos_class unsafe.Pointer, relative_priority int, block unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_block_create_with_qos_class(flags, qos_class, relative_priority, block)
 	}
@@ -374,7 +356,6 @@ func dispatch_block_create_with_qos_class(flags unsafe.Pointer, qos_class unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_block_perform
-
 func dispatch_block_perform(flags unsafe.Pointer, block unsafe.Pointer) {
 	_dispatch_block_perform(flags, block)
 	}
@@ -388,7 +369,6 @@ func dispatch_block_perform(flags unsafe.Pointer, block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_data_create
-
 func dispatch_data_create(buffer unsafe.Pointer, size unsafe.Pointer, queue unsafe.Pointer, destructor unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_data_create(buffer, size, queue, destructor)
 	}
@@ -402,7 +382,6 @@ func dispatch_data_create(buffer unsafe.Pointer, size unsafe.Pointer, queue unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_data_create_map
-
 func dispatch_data_create_map(data unsafe.Pointer, buffer_ptr unsafe.Pointer, size_ptr unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_data_create_map(data, buffer_ptr, size_ptr)
 	}
@@ -412,7 +391,6 @@ func dispatch_data_create_map(data unsafe.Pointer, buffer_ptr unsafe.Pointer, si
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_debugv(_:_:_:)
-
 func dispatch_debugv(object unsafe.Pointer, message unsafe.Pointer, ap unsafe.Pointer) {
 	_dispatch_debugv(object, message, ap)
 	}
@@ -426,7 +404,6 @@ func dispatch_debugv(object unsafe.Pointer, message unsafe.Pointer, ap unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_get_context
-
 func dispatch_get_context(object unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_get_context(object)
 	}
@@ -438,7 +415,6 @@ func dispatch_get_context(object unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_get_current_queue()
-
 func dispatch_get_current_queue() unsafe.Pointer {
 	return _dispatch_get_current_queue()
 	}
@@ -452,7 +428,6 @@ func dispatch_get_current_queue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_get_global_queue
-
 func dispatch_get_global_queue(identifier unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_get_global_queue(identifier, flags)
 	}
@@ -466,7 +441,6 @@ func dispatch_get_global_queue(identifier unsafe.Pointer, flags unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_group_async_f
-
 func dispatch_group_async_f(group unsafe.Pointer, queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_group_async_f(group, queue, context, work)
 	}
@@ -480,7 +454,6 @@ func dispatch_group_async_f(group unsafe.Pointer, queue unsafe.Pointer, context 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_group_notify_f
-
 func dispatch_group_notify_f(group unsafe.Pointer, queue unsafe.Pointer, context unsafe.Pointer, work unsafe.Pointer) {
 	_dispatch_group_notify_f(group, queue, context, work)
 	}
@@ -492,7 +465,6 @@ func dispatch_group_notify_f(group unsafe.Pointer, queue unsafe.Pointer, context
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_introspection_hook_queue_item_complete
-
 func dispatch_introspection_hook_queue_item_complete(item unsafe.Pointer) {
 	_dispatch_introspection_hook_queue_item_complete(item)
 	}
@@ -506,7 +478,6 @@ func dispatch_introspection_hook_queue_item_complete(item unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_io_close
-
 func dispatch_io_close(channel unsafe.Pointer, flags unsafe.Pointer) {
 	_dispatch_io_close(channel, flags)
 	}
@@ -520,7 +491,6 @@ func dispatch_io_close(channel unsafe.Pointer, flags unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_queue_attr_make_with_autorelease_frequency
-
 func dispatch_queue_attr_make_with_autorelease_frequency(attr unsafe.Pointer, frequency unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_queue_attr_make_with_autorelease_frequency(attr, frequency)
 	}
@@ -534,7 +504,6 @@ func dispatch_queue_attr_make_with_autorelease_frequency(attr unsafe.Pointer, fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_context
-
 func dispatch_set_context(object unsafe.Pointer, context unsafe.Pointer) {
 	_dispatch_set_context(object, context)
 	}
@@ -548,7 +517,6 @@ func dispatch_set_context(object unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_finalizer_f
-
 func dispatch_set_finalizer_f(object unsafe.Pointer, finalizer unsafe.Pointer) {
 	_dispatch_set_finalizer_f(object, finalizer)
 	}
@@ -562,7 +530,6 @@ func dispatch_set_finalizer_f(object unsafe.Pointer, finalizer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_qos_class_floor
-
 func dispatch_set_qos_class_floor(object unsafe.Pointer, qos_class unsafe.Pointer, relative_priority int) {
 	_dispatch_set_qos_class_floor(object, qos_class, relative_priority)
 	}
@@ -576,7 +543,6 @@ func dispatch_set_qos_class_floor(object unsafe.Pointer, qos_class unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_source_create
-
 func dispatch_source_create(type_ unsafe.Pointer, handle unsafe.Pointer, mask unsafe.Pointer, queue unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_source_create(type_, handle, mask, queue)
 	}
@@ -590,7 +556,6 @@ func dispatch_source_create(type_ unsafe.Pointer, handle unsafe.Pointer, mask un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_source_get_handle
-
 func dispatch_source_get_handle(source unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_source_get_handle(source)
 	}
@@ -604,7 +569,6 @@ func dispatch_source_get_handle(source unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_time
-
 func dispatch_time(when unsafe.Pointer, delta unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_time(when, delta)
 	}
@@ -618,7 +582,6 @@ func dispatch_time(when unsafe.Pointer, delta unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_walltime
-
 func dispatch_walltime(when unsafe.Pointer, delta unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_walltime(when, delta)
 	}
@@ -632,7 +595,6 @@ func dispatch_walltime(when unsafe.Pointer, delta unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_workloop_create_inactive
-
 func dispatch_workloop_create_inactive(label unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_workloop_create_inactive(label)
 	}
@@ -646,7 +608,6 @@ func dispatch_workloop_create_inactive(label unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_workloop_set_autorelease_frequency
-
 func dispatch_workloop_set_autorelease_frequency(workloop unsafe.Pointer, frequency unsafe.Pointer) {
 	_dispatch_workloop_set_autorelease_frequency(workloop, frequency)
 	}

@@ -43,7 +43,6 @@ type IBatchDeleteRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest
-
 type BatchDeleteRequest struct {
 	PersistentStoreRequest
 }
@@ -90,12 +89,10 @@ func NewBatchDeleteRequest() BatchDeleteRequest {
 
 
 
-
 // Creates a request that deletes the results of the specified fetch request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(fetchRequest:)
-
 func NewBatchDeleteRequestWithFetchRequest(fetch IFetchRequest) BatchDeleteRequest {
 	instance := getBatchDeleteRequestClass().Alloc()
 	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithFetchRequest:"), fetch)
@@ -104,12 +101,10 @@ func NewBatchDeleteRequestWithFetchRequest(fetch IFetchRequest) BatchDeleteReque
 }
 
 
-
 // Creates a request that deletes the managed objects with the specified identifiers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/init(objectIDs:)
-
 func NewBatchDeleteRequestWithObjectIDs(objects []ManagedObjectID) BatchDeleteRequest {
 	instance := getBatchDeleteRequestClass().Alloc()
 	rv := objc.Send[BatchDeleteRequest](instance.ID, objc.Sel("initWithObjectIDs:"), objects)
@@ -123,7 +118,6 @@ func NewBatchDeleteRequestWithObjectIDs(objects []ManagedObjectID) BatchDeleteRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/fetchRequest
-
 func (b_ BatchDeleteRequest) FetchRequest() NSFetchRequest {
 	rv := objc.Send[NSFetchRequest](b_.ID, objc.Sel("fetchRequest"))
 	return rv
@@ -134,7 +128,6 @@ func (b_ BatchDeleteRequest) FetchRequest() NSFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
-
 func (b_ BatchDeleteRequest) ResultType() BatchDeleteRequestResultType {
 	rv := objc.Send[BatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
@@ -145,7 +138,6 @@ func (b_ BatchDeleteRequest) ResultType() BatchDeleteRequestResultType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
-
 func (b_ BatchDeleteRequest) SetResultType(value BatchDeleteRequestResultType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }

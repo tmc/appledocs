@@ -36,7 +36,6 @@ type IalphaState interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/alphaState-c.ivar
-
 type alphaState struct {
 	objectivec.Object
 }

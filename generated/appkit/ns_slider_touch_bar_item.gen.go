@@ -62,7 +62,6 @@ type ISliderTouchBarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem
-
 type SliderTouchBarItem struct {
 	TouchBarItem
 }
@@ -113,7 +112,6 @@ func NewSliderTouchBarItem() SliderTouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/customizationLabel
-
 func (s_ SliderTouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -124,7 +122,6 @@ func (s_ SliderTouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/customizationLabel
-
 func (s_ SliderTouchBarItem) SetCustomizationLabel(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
@@ -134,7 +131,6 @@ func (s_ SliderTouchBarItem) SetCustomizationLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/minimumValueAccessory
-
 func (s_ SliderTouchBarItem) MinimumValueAccessory() NSSliderAccessory {
 	rv := objc.Send[NSSliderAccessory](s_.ID, objc.Sel("minimumValueAccessory"))
 	return rv
@@ -145,7 +141,6 @@ func (s_ SliderTouchBarItem) MinimumValueAccessory() NSSliderAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/minimumValueAccessory
-
 func (s_ SliderTouchBarItem) SetMinimumValueAccessory(value ISliderAccessory) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumValueAccessory:"), value)
 }
@@ -155,7 +150,6 @@ func (s_ SliderTouchBarItem) SetMinimumValueAccessory(value ISliderAccessory) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/action
-
 func (s_ SliderTouchBarItem) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
 	return rv
@@ -166,7 +160,6 @@ func (s_ SliderTouchBarItem) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/action
-
 func (s_ SliderTouchBarItem) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
 }
@@ -176,7 +169,6 @@ func (s_ SliderTouchBarItem) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/doublevalue
-
 func (s_ SliderTouchBarItem) DoubleValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValue"))
 	return rv
@@ -187,7 +179,6 @@ func (s_ SliderTouchBarItem) DoubleValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/doublevalue
-
 func (s_ SliderTouchBarItem) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValue:"), value)
 }
@@ -197,7 +188,6 @@ func (s_ SliderTouchBarItem) SetDoubleValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/label
-
 func (s_ SliderTouchBarItem) Label() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("label"))
 	return rv
@@ -208,7 +198,6 @@ func (s_ SliderTouchBarItem) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/label
-
 func (s_ SliderTouchBarItem) SetLabel(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -218,7 +207,6 @@ func (s_ SliderTouchBarItem) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumsliderwidth
-
 func (s_ SliderTouchBarItem) MaximumSliderWidth() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumSliderWidth"))
 	return rv
@@ -229,7 +217,6 @@ func (s_ SliderTouchBarItem) MaximumSliderWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumsliderwidth
-
 func (s_ SliderTouchBarItem) SetMaximumSliderWidth(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumSliderWidth:"), value)
 }
@@ -239,7 +226,6 @@ func (s_ SliderTouchBarItem) SetMaximumSliderWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumvalueaccessory
-
 func (s_ SliderTouchBarItem) MaximumValueAccessory() NSSliderAccessory {
 	rv := objc.Send[NSSliderAccessory](s_.ID, objc.Sel("maximumValueAccessory"))
 	return rv
@@ -250,7 +236,6 @@ func (s_ SliderTouchBarItem) MaximumValueAccessory() NSSliderAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumvalueaccessory
-
 func (s_ SliderTouchBarItem) SetMaximumValueAccessory(value ISliderAccessory) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumValueAccessory:"), value)
 }
@@ -260,7 +245,6 @@ func (s_ SliderTouchBarItem) SetMaximumValueAccessory(value ISliderAccessory) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/minimumsliderwidth
-
 func (s_ SliderTouchBarItem) MinimumSliderWidth() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumSliderWidth"))
 	return rv
@@ -271,7 +255,6 @@ func (s_ SliderTouchBarItem) MinimumSliderWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/minimumsliderwidth
-
 func (s_ SliderTouchBarItem) SetMinimumSliderWidth(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumSliderWidth:"), value)
 }
@@ -281,7 +264,6 @@ func (s_ SliderTouchBarItem) SetMinimumSliderWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/slider
-
 func (s_ SliderTouchBarItem) Slider() NSSlider {
 	rv := objc.Send[NSSlider](s_.ID, objc.Sel("slider"))
 	return rv
@@ -292,7 +274,6 @@ func (s_ SliderTouchBarItem) Slider() NSSlider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/slider
-
 func (s_ SliderTouchBarItem) SetSlider(value ISlider) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSlider:"), value)
 }
@@ -302,7 +283,6 @@ func (s_ SliderTouchBarItem) SetSlider(value ISlider) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/target
-
 func (s_ SliderTouchBarItem) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("target"))
 	return rv
@@ -313,7 +293,6 @@ func (s_ SliderTouchBarItem) Target() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/target
-
 func (s_ SliderTouchBarItem) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTarget:"), value)
 }
@@ -323,7 +302,6 @@ func (s_ SliderTouchBarItem) SetTarget(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/valueaccessorywidth
-
 func (s_ SliderTouchBarItem) ValueAccessoryWidth() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueAccessoryWidth"))
 	return rv
@@ -334,7 +312,6 @@ func (s_ SliderTouchBarItem) ValueAccessoryWidth() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/valueaccessorywidth
-
 func (s_ SliderTouchBarItem) SetValueAccessoryWidth(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValueAccessoryWidth:"), value)
 }
@@ -342,7 +319,6 @@ func (s_ SliderTouchBarItem) SetValueAccessoryWidth(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/view
-
 func (s_ SliderTouchBarItem) View() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("view"))
 	return rv
@@ -351,7 +327,6 @@ func (s_ SliderTouchBarItem) View() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/view
-
 func (s_ SliderTouchBarItem) SetView(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setView:"), value)
 }

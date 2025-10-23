@@ -45,7 +45,6 @@ type IABPersonView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView
-
 type ABPersonView struct {
 	appkit.View
 }
@@ -96,7 +95,6 @@ func NewABPersonView() ABPersonView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/editing
-
 func (a_ ABPersonView) Editing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editing"))
 	return rv
@@ -107,7 +105,6 @@ func (a_ ABPersonView) Editing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/editing
-
 func (a_ ABPersonView) SetEditing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditing:"), value)
 }
@@ -117,7 +114,6 @@ func (a_ ABPersonView) SetEditing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
-
 func (a_ ABPersonView) Person() ABPerson {
 	rv := objc.Send[ABPerson](a_.ID, objc.Sel("person"))
 	return rv
@@ -128,7 +124,6 @@ func (a_ ABPersonView) Person() ABPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
-
 func (a_ ABPersonView) SetPerson(value IABPerson) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPerson:"), value)
 }
@@ -138,7 +133,6 @@ func (a_ ABPersonView) SetPerson(value IABPerson) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
-
 func (a_ ABPersonView) ShouldShowLinkedPeople() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldShowLinkedPeople"))
 	return rv
@@ -149,7 +143,6 @@ func (a_ ABPersonView) ShouldShowLinkedPeople() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
-
 func (a_ ABPersonView) SetShouldShowLinkedPeople(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldShowLinkedPeople:"), value)
 }

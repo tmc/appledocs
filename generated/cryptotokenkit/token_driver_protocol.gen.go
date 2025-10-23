@@ -7,13 +7,13 @@ import "github.com/ebitengine/purego/objc"
 // tokenDriverProtocol is the tokenDriver: protocol.
 //
 // Availability:
-//   - Mac Catalyst 14.0+
-//   - iOS 14.0+
-//   - iPadOS 14.0+
-//   - macOS 10.15+
-//   - tvOS 14.0+
+//   - Mac Catalyst 13.1+
+//   - iOS 10.0+
+//   - iPadOS 10.0+
+//   - macOS 10.12+
+//   - tvOS 11.0+
 //   - visionOS 1.0+
-//   - watchOS 7.0+
+//   - watchOS 4.0+
 //
 // Use this protocol when registering custom classes that conform to tokenDriver:.
 var tokenDriverProtocol *objc.Protocol

@@ -51,7 +51,6 @@ type ICKRecordZoneNotification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification
-
 type CKRecordZoneNotification struct {
 	CKNotification
 }
@@ -102,7 +101,6 @@ func NewCKRecordZoneNotification() CKRecordZoneNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification/recordZoneID
-
 func (c_ CKRecordZoneNotification) RecordZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("recordZoneID"))
 	return rv
@@ -113,7 +111,6 @@ func (c_ CKRecordZoneNotification) RecordZoneID() CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-
 func (c_ CKRecordZoneNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
@@ -124,7 +121,6 @@ func (c_ CKRecordZoneNotification) IsPruned() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-
 func (c_ CKRecordZoneNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
@@ -134,7 +130,6 @@ func (c_ CKRecordZoneNotification) SetIsPruned(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-
 func (c_ CKRecordZoneNotification) NotificationType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
 	return rv
@@ -145,7 +140,6 @@ func (c_ CKRecordZoneNotification) NotificationType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-
 func (c_ CKRecordZoneNotification) SetNotificationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
 }
@@ -155,7 +149,6 @@ func (c_ CKRecordZoneNotification) SetNotificationType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification/databasescope
-
 func (c_ CKRecordZoneNotification) DatabaseScope() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseScope"))
 	return rv
@@ -166,7 +159,6 @@ func (c_ CKRecordZoneNotification) DatabaseScope() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification/databasescope
-
 func (c_ CKRecordZoneNotification) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabaseScope:"), value)
 }
@@ -176,7 +168,6 @@ func (c_ CKRecordZoneNotification) SetDatabaseScope(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-
 func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
 	return rv
@@ -187,7 +178,6 @@ func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-
 func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
 }
@@ -197,7 +187,6 @@ func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKRecordZoneNotification) NotificationInfo() CKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
@@ -208,7 +197,6 @@ func (c_ CKRecordZoneNotification) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-
 func (c_ CKRecordZoneNotification) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }

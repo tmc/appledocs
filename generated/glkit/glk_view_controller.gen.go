@@ -60,7 +60,6 @@ type IGLKViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController
-
 type GLKViewController struct {
 	appkit.ViewController
 }
@@ -111,7 +110,6 @@ func NewGLKViewController() GLKViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/delegate
-
 func (g_ GLKViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
 	return rv
@@ -122,7 +120,6 @@ func (g_ GLKViewController) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/delegate
-
 func (g_ GLKViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -132,7 +129,6 @@ func (g_ GLKViewController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/framesDisplayed
-
 func (g_ GLKViewController) FramesDisplayed() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("framesDisplayed"))
 	return rv
@@ -143,7 +139,6 @@ func (g_ GLKViewController) FramesDisplayed() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/framesPerSecond
-
 func (g_ GLKViewController) FramesPerSecond() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("framesPerSecond"))
 	return rv
@@ -154,7 +149,6 @@ func (g_ GLKViewController) FramesPerSecond() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/isPaused
-
 func (g_ GLKViewController) Paused() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("paused"))
 	return rv
@@ -165,7 +159,6 @@ func (g_ GLKViewController) Paused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/isPaused
-
 func (g_ GLKViewController) SetPaused(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaused:"), value)
 }
@@ -175,7 +168,6 @@ func (g_ GLKViewController) SetPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/pauseOnWillResignActive
-
 func (g_ GLKViewController) PauseOnWillResignActive() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("pauseOnWillResignActive"))
 	return rv
@@ -186,7 +178,6 @@ func (g_ GLKViewController) PauseOnWillResignActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/pauseOnWillResignActive
-
 func (g_ GLKViewController) SetPauseOnWillResignActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPauseOnWillResignActive:"), value)
 }
@@ -196,7 +187,6 @@ func (g_ GLKViewController) SetPauseOnWillResignActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/preferredFramesPerSecond
-
 func (g_ GLKViewController) PreferredFramesPerSecond() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("preferredFramesPerSecond"))
 	return rv
@@ -207,7 +197,6 @@ func (g_ GLKViewController) PreferredFramesPerSecond() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/preferredFramesPerSecond
-
 func (g_ GLKViewController) SetPreferredFramesPerSecond(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPreferredFramesPerSecond:"), value)
 }
@@ -217,7 +206,6 @@ func (g_ GLKViewController) SetPreferredFramesPerSecond(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/resumeOnDidBecomeActive
-
 func (g_ GLKViewController) ResumeOnDidBecomeActive() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("resumeOnDidBecomeActive"))
 	return rv
@@ -228,7 +216,6 @@ func (g_ GLKViewController) ResumeOnDidBecomeActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/resumeOnDidBecomeActive
-
 func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResumeOnDidBecomeActive:"), value)
 }
@@ -238,7 +225,6 @@ func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceFirstResume
-
 func (g_ GLKViewController) TimeSinceFirstResume() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceFirstResume"))
 	return rv
@@ -249,7 +235,6 @@ func (g_ GLKViewController) TimeSinceFirstResume() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastDraw
-
 func (g_ GLKViewController) TimeSinceLastDraw() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastDraw"))
 	return rv
@@ -260,7 +245,6 @@ func (g_ GLKViewController) TimeSinceLastDraw() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastResume
-
 func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastResume"))
 	return rv
@@ -271,7 +255,6 @@ func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastUpdate
-
 func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
 	return rv
@@ -282,7 +265,6 @@ func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
-
 func (g_ GLKViewController) IsPaused() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isPaused"))
 	return rv
@@ -293,7 +275,6 @@ func (g_ GLKViewController) IsPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
-
 func (g_ GLKViewController) SetIsPaused(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPaused:"), value)
 }

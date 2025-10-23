@@ -65,7 +65,6 @@ type ILeaderboard interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard
-
 type Leaderboard struct {
 	objectivec.Object
 }
@@ -114,7 +113,6 @@ func NewLeaderboard() Leaderboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/startDate
-
 func (l_ Leaderboard) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](l_.ID, objc.Sel("startDate"))
 	return rv
@@ -125,7 +123,6 @@ func (l_ Leaderboard) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityidentifier
-
 func (l_ Leaderboard) ActivityIdentifier() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("activityIdentifier"))
 	return rv
@@ -136,7 +133,6 @@ func (l_ Leaderboard) ActivityIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityidentifier
-
 func (l_ Leaderboard) SetActivityIdentifier(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
 }
@@ -146,7 +142,6 @@ func (l_ Leaderboard) SetActivityIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityproperties
-
 func (l_ Leaderboard) ActivityProperties() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("activityProperties"))
 	return rv
@@ -157,7 +152,6 @@ func (l_ Leaderboard) ActivityProperties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityproperties
-
 func (l_ Leaderboard) SetActivityProperties(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
 }
@@ -167,7 +161,6 @@ func (l_ Leaderboard) SetActivityProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
-
 func (l_ Leaderboard) BaseLeaderboardID() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("baseLeaderboardID"))
 	return rv
@@ -178,7 +171,6 @@ func (l_ Leaderboard) BaseLeaderboardID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
-
 func (l_ Leaderboard) SetBaseLeaderboardID(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBaseLeaderboardID:"), objc.String(value))
 }
@@ -188,7 +180,6 @@ func (l_ Leaderboard) SetBaseLeaderboardID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/duration
-
 func (l_ Leaderboard) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("duration"))
 	return rv
@@ -199,7 +190,6 @@ func (l_ Leaderboard) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/duration
-
 func (l_ Leaderboard) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDuration:"), value)
 }
@@ -209,7 +199,6 @@ func (l_ Leaderboard) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
-
 func (l_ Leaderboard) GroupIdentifier() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
 	return rv
@@ -220,7 +209,6 @@ func (l_ Leaderboard) GroupIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
-
 func (l_ Leaderboard) SetGroupIdentifier(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
@@ -230,7 +218,6 @@ func (l_ Leaderboard) SetGroupIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
-
 func (l_ Leaderboard) IsHidden() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isHidden"))
 	return rv
@@ -241,7 +228,6 @@ func (l_ Leaderboard) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
-
 func (l_ Leaderboard) SetIsHidden(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -251,7 +237,6 @@ func (l_ Leaderboard) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
-
 func (l_ Leaderboard) LeaderboardDescription() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardDescription"))
 	return rv
@@ -262,7 +247,6 @@ func (l_ Leaderboard) LeaderboardDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
-
 func (l_ Leaderboard) SetLeaderboardDescription(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardDescription:"), objc.String(value))
 }
@@ -272,7 +256,6 @@ func (l_ Leaderboard) SetLeaderboardDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-
 func (l_ Leaderboard) NextStartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](l_.ID, objc.Sel("nextStartDate"))
 	return rv
@@ -283,7 +266,6 @@ func (l_ Leaderboard) NextStartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-
 func (l_ Leaderboard) SetNextStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNextStartDate:"), value)
 }
@@ -293,7 +275,6 @@ func (l_ Leaderboard) SetNextStartDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
-
 func (l_ Leaderboard) ReleaseState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("releaseState"))
 	return rv
@@ -304,7 +285,6 @@ func (l_ Leaderboard) ReleaseState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
-
 func (l_ Leaderboard) SetReleaseState(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setReleaseState:"), value)
 }
@@ -314,7 +294,6 @@ func (l_ Leaderboard) SetReleaseState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/title
-
 func (l_ Leaderboard) Title() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("title"))
 	return rv
@@ -325,7 +304,6 @@ func (l_ Leaderboard) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/title
-
 func (l_ Leaderboard) SetTitle(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -335,7 +313,6 @@ func (l_ Leaderboard) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/type
-
 func (l_ Leaderboard) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("type"))
 	return rv
@@ -346,7 +323,6 @@ func (l_ Leaderboard) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/type
-
 func (l_ Leaderboard) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setType:"), value)
 }

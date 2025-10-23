@@ -29,13 +29,14 @@ type _PlayerPlaybackCoordinatorClass struct {
 // An interface definition for the [PlayerPlaybackCoordinator] class.
 type IPlayerPlaybackCoordinator interface {
 	IPlaybackCoordinator
-	CoordinateUsingCoordinationMediumError(coordinationMedium unsafe.Pointer, outError unsafe.Pointer) bool
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	PlaybackCoordinationMedium() unsafe.Pointer
-	Player() AVPlayer
 	TimeControlStatus() unsafe.Pointer
 	SetTimeControlStatus(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	PlaybackCoordinationMedium() unsafe.Pointer
+	SetPlaybackCoordinationMedium(value unsafe.Pointer)
+	Player() IAVPlayer
+	SetPlayer(value IAVPlayer)
 }
 
 // A playback coordinator subclass that coordinates the playback of player objects in a connected group.
@@ -47,7 +48,6 @@ type IPlayerPlaybackCoordinator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator
-
 type PlayerPlaybackCoordinator struct {
 	PlaybackCoordinator
 }
@@ -94,66 +94,10 @@ func NewPlayerPlaybackCoordinator() PlayerPlaybackCoordinator {
 
 
 
-
-// Connects the playback coordinator to the coordination medium
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/coordinate(using:)
-
-func (p_ PlayerPlaybackCoordinator) CoordinateUsingCoordinationMediumError(coordinationMedium unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("coordinateUsingCoordinationMedium:error:"), coordinationMedium, outError)
-	return rv
-}
-
-
-// A delegate object for the playback coordinator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/delegate
-
-func (p_ PlayerPlaybackCoordinator) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A delegate object for the playback coordinator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/delegate
-
-func (p_ PlayerPlaybackCoordinator) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The AVPlaybackCoordinationMedium this playback coordinator is connected to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/playbackCoordinationMedium
-
-func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackCoordinationMedium"))
-	return rv
-}
-
-
-// A player that participates in coordinated playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/player
-
-func (p_ PlayerPlaybackCoordinator) Player() AVPlayer {
-	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
-	return rv
-}
-
-
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
-
 func (p_ PlayerPlaybackCoordinator) TimeControlStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeControlStatus"))
 	return rv
@@ -164,9 +108,65 @@ func (p_ PlayerPlaybackCoordinator) TimeControlStatus() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property
-
 func (p_ PlayerPlaybackCoordinator) SetTimeControlStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeControlStatus:"), value)
+}
+
+
+// A delegate object for the playback coordinator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/delegate
+func (p_ PlayerPlaybackCoordinator) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// A delegate object for the playback coordinator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/delegate
+func (p_ PlayerPlaybackCoordinator) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// The AVPlaybackCoordinationMedium this playback coordinator is connected to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/playbackcoordinationmedium
+func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackCoordinationMedium"))
+	return rv
+}
+
+
+// The AVPlaybackCoordinationMedium this playback coordinator is connected to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/playbackcoordinationmedium
+func (p_ PlayerPlaybackCoordinator) SetPlaybackCoordinationMedium(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackCoordinationMedium:"), value)
+}
+
+
+// A player that participates in coordinated playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/player
+func (p_ PlayerPlaybackCoordinator) Player() IAVPlayer {
+	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
+	return rv
+}
+
+
+// A player that participates in coordinated playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/player
+func (p_ PlayerPlaybackCoordinator) SetPlayer(value IAVPlayer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
 
 

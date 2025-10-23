@@ -47,7 +47,6 @@ type IDeviceMotion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion
-
 type DeviceMotion struct {
 	LogItem
 }
@@ -98,7 +97,6 @@ func NewDeviceMotion() DeviceMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/attitude
-
 func (d_ DeviceMotion) Attitude() CMAttitude {
 	rv := objc.Send[CMAttitude](d_.ID, objc.Sel("attitude"))
 	return rv
@@ -109,7 +107,6 @@ func (d_ DeviceMotion) Attitude() CMAttitude {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/gravity
-
 func (d_ DeviceMotion) Gravity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("gravity"))
 	return rv
@@ -120,7 +117,6 @@ func (d_ DeviceMotion) Gravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/heading
-
 func (d_ DeviceMotion) Heading() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("heading"))
 	return rv
@@ -131,7 +127,6 @@ func (d_ DeviceMotion) Heading() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/magneticField
-
 func (d_ DeviceMotion) MagneticField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("magneticField"))
 	return rv
@@ -142,7 +137,6 @@ func (d_ DeviceMotion) MagneticField() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/rotationRate
-
 func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("rotationRate"))
 	return rv
@@ -153,7 +147,6 @@ func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/sensorLocation-swift.property
-
 func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
 	rv := objc.Send[DeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
 	return rv
@@ -164,7 +157,6 @@ func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/userAcceleration
-
 func (d_ DeviceMotion) UserAcceleration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("userAcceleration"))
 	return rv

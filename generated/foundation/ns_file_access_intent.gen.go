@@ -30,7 +30,7 @@ type _FileAccessIntentClass struct {
 // An interface definition for the [FileAccessIntent] class.
 type IFileAccessIntent interface {
 	objectivec.IObject
-	Url() URL
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -91,7 +91,7 @@ func NewFileAccessIntent() FileAccessIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileaccessintent/url
-func (f_ FileAccessIntent) Url() URL {
+func (f_ FileAccessIntent) Url() IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("url"))
 	return rv
 }

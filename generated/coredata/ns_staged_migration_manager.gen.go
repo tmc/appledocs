@@ -44,7 +44,6 @@ type IStagedMigrationManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager
-
 type StagedMigrationManager struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewStagedMigrationManager() StagedMigrationManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/container
-
 func (s_ StagedMigrationManager) Container() NSPersistentContainer {
 	rv := objc.Send[NSPersistentContainer](s_.ID, objc.Sel("container"))
 	return rv
@@ -104,7 +102,6 @@ func (s_ StagedMigrationManager) Container() NSPersistentContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/stages
-
 func (s_ StagedMigrationManager) Stages() []MigrationStage {
 	rv := objc.Send[[]MigrationStage](s_.ID, objc.Sel("stages"))
 	return rv
@@ -115,7 +112,6 @@ func (s_ StagedMigrationManager) Stages() []MigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
-
 func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv

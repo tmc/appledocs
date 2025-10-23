@@ -31,11 +31,12 @@ type _PlayerItemIntegratedTimelineClass struct {
 // An interface definition for the [PlayerItemIntegratedTimeline] class.
 type IPlayerItemIntegratedTimeline interface {
 	objectivec.IObject
-	CurrentTime() unsafe.Pointer
 	CurrentDate() foundation.Date
-	SetCurrentDate(value foundation.IDate)
-	CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot
-	SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot)
+	SetCurrentDate(value foundation.Date)
+	CurrentSnapshot() PlayerItemIntegratedTimelineSnapshot
+	SetCurrentSnapshot(value PlayerItemIntegratedTimelineSnapshot)
+	CurrentTime() unsafe.Pointer
+	SetCurrentTime(value unsafe.Pointer)
 }
 
 // An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.
@@ -47,7 +48,6 @@ type IPlayerItemIntegratedTimeline interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimeline
-
 type PlayerItemIntegratedTimeline struct {
 	objectivec.Object
 }
@@ -92,22 +92,10 @@ func NewPlayerItemIntegratedTimeline() PlayerItemIntegratedTimeline {
 
 
 
-// The current time on the integrated timeline.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimeline/currentTime
-
-func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
-	return rv
-}
-
-
 // The current date of playback.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-
 func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
@@ -118,8 +106,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-
-func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.IDate) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.Date) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
 
@@ -128,9 +115,8 @@ func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-
-func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot {
-	rv := objc.Send[AVPlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
+func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() PlayerItemIntegratedTimelineSnapshot {
+	rv := objc.Send[PlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
 }
 
@@ -139,9 +125,27 @@ func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() AVPlayerItemIntegratedT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-
-func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value PlayerItemIntegratedTimelineSnapshot) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
+}
+
+
+// The current time on the integrated timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currenttime
+func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
+	return rv
+}
+
+
+// The current time on the integrated timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currenttime
+func (p_ PlayerItemIntegratedTimeline) SetCurrentTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentTime:"), value)
 }
 
 

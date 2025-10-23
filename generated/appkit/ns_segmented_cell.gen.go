@@ -48,7 +48,6 @@ type ISegmentedCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell
-
 type SegmentedCell struct {
 	ActionCell
 }
@@ -99,7 +98,6 @@ func NewSegmentedCell() SegmentedCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentcount
-
 func (s_ SegmentedCell) SegmentCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
 	return rv
@@ -110,7 +108,6 @@ func (s_ SegmentedCell) SegmentCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentcount
-
 func (s_ SegmentedCell) SetSegmentCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
 }
@@ -120,7 +117,6 @@ func (s_ SegmentedCell) SetSegmentCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentstyle
-
 func (s_ SegmentedCell) SegmentStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentStyle"))
 	return rv
@@ -131,7 +127,6 @@ func (s_ SegmentedCell) SegmentStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentstyle
-
 func (s_ SegmentedCell) SetSegmentStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
 }
@@ -141,7 +136,6 @@ func (s_ SegmentedCell) SetSegmentStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/selectedsegment
-
 func (s_ SegmentedCell) SelectedSegment() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
 	return rv
@@ -152,7 +146,6 @@ func (s_ SegmentedCell) SelectedSegment() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/selectedsegment
-
 func (s_ SegmentedCell) SetSelectedSegment(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
 }
@@ -162,7 +155,6 @@ func (s_ SegmentedCell) SetSelectedSegment(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/trackingmode
-
 func (s_ SegmentedCell) TrackingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackingMode"))
 	return rv
@@ -173,7 +165,6 @@ func (s_ SegmentedCell) TrackingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/trackingmode
-
 func (s_ SegmentedCell) SetTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
 }

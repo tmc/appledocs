@@ -36,7 +36,6 @@ type IerrorCorrectionLevel interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectionLevel-c.ivar
-
 type errorCorrectionLevel struct {
 	objectivec.Object
 }

@@ -38,7 +38,6 @@ type ICKSyncEngineAccountChangeEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeEvent
-
 type CKSyncEngineAccountChangeEvent struct {
 	CKSyncEngineEvent
 }

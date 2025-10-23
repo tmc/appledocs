@@ -53,7 +53,6 @@ type ICWNetwork interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork
-
 type CWNetwork struct {
 	objectivec.Object
 }
@@ -98,36 +97,30 @@ func NewCWNetwork() CWNetwork {
 
 
 
-
 // Method for determining CWNetwork object equality.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/isEqual(to:)
-
 func (c_ CWNetwork) IsEqualToNetwork(network ICWNetwork) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToNetwork:"), network)
 	return rv
 }
 
 
-
 // Method for determining which PHY modes a network supports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsPHYMode(_:)
-
 func (c_ CWNetwork) SupportsPHYMode(phyMode CWPHYMode) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsPHYMode:"), phyMode)
 	return rv
 }
 
 
-
 // Method for determining which security types a network supports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsSecurity(_:)
-
 func (c_ CWNetwork) SupportsSecurity(security ICWSecurity) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsSecurity:"), security)
 	return rv
@@ -138,7 +131,6 @@ func (c_ CWNetwork) SupportsSecurity(security ICWSecurity) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/beaconInterval
-
 func (c_ CWNetwork) BeaconInterval() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("beaconInterval"))
 	return rv
@@ -149,7 +141,6 @@ func (c_ CWNetwork) BeaconInterval() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/bssid
-
 func (c_ CWNetwork) Bssid() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("bssid"))
 	return rv
@@ -160,7 +151,6 @@ func (c_ CWNetwork) Bssid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/countryCode
-
 func (c_ CWNetwork) CountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
@@ -171,7 +161,6 @@ func (c_ CWNetwork) CountryCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ibss
-
 func (c_ CWNetwork) Ibss() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ibss"))
 	return rv
@@ -182,7 +171,6 @@ func (c_ CWNetwork) Ibss() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/informationElementData
-
 func (c_ CWNetwork) InformationElementData() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("informationElementData"))
 	return rv
@@ -193,7 +181,6 @@ func (c_ CWNetwork) InformationElementData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/noiseMeasurement
-
 func (c_ CWNetwork) NoiseMeasurement() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("noiseMeasurement"))
 	return rv
@@ -204,7 +191,6 @@ func (c_ CWNetwork) NoiseMeasurement() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/rssiValue
-
 func (c_ CWNetwork) RssiValue() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("rssiValue"))
 	return rv
@@ -215,7 +201,6 @@ func (c_ CWNetwork) RssiValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssid
-
 func (c_ CWNetwork) Ssid() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
@@ -226,7 +211,6 @@ func (c_ CWNetwork) Ssid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssidData
-
 func (c_ CWNetwork) SsidData() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
@@ -237,7 +221,6 @@ func (c_ CWNetwork) SsidData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/wlanChannel
-
 func (c_ CWNetwork) WlanChannel() CWChannel {
 	rv := objc.Send[CWChannel](c_.ID, objc.Sel("wlanChannel"))
 	return rv

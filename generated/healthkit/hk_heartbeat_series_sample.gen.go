@@ -41,7 +41,6 @@ type IHKHeartbeatSeriesSample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartbeatSeriesSample
-
 type HKHeartbeatSeriesSample struct {
 	HKSeriesSample
 }
@@ -92,7 +91,6 @@ func NewHKHeartbeatSeriesSample() HKHeartbeatSeriesSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion
-
 func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
 	return rv

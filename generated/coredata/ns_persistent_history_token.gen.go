@@ -41,7 +41,6 @@ type IPersistentHistoryToken interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryToken
-
 type PersistentHistoryToken struct {
 	objectivec.Object
 }

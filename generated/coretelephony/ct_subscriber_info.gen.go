@@ -46,7 +46,6 @@ type ISubscriberInfo interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriberInfo
-
 type SubscriberInfo struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewSubscriberInfo() SubscriberInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriberInfo/subscriber()
-
 func (sc _SubscriberInfoClass) Subscriber() Subscriber {
 	rv := objc.Send[Subscriber](objc.ID(sc.class), objc.Sel("subscriber"))
 	return rv
@@ -106,7 +104,6 @@ func (sc _SubscriberInfoClass) Subscriber() Subscriber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-
 func (s_ SubscriberInfo) CarrierToken() foundation.Data {
 	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
@@ -117,7 +114,6 @@ func (s_ SubscriberInfo) CarrierToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-
 func (s_ SubscriberInfo) SetCarrierToken(value foundation.IData) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
@@ -127,7 +123,6 @@ func (s_ SubscriberInfo) SetCarrierToken(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-
 func (s_ SubscriberInfo) Identifier() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
@@ -138,7 +133,6 @@ func (s_ SubscriberInfo) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-
 func (s_ SubscriberInfo) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }

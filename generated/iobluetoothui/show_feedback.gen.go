@@ -32,7 +32,9 @@ type IshowFeedback interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/showFeedback
 type showFeedback struct {
 	objectivec.Object

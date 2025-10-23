@@ -40,7 +40,11 @@ type IINReservationAction interface {
 }
 
 // An action a user can perform that’s relevant to a reservation.
+
+
+// An action a user can perform that’s relevant to a reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservationAction
 type INReservationAction struct {
 	objectivec.Object
@@ -85,8 +89,10 @@ func NewINReservationAction() INReservationAction {
 }
 
 
+
 // The type of action for the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/type
 func (i_ INReservationAction) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
@@ -94,17 +100,18 @@ func (i_ INReservationAction) Type() unsafe.Pointer {
 }
 
 
-// SetType sets the value of the type property.
 // The type of action for the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/type
 func (i_ INReservationAction) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
 
+
 // The user activity object used when launching your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/useractivity
 func (i_ INReservationAction) UserActivity() foundation.UserActivity {
 	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
@@ -112,17 +119,18 @@ func (i_ INReservationAction) UserActivity() foundation.UserActivity {
 }
 
 
-// SetUserActivity sets the value of the userActivity property.
 // The user activity object used when launching your app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/useractivity
 func (i_ INReservationAction) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)
 }
 
+
 // The date and time range that the action is valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/validduration
 func (i_ INReservationAction) ValidDuration() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("validDuration"))
@@ -130,10 +138,9 @@ func (i_ INReservationAction) ValidDuration() INDateComponentsRange {
 }
 
 
-// SetValidDuration sets the value of the validDuration property.
 // The date and time range that the action is valid.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/validduration
 func (i_ INReservationAction) SetValidDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValidDuration:"), value)

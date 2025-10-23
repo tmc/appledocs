@@ -60,7 +60,6 @@ type IGameActivityDefinition interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition
-
 type GameActivityDefinition struct {
 	objectivec.Object
 }
@@ -109,7 +108,6 @@ func NewGameActivityDefinition() GameActivityDefinition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition/defaultProperties
-
 func (g_ GameActivityDefinition) DefaultProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("defaultProperties"))
 	return rv
@@ -120,7 +118,6 @@ func (g_ GameActivityDefinition) DefaultProperties() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition/groupIdentifier
-
 func (g_ GameActivityDefinition) GroupIdentifier() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("groupIdentifier"))
 	return rv
@@ -131,7 +128,6 @@ func (g_ GameActivityDefinition) GroupIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/details
-
 func (g_ GameActivityDefinition) Details() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("details"))
 	return rv
@@ -142,7 +138,6 @@ func (g_ GameActivityDefinition) Details() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/details
-
 func (g_ GameActivityDefinition) SetDetails(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDetails:"), objc.String(value))
 }
@@ -152,7 +147,6 @@ func (g_ GameActivityDefinition) SetDetails(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/fallbackurl
-
 func (g_ GameActivityDefinition) FallbackURL() foundation.URL {
 	rv := objc.Send[foundation.URL](g_.ID, objc.Sel("fallbackURL"))
 	return rv
@@ -163,7 +157,6 @@ func (g_ GameActivityDefinition) FallbackURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/fallbackurl
-
 func (g_ GameActivityDefinition) SetFallbackURL(value foundation.IURL) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFallbackURL:"), value)
 }
@@ -173,7 +166,6 @@ func (g_ GameActivityDefinition) SetFallbackURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/identifier
-
 func (g_ GameActivityDefinition) Identifier() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
 	return rv
@@ -184,7 +176,6 @@ func (g_ GameActivityDefinition) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/identifier
-
 func (g_ GameActivityDefinition) SetIdentifier(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -194,7 +185,6 @@ func (g_ GameActivityDefinition) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/playstyle
-
 func (g_ GameActivityDefinition) PlayStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("playStyle"))
 	return rv
@@ -205,7 +195,6 @@ func (g_ GameActivityDefinition) PlayStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/playstyle
-
 func (g_ GameActivityDefinition) SetPlayStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPlayStyle:"), value)
 }
@@ -215,7 +204,6 @@ func (g_ GameActivityDefinition) SetPlayStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/playerrange
-
 func (g_ GameActivityDefinition) PlayerRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("playerRange"))
 	return rv
@@ -226,7 +214,6 @@ func (g_ GameActivityDefinition) PlayerRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/playerrange
-
 func (g_ GameActivityDefinition) SetPlayerRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPlayerRange:"), value)
 }
@@ -236,7 +223,6 @@ func (g_ GameActivityDefinition) SetPlayerRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/releasestate
-
 func (g_ GameActivityDefinition) ReleaseState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("releaseState"))
 	return rv
@@ -247,7 +233,6 @@ func (g_ GameActivityDefinition) ReleaseState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/releasestate
-
 func (g_ GameActivityDefinition) SetReleaseState(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReleaseState:"), value)
 }
@@ -257,7 +242,6 @@ func (g_ GameActivityDefinition) SetReleaseState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/supportspartycode
-
 func (g_ GameActivityDefinition) SupportsPartyCode() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("supportsPartyCode"))
 	return rv
@@ -268,7 +252,6 @@ func (g_ GameActivityDefinition) SupportsPartyCode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/supportspartycode
-
 func (g_ GameActivityDefinition) SetSupportsPartyCode(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSupportsPartyCode:"), value)
 }
@@ -278,7 +261,6 @@ func (g_ GameActivityDefinition) SetSupportsPartyCode(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/supportsunlimitedplayers
-
 func (g_ GameActivityDefinition) SupportsUnlimitedPlayers() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("supportsUnlimitedPlayers"))
 	return rv
@@ -289,7 +271,6 @@ func (g_ GameActivityDefinition) SupportsUnlimitedPlayers() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/supportsunlimitedplayers
-
 func (g_ GameActivityDefinition) SetSupportsUnlimitedPlayers(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSupportsUnlimitedPlayers:"), value)
 }
@@ -299,7 +280,6 @@ func (g_ GameActivityDefinition) SetSupportsUnlimitedPlayers(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/title
-
 func (g_ GameActivityDefinition) Title() string {
 	rv := objc.Send[string](g_.ID, objc.Sel("title"))
 	return rv
@@ -310,7 +290,6 @@ func (g_ GameActivityDefinition) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/title
-
 func (g_ GameActivityDefinition) SetTitle(value string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

@@ -40,7 +40,11 @@ type IBluetoothHandsFreeAudioGateway interface {
 // An object that sends data to a connected Bluetooth hands-free phone or headset and processes commands from it.
 //
 // This class represents the audio gateway portion of a Bluetooth audio profile.
+
+
+// An object that sends data to a connected Bluetooth hands-free phone or headset and processes commands from it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway
 type BluetoothHandsFreeAudioGateway struct {
 	BluetoothHandsFree
@@ -88,9 +92,9 @@ func NewBluetoothHandsFreeAudioGateway() BluetoothHandsFreeAudioGateway {
 
 
 
-
 // Creates an object that controls a connected Bluetooth hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/init(device:delegate:)
 func NewBluetoothHandsFreeAudioGatewayWithDeviceDelegate(device IOBluetoothDevice, inDelegate objectivec.IObject) BluetoothHandsFreeAudioGateway {
 	instance := getBluetoothHandsFreeAudioGatewayClass().Alloc()
@@ -100,36 +104,46 @@ func NewBluetoothHandsFreeAudioGatewayWithDeviceDelegate(device IOBluetoothDevic
 }
 
 
+
 // Sends a request to the Bluetooth device to show or update a status indicator.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/createIndicator(_:min:max:currentValue:)
 func (b_ BluetoothHandsFreeAudioGateway) CreateIndicatorMinMaxCurrentValue(indicatorName string, minValue int, maxValue int, currentValue int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("createIndicator:min:max:currentValue:"), objc.String(indicatorName), minValue, maxValue, currentValue)
 }
 
+
 // Processes a command from a connected Bluetooth hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/process(atCommand:)
 func (b_ BluetoothHandsFreeAudioGateway) ProcessATCommand(atCommand string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("processATCommand:"), objc.String(atCommand))
 }
 
+
 // Sends a success message to a connected Bluetooth hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/sendOKResponse()
 func (b_ BluetoothHandsFreeAudioGateway) SendOKResponse() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendOKResponse"))
 }
 
+
 // Sends data followed by a success message to a connected Bluetooth hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/sendResponse(_:)
 func (b_ BluetoothHandsFreeAudioGateway) SendResponse(response string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendResponse:"), objc.String(response))
 }
 
+
 // Sends data followed by an optional success message to a connected Bluetooth hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/sendResponse(_:withOK:)
 func (b_ BluetoothHandsFreeAudioGateway) SendResponseWithOK(response string, withOK bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendResponse:withOK:"), objc.String(response), withOK)

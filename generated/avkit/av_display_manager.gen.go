@@ -50,7 +50,6 @@ type IDisplayManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager
-
 type DisplayManager struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewDisplayManager() DisplayManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayCriteriaMatchingEnabled
-
 func (d_ DisplayManager) DisplayCriteriaMatchingEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("displayCriteriaMatchingEnabled"))
 	return rv
@@ -110,7 +108,6 @@ func (d_ DisplayManager) DisplayCriteriaMatchingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/isDisplayModeSwitchInProgress
-
 func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("displayModeSwitchInProgress"))
 	return rv
@@ -121,7 +118,6 @@ func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-
 func (d_ DisplayManager) PreferredDisplayCriteria() avfoundation.DisplayCriteria {
 	rv := objc.Send[avfoundation.DisplayCriteria](d_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
@@ -132,7 +128,6 @@ func (d_ DisplayManager) PreferredDisplayCriteria() avfoundation.DisplayCriteria
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-
 func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.IDisplayCriteria) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
@@ -142,7 +137,6 @@ func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.IDisplay
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
-
 func (d_ DisplayManager) IsDisplayCriteriaMatchingEnabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayCriteriaMatchingEnabled"))
 	return rv
@@ -153,7 +147,6 @@ func (d_ DisplayManager) IsDisplayCriteriaMatchingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaycriteriamatchingenabled
-
 func (d_ DisplayManager) SetIsDisplayCriteriaMatchingEnabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayCriteriaMatchingEnabled:"), value)
 }
@@ -163,7 +156,6 @@ func (d_ DisplayManager) SetIsDisplayCriteriaMatchingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
-
 func (d_ DisplayManager) IsDisplayModeSwitchInProgress() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDisplayModeSwitchInProgress"))
 	return rv
@@ -174,7 +166,6 @@ func (d_ DisplayManager) IsDisplayModeSwitchInProgress() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avdisplaymanager/isdisplaymodeswitchinprogress
-
 func (d_ DisplayManager) SetIsDisplayModeSwitchInProgress(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDisplayModeSwitchInProgress:"), value)
 }

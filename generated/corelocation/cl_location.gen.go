@@ -65,7 +65,6 @@ type ILocation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation
-
 type Location struct {
 	objectivec.Object
 }
@@ -110,23 +109,19 @@ func NewLocation() Location {
 
 
 
-
 // Returns the distance (measured in meters) from the current object’s location to the specified location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/distance(from:)
-
 func (l_ Location) Distance() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("distance"))
 }
-
 
 
 // Returns the distance (measured in meters) from the current object’s location to the specified location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/getDistanceFrom(_:)
-
 func (l_ Location) GetDistanceFrom() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("getDistanceFrom"))
 }
@@ -136,7 +131,6 @@ func (l_ Location) GetDistanceFrom() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/altitude
-
 func (l_ Location) Altitude() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("altitude"))
 	return rv
@@ -147,7 +141,6 @@ func (l_ Location) Altitude() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/altitude
-
 func (l_ Location) SetAltitude(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAltitude:"), value)
 }
@@ -157,7 +150,6 @@ func (l_ Location) SetAltitude(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/coordinate
-
 func (l_ Location) Coordinate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("coordinate"))
 	return rv
@@ -168,7 +160,6 @@ func (l_ Location) Coordinate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/coordinate
-
 func (l_ Location) SetCoordinate(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCoordinate:"), value)
 }
@@ -178,7 +169,6 @@ func (l_ Location) SetCoordinate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/course
-
 func (l_ Location) Course() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("course"))
 	return rv
@@ -189,7 +179,6 @@ func (l_ Location) Course() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/course
-
 func (l_ Location) SetCourse(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCourse:"), value)
 }
@@ -199,7 +188,6 @@ func (l_ Location) SetCourse(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/courseAccuracy
-
 func (l_ Location) CourseAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("courseAccuracy"))
 	return rv
@@ -210,7 +198,6 @@ func (l_ Location) CourseAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/courseAccuracy
-
 func (l_ Location) SetCourseAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCourseAccuracy:"), value)
 }
@@ -220,7 +207,6 @@ func (l_ Location) SetCourseAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/ellipsoidalAltitude
-
 func (l_ Location) EllipsoidalAltitude() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("ellipsoidalAltitude"))
 	return rv
@@ -231,7 +217,6 @@ func (l_ Location) EllipsoidalAltitude() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/ellipsoidalAltitude
-
 func (l_ Location) SetEllipsoidalAltitude(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setEllipsoidalAltitude:"), value)
 }
@@ -241,7 +226,6 @@ func (l_ Location) SetEllipsoidalAltitude(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/horizontalAccuracy
-
 func (l_ Location) HorizontalAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("horizontalAccuracy"))
 	return rv
@@ -252,7 +236,6 @@ func (l_ Location) HorizontalAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/horizontalAccuracy
-
 func (l_ Location) SetHorizontalAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHorizontalAccuracy:"), value)
 }
@@ -262,7 +245,6 @@ func (l_ Location) SetHorizontalAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/sourceInformation
-
 func (l_ Location) SourceInformation() CLLocationSourceInformation {
 	rv := objc.Send[CLLocationSourceInformation](l_.ID, objc.Sel("sourceInformation"))
 	return rv
@@ -273,7 +255,6 @@ func (l_ Location) SourceInformation() CLLocationSourceInformation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/sourceInformation
-
 func (l_ Location) SetSourceInformation(value ICLLocationSourceInformation) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSourceInformation:"), value)
 }
@@ -283,7 +264,6 @@ func (l_ Location) SetSourceInformation(value ICLLocationSourceInformation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speed
-
 func (l_ Location) Speed() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("speed"))
 	return rv
@@ -294,7 +274,6 @@ func (l_ Location) Speed() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speed
-
 func (l_ Location) SetSpeed(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSpeed:"), value)
 }
@@ -304,7 +283,6 @@ func (l_ Location) SetSpeed(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speedAccuracy
-
 func (l_ Location) SpeedAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("speedAccuracy"))
 	return rv
@@ -315,7 +293,6 @@ func (l_ Location) SpeedAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speedAccuracy
-
 func (l_ Location) SetSpeedAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSpeedAccuracy:"), value)
 }
@@ -325,7 +302,6 @@ func (l_ Location) SetSpeedAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-
 func (l_ Location) Timestamp() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("timestamp"))
 	return rv
@@ -336,7 +312,6 @@ func (l_ Location) Timestamp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-
 func (l_ Location) SetTimestamp(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimestamp:"), value)
 }
@@ -346,7 +321,6 @@ func (l_ Location) SetTimestamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/verticalAccuracy
-
 func (l_ Location) VerticalAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("verticalAccuracy"))
 	return rv
@@ -357,7 +331,6 @@ func (l_ Location) VerticalAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/verticalAccuracy
-
 func (l_ Location) SetVerticalAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVerticalAccuracy:"), value)
 }

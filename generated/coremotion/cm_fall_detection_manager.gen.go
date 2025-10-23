@@ -45,7 +45,6 @@ type IFallDetectionManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager
-
 type FallDetectionManager struct {
 	objectivec.Object
 }
@@ -94,18 +93,15 @@ func NewFallDetectionManager() FallDetectionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
-
 func (fc _FallDetectionManagerClass) Available() bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("available"))
 	return rv
 }
 
-
 // Requests authorization to receive notifications about fall detection events.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)
-
 func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("requestAuthorizationWithHandler:"), handler)
 }
@@ -115,7 +111,6 @@ func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus
-
 func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
 	return rv
@@ -126,7 +121,6 @@ func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
-
 func (f_ FallDetectionManager) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
 	return rv
@@ -137,7 +131,6 @@ func (f_ FallDetectionManager) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
-
 func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -147,7 +140,6 @@ func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
-
 func (f_ FallDetectionManager) Available() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("available"))
 	return rv

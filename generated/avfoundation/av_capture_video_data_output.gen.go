@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,33 +30,29 @@ type _CaptureVideoDataOutputClass struct {
 // An interface definition for the [CaptureVideoDataOutput] class.
 type ICaptureVideoDataOutput interface {
 	ICaptureOutput
-	AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType FileType) []string
-	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) []MetadataItem
-	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) unsafe.Pointer
-	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType VideoCodecType, outputFileType FileType, outputFileURL foundation.IURL) unsafe.Pointer
-	RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType FileType) unsafe.Pointer
 	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
 	AlwaysDiscardsLateVideoFrames() bool
 	SetAlwaysDiscardsLateVideoFrames(value bool)
 	AutomaticallyConfiguresOutputBufferDimensions() bool
 	SetAutomaticallyConfiguresOutputBufferDimensions(value bool)
-	AvailableVideoCVPixelFormatTypes() []foundation.Number
-	AvailableVideoCodecTypes() []string
+	AvailableVideoCodecTypes() unsafe.Pointer
+	SetAvailableVideoCodecTypes(value unsafe.Pointer)
+	AvailableVideoPixelFormatTypes() unsafe.Pointer
+	SetAvailableVideoPixelFormatTypes(value unsafe.Pointer)
 	DeliversPreviewSizedOutputBuffers() bool
 	SetDeliversPreviewSizedOutputBuffers(value bool)
-	MinFrameDuration() unsafe.Pointer
-	SetMinFrameDuration(value unsafe.Pointer)
 	PreparesCellularRadioForNetworkConnection() bool
 	SetPreparesCellularRadioForNetworkConnection(value bool)
 	PreservesDynamicHDRMetadata() bool
 	SetPreservesDynamicHDRMetadata(value bool)
 	RecommendedMediaTimeScaleForAssetWriter() unsafe.Pointer
+	SetRecommendedMediaTimeScaleForAssetWriter(value unsafe.Pointer)
 	SampleBufferCallbackQueue() unsafe.Pointer
-	SampleBufferDelegate() objc.ID
-	VideoSettings() unsafe.Pointer
-	SetVideoSettings(value unsafe.Pointer)
-	AvailableVideoPixelFormatTypes() unsafe.Pointer
-	SetAvailableVideoPixelFormatTypes(value unsafe.Pointer)
+	SetSampleBufferCallbackQueue(value unsafe.Pointer)
+	SampleBufferDelegate() unsafe.Pointer
+	SetSampleBufferDelegate(value unsafe.Pointer)
+	VideoSettings() string
+	SetVideoSettings(value string)
 }
 
 // A capture output that records video and provides access to video frames for processing.
@@ -69,7 +64,6 @@ type ICaptureVideoDataOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput
-
 type CaptureVideoDataOutput struct {
 	CaptureOutput
 }
@@ -116,72 +110,10 @@ func NewCaptureVideoDataOutput() CaptureVideoDataOutput {
 
 
 
-
-// The video codecs that the output supports for writing video to the output file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCodecTypesForAssetWriter(writingTo:)
-
-func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypesForAssetWriterWithOutputFileType(outputFileType FileType) []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("availableVideoCodecTypesForAssetWriterWithOutputFileType:"), outputFileType)
-	return rv
-}
-
-
-
-// Recommends movie-level metadata for a particular video codec type and output file type, to be used with an asset writer input.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedMovieMetadata(forVideoCodecType:assetWriterOutputFileType:)
-
-func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) []MetadataItem {
-	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:"), videoCodecType, outputFileType)
-	return rv
-}
-
-
-
-// Returns a video settings dictionary appropriate for capturing video to a file with the specified codec and type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettings(forVideoCodecType:assetWriterOutputFileType:)
-
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType, outputFileType FileType) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:"), videoCodecType, outputFileType)
-	return rv
-}
-
-
-
-// Returns a dictionary of recommended output settings for writing the specified code, file type, and output URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettings(forVideoCodecType:assetWriterOutputFileType:outputFileURL:)
-
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType VideoCodecType, outputFileType FileType, outputFileURL foundation.IURL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:"), videoCodecType, outputFileType, outputFileURL)
-	return rv
-}
-
-
-
-// Specifies the recommended settings for use with an AVAssetWriterInput.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedVideoSettingsForAssetWriter(writingTo:)
-
-func (c_ CaptureVideoDataOutput) RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType FileType) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedVideoSettingsForAssetWriterWithOutputFileType:"), outputFileType)
-	return rv
-}
-
-
-
 // Sets the sample buffer delegate and the queue for invoking callbacks.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)
-
 func (c_ CaptureVideoDataOutput) SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:queue:"), sampleBufferDelegate, sampleBufferCallbackQueue)
 }
@@ -191,7 +123,6 @@ func (c_ CaptureVideoDataOutput) SetSampleBufferDelegateQueue(sampleBufferDelega
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames
-
 func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("alwaysDiscardsLateVideoFrames"))
 	return rv
@@ -202,7 +133,6 @@ func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames
-
 func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlwaysDiscardsLateVideoFrames:"), value)
 }
@@ -211,8 +141,7 @@ func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool) {
 // A Boolean value that indicates whether the output automatically configures the size of output buffers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/automaticallyConfiguresOutputBufferDimensions
-
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/automaticallyconfiguresoutputbufferdimensions
 func (c_ CaptureVideoDataOutput) AutomaticallyConfiguresOutputBufferDimensions() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyConfiguresOutputBufferDimensions"))
 	return rv
@@ -222,20 +151,18 @@ func (c_ CaptureVideoDataOutput) AutomaticallyConfiguresOutputBufferDimensions()
 // A Boolean value that indicates whether the output automatically configures the size of output buffers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/automaticallyConfiguresOutputBufferDimensions
-
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/automaticallyconfiguresoutputbufferdimensions
 func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimensions(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresOutputBufferDimensions:"), value)
 }
 
 
-// The video pixel formats the output supports.
+// The video codecs that the output supports.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCVPixelFormatTypes
-
-func (c_ CaptureVideoDataOutput) AvailableVideoCVPixelFormatTypes() []foundation.Number {
-	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("availableVideoCVPixelFormatTypes"))
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideocodectypes
+func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableVideoCodecTypes"))
 	return rv
 }
 
@@ -243,149 +170,9 @@ func (c_ CaptureVideoDataOutput) AvailableVideoCVPixelFormatTypes() []foundation
 // The video codecs that the output supports.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/availableVideoCodecTypes
-
-func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypes() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("availableVideoCodecTypes"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the output is configured to deliver preview-sized buffers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/deliversPreviewSizedOutputBuffers
-
-func (c_ CaptureVideoDataOutput) DeliversPreviewSizedOutputBuffers() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("deliversPreviewSizedOutputBuffers"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the output is configured to deliver preview-sized buffers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/deliversPreviewSizedOutputBuffers
-
-func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDeliversPreviewSizedOutputBuffers:"), value)
-}
-
-
-// The minimum frame duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/minFrameDuration
-
-func (c_ CaptureVideoDataOutput) MinFrameDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("minFrameDuration"))
-	return rv
-}
-
-
-// The minimum frame duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/minFrameDuration
-
-func (c_ CaptureVideoDataOutput) SetMinFrameDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFrameDuration:"), value)
-}
-
-
-// Indicates whether the receiver should prepare the cellular radio for imminent network activity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/preparesCellularRadioForNetworkConnection
-
-func (c_ CaptureVideoDataOutput) PreparesCellularRadioForNetworkConnection() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("preparesCellularRadioForNetworkConnection"))
-	return rv
-}
-
-
-// Indicates whether the receiver should prepare the cellular radio for imminent network activity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/preparesCellularRadioForNetworkConnection
-
-func (c_ CaptureVideoDataOutput) SetPreparesCellularRadioForNetworkConnection(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparesCellularRadioForNetworkConnection:"), value)
-}
-
-
-// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer’s underlying pixel buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/preservesDynamicHDRMetadata
-
-func (c_ CaptureVideoDataOutput) PreservesDynamicHDRMetadata() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("preservesDynamicHDRMetadata"))
-	return rv
-}
-
-
-// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer’s underlying pixel buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/preservesDynamicHDRMetadata
-
-func (c_ CaptureVideoDataOutput) SetPreservesDynamicHDRMetadata(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesDynamicHDRMetadata:"), value)
-}
-
-
-// Indicates the recommended media timescale for the video track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedMediaTimeScaleForAssetWriter
-
-func (c_ CaptureVideoDataOutput) RecommendedMediaTimeScaleForAssetWriter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedMediaTimeScaleForAssetWriter"))
-	return rv
-}
-
-
-// The queue on which the system invokes delegate callbacks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/sampleBufferCallbackQueue
-
-func (c_ CaptureVideoDataOutput) SampleBufferCallbackQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferCallbackQueue"))
-	return rv
-}
-
-
-// The capture object’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/sampleBufferDelegate
-
-func (c_ CaptureVideoDataOutput) SampleBufferDelegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("sampleBufferDelegate"))
-	return rv
-}
-
-
-// A dictionary that contains the compression settings for the output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings
-
-func (c_ CaptureVideoDataOutput) VideoSettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("videoSettings"))
-	return rv
-}
-
-
-// A dictionary that contains the compression settings for the output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings
-
-func (c_ CaptureVideoDataOutput) SetVideoSettings(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoSettings:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideocodectypes
+func (c_ CaptureVideoDataOutput) SetAvailableVideoCodecTypes(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoCodecTypes:"), value)
 }
 
 
@@ -393,7 +180,6 @@ func (c_ CaptureVideoDataOutput) SetVideoSettings(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideopixelformattypes
-
 func (c_ CaptureVideoDataOutput) AvailableVideoPixelFormatTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableVideoPixelFormatTypes"))
 	return rv
@@ -404,9 +190,141 @@ func (c_ CaptureVideoDataOutput) AvailableVideoPixelFormatTypes() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideopixelformattypes
-
 func (c_ CaptureVideoDataOutput) SetAvailableVideoPixelFormatTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoPixelFormatTypes:"), value)
+}
+
+
+// A Boolean value that indicates whether the output is configured to deliver preview-sized buffers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/deliverspreviewsizedoutputbuffers
+func (c_ CaptureVideoDataOutput) DeliversPreviewSizedOutputBuffers() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("deliversPreviewSizedOutputBuffers"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the output is configured to deliver preview-sized buffers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/deliverspreviewsizedoutputbuffers
+func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDeliversPreviewSizedOutputBuffers:"), value)
+}
+
+
+// Indicates whether the receiver should prepare the cellular radio for imminent network activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preparescellularradiofornetworkconnection
+func (c_ CaptureVideoDataOutput) PreparesCellularRadioForNetworkConnection() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("preparesCellularRadioForNetworkConnection"))
+	return rv
+}
+
+
+// Indicates whether the receiver should prepare the cellular radio for imminent network activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preparescellularradiofornetworkconnection
+func (c_ CaptureVideoDataOutput) SetPreparesCellularRadioForNetworkConnection(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparesCellularRadioForNetworkConnection:"), value)
+}
+
+
+// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer’s underlying pixel buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preservesdynamichdrmetadata
+func (c_ CaptureVideoDataOutput) PreservesDynamicHDRMetadata() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("preservesDynamicHDRMetadata"))
+	return rv
+}
+
+
+// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer’s underlying pixel buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preservesdynamichdrmetadata
+func (c_ CaptureVideoDataOutput) SetPreservesDynamicHDRMetadata(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesDynamicHDRMetadata:"), value)
+}
+
+
+// Indicates the recommended media timescale for the video track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/recommendedmediatimescaleforassetwriter
+func (c_ CaptureVideoDataOutput) RecommendedMediaTimeScaleForAssetWriter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedMediaTimeScaleForAssetWriter"))
+	return rv
+}
+
+
+// Indicates the recommended media timescale for the video track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/recommendedmediatimescaleforassetwriter
+func (c_ CaptureVideoDataOutput) SetRecommendedMediaTimeScaleForAssetWriter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecommendedMediaTimeScaleForAssetWriter:"), value)
+}
+
+
+// The queue on which the system invokes delegate callbacks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebuffercallbackqueue
+func (c_ CaptureVideoDataOutput) SampleBufferCallbackQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferCallbackQueue"))
+	return rv
+}
+
+
+// The queue on which the system invokes delegate callbacks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebuffercallbackqueue
+func (c_ CaptureVideoDataOutput) SetSampleBufferCallbackQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferCallbackQueue:"), value)
+}
+
+
+// The capture object’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebufferdelegate
+func (c_ CaptureVideoDataOutput) SampleBufferDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferDelegate"))
+	return rv
+}
+
+
+// The capture object’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebufferdelegate
+func (c_ CaptureVideoDataOutput) SetSampleBufferDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:"), value)
+}
+
+
+// A dictionary that contains the compression settings for the output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/videosettings
+func (c_ CaptureVideoDataOutput) VideoSettings() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("videoSettings"))
+	return rv
+}
+
+
+// A dictionary that contains the compression settings for the output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/videosettings
+func (c_ CaptureVideoDataOutput) SetVideoSettings(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoSettings:"), objc.String(value))
 }
 
 

@@ -53,7 +53,11 @@ type IINStartPhotoPlaybackIntent interface {
 // A request to search for photos and initiate a slideshow with the results.
 //
 // The system creates an object when the user asks to start a slideshow of a set of photos. This intent object contains the parameters to use when searching for the photos, including the possible name of a photo album, the people in the photos, or the location of the photos. Use this intent object to perform the search and initiate the slideshow in your app. When performing the search, use only the parameters provided and ignore any that have no values. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of the search. After a successful search, Siri launches your app so that it can begin the slideshow. For a list of other intents in the photos domain, see .
+
+
+// A request to search for photos and initiate a slideshow with the results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartPhotoPlaybackIntent
 type INStartPhotoPlaybackIntent struct {
 	INIntent
@@ -100,8 +104,10 @@ func NewINStartPhotoPlaybackIntent() INStartPhotoPlaybackIntent {
 }
 
 
+
 // The name of the album that contains the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/albumname
 func (i_ INStartPhotoPlaybackIntent) AlbumName() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
@@ -109,17 +115,18 @@ func (i_ INStartPhotoPlaybackIntent) AlbumName() string {
 }
 
 
-// SetAlbumName sets the value of the albumName property.
 // The name of the album that contains the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/albumname
 func (i_ INStartPhotoPlaybackIntent) SetAlbumName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
 }
 
+
 // The range of dates during which someone took the pictures.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/datecreated
 func (i_ INStartPhotoPlaybackIntent) DateCreated() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateCreated"))
@@ -127,17 +134,18 @@ func (i_ INStartPhotoPlaybackIntent) DateCreated() INDateComponentsRange {
 }
 
 
-// SetDateCreated sets the value of the dateCreated property.
 // The range of dates during which someone took the pictures.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/datecreated
 func (i_ INStartPhotoPlaybackIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
+
 // The attributes that must not be present in the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/excludedattributes
 func (i_ INStartPhotoPlaybackIntent) ExcludedAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("excludedAttributes"))
@@ -145,17 +153,18 @@ func (i_ INStartPhotoPlaybackIntent) ExcludedAttributes() unsafe.Pointer {
 }
 
 
-// SetExcludedAttributes sets the value of the excludedAttributes property.
 // The attributes that must not be present in the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/excludedattributes
 func (i_ INStartPhotoPlaybackIntent) SetExcludedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExcludedAttributes:"), value)
 }
 
+
 // The attributes that must be present in the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/includedattributes
 func (i_ INStartPhotoPlaybackIntent) IncludedAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("includedAttributes"))
@@ -163,17 +172,18 @@ func (i_ INStartPhotoPlaybackIntent) IncludedAttributes() unsafe.Pointer {
 }
 
 
-// SetIncludedAttributes sets the value of the includedAttributes property.
 // The attributes that must be present in the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/includedattributes
 func (i_ INStartPhotoPlaybackIntent) SetIncludedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIncludedAttributes:"), value)
 }
 
+
 // The location where someone took the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/locationcreated
 func (i_ INStartPhotoPlaybackIntent) LocationCreated() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("locationCreated"))
@@ -181,17 +191,18 @@ func (i_ INStartPhotoPlaybackIntent) LocationCreated() corelocation.Placemark {
 }
 
 
-// SetLocationCreated sets the value of the locationCreated property.
 // The location where someone took the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/locationcreated
 func (i_ INStartPhotoPlaybackIntent) SetLocationCreated(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationCreated:"), value)
 }
 
+
 // The people in the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphoto
 func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("peopleInPhoto"))
@@ -199,17 +210,18 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() INPerson {
 }
 
 
-// SetPeopleInPhoto sets the value of the peopleInPhoto property.
 // The people in the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphoto
 func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhoto(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhoto:"), value)
 }
 
+
 // The operator that defines how to search for people in the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphotooperator
 func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() INConditionalOperator {
 	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("peopleInPhotoOperator"))
@@ -217,17 +229,18 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() INConditionalOperat
 }
 
 
-// SetPeopleInPhotoOperator sets the value of the peopleInPhotoOperator property.
 // The operator that defines how to search for people in the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphotooperator
 func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhotoOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhotoOperator:"), value)
 }
 
+
 // An array of terms to look for in the photos.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchterms
 func (i_ INStartPhotoPlaybackIntent) SearchTerms() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
@@ -235,17 +248,18 @@ func (i_ INStartPhotoPlaybackIntent) SearchTerms() string {
 }
 
 
-// SetSearchTerms sets the value of the searchTerms property.
 // An array of terms to look for in the photos.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchterms
 func (i_ INStartPhotoPlaybackIntent) SetSearchTerms(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
 }
 
+
 // The operator that defines how to incorporate the search terms when performing the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchtermsoperator
 func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() INConditionalOperator {
 	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("searchTermsOperator"))
@@ -253,10 +267,9 @@ func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() INConditionalOperator
 }
 
 
-// SetSearchTermsOperator sets the value of the searchTermsOperator property.
 // The operator that defines how to incorporate the search terms when performing the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchtermsoperator
 func (i_ INStartPhotoPlaybackIntent) SetSearchTermsOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)

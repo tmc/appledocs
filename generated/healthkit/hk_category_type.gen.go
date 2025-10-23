@@ -40,7 +40,6 @@ type IHKCategoryType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryType
-
 type HKCategoryType struct {
 	HKSampleType
 }

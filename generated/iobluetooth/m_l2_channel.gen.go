@@ -32,7 +32,9 @@ type ImL2Channel interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mL2Channel
 type mL2Channel struct {
 	objectivec.Object

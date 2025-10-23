@@ -45,7 +45,6 @@ type IHKFHIRResource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource
-
 type HKFHIRResource struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewHKFHIRResource() HKFHIRResource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/data
-
 func (h_ HKFHIRResource) Data() foundation.NSData {
 	rv := objc.Send[foundation.NSData](h_.ID, objc.Sel("data"))
 	return rv
@@ -105,7 +103,6 @@ func (h_ HKFHIRResource) Data() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/fhirVersion
-
 func (h_ HKFHIRResource) FHIRVersion() HKFHIRVersion {
 	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("FHIRVersion"))
 	return rv
@@ -116,7 +113,6 @@ func (h_ HKFHIRResource) FHIRVersion() HKFHIRVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/identifier
-
 func (h_ HKFHIRResource) Identifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKFHIRResource) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/resourceType
-
 func (h_ HKFHIRResource) ResourceType() HKFHIRResourceType {
 	rv := objc.Send[HKFHIRResourceType](h_.ID, objc.Sel("resourceType"))
 	return rv
@@ -138,7 +133,6 @@ func (h_ HKFHIRResource) ResourceType() HKFHIRResourceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/sourceURL
-
 func (h_ HKFHIRResource) SourceURL() foundation.URL {
 	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
 	return rv

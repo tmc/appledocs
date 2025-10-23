@@ -36,7 +36,11 @@ type IINSetMessageAttributeIntent interface {
 // A request to modify the attributes of a message.
 //
 // Siri creates an object when the user asks to modify the attributes of one or more messages. Attributes represent information about the message such as whether the user read or flagged the message. This intent object includes the messages to modify and which attributes to change. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of modifying the messages.
+
+
+// A request to modify the attributes of a message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetMessageAttributeIntent
 type INSetMessageAttributeIntent struct {
 	INIntent
@@ -84,9 +88,9 @@ func NewINSetMessageAttributeIntent() INSetMessageAttributeIntent {
 
 
 
-
 // Initializes the set message attribute intent object with the specified identifiers and attribute.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetMessageAttributeIntent/init(identifiers:attribute:)
 func NewINSetMessageAttributeIntentWithIdentifiersAttribute(identifiers []string, attribute unsafe.Pointer) INSetMessageAttributeIntent {
 	instance := getINSetMessageAttributeIntentClass().Alloc()
@@ -96,16 +100,20 @@ func NewINSetMessageAttributeIntentWithIdentifiersAttribute(identifiers []string
 }
 
 
+
 // The attribute to apply to the messages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetMessageAttributeIntent/attribute
 func (i_ INSetMessageAttributeIntent) Attribute() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("attribute"))
 	return rv
 }
 
+
 // The array of message identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetMessageAttributeIntent/identifiers
 func (i_ INSetMessageAttributeIntent) Identifiers() []string {
 	rv := objc.Send[[]string](i_.ID, objc.Sel("identifiers"))

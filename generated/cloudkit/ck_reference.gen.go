@@ -47,7 +47,6 @@ type ICKReference interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference
-
 type CKReference struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewCKReference() CKReference {
 
 
 
-
 // Creates a reference object that points to the specified record object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(record:action:)
-
 func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecord:action:"), record, action)
@@ -106,12 +103,10 @@ func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction)
 }
 
 
-
 // Creates a reference object that points to the record with the specified ID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(recordID:action:)
-
 func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceAction) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecordID:action:"), recordID, action)
@@ -125,7 +120,6 @@ func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
-
 func (c_ CKReference) ReferenceAction() CKReferenceAction {
 	rv := objc.Send[CKReferenceAction](c_.ID, objc.Sel("referenceAction"))
 	return rv
@@ -136,7 +130,6 @@ func (c_ CKReference) ReferenceAction() CKReferenceAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/recordID
-
 func (c_ CKReference) RecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
@@ -147,7 +140,6 @@ func (c_ CKReference) RecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
-
 func (c_ CKReference) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
 	return rv
@@ -158,7 +150,6 @@ func (c_ CKReference) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
-
 func (c_ CKReference) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
@@ -168,7 +159,6 @@ func (c_ CKReference) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-
 func (c_ CKReference) RecordChangeTag() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
@@ -179,7 +169,6 @@ func (c_ CKReference) RecordChangeTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-
 func (c_ CKReference) SetRecordChangeTag(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
 }

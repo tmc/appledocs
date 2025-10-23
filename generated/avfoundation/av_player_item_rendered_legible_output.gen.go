@@ -48,7 +48,6 @@ type IPlayerItemRenderedLegibleOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput
-
 type PlayerItemRenderedLegibleOutput struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewPlayerItemRenderedLegibleOutput() PlayerItemRenderedLegibleOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/advanceintervalfordelegateinvocation
-
 func (p_ PlayerItemRenderedLegibleOutput) AdvanceIntervalForDelegateInvocation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("advanceIntervalForDelegateInvocation"))
 	return rv
@@ -108,7 +106,6 @@ func (p_ PlayerItemRenderedLegibleOutput) AdvanceIntervalForDelegateInvocation()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/advanceintervalfordelegateinvocation
-
 func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdvanceIntervalForDelegateInvocation:"), value)
 }
@@ -118,7 +115,6 @@ func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
-
 func (p_ PlayerItemRenderedLegibleOutput) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
@@ -129,7 +125,6 @@ func (p_ PlayerItemRenderedLegibleOutput) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
-
 func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -139,7 +134,6 @@ func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegatequeue
-
 func (p_ PlayerItemRenderedLegibleOutput) DelegateQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegateQueue"))
 	return rv
@@ -150,7 +144,6 @@ func (p_ PlayerItemRenderedLegibleOutput) DelegateQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegatequeue
-
 func (p_ PlayerItemRenderedLegibleOutput) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegateQueue:"), value)
 }
@@ -160,7 +153,6 @@ func (p_ PlayerItemRenderedLegibleOutput) SetDelegateQueue(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
-
 func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("videoDisplaySize"))
 	return rv
@@ -171,7 +163,6 @@ func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() coregraphics.CGSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
-
 func (p_ PlayerItemRenderedLegibleOutput) SetVideoDisplaySize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoDisplaySize:"), value)
 }

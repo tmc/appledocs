@@ -46,7 +46,6 @@ type IGlassEffectView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView
-
 type GlassEffectView struct {
 	View
 }
@@ -97,7 +96,6 @@ func NewGlassEffectView() GlassEffectView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
-
 func (g_ GlassEffectView) ContentView() NSView {
 	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
 	return rv
@@ -108,7 +106,6 @@ func (g_ GlassEffectView) ContentView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
-
 func (g_ GlassEffectView) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
@@ -118,7 +115,6 @@ func (g_ GlassEffectView) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
-
 func (g_ GlassEffectView) CornerRadius() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("cornerRadius"))
 	return rv
@@ -129,7 +125,6 @@ func (g_ GlassEffectView) CornerRadius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
-
 func (g_ GlassEffectView) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCornerRadius:"), value)
 }
@@ -139,7 +134,6 @@ func (g_ GlassEffectView) SetCornerRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-
 func (g_ GlassEffectView) Style() GlassEffectViewStyle {
 	rv := objc.Send[GlassEffectViewStyle](g_.ID, objc.Sel("style"))
 	return rv
@@ -150,7 +144,6 @@ func (g_ GlassEffectView) Style() GlassEffectViewStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-
 func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStyle:"), value)
 }
@@ -160,7 +153,6 @@ func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
-
 func (g_ GlassEffectView) TintColor() NSColor {
 	rv := objc.Send[NSColor](g_.ID, objc.Sel("tintColor"))
 	return rv
@@ -171,7 +163,6 @@ func (g_ GlassEffectView) TintColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
-
 func (g_ GlassEffectView) SetTintColor(value IColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTintColor:"), value)
 }

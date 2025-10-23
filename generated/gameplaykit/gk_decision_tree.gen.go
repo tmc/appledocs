@@ -49,7 +49,6 @@ type IDecisionTree interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree
-
 type DecisionTree struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewDecisionTree() DecisionTree {
 
 
 
-
 // Creates a decision tree starting with the specified initial attribute to test.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(attribute:)
-
 func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithAttribute:"), attribute)
@@ -108,12 +105,10 @@ func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
 }
 
 
-
 // Creates an automatically learned decision tree using the specified attributes, example items, and actions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
-
 func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.IArray, actions []objc.ID, attributes []objc.ID) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
@@ -122,10 +117,8 @@ func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.IArray, 
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-
 func NewDecisionTreeWithURLError(url foundation.IURL, error_ foundation.IError) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
@@ -135,22 +128,18 @@ func NewDecisionTreeWithURLError(url foundation.IURL, error_ foundation.IError) 
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
-
 func (d_ DecisionTree) ExportToURLError(url foundation.IURL, error_ foundation.IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
 }
 
 
-
 // Searches the decision tree, following the branches corresponding to each of the specified answers, and returns the resulting action object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/findAction(forAnswers:)
-
 func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("findActionForAnswers:"), answers)
 	return rv
@@ -161,7 +150,6 @@ func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
-
 func (d_ DecisionTree) RandomSource() GKRandomSource {
 	rv := objc.Send[GKRandomSource](d_.ID, objc.Sel("randomSource"))
 	return rv
@@ -172,7 +160,6 @@ func (d_ DecisionTree) RandomSource() GKRandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
-
 func (d_ DecisionTree) SetRandomSource(value IGKRandomSource) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRandomSource:"), value)
 }
@@ -182,7 +169,6 @@ func (d_ DecisionTree) SetRandomSource(value IGKRandomSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/rootNode
-
 func (d_ DecisionTree) RootNode() GKDecisionNode {
 	rv := objc.Send[GKDecisionNode](d_.ID, objc.Sel("rootNode"))
 	return rv
@@ -193,7 +179,6 @@ func (d_ DecisionTree) RootNode() GKDecisionNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-
 func (d_ DecisionTree) Description() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
@@ -204,7 +189,6 @@ func (d_ DecisionTree) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-
 func (d_ DecisionTree) SetDescription(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }

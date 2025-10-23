@@ -47,7 +47,6 @@ type IGaussianDistribution interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution
-
 type GaussianDistribution struct {
 	RandomDistribution
 }
@@ -94,12 +93,10 @@ func NewGaussianDistribution() GaussianDistribution {
 
 
 
-
 // Initializes a Gaussian random distribution with the specified lower and upper bounds, using the specified source randomizer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:lowestValue:highestValue:)
-
 func NewGaussianDistributionWithRandomSourceLowestValueHighestValue(source objectivec.IObject, lowestInclusive int, highestInclusive int) GaussianDistribution {
 	instance := getGaussianDistributionClass().Alloc()
 	rv := objc.Send[GaussianDistribution](instance.ID, objc.Sel("initWithRandomSource:lowestValue:highestValue:"), source, lowestInclusive, highestInclusive)
@@ -108,12 +105,10 @@ func NewGaussianDistributionWithRandomSourceLowestValueHighestValue(source objec
 }
 
 
-
 // Initializes a Gaussian random distribution with the specified mean and deviation, using the specified source randomizer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:mean:deviation:)
-
 func NewGaussianDistributionWithRandomSourceMeanDeviation(source objectivec.IObject, mean float32, deviation float32) GaussianDistribution {
 	instance := getGaussianDistributionClass().Alloc()
 	rv := objc.Send[GaussianDistribution](instance.ID, objc.Sel("initWithRandomSource:mean:deviation:"), source, mean, deviation)
@@ -127,7 +122,6 @@ func NewGaussianDistributionWithRandomSourceMeanDeviation(source objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/deviation
-
 func (g_ GaussianDistribution) Deviation() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("deviation"))
 	return rv
@@ -138,7 +132,6 @@ func (g_ GaussianDistribution) Deviation() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/mean
-
 func (g_ GaussianDistribution) Mean() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("mean"))
 	return rv
@@ -149,7 +142,6 @@ func (g_ GaussianDistribution) Mean() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/highestvalue
-
 func (g_ GaussianDistribution) HighestValue() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("highestValue"))
 	return rv
@@ -160,7 +152,6 @@ func (g_ GaussianDistribution) HighestValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/highestvalue
-
 func (g_ GaussianDistribution) SetHighestValue(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHighestValue:"), value)
 }
@@ -170,7 +161,6 @@ func (g_ GaussianDistribution) SetHighestValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/lowestvalue
-
 func (g_ GaussianDistribution) LowestValue() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("lowestValue"))
 	return rv
@@ -181,7 +171,6 @@ func (g_ GaussianDistribution) LowestValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/lowestvalue
-
 func (g_ GaussianDistribution) SetLowestValue(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLowestValue:"), value)
 }

@@ -34,7 +34,11 @@ type IINCallDestinationTypeResolutionResult interface {
 // A resolution result for the destination type of a call.
 //
 // You return an object when resolving parameters containing an value. Use the creation method that best reflects your ability to resolve the parameter successfully. For additional resolution operators, see .
+
+
+// A resolution result for the destination type of a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCallDestinationTypeResolutionResult
 type INCallDestinationTypeResolutionResult struct {
 	INIntentResolutionResult

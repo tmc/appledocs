@@ -72,10 +72,40 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactSortOrder
 type CNContactSortOrder uint
 
+const (
+	// CNContactSortOrderFamilyName - Sorting contacts by family name.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactSortOrder/familyName
+	CNContactSortOrderFamilyName CNContactSortOrder = 0
+	// CNContactSortOrderGivenName - Sorting contacts by given name.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactSortOrder/givenName
+	CNContactSortOrderGivenName CNContactSortOrder = 0
+	// CNContactSortOrderNone - No sorting order.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactSortOrder/none
+	CNContactSortOrderNone CNContactSortOrder = 0
+	// CNContactSortOrderUserDefault - The user’s default sorting order.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactSortOrder/userDefault
+	CNContactSortOrderUserDefault CNContactSortOrder = 0
+)
+
 // CNContactType - The types a contact can be.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactType
 type CNContactType uint
+
+const (
+	// CNContactTypeOrganization - The contact is an Organization.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactType/organization
+	CNContactTypeOrganization CNContactType = 0
+	// CNContactTypePerson - The contact is a person.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactType/person
+	CNContactTypePerson CNContactType = 0
+)
 
 // CNContainerType - The container may be local on the device or associated with a server account that has contacts.
 //

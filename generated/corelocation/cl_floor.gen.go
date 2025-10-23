@@ -43,7 +43,6 @@ type IFloor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor
-
 type Floor struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewFloor() Floor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
-
 func (f_ Floor) Level() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("level"))
 	return rv
@@ -103,7 +101,6 @@ func (f_ Floor) Level() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor/level
-
 func (f_ Floor) SetLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLevel:"), value)
 }

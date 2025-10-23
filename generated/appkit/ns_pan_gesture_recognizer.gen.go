@@ -46,7 +46,6 @@ type IPanGestureRecognizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer
-
 type PanGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -97,7 +96,6 @@ func NewPanGestureRecognizer() PanGestureRecognizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/buttonMask
-
 func (p_ PanGestureRecognizer) ButtonMask() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("buttonMask"))
 	return rv
@@ -108,7 +106,6 @@ func (p_ PanGestureRecognizer) ButtonMask() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/buttonMask
-
 func (p_ PanGestureRecognizer) SetButtonMask(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonMask:"), value)
 }
@@ -118,7 +115,6 @@ func (p_ PanGestureRecognizer) SetButtonMask(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/numberOfTouchesRequired
-
 func (p_ PanGestureRecognizer) NumberOfTouchesRequired() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfTouchesRequired"))
 	return rv
@@ -129,7 +125,6 @@ func (p_ PanGestureRecognizer) NumberOfTouchesRequired() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/numberOfTouchesRequired
-
 func (p_ PanGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }
@@ -139,7 +134,6 @@ func (p_ PanGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
-
 func (p_ PanGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("delaysPrimaryMouseButtonEvents"))
 	return rv
@@ -150,7 +144,6 @@ func (p_ PanGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
-
 func (p_ PanGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
 }

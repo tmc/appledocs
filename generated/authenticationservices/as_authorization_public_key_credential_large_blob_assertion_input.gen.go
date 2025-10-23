@@ -40,7 +40,6 @@ type IAuthorizationPublicKeyCredentialLargeBlobAssertionInput interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class
-
 type AuthorizationPublicKeyCredentialLargeBlobAssertionInput struct {
 	objectivec.Object
 }
@@ -83,10 +82,8 @@ func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInput() AuthorizationP
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/initWithOperation:
-
 func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(operation IAuthorizationPublicKeyCredentialLargeBlobAssertionOperation) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	instance := getAuthorizationPublicKeyCredentialLargeBlobAssertionInputClass().Alloc()
 	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionInput](instance.ID, objc.Sel("initWithOperation:"), operation)
@@ -98,7 +95,6 @@ func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(ope
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
-
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() foundation.NSData {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("dataToWrite"))
 	return rv
@@ -107,7 +103,6 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
-
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataToWrite:"), value)
 }
@@ -115,7 +110,6 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/operation
-
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) Operation() AuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
 	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionOperation](a_.ID, objc.Sel("operation"))
 	return rv

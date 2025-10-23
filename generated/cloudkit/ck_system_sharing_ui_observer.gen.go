@@ -45,7 +45,6 @@ type ICKSystemSharingUIObserver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver
-
 type CKSystemSharingUIObserver struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewCKSystemSharingUIObserver() CKSystemSharingUIObserver {
 
 
 
-
 // Creates and initializes an observer using the provided container.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/init(container:)
-
 func NewCKSystemSharingUIObserverWithContainer(container ICKContainer) CKSystemSharingUIObserver {
 	instance := getCKSystemSharingUIObserverClass().Alloc()
 	rv := objc.Send[CKSystemSharingUIObserver](instance.ID, objc.Sel("initWithContainer:"), container)
@@ -109,7 +106,6 @@ func NewCKSystemSharingUIObserverWithContainer(container ICKContainer) CKSystemS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidSaveShareBlock-39zlv
-
 func (c_ CKSystemSharingUIObserver) SystemSharingUIDidSaveShareBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemSharingUIDidSaveShareBlock"))
 	return rv
@@ -120,7 +116,6 @@ func (c_ CKSystemSharingUIObserver) SystemSharingUIDidSaveShareBlock() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidSaveShareBlock-39zlv
-
 func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidSaveShareBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemSharingUIDidSaveShareBlock:"), value)
 }
@@ -130,7 +125,6 @@ func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidSaveShareBlock(value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidStopSharingBlock-4g5bn
-
 func (c_ CKSystemSharingUIObserver) SystemSharingUIDidStopSharingBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemSharingUIDidStopSharingBlock"))
 	return rv
@@ -141,7 +135,6 @@ func (c_ CKSystemSharingUIObserver) SystemSharingUIDidStopSharingBlock() unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/systemSharingUIDidStopSharingBlock-4g5bn
-
 func (c_ CKSystemSharingUIObserver) SetSystemSharingUIDidStopSharingBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemSharingUIDidStopSharingBlock:"), value)
 }

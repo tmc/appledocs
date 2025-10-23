@@ -42,7 +42,6 @@ type IAudioUnitGenerator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitGenerator
-
 type AudioUnitGenerator struct {
 	AudioUnit
 }
@@ -93,7 +92,6 @@ func NewAudioUnitGenerator() AudioUnitGenerator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator/bypass
-
 func (a_ AudioUnitGenerator) Bypass() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
 	return rv
@@ -104,7 +102,6 @@ func (a_ AudioUnitGenerator) Bypass() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator/bypass
-
 func (a_ AudioUnitGenerator) SetBypass(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
 }

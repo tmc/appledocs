@@ -36,7 +36,6 @@ type IBindingSelectionMarker interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker
-
 type BindingSelectionMarker struct {
 	objectivec.Object
 }
@@ -81,7 +80,6 @@ func NewBindingSelectionMarker() BindingSelectionMarker {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker/notApplicable
-
 func (bc _BindingSelectionMarkerClass) NotApplicableSelectionMarker() BindingSelectionMarker {
 	rv := objc.Send[NSBindingSelectionMarker](objc.ID(bc.class), objc.Sel("notApplicableSelectionMarker"))
 	return rv
@@ -89,7 +87,6 @@ func (bc _BindingSelectionMarkerClass) NotApplicableSelectionMarker() BindingSel
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker/notApplicable
-
 func (b_ BindingSelectionMarker) NotApplicableSelectionMarker() NSBindingSelectionMarker {
 	rv := objc.Send[NSBindingSelectionMarker](b_.ID, objc.Sel("notApplicableSelectionMarker"))
 	return rv

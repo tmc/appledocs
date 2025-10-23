@@ -44,7 +44,6 @@ type IAuthorizationSecurityKeyPublicKeyCredentialDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
-
 type AuthorizationSecurityKeyPublicKeyCredentialDescriptor struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptor() AuthorizationSec
 
 
 
-
 // Creates the object with the credential ID and the array of transports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/init(credentialID:transports:)
-
 func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptorWithCredentialIDTransports(credentialID foundation.IData, allowedTransports []string) AuthorizationSecurityKeyPublicKeyCredentialDescriptor {
 	instance := getAuthorizationSecurityKeyPublicKeyCredentialDescriptorClass().Alloc()
 	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialDescriptor](instance.ID, objc.Sel("initWithCredentialID:transports:"), credentialID, allowedTransports)
@@ -108,7 +105,6 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptorWithCredentialIDTra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/transports
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialDescriptor) Transports() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("transports"))
 	return rv
@@ -119,7 +115,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialDescriptor) Transports() []s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/transports
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialDescriptor) SetTransports(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID

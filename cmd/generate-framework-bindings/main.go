@@ -373,6 +373,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Second pass: collect methods for each class
 	// (Properties are already collected in the first pass)
+	phaseStart = time.Now()
 	if len(classes) > 0 {
 		classMethodsMap := make(map[string][]*occ2go.ParsedMethod)
 		// Track seen selectors per class to prevent duplicates from documentation
@@ -478,10 +479,12 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				fmt.Fprintf(os.Stderr, "Skipped %d methods and %d properties due to framework hierarchy violations\n",
 					skippedMethodCount, skippedPropertyCount)
 			}
+			fmt.Fprintf(os.Stderr, "[%s] Collected methods and properties in %.2fs\n", framework, time.Since(phaseStart).Seconds())
 		}
 	}
 
 	// Attach enum cases to enums
+	phaseStart = time.Now()
 	if len(enums) > 0 {
 		caseCount := 0
 		for i := range enums {
@@ -503,11 +506,14 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		}
 		if verbose {
 			fmt.Fprintf(os.Stderr, "Found %d enum cases for %d enums\n", caseCount, len(enums))
+			fmt.Fprintf(os.Stderr, "[%s] Attached enum cases in %.2fs\n", framework, time.Since(phaseStart).Seconds())
 		}
 
 		// Enrich enum values from macOS SDK headers using extract-enum-values tool
 		enrichStart := time.Now()
-		_ = enrichEnumValues(framework, enums, verbose)
+		if os.Getenv("SKIP_ENUM_ENRICHMENT") != "1" {
+			_ = enrichEnumValues(framework, enums, verbose)
+		}
 		if verbose {
 			fmt.Fprintf(os.Stderr, "[%s] Enriched enums in %.2fs\n", framework, time.Since(enrichStart).Seconds())
 		}
@@ -517,10 +523,12 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	// This populates crossFrameworkTypeRegistry with mappings like:
 	//   NSImageScaling → appkit.ImageScaling
 	//   NSWindow → appkit.Window
+	phaseStart = time.Now()
 	buildTypeRegistryFromParsedData(framework, classes, enums, typedefs)
 	if verbose {
 		fmt.Fprintf(os.Stderr, "Built type registry from parsed data: %d classes, %d enums, %d typedefs\n",
 			len(classes), len(enums), len(typedefs))
+		fmt.Fprintf(os.Stderr, "[%s] Built type registry in %.2fs\n", framework, time.Since(phaseStart).Seconds())
 	}
 
 	// Fail if no symbols were found and no filter was applied

@@ -48,7 +48,6 @@ type ICaptureSystemPressureState interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class
-
 type CaptureSystemPressureState struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewCaptureSystemPressureState() CaptureSystemPressureState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.property
-
 func (c_ CaptureSystemPressureState) Factors() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("factors"))
 	return rv
@@ -108,7 +106,6 @@ func (c_ CaptureSystemPressureState) Factors() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.property
-
 func (c_ CaptureSystemPressureState) SetFactors(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFactors:"), value)
 }
@@ -118,7 +115,6 @@ func (c_ CaptureSystemPressureState) SetFactors(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.property
-
 func (c_ CaptureSystemPressureState) Level() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("level"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CaptureSystemPressureState) Level() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.property
-
 func (c_ CaptureSystemPressureState) SetLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLevel:"), value)
 }
@@ -139,7 +134,6 @@ func (c_ CaptureSystemPressureState) SetLevel(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
-
 func (c_ CaptureSystemPressureState) SystemPressureState() AVCaptureSystemPressureState {
 	rv := objc.Send[AVCaptureSystemPressureState](c_.ID, objc.Sel("systemPressureState"))
 	return rv
@@ -150,7 +144,6 @@ func (c_ CaptureSystemPressureState) SystemPressureState() AVCaptureSystemPressu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
-
 func (c_ CaptureSystemPressureState) SetSystemPressureState(value AVCaptureSystemPressureState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureState:"), value)
 }
@@ -160,7 +153,6 @@ func (c_ CaptureSystemPressureState) SetSystemPressureState(value AVCaptureSyste
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
-
 func (c_ CaptureSystemPressureState) AVCaptureSessionInterruptionSystemPressureStateKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
 	return rv

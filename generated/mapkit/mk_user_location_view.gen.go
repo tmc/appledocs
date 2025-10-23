@@ -38,7 +38,11 @@ type IMKUserLocationView interface {
 // A configurable annotation that shows the user’s location using the default MapKit style.
 //
 // If you don’t need additional configuration, you can show an annotation with the user’s location by setting on the map to . If you want to specify additional configuration, such as , create this annotation view directly. To display the annotation view, return the instance from . The user location view provides the MapKit default style and behavior. The visual display varies with the level of authorization the user grants your app.
+
+
+// A configurable annotation that shows the user’s location using the default MapKit style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocationView
 type MKUserLocationView struct {
 	MKAnnotationView
@@ -85,8 +89,10 @@ func NewMKUserLocationView() MKUserLocationView {
 }
 
 
+
 // The relative importance of the annotation view when in an unselected state with respect to its ordering along the z-axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority
 func (m_ MKUserLocationView) ZPriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("zPriority"))
@@ -94,17 +100,18 @@ func (m_ MKUserLocationView) ZPriority() unsafe.Pointer {
 }
 
 
-// SetZPriority sets the value of the zPriority property.
 // The relative importance of the annotation view when in an unselected state with respect to its ordering along the z-axis.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority
 func (m_ MKUserLocationView) SetZPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setZPriority:"), value)
 }
 
+
 // A Boolean value that indicates whether the map tries to display the user’s location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsuserlocation
 func (m_ MKUserLocationView) ShowsUserLocation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserLocation"))
@@ -112,10 +119,9 @@ func (m_ MKUserLocationView) ShowsUserLocation() bool {
 }
 
 
-// SetShowsUserLocation sets the value of the showsUserLocation property.
 // A Boolean value that indicates whether the map tries to display the user’s location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsuserlocation
 func (m_ MKUserLocationView) SetShowsUserLocation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserLocation:"), value)

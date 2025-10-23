@@ -13,7 +13,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"text/template"
 
 	"github.com/tmc/appledocs/occ2go"
 	"golang.org/x/tools/txtar"
@@ -104,264 +103,32 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 	gen.Typedefs = typedefs
 	gen.Constants = constants
 
-	// Try to use the module template if it exists
-	if _, err := getTemplateVariant("module", variant); err == nil {
-		if err := gen.GenerateTxtarFromModule(w); err != nil {
-			return err
-		}
-		// Log any collected errors/warnings
-		if verbose {
-			for _, e := range gen.Errors {
-				fmt.Fprintf(os.Stderr, "Warning: %v\n", e)
-			}
-		}
-		return nil
+	// Apply property overrides
+	for _, cls := range gen.Classes {
+		MergePropertyOverrides(framework, cls.Name, cls)
 	}
 
-	// Fallback to individual file generation
-	files := make(map[string][]byte)
+	gen.prepare()
 
-	genFile := func(filename string, generator func(io.Writer) error) error {
-		var buf bytes.Buffer
-		if err := generator(&buf); err != nil {
-			return err
-		}
-		files[filename] = buf.Bytes()
-		return nil
+	// Generate stubs for missing parent classes
+	stubs := gen.GenerateMissingParentStubs()
+	if len(stubs) > 0 {
+		gen.Classes = append(stubs, gen.Classes...)
 	}
 
-	if err := genFile("doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions, variant) }); err != nil {
+	// Use the unified module template
+	if err := gen.GenerateTxtarFromModule(w); err != nil {
 		return err
 	}
-	if err := genFile("types.gen.go", func(w io.Writer) error {
-		return generateTypes(w, framework, packageName, functions, typedefs, withRefMethods, variant)
-	}); err != nil {
-		return err
-	}
-	if err := genFile("functions.gen.go", func(w io.Writer) error {
-		return generateFunctions(w, framework, packageName, functions, withRefMethods, variant)
-	}); err != nil {
-		return err
-	}
-	if withRefMethods {
-		if err := genFile("methods.gen.go", func(w io.Writer) error {
-			return generateMethods(w, framework, packageName, functions, typedefs, variant)
-		}); err != nil {
-			return err
-		}
-	}
-	if len(classes) > 0 {
-		if err := genFile("classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes, variant) }); err != nil {
-			return err
-		}
-	}
-	if len(protocols) > 0 {
-		if err := genFile("protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols, variant) }); err != nil {
-			return err
-		}
-	}
 
-	// Write txtar format
-	fmt.Fprintf(w, "# Generated bindings for %s framework\n", framework)
-	fmt.Fprintf(w, "# Package: %s\n#\n", packageName)
-	fmt.Fprintf(w, "# Functions: %d\n", len(functions))
-	fmt.Fprintf(w, "# Classes: %d\n", len(classes))
-	fmt.Fprintf(w, "# Protocols: %d\n", len(protocols))
-	fmt.Fprintf(w, "# Enums: %d\n\n", len(enums))
-
-	fileNames := make([]string, 0, len(files))
-	for name := range files {
-		fileNames = append(fileNames, name)
-	}
-	sort.Strings(fileNames)
-
-	for _, name := range fileNames {
-		content := files[name]
-		fmt.Fprintf(w, "-- %s --\n", name)
-		w.Write(content)
-		if len(content) > 0 && content[len(content)-1] != '\n' {
-			fmt.Fprintf(w, "\n")
+	// Log any collected errors/warnings
+	if verbose {
+		for _, e := range gen.Errors {
+			fmt.Fprintf(os.Stderr, "Warning: %v\n", e)
 		}
 	}
 
 	return nil
-}
-
-// generateDoc generates package documentation
-func generateDoc(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, variant string) error {
-	frameworkAbstract, frameworkURL, _ := loadFrameworkMetadata(inputDir, framework)
-
-	data := struct {
-		Framework   string
-		PackageName string
-		MinVersion  string
-		Abstract    string
-		DocURL      string
-	}{
-		Framework:   framework,
-		PackageName: packageName,
-		MinVersion:  findMinimumMacOSVersion(functions),
-		Abstract:    frameworkAbstract,
-		DocURL:      frameworkURL,
-	}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("doc.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("doc.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
-
-// generateTypes generates framework-specific type definitions
-func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, typedefs []*occ2go.ParsedTypedef, withRefMethods bool, variant string) error {
-	// Build typedef names map to exclude from refTypes
-	typedefNames := make(map[string]bool)
-	for _, typedef := range typedefs {
-		if typedef.Name != "" {
-			typedefNames[typedef.Name] = true
-		}
-	}
-	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework), typedefNames)
-
-	// Create a minimal generator for template execution
-	gen := &Generator{
-		Framework:      framework,
-		PackageName:    packageName,
-		Functions:      functions,
-		Typedefs:       typedefs,
-		WithRefMethods: withRefMethods,
-	}
-	gen.refTypes = refTypes
-
-	data := gen
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("types.gen.go", variant)
-	if err != nil {
-		// Fallback: write empty types file if template not found
-		fmt.Fprintf(w, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-		fmt.Fprintf(w, "package %s\n", packageName)
-		return nil
-	}
-
-	tmpl, err := template.New("types.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
-
-// generateFunctions generates function bindings
-func generateFunctions(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, withRefMethods bool, variant string) error {
-	data := struct {
-		Framework      string
-		PackageName    string
-		Count          int
-		Functions      []*occ2go.ParsedFunction
-		WithRefMethods bool
-	}{framework, packageName, len(functions), functions, withRefMethods}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("functions.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("functions.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
-
-// generateClasses generates class declarations
-func generateClasses(w io.Writer, framework, packageName string, classes []*occ2go.ParsedClass, variant string) error {
-	data := struct {
-		Framework   string
-		PackageName string
-		Count       int
-		Classes     []*occ2go.ParsedClass
-	}{framework, packageName, len(classes), classes}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("classes.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("classes.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
-
-// generateProtocols generates protocol declarations
-func generateProtocols(w io.Writer, framework, packageName string, protocols []*occ2go.ParsedProtocol, variant string) error {
-	data := struct {
-		Framework   string
-		PackageName string
-		Count       int
-		Protocols   []*occ2go.ParsedProtocol
-	}{framework, packageName, len(protocols), protocols}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("protocols.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("protocols.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
-
-// generateMethods generates method-style wrappers
-func generateMethods(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, typedefs []*occ2go.ParsedTypedef, variant string) error {
-	// Group functions by type
-	typeMethods := groupFunctionsByType(functions, framework)
-
-	// Build a map from type names to their underlying ref type
-	typeToRef := make(map[string]string)
-	// Build typedef names map to exclude from refTypes
-	typedefNames := make(map[string]bool)
-	for _, typedef := range typedefs {
-		if typedef.Name != "" {
-			typedefNames[typedef.Name] = true
-		}
-	}
-	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework), typedefNames)
-
-	for _, refType := range refTypes {
-		// Extract type name from ref type (e.g., CGContextRef -> Context)
-		prefix := getFrameworkPrefix(framework)
-		if strings.HasPrefix(refType, prefix) && strings.HasSuffix(refType, "Ref") {
-			typeName := strings.TrimSuffix(strings.TrimPrefix(refType, prefix), "Ref")
-			typeToRef[typeName] = refType
-		}
-	}
-
-	data := struct {
-		Framework   string
-		PackageName string
-		TypeMethods map[string][]*occ2go.ParsedFunction
-		TypeToRef   map[string]string
-	}{framework, packageName, typeMethods, typeToRef}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("methods.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("methods.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
 }
 
 // getFrameworkPrefix returns the common type prefix for a framework
@@ -726,6 +493,9 @@ func parseEnumFromPreprocessed(preprocessedSource, enumName string) (*EnumResult
 	return result, nil
 }
 
+// Global cache for preprocessed framework headers (in-memory for this run)
+var preprocessedCache = make(map[string]string)
+
 // enrichEnumValues calls the extract-enum-values tool to get actual enum values from macOS SDK headers.
 // It populates the IntValue field of each ParsedEnumCase with the resolved integer value.
 func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool) error {
@@ -733,18 +503,23 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 	enrichedCount := 0
 	failedCount := 0
 
-	// Run clang preprocessor once for all enums
-	cmd := exec.Command("clang", "-x", "objective-c", "-E", "-")
-	cmd.Stdin = strings.NewReader(fmt.Sprintf("#import <%s/%s.h>", framework, framework))
-	cmd.Stderr = os.Stderr
-	output, err := cmd.Output()
-	if err != nil {
-		if verbose {
-			fmt.Fprintf(os.Stderr, "Warning: clang preprocessing failed for %s: %v\n", framework, err)
+	// Check cache first
+	preprocessedSource, cached := preprocessedCache[framework]
+	if !cached {
+		// Run clang preprocessor once for all enums
+		cmd := exec.Command("clang", "-x", "objective-c", "-E", "-")
+		cmd.Stdin = strings.NewReader(fmt.Sprintf("#import <%s/%s.h>", framework, framework))
+		cmd.Stderr = os.Stderr
+		output, err := cmd.Output()
+		if err != nil {
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: clang preprocessing failed for %s: %v\n", framework, err)
+			}
+			return err
 		}
-		return err
+		preprocessedSource = string(output)
+		preprocessedCache[framework] = preprocessedSource
 	}
-	preprocessedSource := string(output)
 
 	// Process each enum by parsing the preprocessed output
 	for _, enum := range enums {

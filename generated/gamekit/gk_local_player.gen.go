@@ -55,7 +55,6 @@ type ILocalPlayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer
-
 type LocalPlayer struct {
 	Player
 }
@@ -106,7 +105,6 @@ func NewLocalPlayer() LocalPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/authenticateHandler
-
 func (l_ LocalPlayer) AuthenticateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("authenticateHandler"))
 	return rv
@@ -117,7 +115,6 @@ func (l_ LocalPlayer) AuthenticateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/authenticateHandler
-
 func (l_ LocalPlayer) SetAuthenticateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAuthenticateHandler:"), value)
 }
@@ -127,7 +124,6 @@ func (l_ LocalPlayer) SetAuthenticateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isAuthenticated
-
 func (l_ LocalPlayer) Authenticated() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("authenticated"))
 	return rv
@@ -138,7 +134,6 @@ func (l_ LocalPlayer) Authenticated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isMultiplayerGamingRestricted
-
 func (l_ LocalPlayer) MultiplayerGamingRestricted() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("multiplayerGamingRestricted"))
 	return rv
@@ -149,7 +144,6 @@ func (l_ LocalPlayer) MultiplayerGamingRestricted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isPersonalizedCommunicationRestricted
-
 func (l_ LocalPlayer) PersonalizedCommunicationRestricted() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("personalizedCommunicationRestricted"))
 	return rv
@@ -160,7 +154,6 @@ func (l_ LocalPlayer) PersonalizedCommunicationRestricted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isauthenticated
-
 func (l_ LocalPlayer) IsAuthenticated() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isAuthenticated"))
 	return rv
@@ -171,7 +164,6 @@ func (l_ LocalPlayer) IsAuthenticated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isauthenticated
-
 func (l_ LocalPlayer) SetIsAuthenticated(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthenticated:"), value)
 }
@@ -181,7 +173,6 @@ func (l_ LocalPlayer) SetIsAuthenticated(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ismultiplayergamingrestricted
-
 func (l_ LocalPlayer) IsMultiplayerGamingRestricted() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isMultiplayerGamingRestricted"))
 	return rv
@@ -192,7 +183,6 @@ func (l_ LocalPlayer) IsMultiplayerGamingRestricted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ismultiplayergamingrestricted
-
 func (l_ LocalPlayer) SetIsMultiplayerGamingRestricted(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsMultiplayerGamingRestricted:"), value)
 }
@@ -202,7 +192,6 @@ func (l_ LocalPlayer) SetIsMultiplayerGamingRestricted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ispersonalizedcommunicationrestricted
-
 func (l_ LocalPlayer) IsPersonalizedCommunicationRestricted() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isPersonalizedCommunicationRestricted"))
 	return rv
@@ -213,7 +202,6 @@ func (l_ LocalPlayer) IsPersonalizedCommunicationRestricted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ispersonalizedcommunicationrestricted
-
 func (l_ LocalPlayer) SetIsPersonalizedCommunicationRestricted(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsPersonalizedCommunicationRestricted:"), value)
 }
@@ -223,7 +211,6 @@ func (l_ LocalPlayer) SetIsPersonalizedCommunicationRestricted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ispresentingfriendrequestviewcontroller
-
 func (l_ LocalPlayer) IsPresentingFriendRequestViewController() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isPresentingFriendRequestViewController"))
 	return rv
@@ -234,7 +221,6 @@ func (l_ LocalPlayer) IsPresentingFriendRequestViewController() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/ispresentingfriendrequestviewcontroller
-
 func (l_ LocalPlayer) SetIsPresentingFriendRequestViewController(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsPresentingFriendRequestViewController:"), value)
 }
@@ -244,7 +230,6 @@ func (l_ LocalPlayer) SetIsPresentingFriendRequestViewController(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isunderage
-
 func (l_ LocalPlayer) IsUnderage() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isUnderage"))
 	return rv
@@ -255,7 +240,6 @@ func (l_ LocalPlayer) IsUnderage() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/isunderage
-
 func (l_ LocalPlayer) SetIsUnderage(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsUnderage:"), value)
 }

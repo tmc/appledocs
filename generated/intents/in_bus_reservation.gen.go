@@ -36,7 +36,11 @@ type IINBusReservation interface {
 }
 
 // The information that describes a bus reservation.
+
+
+// The information that describes a bus reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INBusReservation
 type INBusReservation struct {
 	INReservation
@@ -83,8 +87,10 @@ func NewINBusReservation() INBusReservation {
 }
 
 
+
 // Information describing a bus trip.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/bustrip
 func (i_ INBusReservation) BusTrip() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("busTrip"))
@@ -92,17 +98,18 @@ func (i_ INBusReservation) BusTrip() unsafe.Pointer {
 }
 
 
-// SetBusTrip sets the value of the busTrip property.
 // Information describing a bus trip.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/bustrip
 func (i_ INBusReservation) SetBusTrip(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBusTrip:"), value)
 }
 
+
 // Seat information for the bus reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/reservedseat
 func (i_ INBusReservation) ReservedSeat() INSeat {
 	rv := objc.Send[INSeat](i_.ID, objc.Sel("reservedSeat"))
@@ -110,10 +117,9 @@ func (i_ INBusReservation) ReservedSeat() INSeat {
 }
 
 
-// SetReservedSeat sets the value of the reservedSeat property.
 // Seat information for the bus reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/reservedseat
 func (i_ INBusReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)

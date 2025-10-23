@@ -45,7 +45,6 @@ type IWaterSubmersionMeasurement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement
-
 type WaterSubmersionMeasurement struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewWaterSubmersionMeasurement() WaterSubmersionMeasurement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/date
-
 func (w_ WaterSubmersionMeasurement) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
@@ -105,7 +103,6 @@ func (w_ WaterSubmersionMeasurement) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/depth
-
 func (w_ WaterSubmersionMeasurement) Depth() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("depth"))
 	return rv
@@ -116,7 +113,6 @@ func (w_ WaterSubmersionMeasurement) Depth() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/pressure
-
 func (w_ WaterSubmersionMeasurement) Pressure() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("pressure"))
 	return rv
@@ -127,7 +123,6 @@ func (w_ WaterSubmersionMeasurement) Pressure() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/submersionState
-
 func (w_ WaterSubmersionMeasurement) SubmersionState() WaterSubmersionDepthState {
 	rv := objc.Send[WaterSubmersionDepthState](w_.ID, objc.Sel("submersionState"))
 	return rv
@@ -138,7 +133,6 @@ func (w_ WaterSubmersionMeasurement) SubmersionState() WaterSubmersionDepthState
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/surfacePressure
-
 func (w_ WaterSubmersionMeasurement) SurfacePressure() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("surfacePressure"))
 	return rv

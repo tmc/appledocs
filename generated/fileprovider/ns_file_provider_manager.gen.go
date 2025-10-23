@@ -65,7 +65,6 @@ type IFileProviderManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager
-
 type FileProviderManager struct {
 	objectivec.Object
 }
@@ -110,13 +109,11 @@ func NewFileProviderManager() FileProviderManager {
 
 
 
-
 // Returns a newly created file provider manager for the specified domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/init(for:)
-
-func NewFileProviderManagerForDomain(domain NSFileProviderDomain) FileProviderManager {
+func NewFileProviderManagerForDomain(domain IFileProviderDomain) FileProviderManager {
 	rv := objc.Send[FileProviderManager](objc.ID(getFileProviderManagerClass().class), objc.Sel("managerForDomain:"), domain)
 	return rv
 }
@@ -127,8 +124,7 @@ func NewFileProviderManagerForDomain(domain NSFileProviderDomain) FileProviderMa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/add(_:completionHandler:)
-
-func (fc _FileProviderManagerClass) AddDomainCompletionHandler(domain NSFileProviderDomain, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) AddDomainCompletionHandler(domain IFileProviderDomain, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("addDomain:completionHandler:"), domain, completionHandler)
 }
 
@@ -137,7 +133,6 @@ func (fc _FileProviderManagerClass) AddDomainCompletionHandler(domain NSFileProv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:
-
 func (fc _FileProviderManagerClass) CheckDomainsCanBeStoredOnVolumeAtURLUnsupportedReasonError(eligible unsafe.Pointer, url foundation.IURL, unsupportedReason IFileProviderVolumeUnsupportedReason, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:"), eligible, url, unsupportedReason, error_)
 	return rv
@@ -148,7 +143,6 @@ func (fc _FileProviderManagerClass) CheckDomainsCanBeStoredOnVolumeAtURLUnsuppor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/getDomainsWithCompletionHandler(_:)
-
 func (fc _FileProviderManagerClass) GetDomainsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("getDomainsWithCompletionHandler:"), completionHandler)
 }
@@ -158,7 +152,6 @@ func (fc _FileProviderManagerClass) GetDomainsWithCompletionHandler(completionHa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/getIdentifierForUserVisibleFile(at:completionHandler:)
-
 func (fc _FileProviderManagerClass) GetIdentifierForUserVisibleFileAtURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("getIdentifierForUserVisibleFileAtURL:completionHandler:"), url, completionHandler)
 }
@@ -168,8 +161,7 @@ func (fc _FileProviderManagerClass) GetIdentifierForUserVisibleFileAtURLCompleti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/import(_:fromDirectoryAt:completionHandler:)
-
-func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain NSFileProviderDomain, url foundation.IURL, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain IFileProviderDomain, url foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("importDomain:fromDirectoryAtURL:completionHandler:"), domain, url, completionHandler)
 }
 
@@ -178,8 +170,7 @@ func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/init(for:)
-
-func (fc _FileProviderManagerClass) ManagerForDomain(domain NSFileProviderDomain) unsafe.Pointer {
+func (fc _FileProviderManagerClass) ManagerForDomain(domain IFileProviderDomain) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("managerForDomain:"), domain)
 	return rv
 }
@@ -189,7 +180,6 @@ func (fc _FileProviderManagerClass) ManagerForDomain(domain NSFileProviderDomain
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/placeholderURL(for:)
-
 func (fc _FileProviderManagerClass) PlaceholderURLForURL(url foundation.IURL) foundation.URL {
 	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("placeholderURLForURL:"), url)
 	return rv
@@ -200,8 +190,7 @@ func (fc _FileProviderManagerClass) PlaceholderURLForURL(url foundation.IURL) fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/remove(_:completionHandler:)
-
-func (fc _FileProviderManagerClass) RemoveDomainCompletionHandler(domain NSFileProviderDomain, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) RemoveDomainCompletionHandler(domain IFileProviderDomain, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("removeDomain:completionHandler:"), domain, completionHandler)
 }
 
@@ -210,8 +199,7 @@ func (fc _FileProviderManagerClass) RemoveDomainCompletionHandler(domain NSFileP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/remove(_:mode:completionHandler:)
-
-func (fc _FileProviderManagerClass) RemoveDomainModeCompletionHandler(domain NSFileProviderDomain, mode FileProviderDomainRemovalMode, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) RemoveDomainModeCompletionHandler(domain IFileProviderDomain, mode FileProviderDomainRemovalMode, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("removeDomain:mode:completionHandler:"), domain, mode, completionHandler)
 }
 
@@ -220,7 +208,6 @@ func (fc _FileProviderManagerClass) RemoveDomainModeCompletionHandler(domain NSF
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/removeAllDomains(completionHandler:)
-
 func (fc _FileProviderManagerClass) RemoveAllDomainsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("removeAllDomainsWithCompletionHandler:"), completionHandler)
 }
@@ -230,7 +217,6 @@ func (fc _FileProviderManagerClass) RemoveAllDomainsWithCompletionHandler(comple
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/writePlaceholder(at:withMetadata:)
-
 func (fc _FileProviderManagerClass) WritePlaceholderAtURLWithMetadataError(placeholderURL foundation.IURL, metadata IFileProviderItem, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("writePlaceholderAtURL:withMetadata:error:"), placeholderURL, metadata, error_)
 	return rv
@@ -241,261 +227,214 @@ func (fc _FileProviderManagerClass) WritePlaceholderAtURLWithMetadataError(place
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/default
-
 func (fc _FileProviderManagerClass) DefaultManager() FileProviderManager {
 	rv := objc.Send[NSFileProviderManager](objc.ID(fc.class), objc.Sel("defaultManager"))
 	return rv
 }
 
-
 // Asks the domain to sync the specified known folders.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)
-
 func (f_ FileProviderManager) ClaimKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolderLocations, localizedReason string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("claimKnownFolders:localizedReason:completionHandler:"), knownFolders, objc.String(localizedReason), completionHandler)
 }
-
 
 
 // Disconnects the domain from the extension.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/disconnect(reason:options:completionHandler:)
-
 func (f_ FileProviderManager) DisconnectWithReasonOptionsCompletionHandler(localizedReason string, options FileProviderManagerDisconnectionOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectWithReason:options:completionHandler:"), objc.String(localizedReason), options, completionHandler)
 }
-
 
 
 // Returns an enumerator for all the items the system currently stores on disk.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/enumeratorForMaterializedItems()
-
 func (f_ FileProviderManager) EnumeratorForMaterializedItems() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("enumeratorForMaterializedItems"))
 	return rv
 }
 
 
-
 // Returns an enumerator for the set of pending items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/enumeratorForPendingItems()
-
 func (f_ FileProviderManager) EnumeratorForPendingItems() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("enumeratorForPendingItems"))
 	return rv
 }
 
 
-
 // Asks the system to remove an item from its cache.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/evictItem(identifier:completionHandler:)
-
 func (f_ FileProviderManager) EvictItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("evictItemWithIdentifier:completionHandler:"), itemIdentifier, completionHandler)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/getService(named:for:completionHandler:)
-
 func (f_ FileProviderManager) GetServiceWithNameItemIdentifierCompletionHandler(serviceName unsafe.Pointer, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("getServiceWithName:itemIdentifier:completionHandler:"), serviceName, itemIdentifier, completionHandler)
 }
-
 
 
 // Returns the user-visible URL for an item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/getUserVisibleURL(for:completionHandler:)
-
 func (f_ FileProviderManager) GetUserVisibleURLForItemIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("getUserVisibleURLForItemIdentifier:completionHandler:"), itemIdentifier, completionHandler)
 }
-
 
 
 // Returns a progress object that tracks either the uploading or downloading of items from the File Provider extension’s remote storage.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/globalProgress(for:)
-
 func (f_ FileProviderManager) GlobalProgressForKind(kind unsafe.Pointer) foundation.Progress {
 	rv := objc.Send[foundation.Progress](f_.ID, objc.Sel("globalProgressForKind:"), kind)
 	return rv
 }
 
 
-
 // Lists all the operations that are ready for scheduling.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/listAvailableTestingOperations()
-
 func (f_ FileProviderManager) ListAvailableTestingOperationsWithError(error_ unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("listAvailableTestingOperationsWithError:"), error_)
 	return rv
 }
 
 
-
 // Reconnects the domain with the extension.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/reconnect(completionHandler:)
-
 func (f_ FileProviderManager) ReconnectWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("reconnectWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Registers the URL session task responsible for the specified item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/register(_:forItemWithIdentifier:completionHandler:)
-
 func (f_ FileProviderManager) RegisterURLSessionTaskForItemWithIdentifierCompletionHandler(task foundation.IURLSessionTask, identifier IFileProviderItemIdentifier, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("registerURLSessionTask:forItemWithIdentifier:completionHandler:"), task, identifier, completion)
 }
-
 
 
 // Tells the system to reimport the item and its content recursively.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/reimportItems(below:completionHandler:)
-
 func (f_ FileProviderManager) ReimportItemsBelowItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("reimportItemsBelowItemWithIdentifier:completionHandler:"), itemIdentifier, completionHandler)
 }
-
 
 
 // Asks the system to stop replicating the specified known folders in the domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/releaseKnownFolders(_:localizedReason:completionHandler:)
-
 func (f_ FileProviderManager) ReleaseKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolders, localizedReason string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("releaseKnownFolders:localizedReason:completionHandler:"), knownFolders, objc.String(localizedReason), completionHandler)
 }
-
 
 
 // Requests a diagnostics collection for use when working directly with Apple to improve sync behavior.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/requestDiagnosticCollection(for:errorReason:completionHandler:)
-
 func (f_ FileProviderManager) RequestDiagnosticCollectionForItemWithIdentifierErrorReasonCompletionHandler(itemIdentifier IFileProviderItemIdentifier, errorReason foundation.IError, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("requestDiagnosticCollectionForItemWithIdentifier:errorReason:completionHandler:"), itemIdentifier, errorReason, completionHandler)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/requestDownloadForItemWithIdentifier:requestedRange:completionHandler:
-
 func (f_ FileProviderManager) RequestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier IFileProviderItemIdentifier, rangeToMaterialize foundation.Range, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("requestDownloadForItemWithIdentifier:requestedRange:completionHandler:"), itemIdentifier, rangeToMaterialize, completionHandler)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/requestModification(of:forItemWithIdentifier:options:completionHandler:)
-
 func (f_ FileProviderManager) RequestModificationOfFieldsForItemWithIdentifierOptionsCompletionHandler(fields IFileProviderItemFields, itemIdentifier IFileProviderItemIdentifier, options FileProviderModifyItemOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("requestModificationOfFields:forItemWithIdentifier:options:completionHandler:"), fields, itemIdentifier, options, completionHandler)
 }
-
 
 
 // Asks the system to schedule and execute the specified operations.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/run(_:)
-
 func (f_ FileProviderManager) RunTestingOperationsError(operations []objc.ID, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("runTestingOperations:error:"), operations, error_)
 	return rv
 }
 
 
-
 // Alerts the system to changes in the specified folder’s content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/signalEnumerator(for:completionHandler:)
-
 func (f_ FileProviderManager) SignalEnumeratorForContainerItemIdentifierCompletionHandler(containerItemIdentifier IFileProviderItemIdentifier, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("signalEnumeratorForContainerItemIdentifier:completionHandler:"), containerItemIdentifier, completion)
 }
-
 
 
 // Indicates a resolved error.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/signalErrorResolved(_:completionHandler:)
-
 func (f_ FileProviderManager) SignalErrorResolvedCompletionHandler(error_ foundation.IError, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("signalErrorResolved:completionHandler:"), error_, completionHandler)
 }
-
 
 
 // Returns a URL for a directory for storing state information for the domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/stateDirectoryURL()
-
 func (f_ FileProviderManager) StateDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("stateDirectoryURLWithError:"), error_)
 	return rv
 }
 
 
-
 // Returns the URL of a directory that the File Provider extension can use to temporarily store files before passing them to the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/temporaryDirectoryURL()
-
 func (f_ FileProviderManager) TemporaryDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("temporaryDirectoryURLWithError:"), error_)
 	return rv
 }
 
 
-
 // Requests a notification after the system completes all the specified changes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/waitForChanges(below:completionHandler:)
-
 func (f_ FileProviderManager) WaitForChangesOnItemsBelowItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:"), itemIdentifier, completionHandler)
 }
-
 
 
 // Requests a notification after the domain stabilizes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/waitForStabilization(completionHandler:)
-
 func (f_ FileProviderManager) WaitForStabilizationWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("waitForStabilizationWithCompletionHandler:"), completionHandler)
 }
@@ -505,7 +444,6 @@ func (f_ FileProviderManager) WaitForStabilizationWithCompletionHandler(completi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/default
-
 func (f_ FileProviderManager) DefaultManager() NSFileProviderManager {
 	rv := objc.Send[NSFileProviderManager](f_.ID, objc.Sel("defaultManager"))
 	return rv
@@ -516,7 +454,6 @@ func (f_ FileProviderManager) DefaultManager() NSFileProviderManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/documentStorageURL
-
 func (f_ FileProviderManager) DocumentStorageURL() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("documentStorageURL"))
 	return rv
@@ -527,7 +464,6 @@ func (f_ FileProviderManager) DocumentStorageURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/providerIdentifier
-
 func (f_ FileProviderManager) ProviderIdentifier() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
 	return rv

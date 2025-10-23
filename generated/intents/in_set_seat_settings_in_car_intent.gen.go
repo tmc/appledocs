@@ -48,7 +48,11 @@ type IINSetSeatSettingsInCarIntent interface {
 // A request to change the seat-related settings in a CarPlay-enabled vehicle.
 //
 // Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change a seat-related setting, Siri creates an object and delivers it to the app’s Intents extension. You use the intent to identify which setting the user wants to change. This class contains properties for multiple types of seat-related settings, but a given instance of this class contains changes for only one setting at a time. When resolving and confirming the parameters of this intent, use the specified properties to modify your vehicle’s seat settings. Assume no changes for other settings. If your vehicle doesn’t support a particular setting, offer a reasonable fallback setting and ask the user for confirmation. The object that handles this intent must adopt the protocol. Use this intent object to identify which setting changed and to create an object indicating the results of changing the seat settings.
+
+
+// A request to change the seat-related settings in a CarPlay-enabled vehicle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetSeatSettingsInCarIntent
 type INSetSeatSettingsInCarIntent struct {
 	INIntent
@@ -95,16 +99,20 @@ func NewINSetSeatSettingsInCarIntent() INSetSeatSettingsInCarIntent {
 }
 
 
+
 // A Boolean value indicating whether to enable the seat cooling system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetSeatSettingsInCarIntent/enableCooling-6bcu7
 func (i_ INSetSeatSettingsInCarIntent) EnableCooling() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("enableCooling"))
 	return rv
 }
 
+
 // The name of the car you applied the settings to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
 func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
@@ -112,17 +120,18 @@ func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString {
 }
 
 
-// SetCarName sets the value of the carName property.
 // The name of the car you applied the settings to.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
 func (i_ INSetSeatSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
+
 // A Boolean value indicating whether to enable the seat heating system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enableheating-8auz2
 func (i_ INSetSeatSettingsInCarIntent) EnableHeating() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("enableHeating"))
@@ -130,17 +139,18 @@ func (i_ INSetSeatSettingsInCarIntent) EnableHeating() bool {
 }
 
 
-// SetEnableHeating sets the value of the enableHeating property.
 // A Boolean value indicating whether to enable the seat heating system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enableheating-8auz2
 func (i_ INSetSeatSettingsInCarIntent) SetEnableHeating(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableHeating:"), value)
 }
 
+
 // A Boolean value indicating whether to enable the seat massage system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablemassage-46ndx
 func (i_ INSetSeatSettingsInCarIntent) EnableMassage() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("enableMassage"))
@@ -148,17 +158,18 @@ func (i_ INSetSeatSettingsInCarIntent) EnableMassage() bool {
 }
 
 
-// SetEnableMassage sets the value of the enableMassage property.
 // A Boolean value indicating whether to enable the seat massage system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablemassage-46ndx
 func (i_ INSetSeatSettingsInCarIntent) SetEnableMassage(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableMassage:"), value)
 }
 
+
 // An integer value indicating the desired level for the seat setting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/level-94975
 func (i_ INSetSeatSettingsInCarIntent) Level() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("level"))
@@ -166,17 +177,18 @@ func (i_ INSetSeatSettingsInCarIntent) Level() int {
 }
 
 
-// SetLevel sets the value of the level property.
 // An integer value indicating the desired level for the seat setting.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/level-94975
 func (i_ INSetSeatSettingsInCarIntent) SetLevel(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLevel:"), value)
 }
 
+
 // A relative change to the level value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/relativelevelsetting
 func (i_ INSetSeatSettingsInCarIntent) RelativeLevelSetting() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("relativeLevelSetting"))
@@ -184,17 +196,18 @@ func (i_ INSetSeatSettingsInCarIntent) RelativeLevelSetting() unsafe.Pointer {
 }
 
 
-// SetRelativeLevelSetting sets the value of the relativeLevelSetting property.
 // A relative change to the level value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/relativelevelsetting
 func (i_ INSetSeatSettingsInCarIntent) SetRelativeLevelSetting(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeLevelSetting:"), value)
 }
 
+
 // The seat position whose settings you want to modify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/seat
 func (i_ INSetSeatSettingsInCarIntent) Seat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("seat"))
@@ -202,10 +215,9 @@ func (i_ INSetSeatSettingsInCarIntent) Seat() unsafe.Pointer {
 }
 
 
-// SetSeat sets the value of the seat property.
 // The seat position whose settings you want to modify.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/seat
 func (i_ INSetSeatSettingsInCarIntent) SetSeat(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSeat:"), value)

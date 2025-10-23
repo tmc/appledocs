@@ -47,7 +47,11 @@ type IINPlayMediaIntent interface {
 // An intent that contains information about media playable from your app.
 //
 // Use to donate songs, movies, and other media the user plays in your app, or to recommend upcoming media, such as new TV shows or podcast episodes. The system uses these donations to offer the user relevant search results and suggestions. supports playing audio in the background. See for more information about supporting background audio in your app.
+
+
+// An intent that contains information about media playable from your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent
 type INPlayMediaIntent struct {
 	INIntent
@@ -95,9 +99,9 @@ func NewINPlayMediaIntent() INPlayMediaIntent {
 
 
 
-
 // Initialize an intent that describes media content such as a song, podcast episode, or movie.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:
 func NewINPlayMediaIntentWithMediaItemsMediaContainerPlayShuffledPlaybackRepeatModeResumePlaybackPlaybackQueueLocationPlaybackSpeedMediaSearch(mediaItems []INMediaItem, mediaContainer INMediaItem, playShuffled foundation.INumber, playbackRepeatMode INPlaybackRepeatMode, resumePlayback foundation.INumber, playbackQueueLocation unsafe.Pointer, playbackSpeed foundation.INumber, mediaSearch INMediaSearch) INPlayMediaIntent {
 	instance := getINPlayMediaIntentClass().Alloc()
@@ -107,40 +111,50 @@ func NewINPlayMediaIntentWithMediaItemsMediaContainerPlayShuffledPlaybackRepeatM
 }
 
 
+
 // The media content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/mediaItems
 func (i_ INPlayMediaIntent) MediaItems() []INMediaItem {
 	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
 
+
 // An object that contains the search parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/mediaSearch
 func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
 
+
 // The playback speed for a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/playbackSpeed-6ngbq
 func (i_ INPlayMediaIntent) PlaybackSpeed() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("playbackSpeed"))
 	return rv
 }
 
+
 // The resume playback setting at the time the user plays the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/resumePlayback-9zfyp
 func (i_ INPlayMediaIntent) ResumePlayback() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("resumePlayback"))
 	return rv
 }
 
+
 // The media item container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
 func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaContainer"))
@@ -148,17 +162,18 @@ func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
 }
 
 
-// SetMediaContainer sets the value of the mediaContainer property.
 // The media item container.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
 func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaContainer:"), value)
 }
 
+
 // A Boolean value that indicates whether the media plays in a shuffled order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playshuffled-2btex
 func (i_ INPlayMediaIntent) PlayShuffled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("playShuffled"))
@@ -166,17 +181,18 @@ func (i_ INPlayMediaIntent) PlayShuffled() bool {
 }
 
 
-// SetPlayShuffled sets the value of the playShuffled property.
 // A Boolean value that indicates whether the media plays in a shuffled order.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playshuffled-2btex
 func (i_ INPlayMediaIntent) SetPlayShuffled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayShuffled:"), value)
 }
 
+
 // The queue location for a media item during playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackqueuelocation
 func (i_ INPlayMediaIntent) PlaybackQueueLocation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playbackQueueLocation"))
@@ -184,17 +200,18 @@ func (i_ INPlayMediaIntent) PlaybackQueueLocation() unsafe.Pointer {
 }
 
 
-// SetPlaybackQueueLocation sets the value of the playbackQueueLocation property.
 // The queue location for a media item during playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackqueuelocation
 func (i_ INPlayMediaIntent) SetPlaybackQueueLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackQueueLocation:"), value)
 }
 
+
 // The repeat mode setting at the time the user plays the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
 func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
 	rv := objc.Send[INPlaybackRepeatMode](i_.ID, objc.Sel("playbackRepeatMode"))
@@ -202,10 +219,9 @@ func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
 }
 
 
-// SetPlaybackRepeatMode sets the value of the playbackRepeatMode property.
 // The repeat mode setting at the time the user plays the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
 func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value INPlaybackRepeatMode) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackRepeatMode:"), value)

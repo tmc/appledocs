@@ -31,7 +31,7 @@ type _UserScriptTaskClass struct {
 type IUserScriptTask interface {
 	objectivec.IObject
 	ExecuteWithCompletionHandler(handler unsafe.Pointer)
-	ScriptURL() URL
+	ScriptURL() IURL
 }
 
 // An object that executes scripts.
@@ -113,7 +113,7 @@ func (u_ UserScriptTask) ExecuteWithCompletionHandler(handler unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/scriptURL
-func (u_ UserScriptTask) ScriptURL() URL {
+func (u_ UserScriptTask) ScriptURL() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("scriptURL"))
 	return rv
 }

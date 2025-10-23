@@ -47,7 +47,6 @@ type INibConnector interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector
-
 type NibConnector struct {
 	objectivec.Object
 }
@@ -92,19 +91,15 @@ func NewNibConnector() NibConnector {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/establishConnection
-
 func (n_ NibConnector) EstablishConnection() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/replaceObject:withObject:
-
 func (n_ NibConnector) ReplaceObjectWithObject(oldObject objectivec.IObject, newObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("replaceObject:withObject:"), oldObject, newObject)
 }
@@ -112,7 +107,6 @@ func (n_ NibConnector) ReplaceObjectWithObject(oldObject objectivec.IObject, new
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/destination
-
 func (n_ NibConnector) Destination() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("destination"))
 	return rv
@@ -121,7 +115,6 @@ func (n_ NibConnector) Destination() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/destination
-
 func (n_ NibConnector) SetDestination(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDestination:"), value)
 }
@@ -129,7 +122,6 @@ func (n_ NibConnector) SetDestination(value objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/label
-
 func (n_ NibConnector) Label() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("label"))
 	return rv
@@ -138,7 +130,6 @@ func (n_ NibConnector) Label() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/label
-
 func (n_ NibConnector) SetLabel(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -146,7 +137,6 @@ func (n_ NibConnector) SetLabel(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/source
-
 func (n_ NibConnector) Source() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("source"))
 	return rv
@@ -155,7 +145,6 @@ func (n_ NibConnector) Source() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/source
-
 func (n_ NibConnector) SetSource(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSource:"), value)
 }

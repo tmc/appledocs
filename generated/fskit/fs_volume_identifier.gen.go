@@ -40,7 +40,6 @@ type IFSVolumeIdentifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/Identifier
-
 type FSVolumeIdentifier struct {
 	FSEntityIdentifier
 }

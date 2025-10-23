@@ -30,7 +30,7 @@ type _URLQueryItemClass struct {
 // An interface definition for the [URLQueryItem] class.
 type IURLQueryItem interface {
 	objectivec.IObject
-	QueryItems() URLQueryItem
+	QueryItems() IURLQueryItem
 	SetQueryItems(value IURLQueryItem)
 	Name() string
 	SetName(value string)
@@ -95,7 +95,7 @@ func NewURLQueryItem() URLQueryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-func (u_ URLQueryItem) QueryItems() URLQueryItem {
+func (u_ URLQueryItem) QueryItems() IURLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
 }

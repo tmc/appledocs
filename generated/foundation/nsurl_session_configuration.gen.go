@@ -36,7 +36,7 @@ type IURLSessionConfiguration interface {
 	SetConnectionProxyDictionary(value objc.ID)
 	HTTPCookieAcceptPolicy() unsafe.Pointer
 	SetHTTPCookieAcceptPolicy(value unsafe.Pointer)
-	HTTPCookieStorage() NSHTTPCookieStorage
+	HTTPCookieStorage() IHTTPCookieStorage
 	SetHTTPCookieStorage(value IHTTPCookieStorage)
 	HTTPMaximumConnectionsPerHost() int
 	SetHTTPMaximumConnectionsPerHost(value int)
@@ -44,15 +44,15 @@ type IURLSessionConfiguration interface {
 	SetHTTPShouldSetCookies(value bool)
 	HTTPShouldUsePipelining() bool
 	SetHTTPShouldUsePipelining(value bool)
-	MultipathServiceType() URLSessionMultipathServiceType
-	SetMultipathServiceType(value URLSessionMultipathServiceType)
+	MultipathServiceType() NSURLSessionMultipathServiceType
+	SetMultipathServiceType(value NSURLSessionMultipathServiceType)
 	SharedContainerIdentifier() string
 	SetSharedContainerIdentifier(value string)
 	UsesClassicLoadingMode() bool
 	SetUsesClassicLoadingMode(value bool)
 	WaitsForConnectivity() bool
 	SetWaitsForConnectivity(value bool)
-	Configuration() NSURLSessionConfiguration
+	Configuration() IURLSessionConfiguration
 	SetConfiguration(value IURLSessionConfiguration)
 	AllowsCellularAccess() bool
 	SetAllowsCellularAccess(value bool)
@@ -83,9 +83,9 @@ type IURLSessionConfiguration interface {
 	ShouldUseExtendedBackgroundIdleMode() bool
 	SetShouldUseExtendedBackgroundIdleMode(value bool)
 	TimeoutIntervalForRequest() TimeInterval
-	SetTimeoutIntervalForRequest(value ITimeInterval)
+	SetTimeoutIntervalForRequest(value TimeInterval)
 	TimeoutIntervalForResource() TimeInterval
-	SetTimeoutIntervalForResource(value ITimeInterval)
+	SetTimeoutIntervalForResource(value TimeInterval)
 	TlsMaximumSupportedProtocol() unsafe.Pointer
 	SetTlsMaximumSupportedProtocol(value unsafe.Pointer)
 	TlsMaximumSupportedProtocolVersion() unsafe.Pointer
@@ -94,9 +94,9 @@ type IURLSessionConfiguration interface {
 	SetTlsMinimumSupportedProtocol(value unsafe.Pointer)
 	TlsMinimumSupportedProtocolVersion() unsafe.Pointer
 	SetTlsMinimumSupportedProtocolVersion(value unsafe.Pointer)
-	UrlCache() NSURLCache
+	UrlCache() IURLCache
 	SetUrlCache(value IURLCache)
-	UrlCredentialStorage() NSURLCredentialStorage
+	UrlCredentialStorage() IURLCredentialStorage
 	SetUrlCredentialStorage(value IURLCredentialStorage)
 }
 
@@ -157,7 +157,7 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) URLSessionConfiguration {
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) IURLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), objc.String(identifier))
 	return rv
 }
@@ -233,7 +233,7 @@ func (u_ URLSessionConfiguration) SetConnectionProxyDictionary(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
-func (u_ URLSessionConfiguration) DefaultSessionConfiguration() NSURLSessionConfiguration {
+func (u_ URLSessionConfiguration) DefaultSessionConfiguration() IURLSessionConfiguration {
 	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("defaultSessionConfiguration"))
 	return rv
 }
@@ -243,7 +243,7 @@ func (u_ URLSessionConfiguration) DefaultSessionConfiguration() NSURLSessionConf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
-func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() NSURLSessionConfiguration {
+func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() IURLSessionConfiguration {
 	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
 	return rv
 }
@@ -272,7 +272,7 @@ func (u_ URLSessionConfiguration) SetHTTPCookieAcceptPolicy(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpCookieStorage
-func (u_ URLSessionConfiguration) HTTPCookieStorage() NSHTTPCookieStorage {
+func (u_ URLSessionConfiguration) HTTPCookieStorage() IHTTPCookieStorage {
 	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("HTTPCookieStorage"))
 	return rv
 }
@@ -348,7 +348,7 @@ func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
-func (u_ URLSessionConfiguration) MultipathServiceType() URLSessionMultipathServiceType {
+func (u_ URLSessionConfiguration) MultipathServiceType() NSURLSessionMultipathServiceType {
 	rv := objc.Send[URLSessionMultipathServiceType](u_.ID, objc.Sel("multipathServiceType"))
 	return rv
 }
@@ -358,7 +358,7 @@ func (u_ URLSessionConfiguration) MultipathServiceType() URLSessionMultipathServ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
-func (u_ URLSessionConfiguration) SetMultipathServiceType(value URLSessionMultipathServiceType) {
+func (u_ URLSessionConfiguration) SetMultipathServiceType(value NSURLSessionMultipathServiceType) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMultipathServiceType:"), value)
 }
 
@@ -420,7 +420,7 @@ func (u_ URLSessionConfiguration) SetWaitsForConnectivity(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSessionConfiguration) Configuration() NSURLSessionConfiguration {
+func (u_ URLSessionConfiguration) Configuration() IURLSessionConfiguration {
 	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
 }
@@ -703,7 +703,7 @@ func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforrequest
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value ITimeInterval) {
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value TimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
@@ -722,7 +722,7 @@ func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforresource
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value ITimeInterval) {
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value TimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 
@@ -807,7 +807,7 @@ func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocolVersion(value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcache
-func (u_ URLSessionConfiguration) UrlCache() NSURLCache {
+func (u_ URLSessionConfiguration) UrlCache() IURLCache {
 	rv := objc.Send[NSURLCache](u_.ID, objc.Sel("urlCache"))
 	return rv
 }
@@ -826,7 +826,7 @@ func (u_ URLSessionConfiguration) SetUrlCache(value IURLCache) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcredentialstorage
-func (u_ URLSessionConfiguration) UrlCredentialStorage() NSURLCredentialStorage {
+func (u_ URLSessionConfiguration) UrlCredentialStorage() IURLCredentialStorage {
 	rv := objc.Send[NSURLCredentialStorage](u_.ID, objc.Sel("urlCredentialStorage"))
 	return rv
 }

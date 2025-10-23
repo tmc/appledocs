@@ -42,7 +42,6 @@ type IFallDetectionEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent
-
 type FallDetectionEvent struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewFallDetectionEvent() FallDetectionEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent/date
-
 func (f_ FallDetectionEvent) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](f_.ID, objc.Sel("date"))
 	return rv
@@ -102,7 +100,6 @@ func (f_ FallDetectionEvent) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent/resolution
-
 func (f_ FallDetectionEvent) Resolution() FallDetectionEventUserResolution {
 	rv := objc.Send[FallDetectionEventUserResolution](f_.ID, objc.Sel("resolution"))
 	return rv

@@ -47,7 +47,6 @@ type ISharingServicePicker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker
-
 type SharingServicePicker struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewSharingServicePicker() SharingServicePicker {
 
 
 
-
 // Shows the picker interface and populates it with the relevant sharing services.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
-
 func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view IView, preferredEdge int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
 }
@@ -107,7 +104,6 @@ func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
-
 func (s_ SharingServicePicker) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -118,7 +114,6 @@ func (s_ SharingServicePicker) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
-
 func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -128,7 +123,6 @@ func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-
 func (s_ SharingServicePicker) StandardShareMenuItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](s_.ID, objc.Sel("standardShareMenuItem"))
 	return rv
@@ -139,7 +133,6 @@ func (s_ SharingServicePicker) StandardShareMenuItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-
 func (s_ SharingServicePicker) SetStandardShareMenuItem(value IMenuItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardShareMenuItem:"), value)
 }

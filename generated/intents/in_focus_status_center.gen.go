@@ -36,7 +36,11 @@ type IINFocusStatusCenter interface {
 }
 
 // An object that maintains the user’s current focus status and your app’s ability to access it.
+
+
+// An object that maintains the user’s current focus status and your app’s ability to access it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter
 type INFocusStatusCenter struct {
 	objectivec.Object
@@ -81,38 +85,48 @@ func NewINFocusStatusCenter() INFocusStatusCenter {
 }
 
 
+
 // The systemwide object that holds the user’s focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/default
 func (ic _INFocusStatusCenterClass) DefaultCenter() INFocusStatusCenter {
 	rv := objc.Send[INFocusStatusCenter](objc.ID(ic.class), objc.Sel("defaultCenter"))
 	return rv
 }
+
 // Asks the system for access to the user’s focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/requestAuthorization(completionHandler:)
 func (i_ INFocusStatusCenter) RequestAuthorizationWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("requestAuthorizationWithCompletionHandler:"), completionHandler)
 }
 
+
 // Returns your app’s current ability to access the user’s focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/authorizationStatus
 func (i_ INFocusStatusCenter) AuthorizationStatus() INFocusStatusAuthorizationStatus {
 	rv := objc.Send[INFocusStatusAuthorizationStatus](i_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // The systemwide object that holds the user’s focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/default
 func (i_ INFocusStatusCenter) DefaultCenter() INFocusStatusCenter {
 	rv := objc.Send[INFocusStatusCenter](i_.ID, objc.Sel("defaultCenter"))
 	return rv
 }
 
+
 // The user’s ability to receive notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/focusStatus
 func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
 	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))

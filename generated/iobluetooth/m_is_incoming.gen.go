@@ -32,7 +32,9 @@ type ImIsIncoming interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/mIsIncoming
 type mIsIncoming struct {
 	objectivec.Object

@@ -43,7 +43,11 @@ type IINTransferMoneyIntent interface {
 // A request to transfer money between two accounts.
 //
 // Siri creates an object when the user asks to transfer money between two accounts. Transfers can occur only between accounts associated with the user. Use the information provided by the intent object to identify the involved accounts and the amount to transfer. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the transaction details. For successful transfers, Siri offers a way for the user to view the results.
+
+
+// A request to transfer money between two accounts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INTransferMoneyIntent
 type INTransferMoneyIntent struct {
 	INIntent
@@ -90,16 +94,20 @@ func NewINTransferMoneyIntent() INTransferMoneyIntent {
 }
 
 
+
 // The account containing the funds to transfer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INTransferMoneyIntent/fromAccount
 func (i_ INTransferMoneyIntent) FromAccount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fromAccount"))
 	return rv
 }
 
+
 // The account receiving the funds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/toaccount
 func (i_ INTransferMoneyIntent) ToAccount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("toAccount"))
@@ -107,17 +115,18 @@ func (i_ INTransferMoneyIntent) ToAccount() unsafe.Pointer {
 }
 
 
-// SetToAccount sets the value of the toAccount property.
 // The account receiving the funds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/toaccount
 func (i_ INTransferMoneyIntent) SetToAccount(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setToAccount:"), value)
 }
 
+
 // The amount to transfer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionamount
 func (i_ INTransferMoneyIntent) TransactionAmount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transactionAmount"))
@@ -125,17 +134,18 @@ func (i_ INTransferMoneyIntent) TransactionAmount() unsafe.Pointer {
 }
 
 
-// SetTransactionAmount sets the value of the transactionAmount property.
 // The amount to transfer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionamount
 func (i_ INTransferMoneyIntent) SetTransactionAmount(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionAmount:"), value)
 }
 
+
 // An optional note associated with the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionnote
 func (i_ INTransferMoneyIntent) TransactionNote() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
@@ -143,17 +153,18 @@ func (i_ INTransferMoneyIntent) TransactionNote() string {
 }
 
 
-// SetTransactionNote sets the value of the transactionNote property.
 // An optional note associated with the transaction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionnote
 func (i_ INTransferMoneyIntent) SetTransactionNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
 }
 
+
 // The date on which to transfer the funds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionscheduleddate
 func (i_ INTransferMoneyIntent) TransactionScheduledDate() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("transactionScheduledDate"))
@@ -161,10 +172,9 @@ func (i_ INTransferMoneyIntent) TransactionScheduledDate() INDateComponentsRange
 }
 
 
-// SetTransactionScheduledDate sets the value of the transactionScheduledDate property.
 // The date on which to transfer the funds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionscheduleddate
 func (i_ INTransferMoneyIntent) SetTransactionScheduledDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionScheduledDate:"), value)

@@ -34,7 +34,11 @@ type IMKPolyline interface {
 // An open polygon overlay consisting of one or more connected line segments.
 //
 // The points connect end-to-end in the order that you provide them. The first and last points don’t automatically connect to each other.
+
+
+// An open polygon overlay consisting of one or more connected line segments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPolyline
 type MKPolyline struct {
 	MKMultiPoint

@@ -44,7 +44,6 @@ type IFileProviderRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest
-
 type FileProviderRequest struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewFileProviderRequest() FileProviderRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/domainVersion
-
 func (f_ FileProviderRequest) DomainVersion() NSFileProviderDomainVersion {
 	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
@@ -104,7 +102,6 @@ func (f_ FileProviderRequest) DomainVersion() NSFileProviderDomainVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isFileViewerRequest
-
 func (f_ FileProviderRequest) IsFileViewerRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isFileViewerRequest"))
 	return rv
@@ -115,7 +112,6 @@ func (f_ FileProviderRequest) IsFileViewerRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isSystemRequest
-
 func (f_ FileProviderRequest) IsSystemRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSystemRequest"))
 	return rv
@@ -126,7 +122,6 @@ func (f_ FileProviderRequest) IsSystemRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/requestingExecutable
-
 func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
 	return rv

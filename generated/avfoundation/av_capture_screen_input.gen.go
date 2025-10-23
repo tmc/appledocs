@@ -53,7 +53,6 @@ type ICaptureScreenInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureScreenInput
-
 type CaptureScreenInput struct {
 	CaptureInput
 }
@@ -104,7 +103,6 @@ func NewCaptureScreenInput() CaptureScreenInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturescursor
-
 func (c_ CaptureScreenInput) CapturesCursor() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("capturesCursor"))
 	return rv
@@ -115,7 +113,6 @@ func (c_ CaptureScreenInput) CapturesCursor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturescursor
-
 func (c_ CaptureScreenInput) SetCapturesCursor(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCapturesCursor:"), value)
 }
@@ -125,7 +122,6 @@ func (c_ CaptureScreenInput) SetCapturesCursor(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturesmouseclicks
-
 func (c_ CaptureScreenInput) CapturesMouseClicks() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("capturesMouseClicks"))
 	return rv
@@ -136,7 +132,6 @@ func (c_ CaptureScreenInput) CapturesMouseClicks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/capturesmouseclicks
-
 func (c_ CaptureScreenInput) SetCapturesMouseClicks(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCapturesMouseClicks:"), value)
 }
@@ -146,7 +141,6 @@ func (c_ CaptureScreenInput) SetCapturesMouseClicks(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/croprect
-
 func (c_ CaptureScreenInput) CropRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("cropRect"))
 	return rv
@@ -157,7 +151,6 @@ func (c_ CaptureScreenInput) CropRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/croprect
-
 func (c_ CaptureScreenInput) SetCropRect(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCropRect:"), value)
 }
@@ -167,7 +160,6 @@ func (c_ CaptureScreenInput) SetCropRect(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/minframeduration
-
 func (c_ CaptureScreenInput) MinFrameDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("minFrameDuration"))
 	return rv
@@ -178,7 +170,6 @@ func (c_ CaptureScreenInput) MinFrameDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/minframeduration
-
 func (c_ CaptureScreenInput) SetMinFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFrameDuration:"), value)
 }
@@ -188,7 +179,6 @@ func (c_ CaptureScreenInput) SetMinFrameDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/removesduplicateframes
-
 func (c_ CaptureScreenInput) RemovesDuplicateFrames() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("removesDuplicateFrames"))
 	return rv
@@ -199,7 +189,6 @@ func (c_ CaptureScreenInput) RemovesDuplicateFrames() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/removesduplicateframes
-
 func (c_ CaptureScreenInput) SetRemovesDuplicateFrames(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRemovesDuplicateFrames:"), value)
 }
@@ -209,7 +198,6 @@ func (c_ CaptureScreenInput) SetRemovesDuplicateFrames(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/scalefactor
-
 func (c_ CaptureScreenInput) ScaleFactor() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("scaleFactor"))
 	return rv
@@ -220,7 +208,6 @@ func (c_ CaptureScreenInput) ScaleFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturescreeninput/scalefactor
-
 func (c_ CaptureScreenInput) SetScaleFactor(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleFactor:"), value)
 }

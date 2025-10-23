@@ -35,9 +35,9 @@ type ISpeechUtterance interface {
 	PitchMultiplier() float32
 	SetPitchMultiplier(value float32)
 	PostUtteranceDelay() foundation.TimeInterval
-	SetPostUtteranceDelay(value foundation.TimeInterval)
+	SetPostUtteranceDelay(value foundation.ITimeInterval)
 	PreUtteranceDelay() foundation.TimeInterval
-	SetPreUtteranceDelay(value foundation.TimeInterval)
+	SetPreUtteranceDelay(value foundation.ITimeInterval)
 	Rate() float32
 	SetRate(value float32)
 	SpeechString() string
@@ -62,7 +62,6 @@ type ISpeechUtterance interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance
-
 type SpeechUtterance struct {
 	objectivec.Object
 }
@@ -111,7 +110,6 @@ func NewSpeechUtterance() SpeechUtterance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechUtteranceWithAttributedString:
-
 func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ foundation.IAttributedString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("speechUtteranceWithAttributedString:"), string_)
 	return rv
@@ -122,7 +120,6 @@ func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechUtteranceWithSSMLRepresentation:
-
 func (sc _SpeechUtteranceClass) SpeechUtteranceWithSSMLRepresentation(string_ string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("speechUtteranceWithSSMLRepresentation:"), objc.String(string_))
 	return rv
@@ -133,7 +130,6 @@ func (sc _SpeechUtteranceClass) SpeechUtteranceWithSSMLRepresentation(string_ st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/attributedSpeechString
-
 func (s_ SpeechUtterance) AttributedSpeechString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](s_.ID, objc.Sel("attributedSpeechString"))
 	return rv
@@ -144,7 +140,6 @@ func (s_ SpeechUtterance) AttributedSpeechString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/pitchMultiplier
-
 func (s_ SpeechUtterance) PitchMultiplier() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("pitchMultiplier"))
 	return rv
@@ -155,7 +150,6 @@ func (s_ SpeechUtterance) PitchMultiplier() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/pitchMultiplier
-
 func (s_ SpeechUtterance) SetPitchMultiplier(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPitchMultiplier:"), value)
 }
@@ -165,7 +159,6 @@ func (s_ SpeechUtterance) SetPitchMultiplier(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/postUtteranceDelay
-
 func (s_ SpeechUtterance) PostUtteranceDelay() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("postUtteranceDelay"))
 	return rv
@@ -176,8 +169,7 @@ func (s_ SpeechUtterance) PostUtteranceDelay() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/postUtteranceDelay
-
-func (s_ SpeechUtterance) SetPostUtteranceDelay(value foundation.TimeInterval) {
+func (s_ SpeechUtterance) SetPostUtteranceDelay(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPostUtteranceDelay:"), value)
 }
 
@@ -186,7 +178,6 @@ func (s_ SpeechUtterance) SetPostUtteranceDelay(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/preUtteranceDelay
-
 func (s_ SpeechUtterance) PreUtteranceDelay() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("preUtteranceDelay"))
 	return rv
@@ -197,8 +188,7 @@ func (s_ SpeechUtterance) PreUtteranceDelay() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/preUtteranceDelay
-
-func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.TimeInterval) {
+func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
 }
 
@@ -207,7 +197,6 @@ func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/rate
-
 func (s_ SpeechUtterance) Rate() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
 	return rv
@@ -218,7 +207,6 @@ func (s_ SpeechUtterance) Rate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/rate
-
 func (s_ SpeechUtterance) SetRate(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
 }
@@ -228,7 +216,6 @@ func (s_ SpeechUtterance) SetRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechString
-
 func (s_ SpeechUtterance) SpeechString() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("speechString"))
 	return rv
@@ -239,7 +226,6 @@ func (s_ SpeechUtterance) SpeechString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/voice
-
 func (s_ SpeechUtterance) Voice() AVSpeechSynthesisVoice {
 	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
@@ -250,7 +236,6 @@ func (s_ SpeechUtterance) Voice() AVSpeechSynthesisVoice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/voice
-
 func (s_ SpeechUtterance) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }
@@ -260,7 +245,6 @@ func (s_ SpeechUtterance) SetVoice(value IAVSpeechSynthesisVoice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/volume
-
 func (s_ SpeechUtterance) Volume() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
@@ -271,7 +255,6 @@ func (s_ SpeechUtterance) Volume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/volume
-
 func (s_ SpeechUtterance) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
@@ -281,7 +264,6 @@ func (s_ SpeechUtterance) SetVolume(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute
-
 func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
 	return rv
@@ -292,7 +274,6 @@ func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
-
 func (s_ SpeechUtterance) PrefersAssistiveTechnologySettings() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("prefersAssistiveTechnologySettings"))
 	return rv
@@ -303,7 +284,6 @@ func (s_ SpeechUtterance) PrefersAssistiveTechnologySettings() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/prefersassistivetechnologysettings
-
 func (s_ SpeechUtterance) SetPrefersAssistiveTechnologySettings(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrefersAssistiveTechnologySettings:"), value)
 }
@@ -313,7 +293,6 @@ func (s_ SpeechUtterance) SetPrefersAssistiveTechnologySettings(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancedefaultspeechrate
-
 func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("AVSpeechUtteranceDefaultSpeechRate"))
 	return rv
@@ -324,7 +303,6 @@ func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancemaximumspeechrate
-
 func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("AVSpeechUtteranceMaximumSpeechRate"))
 	return rv
@@ -335,7 +313,6 @@ func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutteranceminimumspeechrate
-
 func (s_ SpeechUtterance) AVSpeechUtteranceMinimumSpeechRate() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("AVSpeechUtteranceMinimumSpeechRate"))
 	return rv

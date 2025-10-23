@@ -54,7 +54,6 @@ type ICSCustomAttributeKey interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey
-
 type CSCustomAttributeKey struct {
 	objectivec.Object
 }
@@ -99,12 +98,10 @@ func NewCSCustomAttributeKey() CSCustomAttributeKey {
 
 
 
-
 // Returns a new custom attribute key with the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/init(keyName:)
-
 func NewCSCustomAttributeKeyWithKeyName(keyName string) CSCustomAttributeKey {
 	instance := getCSCustomAttributeKeyClass().Alloc()
 	rv := objc.Send[CSCustomAttributeKey](instance.ID, objc.Sel("initWithKeyName:"), objc.String(keyName))
@@ -113,12 +110,10 @@ func NewCSCustomAttributeKeyWithKeyName(keyName string) CSCustomAttributeKey {
 }
 
 
-
 // Returns a new custom attribute key with the specified name and properties.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/init(keyName:searchable:searchableByDefault:unique:multiValued:)
-
 func NewCSCustomAttributeKeyWithKeyNameSearchableSearchableByDefaultUniqueMultiValued(keyName string, searchable bool, searchableByDefault bool, unique bool, multiValued bool) CSCustomAttributeKey {
 	instance := getCSCustomAttributeKeyClass().Alloc()
 	rv := objc.Send[CSCustomAttributeKey](instance.ID, objc.Sel("initWithKeyName:searchable:searchableByDefault:unique:multiValued:"), objc.String(keyName), searchable, searchableByDefault, unique, multiValued)
@@ -132,7 +127,6 @@ func NewCSCustomAttributeKeyWithKeyNameSearchableSearchableByDefaultUniqueMultiV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isMultiValued
-
 func (c_ CSCustomAttributeKey) MultiValued() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multiValued"))
 	return rv
@@ -143,7 +137,6 @@ func (c_ CSCustomAttributeKey) MultiValued() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isSearchable
-
 func (c_ CSCustomAttributeKey) Searchable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("searchable"))
 	return rv
@@ -154,7 +147,6 @@ func (c_ CSCustomAttributeKey) Searchable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isSearchableByDefault
-
 func (c_ CSCustomAttributeKey) SearchableByDefault() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("searchableByDefault"))
 	return rv
@@ -165,7 +157,6 @@ func (c_ CSCustomAttributeKey) SearchableByDefault() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/isUnique
-
 func (c_ CSCustomAttributeKey) Unique() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("unique"))
 	return rv
@@ -176,7 +167,6 @@ func (c_ CSCustomAttributeKey) Unique() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/keyName
-
 func (c_ CSCustomAttributeKey) KeyName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("keyName"))
 	return rv
@@ -187,7 +177,6 @@ func (c_ CSCustomAttributeKey) KeyName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/ismultivalued
-
 func (c_ CSCustomAttributeKey) IsMultiValued() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultiValued"))
 	return rv
@@ -198,7 +187,6 @@ func (c_ CSCustomAttributeKey) IsMultiValued() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/ismultivalued
-
 func (c_ CSCustomAttributeKey) SetIsMultiValued(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultiValued:"), value)
 }
@@ -208,7 +196,6 @@ func (c_ CSCustomAttributeKey) SetIsMultiValued(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchable
-
 func (c_ CSCustomAttributeKey) IsSearchable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSearchable"))
 	return rv
@@ -219,7 +206,6 @@ func (c_ CSCustomAttributeKey) IsSearchable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchable
-
 func (c_ CSCustomAttributeKey) SetIsSearchable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSearchable:"), value)
 }
@@ -229,7 +215,6 @@ func (c_ CSCustomAttributeKey) SetIsSearchable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchablebydefault
-
 func (c_ CSCustomAttributeKey) IsSearchableByDefault() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSearchableByDefault"))
 	return rv
@@ -240,7 +225,6 @@ func (c_ CSCustomAttributeKey) IsSearchableByDefault() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/issearchablebydefault
-
 func (c_ CSCustomAttributeKey) SetIsSearchableByDefault(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSearchableByDefault:"), value)
 }
@@ -250,7 +234,6 @@ func (c_ CSCustomAttributeKey) SetIsSearchableByDefault(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
-
 func (c_ CSCustomAttributeKey) IsUnique() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isUnique"))
 	return rv
@@ -261,7 +244,6 @@ func (c_ CSCustomAttributeKey) IsUnique() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cscustomattributekey/isunique
-
 func (c_ CSCustomAttributeKey) SetIsUnique(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUnique:"), value)
 }

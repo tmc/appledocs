@@ -36,7 +36,11 @@ type IINStartWorkoutIntentResponse interface {
 // Your app’s response to a start workout intent.
 //
 // Use an object to specify whether your app is able to start a workout. The response object contains only the response code that indicates whether to launch your app or whether there was a problem. You create an object in the and methods of your start workout handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a start workout intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntentResponse
 type INStartWorkoutIntentResponse struct {
 	INIntentResponse
@@ -83,8 +87,10 @@ func NewINStartWorkoutIntentResponse() INStartWorkoutIntentResponse {
 }
 
 
+
 // The code that indicates whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintentresponse/code
 func (i_ INStartWorkoutIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
@@ -92,10 +98,9 @@ func (i_ INStartWorkoutIntentResponse) Code() unsafe.Pointer {
 }
 
 
-// SetCode sets the value of the code property.
 // The code that indicates whether you successfully handled the intent.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintentresponse/code
 func (i_ INStartWorkoutIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)

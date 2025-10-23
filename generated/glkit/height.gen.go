@@ -36,7 +36,6 @@ type Iheight interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/height-c.ivar
-
 type height struct {
 	objectivec.Object
 }

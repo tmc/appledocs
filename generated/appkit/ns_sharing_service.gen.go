@@ -31,14 +31,15 @@ type _SharingServiceClass struct {
 // An interface definition for the [SharingService] class.
 type ISharingService interface {
 	objectivec.IObject
+	CanPerformWithItems(items objectivec.IObject) bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	AccountName() string
 	SetAccountName(value string)
 	AlternateImage() Image
 	SetAlternateImage(value IImage)
 	AttachmentFileURLs() foundation.URL
 	SetAttachmentFileURLs(value foundation.IURL)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	Image() Image
 	SetImage(value IImage)
 	MenuItemTitle() string
@@ -64,7 +65,6 @@ type ISharingService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService
-
 type SharingService struct {
 	objectivec.Object
 }
@@ -109,24 +109,20 @@ func NewSharingService() SharingService {
 
 
 
-
 // Returns a sharing service instance representing the specified service name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
-
 func NewSharingServiceNamed(serviceName ISharingServiceName) SharingService {
 	rv := objc.Send[SharingService](objc.ID(getSharingServiceClass().class), objc.Sel("sharingServiceNamed:"), serviceName)
 	return rv
 }
 
 
-
 // Creates a custom sharing service object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)
-
 func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image IImage, alternateImage IImage, block unsafe.Pointer) SharingService {
 	instance := getSharingServiceClass().Alloc()
 	rv := objc.Send[SharingService](instance.ID, objc.Sel("initWithTitle:image:alternateImage:handler:"), objc.String(title), image, alternateImage, block)
@@ -140,7 +136,6 @@ func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image II
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
-
 func (sc _SharingServiceClass) SharingServiceNamed(serviceName ISharingServiceName) SharingService {
 	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("sharingServiceNamed:"), serviceName)
 	return rv
@@ -151,10 +146,38 @@ func (sc _SharingServiceClass) SharingServiceNamed(serviceName ISharingServiceNa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/sharingServices(forItems:)
-
 func (sc _SharingServiceClass) SharingServicesForItems(items objectivec.IObject) []SharingService {
 	rv := objc.Send[[]SharingService](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
 	return rv
+}
+
+
+// Returns whether the service can share all the specified items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/canPerform(withItems:)
+func (s_ SharingService) CanPerformWithItems(items objectivec.IObject) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("canPerformWithItems:"), items)
+	return rv
+}
+
+
+// Specifies the delegate of the sharing service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/delegate
+func (s_ SharingService) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// Specifies the delegate of the sharing service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/delegate
+func (s_ SharingService) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
@@ -162,7 +185,6 @@ func (sc _SharingServiceClass) SharingServicesForItems(items objectivec.IObject)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/accountname
-
 func (s_ SharingService) AccountName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("accountName"))
 	return rv
@@ -173,7 +195,6 @@ func (s_ SharingService) AccountName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/accountname
-
 func (s_ SharingService) SetAccountName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAccountName:"), objc.String(value))
 }
@@ -183,7 +204,6 @@ func (s_ SharingService) SetAccountName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
-
 func (s_ SharingService) AlternateImage() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("alternateImage"))
 	return rv
@@ -194,7 +214,6 @@ func (s_ SharingService) AlternateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
-
 func (s_ SharingService) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
 }
@@ -204,7 +223,6 @@ func (s_ SharingService) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
-
 func (s_ SharingService) AttachmentFileURLs() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("attachmentFileURLs"))
 	return rv
@@ -215,30 +233,8 @@ func (s_ SharingService) AttachmentFileURLs() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
-
 func (s_ SharingService) SetAttachmentFileURLs(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachmentFileURLs:"), value)
-}
-
-
-// Specifies the delegate of the sharing service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/delegate
-
-func (s_ SharingService) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Specifies the delegate of the sharing service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/delegate
-
-func (s_ SharingService) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
@@ -246,7 +242,6 @@ func (s_ SharingService) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
-
 func (s_ SharingService) Image() Image {
 	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
@@ -257,7 +252,6 @@ func (s_ SharingService) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
-
 func (s_ SharingService) SetImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }
@@ -267,7 +261,6 @@ func (s_ SharingService) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/menuitemtitle
-
 func (s_ SharingService) MenuItemTitle() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("menuItemTitle"))
 	return rv
@@ -278,7 +271,6 @@ func (s_ SharingService) MenuItemTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/menuitemtitle
-
 func (s_ SharingService) SetMenuItemTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMenuItemTitle:"), objc.String(value))
 }
@@ -288,7 +280,6 @@ func (s_ SharingService) SetMenuItemTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/messagebody
-
 func (s_ SharingService) MessageBody() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("messageBody"))
 	return rv
@@ -299,7 +290,6 @@ func (s_ SharingService) MessageBody() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/messagebody
-
 func (s_ SharingService) SetMessageBody(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMessageBody:"), objc.String(value))
 }
@@ -309,7 +299,6 @@ func (s_ SharingService) SetMessageBody(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
-
 func (s_ SharingService) PermanentLink() foundation.URL {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("permanentLink"))
 	return rv
@@ -320,7 +309,6 @@ func (s_ SharingService) PermanentLink() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
-
 func (s_ SharingService) SetPermanentLink(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPermanentLink:"), value)
 }
@@ -330,7 +318,6 @@ func (s_ SharingService) SetPermanentLink(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/recipients
-
 func (s_ SharingService) Recipients() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("recipients"))
 	return rv
@@ -341,7 +328,6 @@ func (s_ SharingService) Recipients() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/recipients
-
 func (s_ SharingService) SetRecipients(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecipients:"), objc.String(value))
 }
@@ -351,7 +337,6 @@ func (s_ SharingService) SetRecipients(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/subject
-
 func (s_ SharingService) Subject() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("subject"))
 	return rv
@@ -362,7 +347,6 @@ func (s_ SharingService) Subject() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/subject
-
 func (s_ SharingService) SetSubject(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSubject:"), objc.String(value))
 }
@@ -372,7 +356,6 @@ func (s_ SharingService) SetSubject(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/title
-
 func (s_ SharingService) Title() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
@@ -383,7 +366,6 @@ func (s_ SharingService) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/title
-
 func (s_ SharingService) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

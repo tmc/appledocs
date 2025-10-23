@@ -38,7 +38,11 @@ type IINIntentResponse interface {
 // Your response to an intent object.
 //
 // The class is abstract and provides common behavior for all response objects that your app creates. You do not create instances of this class directly. Instead, you create instances of the specific subclasses representing the intents that you are trying to handle. This class provides access to the custom user activity object that you provided when initializing your response object.
+
+
+// Your response to an intent object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntentResponse
 type INIntentResponse struct {
 	objectivec.Object
@@ -83,8 +87,10 @@ func NewINIntentResponse() INIntentResponse {
 }
 
 
+
 // The user activity object to use when launching the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintentresponse/useractivity
 func (i_ INIntentResponse) UserActivity() foundation.UserActivity {
 	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
@@ -92,10 +98,9 @@ func (i_ INIntentResponse) UserActivity() foundation.UserActivity {
 }
 
 
-// SetUserActivity sets the value of the userActivity property.
 // The user activity object to use when launching the app.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintentresponse/useractivity
 func (i_ INIntentResponse) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)

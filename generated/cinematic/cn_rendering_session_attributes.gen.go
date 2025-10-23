@@ -43,7 +43,6 @@ type ICNRenderingSessionAttributes interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes
-
 type CNRenderingSessionAttributes struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewCNRenderingSessionAttributes() CNRenderingSessionAttributes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/loadFromAsset:completionHandler:
-
 func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
@@ -102,7 +100,6 @@ func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asse
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/renderingVersion
-
 func (c_ CNRenderingSessionAttributes) RenderingVersion() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("renderingVersion"))
 	return rv

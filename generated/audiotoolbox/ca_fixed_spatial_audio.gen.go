@@ -41,7 +41,6 @@ type IFixedSpatialAudio interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFixedSpatialAudio
-
 type FixedSpatialAudio struct {
 	SpatialAudioExperience
 }
@@ -88,10 +87,8 @@ func NewFixedSpatialAudio() FixedSpatialAudio {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFixedSpatialAudio/initWithSoundStageSize:
-
 func NewFixedSpatialAudioWithSoundStageSize(soundStageSize ISoundStageSize) FixedSpatialAudio {
 	instance := getFixedSpatialAudioClass().Alloc()
 	rv := objc.Send[FixedSpatialAudio](instance.ID, objc.Sel("initWithSoundStageSize:"), soundStageSize)
@@ -105,7 +102,6 @@ func NewFixedSpatialAudioWithSoundStageSize(soundStageSize ISoundStageSize) Fixe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFixedSpatialAudio/soundStageSize
-
 func (f_ FixedSpatialAudio) SoundStageSize() SoundStageSize {
 	rv := objc.Send[SoundStageSize](f_.ID, objc.Sel("soundStageSize"))
 	return rv

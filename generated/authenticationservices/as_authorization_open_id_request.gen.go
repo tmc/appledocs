@@ -46,7 +46,6 @@ type IAuthorizationOpenIDRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest
-
 type AuthorizationOpenIDRequest struct {
 	AuthorizationRequest
 }
@@ -97,7 +96,6 @@ func NewAuthorizationOpenIDRequest() AuthorizationOpenIDRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/nonce
-
 func (a_ AuthorizationOpenIDRequest) Nonce() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("nonce"))
 	return rv
@@ -108,7 +106,6 @@ func (a_ AuthorizationOpenIDRequest) Nonce() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/nonce
-
 func (a_ AuthorizationOpenIDRequest) SetNonce(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), objc.String(value))
 }
@@ -118,7 +115,6 @@ func (a_ AuthorizationOpenIDRequest) SetNonce(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
-
 func (a_ AuthorizationOpenIDRequest) RequestedOperation() AuthorizationOpenIDOperation {
 	rv := objc.Send[AuthorizationOpenIDOperation](a_.ID, objc.Sel("requestedOperation"))
 	return rv
@@ -129,7 +125,6 @@ func (a_ AuthorizationOpenIDRequest) RequestedOperation() AuthorizationOpenIDOpe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
-
 func (a_ AuthorizationOpenIDRequest) SetRequestedOperation(value IAuthorizationOpenIDOperation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestedOperation:"), value)
 }
@@ -139,7 +134,6 @@ func (a_ AuthorizationOpenIDRequest) SetRequestedOperation(value IAuthorizationO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes
-
 func (a_ AuthorizationOpenIDRequest) RequestedScopes() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("requestedScopes"))
 	return rv
@@ -150,7 +144,6 @@ func (a_ AuthorizationOpenIDRequest) RequestedScopes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes
-
 func (a_ AuthorizationOpenIDRequest) SetRequestedScopes(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -170,7 +163,6 @@ func (a_ AuthorizationOpenIDRequest) SetRequestedScopes(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
-
 func (a_ AuthorizationOpenIDRequest) State() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
@@ -181,7 +173,6 @@ func (a_ AuthorizationOpenIDRequest) State() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
-
 func (a_ AuthorizationOpenIDRequest) SetState(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }

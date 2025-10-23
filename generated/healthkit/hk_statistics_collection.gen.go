@@ -41,7 +41,6 @@ type IHKStatisticsCollection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatisticsCollection
-
 type HKStatisticsCollection struct {
 	objectivec.Object
 }

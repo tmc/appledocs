@@ -55,7 +55,6 @@ type ITurnBasedParticipant interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedParticipant
-
 type TurnBasedParticipant struct {
 	objectivec.Object
 }
@@ -104,7 +103,6 @@ func NewTurnBasedParticipant() TurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedParticipant/timeoutDate
-
 func (t_ TurnBasedParticipant) TimeoutDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("timeoutDate"))
 	return rv
@@ -115,7 +113,6 @@ func (t_ TurnBasedParticipant) TimeoutDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-
 func (t_ TurnBasedParticipant) Participants() GKTurnBasedParticipant {
 	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("participants"))
 	return rv
@@ -126,7 +123,6 @@ func (t_ TurnBasedParticipant) Participants() GKTurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-
 func (t_ TurnBasedParticipant) SetParticipants(value IGKTurnBasedParticipant) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParticipants:"), value)
 }
@@ -136,7 +132,6 @@ func (t_ TurnBasedParticipant) SetParticipants(value IGKTurnBasedParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
-
 func (t_ TurnBasedParticipant) LastTurnDate() foundation.Date {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("lastTurnDate"))
 	return rv
@@ -147,7 +142,6 @@ func (t_ TurnBasedParticipant) LastTurnDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
-
 func (t_ TurnBasedParticipant) SetLastTurnDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLastTurnDate:"), value)
 }
@@ -157,7 +151,6 @@ func (t_ TurnBasedParticipant) SetLastTurnDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/matchoutcome
-
 func (t_ TurnBasedParticipant) MatchOutcome() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("matchOutcome"))
 	return rv
@@ -168,7 +161,6 @@ func (t_ TurnBasedParticipant) MatchOutcome() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/matchoutcome
-
 func (t_ TurnBasedParticipant) SetMatchOutcome(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchOutcome:"), value)
 }
@@ -178,7 +170,6 @@ func (t_ TurnBasedParticipant) SetMatchOutcome(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player
-
 func (t_ TurnBasedParticipant) Player() GKPlayer {
 	rv := objc.Send[GKPlayer](t_.ID, objc.Sel("player"))
 	return rv
@@ -189,7 +180,6 @@ func (t_ TurnBasedParticipant) Player() GKPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player
-
 func (t_ TurnBasedParticipant) SetPlayer(value IGKPlayer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayer:"), value)
 }
@@ -199,7 +189,6 @@ func (t_ TurnBasedParticipant) SetPlayer(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-
 func (t_ TurnBasedParticipant) PlayerID() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("playerID"))
 	return rv
@@ -210,7 +199,6 @@ func (t_ TurnBasedParticipant) PlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-
 func (t_ TurnBasedParticipant) SetPlayerID(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), objc.String(value))
 }
@@ -220,7 +208,6 @@ func (t_ TurnBasedParticipant) SetPlayerID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.property
-
 func (t_ TurnBasedParticipant) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("status"))
 	return rv
@@ -231,7 +218,6 @@ func (t_ TurnBasedParticipant) Status() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.property
-
 func (t_ TurnBasedParticipant) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
 }

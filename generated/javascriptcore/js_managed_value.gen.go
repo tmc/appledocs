@@ -36,7 +36,11 @@ type IJSManagedValue interface {
 // A JavaScript value with conditional retain behavior to provide automatic memory management.
 //
 // The primary use case for a managed value is to store a JavaScript value in an Objective-C or Swift object that exports to JavaScript. A managed value’s behavior ensures retention of its underlying JavaScript value as long as either of the following conditions is true: The JavaScript value is reachable through the JavaScript object graph (that is, not subject to JavaScript garbage collection). The object is reachable through the Objective-C or Swift object graph, as you report to the JavaScriptCore virtual machine using the method. However, if neither of these conditions is true, the managed value sets its property to , releasing the underlying object.
+
+
+// A JavaScript value with conditional retain behavior to provide automatic memory management.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue
 type JSManagedValue struct {
 	objectivec.Object
@@ -82,9 +86,9 @@ func NewJSManagedValue() JSManagedValue {
 
 
 
-
 // Initializes a managed value with the specified JavaScript value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/init(value:)
 func NewJSManagedValueWithValue(value IJSValue) JSManagedValue {
 	instance := getJSManagedValueClass().Alloc()
@@ -94,16 +98,20 @@ func NewJSManagedValueWithValue(value IJSValue) JSManagedValue {
 }
 
 
+
 // Creates a managed value with the specified JavaScript value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/managedValueWithValue:
 func (jc _JSManagedValueClass) ManagedValueWithValue(value IJSValue) JSManagedValue {
 	rv := objc.Send[JSManagedValue](objc.ID(jc.class), objc.Sel("managedValueWithValue:"), value)
 	return rv
 }
 
+
 // The managed value’s underlying JavaScript value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/value
 func (j_ JSManagedValue) Value() JSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("value"))

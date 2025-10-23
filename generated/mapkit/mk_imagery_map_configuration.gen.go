@@ -38,7 +38,11 @@ type IMKImageryMapConfiguration interface {
 }
 
 // The class that represents an imagery-based map presentation, such as one using satellite imagery.
+
+
+// The class that represents an imagery-based map presentation, such as one using satellite imagery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKImageryMapConfiguration
 type MKImageryMapConfiguration struct {
 	MKMapConfiguration
@@ -85,8 +89,10 @@ func NewMKImageryMapConfiguration() MKImageryMapConfiguration {
 }
 
 
+
 // A value that indicates whether the map’s pitch button is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKImageryMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pitchButtonVisibility"))
@@ -94,17 +100,18 @@ func (m_ MKImageryMapConfiguration) PitchButtonVisibility() unsafe.Pointer {
 }
 
 
-// SetPitchButtonVisibility sets the value of the pitchButtonVisibility property.
 // A value that indicates whether the map’s pitch button is visible.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/pitchbuttonvisibility
 func (m_ MKImageryMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitchButtonVisibility:"), value)
 }
 
+
 // The characteristics of the map view, including the map type and features the map displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKImageryMapConfiguration) PreferredConfiguration() MKMapConfiguration {
 	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
@@ -112,17 +119,18 @@ func (m_ MKImageryMapConfiguration) PreferredConfiguration() MKMapConfiguration 
 }
 
 
-// SetPreferredConfiguration sets the value of the preferredConfiguration property.
 // The characteristics of the map view, including the map type and features the map displays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
 func (m_ MKImageryMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
+
 // A Boolean value that indicates whether the map displays the user tracking button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKImageryMapConfiguration) ShowsUserTrackingButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
@@ -130,10 +138,9 @@ func (m_ MKImageryMapConfiguration) ShowsUserTrackingButton() bool {
 }
 
 
-// SetShowsUserTrackingButton sets the value of the showsUserTrackingButton property.
 // A Boolean value that indicates whether the map displays the user tracking button.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
 func (m_ MKImageryMapConfiguration) SetShowsUserTrackingButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)

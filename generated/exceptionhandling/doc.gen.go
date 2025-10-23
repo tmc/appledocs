@@ -11,7 +11,6 @@
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling
-
 package exceptionhandling
 
 import (

@@ -37,7 +37,7 @@ type IOpenGLView interface {
 	OpenGLContext() NSOpenGLContext
 	SetOpenGLContext(value IOpenGLContext)
 	PixelFormat() NSOpenGLPixelFormat
-	SetPixelFormat(value NSOpenGLPixelFormat)
+	SetPixelFormat(value IOpenGLPixelFormat)
 	WantsBestResolutionOpenGLSurface() bool
 	SetWantsBestResolutionOpenGLSurface(value bool)
 	WantsExtendedDynamicRangeOpenGLSurface() bool
@@ -53,7 +53,6 @@ type IOpenGLView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView
-
 type OpenGLView struct {
 	View
 }
@@ -100,13 +99,11 @@ func NewOpenGLView() OpenGLView {
 
 
 
-
 // Returns an object initialized with the specified frame rectangle and pixel format.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
-
-func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format NSOpenGLPixelFormat) OpenGLView {
+func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format IOpenGLPixelFormat) OpenGLView {
 	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()
@@ -119,52 +116,43 @@ func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format NSO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/defaultPixelFormat()
-
 func (oc _OpenGLViewClass) DefaultPixelFormat() OpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
 	return rv
 }
 
 
-
 // Releases the object associated with the view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/clearGLContext()
-
 func (o_ OpenGLView) ClearGLContext() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("clearGLContext"))
 }
-
 
 
 // Used by subclasses to initialize OpenGL state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/prepareOpenGL()
-
 func (o_ OpenGLView) PrepareOpenGL() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("prepareOpenGL"))
 }
-
 
 
 // Called by Cocoa when the view’s visible rectangle or bounds change.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/reshape()
-
 func (o_ OpenGLView) Reshape() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("reshape"))
 }
-
 
 
 // Called by Cocoa when the view’s window moves or when the view itself moves or is resized.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/update()
-
 func (o_ OpenGLView) Update() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("update"))
 }
@@ -174,7 +162,6 @@ func (o_ OpenGLView) Update() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
-
 func (o_ OpenGLView) OpenGLContext() NSOpenGLContext {
 	rv := objc.Send[NSOpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
@@ -185,7 +172,6 @@ func (o_ OpenGLView) OpenGLContext() NSOpenGLContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
-
 func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
 }
@@ -195,7 +181,6 @@ func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
-
 func (o_ OpenGLView) PixelFormat() NSOpenGLPixelFormat {
 	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
@@ -206,8 +191,7 @@ func (o_ OpenGLView) PixelFormat() NSOpenGLPixelFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
-
-func (o_ OpenGLView) SetPixelFormat(value NSOpenGLPixelFormat) {
+func (o_ OpenGLView) SetPixelFormat(value IOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
 }
 
@@ -216,7 +200,6 @@ func (o_ OpenGLView) SetPixelFormat(value NSOpenGLPixelFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
-
 func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsBestResolutionOpenGLSurface"))
 	return rv
@@ -227,7 +210,6 @@ func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
-
 func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsBestResolutionOpenGLSurface:"), value)
 }
@@ -237,7 +219,6 @@ func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
-
 func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
@@ -248,7 +229,6 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
-
 func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
 }

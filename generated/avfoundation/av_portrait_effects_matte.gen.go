@@ -45,7 +45,6 @@ type IPortraitEffectsMatte interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPortraitEffectsMatte
-
 type PortraitEffectsMatte struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewPortraitEffectsMatte() PortraitEffectsMatte {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
-
 func (p_ PortraitEffectsMatte) MattingImage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mattingImage"))
 	return rv
@@ -105,7 +103,6 @@ func (p_ PortraitEffectsMatte) MattingImage() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
-
 func (p_ PortraitEffectsMatte) SetMattingImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMattingImage:"), value)
 }
@@ -115,7 +112,6 @@ func (p_ PortraitEffectsMatte) SetMattingImage(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/pixelformattype
-
 func (p_ PortraitEffectsMatte) PixelFormatType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pixelFormatType"))
 	return rv
@@ -126,7 +122,6 @@ func (p_ PortraitEffectsMatte) PixelFormatType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/pixelformattype
-
 func (p_ PortraitEffectsMatte) SetPixelFormatType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelFormatType:"), value)
 }

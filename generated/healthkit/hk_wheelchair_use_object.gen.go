@@ -41,7 +41,6 @@ type IHKWheelchairUseObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWheelchairUseObject
-
 type HKWheelchairUseObject struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewHKWheelchairUseObject() HKWheelchairUseObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
-
 func (h_ HKWheelchairUseObject) WheelchairUse() HKWheelchairUse {
 	rv := objc.Send[HKWheelchairUse](h_.ID, objc.Sel("wheelchairUse"))
 	return rv
@@ -101,7 +99,6 @@ func (h_ HKWheelchairUseObject) WheelchairUse() HKWheelchairUse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
-
 func (h_ HKWheelchairUseObject) SetWheelchairUse(value IHKWheelchairUse) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWheelchairUse:"), value)
 }

@@ -42,7 +42,6 @@ type IDDDiscoverySession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession
-
 type DDDiscoverySession struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewDDDiscoverySession() DDDiscoverySession {
 
 
 
-
 // Reports an event to the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)
-
 func (d_ DDDiscoverySession) ReportEvent(inEvent IDDDeviceEvent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("reportEvent:"), inEvent)
 }

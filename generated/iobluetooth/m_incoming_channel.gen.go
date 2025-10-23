@@ -32,7 +32,9 @@ type ImIncomingChannel interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mIncomingChannel
 type mIncomingChannel struct {
 	objectivec.Object

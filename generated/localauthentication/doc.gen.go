@@ -2,11 +2,14 @@
 
 // Package localauthentication provides Go bindings for the LocalAuthentication framework.
 //
-// Authenticate users biometrically or with a passphrase they already know. [Full Topic]
+// Authenticate users biometrically or with a passphrase they already know.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LocalAuthentication without requiring cgo.
+
+// Authenticate users biometrically or with a passphrase they already know.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication
 package localauthentication
 

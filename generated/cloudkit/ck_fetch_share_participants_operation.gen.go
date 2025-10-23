@@ -59,7 +59,6 @@ type ICKFetchShareParticipantsOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation
-
 type CKFetchShareParticipantsOperation struct {
 	CKOperation
 }
@@ -106,12 +105,10 @@ func NewCKFetchShareParticipantsOperation() CKFetchShareParticipantsOperation {
 
 
 
-
 // Creates an operation for generating share participants from the specified user data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/init(userIdentityLookupInfos:)
-
 func NewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos(userIdentityLookupInfos []CKUserIdentityLookupInfo) CKFetchShareParticipantsOperation {
 	instance := getCKFetchShareParticipantsOperationClass().Alloc()
 	rv := objc.Send[CKFetchShareParticipantsOperation](instance.ID, objc.Sel("initWithUserIdentityLookupInfos:"), userIdentityLookupInfos)
@@ -125,7 +122,6 @@ func NewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos(userIdentit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/fetchShareParticipantsCompletionBlock
-
 func (c_ CKFetchShareParticipantsOperation) FetchShareParticipantsCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchShareParticipantsCompletionBlock"))
 	return rv
@@ -136,7 +132,6 @@ func (c_ CKFetchShareParticipantsOperation) FetchShareParticipantsCompletionBloc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/fetchShareParticipantsCompletionBlock
-
 func (c_ CKFetchShareParticipantsOperation) SetFetchShareParticipantsCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchShareParticipantsCompletionBlock:"), value)
 }
@@ -144,7 +139,6 @@ func (c_ CKFetchShareParticipantsOperation) SetFetchShareParticipantsCompletionB
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/perShareParticipantCompletionBlock
-
 func (c_ CKFetchShareParticipantsOperation) PerShareParticipantCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareParticipantCompletionBlock"))
 	return rv
@@ -153,7 +147,6 @@ func (c_ CKFetchShareParticipantsOperation) PerShareParticipantCompletionBlock()
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/perShareParticipantCompletionBlock
-
 func (c_ CKFetchShareParticipantsOperation) SetPerShareParticipantCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareParticipantCompletionBlock:"), value)
 }
@@ -163,7 +156,6 @@ func (c_ CKFetchShareParticipantsOperation) SetPerShareParticipantCompletionBloc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/shareParticipantFetchedBlock
-
 func (c_ CKFetchShareParticipantsOperation) ShareParticipantFetchedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shareParticipantFetchedBlock"))
 	return rv
@@ -174,7 +166,6 @@ func (c_ CKFetchShareParticipantsOperation) ShareParticipantFetchedBlock() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/shareParticipantFetchedBlock
-
 func (c_ CKFetchShareParticipantsOperation) SetShareParticipantFetchedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareParticipantFetchedBlock:"), value)
 }
@@ -184,7 +175,6 @@ func (c_ CKFetchShareParticipantsOperation) SetShareParticipantFetchedBlock(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/userIdentityLookupInfos
-
 func (c_ CKFetchShareParticipantsOperation) UserIdentityLookupInfos() []CKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](c_.ID, objc.Sel("userIdentityLookupInfos"))
 	return rv
@@ -195,7 +185,6 @@ func (c_ CKFetchShareParticipantsOperation) UserIdentityLookupInfos() []CKUserId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation/userIdentityLookupInfos
-
 func (c_ CKFetchShareParticipantsOperation) SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -213,7 +202,6 @@ func (c_ CKFetchShareParticipantsOperation) SetUserIdentityLookupInfos(value []C
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/fetchshareparticipantsresultblock
-
 func (c_ CKFetchShareParticipantsOperation) FetchShareParticipantsResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchShareParticipantsResultBlock"))
 	return rv
@@ -222,7 +210,6 @@ func (c_ CKFetchShareParticipantsOperation) FetchShareParticipantsResultBlock() 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/fetchshareparticipantsresultblock
-
 func (c_ CKFetchShareParticipantsOperation) SetFetchShareParticipantsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchShareParticipantsResultBlock:"), value)
 }
@@ -230,7 +217,6 @@ func (c_ CKFetchShareParticipantsOperation) SetFetchShareParticipantsResultBlock
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/pershareparticipantresultblock
-
 func (c_ CKFetchShareParticipantsOperation) PerShareParticipantResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareParticipantResultBlock"))
 	return rv
@@ -239,7 +225,6 @@ func (c_ CKFetchShareParticipantsOperation) PerShareParticipantResultBlock() uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/pershareparticipantresultblock
-
 func (c_ CKFetchShareParticipantsOperation) SetPerShareParticipantResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareParticipantResultBlock:"), value)
 }
@@ -249,7 +234,6 @@ func (c_ CKFetchShareParticipantsOperation) SetPerShareParticipantResultBlock(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
-
 func (c_ CKFetchShareParticipantsOperation) CKPartialErrorsByItemIDKey() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
 	return rv
@@ -260,7 +244,6 @@ func (c_ CKFetchShareParticipantsOperation) CKPartialErrorsByItemIDKey() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
-
 func (c_ CKFetchShareParticipantsOperation) UserIdentity() CKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
@@ -271,7 +254,6 @@ func (c_ CKFetchShareParticipantsOperation) UserIdentity() CKUserIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
-
 func (c_ CKFetchShareParticipantsOperation) SetUserIdentity(value ICKUserIdentity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentity:"), value)
 }
@@ -281,7 +263,6 @@ func (c_ CKFetchShareParticipantsOperation) SetUserIdentity(value ICKUserIdentit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-
 func (c_ CKFetchShareParticipantsOperation) HasiCloudAccount() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
 	return rv
@@ -292,7 +273,6 @@ func (c_ CKFetchShareParticipantsOperation) HasiCloudAccount() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-
 func (c_ CKFetchShareParticipantsOperation) SetHasiCloudAccount(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
 }
@@ -302,7 +282,6 @@ func (c_ CKFetchShareParticipantsOperation) SetHasiCloudAccount(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-
 func (c_ CKFetchShareParticipantsOperation) UserInfo() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
 	return rv
@@ -313,7 +292,6 @@ func (c_ CKFetchShareParticipantsOperation) UserInfo() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-
 func (c_ CKFetchShareParticipantsOperation) SetUserInfo(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }

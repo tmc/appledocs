@@ -100,7 +100,7 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/default()
-func (dc _DistributedNotificationCenterClass) DefaultCenter() DistributedNotificationCenter {
+func (dc _DistributedNotificationCenterClass) DefaultCenter() IDistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("defaultCenter"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (dc _DistributedNotificationCenterClass) DefaultCenter() DistributedNotific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/forType(_:)
-func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType DistributedNotificationCenterType) DistributedNotificationCenter {
+func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType DistributedNotificationCenterType) IDistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("notificationCenterForType:"), notificationCenterType)
 	return rv
 }

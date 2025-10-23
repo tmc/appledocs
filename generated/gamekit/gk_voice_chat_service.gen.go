@@ -57,7 +57,6 @@ type IVoiceChatService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChatService
-
 type VoiceChatService struct {
 	objectivec.Object
 }
@@ -106,7 +105,6 @@ func NewVoiceChatService() VoiceChatService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/kAudioSessionCategory_PlayAndRecord
-
 func (v_ VoiceChatService) KAudioSessionCategory_PlayAndRecord() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("kAudioSessionCategory_PlayAndRecord"))
 	return rv
@@ -117,7 +115,6 @@ func (v_ VoiceChatService) KAudioSessionCategory_PlayAndRecord() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/kAudioSessionCategory_PlayAndRecord
-
 func (v_ VoiceChatService) SetKAudioSessionCategory_PlayAndRecord(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKAudioSessionCategory_PlayAndRecord:"), value)
 }
@@ -127,7 +124,6 @@ func (v_ VoiceChatService) SetKAudioSessionCategory_PlayAndRecord(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/client
-
 func (v_ VoiceChatService) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("client"))
 	return rv
@@ -138,7 +134,6 @@ func (v_ VoiceChatService) Client() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/client
-
 func (v_ VoiceChatService) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClient:"), value)
 }
@@ -148,7 +143,6 @@ func (v_ VoiceChatService) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/inputmeterlevel
-
 func (v_ VoiceChatService) InputMeterLevel() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("inputMeterLevel"))
 	return rv
@@ -159,7 +153,6 @@ func (v_ VoiceChatService) InputMeterLevel() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/inputmeterlevel
-
 func (v_ VoiceChatService) SetInputMeterLevel(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInputMeterLevel:"), value)
 }
@@ -169,7 +162,6 @@ func (v_ VoiceChatService) SetInputMeterLevel(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/isinputmeteringenabled
-
 func (v_ VoiceChatService) IsInputMeteringEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isInputMeteringEnabled"))
 	return rv
@@ -180,7 +172,6 @@ func (v_ VoiceChatService) IsInputMeteringEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/isinputmeteringenabled
-
 func (v_ VoiceChatService) SetIsInputMeteringEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsInputMeteringEnabled:"), value)
 }
@@ -190,7 +181,6 @@ func (v_ VoiceChatService) SetIsInputMeteringEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/ismicrophonemuted
-
 func (v_ VoiceChatService) IsMicrophoneMuted() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isMicrophoneMuted"))
 	return rv
@@ -201,7 +191,6 @@ func (v_ VoiceChatService) IsMicrophoneMuted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/ismicrophonemuted
-
 func (v_ VoiceChatService) SetIsMicrophoneMuted(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsMicrophoneMuted:"), value)
 }
@@ -211,7 +200,6 @@ func (v_ VoiceChatService) SetIsMicrophoneMuted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/isoutputmeteringenabled
-
 func (v_ VoiceChatService) IsOutputMeteringEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isOutputMeteringEnabled"))
 	return rv
@@ -222,7 +210,6 @@ func (v_ VoiceChatService) IsOutputMeteringEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/isoutputmeteringenabled
-
 func (v_ VoiceChatService) SetIsOutputMeteringEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsOutputMeteringEnabled:"), value)
 }
@@ -232,7 +219,6 @@ func (v_ VoiceChatService) SetIsOutputMeteringEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/outputmeterlevel
-
 func (v_ VoiceChatService) OutputMeterLevel() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("outputMeterLevel"))
 	return rv
@@ -243,7 +229,6 @@ func (v_ VoiceChatService) OutputMeterLevel() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/outputmeterlevel
-
 func (v_ VoiceChatService) SetOutputMeterLevel(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOutputMeterLevel:"), value)
 }
@@ -253,7 +238,6 @@ func (v_ VoiceChatService) SetOutputMeterLevel(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/remoteparticipantvolume
-
 func (v_ VoiceChatService) RemoteParticipantVolume() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("remoteParticipantVolume"))
 	return rv
@@ -264,7 +248,6 @@ func (v_ VoiceChatService) RemoteParticipantVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/remoteparticipantvolume
-
 func (v_ VoiceChatService) SetRemoteParticipantVolume(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRemoteParticipantVolume:"), value)
 }

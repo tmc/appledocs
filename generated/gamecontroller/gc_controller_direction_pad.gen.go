@@ -52,7 +52,6 @@ type IGCControllerDirectionPad interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad
-
 type GCControllerDirectionPad struct {
 	GCControllerElement
 }
@@ -103,7 +102,6 @@ func NewGCControllerDirectionPad() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/xAxis
-
 func (g_ GCControllerDirectionPad) XAxis() GCControllerAxisInput {
 	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("xAxis"))
 	return rv
@@ -114,7 +112,6 @@ func (g_ GCControllerDirectionPad) XAxis() GCControllerAxisInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/yAxis
-
 func (g_ GCControllerDirectionPad) YAxis() GCControllerAxisInput {
 	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("yAxis"))
 	return rv
@@ -125,7 +122,6 @@ func (g_ GCControllerDirectionPad) YAxis() GCControllerAxisInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down
-
 func (g_ GCControllerDirectionPad) Down() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("down"))
 	return rv
@@ -136,7 +132,6 @@ func (g_ GCControllerDirectionPad) Down() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down
-
 func (g_ GCControllerDirectionPad) SetDown(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDown:"), value)
 }
@@ -146,7 +141,6 @@ func (g_ GCControllerDirectionPad) SetDown(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left
-
 func (g_ GCControllerDirectionPad) Left() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("left"))
 	return rv
@@ -157,7 +151,6 @@ func (g_ GCControllerDirectionPad) Left() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left
-
 func (g_ GCControllerDirectionPad) SetLeft(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeft:"), value)
 }
@@ -167,7 +160,6 @@ func (g_ GCControllerDirectionPad) SetLeft(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right
-
 func (g_ GCControllerDirectionPad) Right() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("right"))
 	return rv
@@ -178,7 +170,6 @@ func (g_ GCControllerDirectionPad) Right() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right
-
 func (g_ GCControllerDirectionPad) SetRight(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRight:"), value)
 }
@@ -188,7 +179,6 @@ func (g_ GCControllerDirectionPad) SetRight(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up
-
 func (g_ GCControllerDirectionPad) Up() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("up"))
 	return rv
@@ -199,7 +189,6 @@ func (g_ GCControllerDirectionPad) Up() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up
-
 func (g_ GCControllerDirectionPad) SetUp(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUp:"), value)
 }
@@ -209,7 +198,6 @@ func (g_ GCControllerDirectionPad) SetUp(value IGCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/valuechangedhandler
-
 func (g_ GCControllerDirectionPad) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
@@ -220,7 +208,6 @@ func (g_ GCControllerDirectionPad) ValueChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/valuechangedhandler
-
 func (g_ GCControllerDirectionPad) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }

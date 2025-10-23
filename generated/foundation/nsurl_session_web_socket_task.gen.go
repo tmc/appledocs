@@ -29,10 +29,10 @@ type _URLSessionWebSocketTaskClass struct {
 // An interface definition for the [URLSessionWebSocketTask] class.
 type IURLSessionWebSocketTask interface {
 	IURLSessionTask
-	CloseReason() NSData
+	CloseReason() IData
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	HttpCookieStorage() NSHTTPCookieStorage
+	HttpCookieStorage() IHTTPCookieStorage
 	SetHttpCookieStorage(value IHTTPCookieStorage)
 	CloseCode() unsafe.Pointer
 	SetCloseCode(value unsafe.Pointer)
@@ -99,7 +99,7 @@ func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeReason
-func (u_ URLSessionWebSocketTask) CloseReason() NSData {
+func (u_ URLSessionWebSocketTask) CloseReason() IData {
 	rv := objc.Send[NSData](u_.ID, objc.Sel("closeReason"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-func (u_ URLSessionWebSocketTask) HttpCookieStorage() NSHTTPCookieStorage {
+func (u_ URLSessionWebSocketTask) HttpCookieStorage() IHTTPCookieStorage {
 	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
 	return rv
 }

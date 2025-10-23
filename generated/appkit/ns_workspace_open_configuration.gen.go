@@ -53,12 +53,12 @@ type IWorkspaceOpenConfiguration interface {
 	SetHidesOthers(value bool)
 	ForPrinting() bool
 	SetForPrinting(value bool)
+	PromptsUserIfNeeded() bool
+	SetPromptsUserIfNeeded(value bool)
 	RequiresUniversalLinks() bool
 	SetRequiresUniversalLinks(value bool)
 	IsForPrinting() bool
 	SetIsForPrinting(value bool)
-	PromptsUserIfNeeded() bool
-	SetPromptsUserIfNeeded(value bool)
 }
 
 // The configuration options for opening URLs or launching apps.
@@ -70,7 +70,6 @@ type IWorkspaceOpenConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration
-
 type WorkspaceOpenConfiguration struct {
 	objectivec.Object
 }
@@ -119,7 +118,6 @@ func NewWorkspaceOpenConfiguration() WorkspaceOpenConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspaceOpenConfiguration/configuration
-
 func (wc _WorkspaceOpenConfigurationClass) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("configuration"))
 	return rv
@@ -130,7 +128,6 @@ func (wc _WorkspaceOpenConfigurationClass) Configuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/activates
-
 func (w_ WorkspaceOpenConfiguration) Activates() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("activates"))
 	return rv
@@ -141,7 +138,6 @@ func (w_ WorkspaceOpenConfiguration) Activates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/activates
-
 func (w_ WorkspaceOpenConfiguration) SetActivates(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setActivates:"), value)
 }
@@ -151,7 +147,6 @@ func (w_ WorkspaceOpenConfiguration) SetActivates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/addsToRecentItems
-
 func (w_ WorkspaceOpenConfiguration) AddsToRecentItems() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("addsToRecentItems"))
 	return rv
@@ -162,7 +157,6 @@ func (w_ WorkspaceOpenConfiguration) AddsToRecentItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/addsToRecentItems
-
 func (w_ WorkspaceOpenConfiguration) SetAddsToRecentItems(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAddsToRecentItems:"), value)
 }
@@ -172,7 +166,6 @@ func (w_ WorkspaceOpenConfiguration) SetAddsToRecentItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/allowsRunningApplicationSubstitution
-
 func (w_ WorkspaceOpenConfiguration) AllowsRunningApplicationSubstitution() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsRunningApplicationSubstitution"))
 	return rv
@@ -183,7 +176,6 @@ func (w_ WorkspaceOpenConfiguration) AllowsRunningApplicationSubstitution() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/allowsRunningApplicationSubstitution
-
 func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsRunningApplicationSubstitution:"), value)
 }
@@ -193,7 +185,6 @@ func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-
 func (w_ WorkspaceOpenConfiguration) AppleEvent() foundation.AppleEventDescriptor {
 	rv := objc.Send[foundation.AppleEventDescriptor](w_.ID, objc.Sel("appleEvent"))
 	return rv
@@ -204,7 +195,6 @@ func (w_ WorkspaceOpenConfiguration) AppleEvent() foundation.AppleEventDescripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-
 func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value foundation.IAppleEventDescriptor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
 }
@@ -214,7 +204,6 @@ func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value foundation.IAppleEventD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/architecture
-
 func (w_ WorkspaceOpenConfiguration) Architecture() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("architecture"))
 	return rv
@@ -225,7 +214,6 @@ func (w_ WorkspaceOpenConfiguration) Architecture() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/architecture
-
 func (w_ WorkspaceOpenConfiguration) SetArchitecture(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setArchitecture:"), value)
 }
@@ -235,7 +223,6 @@ func (w_ WorkspaceOpenConfiguration) SetArchitecture(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/arguments
-
 func (w_ WorkspaceOpenConfiguration) Arguments() []string {
 	rv := objc.Send[[]string](w_.ID, objc.Sel("arguments"))
 	return rv
@@ -246,7 +233,6 @@ func (w_ WorkspaceOpenConfiguration) Arguments() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/arguments
-
 func (w_ WorkspaceOpenConfiguration) SetArguments(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -266,7 +252,6 @@ func (w_ WorkspaceOpenConfiguration) SetArguments(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/createsNewApplicationInstance
-
 func (w_ WorkspaceOpenConfiguration) CreatesNewApplicationInstance() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("createsNewApplicationInstance"))
 	return rv
@@ -277,7 +262,6 @@ func (w_ WorkspaceOpenConfiguration) CreatesNewApplicationInstance() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/createsNewApplicationInstance
-
 func (w_ WorkspaceOpenConfiguration) SetCreatesNewApplicationInstance(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCreatesNewApplicationInstance:"), value)
 }
@@ -287,7 +271,6 @@ func (w_ WorkspaceOpenConfiguration) SetCreatesNewApplicationInstance(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/environment
-
 func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("environment"))
 	return rv
@@ -298,7 +281,6 @@ func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/environment
-
 func (w_ WorkspaceOpenConfiguration) SetEnvironment(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEnvironment:"), value)
 }
@@ -308,7 +290,6 @@ func (w_ WorkspaceOpenConfiguration) SetEnvironment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/hides
-
 func (w_ WorkspaceOpenConfiguration) Hides() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hides"))
 	return rv
@@ -319,7 +300,6 @@ func (w_ WorkspaceOpenConfiguration) Hides() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/hides
-
 func (w_ WorkspaceOpenConfiguration) SetHides(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHides:"), value)
 }
@@ -329,7 +309,6 @@ func (w_ WorkspaceOpenConfiguration) SetHides(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/hidesOthers
-
 func (w_ WorkspaceOpenConfiguration) HidesOthers() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hidesOthers"))
 	return rv
@@ -340,7 +319,6 @@ func (w_ WorkspaceOpenConfiguration) HidesOthers() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/hidesOthers
-
 func (w_ WorkspaceOpenConfiguration) SetHidesOthers(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHidesOthers:"), value)
 }
@@ -350,7 +328,6 @@ func (w_ WorkspaceOpenConfiguration) SetHidesOthers(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/isForPrinting
-
 func (w_ WorkspaceOpenConfiguration) ForPrinting() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("forPrinting"))
 	return rv
@@ -361,9 +338,27 @@ func (w_ WorkspaceOpenConfiguration) ForPrinting() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/isForPrinting
-
 func (w_ WorkspaceOpenConfiguration) SetForPrinting(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setForPrinting:"), value)
+}
+
+
+// A Boolean value indicating whether to display errors, authentication requests, or other UI elements to the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/promptsUserIfNeeded
+func (w_ WorkspaceOpenConfiguration) PromptsUserIfNeeded() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("promptsUserIfNeeded"))
+	return rv
+}
+
+
+// A Boolean value indicating whether to display errors, authentication requests, or other UI elements to the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/promptsUserIfNeeded
+func (w_ WorkspaceOpenConfiguration) SetPromptsUserIfNeeded(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPromptsUserIfNeeded:"), value)
 }
 
 
@@ -371,7 +366,6 @@ func (w_ WorkspaceOpenConfiguration) SetForPrinting(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/requiresUniversalLinks
-
 func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("requiresUniversalLinks"))
 	return rv
@@ -382,7 +376,6 @@ func (w_ WorkspaceOpenConfiguration) RequiresUniversalLinks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/requiresUniversalLinks
-
 func (w_ WorkspaceOpenConfiguration) SetRequiresUniversalLinks(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRequiresUniversalLinks:"), value)
 }
@@ -392,7 +385,6 @@ func (w_ WorkspaceOpenConfiguration) SetRequiresUniversalLinks(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration/isforprinting
-
 func (w_ WorkspaceOpenConfiguration) IsForPrinting() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isForPrinting"))
 	return rv
@@ -403,30 +395,8 @@ func (w_ WorkspaceOpenConfiguration) IsForPrinting() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration/isforprinting
-
 func (w_ WorkspaceOpenConfiguration) SetIsForPrinting(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsForPrinting:"), value)
-}
-
-
-// A Boolean value indicating whether to display errors, authentication requests, or other UI elements to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration/promptsuserifneeded
-
-func (w_ WorkspaceOpenConfiguration) PromptsUserIfNeeded() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("promptsUserIfNeeded"))
-	return rv
-}
-
-
-// A Boolean value indicating whether to display errors, authentication requests, or other UI elements to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration/promptsuserifneeded
-
-func (w_ WorkspaceOpenConfiguration) SetPromptsUserIfNeeded(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setPromptsUserIfNeeded:"), value)
 }
 
 

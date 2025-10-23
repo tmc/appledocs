@@ -52,7 +52,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForCocoaError(_:)
-
 func fs_errorForCocoaError(errorCode int) unsafe.Pointer {
 	return _fs_errorForCocoaError(errorCode)
 	}
@@ -66,7 +65,6 @@ func fs_errorForCocoaError(errorCode int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForMachError(_:)
-
 func fs_errorForMachError(errorCode int) unsafe.Pointer {
 	return _fs_errorForMachError(errorCode)
 	}
@@ -80,7 +78,6 @@ func fs_errorForMachError(errorCode int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForPOSIXError(_:)
-
 func fs_errorForPOSIXError(p0 int) unsafe.Pointer {
 	return _fs_errorForPOSIXError(p0)
 	}

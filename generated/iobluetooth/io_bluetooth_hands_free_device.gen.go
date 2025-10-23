@@ -54,7 +54,11 @@ type IBluetoothHandsFreeDevice interface {
 }
 
 // An object you use to manage phone calls on a connected Bluetooth hands-free phone or headset.
+
+
+// An object you use to manage phone calls on a connected Bluetooth hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice
 type BluetoothHandsFreeDevice struct {
 	BluetoothHandsFree
@@ -102,9 +106,9 @@ func NewBluetoothHandsFreeDevice() BluetoothHandsFreeDevice {
 
 
 
-
 // Creates an object to manage phone calls on a hands-free Bluetooth device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/init(device:delegate:)
 func NewBluetoothHandsFreeDeviceWithDeviceDelegate(device IOBluetoothDevice, delegate objectivec.IObject) BluetoothHandsFreeDevice {
 	instance := getBluetoothHandsFreeDeviceClass().Alloc()
@@ -114,148 +118,190 @@ func NewBluetoothHandsFreeDeviceWithDeviceDelegate(device IOBluetoothDevice, del
 }
 
 
+
 // Accepts an incoming call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/acceptCall()
 func (b_ BluetoothHandsFreeDevice) AcceptCall() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("acceptCall"))
 }
 
+
 // Accepts an incoming call and transfers the audio to the managed hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/acceptCallOnPhone()
 func (b_ BluetoothHandsFreeDevice) AcceptCallOnPhone() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("acceptCallOnPhone"))
 }
 
+
 // Adds held calls to the current conversation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/addHeldCall()
 func (b_ BluetoothHandsFreeDevice) AddHeldCall() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("addHeldCall"))
 }
 
+
 // Ends all calls that are active or on hold, and accepts any waiting calls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/callTransfer()
 func (b_ BluetoothHandsFreeDevice) CallTransfer() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("callTransfer"))
 }
 
+
 // Requests that the Bluetooth audio gateway send the delegate a list of calls that are active, on hold, or being set up.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/currentCallList()
 func (b_ BluetoothHandsFreeDevice) CurrentCallList() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("currentCallList"))
 }
 
+
 // Calls the phone number on a hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/dialNumber(_:)
 func (b_ BluetoothHandsFreeDevice) DialNumber(aNumber string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("dialNumber:"), objc.String(aNumber))
 }
 
+
 // Ends the current call or refuses an incoming call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/endCall()
 func (b_ BluetoothHandsFreeDevice) EndCall() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("endCall"))
 }
 
+
 // Places all active calls on hold and accepts a held or waiting call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/holdCall()
 func (b_ BluetoothHandsFreeDevice) HoldCall() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("holdCall"))
 }
 
+
 // Calls the phone number stored in a speed dial or memory slot of the hands-free phone or headset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/memoryDial(_:)
 func (b_ BluetoothHandsFreeDevice) MemoryDial(memoryLocation int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("memoryDial:"), memoryLocation)
 }
 
+
 // Places all calls except the call with the specified index on hold.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/placeAllOthers(onHold:)
 func (b_ BluetoothHandsFreeDevice) PlaceAllOthersOnHold(index int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("placeAllOthersOnHold:"), index)
 }
 
+
 // Calls the number stored on the hands-free phone or headset again.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/redial()
 func (b_ BluetoothHandsFreeDevice) Redial() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("redial"))
 }
 
+
 // Ends all active calls and accepts a held or waiting call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/releaseActiveCalls()
 func (b_ BluetoothHandsFreeDevice) ReleaseActiveCalls() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("releaseActiveCalls"))
 }
 
+
 // Ends the call with the specified index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/releaseCall(_:)
 func (b_ BluetoothHandsFreeDevice) ReleaseCall(index int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("releaseCall:"), index)
 }
 
+
 // Ends all calls that are on hold or returns a busy signal for a waiting call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/releaseHeldCalls()
 func (b_ BluetoothHandsFreeDevice) ReleaseHeldCalls() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("releaseHeldCalls"))
 }
 
+
 // Sends an AT command to the Bluetooth audio gateway.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/send(atCommand:)
 func (b_ BluetoothHandsFreeDevice) SendATCommand(atCommand string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:"), objc.String(atCommand))
 }
 
+
 // Send an AT command to the Bluetooth audio gateway and performs a selector on completion or timeout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/send(atCommand:timeout:selector:target:)
 func (b_ BluetoothHandsFreeDevice) SendATCommandTimeoutSelectorTarget(atCommand string, timeout float32, selector objc.SEL, target objectivec.IObject) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:timeout:selector:target:"), objc.String(atCommand), timeout, selector, target)
 }
 
+
 // Sends the tone associated with a phone key to the hands-free Bluetooth device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/sendDTMF(_:)
 func (b_ BluetoothHandsFreeDevice) SendDTMF(character string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendDTMF:"), objc.String(character))
 }
 
+
 // Sends a text message to a phone number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/sendSMS(_:message:)
 func (b_ BluetoothHandsFreeDevice) SendSMSMessage(aNumber string, aMessage string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendSMS:message:"), objc.String(aNumber), objc.String(aMessage))
 }
 
+
 // Requests that the Bluetooth audio gateway send the subscriber number to the delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/subscriberNumber()
 func (b_ BluetoothHandsFreeDevice) SubscriberNumber() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("subscriberNumber"))
 }
 
+
 // Moves the audio for current and future calls to a Mac.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/transferAudioToComputer()
 func (b_ BluetoothHandsFreeDevice) TransferAudioToComputer() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("transferAudioToComputer"))
 }
 
+
 // Moves the audio for current or future calls to a phone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/transferAudioToPhone()
 func (b_ BluetoothHandsFreeDevice) TransferAudioToPhone() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("transferAudioToPhone"))

@@ -42,7 +42,6 @@ type IInterstitialTimeRange interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange
-
 type InterstitialTimeRange struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewInterstitialTimeRange() InterstitialTimeRange {
 
 
 
-
 // Initializes an interstitial time range object with the specified time range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/init(timeRange:)
-
 func NewInterstitialTimeRangeWithTimeRange(timeRange unsafe.Pointer) InterstitialTimeRange {
 	instance := getInterstitialTimeRangeClass().Alloc()
 	rv := objc.Send[InterstitialTimeRange](instance.ID, objc.Sel("initWithTimeRange:"), timeRange)
@@ -106,7 +103,6 @@ func NewInterstitialTimeRangeWithTimeRange(timeRange unsafe.Pointer) Interstitia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/timeRange
-
 func (i_ InterstitialTimeRange) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("timeRange"))
 	return rv

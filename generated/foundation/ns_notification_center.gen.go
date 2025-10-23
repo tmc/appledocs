@@ -169,7 +169,7 @@ func (n_ NotificationCenter) RemoveObserverNameObject(observer objectivec.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
-func (n_ NotificationCenter) DefaultCenter() NSNotificationCenter {
+func (n_ NotificationCenter) DefaultCenter() INotificationCenter {
 	rv := objc.Send[NSNotificationCenter](n_.ID, objc.Sel("defaultCenter"))
 	return rv
 }

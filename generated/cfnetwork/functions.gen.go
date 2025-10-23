@@ -242,7 +242,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFFTPCreateParsedResourceListing(_:_:_:_:)
-
 func CFFTPCreateParsedResourceListing(alloc unsafe.Pointer, buffer unsafe.Pointer, bufferLength unsafe.Pointer, parsed unsafe.Pointer) unsafe.Pointer {
 	return _CFFTPCreateParsedResourceListing(alloc, buffer, bufferLength, parsed)
 	}
@@ -256,7 +255,6 @@ func CFFTPCreateParsedResourceListing(alloc unsafe.Pointer, buffer unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationAppliesToRequest(_:_:)
-
 func CFHTTPAuthenticationAppliesToRequest(auth unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationAppliesToRequest(auth, request)
 	}
@@ -270,7 +268,6 @@ func CFHTTPAuthenticationAppliesToRequest(auth unsafe.Pointer, request unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCopyDomains(_:)
-
 func CFHTTPAuthenticationCopyDomains(auth unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationCopyDomains(auth)
 	}
@@ -284,7 +281,6 @@ func CFHTTPAuthenticationCopyDomains(auth unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCopyMethod(_:)
-
 func CFHTTPAuthenticationCopyMethod(auth unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationCopyMethod(auth)
 	}
@@ -298,7 +294,6 @@ func CFHTTPAuthenticationCopyMethod(auth unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCopyRealm(_:)
-
 func CFHTTPAuthenticationCopyRealm(auth unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationCopyRealm(auth)
 	}
@@ -312,7 +307,6 @@ func CFHTTPAuthenticationCopyRealm(auth unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationCreateFromResponse(_:_:)
-
 func CFHTTPAuthenticationCreateFromResponse(alloc unsafe.Pointer, response unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationCreateFromResponse(alloc, response)
 	}
@@ -326,7 +320,6 @@ func CFHTTPAuthenticationCreateFromResponse(alloc unsafe.Pointer, response unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationGetTypeID()
-
 func CFHTTPAuthenticationGetTypeID() unsafe.Pointer {
 	return _CFHTTPAuthenticationGetTypeID()
 	}
@@ -340,7 +333,6 @@ func CFHTTPAuthenticationGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationIsValid(_:_:)
-
 func CFHTTPAuthenticationIsValid(auth unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationIsValid(auth, error_)
 	}
@@ -354,7 +346,6 @@ func CFHTTPAuthenticationIsValid(auth unsafe.Pointer, error_ unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationRequiresAccountDomain(_:)
-
 func CFHTTPAuthenticationRequiresAccountDomain(auth unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationRequiresAccountDomain(auth)
 	}
@@ -368,7 +359,6 @@ func CFHTTPAuthenticationRequiresAccountDomain(auth unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationRequiresOrderedRequests(_:)
-
 func CFHTTPAuthenticationRequiresOrderedRequests(auth unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationRequiresOrderedRequests(auth)
 	}
@@ -382,7 +372,6 @@ func CFHTTPAuthenticationRequiresOrderedRequests(auth unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPAuthenticationRequiresUserNameAndPassword(_:)
-
 func CFHTTPAuthenticationRequiresUserNameAndPassword(auth unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPAuthenticationRequiresUserNameAndPassword(auth)
 	}
@@ -396,7 +385,6 @@ func CFHTTPAuthenticationRequiresUserNameAndPassword(auth unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageAddAuthentication(_:_:_:_:_:_:)
-
 func CFHTTPMessageAddAuthentication(request unsafe.Pointer, authenticationFailureResponse unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer, authenticationScheme unsafe.Pointer, forProxy unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageAddAuthentication(request, authenticationFailureResponse, username, password, authenticationScheme, forProxy)
 	}
@@ -410,7 +398,6 @@ func CFHTTPMessageAddAuthentication(request unsafe.Pointer, authenticationFailur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageAppendBytes(_:_:_:)
-
 func CFHTTPMessageAppendBytes(message unsafe.Pointer, newBytes unsafe.Pointer, numBytes unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageAppendBytes(message, newBytes, numBytes)
 	}
@@ -424,7 +411,6 @@ func CFHTTPMessageAppendBytes(message unsafe.Pointer, newBytes unsafe.Pointer, n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageApplyCredentialDictionary(_:_:_:_:)
-
 func CFHTTPMessageApplyCredentialDictionary(request unsafe.Pointer, auth unsafe.Pointer, dict unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageApplyCredentialDictionary(request, auth, dict, error_)
 	}
@@ -438,7 +424,6 @@ func CFHTTPMessageApplyCredentialDictionary(request unsafe.Pointer, auth unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageApplyCredentials(_:_:_:_:_:)
-
 func CFHTTPMessageApplyCredentials(request unsafe.Pointer, auth unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageApplyCredentials(request, auth, username, password, error_)
 	}
@@ -452,7 +437,6 @@ func CFHTTPMessageApplyCredentials(request unsafe.Pointer, auth unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyAllHeaderFields(_:)
-
 func CFHTTPMessageCopyAllHeaderFields(message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyAllHeaderFields(message)
 	}
@@ -466,7 +450,6 @@ func CFHTTPMessageCopyAllHeaderFields(message unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyBody(_:)
-
 func CFHTTPMessageCopyBody(message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyBody(message)
 	}
@@ -480,7 +463,6 @@ func CFHTTPMessageCopyBody(message unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyHeaderFieldValue(_:_:)
-
 func CFHTTPMessageCopyHeaderFieldValue(message unsafe.Pointer, headerField unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyHeaderFieldValue(message, headerField)
 	}
@@ -494,7 +476,6 @@ func CFHTTPMessageCopyHeaderFieldValue(message unsafe.Pointer, headerField unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyRequestMethod(_:)
-
 func CFHTTPMessageCopyRequestMethod(request unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyRequestMethod(request)
 	}
@@ -508,7 +489,6 @@ func CFHTTPMessageCopyRequestMethod(request unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyRequestURL(_:)
-
 func CFHTTPMessageCopyRequestURL(request unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyRequestURL(request)
 	}
@@ -522,7 +502,6 @@ func CFHTTPMessageCopyRequestURL(request unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyResponseStatusLine(_:)
-
 func CFHTTPMessageCopyResponseStatusLine(response unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyResponseStatusLine(response)
 	}
@@ -536,7 +515,6 @@ func CFHTTPMessageCopyResponseStatusLine(response unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopySerializedMessage(_:)
-
 func CFHTTPMessageCopySerializedMessage(message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopySerializedMessage(message)
 	}
@@ -550,7 +528,6 @@ func CFHTTPMessageCopySerializedMessage(message unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCopyVersion(_:)
-
 func CFHTTPMessageCopyVersion(message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCopyVersion(message)
 	}
@@ -564,7 +541,6 @@ func CFHTTPMessageCopyVersion(message unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateCopy(_:_:)
-
 func CFHTTPMessageCreateCopy(alloc unsafe.Pointer, message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCreateCopy(alloc, message)
 	}
@@ -578,7 +554,6 @@ func CFHTTPMessageCreateCopy(alloc unsafe.Pointer, message unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateEmpty(_:_:)
-
 func CFHTTPMessageCreateEmpty(alloc unsafe.Pointer, isRequest unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCreateEmpty(alloc, isRequest)
 	}
@@ -592,7 +567,6 @@ func CFHTTPMessageCreateEmpty(alloc unsafe.Pointer, isRequest unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateRequest(_:_:_:_:)
-
 func CFHTTPMessageCreateRequest(alloc unsafe.Pointer, requestMethod unsafe.Pointer, url unsafe.Pointer, httpVersion unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCreateRequest(alloc, requestMethod, url, httpVersion)
 	}
@@ -606,7 +580,6 @@ func CFHTTPMessageCreateRequest(alloc unsafe.Pointer, requestMethod unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageCreateResponse(_:_:_:_:)
-
 func CFHTTPMessageCreateResponse(alloc unsafe.Pointer, statusCode unsafe.Pointer, statusDescription unsafe.Pointer, httpVersion unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageCreateResponse(alloc, statusCode, statusDescription, httpVersion)
 	}
@@ -620,7 +593,6 @@ func CFHTTPMessageCreateResponse(alloc unsafe.Pointer, statusCode unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageGetResponseStatusCode(_:)
-
 func CFHTTPMessageGetResponseStatusCode(response unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageGetResponseStatusCode(response)
 	}
@@ -634,7 +606,6 @@ func CFHTTPMessageGetResponseStatusCode(response unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageGetTypeID()
-
 func CFHTTPMessageGetTypeID() unsafe.Pointer {
 	return _CFHTTPMessageGetTypeID()
 	}
@@ -648,7 +619,6 @@ func CFHTTPMessageGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageIsHeaderComplete(_:)
-
 func CFHTTPMessageIsHeaderComplete(message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageIsHeaderComplete(message)
 	}
@@ -662,7 +632,6 @@ func CFHTTPMessageIsHeaderComplete(message unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageIsRequest(_:)
-
 func CFHTTPMessageIsRequest(message unsafe.Pointer) unsafe.Pointer {
 	return _CFHTTPMessageIsRequest(message)
 	}
@@ -676,7 +645,6 @@ func CFHTTPMessageIsRequest(message unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageSetBody(_:_:)
-
 func CFHTTPMessageSetBody(message unsafe.Pointer, bodyData unsafe.Pointer) {
 	_CFHTTPMessageSetBody(message, bodyData)
 	}
@@ -690,7 +658,6 @@ func CFHTTPMessageSetBody(message unsafe.Pointer, bodyData unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHTTPMessageSetHeaderFieldValue(_:_:_:)
-
 func CFHTTPMessageSetHeaderFieldValue(message unsafe.Pointer, headerField unsafe.Pointer, value unsafe.Pointer) {
 	_CFHTTPMessageSetHeaderFieldValue(message, headerField, value)
 	}
@@ -706,7 +673,6 @@ func CFHTTPMessageSetHeaderFieldValue(message unsafe.Pointer, headerField unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCancelInfoResolution(_:_:)
-
 func CFHostCancelInfoResolution(theHost unsafe.Pointer, info unsafe.Pointer) {
 	_CFHostCancelInfoResolution(theHost, info)
 	}
@@ -722,7 +688,6 @@ func CFHostCancelInfoResolution(theHost unsafe.Pointer, info unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCreateCopy(_:_:)
-
 func CFHostCreateCopy(alloc unsafe.Pointer, host unsafe.Pointer) unsafe.Pointer {
 	return _CFHostCreateCopy(alloc, host)
 	}
@@ -738,7 +703,6 @@ func CFHostCreateCopy(alloc unsafe.Pointer, host unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCreateWithAddress(_:_:)
-
 func CFHostCreateWithAddress(allocator unsafe.Pointer, addr unsafe.Pointer) unsafe.Pointer {
 	return _CFHostCreateWithAddress(allocator, addr)
 	}
@@ -754,7 +718,6 @@ func CFHostCreateWithAddress(allocator unsafe.Pointer, addr unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostCreateWithName(_:_:)
-
 func CFHostCreateWithName(allocator unsafe.Pointer, hostname unsafe.Pointer) unsafe.Pointer {
 	return _CFHostCreateWithName(allocator, hostname)
 	}
@@ -770,7 +733,6 @@ func CFHostCreateWithName(allocator unsafe.Pointer, hostname unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetAddressing(_:_:)
-
 func CFHostGetAddressing(theHost unsafe.Pointer, hasBeenResolved unsafe.Pointer) unsafe.Pointer {
 	return _CFHostGetAddressing(theHost, hasBeenResolved)
 	}
@@ -786,7 +748,6 @@ func CFHostGetAddressing(theHost unsafe.Pointer, hasBeenResolved unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetNames(_:_:)
-
 func CFHostGetNames(theHost unsafe.Pointer, hasBeenResolved unsafe.Pointer) unsafe.Pointer {
 	return _CFHostGetNames(theHost, hasBeenResolved)
 	}
@@ -802,7 +763,6 @@ func CFHostGetNames(theHost unsafe.Pointer, hasBeenResolved unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetReachability(_:_:)
-
 func CFHostGetReachability(theHost unsafe.Pointer, hasBeenResolved unsafe.Pointer) unsafe.Pointer {
 	return _CFHostGetReachability(theHost, hasBeenResolved)
 	}
@@ -818,7 +778,6 @@ func CFHostGetReachability(theHost unsafe.Pointer, hasBeenResolved unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostGetTypeID()
-
 func CFHostGetTypeID() unsafe.Pointer {
 	return _CFHostGetTypeID()
 	}
@@ -834,7 +793,6 @@ func CFHostGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostScheduleWithRunLoop(_:_:_:)
-
 func CFHostScheduleWithRunLoop(theHost unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFHostScheduleWithRunLoop(theHost, runLoop, runLoopMode)
 	}
@@ -850,7 +808,6 @@ func CFHostScheduleWithRunLoop(theHost unsafe.Pointer, runLoop unsafe.Pointer, r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostSetClient(_:_:_:)
-
 func CFHostSetClient(theHost unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFHostSetClient(theHost, clientCB, clientContext)
 	}
@@ -866,7 +823,6 @@ func CFHostSetClient(theHost unsafe.Pointer, clientCB unsafe.Pointer, clientCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostStartInfoResolution(_:_:_:)
-
 func CFHostStartInfoResolution(theHost unsafe.Pointer, info unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFHostStartInfoResolution(theHost, info, error_)
 	}
@@ -882,7 +838,6 @@ func CFHostStartInfoResolution(theHost unsafe.Pointer, info unsafe.Pointer, erro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostUnscheduleFromRunLoop(_:_:_:)
-
 func CFHostUnscheduleFromRunLoop(theHost unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFHostUnscheduleFromRunLoop(theHost, runLoop, runLoopMode)
 	}
@@ -898,7 +853,6 @@ func CFHostUnscheduleFromRunLoop(theHost unsafe.Pointer, runLoop unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticCopyNetworkStatusPassively(_:_:)
-
 func CFNetDiagnosticCopyNetworkStatusPassively(details unsafe.Pointer, description unsafe.Pointer) unsafe.Pointer {
 	return _CFNetDiagnosticCopyNetworkStatusPassively(details, description)
 	}
@@ -914,7 +868,6 @@ func CFNetDiagnosticCopyNetworkStatusPassively(details unsafe.Pointer, descripti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticCreateWithStreams(_:_:_:)
-
 func CFNetDiagnosticCreateWithStreams(alloc unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) unsafe.Pointer {
 	return _CFNetDiagnosticCreateWithStreams(alloc, readStream, writeStream)
 	}
@@ -930,7 +883,6 @@ func CFNetDiagnosticCreateWithStreams(alloc unsafe.Pointer, readStream unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticCreateWithURL(_:_:)
-
 func CFNetDiagnosticCreateWithURL(alloc unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
 	return _CFNetDiagnosticCreateWithURL(alloc, url)
 	}
@@ -946,7 +898,6 @@ func CFNetDiagnosticCreateWithURL(alloc unsafe.Pointer, url unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticDiagnoseProblemInteractively(_:)
-
 func CFNetDiagnosticDiagnoseProblemInteractively(details unsafe.Pointer) unsafe.Pointer {
 	return _CFNetDiagnosticDiagnoseProblemInteractively(details)
 	}
@@ -962,7 +913,6 @@ func CFNetDiagnosticDiagnoseProblemInteractively(details unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticSetName(_:_:)
-
 func CFNetDiagnosticSetName(details unsafe.Pointer, name unsafe.Pointer) {
 	_CFNetDiagnosticSetName(details, name)
 	}
@@ -978,7 +928,6 @@ func CFNetDiagnosticSetName(details unsafe.Pointer, name unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserCreate(_:_:_:)
-
 func CFNetServiceBrowserCreate(alloc unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceBrowserCreate(alloc, clientCB, clientContext)
 	}
@@ -994,7 +943,6 @@ func CFNetServiceBrowserCreate(alloc unsafe.Pointer, clientCB unsafe.Pointer, cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserGetTypeID()
-
 func CFNetServiceBrowserGetTypeID() unsafe.Pointer {
 	return _CFNetServiceBrowserGetTypeID()
 	}
@@ -1010,7 +958,6 @@ func CFNetServiceBrowserGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserInvalidate(_:)
-
 func CFNetServiceBrowserInvalidate(browser unsafe.Pointer) {
 	_CFNetServiceBrowserInvalidate(browser)
 	}
@@ -1026,7 +973,6 @@ func CFNetServiceBrowserInvalidate(browser unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserScheduleWithRunLoop(_:_:_:)
-
 func CFNetServiceBrowserScheduleWithRunLoop(browser unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFNetServiceBrowserScheduleWithRunLoop(browser, runLoop, runLoopMode)
 	}
@@ -1042,7 +988,6 @@ func CFNetServiceBrowserScheduleWithRunLoop(browser unsafe.Pointer, runLoop unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserSearchForDomains(_:_:_:)
-
 func CFNetServiceBrowserSearchForDomains(browser unsafe.Pointer, registrationDomains unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceBrowserSearchForDomains(browser, registrationDomains, error_)
 	}
@@ -1058,7 +1003,6 @@ func CFNetServiceBrowserSearchForDomains(browser unsafe.Pointer, registrationDom
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserSearchForServices(_:_:_:_:)
-
 func CFNetServiceBrowserSearchForServices(browser unsafe.Pointer, domain unsafe.Pointer, serviceType unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceBrowserSearchForServices(browser, domain, serviceType, error_)
 	}
@@ -1074,7 +1018,6 @@ func CFNetServiceBrowserSearchForServices(browser unsafe.Pointer, domain unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserStopSearch(_:_:)
-
 func CFNetServiceBrowserStopSearch(browser unsafe.Pointer, error_ unsafe.Pointer) {
 	_CFNetServiceBrowserStopSearch(browser, error_)
 	}
@@ -1090,7 +1033,6 @@ func CFNetServiceBrowserStopSearch(browser unsafe.Pointer, error_ unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserUnscheduleFromRunLoop(_:_:_:)
-
 func CFNetServiceBrowserUnscheduleFromRunLoop(browser unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFNetServiceBrowserUnscheduleFromRunLoop(browser, runLoop, runLoopMode)
 	}
@@ -1106,7 +1048,6 @@ func CFNetServiceBrowserUnscheduleFromRunLoop(browser unsafe.Pointer, runLoop un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCancel(_:)
-
 func CFNetServiceCancel(theService unsafe.Pointer) {
 	_CFNetServiceCancel(theService)
 	}
@@ -1122,7 +1063,6 @@ func CFNetServiceCancel(theService unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreate(_:_:_:_:_:)
-
 func CFNetServiceCreate(alloc unsafe.Pointer, domain unsafe.Pointer, serviceType unsafe.Pointer, name unsafe.Pointer, port unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceCreate(alloc, domain, serviceType, name, port)
 	}
@@ -1138,7 +1078,6 @@ func CFNetServiceCreate(alloc unsafe.Pointer, domain unsafe.Pointer, serviceType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreateCopy(_:_:)
-
 func CFNetServiceCreateCopy(alloc unsafe.Pointer, service unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceCreateCopy(alloc, service)
 	}
@@ -1154,7 +1093,6 @@ func CFNetServiceCreateCopy(alloc unsafe.Pointer, service unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreateDictionaryWithTXTData(_:_:)
-
 func CFNetServiceCreateDictionaryWithTXTData(alloc unsafe.Pointer, txtRecord unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceCreateDictionaryWithTXTData(alloc, txtRecord)
 	}
@@ -1170,7 +1108,6 @@ func CFNetServiceCreateDictionaryWithTXTData(alloc unsafe.Pointer, txtRecord uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceCreateTXTDataWithDictionary(_:_:)
-
 func CFNetServiceCreateTXTDataWithDictionary(alloc unsafe.Pointer, keyValuePairs unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceCreateTXTDataWithDictionary(alloc, keyValuePairs)
 	}
@@ -1186,7 +1123,6 @@ func CFNetServiceCreateTXTDataWithDictionary(alloc unsafe.Pointer, keyValuePairs
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetAddressing(_:)
-
 func CFNetServiceGetAddressing(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetAddressing(theService)
 	}
@@ -1202,7 +1138,6 @@ func CFNetServiceGetAddressing(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetDomain(_:)
-
 func CFNetServiceGetDomain(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetDomain(theService)
 	}
@@ -1218,7 +1153,6 @@ func CFNetServiceGetDomain(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetName(_:)
-
 func CFNetServiceGetName(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetName(theService)
 	}
@@ -1234,7 +1168,6 @@ func CFNetServiceGetName(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetPortNumber(_:)
-
 func CFNetServiceGetPortNumber(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetPortNumber(theService)
 	}
@@ -1250,7 +1183,6 @@ func CFNetServiceGetPortNumber(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetTXTData(_:)
-
 func CFNetServiceGetTXTData(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetTXTData(theService)
 	}
@@ -1266,7 +1198,6 @@ func CFNetServiceGetTXTData(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetTargetHost(_:)
-
 func CFNetServiceGetTargetHost(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetTargetHost(theService)
 	}
@@ -1282,7 +1213,6 @@ func CFNetServiceGetTargetHost(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetType(_:)
-
 func CFNetServiceGetType(theService unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceGetType(theService)
 	}
@@ -1298,7 +1228,6 @@ func CFNetServiceGetType(theService unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceGetTypeID()
-
 func CFNetServiceGetTypeID() unsafe.Pointer {
 	return _CFNetServiceGetTypeID()
 	}
@@ -1314,7 +1243,6 @@ func CFNetServiceGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorCreate(_:_:_:_:)
-
 func CFNetServiceMonitorCreate(alloc unsafe.Pointer, theService unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceMonitorCreate(alloc, theService, clientCB, clientContext)
 	}
@@ -1330,7 +1258,6 @@ func CFNetServiceMonitorCreate(alloc unsafe.Pointer, theService unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorGetTypeID()
-
 func CFNetServiceMonitorGetTypeID() unsafe.Pointer {
 	return _CFNetServiceMonitorGetTypeID()
 	}
@@ -1346,7 +1273,6 @@ func CFNetServiceMonitorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorInvalidate(_:)
-
 func CFNetServiceMonitorInvalidate(monitor unsafe.Pointer) {
 	_CFNetServiceMonitorInvalidate(monitor)
 	}
@@ -1362,7 +1288,6 @@ func CFNetServiceMonitorInvalidate(monitor unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorScheduleWithRunLoop(_:_:_:)
-
 func CFNetServiceMonitorScheduleWithRunLoop(monitor unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFNetServiceMonitorScheduleWithRunLoop(monitor, runLoop, runLoopMode)
 	}
@@ -1378,7 +1303,6 @@ func CFNetServiceMonitorScheduleWithRunLoop(monitor unsafe.Pointer, runLoop unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorStart(_:_:_:)
-
 func CFNetServiceMonitorStart(monitor unsafe.Pointer, recordType unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceMonitorStart(monitor, recordType, error_)
 	}
@@ -1394,7 +1318,6 @@ func CFNetServiceMonitorStart(monitor unsafe.Pointer, recordType unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorStop(_:_:)
-
 func CFNetServiceMonitorStop(monitor unsafe.Pointer, error_ unsafe.Pointer) {
 	_CFNetServiceMonitorStop(monitor, error_)
 	}
@@ -1410,7 +1333,6 @@ func CFNetServiceMonitorStop(monitor unsafe.Pointer, error_ unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorUnscheduleFromRunLoop(_:_:_:)
-
 func CFNetServiceMonitorUnscheduleFromRunLoop(monitor unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFNetServiceMonitorUnscheduleFromRunLoop(monitor, runLoop, runLoopMode)
 	}
@@ -1426,7 +1348,6 @@ func CFNetServiceMonitorUnscheduleFromRunLoop(monitor unsafe.Pointer, runLoop un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegister
-
 func CFNetServiceRegister(theService unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceRegister(theService, error_)
 	}
@@ -1442,7 +1363,6 @@ func CFNetServiceRegister(theService unsafe.Pointer, error_ unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegisterWithOptions(_:_:_:)
-
 func CFNetServiceRegisterWithOptions(theService unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceRegisterWithOptions(theService, options, error_)
 	}
@@ -1458,7 +1378,6 @@ func CFNetServiceRegisterWithOptions(theService unsafe.Pointer, options unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceResolve
-
 func CFNetServiceResolve(theService unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceResolve(theService, error_)
 	}
@@ -1474,7 +1393,6 @@ func CFNetServiceResolve(theService unsafe.Pointer, error_ unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceResolveWithTimeout(_:_:_:)
-
 func CFNetServiceResolveWithTimeout(theService unsafe.Pointer, timeout unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceResolveWithTimeout(theService, timeout, error_)
 	}
@@ -1490,7 +1408,6 @@ func CFNetServiceResolveWithTimeout(theService unsafe.Pointer, timeout unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceScheduleWithRunLoop(_:_:_:)
-
 func CFNetServiceScheduleWithRunLoop(theService unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFNetServiceScheduleWithRunLoop(theService, runLoop, runLoopMode)
 	}
@@ -1506,7 +1423,6 @@ func CFNetServiceScheduleWithRunLoop(theService unsafe.Pointer, runLoop unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceSetClient(_:_:_:)
-
 func CFNetServiceSetClient(theService unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceSetClient(theService, clientCB, clientContext)
 	}
@@ -1522,7 +1438,6 @@ func CFNetServiceSetClient(theService unsafe.Pointer, clientCB unsafe.Pointer, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceSetTXTData(_:_:)
-
 func CFNetServiceSetTXTData(theService unsafe.Pointer, txtRecord unsafe.Pointer) unsafe.Pointer {
 	return _CFNetServiceSetTXTData(theService, txtRecord)
 	}
@@ -1538,7 +1453,6 @@ func CFNetServiceSetTXTData(theService unsafe.Pointer, txtRecord unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceUnscheduleFromRunLoop(_:_:_:)
-
 func CFNetServiceUnscheduleFromRunLoop(theService unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_CFNetServiceUnscheduleFromRunLoop(theService, runLoop, runLoopMode)
 	}
@@ -1552,7 +1466,6 @@ func CFNetServiceUnscheduleFromRunLoop(theService unsafe.Pointer, runLoop unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkCopyProxiesForAutoConfigurationScript(_:_:_:)
-
 func CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript unsafe.Pointer, targetURL unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript, targetURL, error_)
 	}
@@ -1566,7 +1479,6 @@ func CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkCopyProxiesForURL(_:_:)
-
 func CFNetworkCopyProxiesForURL(url unsafe.Pointer, proxySettings unsafe.Pointer) unsafe.Pointer {
 	return _CFNetworkCopyProxiesForURL(url, proxySettings)
 	}
@@ -1580,7 +1492,6 @@ func CFNetworkCopyProxiesForURL(url unsafe.Pointer, proxySettings unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkCopySystemProxySettings()
-
 func CFNetworkCopySystemProxySettings() unsafe.Pointer {
 	return _CFNetworkCopySystemProxySettings()
 	}
@@ -1594,7 +1505,6 @@ func CFNetworkCopySystemProxySettings() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationScript(_:_:_:_:)
-
 func CFNetworkExecuteProxyAutoConfigurationScript(proxyAutoConfigurationScript unsafe.Pointer, targetURL unsafe.Pointer, cb unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFNetworkExecuteProxyAutoConfigurationScript(proxyAutoConfigurationScript, targetURL, cb, clientContext)
 	}
@@ -1608,7 +1518,6 @@ func CFNetworkExecuteProxyAutoConfigurationScript(proxyAutoConfigurationScript u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)
-
 func CFNetworkExecuteProxyAutoConfigurationURL(proxyAutoConfigURL unsafe.Pointer, targetURL unsafe.Pointer, cb unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFNetworkExecuteProxyAutoConfigurationURL(proxyAutoConfigURL, targetURL, cb, clientContext)
 	}
@@ -1624,7 +1533,6 @@ func CFNetworkExecuteProxyAutoConfigurationURL(proxyAutoConfigURL unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFReadStreamCreateForHTTPRequest(_:_:)
-
 func CFReadStreamCreateForHTTPRequest(alloc unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamCreateForHTTPRequest(alloc, request)
 	}
@@ -1640,7 +1548,6 @@ func CFReadStreamCreateForHTTPRequest(alloc unsafe.Pointer, request unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)
-
 func CFReadStreamCreateForStreamedHTTPRequest(alloc unsafe.Pointer, requestHeaders unsafe.Pointer, requestBody unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamCreateForStreamedHTTPRequest(alloc, requestHeaders, requestBody)
 	}
@@ -1656,7 +1563,6 @@ func CFReadStreamCreateForStreamedHTTPRequest(alloc unsafe.Pointer, requestHeade
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFReadStreamCreateWithFTPURL(_:_:)
-
 func CFReadStreamCreateWithFTPURL(alloc unsafe.Pointer, ftpURL unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamCreateWithFTPURL(alloc, ftpURL)
 	}
@@ -1672,7 +1578,6 @@ func CFReadStreamCreateWithFTPURL(alloc unsafe.Pointer, ftpURL unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamCreatePairWithSocketToCFHost(_:_:_:_:_:)
-
 func CFStreamCreatePairWithSocketToCFHost(alloc unsafe.Pointer, host unsafe.Pointer, port unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToCFHost(alloc, host, port, readStream, writeStream)
 	}
@@ -1688,7 +1593,6 @@ func CFStreamCreatePairWithSocketToCFHost(alloc unsafe.Pointer, host unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamCreatePairWithSocketToNetService(_:_:_:_:)
-
 func CFStreamCreatePairWithSocketToNetService(alloc unsafe.Pointer, service unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToNetService(alloc, service, readStream, writeStream)
 	}
@@ -1704,7 +1608,6 @@ func CFStreamCreatePairWithSocketToNetService(alloc unsafe.Pointer, service unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFWriteStreamCreateWithFTPURL(_:_:)
-
 func CFWriteStreamCreateWithFTPURL(alloc unsafe.Pointer, ftpURL unsafe.Pointer) unsafe.Pointer {
 	return _CFWriteStreamCreateWithFTPURL(alloc, ftpURL)
 	}

@@ -42,7 +42,6 @@ type IAMWorkspace interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace
-
 type AMWorkspace struct {
 	objectivec.Object
 }
@@ -91,18 +90,15 @@ func NewAMWorkspace() AMWorkspace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-
 func (ac _AMWorkspaceClass) SharedWorkspace() AMWorkspace {
 	rv := objc.Send[AMWorkspace](objc.ID(ac.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
 
-
 // Loads and runs the specified workflow file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/runWorkflow(atPath:withInput:)
-
 func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), objc.String(path), input, error_)
 	return rv
@@ -113,7 +109,6 @@ func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string, input objecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-
 func (a_ AMWorkspace) SharedWorkspace() AMWorkspace {
 	rv := objc.Send[AMWorkspace](a_.ID, objc.Sel("sharedWorkspace"))
 	return rv

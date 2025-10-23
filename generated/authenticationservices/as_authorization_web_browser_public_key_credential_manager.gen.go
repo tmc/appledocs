@@ -40,7 +40,6 @@ type IAuthorizationWebBrowserPublicKeyCredentialManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager
-
 type AuthorizationWebBrowserPublicKeyCredentialManager struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewAuthorizationWebBrowserPublicKeyCredentialManager() AuthorizationWebBrow
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/authorizationStateForPlatformCredentials
-
 func (a_ AuthorizationWebBrowserPublicKeyCredentialManager) AuthorizationStateForPlatformCredentials() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationStateForPlatformCredentials"))
 	return rv

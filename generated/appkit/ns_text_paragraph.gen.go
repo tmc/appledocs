@@ -45,7 +45,6 @@ type ITextParagraph interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph
-
 type TextParagraph struct {
 	TextElement
 }
@@ -96,7 +95,6 @@ func NewTextParagraph() TextParagraph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-
 func (t_ TextParagraph) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
@@ -107,7 +105,6 @@ func (t_ TextParagraph) AttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-
 func (t_ TextParagraph) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
@@ -117,7 +114,6 @@ func (t_ TextParagraph) SetAttributedString(value foundation.IAttributedString) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-
 func (t_ TextParagraph) ParagraphContentRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphContentRange"))
 	return rv
@@ -128,7 +124,6 @@ func (t_ TextParagraph) ParagraphContentRange() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-
 func (t_ TextParagraph) SetParagraphContentRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphContentRange:"), value)
 }
@@ -138,7 +133,6 @@ func (t_ TextParagraph) SetParagraphContentRange(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-
 func (t_ TextParagraph) ParagraphSeparatorRange() NSTextRange {
 	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
 	return rv
@@ -149,7 +143,6 @@ func (t_ TextParagraph) ParagraphSeparatorRange() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-
 func (t_ TextParagraph) SetParagraphSeparatorRange(value ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorRange:"), value)
 }

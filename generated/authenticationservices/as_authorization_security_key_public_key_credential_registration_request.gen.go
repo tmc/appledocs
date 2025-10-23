@@ -46,7 +46,6 @@ type IAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
-
 type AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest struct {
 	AuthorizationRequest
 }
@@ -97,7 +96,6 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest() Authori
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/credentialparameters
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) CredentialParameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("credentialParameters"))
 	return rv
@@ -108,7 +106,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) Credent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/credentialparameters
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetCredentialParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCredentialParameters:"), value)
 }
@@ -118,7 +115,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetCred
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/excludedcredentials
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) ExcludedCredentials() ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
 	rv := objc.Send[ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor](a_.ID, objc.Sel("excludedCredentials"))
 	return rv
@@ -129,7 +125,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) Exclude
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/excludedcredentials
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetExcludedCredentials(value IASAuthorizationSecurityKeyPublicKeyCredentialDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExcludedCredentials:"), value)
 }
@@ -139,7 +134,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetExcl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/residentkeypreference
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) ResidentKeyPreference() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("residentKeyPreference"))
 	return rv
@@ -150,7 +144,6 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) Residen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest/residentkeypreference
-
 func (a_ AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest) SetResidentKeyPreference(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setResidentKeyPreference:"), value)
 }

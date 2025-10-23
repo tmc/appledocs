@@ -49,7 +49,6 @@ type IAtomicStore interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStore
-
 type AtomicStore struct {
 	PersistentStore
 }
@@ -96,12 +95,10 @@ func NewAtomicStore() AtomicStore {
 
 
 
-
 // Saves the cache nodes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStore/save()
-
 func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("save:"), error_)
 	return rv
@@ -112,7 +109,6 @@ func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-
 func (a_ AtomicStore) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
@@ -123,7 +119,6 @@ func (a_ AtomicStore) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-
 func (a_ AtomicStore) SetIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -133,7 +128,6 @@ func (a_ AtomicStore) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/metadata
-
 func (a_ AtomicStore) Metadata() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("metadata"))
 	return rv
@@ -144,7 +138,6 @@ func (a_ AtomicStore) Metadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/metadata
-
 func (a_ AtomicStore) SetMetadata(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
@@ -154,7 +147,6 @@ func (a_ AtomicStore) SetMetadata(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/type
-
 func (a_ AtomicStore) Type() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("type"))
 	return rv
@@ -165,7 +157,6 @@ func (a_ AtomicStore) Type() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/type
-
 func (a_ AtomicStore) SetType(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), objc.String(value))
 }
@@ -175,7 +166,6 @@ func (a_ AtomicStore) SetType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoretypekey
-
 func (a_ AtomicStore) NSStoreTypeKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("NSStoreTypeKey"))
 	return rv
@@ -186,7 +176,6 @@ func (a_ AtomicStore) NSStoreTypeKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoreuuidkey
-
 func (a_ AtomicStore) NSStoreUUIDKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("NSStoreUUIDKey"))
 	return rv

@@ -2,11 +2,14 @@
 
 // Package iosurface provides Go bindings for the IOSurface framework.
 //
-// Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently. [Full Topic]
+// Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IOSurface without requiring cgo.
+
+// Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface
 package iosurface
 

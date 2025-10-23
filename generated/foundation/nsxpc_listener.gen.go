@@ -33,7 +33,7 @@ type IXPCListener interface {
 	Suspend()
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	Endpoint() NSXPCListenerEndpoint
+	Endpoint() IXPCListenerEndpoint
 	SetEndpoint(value IXPCListenerEndpoint)
 }
 
@@ -94,7 +94,7 @@ func NewXPCListener() XPCListener {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/anonymous()
-func (xc _XPCListenerClass) AnonymousListener() XPCListener {
+func (xc _XPCListenerClass) AnonymousListener() IXPCListener {
 	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("anonymousListener"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/endpoint
-func (x_ XPCListener) Endpoint() NSXPCListenerEndpoint {
+func (x_ XPCListener) Endpoint() IXPCListenerEndpoint {
 	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }

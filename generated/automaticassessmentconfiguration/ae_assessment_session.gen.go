@@ -50,7 +50,6 @@ type IAEAssessmentSession interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession
-
 type AEAssessmentSession struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewAEAssessmentSession() AEAssessmentSession {
 
 
 
-
 // Creates a new assessment session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)
-
 func NewAEAssessmentSessionWithConfiguration(configuration IAEAssessmentConfiguration) AEAssessmentSession {
 	instance := getAEAssessmentSessionClass().Alloc()
 	rv := objc.Send[AEAssessmentSession](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
@@ -114,7 +111,6 @@ func NewAEAssessmentSessionWithConfiguration(configuration IAEAssessmentConfigur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsConfigurationUpdates
-
 func (ac _AEAssessmentSessionClass) SupportsConfigurationUpdates() bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("supportsConfigurationUpdates"))
 	return rv
@@ -124,40 +120,33 @@ func (ac _AEAssessmentSessionClass) SupportsConfigurationUpdates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsMultipleParticipants
-
 func (ac _AEAssessmentSessionClass) SupportsMultipleParticipants() bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("supportsMultipleParticipants"))
 	return rv
 }
 
-
 // Starts an assessment session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/begin()
-
 func (a_ AEAssessmentSession) Begin() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("begin"))
 }
-
 
 
 // Ends an assessment session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/end()
-
 func (a_ AEAssessmentSession) End() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("end"))
 }
-
 
 
 // Changes the session to use the specified configuration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/update(to:)
-
 func (a_ AEAssessmentSession) UpdateToConfiguration(configuration IAEAssessmentConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateToConfiguration:"), configuration)
 }
@@ -167,7 +156,6 @@ func (a_ AEAssessmentSession) UpdateToConfiguration(configuration IAEAssessmentC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/configuration
-
 func (a_ AEAssessmentSession) Configuration() AEAssessmentConfiguration {
 	rv := objc.Send[AEAssessmentConfiguration](a_.ID, objc.Sel("configuration"))
 	return rv
@@ -178,7 +166,6 @@ func (a_ AEAssessmentSession) Configuration() AEAssessmentConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate
-
 func (a_ AEAssessmentSession) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -189,7 +176,6 @@ func (a_ AEAssessmentSession) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate
-
 func (a_ AEAssessmentSession) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -199,7 +185,6 @@ func (a_ AEAssessmentSession) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/isActive
-
 func (a_ AEAssessmentSession) Active() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("active"))
 	return rv
@@ -210,7 +195,6 @@ func (a_ AEAssessmentSession) Active() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsConfigurationUpdates
-
 func (a_ AEAssessmentSession) SupportsConfigurationUpdates() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supportsConfigurationUpdates"))
 	return rv
@@ -221,7 +205,6 @@ func (a_ AEAssessmentSession) SupportsConfigurationUpdates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsMultipleParticipants
-
 func (a_ AEAssessmentSession) SupportsMultipleParticipants() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supportsMultipleParticipants"))
 	return rv
@@ -232,7 +215,6 @@ func (a_ AEAssessmentSession) SupportsMultipleParticipants() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
-
 func (a_ AEAssessmentSession) IsActive() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
 	return rv
@@ -243,7 +225,6 @@ func (a_ AEAssessmentSession) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
-
 func (a_ AEAssessmentSession) SetIsActive(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }

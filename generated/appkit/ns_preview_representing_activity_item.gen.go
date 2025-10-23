@@ -42,7 +42,6 @@ type IPreviewRepresentingActivityItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem
-
 type PreviewRepresentingActivityItem struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
 
 
 
-
 // Creates a metadata object with the title, image, and icon for a shareable item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
-
 func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IObject, title string, image IImage, icon IImage) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:image:icon:"), item, objc.String(title), image, icon)
@@ -101,12 +98,10 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IO
 }
 
 
-
 // Creates a metadata object that provides a title and images for a shareable item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
-
 func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string, imageProvider foundation.IItemProvider, iconProvider foundation.IItemProvider) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:imageProvider:iconProvider:"), item, objc.String(title), imageProvider, iconProvider)

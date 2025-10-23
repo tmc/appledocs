@@ -39,7 +39,6 @@ type ICKSyncEngineFetchChangesOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesOptions
-
 type CKSyncEngineFetchChangesOptions struct {
 	objectivec.Object
 }

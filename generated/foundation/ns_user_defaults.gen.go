@@ -31,9 +31,9 @@ type _UserDefaultsClass struct {
 type IUserDefaults interface {
 	objectivec.IObject
 	AddSuiteNamed(suiteName string)
-	ArrayForKey(defaultName string) Array
+	ArrayForKey(defaultName string) IArray
 	BoolForKey(defaultName string) bool
-	DataForKey(defaultName string) Data
+	DataForKey(defaultName string) IData
 	DictionaryForKey(defaultName string) IDictionary
 	DictionaryRepresentation() IDictionary
 	DoubleForKey(defaultName string) float64
@@ -43,7 +43,7 @@ type IUserDefaults interface {
 	ObjectIsForcedForKey(key string) bool
 	ObjectIsForcedForKeyInDomain(key string, domain string) bool
 	PersistentDomainForName(domainName string) IDictionary
-	PersistentDomainNames() Array
+	PersistentDomainNames() IArray
 	RegisterDefaults(registrationDictionary IDictionary)
 	RemoveObjectForKey(defaultName string)
 	RemovePersistentDomainForName(domainName string)
@@ -57,10 +57,10 @@ type IUserDefaults interface {
 	SetObjectForKey(value objectivec.IObject, defaultName string)
 	SetPersistentDomainForName(domain IDictionary, domainName string)
 	SetVolatileDomainForName(domain IDictionary, domainName string)
-	StringForKey(defaultName string) String
+	StringForKey(defaultName string) IString
 	StringArrayForKey(defaultName string) []string
 	Synchronize() bool
-	URLForKey(defaultName string) URL
+	URLForKey(defaultName string) IURL
 	VolatileDomainForName(domainName string) IDictionary
 	VolatileDomainNames() []string
 }
@@ -174,7 +174,7 @@ func (u_ UserDefaults) AddSuiteNamed(suiteName string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/array(forKey:)
-func (u_ UserDefaults) ArrayForKey(defaultName string) Array {
+func (u_ UserDefaults) ArrayForKey(defaultName string) IArray {
 	rv := objc.Send[Array](u_.ID, objc.Sel("arrayForKey:"), objc.String(defaultName))
 	return rv
 }
@@ -194,7 +194,7 @@ func (u_ UserDefaults) BoolForKey(defaultName string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/data(forKey:)
-func (u_ UserDefaults) DataForKey(defaultName string) Data {
+func (u_ UserDefaults) DataForKey(defaultName string) IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("dataForKey:"), objc.String(defaultName))
 	return rv
 }
@@ -294,7 +294,7 @@ func (u_ UserDefaults) PersistentDomainForName(domainName string) IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/persistentDomainNames()
-func (u_ UserDefaults) PersistentDomainNames() Array {
+func (u_ UserDefaults) PersistentDomainNames() IArray {
 	rv := objc.Send[Array](u_.ID, objc.Sel("persistentDomainNames"))
 	return rv
 }
@@ -421,7 +421,7 @@ func (u_ UserDefaults) SetVolatileDomainForName(domain IDictionary, domainName s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
-func (u_ UserDefaults) StringForKey(defaultName string) String {
+func (u_ UserDefaults) StringForKey(defaultName string) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
 }
@@ -451,7 +451,7 @@ func (u_ UserDefaults) Synchronize() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/url(forKey:)
-func (u_ UserDefaults) URLForKey(defaultName string) URL {
+func (u_ UserDefaults) URLForKey(defaultName string) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLForKey:"), objc.String(defaultName))
 	return rv
 }
@@ -471,7 +471,7 @@ func (u_ UserDefaults) VolatileDomainForName(domainName string) IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
-func (u_ UserDefaults) StandardUserDefaults() NSUserDefaults {
+func (u_ UserDefaults) StandardUserDefaults() IUserDefaults {
 	rv := objc.Send[NSUserDefaults](u_.ID, objc.Sel("standardUserDefaults"))
 	return rv
 }

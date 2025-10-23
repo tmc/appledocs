@@ -47,7 +47,6 @@ type IDelegatingPlaybackCoordinatorSeekCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand
-
 type DelegatingPlaybackCoordinatorSeekCommand struct {
 	DelegatingPlaybackCoordinatorPlaybackControlCommand
 }
@@ -98,7 +97,6 @@ func NewDelegatingPlaybackCoordinatorSeekCommand() DelegatingPlaybackCoordinator
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/anticipatedplaybackrate
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) AnticipatedPlaybackRate() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("anticipatedPlaybackRate"))
 	return rv
@@ -109,7 +107,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) AnticipatedPlaybackRate() flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/anticipatedplaybackrate
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetAnticipatedPlaybackRate(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnticipatedPlaybackRate:"), value)
 }
@@ -119,7 +116,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetAnticipatedPlaybackRate(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/completionduedate
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("completionDueDate"))
 	return rv
@@ -130,7 +126,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/completionduedate
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetCompletionDueDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
 }
@@ -140,7 +135,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetCompletionDueDate(value fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/itemtime
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) ItemTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("itemTime"))
 	return rv
@@ -151,7 +145,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) ItemTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/itemtime
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetItemTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItemTime:"), value)
 }
@@ -161,7 +154,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetItemTime(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/shouldbufferinanticipationofplayback
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) ShouldBufferInAnticipationOfPlayback() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("shouldBufferInAnticipationOfPlayback"))
 	return rv
@@ -172,7 +164,6 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) ShouldBufferInAnticipationOfP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/shouldbufferinanticipationofplayback
-
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetShouldBufferInAnticipationOfPlayback(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShouldBufferInAnticipationOfPlayback:"), value)
 }

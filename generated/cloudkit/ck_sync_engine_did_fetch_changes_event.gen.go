@@ -38,7 +38,6 @@ type ICKSyncEngineDidFetchChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent
-
 type CKSyncEngineDidFetchChangesEvent struct {
 	CKSyncEngineEvent
 }

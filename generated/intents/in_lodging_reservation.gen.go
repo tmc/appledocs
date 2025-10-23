@@ -41,7 +41,11 @@ type IINLodgingReservation interface {
 }
 
 // The information that describes a lodging reservation.
+
+
+// The information that describes a lodging reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INLodgingReservation
 type INLodgingReservation struct {
 	INReservation
@@ -88,8 +92,10 @@ func NewINLodgingReservation() INLodgingReservation {
 }
 
 
+
 // The name and location of the lodging establishment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
 func (i_ INLodgingReservation) LodgingBusinessLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("lodgingBusinessLocation"))
@@ -97,17 +103,18 @@ func (i_ INLodgingReservation) LodgingBusinessLocation() corelocation.Placemark 
 }
 
 
-// SetLodgingBusinessLocation sets the value of the lodgingBusinessLocation property.
 // The name and location of the lodging establishment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
 func (i_ INLodgingReservation) SetLodgingBusinessLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
 }
 
+
 // The number of adults staying at the lodging location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
 func (i_ INLodgingReservation) NumberOfAdults() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("numberOfAdults"))
@@ -115,17 +122,18 @@ func (i_ INLodgingReservation) NumberOfAdults() int {
 }
 
 
-// SetNumberOfAdults sets the value of the numberOfAdults property.
 // The number of adults staying at the lodging location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
 func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAdults:"), value)
 }
 
+
 // The number of children staying at the lodging location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
 func (i_ INLodgingReservation) NumberOfChildren() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("numberOfChildren"))
@@ -133,17 +141,18 @@ func (i_ INLodgingReservation) NumberOfChildren() int {
 }
 
 
-// SetNumberOfChildren sets the value of the numberOfChildren property.
 // The number of children staying at the lodging location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
 func (i_ INLodgingReservation) SetNumberOfChildren(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfChildren:"), value)
 }
 
+
 // The date and time range that indicates the beginning and end of the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
 func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("reservationDuration"))
@@ -151,10 +160,9 @@ func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
 }
 
 
-// SetReservationDuration sets the value of the reservationDuration property.
 // The date and time range that indicates the beginning and end of the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
 func (i_ INLodgingReservation) SetReservationDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)

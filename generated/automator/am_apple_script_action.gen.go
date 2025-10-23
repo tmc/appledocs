@@ -42,7 +42,6 @@ type IAMAppleScriptAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction
-
 type AMAppleScriptAction struct {
 	AMBundleAction
 }
@@ -93,7 +92,6 @@ func NewAMAppleScriptAction() AMAppleScriptAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction/script
-
 func (a_ AMAppleScriptAction) Script() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("script"))
 	return rv
@@ -104,7 +102,6 @@ func (a_ AMAppleScriptAction) Script() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction/script
-
 func (a_ AMAppleScriptAction) SetScript(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setScript:"), value)
 }

@@ -92,7 +92,6 @@ type ICompositionTrack interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCompositionTrack
-
 type CompositionTrack struct {
 	AssetTrack
 }
@@ -139,12 +138,10 @@ func NewCompositionTrack() CompositionTrack {
 
 
 
-
 // Returns metadata items that a track contains for the specified format.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCompositionTrack/metadata(forFormat:)
-
 func (c_ CompositionTrack) MetadataForFormat(format IMetadataFormat) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("metadataForFormat:"), format)
 	return rv
@@ -155,7 +152,6 @@ func (c_ CompositionTrack) MetadataForFormat(format IMetadataFormat) []MetadataI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/availablemetadataformats
-
 func (c_ CompositionTrack) AvailableMetadataFormats() MetadataFormat {
 	rv := objc.Send[MetadataFormat](c_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
@@ -166,7 +162,6 @@ func (c_ CompositionTrack) AvailableMetadataFormats() MetadataFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/availablemetadataformats
-
 func (c_ CompositionTrack) SetAvailableMetadataFormats(value IMetadataFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
@@ -176,7 +171,6 @@ func (c_ CompositionTrack) SetAvailableMetadataFormats(value IMetadataFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/availabletrackassociationtypes
-
 func (c_ CompositionTrack) AvailableTrackAssociationTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableTrackAssociationTypes"))
 	return rv
@@ -187,7 +181,6 @@ func (c_ CompositionTrack) AvailableTrackAssociationTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/availabletrackassociationtypes
-
 func (c_ CompositionTrack) SetAvailableTrackAssociationTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableTrackAssociationTypes:"), value)
 }
@@ -197,7 +190,6 @@ func (c_ CompositionTrack) SetAvailableTrackAssociationTypes(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/canprovidesamplecursors
-
 func (c_ CompositionTrack) CanProvideSampleCursors() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canProvideSampleCursors"))
 	return rv
@@ -208,7 +200,6 @@ func (c_ CompositionTrack) CanProvideSampleCursors() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/canprovidesamplecursors
-
 func (c_ CompositionTrack) SetCanProvideSampleCursors(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCanProvideSampleCursors:"), value)
 }
@@ -218,7 +209,6 @@ func (c_ CompositionTrack) SetCanProvideSampleCursors(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/commonmetadata
-
 func (c_ CompositionTrack) CommonMetadata() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("commonMetadata"))
 	return rv
@@ -229,7 +219,6 @@ func (c_ CompositionTrack) CommonMetadata() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/commonmetadata
-
 func (c_ CompositionTrack) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCommonMetadata:"), value)
 }
@@ -239,7 +228,6 @@ func (c_ CompositionTrack) SetCommonMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/estimateddatarate
-
 func (c_ CompositionTrack) EstimatedDataRate() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("estimatedDataRate"))
 	return rv
@@ -250,7 +238,6 @@ func (c_ CompositionTrack) EstimatedDataRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/estimateddatarate
-
 func (c_ CompositionTrack) SetEstimatedDataRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEstimatedDataRate:"), value)
 }
@@ -260,7 +247,6 @@ func (c_ CompositionTrack) SetEstimatedDataRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/extendedlanguagetag
-
 func (c_ CompositionTrack) ExtendedLanguageTag() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
@@ -271,7 +257,6 @@ func (c_ CompositionTrack) ExtendedLanguageTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/extendedlanguagetag
-
 func (c_ CompositionTrack) SetExtendedLanguageTag(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
@@ -281,7 +266,6 @@ func (c_ CompositionTrack) SetExtendedLanguageTag(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/formatdescriptionreplacements
-
 func (c_ CompositionTrack) FormatDescriptionReplacements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("formatDescriptionReplacements"))
 	return rv
@@ -292,7 +276,6 @@ func (c_ CompositionTrack) FormatDescriptionReplacements() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/formatdescriptionreplacements
-
 func (c_ CompositionTrack) SetFormatDescriptionReplacements(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatDescriptionReplacements:"), value)
 }
@@ -302,7 +285,6 @@ func (c_ CompositionTrack) SetFormatDescriptionReplacements(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/formatdescriptions
-
 func (c_ CompositionTrack) FormatDescriptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("formatDescriptions"))
 	return rv
@@ -313,7 +295,6 @@ func (c_ CompositionTrack) FormatDescriptions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/formatdescriptions
-
 func (c_ CompositionTrack) SetFormatDescriptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatDescriptions:"), value)
 }
@@ -323,7 +304,6 @@ func (c_ CompositionTrack) SetFormatDescriptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/hasaudiosampledependencies
-
 func (c_ CompositionTrack) HasAudioSampleDependencies() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasAudioSampleDependencies"))
 	return rv
@@ -334,7 +314,6 @@ func (c_ CompositionTrack) HasAudioSampleDependencies() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/hasaudiosampledependencies
-
 func (c_ CompositionTrack) SetHasAudioSampleDependencies(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasAudioSampleDependencies:"), value)
 }
@@ -344,7 +323,6 @@ func (c_ CompositionTrack) SetHasAudioSampleDependencies(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isdecodable
-
 func (c_ CompositionTrack) IsDecodable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDecodable"))
 	return rv
@@ -355,7 +333,6 @@ func (c_ CompositionTrack) IsDecodable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isdecodable
-
 func (c_ CompositionTrack) SetIsDecodable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDecodable:"), value)
 }
@@ -365,7 +342,6 @@ func (c_ CompositionTrack) SetIsDecodable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isenabled
-
 func (c_ CompositionTrack) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -376,7 +352,6 @@ func (c_ CompositionTrack) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isenabled
-
 func (c_ CompositionTrack) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -386,7 +361,6 @@ func (c_ CompositionTrack) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isplayable
-
 func (c_ CompositionTrack) IsPlayable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPlayable"))
 	return rv
@@ -397,7 +371,6 @@ func (c_ CompositionTrack) IsPlayable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isplayable
-
 func (c_ CompositionTrack) SetIsPlayable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPlayable:"), value)
 }
@@ -407,7 +380,6 @@ func (c_ CompositionTrack) SetIsPlayable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isselfcontained
-
 func (c_ CompositionTrack) IsSelfContained() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSelfContained"))
 	return rv
@@ -418,7 +390,6 @@ func (c_ CompositionTrack) IsSelfContained() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/isselfcontained
-
 func (c_ CompositionTrack) SetIsSelfContained(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelfContained:"), value)
 }
@@ -428,7 +399,6 @@ func (c_ CompositionTrack) SetIsSelfContained(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/languagecode
-
 func (c_ CompositionTrack) LanguageCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("languageCode"))
 	return rv
@@ -439,7 +409,6 @@ func (c_ CompositionTrack) LanguageCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/languagecode
-
 func (c_ CompositionTrack) SetLanguageCode(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
 }
@@ -449,7 +418,6 @@ func (c_ CompositionTrack) SetLanguageCode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/metadata
-
 func (c_ CompositionTrack) Metadata() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
@@ -460,7 +428,6 @@ func (c_ CompositionTrack) Metadata() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/metadata
-
 func (c_ CompositionTrack) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
@@ -470,7 +437,6 @@ func (c_ CompositionTrack) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/minframeduration
-
 func (c_ CompositionTrack) MinFrameDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("minFrameDuration"))
 	return rv
@@ -481,7 +447,6 @@ func (c_ CompositionTrack) MinFrameDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/minframeduration
-
 func (c_ CompositionTrack) SetMinFrameDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFrameDuration:"), value)
 }
@@ -491,7 +456,6 @@ func (c_ CompositionTrack) SetMinFrameDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/naturalsize
-
 func (c_ CompositionTrack) NaturalSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("naturalSize"))
 	return rv
@@ -502,7 +466,6 @@ func (c_ CompositionTrack) NaturalSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/naturalsize
-
 func (c_ CompositionTrack) SetNaturalSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNaturalSize:"), value)
 }
@@ -512,7 +475,6 @@ func (c_ CompositionTrack) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/naturaltimescale
-
 func (c_ CompositionTrack) NaturalTimeScale() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("naturalTimeScale"))
 	return rv
@@ -523,7 +485,6 @@ func (c_ CompositionTrack) NaturalTimeScale() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/naturaltimescale
-
 func (c_ CompositionTrack) SetNaturalTimeScale(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNaturalTimeScale:"), value)
 }
@@ -533,7 +494,6 @@ func (c_ CompositionTrack) SetNaturalTimeScale(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/nominalframerate
-
 func (c_ CompositionTrack) NominalFrameRate() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("nominalFrameRate"))
 	return rv
@@ -544,7 +504,6 @@ func (c_ CompositionTrack) NominalFrameRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/nominalframerate
-
 func (c_ CompositionTrack) SetNominalFrameRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNominalFrameRate:"), value)
 }
@@ -554,7 +513,6 @@ func (c_ CompositionTrack) SetNominalFrameRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/preferredtransform
-
 func (c_ CompositionTrack) PreferredTransform() coregraphics.CGAffineTransform {
 	rv := objc.Send[coregraphics.CGAffineTransform](c_.ID, objc.Sel("preferredTransform"))
 	return rv
@@ -565,7 +523,6 @@ func (c_ CompositionTrack) PreferredTransform() coregraphics.CGAffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/preferredtransform
-
 func (c_ CompositionTrack) SetPreferredTransform(value coregraphics.CGAffineTransform) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredTransform:"), value)
 }
@@ -575,7 +532,6 @@ func (c_ CompositionTrack) SetPreferredTransform(value coregraphics.CGAffineTran
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/preferredvolume
-
 func (c_ CompositionTrack) PreferredVolume() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("preferredVolume"))
 	return rv
@@ -586,7 +542,6 @@ func (c_ CompositionTrack) PreferredVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/preferredvolume
-
 func (c_ CompositionTrack) SetPreferredVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredVolume:"), value)
 }
@@ -596,7 +551,6 @@ func (c_ CompositionTrack) SetPreferredVolume(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/requiresframereordering
-
 func (c_ CompositionTrack) RequiresFrameReordering() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requiresFrameReordering"))
 	return rv
@@ -607,7 +561,6 @@ func (c_ CompositionTrack) RequiresFrameReordering() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/requiresframereordering
-
 func (c_ CompositionTrack) SetRequiresFrameReordering(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiresFrameReordering:"), value)
 }
@@ -617,7 +570,6 @@ func (c_ CompositionTrack) SetRequiresFrameReordering(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/segments
-
 func (c_ CompositionTrack) Segments() AVCompositionTrackSegment {
 	rv := objc.Send[AVCompositionTrackSegment](c_.ID, objc.Sel("segments"))
 	return rv
@@ -628,7 +580,6 @@ func (c_ CompositionTrack) Segments() AVCompositionTrackSegment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/segments
-
 func (c_ CompositionTrack) SetSegments(value IAVCompositionTrackSegment) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSegments:"), value)
 }
@@ -638,7 +589,6 @@ func (c_ CompositionTrack) SetSegments(value IAVCompositionTrackSegment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/timerange
-
 func (c_ CompositionTrack) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeRange"))
 	return rv
@@ -649,7 +599,6 @@ func (c_ CompositionTrack) TimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/timerange
-
 func (c_ CompositionTrack) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeRange:"), value)
 }
@@ -659,7 +608,6 @@ func (c_ CompositionTrack) SetTimeRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/totalsampledatalength
-
 func (c_ CompositionTrack) TotalSampleDataLength() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("totalSampleDataLength"))
 	return rv
@@ -670,7 +618,6 @@ func (c_ CompositionTrack) TotalSampleDataLength() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/totalsampledatalength
-
 func (c_ CompositionTrack) SetTotalSampleDataLength(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalSampleDataLength:"), value)
 }

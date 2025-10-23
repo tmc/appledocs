@@ -30,11 +30,11 @@ type _ListFormatterClass struct {
 // An interface definition for the [ListFormatter] class.
 type IListFormatter interface {
 	IFormatter
-	StringForObjectValue(obj objectivec.IObject) String
-	StringFromItems(items objectivec.IObject) String
-	ItemFormatter() NSFormatter
+	StringForObjectValue(obj objectivec.IObject) IString
+	StringFromItems(items objectivec.IObject) IString
+	ItemFormatter() IFormatter
 	SetItemFormatter(value IFormatter)
-	Locale() NSLocale
+	Locale() ILocale
 	SetLocale(value ILocale)
 }
 
@@ -97,7 +97,7 @@ func NewListFormatter() ListFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/localizedString(byJoining:)
-func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string) String {
+func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string) IString {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localizedStringByJoiningStrings:"), strings)
 	return rv
 }
@@ -107,7 +107,7 @@ func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/string(for:)
-func (l_ ListFormatter) StringForObjectValue(obj objectivec.IObject) String {
+func (l_ ListFormatter) StringForObjectValue(obj objectivec.IObject) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
@@ -117,7 +117,7 @@ func (l_ ListFormatter) StringForObjectValue(obj objectivec.IObject) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/string(from:)
-func (l_ ListFormatter) StringFromItems(items objectivec.IObject) String {
+func (l_ ListFormatter) StringFromItems(items objectivec.IObject) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("stringFromItems:"), items)
 	return rv
 }
@@ -127,7 +127,7 @@ func (l_ ListFormatter) StringFromItems(items objectivec.IObject) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/itemFormatter
-func (l_ ListFormatter) ItemFormatter() NSFormatter {
+func (l_ ListFormatter) ItemFormatter() IFormatter {
 	rv := objc.Send[NSFormatter](l_.ID, objc.Sel("itemFormatter"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (l_ ListFormatter) SetItemFormatter(value IFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/locale
-func (l_ ListFormatter) Locale() NSLocale {
+func (l_ ListFormatter) Locale() ILocale {
 	rv := objc.Send[NSLocale](l_.ID, objc.Sel("locale"))
 	return rv
 }

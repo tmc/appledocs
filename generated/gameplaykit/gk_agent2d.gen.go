@@ -30,7 +30,7 @@ type _Agent2DClass struct {
 // An interface definition for the [Agent2D] class.
 type IAgent2D interface {
 	IAgent
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
 	Rotation() float32
@@ -47,7 +47,6 @@ type IAgent2D interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D
-
 type Agent2D struct {
 	Agent
 }
@@ -94,13 +93,11 @@ func NewAgent2D() Agent2D {
 
 
 
-
 // Causes the agent to evaluate its goals and update its position, rotation, and velocity accordingly.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/update(deltaTime:)
-
-func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -109,7 +106,6 @@ func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/position
-
 func (a_ Agent2D) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("position"))
 	return rv
@@ -120,7 +116,6 @@ func (a_ Agent2D) Position() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/position
-
 func (a_ Agent2D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPosition:"), value)
 }
@@ -130,7 +125,6 @@ func (a_ Agent2D) SetPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
-
 func (a_ Agent2D) Rotation() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("rotation"))
 	return rv
@@ -141,7 +135,6 @@ func (a_ Agent2D) Rotation() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
-
 func (a_ Agent2D) SetRotation(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
@@ -151,7 +144,6 @@ func (a_ Agent2D) SetRotation(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/velocity
-
 func (a_ Agent2D) Velocity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("velocity"))
 	return rv

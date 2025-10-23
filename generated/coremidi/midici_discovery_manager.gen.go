@@ -41,7 +41,6 @@ type IMIDICIDiscoveryManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveryManager
-
 type MIDICIDiscoveryManager struct {
 	objectivec.Object
 }

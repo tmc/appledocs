@@ -55,7 +55,6 @@ type IHKVisionPrism interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVisionPrism
-
 type HKVisionPrism struct {
 	objectivec.Object
 }
@@ -104,7 +103,6 @@ func NewHKVisionPrism() HKVisionPrism {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
-
 func (h_ HKVisionPrism) Amount() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("amount"))
 	return rv
@@ -115,7 +113,6 @@ func (h_ HKVisionPrism) Amount() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
-
 func (h_ HKVisionPrism) SetAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAmount:"), value)
 }
@@ -125,7 +122,6 @@ func (h_ HKVisionPrism) SetAmount(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
-
 func (h_ HKVisionPrism) Angle() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("angle"))
 	return rv
@@ -136,7 +132,6 @@ func (h_ HKVisionPrism) Angle() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
-
 func (h_ HKVisionPrism) SetAngle(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAngle:"), value)
 }
@@ -146,7 +141,6 @@ func (h_ HKVisionPrism) SetAngle(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/eye
-
 func (h_ HKVisionPrism) Eye() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("eye"))
 	return rv
@@ -157,7 +151,6 @@ func (h_ HKVisionPrism) Eye() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/eye
-
 func (h_ HKVisionPrism) SetEye(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEye:"), value)
 }
@@ -167,7 +160,6 @@ func (h_ HKVisionPrism) SetEye(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
-
 func (h_ HKVisionPrism) HorizontalAmount() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("horizontalAmount"))
 	return rv
@@ -178,7 +170,6 @@ func (h_ HKVisionPrism) HorizontalAmount() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
-
 func (h_ HKVisionPrism) SetHorizontalAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalAmount:"), value)
 }
@@ -188,7 +179,6 @@ func (h_ HKVisionPrism) SetHorizontalAmount(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase
-
 func (h_ HKVisionPrism) HorizontalBase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("horizontalBase"))
 	return rv
@@ -199,7 +189,6 @@ func (h_ HKVisionPrism) HorizontalBase() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase
-
 func (h_ HKVisionPrism) SetHorizontalBase(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalBase:"), value)
 }
@@ -209,7 +198,6 @@ func (h_ HKVisionPrism) SetHorizontalBase(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
-
 func (h_ HKVisionPrism) VerticalAmount() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("verticalAmount"))
 	return rv
@@ -220,7 +208,6 @@ func (h_ HKVisionPrism) VerticalAmount() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
-
 func (h_ HKVisionPrism) SetVerticalAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVerticalAmount:"), value)
 }
@@ -230,7 +217,6 @@ func (h_ HKVisionPrism) SetVerticalAmount(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalbase
-
 func (h_ HKVisionPrism) VerticalBase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("verticalBase"))
 	return rv
@@ -241,7 +227,6 @@ func (h_ HKVisionPrism) VerticalBase() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalbase
-
 func (h_ HKVisionPrism) SetVerticalBase(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVerticalBase:"), value)
 }

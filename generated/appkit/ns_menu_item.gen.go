@@ -121,7 +121,6 @@ type IMenuItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem
-
 type MenuItem struct {
 	objectivec.Object
 }
@@ -166,10 +165,8 @@ func NewMenuItem() MenuItem {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/init(coder:)
-
 func NewMenuItemWithCoder(coder foundation.ICoder) MenuItem {
 	instance := getMenuItemClass().Alloc()
 	rv := objc.Send[MenuItem](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -178,12 +175,10 @@ func NewMenuItemWithCoder(coder foundation.ICoder) MenuItem {
 }
 
 
-
 // Returns an initialized instance of .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/init(title:action:keyEquivalent:)
-
 func NewMenuItemWithTitleActionKeyEquivalent(string_ string, selector objc.SEL, charCode string) MenuItem {
 	instance := getMenuItemClass().Alloc()
 	rv := objc.Send[MenuItem](instance.ID, objc.Sel("initWithTitle:action:keyEquivalent:"), objc.String(string_), selector, objc.String(charCode))
@@ -197,7 +192,6 @@ func NewMenuItemWithTitleActionKeyEquivalent(string_ string, selector objc.SEL, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/sectionHeaderWithTitle:
-
 func (mc _MenuItemClass) SectionHeaderWithTitle(title string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("sectionHeaderWithTitle:"), objc.String(title))
 	return rv
@@ -208,7 +202,6 @@ func (mc _MenuItemClass) SectionHeaderWithTitle(title string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/separator()
-
 func (mc _MenuItemClass) SeparatorItem() MenuItem {
 	rv := objc.Send[MenuItem](objc.ID(mc.class), objc.Sel("separatorItem"))
 	return rv
@@ -219,7 +212,6 @@ func (mc _MenuItemClass) SeparatorItem() MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/usesUserKeyEquivalents
-
 func (mc _MenuItemClass) UsesUserKeyEquivalents() bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("usesUserKeyEquivalents"))
 	return rv
@@ -229,53 +221,44 @@ func (mc _MenuItemClass) UsesUserKeyEquivalents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/writingToolsItems
-
 func (mc _MenuItemClass) WritingToolsItems() []MenuItem {
 	rv := objc.Send[[]MenuItem](objc.ID(mc.class), objc.Sel("writingToolsItems"))
 	return rv
 }
 
-
 // Returns the character in the menu item title that appears underlined for use as a mnemonic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mnemonic
-
 func (m_ MenuItem) Mnemonic() foundation.String {
 	rv := objc.Send[foundation.String](m_.ID, objc.Sel("mnemonic"))
 	return rv
 }
 
 
-
 // Returns the position of the underlined character in the menu item title used as a mnemonic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mnemonicLocation
-
 func (m_ MenuItem) MnemonicLocation() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("mnemonicLocation"))
 	return rv
 }
 
 
-
 // Sets the character of the menu item title at location that is to be underlined.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/setMnemonicLocation:
-
 func (m_ MenuItem) SetMnemonicLocation(location uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMnemonicLocation:"), location)
 }
-
 
 
 // Sets the title of a menu item with a character denoting an access key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/setTitleWithMnemonic(_:)
-
 func (m_ MenuItem) SetTitleWithMnemonic(stringWithAmpersand string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
 }
@@ -285,7 +268,6 @@ func (m_ MenuItem) SetTitleWithMnemonic(stringWithAmpersand string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/action
-
 func (m_ MenuItem) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](m_.ID, objc.Sel("action"))
 	return rv
@@ -296,7 +278,6 @@ func (m_ MenuItem) Action() objc.SEL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/action
-
 func (m_ MenuItem) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
 }
@@ -306,7 +287,6 @@ func (m_ MenuItem) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/allowsAutomaticKeyEquivalentLocalization
-
 func (m_ MenuItem) AllowsAutomaticKeyEquivalentLocalization() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsAutomaticKeyEquivalentLocalization"))
 	return rv
@@ -317,7 +297,6 @@ func (m_ MenuItem) AllowsAutomaticKeyEquivalentLocalization() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/allowsAutomaticKeyEquivalentLocalization
-
 func (m_ MenuItem) SetAllowsAutomaticKeyEquivalentLocalization(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsAutomaticKeyEquivalentLocalization:"), value)
 }
@@ -327,7 +306,6 @@ func (m_ MenuItem) SetAllowsAutomaticKeyEquivalentLocalization(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/allowsAutomaticKeyEquivalentMirroring
-
 func (m_ MenuItem) AllowsAutomaticKeyEquivalentMirroring() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsAutomaticKeyEquivalentMirroring"))
 	return rv
@@ -338,7 +316,6 @@ func (m_ MenuItem) AllowsAutomaticKeyEquivalentMirroring() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/allowsAutomaticKeyEquivalentMirroring
-
 func (m_ MenuItem) SetAllowsAutomaticKeyEquivalentMirroring(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsAutomaticKeyEquivalentMirroring:"), value)
 }
@@ -346,7 +323,6 @@ func (m_ MenuItem) SetAllowsAutomaticKeyEquivalentMirroring(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/allowsKeyEquivalentWhenHidden
-
 func (m_ MenuItem) AllowsKeyEquivalentWhenHidden() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsKeyEquivalentWhenHidden"))
 	return rv
@@ -355,7 +331,6 @@ func (m_ MenuItem) AllowsKeyEquivalentWhenHidden() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/allowsKeyEquivalentWhenHidden
-
 func (m_ MenuItem) SetAllowsKeyEquivalentWhenHidden(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsKeyEquivalentWhenHidden:"), value)
 }
@@ -365,7 +340,6 @@ func (m_ MenuItem) SetAllowsKeyEquivalentWhenHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/attributedTitle
-
 func (m_ MenuItem) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](m_.ID, objc.Sel("attributedTitle"))
 	return rv
@@ -376,7 +350,6 @@ func (m_ MenuItem) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/attributedTitle
-
 func (m_ MenuItem) SetAttributedTitle(value foundation.IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedTitle:"), value)
 }
@@ -384,7 +357,6 @@ func (m_ MenuItem) SetAttributedTitle(value foundation.IAttributedString) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
-
 func (m_ MenuItem) Badge() NSMenuItemBadge {
 	rv := objc.Send[NSMenuItemBadge](m_.ID, objc.Sel("badge"))
 	return rv
@@ -393,7 +365,6 @@ func (m_ MenuItem) Badge() NSMenuItemBadge {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
-
 func (m_ MenuItem) SetBadge(value IMenuItemBadge) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
 }
@@ -403,7 +374,6 @@ func (m_ MenuItem) SetBadge(value IMenuItemBadge) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/hasSubmenu
-
 func (m_ MenuItem) HasSubmenu() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasSubmenu"))
 	return rv
@@ -414,7 +384,6 @@ func (m_ MenuItem) HasSubmenu() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/image
-
 func (m_ MenuItem) Image() Image {
 	rv := objc.Send[Image](m_.ID, objc.Sel("image"))
 	return rv
@@ -425,7 +394,6 @@ func (m_ MenuItem) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/image
-
 func (m_ MenuItem) SetImage(value IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
 }
@@ -435,7 +403,6 @@ func (m_ MenuItem) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/indentationLevel
-
 func (m_ MenuItem) IndentationLevel() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("indentationLevel"))
 	return rv
@@ -446,7 +413,6 @@ func (m_ MenuItem) IndentationLevel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/indentationLevel
-
 func (m_ MenuItem) SetIndentationLevel(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndentationLevel:"), value)
 }
@@ -456,7 +422,6 @@ func (m_ MenuItem) SetIndentationLevel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isAlternate
-
 func (m_ MenuItem) Alternate() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("alternate"))
 	return rv
@@ -467,7 +432,6 @@ func (m_ MenuItem) Alternate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isAlternate
-
 func (m_ MenuItem) SetAlternate(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlternate:"), value)
 }
@@ -477,7 +441,6 @@ func (m_ MenuItem) SetAlternate(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isEnabled
-
 func (m_ MenuItem) Enabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
 	return rv
@@ -488,7 +451,6 @@ func (m_ MenuItem) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isEnabled
-
 func (m_ MenuItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -498,7 +460,6 @@ func (m_ MenuItem) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHidden
-
 func (m_ MenuItem) Hidden() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hidden"))
 	return rv
@@ -509,7 +470,6 @@ func (m_ MenuItem) Hidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHidden
-
 func (m_ MenuItem) SetHidden(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHidden:"), value)
 }
@@ -519,7 +479,6 @@ func (m_ MenuItem) SetHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHiddenOrHasHiddenAncestor
-
 func (m_ MenuItem) HiddenOrHasHiddenAncestor() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hiddenOrHasHiddenAncestor"))
 	return rv
@@ -530,7 +489,6 @@ func (m_ MenuItem) HiddenOrHasHiddenAncestor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHighlighted
-
 func (m_ MenuItem) Highlighted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("highlighted"))
 	return rv
@@ -541,7 +499,6 @@ func (m_ MenuItem) Highlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isSectionHeader
-
 func (m_ MenuItem) SectionHeader() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("sectionHeader"))
 	return rv
@@ -552,7 +509,6 @@ func (m_ MenuItem) SectionHeader() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isSeparatorItem
-
 func (m_ MenuItem) SeparatorItem() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("separatorItem"))
 	return rv
@@ -563,7 +519,6 @@ func (m_ MenuItem) SeparatorItem() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalent
-
 func (m_ MenuItem) KeyEquivalent() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("keyEquivalent"))
 	return rv
@@ -574,7 +529,6 @@ func (m_ MenuItem) KeyEquivalent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalent
-
 func (m_ MenuItem) SetKeyEquivalent(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
 }
@@ -584,7 +538,6 @@ func (m_ MenuItem) SetKeyEquivalent(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalentModifierMask
-
 func (m_ MenuItem) KeyEquivalentModifierMask() EventModifierFlags {
 	rv := objc.Send[EventModifierFlags](m_.ID, objc.Sel("keyEquivalentModifierMask"))
 	return rv
@@ -595,7 +548,6 @@ func (m_ MenuItem) KeyEquivalentModifierMask() EventModifierFlags {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalentModifierMask
-
 func (m_ MenuItem) SetKeyEquivalentModifierMask(value EventModifierFlags) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalentModifierMask:"), value)
 }
@@ -605,7 +557,6 @@ func (m_ MenuItem) SetKeyEquivalentModifierMask(value EventModifierFlags) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/menu
-
 func (m_ MenuItem) Menu() NSMenu {
 	rv := objc.Send[NSMenu](m_.ID, objc.Sel("menu"))
 	return rv
@@ -616,7 +567,6 @@ func (m_ MenuItem) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/menu
-
 func (m_ MenuItem) SetMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
@@ -626,7 +576,6 @@ func (m_ MenuItem) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mixedStateImage
-
 func (m_ MenuItem) MixedStateImage() Image {
 	rv := objc.Send[Image](m_.ID, objc.Sel("mixedStateImage"))
 	return rv
@@ -637,7 +586,6 @@ func (m_ MenuItem) MixedStateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mixedStateImage
-
 func (m_ MenuItem) SetMixedStateImage(value IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMixedStateImage:"), value)
 }
@@ -647,7 +595,6 @@ func (m_ MenuItem) SetMixedStateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/offStateImage
-
 func (m_ MenuItem) OffStateImage() Image {
 	rv := objc.Send[Image](m_.ID, objc.Sel("offStateImage"))
 	return rv
@@ -658,7 +605,6 @@ func (m_ MenuItem) OffStateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/offStateImage
-
 func (m_ MenuItem) SetOffStateImage(value IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffStateImage:"), value)
 }
@@ -668,7 +614,6 @@ func (m_ MenuItem) SetOffStateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/onStateImage
-
 func (m_ MenuItem) OnStateImage() Image {
 	rv := objc.Send[Image](m_.ID, objc.Sel("onStateImage"))
 	return rv
@@ -679,7 +624,6 @@ func (m_ MenuItem) OnStateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/onStateImage
-
 func (m_ MenuItem) SetOnStateImage(value IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOnStateImage:"), value)
 }
@@ -689,7 +633,6 @@ func (m_ MenuItem) SetOnStateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/parent
-
 func (m_ MenuItem) ParentItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("parentItem"))
 	return rv
@@ -700,7 +643,6 @@ func (m_ MenuItem) ParentItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/representedObject
-
 func (m_ MenuItem) RepresentedObject() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("representedObject"))
 	return rv
@@ -711,7 +653,6 @@ func (m_ MenuItem) RepresentedObject() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/representedObject
-
 func (m_ MenuItem) SetRepresentedObject(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRepresentedObject:"), value)
 }
@@ -721,7 +662,6 @@ func (m_ MenuItem) SetRepresentedObject(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/state
-
 func (m_ MenuItem) State() ControlStateValue {
 	rv := objc.Send[ControlStateValue](m_.ID, objc.Sel("state"))
 	return rv
@@ -732,7 +672,6 @@ func (m_ MenuItem) State() ControlStateValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/state
-
 func (m_ MenuItem) SetState(value IControlStateValue) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
@@ -742,7 +681,6 @@ func (m_ MenuItem) SetState(value IControlStateValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/submenu
-
 func (m_ MenuItem) Submenu() NSMenu {
 	rv := objc.Send[NSMenu](m_.ID, objc.Sel("submenu"))
 	return rv
@@ -753,7 +691,6 @@ func (m_ MenuItem) Submenu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/submenu
-
 func (m_ MenuItem) SetSubmenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubmenu:"), value)
 }
@@ -761,7 +698,6 @@ func (m_ MenuItem) SetSubmenu(value IMenu) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/subtitle
-
 func (m_ MenuItem) Subtitle() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
@@ -770,7 +706,6 @@ func (m_ MenuItem) Subtitle() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/subtitle
-
 func (m_ MenuItem) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
@@ -780,7 +715,6 @@ func (m_ MenuItem) SetSubtitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/tag
-
 func (m_ MenuItem) Tag() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("tag"))
 	return rv
@@ -791,7 +725,6 @@ func (m_ MenuItem) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/tag
-
 func (m_ MenuItem) SetTag(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
 }
@@ -801,7 +734,6 @@ func (m_ MenuItem) SetTag(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/target
-
 func (m_ MenuItem) Target() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("target"))
 	return rv
@@ -812,7 +744,6 @@ func (m_ MenuItem) Target() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/target
-
 func (m_ MenuItem) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTarget:"), value)
 }
@@ -822,7 +753,6 @@ func (m_ MenuItem) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/title
-
 func (m_ MenuItem) Title() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
@@ -833,7 +763,6 @@ func (m_ MenuItem) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/title
-
 func (m_ MenuItem) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -843,7 +772,6 @@ func (m_ MenuItem) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/toolTip
-
 func (m_ MenuItem) ToolTip() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("toolTip"))
 	return rv
@@ -854,7 +782,6 @@ func (m_ MenuItem) ToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/toolTip
-
 func (m_ MenuItem) SetToolTip(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
@@ -864,7 +791,6 @@ func (m_ MenuItem) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/userKeyEquivalent
-
 func (m_ MenuItem) UserKeyEquivalent() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("userKeyEquivalent"))
 	return rv
@@ -875,7 +801,6 @@ func (m_ MenuItem) UserKeyEquivalent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/usesUserKeyEquivalents
-
 func (m_ MenuItem) UsesUserKeyEquivalents() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("usesUserKeyEquivalents"))
 	return rv
@@ -886,7 +811,6 @@ func (m_ MenuItem) UsesUserKeyEquivalents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/usesUserKeyEquivalents
-
 func (m_ MenuItem) SetUsesUserKeyEquivalents(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesUserKeyEquivalents:"), value)
 }
@@ -896,7 +820,6 @@ func (m_ MenuItem) SetUsesUserKeyEquivalents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/view
-
 func (m_ MenuItem) View() NSView {
 	rv := objc.Send[NSView](m_.ID, objc.Sel("view"))
 	return rv
@@ -907,7 +830,6 @@ func (m_ MenuItem) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/view
-
 func (m_ MenuItem) SetView(value IView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setView:"), value)
 }
@@ -917,7 +839,6 @@ func (m_ MenuItem) SetView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/writingToolsItems
-
 func (m_ MenuItem) WritingToolsItems() []MenuItem {
 	rv := objc.Send[[]MenuItem](m_.ID, objc.Sel("writingToolsItems"))
 	return rv
@@ -928,7 +849,6 @@ func (m_ MenuItem) WritingToolsItems() []MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/isalternate
-
 func (m_ MenuItem) IsAlternate() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isAlternate"))
 	return rv
@@ -939,7 +859,6 @@ func (m_ MenuItem) IsAlternate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/isalternate
-
 func (m_ MenuItem) SetIsAlternate(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAlternate:"), value)
 }
@@ -949,7 +868,6 @@ func (m_ MenuItem) SetIsAlternate(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/isenabled
-
 func (m_ MenuItem) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -960,7 +878,6 @@ func (m_ MenuItem) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/isenabled
-
 func (m_ MenuItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -970,7 +887,6 @@ func (m_ MenuItem) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/ishidden
-
 func (m_ MenuItem) IsHidden() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isHidden"))
 	return rv
@@ -981,7 +897,6 @@ func (m_ MenuItem) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/ishidden
-
 func (m_ MenuItem) SetIsHidden(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -991,7 +906,6 @@ func (m_ MenuItem) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/ishiddenorhashiddenancestor
-
 func (m_ MenuItem) IsHiddenOrHasHiddenAncestor() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isHiddenOrHasHiddenAncestor"))
 	return rv
@@ -1002,7 +916,6 @@ func (m_ MenuItem) IsHiddenOrHasHiddenAncestor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/ishiddenorhashiddenancestor
-
 func (m_ MenuItem) SetIsHiddenOrHasHiddenAncestor(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHiddenOrHasHiddenAncestor:"), value)
 }
@@ -1012,7 +925,6 @@ func (m_ MenuItem) SetIsHiddenOrHasHiddenAncestor(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/ishighlighted
-
 func (m_ MenuItem) IsHighlighted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isHighlighted"))
 	return rv
@@ -1023,7 +935,6 @@ func (m_ MenuItem) IsHighlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/ishighlighted
-
 func (m_ MenuItem) SetIsHighlighted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHighlighted:"), value)
 }
@@ -1033,7 +944,6 @@ func (m_ MenuItem) SetIsHighlighted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/issectionheader
-
 func (m_ MenuItem) IsSectionHeader() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isSectionHeader"))
 	return rv
@@ -1044,7 +954,6 @@ func (m_ MenuItem) IsSectionHeader() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/issectionheader
-
 func (m_ MenuItem) SetIsSectionHeader(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSectionHeader:"), value)
 }
@@ -1054,7 +963,6 @@ func (m_ MenuItem) SetIsSectionHeader(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/isseparatoritem
-
 func (m_ MenuItem) IsSeparatorItem() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isSeparatorItem"))
 	return rv
@@ -1065,7 +973,6 @@ func (m_ MenuItem) IsSeparatorItem() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/isseparatoritem
-
 func (m_ MenuItem) SetIsSeparatorItem(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSeparatorItem:"), value)
 }
@@ -1075,7 +982,6 @@ func (m_ MenuItem) SetIsSeparatorItem(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/parent
-
 func (m_ MenuItem) Parent() NSMenuItem {
 	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("parent"))
 	return rv
@@ -1086,7 +992,6 @@ func (m_ MenuItem) Parent() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/parent
-
 func (m_ MenuItem) SetParent(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParent:"), value)
 }

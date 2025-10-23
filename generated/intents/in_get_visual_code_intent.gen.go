@@ -35,7 +35,11 @@ type IINGetVisualCodeIntent interface {
 // A request for a visual code to use for exchanging payment and contact information.
 //
 // Siri creates an object when the user asks for a visual code to use with a scanner. A visual code is a bar code or QR code that embeds information about a transaction. For example, an app might provide a visual code to facilitate payment for services. Apps can also use visual codes to communicate a user’s contact information. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with an image containing the visual code. Siri handles the display of the provided visual code in order to scan it.
+
+
+// A request for a visual code to use for exchanging payment and contact information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetVisualCodeIntent
 type INGetVisualCodeIntent struct {
 	INIntent
@@ -82,8 +86,10 @@ func NewINGetVisualCodeIntent() INGetVisualCodeIntent {
 }
 
 
+
 // The type of visual code requested by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetVisualCodeIntent/visualCodeType
 func (i_ INGetVisualCodeIntent) VisualCodeType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("visualCodeType"))

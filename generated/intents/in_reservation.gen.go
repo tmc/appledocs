@@ -43,7 +43,11 @@ type IINReservation interface {
 // An object that describes a reservation.
 //
 // Don’t create instances of this class directly. Instead, use the subclass associated with the type of reservation created.
+
+
+// An object that describes a reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation
 type INReservation struct {
 	objectivec.Object
@@ -88,56 +92,70 @@ func NewINReservation() INReservation {
 }
 
 
+
 // An array containing actions the user can perform on the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/actions
 func (i_ INReservation) Actions() []INReservationAction {
 	rv := objc.Send[[]INReservationAction](i_.ID, objc.Sel("actions"))
 	return rv
 }
 
+
 // The date and time the user booked the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/bookingTime
 func (i_ INReservation) BookingTime() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("bookingTime"))
 	return rv
 }
 
+
 // A unique reference for the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/itemReference
 func (i_ INReservation) ItemReference() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("itemReference"))
 	return rv
 }
 
+
 // The reservation holder’s name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationHolderName
 func (i_ INReservation) ReservationHolderName() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("reservationHolderName"))
 	return rv
 }
 
+
 // The reservation number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationNumber
 func (i_ INReservation) ReservationNumber() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("reservationNumber"))
 	return rv
 }
 
+
 // The current status of the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationStatus
 func (i_ INReservation) ReservationStatus() INReservationStatus {
 	rv := objc.Send[INReservationStatus](i_.ID, objc.Sel("reservationStatus"))
 	return rv
 }
 
+
 // A webpage the user can access to view reservation details.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/url
 func (i_ INReservation) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("URL"))

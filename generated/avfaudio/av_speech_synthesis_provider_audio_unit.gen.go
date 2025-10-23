@@ -44,7 +44,6 @@ type ISpeechSynthesisProviderAudioUnit interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit
-
 type SpeechSynthesisProviderAudioUnit struct {
 	AudioUnit
 }
@@ -95,7 +94,6 @@ func NewSpeechSynthesisProviderAudioUnit() SpeechSynthesisProviderAudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
-
 func (s_ SpeechSynthesisProviderAudioUnit) SpeechSynthesisOutputMetadataBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechSynthesisOutputMetadataBlock"))
 	return rv
@@ -106,7 +104,6 @@ func (s_ SpeechSynthesisProviderAudioUnit) SpeechSynthesisOutputMetadataBlock() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
-
 func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechSynthesisOutputMetadataBlock:"), value)
 }
@@ -116,7 +113,6 @@ func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-
 func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() AVSpeechSynthesisProviderVoice {
 	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
@@ -127,7 +123,6 @@ func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() AVSpeechSynthesisProvi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-
 func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechVoices(value IAVSpeechSynthesisProviderVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
 }

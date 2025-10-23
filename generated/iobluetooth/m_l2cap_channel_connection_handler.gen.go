@@ -32,7 +32,9 @@ type ImL2CAPChannelConnectionHandler interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mL2CAPChannelConnectionHandler
 type mL2CAPChannelConnectionHandler struct {
 	objectivec.Object

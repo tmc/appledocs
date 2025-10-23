@@ -35,7 +35,7 @@ type ITypesetter interface {
 	AttributedString() foundation.AttributedString
 	SetAttributedString(value foundation.IAttributedString)
 	AttributesForExtraLineFragment() coreml.Key
-	SetAttributesForExtraLineFragment(value coreml.Key)
+	SetAttributesForExtraLineFragment(value coreml.IKey)
 	BidiProcessingEnabled() bool
 	SetBidiProcessingEnabled(value bool)
 	CurrentParagraphStyle() NSParagraphStyle
@@ -73,7 +73,6 @@ type ITypesetter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter
-
 type Typesetter struct {
 	objectivec.Object
 }
@@ -122,7 +121,6 @@ func NewTypesetter() Typesetter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributedstring
-
 func (t_ Typesetter) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
@@ -133,7 +131,6 @@ func (t_ Typesetter) AttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributedstring
-
 func (t_ Typesetter) SetAttributedString(value foundation.IAttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
@@ -143,7 +140,6 @@ func (t_ Typesetter) SetAttributedString(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributesforextralinefragment
-
 func (t_ Typesetter) AttributesForExtraLineFragment() coreml.Key {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("attributesForExtraLineFragment"))
 	return rv
@@ -154,8 +150,7 @@ func (t_ Typesetter) AttributesForExtraLineFragment() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributesforextralinefragment
-
-func (t_ Typesetter) SetAttributesForExtraLineFragment(value coreml.Key) {
+func (t_ Typesetter) SetAttributesForExtraLineFragment(value coreml.IKey) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributesForExtraLineFragment:"), value)
 }
 
@@ -164,7 +159,6 @@ func (t_ Typesetter) SetAttributesForExtraLineFragment(value coreml.Key) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/bidiprocessingenabled
-
 func (t_ Typesetter) BidiProcessingEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("bidiProcessingEnabled"))
 	return rv
@@ -175,7 +169,6 @@ func (t_ Typesetter) BidiProcessingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/bidiprocessingenabled
-
 func (t_ Typesetter) SetBidiProcessingEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBidiProcessingEnabled:"), value)
 }
@@ -185,7 +178,6 @@ func (t_ Typesetter) SetBidiProcessingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currentparagraphstyle
-
 func (t_ Typesetter) CurrentParagraphStyle() NSParagraphStyle {
 	rv := objc.Send[NSParagraphStyle](t_.ID, objc.Sel("currentParagraphStyle"))
 	return rv
@@ -196,7 +188,6 @@ func (t_ Typesetter) CurrentParagraphStyle() NSParagraphStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currentparagraphstyle
-
 func (t_ Typesetter) SetCurrentParagraphStyle(value NSParagraphStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentParagraphStyle:"), value)
 }
@@ -206,7 +197,6 @@ func (t_ Typesetter) SetCurrentParagraphStyle(value NSParagraphStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currenttextcontainer
-
 func (t_ Typesetter) CurrentTextContainer() NSTextContainer {
 	rv := objc.Send[NSTextContainer](t_.ID, objc.Sel("currentTextContainer"))
 	return rv
@@ -217,7 +207,6 @@ func (t_ Typesetter) CurrentTextContainer() NSTextContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/currenttextcontainer
-
 func (t_ Typesetter) SetCurrentTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentTextContainer:"), value)
 }
@@ -227,7 +216,6 @@ func (t_ Typesetter) SetCurrentTextContainer(value ITextContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/hyphenationfactor
-
 func (t_ Typesetter) HyphenationFactor() float32 {
 	rv := objc.Send[float32](t_.ID, objc.Sel("hyphenationFactor"))
 	return rv
@@ -238,7 +226,6 @@ func (t_ Typesetter) HyphenationFactor() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/hyphenationfactor
-
 func (t_ Typesetter) SetHyphenationFactor(value float32) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHyphenationFactor:"), value)
 }
@@ -248,7 +235,6 @@ func (t_ Typesetter) SetHyphenationFactor(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/layoutmanager
-
 func (t_ Typesetter) LayoutManager() NSLayoutManager {
 	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
 	return rv
@@ -259,7 +245,6 @@ func (t_ Typesetter) LayoutManager() NSLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/layoutmanager
-
 func (t_ Typesetter) SetLayoutManager(value ILayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
@@ -269,7 +254,6 @@ func (t_ Typesetter) SetLayoutManager(value ILayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/linefragmentpadding
-
 func (t_ Typesetter) LineFragmentPadding() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("lineFragmentPadding"))
 	return rv
@@ -280,7 +264,6 @@ func (t_ Typesetter) LineFragmentPadding() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/linefragmentpadding
-
 func (t_ Typesetter) SetLineFragmentPadding(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineFragmentPadding:"), value)
 }
@@ -290,7 +273,6 @@ func (t_ Typesetter) SetLineFragmentPadding(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphcharacterrange
-
 func (t_ Typesetter) ParagraphCharacterRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphCharacterRange"))
 	return rv
@@ -301,7 +283,6 @@ func (t_ Typesetter) ParagraphCharacterRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphcharacterrange
-
 func (t_ Typesetter) SetParagraphCharacterRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphCharacterRange:"), value)
 }
@@ -311,7 +292,6 @@ func (t_ Typesetter) SetParagraphCharacterRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphglyphrange
-
 func (t_ Typesetter) ParagraphGlyphRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphGlyphRange"))
 	return rv
@@ -322,7 +302,6 @@ func (t_ Typesetter) ParagraphGlyphRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphglyphrange
-
 func (t_ Typesetter) SetParagraphGlyphRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphGlyphRange:"), value)
 }
@@ -332,7 +311,6 @@ func (t_ Typesetter) SetParagraphGlyphRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphseparatorcharacterrange
-
 func (t_ Typesetter) ParagraphSeparatorCharacterRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphSeparatorCharacterRange"))
 	return rv
@@ -343,7 +321,6 @@ func (t_ Typesetter) ParagraphSeparatorCharacterRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphseparatorcharacterrange
-
 func (t_ Typesetter) SetParagraphSeparatorCharacterRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorCharacterRange:"), value)
 }
@@ -353,7 +330,6 @@ func (t_ Typesetter) SetParagraphSeparatorCharacterRange(value foundation.Range)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphseparatorglyphrange
-
 func (t_ Typesetter) ParagraphSeparatorGlyphRange() foundation.Range {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphSeparatorGlyphRange"))
 	return rv
@@ -364,7 +340,6 @@ func (t_ Typesetter) ParagraphSeparatorGlyphRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphseparatorglyphrange
-
 func (t_ Typesetter) SetParagraphSeparatorGlyphRange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorGlyphRange:"), value)
 }
@@ -374,7 +349,6 @@ func (t_ Typesetter) SetParagraphSeparatorGlyphRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/textcontainers
-
 func (t_ Typesetter) TextContainers() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("textContainers"))
 	return rv
@@ -385,7 +359,6 @@ func (t_ Typesetter) TextContainers() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/textcontainers
-
 func (t_ Typesetter) SetTextContainers(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainers:"), value)
 }
@@ -395,7 +368,6 @@ func (t_ Typesetter) SetTextContainers(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/typesetterbehavior
-
 func (t_ Typesetter) TypesetterBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("typesetterBehavior"))
 	return rv
@@ -406,7 +378,6 @@ func (t_ Typesetter) TypesetterBehavior() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/typesetterbehavior
-
 func (t_ Typesetter) SetTypesetterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypesetterBehavior:"), value)
 }
@@ -416,7 +387,6 @@ func (t_ Typesetter) SetTypesetterBehavior(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/usesfontleading
-
 func (t_ Typesetter) UsesFontLeading() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontLeading"))
 	return rv
@@ -427,7 +397,6 @@ func (t_ Typesetter) UsesFontLeading() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/usesfontleading
-
 func (t_ Typesetter) SetUsesFontLeading(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontLeading:"), value)
 }

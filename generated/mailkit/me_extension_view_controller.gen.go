@@ -35,7 +35,11 @@ type IMEExtensionViewController interface {
 // An object that manages a view for compose session and message security handlers.
 //
 // Create a custom subclass of to provide MailKit with a view that displays: Additional configuration options in a Mail compose window Details about the user who signed a digitally signed email message
+
+
+// An object that manages a view for compose session and message security handlers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEExtensionViewController
 type MEExtensionViewController struct {
 	appkit.ViewController

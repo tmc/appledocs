@@ -41,7 +41,6 @@ type IViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUViewController
-
 type ViewController struct {
 	objectivec.Object
 }

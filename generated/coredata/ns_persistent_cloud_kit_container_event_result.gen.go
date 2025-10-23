@@ -40,7 +40,6 @@ type IPersistentCloudKitContainerEventResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult
-
 type PersistentCloudKitContainerEventResult struct {
 	PersistentStoreResult
 }
@@ -91,7 +90,6 @@ func NewPersistentCloudKitContainerEventResult() PersistentCloudKitContainerEven
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/result
-
 func (p_ PersistentCloudKitContainerEventResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("result"))
 	return rv
@@ -102,7 +100,6 @@ func (p_ PersistentCloudKitContainerEventResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/resultType-swift.property
-
 func (p_ PersistentCloudKitContainerEventResult) ResultType() PersistentCloudKitContainerEventResultType {
 	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv

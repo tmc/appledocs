@@ -31,16 +31,16 @@ type IStackView interface {
 	IView
 	AddArrangedSubview(view IView)
 	AddViewInGravity(view IView, gravity IStackViewGravity)
-	ClippingResistancePriorityForOrientation(orientation LayoutConstraintOrientation) LayoutPriority
+	ClippingResistancePriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority
 	CustomSpacingAfterView(view IView) float64
-	HuggingPriorityForOrientation(orientation LayoutConstraintOrientation) LayoutPriority
+	HuggingPriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority
 	InsertArrangedSubviewAtIndex(view IView, index int)
 	InsertViewAtIndexInGravity(view IView, index uint, gravity IStackViewGravity)
 	RemoveArrangedSubview(view IView)
 	RemoveView(view IView)
-	SetClippingResistancePriorityForOrientation(clippingResistancePriority LayoutPriority, orientation LayoutConstraintOrientation)
+	SetClippingResistancePriorityForOrientation(clippingResistancePriority LayoutPriority, orientation ILayoutConstraintOrientation)
 	SetCustomSpacingAfterView(spacing float64, view IView)
-	SetHuggingPriorityForOrientation(huggingPriority LayoutPriority, orientation LayoutConstraintOrientation)
+	SetHuggingPriorityForOrientation(huggingPriority LayoutPriority, orientation ILayoutConstraintOrientation)
 	SetViewsInGravity(views []View, gravity IStackViewGravity)
 	SetVisibilityPriorityForView(priority StackViewVisibilityPriority, view IView)
 	ViewsInGravity(gravity IStackViewGravity) []View
@@ -60,14 +60,14 @@ type IStackView interface {
 	HasEqualSpacing() bool
 	SetHasEqualSpacing(value bool)
 	Orientation() UserInterfaceLayoutOrientation
-	SetOrientation(value UserInterfaceLayoutOrientation)
+	SetOrientation(value IUserInterfaceLayoutOrientation)
 	Spacing() float64
 	SetSpacing(value float64)
 	Views() []View
 	IsHidden() bool
 	SetIsHidden(value bool)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
 }
 
 // A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.
@@ -79,7 +79,6 @@ type IStackView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView
-
 type StackView struct {
 	View
 }
@@ -126,12 +125,10 @@ func NewStackView() StackView {
 
 
 
-
 // Creates and returns a stack view with a specified array of views.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/init(views:)
-
 func NewStackViewWithViews(views []View) StackView {
 	rv := objc.Send[StackView](objc.ID(getStackViewClass().class), objc.Sel("stackViewWithViews:"), views)
 	return rv
@@ -143,188 +140,155 @@ func NewStackViewWithViews(views []View) StackView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/init(views:)
-
 func (sc _StackViewClass) StackViewWithViews(views []View) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stackViewWithViews:"), views)
 	return rv
 }
 
 
-
 // Adds the specified view to the end of the arranged subviews list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/addArrangedSubview(_:)
-
 func (s_ StackView) AddArrangedSubview(view IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addArrangedSubview:"), view)
 }
-
 
 
 // Adds a view to the end of the stack view gravity area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/addView(_:in:)
-
 func (s_ StackView) AddViewInGravity(view IView, gravity IStackViewGravity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addView:inGravity:"), view, gravity)
 }
-
 
 
 // Returns the Auto Layout priority for resisting clipping of views in the stack view when Auto Layout attempts to reduce the stack view’s size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/clippingResistancePriority(for:)
-
-func (s_ StackView) ClippingResistancePriorityForOrientation(orientation LayoutConstraintOrientation) LayoutPriority {
+func (s_ StackView) ClippingResistancePriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority {
 	rv := objc.Send[LayoutPriority](s_.ID, objc.Sel("clippingResistancePriorityForOrientation:"), orientation)
 	return rv
 }
-
 
 
 // Returns the custom spacing, in points, between a specified view in the stack view and the view that follows it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/customSpacing(after:)
-
 func (s_ StackView) CustomSpacingAfterView(view IView) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("customSpacingAfterView:"), view)
 	return rv
 }
 
 
-
 // Returns the Auto Layout priority for the stack view to minimize its size to fit its contained views as closely as possible, for a specified user interface axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/huggingPriority(for:)
-
-func (s_ StackView) HuggingPriorityForOrientation(orientation LayoutConstraintOrientation) LayoutPriority {
+func (s_ StackView) HuggingPriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority {
 	rv := objc.Send[LayoutPriority](s_.ID, objc.Sel("huggingPriorityForOrientation:"), orientation)
 	return rv
 }
-
 
 
 // Adds the provided view to the array of arranged subviews at the specified index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/insertArrangedSubview(_:at:)
-
 func (s_ StackView) InsertArrangedSubviewAtIndex(view IView, index int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertArrangedSubview:atIndex:"), view, index)
 }
-
 
 
 // Adds a view to a stack view gravity area at a specified index position.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/insertView(_:at:in:)
-
 func (s_ StackView) InsertViewAtIndexInGravity(view IView, index uint, gravity IStackViewGravity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertView:atIndex:inGravity:"), view, index, gravity)
 }
-
 
 
 // Removes the provided view from the stack’s array of arranged subviews.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/removeArrangedSubview(_:)
-
 func (s_ StackView) RemoveArrangedSubview(view IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeArrangedSubview:"), view)
 }
-
 
 
 // Removes a specified view from the stack view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/removeView(_:)
-
 func (s_ StackView) RemoveView(view IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeView:"), view)
 }
-
 
 
 // Sets the Auto Layout priority for resisting clipping of views in the stack view when Auto Layout attempts to reduce the stack view’s size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/setClippingResistancePriority(_:for:)
-
-func (s_ StackView) SetClippingResistancePriorityForOrientation(clippingResistancePriority LayoutPriority, orientation LayoutConstraintOrientation) {
+func (s_ StackView) SetClippingResistancePriorityForOrientation(clippingResistancePriority LayoutPriority, orientation ILayoutConstraintOrientation) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClippingResistancePriority:forOrientation:"), clippingResistancePriority, orientation)
 }
-
 
 
 // Specifies the custom spacing, in points, between a specified view and the view that follows it in the stack view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/setCustomSpacing(_:after:)
-
 func (s_ StackView) SetCustomSpacingAfterView(spacing float64, view IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomSpacing:afterView:"), spacing, view)
 }
-
 
 
 // Sets the Auto Layout priority for the stack view to minimize its size, for a specified user interface axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/setHuggingPriority(_:for:)
-
-func (s_ StackView) SetHuggingPriorityForOrientation(huggingPriority LayoutPriority, orientation LayoutConstraintOrientation) {
+func (s_ StackView) SetHuggingPriorityForOrientation(huggingPriority LayoutPriority, orientation ILayoutConstraintOrientation) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHuggingPriority:forOrientation:"), huggingPriority, orientation)
 }
-
 
 
 // Specifies an array of views for a specified gravity area in the stack view, replacing any previous views in that area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/setViews(_:in:)
-
 func (s_ StackView) SetViewsInGravity(views []View, gravity IStackViewGravity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setViews:inGravity:"), views, gravity)
 }
-
 
 
 // Sets the Auto Layout priority for a view to remain attached to the stack view when Auto Layout reduces the stack view’s size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)
-
 func (s_ StackView) SetVisibilityPriorityForView(priority StackViewVisibilityPriority, view IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVisibilityPriority:forView:"), priority, view)
 }
-
 
 
 // Returns the array of views in the specified gravity area in the stack view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/views(in:)
-
 func (s_ StackView) ViewsInGravity(gravity IStackViewGravity) []View {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("viewsInGravity:"), gravity)
 	return rv
 }
 
 
-
 // Returns the visibility priority for a specified view in the stack view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/visibilityPriority(for:)
-
 func (s_ StackView) VisibilityPriorityForView(view IView) StackViewVisibilityPriority {
 	rv := objc.Send[StackViewVisibilityPriority](s_.ID, objc.Sel("visibilityPriorityForView:"), view)
 	return rv
@@ -335,7 +299,6 @@ func (s_ StackView) VisibilityPriorityForView(view IView) StackViewVisibilityPri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/alignment
-
 func (s_ StackView) Alignment() LayoutAttribute {
 	rv := objc.Send[LayoutAttribute](s_.ID, objc.Sel("alignment"))
 	return rv
@@ -346,7 +309,6 @@ func (s_ StackView) Alignment() LayoutAttribute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/alignment
-
 func (s_ StackView) SetAlignment(value LayoutAttribute) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAlignment:"), value)
 }
@@ -356,7 +318,6 @@ func (s_ StackView) SetAlignment(value LayoutAttribute) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/arrangedSubviews
-
 func (s_ StackView) ArrangedSubviews() []View {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("arrangedSubviews"))
 	return rv
@@ -367,7 +328,6 @@ func (s_ StackView) ArrangedSubviews() []View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/delegate
-
 func (s_ StackView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -378,7 +338,6 @@ func (s_ StackView) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/delegate
-
 func (s_ StackView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -388,7 +347,6 @@ func (s_ StackView) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/detachedViews
-
 func (s_ StackView) DetachedViews() []View {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("detachedViews"))
 	return rv
@@ -399,7 +357,6 @@ func (s_ StackView) DetachedViews() []View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/detachesHiddenViews
-
 func (s_ StackView) DetachesHiddenViews() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("detachesHiddenViews"))
 	return rv
@@ -410,7 +367,6 @@ func (s_ StackView) DetachesHiddenViews() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/detachesHiddenViews
-
 func (s_ StackView) SetDetachesHiddenViews(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDetachesHiddenViews:"), value)
 }
@@ -418,7 +374,6 @@ func (s_ StackView) SetDetachesHiddenViews(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/distribution-swift.property
-
 func (s_ StackView) Distribution() StackViewDistribution {
 	rv := objc.Send[StackViewDistribution](s_.ID, objc.Sel("distribution"))
 	return rv
@@ -427,7 +382,6 @@ func (s_ StackView) Distribution() StackViewDistribution {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/distribution-swift.property
-
 func (s_ StackView) SetDistribution(value IStackViewDistribution) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDistribution:"), value)
 }
@@ -437,7 +391,6 @@ func (s_ StackView) SetDistribution(value IStackViewDistribution) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/edgeInsets
-
 func (s_ StackView) EdgeInsets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("edgeInsets"))
 	return rv
@@ -448,7 +401,6 @@ func (s_ StackView) EdgeInsets() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/edgeInsets
-
 func (s_ StackView) SetEdgeInsets(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEdgeInsets:"), value)
 }
@@ -458,7 +410,6 @@ func (s_ StackView) SetEdgeInsets(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/hasEqualSpacing
-
 func (s_ StackView) HasEqualSpacing() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasEqualSpacing"))
 	return rv
@@ -469,7 +420,6 @@ func (s_ StackView) HasEqualSpacing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/hasEqualSpacing
-
 func (s_ StackView) SetHasEqualSpacing(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHasEqualSpacing:"), value)
 }
@@ -479,7 +429,6 @@ func (s_ StackView) SetHasEqualSpacing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/orientation
-
 func (s_ StackView) Orientation() UserInterfaceLayoutOrientation {
 	rv := objc.Send[UserInterfaceLayoutOrientation](s_.ID, objc.Sel("orientation"))
 	return rv
@@ -490,8 +439,7 @@ func (s_ StackView) Orientation() UserInterfaceLayoutOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/orientation
-
-func (s_ StackView) SetOrientation(value UserInterfaceLayoutOrientation) {
+func (s_ StackView) SetOrientation(value IUserInterfaceLayoutOrientation) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -500,7 +448,6 @@ func (s_ StackView) SetOrientation(value UserInterfaceLayoutOrientation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/spacing
-
 func (s_ StackView) Spacing() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("spacing"))
 	return rv
@@ -511,7 +458,6 @@ func (s_ StackView) Spacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/spacing
-
 func (s_ StackView) SetSpacing(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpacing:"), value)
 }
@@ -521,7 +467,6 @@ func (s_ StackView) SetSpacing(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/views
-
 func (s_ StackView) Views() []View {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("views"))
 	return rv
@@ -532,7 +477,6 @@ func (s_ StackView) Views() []View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/ishidden
-
 func (s_ StackView) IsHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isHidden"))
 	return rv
@@ -543,7 +487,6 @@ func (s_ StackView) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/ishidden
-
 func (s_ StackView) SetIsHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -553,7 +496,6 @@ func (s_ StackView) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection
-
 func (s_ StackView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 	rv := objc.Send[UserInterfaceLayoutDirection](s_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
@@ -564,8 +506,7 @@ func (s_ StackView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection
-
-func (s_ StackView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
+func (s_ StackView) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

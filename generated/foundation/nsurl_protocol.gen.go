@@ -30,13 +30,13 @@ type _URLProtocolClass struct {
 // An interface definition for the [URLProtocol] class.
 type IURLProtocol interface {
 	objectivec.IObject
-	CachedResponse() NSCachedURLResponse
+	CachedResponse() ICachedURLResponse
 	SetCachedResponse(value ICachedURLResponse)
 	Client() unsafe.Pointer
 	SetClient(value unsafe.Pointer)
-	Request() URLRequest
+	Request() IURLRequest
 	SetRequest(value IURLRequest)
-	Task() NSURLSessionTask
+	Task() IURLSessionTask
 	SetTask(value IURLSessionTask)
 	ProtocolClasses() unsafe.Pointer
 	SetProtocolClasses(value unsafe.Pointer)
@@ -128,7 +128,7 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-func (u_ URLProtocol) CachedResponse() NSCachedURLResponse {
+func (u_ URLProtocol) CachedResponse() ICachedURLResponse {
 	rv := objc.Send[NSCachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
@@ -166,7 +166,7 @@ func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-func (u_ URLProtocol) Request() URLRequest {
+func (u_ URLProtocol) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
@@ -185,7 +185,7 @@ func (u_ URLProtocol) SetRequest(value IURLRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
-func (u_ URLProtocol) Task() NSURLSessionTask {
+func (u_ URLProtocol) Task() IURLSessionTask {
 	rv := objc.Send[NSURLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
 }

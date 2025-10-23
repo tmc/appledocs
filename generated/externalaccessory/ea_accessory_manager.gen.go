@@ -48,7 +48,6 @@ type IEAAccessoryManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager
-
 type EAAccessoryManager struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewEAAccessoryManager() EAAccessoryManager {
 
 
 
-
 // Displays an alert that allows the user to pair the device with a Bluetooth accessory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager/showBluetoothAccessoryPicker(withNameFilter:completion:)
-
 func (e_ EAAccessoryManager) ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("showBluetoothAccessoryPickerWithNameFilter:completion:"), predicate, completion)
 }
@@ -108,7 +105,6 @@ func (e_ EAAccessoryManager) ShowBluetoothAccessoryPickerWithNameFilterCompletio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorykey
-
 func (e_ EAAccessoryManager) EAAccessoryKey() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessoryKey"))
 	return rv
@@ -119,7 +115,6 @@ func (e_ EAAccessoryManager) EAAccessoryKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager/connectedaccessories
-
 func (e_ EAAccessoryManager) ConnectedAccessories() EAAccessory {
 	rv := objc.Send[EAAccessory](e_.ID, objc.Sel("connectedAccessories"))
 	return rv
@@ -130,7 +125,6 @@ func (e_ EAAccessoryManager) ConnectedAccessories() EAAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager/connectedaccessories
-
 func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConnectedAccessories:"), value)
 }
@@ -140,7 +134,6 @@ func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey
-
 func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
 	return rv
@@ -151,7 +144,6 @@ func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain
-
 func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
 	return rv

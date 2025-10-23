@@ -37,11 +37,11 @@ type IDate interface {
 	SrAbsoluteTime() unsafe.Pointer
 	SetSrAbsoluteTime(value unsafe.Pointer)
 	TimeIntervalSince1970() TimeInterval
-	SetTimeIntervalSince1970(value ITimeInterval)
+	SetTimeIntervalSince1970(value TimeInterval)
 	TimeIntervalSinceNow() TimeInterval
-	SetTimeIntervalSinceNow(value ITimeInterval)
+	SetTimeIntervalSinceNow(value TimeInterval)
 	TimeIntervalSinceReferenceDate() TimeInterval
-	SetTimeIntervalSinceReferenceDate(value ITimeInterval)
+	SetTimeIntervalSinceReferenceDate(value TimeInterval)
 	NSTimeIntervalSince1970() float64
 	SetNSTimeIntervalSince1970(value float64)
 }
@@ -112,7 +112,7 @@ func (dc _DateClass) DistantFuture() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
-func (d_ Date) DistantFuture() NSDate {
+func (d_ Date) DistantFuture() IDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantFuture"))
 	return rv
 }
@@ -185,7 +185,7 @@ func (d_ Date) TimeIntervalSince1970() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
-func (d_ Date) SetTimeIntervalSince1970(value ITimeInterval) {
+func (d_ Date) SetTimeIntervalSince1970(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSince1970:"), value)
 }
 
@@ -204,7 +204,7 @@ func (d_ Date) TimeIntervalSinceNow() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
-func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
+func (d_ Date) SetTimeIntervalSinceNow(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceNow:"), value)
 }
 
@@ -223,7 +223,7 @@ func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincereferencedate-swift.property
-func (d_ Date) SetTimeIntervalSinceReferenceDate(value ITimeInterval) {
+func (d_ Date) SetTimeIntervalSinceReferenceDate(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceReferenceDate:"), value)
 }
 

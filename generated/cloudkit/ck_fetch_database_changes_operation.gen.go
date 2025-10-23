@@ -60,7 +60,6 @@ type ICKFetchDatabaseChangesOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation
-
 type CKFetchDatabaseChangesOperation struct {
 	CKDatabaseOperation
 }
@@ -107,12 +106,10 @@ func NewCKFetchDatabaseChangesOperation() CKFetchDatabaseChangesOperation {
 
 
 
-
 // Creates an operation for fetching database changes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/init(previousServerChangeToken:)
-
 func NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken(previousServerChangeToken ICKServerChangeToken) CKFetchDatabaseChangesOperation {
 	instance := getCKFetchDatabaseChangesOperationClass().Alloc()
 	rv := objc.Send[CKFetchDatabaseChangesOperation](instance.ID, objc.Sel("initWithPreviousServerChangeToken:"), previousServerChangeToken)
@@ -126,7 +123,6 @@ func NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken(previousSer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/changeTokenUpdatedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) ChangeTokenUpdatedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("changeTokenUpdatedBlock"))
 	return rv
@@ -137,7 +133,6 @@ func (c_ CKFetchDatabaseChangesOperation) ChangeTokenUpdatedBlock() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/changeTokenUpdatedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) SetChangeTokenUpdatedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setChangeTokenUpdatedBlock:"), value)
 }
@@ -147,7 +142,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetChangeTokenUpdatedBlock(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchAllChanges
-
 func (c_ CKFetchDatabaseChangesOperation) FetchAllChanges() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
 	return rv
@@ -158,7 +152,6 @@ func (c_ CKFetchDatabaseChangesOperation) FetchAllChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchAllChanges
-
 func (c_ CKFetchDatabaseChangesOperation) SetFetchAllChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
@@ -168,7 +161,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetFetchAllChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchDatabaseChangesCompletionBlock
-
 func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchDatabaseChangesCompletionBlock"))
 	return rv
@@ -179,7 +171,6 @@ func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesCompletionBlock() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchDatabaseChangesCompletionBlock
-
 func (c_ CKFetchDatabaseChangesOperation) SetFetchDatabaseChangesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchDatabaseChangesCompletionBlock:"), value)
 }
@@ -189,7 +180,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetFetchDatabaseChangesCompletionBlock
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/previousServerChangeToken
-
 func (c_ CKFetchDatabaseChangesOperation) PreviousServerChangeToken() CKServerChangeToken {
 	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
@@ -200,7 +190,6 @@ func (c_ CKFetchDatabaseChangesOperation) PreviousServerChangeToken() CKServerCh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/previousServerChangeToken
-
 func (c_ CKFetchDatabaseChangesOperation) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
@@ -210,7 +199,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetPreviousServerChangeToken(value ICK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDChangedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDChangedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDChangedBlock"))
 	return rv
@@ -221,7 +209,6 @@ func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDChangedBlock() unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDChangedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDChangedBlock:"), value)
 }
@@ -231,7 +218,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDChangedBlock(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasDeletedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDWasDeletedBlock"))
 	return rv
@@ -242,7 +228,6 @@ func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasDeletedBlock() unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasDeletedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDWasDeletedBlock:"), value)
 }
@@ -252,7 +237,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasDeletedBlock(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock
-
 func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock"))
 	return rv
@@ -263,7 +247,6 @@ func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasDeletedDueToUserEnc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock
-
 func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:"), value)
 }
@@ -273,7 +256,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasDeletedDueToUser
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasPurgedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasPurgedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDWasPurgedBlock"))
 	return rv
@@ -284,7 +266,6 @@ func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasPurgedBlock() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasPurgedBlock
-
 func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasPurgedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDWasPurgedBlock:"), value)
 }
@@ -294,7 +275,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasPurgedBlock(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/resultsLimit
-
 func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("resultsLimit"))
 	return rv
@@ -305,7 +285,6 @@ func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/resultsLimit
-
 func (c_ CKFetchDatabaseChangesOperation) SetResultsLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
@@ -313,7 +292,6 @@ func (c_ CKFetchDatabaseChangesOperation) SetResultsLimit(value uint) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchdatabasechangesresultblock
-
 func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchDatabaseChangesResultBlock"))
 	return rv
@@ -322,7 +300,6 @@ func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesResultBlock() unsa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchdatabasechangesresultblock
-
 func (c_ CKFetchDatabaseChangesOperation) SetFetchDatabaseChangesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchDatabaseChangesResultBlock:"), value)
 }

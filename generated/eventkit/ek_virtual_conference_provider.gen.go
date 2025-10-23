@@ -43,7 +43,6 @@ type IEKVirtualConferenceProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider
-
 type EKVirtualConferenceProvider struct {
 	objectivec.Object
 }
@@ -88,23 +87,19 @@ func NewEKVirtualConferenceProvider() EKVirtualConferenceProvider {
 
 
 
-
 // Provides an array of room types where events take place.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)
-
 func (e_ EKVirtualConferenceProvider) FetchAvailableRoomTypesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchAvailableRoomTypesWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Provides details about a virtual conference that takes place in a room the user selects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)
-
 func (e_ EKVirtualConferenceProvider) FetchVirtualConferenceForIdentifierCompletionHandler(identifier IEKVirtualConferenceRoomTypeIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchVirtualConferenceForIdentifier:completionHandler:"), identifier, completionHandler)
 }

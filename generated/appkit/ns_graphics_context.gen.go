@@ -68,7 +68,6 @@ type IGraphicsContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext
-
 type GraphicsContext struct {
 	objectivec.Object
 }
@@ -113,60 +112,50 @@ func NewGraphicsContext() GraphicsContext {
 
 
 
-
 // Creates a graphics context using the specified attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(attributes:)
-
 func NewGraphicsContextWithAttributes(attributes unsafe.Pointer) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithAttributes:"), attributes)
 	return rv
 }
 
 
-
 // Creates a new graphics context using the specified bitmap image representation object as the context destination.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)
-
 func NewGraphicsContextWithBitmapImageRep(bitmapRep IBitmapImageRep) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithBitmapImageRep:"), bitmapRep)
 	return rv
 }
 
 
-
 // Creates a new graphics context from the specified Core Graphics context and the initial flipped state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)
-
 func NewGraphicsContextWithCGContextFlipped(graphicsPort coregraphics.CGContextRef, initialFlippedState bool) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithCGContext:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
 
 
-
 // Creates a new graphics context from the specified graphics port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)
-
 func NewGraphicsContextWithGraphicsPortFlipped(graphicsPort unsafe.Pointer, initialFlippedState bool) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithGraphicsPort:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
 
 
-
 // Creates a new graphics context for drawing into a window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(window:)
-
 func NewGraphicsContextWithWindow(window IWindow) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithWindow:"), window)
 	return rv
@@ -178,7 +167,6 @@ func NewGraphicsContextWithWindow(window IWindow) GraphicsContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/currentContextDrawingToScreen()
-
 func (gc _GraphicsContextClass) CurrentContextDrawingToScreen() bool {
 	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("currentContextDrawingToScreen"))
 	return rv
@@ -189,7 +177,6 @@ func (gc _GraphicsContextClass) CurrentContextDrawingToScreen() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(attributes:)
-
 func (gc _GraphicsContextClass) GraphicsContextWithAttributes(attributes unsafe.Pointer) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithAttributes:"), attributes)
 	return rv
@@ -200,7 +187,6 @@ func (gc _GraphicsContextClass) GraphicsContextWithAttributes(attributes unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)
-
 func (gc _GraphicsContextClass) GraphicsContextWithBitmapImageRep(bitmapRep IBitmapImageRep) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithBitmapImageRep:"), bitmapRep)
 	return rv
@@ -211,7 +197,6 @@ func (gc _GraphicsContextClass) GraphicsContextWithBitmapImageRep(bitmapRep IBit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)
-
 func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort coregraphics.CGContextRef, initialFlippedState bool) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithCGContext:flipped:"), graphicsPort, initialFlippedState)
 	return rv
@@ -222,7 +207,6 @@ func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)
-
 func (gc _GraphicsContextClass) GraphicsContextWithGraphicsPortFlipped(graphicsPort unsafe.Pointer, initialFlippedState bool) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithGraphicsPort:flipped:"), graphicsPort, initialFlippedState)
 	return rv
@@ -233,7 +217,6 @@ func (gc _GraphicsContextClass) GraphicsContextWithGraphicsPortFlipped(graphicsP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(window:)
-
 func (gc _GraphicsContextClass) GraphicsContextWithWindow(window IWindow) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithWindow:"), window)
 	return rv
@@ -244,7 +227,6 @@ func (gc _GraphicsContextClass) GraphicsContextWithWindow(window IWindow) Graphi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.type.method
-
 func (gc _GraphicsContextClass) RestoreGraphicsState() {
 	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("restoreGraphicsState"))
 }
@@ -254,7 +236,6 @@ func (gc _GraphicsContextClass) RestoreGraphicsState() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.type.method
-
 func (gc _GraphicsContextClass) SaveGraphicsState() {
 	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("saveGraphicsState"))
 }
@@ -264,7 +245,6 @@ func (gc _GraphicsContextClass) SaveGraphicsState() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/setGraphicsState(_:)
-
 func (gc _GraphicsContextClass) SetGraphicsState(gState int) {
 	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("setGraphicsState:"), gState)
 }
@@ -274,63 +254,52 @@ func (gc _GraphicsContextClass) SetGraphicsState(gState int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
-
 func (gc _GraphicsContextClass) CurrentContext() GraphicsContext {
 	rv := objc.Send[NSGraphicsContext](objc.ID(gc.class), objc.Sel("currentContext"))
 	return rv
 }
 
-
 // Forces any buffered operations or data to be sent to the graphics context’s destination.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/flushGraphics()
-
 func (g_ GraphicsContext) FlushGraphics() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("flushGraphics"))
 }
-
 
 
 // Returns the object used by the context to track the hierarchy of views with locked focus.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/focusStack
-
 func (g_ GraphicsContext) FocusStack() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("focusStack"))
 	return rv
 }
 
 
-
 // Removes the context’s graphics state from the top of the graphics state stack and makes the next graphics state the current graphics state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method
-
 func (g_ GraphicsContext) RestoreGraphicsState() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("restoreGraphicsState"))
 }
-
 
 
 // Saves the current graphics state and creates a new graphics state on the top of the stack.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method
-
 func (g_ GraphicsContext) SaveGraphicsState() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("saveGraphicsState"))
 }
-
 
 
 // Sets the object used by the receiver to track the hierarchy of views with locked focus.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/setFocusStack:
-
 func (g_ GraphicsContext) SetFocusStack(stack objectivec.IObject) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFocusStack:"), stack)
 }
@@ -340,7 +309,6 @@ func (g_ GraphicsContext) SetFocusStack(stack objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/attributes
-
 func (g_ GraphicsContext) Attributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("attributes"))
 	return rv
@@ -351,7 +319,6 @@ func (g_ GraphicsContext) Attributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/cgContext
-
 func (g_ GraphicsContext) CGContext() coregraphics.CGContextRef {
 	rv := objc.Send[coregraphics.CGContextRef](g_.ID, objc.Sel("CGContext"))
 	return rv
@@ -362,7 +329,6 @@ func (g_ GraphicsContext) CGContext() coregraphics.CGContextRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/ciContext
-
 func (g_ GraphicsContext) CIContext() coreimage.Context {
 	rv := objc.Send[coreimage.Context](g_.ID, objc.Sel("CIContext"))
 	return rv
@@ -373,7 +339,6 @@ func (g_ GraphicsContext) CIContext() coreimage.Context {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/colorRenderingIntent
-
 func (g_ GraphicsContext) ColorRenderingIntent() ColorRenderingIntent {
 	rv := objc.Send[ColorRenderingIntent](g_.ID, objc.Sel("colorRenderingIntent"))
 	return rv
@@ -384,7 +349,6 @@ func (g_ GraphicsContext) ColorRenderingIntent() ColorRenderingIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/colorRenderingIntent
-
 func (g_ GraphicsContext) SetColorRenderingIntent(value IColorRenderingIntent) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColorRenderingIntent:"), value)
 }
@@ -394,7 +358,6 @@ func (g_ GraphicsContext) SetColorRenderingIntent(value IColorRenderingIntent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/compositingOperation
-
 func (g_ GraphicsContext) CompositingOperation() CompositingOperation {
 	rv := objc.Send[CompositingOperation](g_.ID, objc.Sel("compositingOperation"))
 	return rv
@@ -405,7 +368,6 @@ func (g_ GraphicsContext) CompositingOperation() CompositingOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/compositingOperation
-
 func (g_ GraphicsContext) SetCompositingOperation(value ICompositingOperation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompositingOperation:"), value)
 }
@@ -415,7 +377,6 @@ func (g_ GraphicsContext) SetCompositingOperation(value ICompositingOperation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
-
 func (g_ GraphicsContext) CurrentContext() NSGraphicsContext {
 	rv := objc.Send[NSGraphicsContext](g_.ID, objc.Sel("currentContext"))
 	return rv
@@ -426,7 +387,6 @@ func (g_ GraphicsContext) CurrentContext() NSGraphicsContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/current
-
 func (g_ GraphicsContext) SetCurrentContext(value IGraphicsContext) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCurrentContext:"), value)
 }
@@ -436,7 +396,6 @@ func (g_ GraphicsContext) SetCurrentContext(value IGraphicsContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/graphicsPort
-
 func (g_ GraphicsContext) GraphicsPort() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("graphicsPort"))
 	return rv
@@ -447,7 +406,6 @@ func (g_ GraphicsContext) GraphicsPort() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/imageInterpolation
-
 func (g_ GraphicsContext) ImageInterpolation() ImageInterpolation {
 	rv := objc.Send[ImageInterpolation](g_.ID, objc.Sel("imageInterpolation"))
 	return rv
@@ -458,7 +416,6 @@ func (g_ GraphicsContext) ImageInterpolation() ImageInterpolation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/imageInterpolation
-
 func (g_ GraphicsContext) SetImageInterpolation(value IImageInterpolation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setImageInterpolation:"), value)
 }
@@ -468,7 +425,6 @@ func (g_ GraphicsContext) SetImageInterpolation(value IImageInterpolation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/isDrawingToScreen
-
 func (g_ GraphicsContext) DrawingToScreen() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("drawingToScreen"))
 	return rv
@@ -479,7 +435,6 @@ func (g_ GraphicsContext) DrawingToScreen() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/isFlipped
-
 func (g_ GraphicsContext) Flipped() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("flipped"))
 	return rv
@@ -490,7 +445,6 @@ func (g_ GraphicsContext) Flipped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/patternPhase
-
 func (g_ GraphicsContext) PatternPhase() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](g_.ID, objc.Sel("patternPhase"))
 	return rv
@@ -501,7 +455,6 @@ func (g_ GraphicsContext) PatternPhase() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/patternPhase
-
 func (g_ GraphicsContext) SetPatternPhase(value coregraphics.CGPoint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPatternPhase:"), value)
 }
@@ -511,7 +464,6 @@ func (g_ GraphicsContext) SetPatternPhase(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/shouldAntialias
-
 func (g_ GraphicsContext) ShouldAntialias() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("shouldAntialias"))
 	return rv
@@ -522,7 +474,6 @@ func (g_ GraphicsContext) ShouldAntialias() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/shouldAntialias
-
 func (g_ GraphicsContext) SetShouldAntialias(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShouldAntialias:"), value)
 }
@@ -532,7 +483,6 @@ func (g_ GraphicsContext) SetShouldAntialias(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isdrawingtoscreen
-
 func (g_ GraphicsContext) IsDrawingToScreen() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isDrawingToScreen"))
 	return rv
@@ -543,7 +493,6 @@ func (g_ GraphicsContext) IsDrawingToScreen() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isdrawingtoscreen
-
 func (g_ GraphicsContext) SetIsDrawingToScreen(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsDrawingToScreen:"), value)
 }
@@ -553,7 +502,6 @@ func (g_ GraphicsContext) SetIsDrawingToScreen(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isflipped
-
 func (g_ GraphicsContext) IsFlipped() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isFlipped"))
 	return rv
@@ -564,7 +512,6 @@ func (g_ GraphicsContext) IsFlipped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isflipped
-
 func (g_ GraphicsContext) SetIsFlipped(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsFlipped:"), value)
 }

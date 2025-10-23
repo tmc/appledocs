@@ -41,7 +41,6 @@ type IGridGraphNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode
-
 type GridGraphNode struct {
 	GraphNode
 }
@@ -88,12 +87,10 @@ func NewGridGraphNode() GridGraphNode {
 
 
 
-
 // Initializes a graph node with the specified position on a grid.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode/init(gridPosition:)
-
 func NewGridGraphNodeWithGridPosition(gridPosition unsafe.Pointer) GridGraphNode {
 	instance := getGridGraphNodeClass().Alloc()
 	rv := objc.Send[GridGraphNode](instance.ID, objc.Sel("initWithGridPosition:"), gridPosition)
@@ -107,7 +104,6 @@ func NewGridGraphNodeWithGridPosition(gridPosition unsafe.Pointer) GridGraphNode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode/nodeWithGridPosition:
-
 func (gc _GridGraphNodeClass) NodeWithGridPosition(gridPosition unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithGridPosition:"), gridPosition)
 	return rv
@@ -118,7 +114,6 @@ func (gc _GridGraphNodeClass) NodeWithGridPosition(gridPosition unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraphNode/gridPosition
-
 func (g_ GridGraphNode) GridPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gridPosition"))
 	return rv

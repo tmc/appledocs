@@ -41,7 +41,6 @@ type IHKFitzpatrickSkinTypeObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFitzpatrickSkinTypeObject
-
 type HKFitzpatrickSkinTypeObject struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewHKFitzpatrickSkinTypeObject() HKFitzpatrickSkinTypeObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
-
 func (h_ HKFitzpatrickSkinTypeObject) SkinType() HKFitzpatrickSkinType {
 	rv := objc.Send[HKFitzpatrickSkinType](h_.ID, objc.Sel("skinType"))
 	return rv
@@ -101,7 +99,6 @@ func (h_ HKFitzpatrickSkinTypeObject) SkinType() HKFitzpatrickSkinType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
-
 func (h_ HKFitzpatrickSkinTypeObject) SetSkinType(value HKFitzpatrickSkinType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSkinType:"), value)
 }

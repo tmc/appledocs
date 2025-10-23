@@ -40,9 +40,9 @@ type IUserNotificationCenter interface {
 	DeliveredNotifications() []UserNotification
 	ScheduledNotifications() []UserNotification
 	SetScheduledNotifications(value []UserNotification)
-	ActualDeliveryDate() Date
+	ActualDeliveryDate() IDate
 	SetActualDeliveryDate(value IDate)
-	DeliveryDate() Date
+	DeliveryDate() IDate
 	SetDeliveryDate(value IDate)
 	IsPresented() bool
 	SetIsPresented(value bool)
@@ -159,7 +159,7 @@ func (u_ UserNotificationCenter) ScheduleNotification(notification IUserNotifica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
-func (u_ UserNotificationCenter) DefaultUserNotificationCenter() NSUserNotificationCenter {
+func (u_ UserNotificationCenter) DefaultUserNotificationCenter() IUserNotificationCenter {
 	rv := objc.Send[NSUserNotificationCenter](u_.ID, objc.Sel("defaultUserNotificationCenter"))
 	return rv
 }
@@ -227,7 +227,7 @@ func (u_ UserNotificationCenter) SetScheduledNotifications(value []UserNotificat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-func (u_ UserNotificationCenter) ActualDeliveryDate() Date {
+func (u_ UserNotificationCenter) ActualDeliveryDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
 }
@@ -246,7 +246,7 @@ func (u_ UserNotificationCenter) SetActualDeliveryDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-func (u_ UserNotificationCenter) DeliveryDate() Date {
+func (u_ UserNotificationCenter) DeliveryDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("deliveryDate"))
 	return rv
 }

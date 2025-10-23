@@ -158,7 +158,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioConvertHostTimeToNanos(_:)
-
 func AudioConvertHostTimeToNanos(inHostTime unsafe.Pointer) unsafe.Pointer {
 	return _AudioConvertHostTimeToNanos(inHostTime)
 	}
@@ -170,7 +169,6 @@ func AudioConvertHostTimeToNanos(inHostTime unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioConvertNanosToHostTime(_:)
-
 func AudioConvertNanosToHostTime(inNanos unsafe.Pointer) unsafe.Pointer {
 	return _AudioConvertNanosToHostTime(inNanos)
 	}
@@ -184,7 +182,6 @@ func AudioConvertNanosToHostTime(inNanos unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceAddIOProc
-
 func AudioDeviceAddIOProc(inDevice unsafe.Pointer, inProc unsafe.Pointer, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceAddIOProc(inDevice, inProc, inClientData)
 	}
@@ -198,7 +195,6 @@ func AudioDeviceAddIOProc(inDevice unsafe.Pointer, inProc unsafe.Pointer, inClie
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceAddPropertyListener
-
 func AudioDeviceAddPropertyListener(inDevice unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, inProc unsafe.Pointer, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceAddPropertyListener(inDevice, inChannel, isInput, inPropertyID, inProc, inClientData)
 	}
@@ -210,7 +206,6 @@ func AudioDeviceAddPropertyListener(inDevice unsafe.Pointer, inChannel unsafe.Po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceCreateIOProcID(_:_:_:_:)
-
 func AudioDeviceCreateIOProcID(inDevice unsafe.Pointer, inProc unsafe.Pointer, inClientData unsafe.Pointer, outIOProcID unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceCreateIOProcID(inDevice, inProc, inClientData, outIOProcID)
 	}
@@ -222,7 +217,6 @@ func AudioDeviceCreateIOProcID(inDevice unsafe.Pointer, inProc unsafe.Pointer, i
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceCreateIOProcIDWithBlock(_:_:_:_:)
-
 func AudioDeviceCreateIOProcIDWithBlock(outIOProcID unsafe.Pointer, inDevice unsafe.Pointer, inDispatchQueue unsafe.Pointer, inIOBlock unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceCreateIOProcIDWithBlock(outIOProcID, inDevice, inDispatchQueue, inIOBlock)
 	}
@@ -234,7 +228,6 @@ func AudioDeviceCreateIOProcIDWithBlock(outIOProcID unsafe.Pointer, inDevice uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceDestroyIOProcID(_:_:)
-
 func AudioDeviceDestroyIOProcID(inDevice unsafe.Pointer, inIOProcID unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceDestroyIOProcID(inDevice, inIOProcID)
 	}
@@ -246,7 +239,6 @@ func AudioDeviceDestroyIOProcID(inDevice unsafe.Pointer, inIOProcID unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetCurrentTime(_:_:)
-
 func AudioDeviceGetCurrentTime(inDevice unsafe.Pointer, outTime unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetCurrentTime(inDevice, outTime)
 	}
@@ -258,7 +250,6 @@ func AudioDeviceGetCurrentTime(inDevice unsafe.Pointer, outTime unsafe.Pointer) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetNearestStartTime(_:_:_:)
-
 func AudioDeviceGetNearestStartTime(inDevice unsafe.Pointer, ioRequestedStartTime unsafe.Pointer, inFlags unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetNearestStartTime(inDevice, ioRequestedStartTime, inFlags)
 	}
@@ -272,7 +263,6 @@ func AudioDeviceGetNearestStartTime(inDevice unsafe.Pointer, ioRequestedStartTim
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetProperty
-
 func AudioDeviceGetProperty(inDevice unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetProperty(inDevice, inChannel, isInput, inPropertyID, ioPropertyDataSize, outPropertyData)
 	}
@@ -286,7 +276,6 @@ func AudioDeviceGetProperty(inDevice unsafe.Pointer, inChannel unsafe.Pointer, i
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceGetPropertyInfo
-
 func AudioDeviceGetPropertyInfo(inDevice unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceGetPropertyInfo(inDevice, inChannel, isInput, inPropertyID, outSize, outWritable)
 	}
@@ -300,7 +289,6 @@ func AudioDeviceGetPropertyInfo(inDevice unsafe.Pointer, inChannel unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceRead
-
 func AudioDeviceRead(inDevice unsafe.Pointer, inStartTime unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceRead(inDevice, inStartTime, outData)
 	}
@@ -314,7 +302,6 @@ func AudioDeviceRead(inDevice unsafe.Pointer, inStartTime unsafe.Pointer, outDat
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceRemoveIOProc
-
 func AudioDeviceRemoveIOProc(inDevice unsafe.Pointer, inProc unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceRemoveIOProc(inDevice, inProc)
 	}
@@ -328,7 +315,6 @@ func AudioDeviceRemoveIOProc(inDevice unsafe.Pointer, inProc unsafe.Pointer) uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceRemovePropertyListener
-
 func AudioDeviceRemovePropertyListener(inDevice unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, inProc unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceRemovePropertyListener(inDevice, inChannel, isInput, inPropertyID, inProc)
 	}
@@ -342,7 +328,6 @@ func AudioDeviceRemovePropertyListener(inDevice unsafe.Pointer, inChannel unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceSetProperty
-
 func AudioDeviceSetProperty(inDevice unsafe.Pointer, inWhen unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceSetProperty(inDevice, inWhen, inChannel, isInput, inPropertyID, inPropertyDataSize, inPropertyData)
 	}
@@ -354,7 +339,6 @@ func AudioDeviceSetProperty(inDevice unsafe.Pointer, inWhen unsafe.Pointer, inCh
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceStart(_:_:)
-
 func AudioDeviceStart(inDevice unsafe.Pointer, inProcID unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceStart(inDevice, inProcID)
 	}
@@ -366,7 +350,6 @@ func AudioDeviceStart(inDevice unsafe.Pointer, inProcID unsafe.Pointer) unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceStartAtTime(_:_:_:_:)
-
 func AudioDeviceStartAtTime(inDevice unsafe.Pointer, inProcID unsafe.Pointer, ioRequestedStartTime unsafe.Pointer, inFlags unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceStartAtTime(inDevice, inProcID, ioRequestedStartTime, inFlags)
 	}
@@ -378,7 +361,6 @@ func AudioDeviceStartAtTime(inDevice unsafe.Pointer, inProcID unsafe.Pointer, io
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceStop(_:_:)
-
 func AudioDeviceStop(inDevice unsafe.Pointer, inProcID unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceStop(inDevice, inProcID)
 	}
@@ -390,7 +372,6 @@ func AudioDeviceStop(inDevice unsafe.Pointer, inProcID unsafe.Pointer) unsafe.Po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDeviceTranslateTime(_:_:_:)
-
 func AudioDeviceTranslateTime(inDevice unsafe.Pointer, inTime unsafe.Pointer, outTime unsafe.Pointer) unsafe.Pointer {
 	return _AudioDeviceTranslateTime(inDevice, inTime, outTime)
 	}
@@ -400,7 +381,6 @@ func AudioDeviceTranslateTime(inDevice unsafe.Pointer, inTime unsafe.Pointer, ou
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInClose
-
 func AudioDriverPlugInClose(inDevice unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInClose(inDevice)
 	}
@@ -410,7 +390,6 @@ func AudioDriverPlugInClose(inDevice unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInDeviceGetProperty
-
 func AudioDriverPlugInDeviceGetProperty(inDevice unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInDeviceGetProperty(inDevice, inChannel, isInput, inPropertyID, ioPropertyDataSize, outPropertyData)
 	}
@@ -420,7 +399,6 @@ func AudioDriverPlugInDeviceGetProperty(inDevice unsafe.Pointer, inChannel unsaf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInDeviceGetPropertyInfo
-
 func AudioDriverPlugInDeviceGetPropertyInfo(inDevice unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInDeviceGetPropertyInfo(inDevice, inChannel, isInput, inPropertyID, outSize, outWritable)
 	}
@@ -430,7 +408,6 @@ func AudioDriverPlugInDeviceGetPropertyInfo(inDevice unsafe.Pointer, inChannel u
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInDeviceSetProperty
-
 func AudioDriverPlugInDeviceSetProperty(inDevice unsafe.Pointer, inWhen unsafe.Pointer, inChannel unsafe.Pointer, isInput unsafe.Pointer, inPropertyID unsafe.Pointer, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInDeviceSetProperty(inDevice, inWhen, inChannel, isInput, inPropertyID, inPropertyDataSize, inPropertyData)
 	}
@@ -440,7 +417,6 @@ func AudioDriverPlugInDeviceSetProperty(inDevice unsafe.Pointer, inWhen unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInOpen
-
 func AudioDriverPlugInOpen(inHostInfo unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInOpen(inHostInfo)
 	}
@@ -450,7 +426,6 @@ func AudioDriverPlugInOpen(inHostInfo unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInStreamGetProperty
-
 func AudioDriverPlugInStreamGetProperty(inDevice unsafe.Pointer, inIOAudioStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInStreamGetProperty(inDevice, inIOAudioStream, inChannel, inPropertyID, ioPropertyDataSize, outPropertyData)
 	}
@@ -460,7 +435,6 @@ func AudioDriverPlugInStreamGetProperty(inDevice unsafe.Pointer, inIOAudioStream
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInStreamGetPropertyInfo
-
 func AudioDriverPlugInStreamGetPropertyInfo(inDevice unsafe.Pointer, inIOAudioStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInStreamGetPropertyInfo(inDevice, inIOAudioStream, inChannel, inPropertyID, outSize, outWritable)
 	}
@@ -470,7 +444,6 @@ func AudioDriverPlugInStreamGetPropertyInfo(inDevice unsafe.Pointer, inIOAudioSt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioDriverPlugInStreamSetProperty
-
 func AudioDriverPlugInStreamSetProperty(inDevice unsafe.Pointer, inIOAudioStream unsafe.Pointer, inWhen unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioDriverPlugInStreamSetProperty(inDevice, inIOAudioStream, inWhen, inChannel, inPropertyID, inPropertyDataSize, inPropertyData)
 	}
@@ -482,7 +455,6 @@ func AudioDriverPlugInStreamSetProperty(inDevice unsafe.Pointer, inIOAudioStream
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioGetCurrentHostTime()
-
 func AudioGetCurrentHostTime() unsafe.Pointer {
 	return _AudioGetCurrentHostTime()
 	}
@@ -494,7 +466,6 @@ func AudioGetCurrentHostTime() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioGetHostClockFrequency()
-
 func AudioGetHostClockFrequency() unsafe.Pointer {
 	return _AudioGetHostClockFrequency()
 	}
@@ -506,7 +477,6 @@ func AudioGetHostClockFrequency() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioGetHostClockMinimumTimeDelta()
-
 func AudioGetHostClockMinimumTimeDelta() unsafe.Pointer {
 	return _AudioGetHostClockMinimumTimeDelta()
 	}
@@ -520,7 +490,6 @@ func AudioGetHostClockMinimumTimeDelta() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareAddPropertyListener
-
 func AudioHardwareAddPropertyListener(inPropertyID unsafe.Pointer, inProc unsafe.Pointer, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareAddPropertyListener(inPropertyID, inProc, inClientData)
 	}
@@ -534,7 +503,6 @@ func AudioHardwareAddPropertyListener(inPropertyID unsafe.Pointer, inProc unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareAddRunLoopSource
-
 func AudioHardwareAddRunLoopSource(inRunLoopSource unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareAddRunLoopSource(inRunLoopSource)
 	}
@@ -546,7 +514,6 @@ func AudioHardwareAddRunLoopSource(inRunLoopSource unsafe.Pointer) unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareCreateAggregateDevice(_:_:)
-
 func AudioHardwareCreateAggregateDevice(inDescription unsafe.Pointer, outDeviceID unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareCreateAggregateDevice(inDescription, outDeviceID)
 	}
@@ -558,7 +525,6 @@ func AudioHardwareCreateAggregateDevice(inDescription unsafe.Pointer, outDeviceI
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareCreateProcessTap(_:_:)
-
 func AudioHardwareCreateProcessTap(inDescription unsafe.Pointer, outTapID unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareCreateProcessTap(inDescription, outTapID)
 	}
@@ -570,7 +536,6 @@ func AudioHardwareCreateProcessTap(inDescription unsafe.Pointer, outTapID unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareDestroyAggregateDevice(_:)
-
 func AudioHardwareDestroyAggregateDevice(inDeviceID unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareDestroyAggregateDevice(inDeviceID)
 	}
@@ -582,7 +547,6 @@ func AudioHardwareDestroyAggregateDevice(inDeviceID unsafe.Pointer) unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareDestroyProcessTap(_:)
-
 func AudioHardwareDestroyProcessTap(inTapID unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareDestroyProcessTap(inTapID)
 	}
@@ -596,7 +560,6 @@ func AudioHardwareDestroyProcessTap(inTapID unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareGetProperty
-
 func AudioHardwareGetProperty(inPropertyID unsafe.Pointer, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareGetProperty(inPropertyID, ioPropertyDataSize, outPropertyData)
 	}
@@ -610,7 +573,6 @@ func AudioHardwareGetProperty(inPropertyID unsafe.Pointer, ioPropertyDataSize un
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareGetPropertyInfo
-
 func AudioHardwareGetPropertyInfo(inPropertyID unsafe.Pointer, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareGetPropertyInfo(inPropertyID, outSize, outWritable)
 	}
@@ -624,7 +586,6 @@ func AudioHardwareGetPropertyInfo(inPropertyID unsafe.Pointer, outSize unsafe.Po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareRemovePropertyListener
-
 func AudioHardwareRemovePropertyListener(inPropertyID unsafe.Pointer, inProc unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareRemovePropertyListener(inPropertyID, inProc)
 	}
@@ -638,7 +599,6 @@ func AudioHardwareRemovePropertyListener(inPropertyID unsafe.Pointer, inProc uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareRemoveRunLoopSource
-
 func AudioHardwareRemoveRunLoopSource(inRunLoopSource unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareRemoveRunLoopSource(inRunLoopSource)
 	}
@@ -652,7 +612,6 @@ func AudioHardwareRemoveRunLoopSource(inRunLoopSource unsafe.Pointer) unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareSetProperty
-
 func AudioHardwareSetProperty(inPropertyID unsafe.Pointer, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioHardwareSetProperty(inPropertyID, inPropertyDataSize, inPropertyData)
 	}
@@ -664,7 +623,6 @@ func AudioHardwareSetProperty(inPropertyID unsafe.Pointer, inPropertyDataSize un
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioHardwareUnload()
-
 func AudioHardwareUnload() unsafe.Pointer {
 	return _AudioHardwareUnload()
 	}
@@ -676,7 +634,6 @@ func AudioHardwareUnload() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectAddPropertyListener(_:_:_:_:)
-
 func AudioObjectAddPropertyListener(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inListener unsafe.Pointer, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectAddPropertyListener(inObjectID, inAddress, inListener, inClientData)
 	}
@@ -688,7 +645,6 @@ func AudioObjectAddPropertyListener(inObjectID unsafe.Pointer, inAddress unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectAddPropertyListenerBlock(_:_:_:_:)
-
 func AudioObjectAddPropertyListenerBlock(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inDispatchQueue unsafe.Pointer, inListener unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectAddPropertyListenerBlock(inObjectID, inAddress, inDispatchQueue, inListener)
 	}
@@ -700,7 +656,6 @@ func AudioObjectAddPropertyListenerBlock(inObjectID unsafe.Pointer, inAddress un
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectGetPropertyData(_:_:_:_:_:_:)
-
 func AudioObjectGetPropertyData(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inQualifierDataSize unsafe.Pointer, inQualifierData unsafe.Pointer, ioDataSize unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectGetPropertyData(inObjectID, inAddress, inQualifierDataSize, inQualifierData, ioDataSize, outData)
 	}
@@ -712,7 +667,6 @@ func AudioObjectGetPropertyData(inObjectID unsafe.Pointer, inAddress unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectGetPropertyDataSize(_:_:_:_:_:)
-
 func AudioObjectGetPropertyDataSize(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inQualifierDataSize unsafe.Pointer, inQualifierData unsafe.Pointer, outDataSize unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectGetPropertyDataSize(inObjectID, inAddress, inQualifierDataSize, inQualifierData, outDataSize)
 	}
@@ -724,7 +678,6 @@ func AudioObjectGetPropertyDataSize(inObjectID unsafe.Pointer, inAddress unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectHasProperty(_:_:)
-
 func AudioObjectHasProperty(inObjectID unsafe.Pointer, inAddress unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectHasProperty(inObjectID, inAddress)
 	}
@@ -736,7 +689,6 @@ func AudioObjectHasProperty(inObjectID unsafe.Pointer, inAddress unsafe.Pointer)
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectIsPropertySettable(_:_:_:)
-
 func AudioObjectIsPropertySettable(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, outIsSettable unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectIsPropertySettable(inObjectID, inAddress, outIsSettable)
 	}
@@ -748,7 +700,6 @@ func AudioObjectIsPropertySettable(inObjectID unsafe.Pointer, inAddress unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectRemovePropertyListener(_:_:_:_:)
-
 func AudioObjectRemovePropertyListener(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inListener unsafe.Pointer, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectRemovePropertyListener(inObjectID, inAddress, inListener, inClientData)
 	}
@@ -760,7 +711,6 @@ func AudioObjectRemovePropertyListener(inObjectID unsafe.Pointer, inAddress unsa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectRemovePropertyListenerBlock(_:_:_:_:)
-
 func AudioObjectRemovePropertyListenerBlock(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inDispatchQueue unsafe.Pointer, inListener unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectRemovePropertyListenerBlock(inObjectID, inAddress, inDispatchQueue, inListener)
 	}
@@ -772,7 +722,6 @@ func AudioObjectRemovePropertyListenerBlock(inObjectID unsafe.Pointer, inAddress
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectSetPropertyData(_:_:_:_:_:_:)
-
 func AudioObjectSetPropertyData(inObjectID unsafe.Pointer, inAddress unsafe.Pointer, inQualifierDataSize unsafe.Pointer, inQualifierData unsafe.Pointer, inDataSize unsafe.Pointer, inData unsafe.Pointer) unsafe.Pointer {
 	return _AudioObjectSetPropertyData(inObjectID, inAddress, inQualifierDataSize, inQualifierData, inDataSize, inData)
 	}
@@ -784,7 +733,6 @@ func AudioObjectSetPropertyData(inObjectID unsafe.Pointer, inAddress unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioObjectShow(_:)
-
 func AudioObjectShow(inObjectID unsafe.Pointer) {
 	_AudioObjectShow(inObjectID)
 	}
@@ -798,7 +746,6 @@ func AudioObjectShow(inObjectID unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamAddPropertyListener
-
 func AudioStreamAddPropertyListener(inStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, inProc unsafe.Pointer, inClientData unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamAddPropertyListener(inStream, inChannel, inPropertyID, inProc, inClientData)
 	}
@@ -812,7 +759,6 @@ func AudioStreamAddPropertyListener(inStream unsafe.Pointer, inChannel unsafe.Po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamGetProperty
-
 func AudioStreamGetProperty(inStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, ioPropertyDataSize unsafe.Pointer, outPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamGetProperty(inStream, inChannel, inPropertyID, ioPropertyDataSize, outPropertyData)
 	}
@@ -826,7 +772,6 @@ func AudioStreamGetProperty(inStream unsafe.Pointer, inChannel unsafe.Pointer, i
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamGetPropertyInfo
-
 func AudioStreamGetPropertyInfo(inStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, outSize unsafe.Pointer, outWritable unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamGetPropertyInfo(inStream, inChannel, inPropertyID, outSize, outWritable)
 	}
@@ -840,7 +785,6 @@ func AudioStreamGetPropertyInfo(inStream unsafe.Pointer, inChannel unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamRemovePropertyListener
-
 func AudioStreamRemovePropertyListener(inStream unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, inProc unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamRemovePropertyListener(inStream, inChannel, inPropertyID, inProc)
 	}
@@ -854,7 +798,6 @@ func AudioStreamRemovePropertyListener(inStream unsafe.Pointer, inChannel unsafe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/AudioStreamSetProperty
-
 func AudioStreamSetProperty(inStream unsafe.Pointer, inWhen unsafe.Pointer, inChannel unsafe.Pointer, inPropertyID unsafe.Pointer, inPropertyDataSize unsafe.Pointer, inPropertyData unsafe.Pointer) unsafe.Pointer {
 	return _AudioStreamSetProperty(inStream, inWhen, inChannel, inPropertyID, inPropertyDataSize, inPropertyData)
 	}

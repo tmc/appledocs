@@ -58,7 +58,6 @@ type IFilter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class
-
 type Filter struct {
 	objectivec.Object
 }
@@ -103,60 +102,50 @@ func NewFilter() Filter {
 
 
 
-
 // Creates a filter from a Core Video pixel buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-
 func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objectivec.IObject, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
 }
 
 
-
 // Creates a filter that allows the processing of RAW images.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
-
 func NewFilterWithImageDataOptions(data foundation.IData, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
 }
 
 
-
 // Creates a filter that allows the processing of RAW images.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
-
 func NewFilterWithImageURLOptions(url foundation.IURL, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
 }
 
 
-
 // Creates a object for a specific kind of filter.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
-
 func NewFilterWithName(name string) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:"), objc.String(name))
 	return rv
 }
 
 
-
 // Creates a object for a specific kind of filter and initializes the input values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-
 func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
@@ -168,7 +157,6 @@ func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Fi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/accordionFoldTransition()
-
 func (fc _FilterClass) AccordionFoldTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("accordionFoldTransitionFilter"))
 	return rv
@@ -179,7 +167,6 @@ func (fc _FilterClass) AccordionFoldTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/additionCompositing()
-
 func (fc _FilterClass) AdditionCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("additionCompositingFilter"))
 	return rv
@@ -190,7 +177,6 @@ func (fc _FilterClass) AdditionCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/affineClamp()
-
 func (fc _FilterClass) AffineClampFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("affineClampFilter"))
 	return rv
@@ -201,7 +187,6 @@ func (fc _FilterClass) AffineClampFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/affineTile()
-
 func (fc _FilterClass) AffineTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("affineTileFilter"))
 	return rv
@@ -210,7 +195,6 @@ func (fc _FilterClass) AffineTileFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaAlphaWeightedHistogram()
-
 func (fc _FilterClass) AreaAlphaWeightedHistogramFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaAlphaWeightedHistogramFilter"))
 	return rv
@@ -221,7 +205,6 @@ func (fc _FilterClass) AreaAlphaWeightedHistogramFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaAverage()
-
 func (fc _FilterClass) AreaAverageFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaAverageFilter"))
 	return rv
@@ -230,7 +213,6 @@ func (fc _FilterClass) AreaAverageFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaAverageMaximumRed()
-
 func (fc _FilterClass) AreaAverageMaximumRedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaAverageMaximumRedFilter"))
 	return rv
@@ -239,7 +221,6 @@ func (fc _FilterClass) AreaAverageMaximumRedFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaBoundsRed()
-
 func (fc _FilterClass) AreaBoundsRedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaBoundsRedFilter"))
 	return rv
@@ -250,7 +231,6 @@ func (fc _FilterClass) AreaBoundsRedFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaHistogram()
-
 func (fc _FilterClass) AreaHistogramFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaHistogramFilter"))
 	return rv
@@ -261,7 +241,6 @@ func (fc _FilterClass) AreaHistogramFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaLogarithmicHistogram()
-
 func (fc _FilterClass) AreaLogarithmicHistogramFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaLogarithmicHistogramFilter"))
 	return rv
@@ -272,7 +251,6 @@ func (fc _FilterClass) AreaLogarithmicHistogramFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaMaximum()
-
 func (fc _FilterClass) AreaMaximumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMaximumFilter"))
 	return rv
@@ -283,7 +261,6 @@ func (fc _FilterClass) AreaMaximumFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaMaximumAlpha()
-
 func (fc _FilterClass) AreaMaximumAlphaFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMaximumAlphaFilter"))
 	return rv
@@ -294,7 +271,6 @@ func (fc _FilterClass) AreaMaximumAlphaFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaMinMax()
-
 func (fc _FilterClass) AreaMinMaxFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinMaxFilter"))
 	return rv
@@ -305,7 +281,6 @@ func (fc _FilterClass) AreaMinMaxFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaMinMaxRed()
-
 func (fc _FilterClass) AreaMinMaxRedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinMaxRedFilter"))
 	return rv
@@ -316,7 +291,6 @@ func (fc _FilterClass) AreaMinMaxRedFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaMinimum()
-
 func (fc _FilterClass) AreaMinimumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinimumFilter"))
 	return rv
@@ -327,7 +301,6 @@ func (fc _FilterClass) AreaMinimumFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/areaMinimumAlpha()
-
 func (fc _FilterClass) AreaMinimumAlphaFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinimumAlphaFilter"))
 	return rv
@@ -338,7 +311,6 @@ func (fc _FilterClass) AreaMinimumAlphaFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/attributedTextImageGenerator()
-
 func (fc _FilterClass) AttributedTextImageGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("attributedTextImageGeneratorFilter"))
 	return rv
@@ -349,7 +321,6 @@ func (fc _FilterClass) AttributedTextImageGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/aztecCodeGenerator()
-
 func (fc _FilterClass) AztecCodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("aztecCodeGeneratorFilter"))
 	return rv
@@ -360,7 +331,6 @@ func (fc _FilterClass) AztecCodeGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/barcodeGenerator()
-
 func (fc _FilterClass) BarcodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("barcodeGeneratorFilter"))
 	return rv
@@ -371,7 +341,6 @@ func (fc _FilterClass) BarcodeGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/barsSwipeTransition()
-
 func (fc _FilterClass) BarsSwipeTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("barsSwipeTransitionFilter"))
 	return rv
@@ -382,7 +351,6 @@ func (fc _FilterClass) BarsSwipeTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/bicubicScaleTransform()
-
 func (fc _FilterClass) BicubicScaleTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bicubicScaleTransformFilter"))
 	return rv
@@ -393,7 +361,6 @@ func (fc _FilterClass) BicubicScaleTransformFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/blendWithAlphaMask()
-
 func (fc _FilterClass) BlendWithAlphaMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithAlphaMaskFilter"))
 	return rv
@@ -404,7 +371,6 @@ func (fc _FilterClass) BlendWithAlphaMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/blendWithBlueMask()
-
 func (fc _FilterClass) BlendWithBlueMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithBlueMaskFilter"))
 	return rv
@@ -415,7 +381,6 @@ func (fc _FilterClass) BlendWithBlueMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/blendWithMask()
-
 func (fc _FilterClass) BlendWithMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithMaskFilter"))
 	return rv
@@ -426,7 +391,6 @@ func (fc _FilterClass) BlendWithMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/blendWithRedMask()
-
 func (fc _FilterClass) BlendWithRedMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithRedMaskFilter"))
 	return rv
@@ -437,7 +401,6 @@ func (fc _FilterClass) BlendWithRedMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/bloom()
-
 func (fc _FilterClass) BloomFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bloomFilter"))
 	return rv
@@ -448,7 +411,6 @@ func (fc _FilterClass) BloomFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/blurredRectangleGenerator()
-
 func (fc _FilterClass) BlurredRectangleGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blurredRectangleGeneratorFilter"))
 	return rv
@@ -457,7 +419,6 @@ func (fc _FilterClass) BlurredRectangleGeneratorFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/blurredRoundedRectangleGenerator()
-
 func (fc _FilterClass) BlurredRoundedRectangleGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blurredRoundedRectangleGeneratorFilter"))
 	return rv
@@ -468,7 +429,6 @@ func (fc _FilterClass) BlurredRoundedRectangleGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/bokehBlur()
-
 func (fc _FilterClass) BokehBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bokehBlurFilter"))
 	return rv
@@ -479,7 +439,6 @@ func (fc _FilterClass) BokehBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/boxBlur()
-
 func (fc _FilterClass) BoxBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("boxBlurFilter"))
 	return rv
@@ -490,7 +449,6 @@ func (fc _FilterClass) BoxBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/bumpDistortion()
-
 func (fc _FilterClass) BumpDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bumpDistortionFilter"))
 	return rv
@@ -501,7 +459,6 @@ func (fc _FilterClass) BumpDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/bumpDistortionLinear()
-
 func (fc _FilterClass) BumpDistortionLinearFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bumpDistortionLinearFilter"))
 	return rv
@@ -512,7 +469,6 @@ func (fc _FilterClass) BumpDistortionLinearFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/cannyEdgeDetector()
-
 func (fc _FilterClass) CannyEdgeDetectorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("cannyEdgeDetectorFilter"))
 	return rv
@@ -523,7 +479,6 @@ func (fc _FilterClass) CannyEdgeDetectorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/checkerboardGenerator()
-
 func (fc _FilterClass) CheckerboardGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("checkerboardGeneratorFilter"))
 	return rv
@@ -534,7 +489,6 @@ func (fc _FilterClass) CheckerboardGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/circleSplashDistortion()
-
 func (fc _FilterClass) CircleSplashDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("circleSplashDistortionFilter"))
 	return rv
@@ -545,7 +499,6 @@ func (fc _FilterClass) CircleSplashDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/circularScreen()
-
 func (fc _FilterClass) CircularScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("circularScreenFilter"))
 	return rv
@@ -556,7 +509,6 @@ func (fc _FilterClass) CircularScreenFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/circularWrap()
-
 func (fc _FilterClass) CircularWrapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("circularWrapFilter"))
 	return rv
@@ -567,7 +519,6 @@ func (fc _FilterClass) CircularWrapFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/cmykHalftone()
-
 func (fc _FilterClass) CMYKHalftone() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("CMYKHalftone"))
 	return rv
@@ -578,7 +529,6 @@ func (fc _FilterClass) CMYKHalftone() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/code128BarcodeGenerator()
-
 func (fc _FilterClass) Code128BarcodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("code128BarcodeGeneratorFilter"))
 	return rv
@@ -589,7 +539,6 @@ func (fc _FilterClass) Code128BarcodeGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorAbsoluteDifference()
-
 func (fc _FilterClass) ColorAbsoluteDifferenceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorAbsoluteDifferenceFilter"))
 	return rv
@@ -600,7 +549,6 @@ func (fc _FilterClass) ColorAbsoluteDifferenceFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorBlendMode()
-
 func (fc _FilterClass) ColorBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorBlendModeFilter"))
 	return rv
@@ -611,7 +559,6 @@ func (fc _FilterClass) ColorBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorBurnBlendMode()
-
 func (fc _FilterClass) ColorBurnBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorBurnBlendModeFilter"))
 	return rv
@@ -622,7 +569,6 @@ func (fc _FilterClass) ColorBurnBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorClamp()
-
 func (fc _FilterClass) ColorClampFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorClampFilter"))
 	return rv
@@ -633,7 +579,6 @@ func (fc _FilterClass) ColorClampFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorControls()
-
 func (fc _FilterClass) ColorControlsFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorControlsFilter"))
 	return rv
@@ -644,7 +589,6 @@ func (fc _FilterClass) ColorControlsFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorCrossPolynomial()
-
 func (fc _FilterClass) ColorCrossPolynomialFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCrossPolynomialFilter"))
 	return rv
@@ -655,7 +599,6 @@ func (fc _FilterClass) ColorCrossPolynomialFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorCube()
-
 func (fc _FilterClass) ColorCubeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCubeFilter"))
 	return rv
@@ -666,7 +609,6 @@ func (fc _FilterClass) ColorCubeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorCubeWithColorSpace()
-
 func (fc _FilterClass) ColorCubeWithColorSpaceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCubeWithColorSpaceFilter"))
 	return rv
@@ -677,7 +619,6 @@ func (fc _FilterClass) ColorCubeWithColorSpaceFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorCubesMixedWithMask()
-
 func (fc _FilterClass) ColorCubesMixedWithMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCubesMixedWithMaskFilter"))
 	return rv
@@ -688,7 +629,6 @@ func (fc _FilterClass) ColorCubesMixedWithMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorCurves()
-
 func (fc _FilterClass) ColorCurvesFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCurvesFilter"))
 	return rv
@@ -699,7 +639,6 @@ func (fc _FilterClass) ColorCurvesFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorDodgeBlendMode()
-
 func (fc _FilterClass) ColorDodgeBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorDodgeBlendModeFilter"))
 	return rv
@@ -710,7 +649,6 @@ func (fc _FilterClass) ColorDodgeBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorInvert()
-
 func (fc _FilterClass) ColorInvertFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorInvertFilter"))
 	return rv
@@ -721,7 +659,6 @@ func (fc _FilterClass) ColorInvertFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorMap()
-
 func (fc _FilterClass) ColorMapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorMapFilter"))
 	return rv
@@ -732,7 +669,6 @@ func (fc _FilterClass) ColorMapFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorMatrix()
-
 func (fc _FilterClass) ColorMatrixFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorMatrixFilter"))
 	return rv
@@ -743,7 +679,6 @@ func (fc _FilterClass) ColorMatrixFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorMonochrome()
-
 func (fc _FilterClass) ColorMonochromeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorMonochromeFilter"))
 	return rv
@@ -754,7 +689,6 @@ func (fc _FilterClass) ColorMonochromeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorPolynomial()
-
 func (fc _FilterClass) ColorPolynomialFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorPolynomialFilter"))
 	return rv
@@ -765,7 +699,6 @@ func (fc _FilterClass) ColorPolynomialFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorPosterize()
-
 func (fc _FilterClass) ColorPosterizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorPosterizeFilter"))
 	return rv
@@ -776,7 +709,6 @@ func (fc _FilterClass) ColorPosterizeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorThreshold()
-
 func (fc _FilterClass) ColorThresholdFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorThresholdFilter"))
 	return rv
@@ -787,7 +719,6 @@ func (fc _FilterClass) ColorThresholdFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/colorThresholdOtsu()
-
 func (fc _FilterClass) ColorThresholdOtsuFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorThresholdOtsuFilter"))
 	return rv
@@ -798,7 +729,6 @@ func (fc _FilterClass) ColorThresholdOtsuFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/columnAverage()
-
 func (fc _FilterClass) ColumnAverageFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("columnAverageFilter"))
 	return rv
@@ -809,7 +739,6 @@ func (fc _FilterClass) ColumnAverageFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/comicEffect()
-
 func (fc _FilterClass) ComicEffectFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("comicEffectFilter"))
 	return rv
@@ -820,7 +749,6 @@ func (fc _FilterClass) ComicEffectFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convertLabToRGB()
-
 func (fc _FilterClass) ConvertLabToRGBFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convertLabToRGBFilter"))
 	return rv
@@ -831,7 +759,6 @@ func (fc _FilterClass) ConvertLabToRGBFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convertRGBtoLab()
-
 func (fc _FilterClass) ConvertRGBtoLabFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convertRGBtoLabFilter"))
 	return rv
@@ -842,7 +769,6 @@ func (fc _FilterClass) ConvertRGBtoLabFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolution3X3()
-
 func (fc _FilterClass) Convolution3X3Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution3X3Filter"))
 	return rv
@@ -853,7 +779,6 @@ func (fc _FilterClass) Convolution3X3Filter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolution5X5()
-
 func (fc _FilterClass) Convolution5X5Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution5X5Filter"))
 	return rv
@@ -864,7 +789,6 @@ func (fc _FilterClass) Convolution5X5Filter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolution7X7()
-
 func (fc _FilterClass) Convolution7X7Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution7X7Filter"))
 	return rv
@@ -875,7 +799,6 @@ func (fc _FilterClass) Convolution7X7Filter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolution9Horizontal()
-
 func (fc _FilterClass) Convolution9HorizontalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution9HorizontalFilter"))
 	return rv
@@ -886,7 +809,6 @@ func (fc _FilterClass) Convolution9HorizontalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolution9Vertical()
-
 func (fc _FilterClass) Convolution9VerticalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution9VerticalFilter"))
 	return rv
@@ -897,7 +819,6 @@ func (fc _FilterClass) Convolution9VerticalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolutionRGB3X3()
-
 func (fc _FilterClass) ConvolutionRGB3X3Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB3X3Filter"))
 	return rv
@@ -908,7 +829,6 @@ func (fc _FilterClass) ConvolutionRGB3X3Filter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolutionRGB5X5()
-
 func (fc _FilterClass) ConvolutionRGB5X5Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB5X5Filter"))
 	return rv
@@ -919,7 +839,6 @@ func (fc _FilterClass) ConvolutionRGB5X5Filter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolutionRGB7X7()
-
 func (fc _FilterClass) ConvolutionRGB7X7Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB7X7Filter"))
 	return rv
@@ -930,7 +849,6 @@ func (fc _FilterClass) ConvolutionRGB7X7Filter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolutionRGB9Horizontal()
-
 func (fc _FilterClass) ConvolutionRGB9HorizontalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB9HorizontalFilter"))
 	return rv
@@ -941,7 +859,6 @@ func (fc _FilterClass) ConvolutionRGB9HorizontalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/convolutionRGB9Vertical()
-
 func (fc _FilterClass) ConvolutionRGB9VerticalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB9VerticalFilter"))
 	return rv
@@ -952,7 +869,6 @@ func (fc _FilterClass) ConvolutionRGB9VerticalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/copyMachineTransition()
-
 func (fc _FilterClass) CopyMachineTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("copyMachineTransitionFilter"))
 	return rv
@@ -963,7 +879,6 @@ func (fc _FilterClass) CopyMachineTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/coreMLModel()
-
 func (fc _FilterClass) CoreMLModelFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("coreMLModelFilter"))
 	return rv
@@ -974,7 +889,6 @@ func (fc _FilterClass) CoreMLModelFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/crystallize()
-
 func (fc _FilterClass) CrystallizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("crystallizeFilter"))
 	return rv
@@ -985,7 +899,6 @@ func (fc _FilterClass) CrystallizeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/darkenBlendMode()
-
 func (fc _FilterClass) DarkenBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("darkenBlendModeFilter"))
 	return rv
@@ -996,7 +909,6 @@ func (fc _FilterClass) DarkenBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/depthOfField()
-
 func (fc _FilterClass) DepthOfFieldFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("depthOfFieldFilter"))
 	return rv
@@ -1007,7 +919,6 @@ func (fc _FilterClass) DepthOfFieldFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/depthToDisparity()
-
 func (fc _FilterClass) DepthToDisparityFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("depthToDisparityFilter"))
 	return rv
@@ -1018,7 +929,6 @@ func (fc _FilterClass) DepthToDisparityFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/differenceBlendMode()
-
 func (fc _FilterClass) DifferenceBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("differenceBlendModeFilter"))
 	return rv
@@ -1029,7 +939,6 @@ func (fc _FilterClass) DifferenceBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/discBlur()
-
 func (fc _FilterClass) DiscBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("discBlurFilter"))
 	return rv
@@ -1040,7 +949,6 @@ func (fc _FilterClass) DiscBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/disintegrateWithMaskTransition()
-
 func (fc _FilterClass) DisintegrateWithMaskTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("disintegrateWithMaskTransitionFilter"))
 	return rv
@@ -1051,7 +959,6 @@ func (fc _FilterClass) DisintegrateWithMaskTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/disparityToDepth()
-
 func (fc _FilterClass) DisparityToDepthFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("disparityToDepthFilter"))
 	return rv
@@ -1062,7 +969,6 @@ func (fc _FilterClass) DisparityToDepthFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/displacementDistortion()
-
 func (fc _FilterClass) DisplacementDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("displacementDistortionFilter"))
 	return rv
@@ -1073,7 +979,6 @@ func (fc _FilterClass) DisplacementDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/dissolveTransition()
-
 func (fc _FilterClass) DissolveTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("dissolveTransitionFilter"))
 	return rv
@@ -1082,7 +987,6 @@ func (fc _FilterClass) DissolveTransitionFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/distanceGradientFromRedMask()
-
 func (fc _FilterClass) DistanceGradientFromRedMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("distanceGradientFromRedMaskFilter"))
 	return rv
@@ -1093,7 +997,6 @@ func (fc _FilterClass) DistanceGradientFromRedMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/dither()
-
 func (fc _FilterClass) DitherFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("ditherFilter"))
 	return rv
@@ -1104,7 +1007,6 @@ func (fc _FilterClass) DitherFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/divideBlendMode()
-
 func (fc _FilterClass) DivideBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("divideBlendModeFilter"))
 	return rv
@@ -1115,7 +1017,6 @@ func (fc _FilterClass) DivideBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/documentEnhancer()
-
 func (fc _FilterClass) DocumentEnhancerFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("documentEnhancerFilter"))
 	return rv
@@ -1126,7 +1027,6 @@ func (fc _FilterClass) DocumentEnhancerFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/dotScreen()
-
 func (fc _FilterClass) DotScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("dotScreenFilter"))
 	return rv
@@ -1137,7 +1037,6 @@ func (fc _FilterClass) DotScreenFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/droste()
-
 func (fc _FilterClass) DrosteFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("drosteFilter"))
 	return rv
@@ -1148,7 +1047,6 @@ func (fc _FilterClass) DrosteFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/edgePreserveUpsample()
-
 func (fc _FilterClass) EdgePreserveUpsampleFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("edgePreserveUpsampleFilter"))
 	return rv
@@ -1159,7 +1057,6 @@ func (fc _FilterClass) EdgePreserveUpsampleFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/edgeWork()
-
 func (fc _FilterClass) EdgeWorkFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("edgeWorkFilter"))
 	return rv
@@ -1170,7 +1067,6 @@ func (fc _FilterClass) EdgeWorkFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/edges()
-
 func (fc _FilterClass) EdgesFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("edgesFilter"))
 	return rv
@@ -1181,7 +1077,6 @@ func (fc _FilterClass) EdgesFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/eightfoldReflectedTile()
-
 func (fc _FilterClass) EightfoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("eightfoldReflectedTileFilter"))
 	return rv
@@ -1192,7 +1087,6 @@ func (fc _FilterClass) EightfoldReflectedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/exclusionBlendMode()
-
 func (fc _FilterClass) ExclusionBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("exclusionBlendModeFilter"))
 	return rv
@@ -1203,7 +1097,6 @@ func (fc _FilterClass) ExclusionBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/exposureAdjust()
-
 func (fc _FilterClass) ExposureAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("exposureAdjustFilter"))
 	return rv
@@ -1214,7 +1107,6 @@ func (fc _FilterClass) ExposureAdjustFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/falseColor()
-
 func (fc _FilterClass) FalseColorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("falseColorFilter"))
 	return rv
@@ -1225,7 +1117,6 @@ func (fc _FilterClass) FalseColorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterArray(fromSerializedXMP:inputImageExtent:error:)
-
 func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData foundation.IData, extent coregraphics.CGRect, outError unsafe.Pointer) []Filter {
 	rv := objc.Send[[]Filter](objc.ID(fc.class), objc.Sel("filterArrayFromSerializedXMP:inputImageExtent:error:"), xmpData, extent, outError)
 	return rv
@@ -1236,7 +1127,6 @@ func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterNames(inCategories:)
-
 func (fc _FilterClass) FilterNamesInCategories(categories []string) []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("filterNamesInCategories:"), categories)
 	return rv
@@ -1247,7 +1137,6 @@ func (fc _FilterClass) FilterNamesInCategories(categories []string) []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterNames(inCategory:)
-
 func (fc _FilterClass) FilterNamesInCategory(category string) []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("filterNamesInCategory:"), objc.String(category))
 	return rv
@@ -1258,7 +1147,6 @@ func (fc _FilterClass) FilterNamesInCategory(category string) []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterWithName:keysAndValues:
-
 func (fc _FilterClass) FilterWithNameKeysAndValues(name string, key0 objectivec.IObject) Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), objc.String(name), key0)
 	return rv
@@ -1269,7 +1157,6 @@ func (fc _FilterClass) FilterWithNameKeysAndValues(name string, key0 objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/flashTransition()
-
 func (fc _FilterClass) FlashTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("flashTransitionFilter"))
 	return rv
@@ -1280,7 +1167,6 @@ func (fc _FilterClass) FlashTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/fourfoldReflectedTile()
-
 func (fc _FilterClass) FourfoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fourfoldReflectedTileFilter"))
 	return rv
@@ -1291,7 +1177,6 @@ func (fc _FilterClass) FourfoldReflectedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/fourfoldRotatedTile()
-
 func (fc _FilterClass) FourfoldRotatedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fourfoldRotatedTileFilter"))
 	return rv
@@ -1302,7 +1187,6 @@ func (fc _FilterClass) FourfoldRotatedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/fourfoldTranslatedTile()
-
 func (fc _FilterClass) FourfoldTranslatedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fourfoldTranslatedTileFilter"))
 	return rv
@@ -1313,7 +1197,6 @@ func (fc _FilterClass) FourfoldTranslatedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/gaborGradients()
-
 func (fc _FilterClass) GaborGradientsFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gaborGradientsFilter"))
 	return rv
@@ -1324,7 +1207,6 @@ func (fc _FilterClass) GaborGradientsFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/gammaAdjust()
-
 func (fc _FilterClass) GammaAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gammaAdjustFilter"))
 	return rv
@@ -1335,7 +1217,6 @@ func (fc _FilterClass) GammaAdjustFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/gaussianBlur()
-
 func (fc _FilterClass) GaussianBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gaussianBlurFilter"))
 	return rv
@@ -1346,7 +1227,6 @@ func (fc _FilterClass) GaussianBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/gaussianGradient()
-
 func (fc _FilterClass) GaussianGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gaussianGradientFilter"))
 	return rv
@@ -1357,7 +1237,6 @@ func (fc _FilterClass) GaussianGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/glassDistortion()
-
 func (fc _FilterClass) GlassDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("glassDistortionFilter"))
 	return rv
@@ -1368,7 +1247,6 @@ func (fc _FilterClass) GlassDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/glassLozenge()
-
 func (fc _FilterClass) GlassLozengeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("glassLozengeFilter"))
 	return rv
@@ -1379,7 +1257,6 @@ func (fc _FilterClass) GlassLozengeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/glideReflectedTile()
-
 func (fc _FilterClass) GlideReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("glideReflectedTileFilter"))
 	return rv
@@ -1390,7 +1267,6 @@ func (fc _FilterClass) GlideReflectedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/gloom()
-
 func (fc _FilterClass) GloomFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gloomFilter"))
 	return rv
@@ -1401,7 +1277,6 @@ func (fc _FilterClass) GloomFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/hardLightBlendMode()
-
 func (fc _FilterClass) HardLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hardLightBlendModeFilter"))
 	return rv
@@ -1412,7 +1287,6 @@ func (fc _FilterClass) HardLightBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/hatchedScreen()
-
 func (fc _FilterClass) HatchedScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hatchedScreenFilter"))
 	return rv
@@ -1423,7 +1297,6 @@ func (fc _FilterClass) HatchedScreenFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/heightFieldFromMask()
-
 func (fc _FilterClass) HeightFieldFromMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("heightFieldFromMaskFilter"))
 	return rv
@@ -1434,7 +1307,6 @@ func (fc _FilterClass) HeightFieldFromMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/hexagonalPixellate()
-
 func (fc _FilterClass) HexagonalPixellateFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hexagonalPixellateFilter"))
 	return rv
@@ -1445,7 +1317,6 @@ func (fc _FilterClass) HexagonalPixellateFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/highlightShadowAdjust()
-
 func (fc _FilterClass) HighlightShadowAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("highlightShadowAdjustFilter"))
 	return rv
@@ -1456,7 +1327,6 @@ func (fc _FilterClass) HighlightShadowAdjustFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/histogramDisplay()
-
 func (fc _FilterClass) HistogramDisplayFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("histogramDisplayFilter"))
 	return rv
@@ -1467,7 +1337,6 @@ func (fc _FilterClass) HistogramDisplayFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/holeDistortion()
-
 func (fc _FilterClass) HoleDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("holeDistortionFilter"))
 	return rv
@@ -1478,7 +1347,6 @@ func (fc _FilterClass) HoleDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/hueAdjust()
-
 func (fc _FilterClass) HueAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hueAdjustFilter"))
 	return rv
@@ -1489,7 +1357,6 @@ func (fc _FilterClass) HueAdjustFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/hueBlendMode()
-
 func (fc _FilterClass) HueBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hueBlendModeFilter"))
 	return rv
@@ -1500,7 +1367,6 @@ func (fc _FilterClass) HueBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/hueSaturationValueGradient()
-
 func (fc _FilterClass) HueSaturationValueGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hueSaturationValueGradientFilter"))
 	return rv
@@ -1511,7 +1377,6 @@ func (fc _FilterClass) HueSaturationValueGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-
 func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objectivec.IObject, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
@@ -1522,7 +1387,6 @@ func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
-
 func (fc _FilterClass) FilterWithImageDataOptions(data foundation.IData, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
@@ -1533,7 +1397,6 @@ func (fc _FilterClass) FilterWithImageDataOptions(data foundation.IData, options
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
-
 func (fc _FilterClass) FilterWithImageURLOptions(url foundation.IURL, options unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
@@ -1544,7 +1407,6 @@ func (fc _FilterClass) FilterWithImageURLOptions(url foundation.IURL, options un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
-
 func (fc _FilterClass) FilterWithName(name string) Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:"), objc.String(name))
 	return rv
@@ -1555,7 +1417,6 @@ func (fc _FilterClass) FilterWithName(name string) Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-
 func (fc _FilterClass) FilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
@@ -1566,7 +1427,6 @@ func (fc _FilterClass) FilterWithNameWithInputParameters(name string, params uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/kMeans()
-
 func (fc _FilterClass) KMeansFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("KMeansFilter"))
 	return rv
@@ -1577,7 +1437,6 @@ func (fc _FilterClass) KMeansFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/kaleidoscope()
-
 func (fc _FilterClass) KaleidoscopeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("kaleidoscopeFilter"))
 	return rv
@@ -1588,7 +1447,6 @@ func (fc _FilterClass) KaleidoscopeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/keystoneCorrectionCombined()
-
 func (fc _FilterClass) KeystoneCorrectionCombinedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("keystoneCorrectionCombinedFilter"))
 	return rv
@@ -1599,7 +1457,6 @@ func (fc _FilterClass) KeystoneCorrectionCombinedFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/keystoneCorrectionHorizontal()
-
 func (fc _FilterClass) KeystoneCorrectionHorizontalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("keystoneCorrectionHorizontalFilter"))
 	return rv
@@ -1610,7 +1467,6 @@ func (fc _FilterClass) KeystoneCorrectionHorizontalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/keystoneCorrectionVertical()
-
 func (fc _FilterClass) KeystoneCorrectionVerticalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("keystoneCorrectionVerticalFilter"))
 	return rv
@@ -1621,7 +1477,6 @@ func (fc _FilterClass) KeystoneCorrectionVerticalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/labDeltaE()
-
 func (fc _FilterClass) LabDeltaE() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("LabDeltaE"))
 	return rv
@@ -1632,7 +1487,6 @@ func (fc _FilterClass) LabDeltaE() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/lanczosScaleTransform()
-
 func (fc _FilterClass) LanczosScaleTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lanczosScaleTransformFilter"))
 	return rv
@@ -1643,7 +1497,6 @@ func (fc _FilterClass) LanczosScaleTransformFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/lenticularHaloGenerator()
-
 func (fc _FilterClass) LenticularHaloGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lenticularHaloGeneratorFilter"))
 	return rv
@@ -1654,7 +1507,6 @@ func (fc _FilterClass) LenticularHaloGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/lightTunnel()
-
 func (fc _FilterClass) LightTunnelFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lightTunnelFilter"))
 	return rv
@@ -1665,7 +1517,6 @@ func (fc _FilterClass) LightTunnelFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/lightenBlendMode()
-
 func (fc _FilterClass) LightenBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lightenBlendModeFilter"))
 	return rv
@@ -1676,7 +1527,6 @@ func (fc _FilterClass) LightenBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/lineOverlay()
-
 func (fc _FilterClass) LineOverlayFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lineOverlayFilter"))
 	return rv
@@ -1687,7 +1537,6 @@ func (fc _FilterClass) LineOverlayFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/lineScreen()
-
 func (fc _FilterClass) LineScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lineScreenFilter"))
 	return rv
@@ -1698,7 +1547,6 @@ func (fc _FilterClass) LineScreenFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/linearBurnBlendMode()
-
 func (fc _FilterClass) LinearBurnBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearBurnBlendModeFilter"))
 	return rv
@@ -1709,7 +1557,6 @@ func (fc _FilterClass) LinearBurnBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/linearDodgeBlendMode()
-
 func (fc _FilterClass) LinearDodgeBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearDodgeBlendModeFilter"))
 	return rv
@@ -1720,7 +1567,6 @@ func (fc _FilterClass) LinearDodgeBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/linearGradient()
-
 func (fc _FilterClass) LinearGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearGradientFilter"))
 	return rv
@@ -1731,7 +1577,6 @@ func (fc _FilterClass) LinearGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/linearLightBlendMode()
-
 func (fc _FilterClass) LinearLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearLightBlendModeFilter"))
 	return rv
@@ -1742,7 +1587,6 @@ func (fc _FilterClass) LinearLightBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/linearToSRGBToneCurve()
-
 func (fc _FilterClass) LinearToSRGBToneCurveFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearToSRGBToneCurveFilter"))
 	return rv
@@ -1753,7 +1597,6 @@ func (fc _FilterClass) LinearToSRGBToneCurveFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedDescription(forFilterName:)
-
 func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedDescriptionForFilterName:"), objc.String(filterName))
 	return rv
@@ -1764,7 +1607,6 @@ func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName string) foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedName(forCategory:)
-
 func (fc _FilterClass) LocalizedNameForCategory(category string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForCategory:"), objc.String(category))
 	return rv
@@ -1775,7 +1617,6 @@ func (fc _FilterClass) LocalizedNameForCategory(category string) foundation.Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedName(forFilterName:)
-
 func (fc _FilterClass) LocalizedNameForFilterName(filterName string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForFilterName:"), objc.String(filterName))
 	return rv
@@ -1786,7 +1627,6 @@ func (fc _FilterClass) LocalizedNameForFilterName(filterName string) foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedReferenceDocumentation(forFilterName:)
-
 func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName string) foundation.URL {
 	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), objc.String(filterName))
 	return rv
@@ -1797,7 +1637,6 @@ func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/luminosityBlendMode()
-
 func (fc _FilterClass) LuminosityBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("luminosityBlendModeFilter"))
 	return rv
@@ -1808,7 +1647,6 @@ func (fc _FilterClass) LuminosityBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/maskToAlpha()
-
 func (fc _FilterClass) MaskToAlphaFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maskToAlphaFilter"))
 	return rv
@@ -1819,7 +1657,6 @@ func (fc _FilterClass) MaskToAlphaFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/maskedVariableBlur()
-
 func (fc _FilterClass) MaskedVariableBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maskedVariableBlurFilter"))
 	return rv
@@ -1830,7 +1667,6 @@ func (fc _FilterClass) MaskedVariableBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/maximumComponent()
-
 func (fc _FilterClass) MaximumComponentFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maximumComponentFilter"))
 	return rv
@@ -1841,7 +1677,6 @@ func (fc _FilterClass) MaximumComponentFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/maximumCompositing()
-
 func (fc _FilterClass) MaximumCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maximumCompositingFilter"))
 	return rv
@@ -1850,7 +1685,6 @@ func (fc _FilterClass) MaximumCompositingFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/maximumScaleTransform()
-
 func (fc _FilterClass) MaximumScaleTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maximumScaleTransformFilter"))
 	return rv
@@ -1861,7 +1695,6 @@ func (fc _FilterClass) MaximumScaleTransformFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/median()
-
 func (fc _FilterClass) MedianFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("medianFilter"))
 	return rv
@@ -1872,7 +1705,6 @@ func (fc _FilterClass) MedianFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/meshGenerator()
-
 func (fc _FilterClass) MeshGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("meshGeneratorFilter"))
 	return rv
@@ -1883,7 +1715,6 @@ func (fc _FilterClass) MeshGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/minimumComponent()
-
 func (fc _FilterClass) MinimumComponentFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("minimumComponentFilter"))
 	return rv
@@ -1894,7 +1725,6 @@ func (fc _FilterClass) MinimumComponentFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/minimumCompositing()
-
 func (fc _FilterClass) MinimumCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("minimumCompositingFilter"))
 	return rv
@@ -1905,7 +1735,6 @@ func (fc _FilterClass) MinimumCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/mix()
-
 func (fc _FilterClass) MixFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("mixFilter"))
 	return rv
@@ -1916,7 +1745,6 @@ func (fc _FilterClass) MixFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/modTransition()
-
 func (fc _FilterClass) ModTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("modTransitionFilter"))
 	return rv
@@ -1927,7 +1755,6 @@ func (fc _FilterClass) ModTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/morphologyGradient()
-
 func (fc _FilterClass) MorphologyGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyGradientFilter"))
 	return rv
@@ -1938,7 +1765,6 @@ func (fc _FilterClass) MorphologyGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/morphologyMaximum()
-
 func (fc _FilterClass) MorphologyMaximumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyMaximumFilter"))
 	return rv
@@ -1949,7 +1775,6 @@ func (fc _FilterClass) MorphologyMaximumFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/morphologyMinimum()
-
 func (fc _FilterClass) MorphologyMinimumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyMinimumFilter"))
 	return rv
@@ -1960,7 +1785,6 @@ func (fc _FilterClass) MorphologyMinimumFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/morphologyRectangleMaximum()
-
 func (fc _FilterClass) MorphologyRectangleMaximumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyRectangleMaximumFilter"))
 	return rv
@@ -1971,7 +1795,6 @@ func (fc _FilterClass) MorphologyRectangleMaximumFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/morphologyRectangleMinimum()
-
 func (fc _FilterClass) MorphologyRectangleMinimumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyRectangleMinimumFilter"))
 	return rv
@@ -1982,7 +1805,6 @@ func (fc _FilterClass) MorphologyRectangleMinimumFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/motionBlur()
-
 func (fc _FilterClass) MotionBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("motionBlurFilter"))
 	return rv
@@ -1993,7 +1815,6 @@ func (fc _FilterClass) MotionBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/multiplyBlendMode()
-
 func (fc _FilterClass) MultiplyBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("multiplyBlendModeFilter"))
 	return rv
@@ -2004,7 +1825,6 @@ func (fc _FilterClass) MultiplyBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/multiplyCompositing()
-
 func (fc _FilterClass) MultiplyCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("multiplyCompositingFilter"))
 	return rv
@@ -2015,7 +1835,6 @@ func (fc _FilterClass) MultiplyCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/ninePartStretched()
-
 func (fc _FilterClass) NinePartStretchedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("ninePartStretchedFilter"))
 	return rv
@@ -2026,7 +1845,6 @@ func (fc _FilterClass) NinePartStretchedFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/ninePartTiled()
-
 func (fc _FilterClass) NinePartTiledFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("ninePartTiledFilter"))
 	return rv
@@ -2037,7 +1855,6 @@ func (fc _FilterClass) NinePartTiledFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/noiseReduction()
-
 func (fc _FilterClass) NoiseReductionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("noiseReductionFilter"))
 	return rv
@@ -2048,7 +1865,6 @@ func (fc _FilterClass) NoiseReductionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/opTile()
-
 func (fc _FilterClass) OpTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("opTileFilter"))
 	return rv
@@ -2059,7 +1875,6 @@ func (fc _FilterClass) OpTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/overlayBlendMode()
-
 func (fc _FilterClass) OverlayBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("overlayBlendModeFilter"))
 	return rv
@@ -2070,7 +1885,6 @@ func (fc _FilterClass) OverlayBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pageCurlTransition()
-
 func (fc _FilterClass) PageCurlTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pageCurlTransitionFilter"))
 	return rv
@@ -2081,7 +1895,6 @@ func (fc _FilterClass) PageCurlTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pageCurlWithShadowTransition()
-
 func (fc _FilterClass) PageCurlWithShadowTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pageCurlWithShadowTransitionFilter"))
 	return rv
@@ -2092,7 +1905,6 @@ func (fc _FilterClass) PageCurlWithShadowTransitionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/paletteCentroid()
-
 func (fc _FilterClass) PaletteCentroidFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("paletteCentroidFilter"))
 	return rv
@@ -2103,7 +1915,6 @@ func (fc _FilterClass) PaletteCentroidFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/palettize()
-
 func (fc _FilterClass) PalettizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("palettizeFilter"))
 	return rv
@@ -2114,7 +1925,6 @@ func (fc _FilterClass) PalettizeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/parallelogramTile()
-
 func (fc _FilterClass) ParallelogramTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("parallelogramTileFilter"))
 	return rv
@@ -2125,7 +1935,6 @@ func (fc _FilterClass) ParallelogramTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pdf417BarcodeGenerator()
-
 func (fc _FilterClass) PDF417BarcodeGenerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("PDF417BarcodeGenerator"))
 	return rv
@@ -2136,7 +1945,6 @@ func (fc _FilterClass) PDF417BarcodeGenerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/personSegmentation()
-
 func (fc _FilterClass) PersonSegmentationFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("personSegmentationFilter"))
 	return rv
@@ -2147,7 +1955,6 @@ func (fc _FilterClass) PersonSegmentationFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/perspectiveCorrection()
-
 func (fc _FilterClass) PerspectiveCorrectionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveCorrectionFilter"))
 	return rv
@@ -2158,7 +1965,6 @@ func (fc _FilterClass) PerspectiveCorrectionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/perspectiveRotate()
-
 func (fc _FilterClass) PerspectiveRotateFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveRotateFilter"))
 	return rv
@@ -2169,7 +1975,6 @@ func (fc _FilterClass) PerspectiveRotateFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/perspectiveTile()
-
 func (fc _FilterClass) PerspectiveTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveTileFilter"))
 	return rv
@@ -2180,7 +1985,6 @@ func (fc _FilterClass) PerspectiveTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/perspectiveTransform()
-
 func (fc _FilterClass) PerspectiveTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveTransformFilter"))
 	return rv
@@ -2191,7 +1995,6 @@ func (fc _FilterClass) PerspectiveTransformFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/perspectiveTransformWithExtent()
-
 func (fc _FilterClass) PerspectiveTransformWithExtentFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveTransformWithExtentFilter"))
 	return rv
@@ -2202,7 +2005,6 @@ func (fc _FilterClass) PerspectiveTransformWithExtentFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectChrome()
-
 func (fc _FilterClass) PhotoEffectChromeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectChromeFilter"))
 	return rv
@@ -2213,7 +2015,6 @@ func (fc _FilterClass) PhotoEffectChromeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectFade()
-
 func (fc _FilterClass) PhotoEffectFadeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectFadeFilter"))
 	return rv
@@ -2224,7 +2025,6 @@ func (fc _FilterClass) PhotoEffectFadeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectInstant()
-
 func (fc _FilterClass) PhotoEffectInstantFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectInstantFilter"))
 	return rv
@@ -2235,7 +2035,6 @@ func (fc _FilterClass) PhotoEffectInstantFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectMono()
-
 func (fc _FilterClass) PhotoEffectMonoFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectMonoFilter"))
 	return rv
@@ -2246,7 +2045,6 @@ func (fc _FilterClass) PhotoEffectMonoFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectNoir()
-
 func (fc _FilterClass) PhotoEffectNoirFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectNoirFilter"))
 	return rv
@@ -2257,7 +2055,6 @@ func (fc _FilterClass) PhotoEffectNoirFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectProcess()
-
 func (fc _FilterClass) PhotoEffectProcessFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectProcessFilter"))
 	return rv
@@ -2268,7 +2065,6 @@ func (fc _FilterClass) PhotoEffectProcessFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectTonal()
-
 func (fc _FilterClass) PhotoEffectTonalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectTonalFilter"))
 	return rv
@@ -2279,7 +2075,6 @@ func (fc _FilterClass) PhotoEffectTonalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/photoEffectTransfer()
-
 func (fc _FilterClass) PhotoEffectTransferFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectTransferFilter"))
 	return rv
@@ -2290,7 +2085,6 @@ func (fc _FilterClass) PhotoEffectTransferFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pinLightBlendMode()
-
 func (fc _FilterClass) PinLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pinLightBlendModeFilter"))
 	return rv
@@ -2301,7 +2095,6 @@ func (fc _FilterClass) PinLightBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pinchDistortion()
-
 func (fc _FilterClass) PinchDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pinchDistortionFilter"))
 	return rv
@@ -2312,7 +2105,6 @@ func (fc _FilterClass) PinchDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pixellate()
-
 func (fc _FilterClass) PixellateFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pixellateFilter"))
 	return rv
@@ -2323,7 +2115,6 @@ func (fc _FilterClass) PixellateFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/pointillize()
-
 func (fc _FilterClass) PointillizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pointillizeFilter"))
 	return rv
@@ -2334,7 +2125,6 @@ func (fc _FilterClass) PointillizeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/qrCodeGenerator()
-
 func (fc _FilterClass) QRCodeGenerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("QRCodeGenerator"))
 	return rv
@@ -2345,7 +2135,6 @@ func (fc _FilterClass) QRCodeGenerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/radialGradient()
-
 func (fc _FilterClass) RadialGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("radialGradientFilter"))
 	return rv
@@ -2356,7 +2145,6 @@ func (fc _FilterClass) RadialGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/randomGenerator()
-
 func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("randomGeneratorFilter"))
 	return rv
@@ -2367,7 +2155,6 @@ func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/registerName(_:constructor:classAttributes:)
-
 func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name string, anObject objectivec.IObject, attributes unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), objc.String(name), anObject, attributes)
 }
@@ -2377,7 +2164,6 @@ func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name string,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/rippleTransition()
-
 func (fc _FilterClass) RippleTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("rippleTransitionFilter"))
 	return rv
@@ -2386,7 +2172,6 @@ func (fc _FilterClass) RippleTransitionFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/roundedQRCodeGenerator()
-
 func (fc _FilterClass) RoundedQRCodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("roundedQRCodeGeneratorFilter"))
 	return rv
@@ -2397,7 +2182,6 @@ func (fc _FilterClass) RoundedQRCodeGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/roundedRectangleGenerator()
-
 func (fc _FilterClass) RoundedRectangleGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("roundedRectangleGeneratorFilter"))
 	return rv
@@ -2408,7 +2192,6 @@ func (fc _FilterClass) RoundedRectangleGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/roundedRectangleStrokeGenerator()
-
 func (fc _FilterClass) RoundedRectangleStrokeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("roundedRectangleStrokeGeneratorFilter"))
 	return rv
@@ -2419,7 +2202,6 @@ func (fc _FilterClass) RoundedRectangleStrokeGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/rowAverage()
-
 func (fc _FilterClass) RowAverageFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("rowAverageFilter"))
 	return rv
@@ -2430,7 +2212,6 @@ func (fc _FilterClass) RowAverageFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sRGBToneCurveToLinear()
-
 func (fc _FilterClass) SRGBToneCurveToLinearFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sRGBToneCurveToLinearFilter"))
 	return rv
@@ -2441,7 +2222,6 @@ func (fc _FilterClass) SRGBToneCurveToLinearFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/saliencyMap()
-
 func (fc _FilterClass) SaliencyMapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("saliencyMapFilter"))
 	return rv
@@ -2452,7 +2232,6 @@ func (fc _FilterClass) SaliencyMapFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/saturationBlendMode()
-
 func (fc _FilterClass) SaturationBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("saturationBlendModeFilter"))
 	return rv
@@ -2463,7 +2242,6 @@ func (fc _FilterClass) SaturationBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/screenBlendMode()
-
 func (fc _FilterClass) ScreenBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("screenBlendModeFilter"))
 	return rv
@@ -2474,7 +2252,6 @@ func (fc _FilterClass) ScreenBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sepiaTone()
-
 func (fc _FilterClass) SepiaToneFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sepiaToneFilter"))
 	return rv
@@ -2485,7 +2262,6 @@ func (fc _FilterClass) SepiaToneFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/serializedXMP(from:inputImageExtent:)
-
 func (fc _FilterClass) SerializedXMPFromFiltersInputImageExtent(filters []Filter, extent coregraphics.CGRect) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(fc.class), objc.Sel("serializedXMPFromFilters:inputImageExtent:"), filters, extent)
 	return rv
@@ -2496,7 +2272,6 @@ func (fc _FilterClass) SerializedXMPFromFiltersInputImageExtent(filters []Filter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/shadedMaterial()
-
 func (fc _FilterClass) ShadedMaterialFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("shadedMaterialFilter"))
 	return rv
@@ -2507,7 +2282,6 @@ func (fc _FilterClass) ShadedMaterialFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sharpenLuminance()
-
 func (fc _FilterClass) SharpenLuminanceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sharpenLuminanceFilter"))
 	return rv
@@ -2516,7 +2290,6 @@ func (fc _FilterClass) SharpenLuminanceFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/signedDistanceGradientFromRedMask()
-
 func (fc _FilterClass) SignedDistanceGradientFromRedMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("signedDistanceGradientFromRedMaskFilter"))
 	return rv
@@ -2527,7 +2300,6 @@ func (fc _FilterClass) SignedDistanceGradientFromRedMaskFilter() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sixfoldReflectedTile()
-
 func (fc _FilterClass) SixfoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sixfoldReflectedTileFilter"))
 	return rv
@@ -2538,7 +2310,6 @@ func (fc _FilterClass) SixfoldReflectedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sixfoldRotatedTile()
-
 func (fc _FilterClass) SixfoldRotatedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sixfoldRotatedTileFilter"))
 	return rv
@@ -2549,7 +2320,6 @@ func (fc _FilterClass) SixfoldRotatedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/smoothLinearGradient()
-
 func (fc _FilterClass) SmoothLinearGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("smoothLinearGradientFilter"))
 	return rv
@@ -2560,7 +2330,6 @@ func (fc _FilterClass) SmoothLinearGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sobelGradients()
-
 func (fc _FilterClass) SobelGradientsFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sobelGradientsFilter"))
 	return rv
@@ -2571,7 +2340,6 @@ func (fc _FilterClass) SobelGradientsFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/softLightBlendMode()
-
 func (fc _FilterClass) SoftLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("softLightBlendModeFilter"))
 	return rv
@@ -2582,7 +2350,6 @@ func (fc _FilterClass) SoftLightBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sourceAtopCompositing()
-
 func (fc _FilterClass) SourceAtopCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceAtopCompositingFilter"))
 	return rv
@@ -2593,7 +2360,6 @@ func (fc _FilterClass) SourceAtopCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sourceInCompositing()
-
 func (fc _FilterClass) SourceInCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceInCompositingFilter"))
 	return rv
@@ -2604,7 +2370,6 @@ func (fc _FilterClass) SourceInCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sourceOutCompositing()
-
 func (fc _FilterClass) SourceOutCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceOutCompositingFilter"))
 	return rv
@@ -2615,7 +2380,6 @@ func (fc _FilterClass) SourceOutCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sourceOverCompositing()
-
 func (fc _FilterClass) SourceOverCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceOverCompositingFilter"))
 	return rv
@@ -2626,7 +2390,6 @@ func (fc _FilterClass) SourceOverCompositingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/spotColor()
-
 func (fc _FilterClass) SpotColorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("spotColorFilter"))
 	return rv
@@ -2637,7 +2400,6 @@ func (fc _FilterClass) SpotColorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/spotLight()
-
 func (fc _FilterClass) SpotLightFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("spotLightFilter"))
 	return rv
@@ -2648,7 +2410,6 @@ func (fc _FilterClass) SpotLightFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/starShineGenerator()
-
 func (fc _FilterClass) StarShineGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("starShineGeneratorFilter"))
 	return rv
@@ -2659,7 +2420,6 @@ func (fc _FilterClass) StarShineGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/straighten()
-
 func (fc _FilterClass) StraightenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("straightenFilter"))
 	return rv
@@ -2670,7 +2430,6 @@ func (fc _FilterClass) StraightenFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/stretchCrop()
-
 func (fc _FilterClass) StretchCropFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("stretchCropFilter"))
 	return rv
@@ -2681,7 +2440,6 @@ func (fc _FilterClass) StretchCropFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/stripesGenerator()
-
 func (fc _FilterClass) StripesGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("stripesGeneratorFilter"))
 	return rv
@@ -2692,7 +2450,6 @@ func (fc _FilterClass) StripesGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/subtractBlendMode()
-
 func (fc _FilterClass) SubtractBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("subtractBlendModeFilter"))
 	return rv
@@ -2703,7 +2460,6 @@ func (fc _FilterClass) SubtractBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/sunbeamsGenerator()
-
 func (fc _FilterClass) SunbeamsGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sunbeamsGeneratorFilter"))
 	return rv
@@ -2712,7 +2468,6 @@ func (fc _FilterClass) SunbeamsGeneratorFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/supportedRawCameraModels()
-
 func (fc _FilterClass) SupportedRawCameraModels() []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("supportedRawCameraModels"))
 	return rv
@@ -2723,7 +2478,6 @@ func (fc _FilterClass) SupportedRawCameraModels() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/swipeTransition()
-
 func (fc _FilterClass) SwipeTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("swipeTransitionFilter"))
 	return rv
@@ -2732,7 +2486,6 @@ func (fc _FilterClass) SwipeTransitionFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/systemToneMap()
-
 func (fc _FilterClass) SystemToneMapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("systemToneMapFilter"))
 	return rv
@@ -2743,7 +2496,6 @@ func (fc _FilterClass) SystemToneMapFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/temperatureAndTint()
-
 func (fc _FilterClass) TemperatureAndTintFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("temperatureAndTintFilter"))
 	return rv
@@ -2754,7 +2506,6 @@ func (fc _FilterClass) TemperatureAndTintFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/textImageGenerator()
-
 func (fc _FilterClass) TextImageGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("textImageGeneratorFilter"))
 	return rv
@@ -2765,7 +2516,6 @@ func (fc _FilterClass) TextImageGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/thermal()
-
 func (fc _FilterClass) ThermalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("thermalFilter"))
 	return rv
@@ -2776,7 +2526,6 @@ func (fc _FilterClass) ThermalFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/toneCurve()
-
 func (fc _FilterClass) ToneCurveFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("toneCurveFilter"))
 	return rv
@@ -2785,7 +2534,6 @@ func (fc _FilterClass) ToneCurveFilter() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/toneMapHeadroom()
-
 func (fc _FilterClass) ToneMapHeadroomFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("toneMapHeadroomFilter"))
 	return rv
@@ -2796,7 +2544,6 @@ func (fc _FilterClass) ToneMapHeadroomFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/torusLensDistortion()
-
 func (fc _FilterClass) TorusLensDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("torusLensDistortionFilter"))
 	return rv
@@ -2807,7 +2554,6 @@ func (fc _FilterClass) TorusLensDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/triangleKaleidoscope()
-
 func (fc _FilterClass) TriangleKaleidoscopeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("triangleKaleidoscopeFilter"))
 	return rv
@@ -2818,7 +2564,6 @@ func (fc _FilterClass) TriangleKaleidoscopeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/triangleTile()
-
 func (fc _FilterClass) TriangleTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("triangleTileFilter"))
 	return rv
@@ -2829,7 +2574,6 @@ func (fc _FilterClass) TriangleTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/twelvefoldReflectedTile()
-
 func (fc _FilterClass) TwelvefoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("twelvefoldReflectedTileFilter"))
 	return rv
@@ -2840,7 +2584,6 @@ func (fc _FilterClass) TwelvefoldReflectedTileFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/twirlDistortion()
-
 func (fc _FilterClass) TwirlDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("twirlDistortionFilter"))
 	return rv
@@ -2851,7 +2594,6 @@ func (fc _FilterClass) TwirlDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/unsharpMask()
-
 func (fc _FilterClass) UnsharpMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("unsharpMaskFilter"))
 	return rv
@@ -2862,7 +2604,6 @@ func (fc _FilterClass) UnsharpMaskFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/vibrance()
-
 func (fc _FilterClass) VibranceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vibranceFilter"))
 	return rv
@@ -2873,7 +2614,6 @@ func (fc _FilterClass) VibranceFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/vignette()
-
 func (fc _FilterClass) VignetteFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vignetteFilter"))
 	return rv
@@ -2884,7 +2624,6 @@ func (fc _FilterClass) VignetteFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/vignetteEffect()
-
 func (fc _FilterClass) VignetteEffectFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vignetteEffectFilter"))
 	return rv
@@ -2895,7 +2634,6 @@ func (fc _FilterClass) VignetteEffectFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/vividLightBlendMode()
-
 func (fc _FilterClass) VividLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vividLightBlendModeFilter"))
 	return rv
@@ -2906,7 +2644,6 @@ func (fc _FilterClass) VividLightBlendModeFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/vortexDistortion()
-
 func (fc _FilterClass) VortexDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vortexDistortionFilter"))
 	return rv
@@ -2917,7 +2654,6 @@ func (fc _FilterClass) VortexDistortionFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/whitePointAdjust()
-
 func (fc _FilterClass) WhitePointAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("whitePointAdjustFilter"))
 	return rv
@@ -2928,7 +2664,6 @@ func (fc _FilterClass) WhitePointAdjustFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/xRay()
-
 func (fc _FilterClass) XRayFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("xRayFilter"))
 	return rv
@@ -2939,54 +2674,45 @@ func (fc _FilterClass) XRayFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/zoomBlur()
-
 func (fc _FilterClass) ZoomBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("zoomBlurFilter"))
 	return rv
 }
 
 
-
 // Produces a object by applying arguments to a kernel function and using options to control how the kernel function is evaluated.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/apply(_:arguments:options:)
-
 func (f_ Filter) ApplyArgumentsOptions(k ICIKernel, args objectivec.IObject, dict unsafe.Pointer) Image {
 	rv := objc.Send[Image](f_.ID, objc.Sel("apply:arguments:options:"), k, args, dict)
 	return rv
 }
 
 
-
 // Produces a object by applying a kernel function.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/apply:
-
 func (f_ Filter) Apply(k ICIKernel) Image {
 	rv := objc.Send[Image](f_.ID, objc.Sel("apply:"), k)
 	return rv
 }
 
 
-
 // Sets all input values for a filter to default values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/setDefaults()
-
 func (f_ Filter) SetDefaults() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDefaults"))
 }
-
 
 
 // Returns a filter view for the filter.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/view(forUIConfiguration:excludedKeys:)
-
 func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objectivec.IObject, inKeys objectivec.IObject) quartz.IKFilterUIView {
 	rv := objc.Send[quartz.IKFilterUIView](f_.ID, objc.Sel("viewForUIConfiguration:excludedKeys:"), inUIConfiguration, inKeys)
 	return rv
@@ -2997,7 +2723,6 @@ func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objectivec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/attributes
-
 func (f_ Filter) Attributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributes"))
 	return rv
@@ -3008,7 +2733,6 @@ func (f_ Filter) Attributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/inputKeys
-
 func (f_ Filter) InputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("inputKeys"))
 	return rv
@@ -3019,7 +2743,6 @@ func (f_ Filter) InputKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/isEnabled
-
 func (f_ Filter) Enabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("enabled"))
 	return rv
@@ -3030,7 +2753,6 @@ func (f_ Filter) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/isEnabled
-
 func (f_ Filter) SetEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEnabled:"), value)
 }
@@ -3040,7 +2762,6 @@ func (f_ Filter) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/name
-
 func (f_ Filter) Name() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
@@ -3051,7 +2772,6 @@ func (f_ Filter) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/name
-
 func (f_ Filter) SetName(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -3061,7 +2781,6 @@ func (f_ Filter) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/outputImage
-
 func (f_ Filter) OutputImage() CIImage {
 	rv := objc.Send[CIImage](f_.ID, objc.Sel("outputImage"))
 	return rv
@@ -3072,7 +2791,6 @@ func (f_ Filter) OutputImage() CIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/outputKeys
-
 func (f_ Filter) OutputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("outputKeys"))
 	return rv
@@ -3083,7 +2801,6 @@ func (f_ Filter) OutputKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
-
 func (f_ Filter) IsEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -3094,7 +2811,6 @@ func (f_ Filter) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
-
 func (f_ Filter) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }

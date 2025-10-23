@@ -47,7 +47,6 @@ type ITask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask
-
 type Task struct {
 	objectivec.Object
 }
@@ -92,23 +91,19 @@ func NewTask() Task {
 
 
 
-
 // Cancels a machine learning task before it completes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/cancel()
-
 func (t_ Task) Cancel() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("cancel"))
 }
-
 
 
 // Begins or resumes a machine learning task.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/resume()
-
 func (t_ Task) Resume() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("resume"))
 }
@@ -118,7 +113,6 @@ func (t_ Task) Resume() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/error
-
 func (t_ Task) Error() foundation.Error {
 	rv := objc.Send[foundation.Error](t_.ID, objc.Sel("error"))
 	return rv
@@ -129,7 +123,6 @@ func (t_ Task) Error() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/state
-
 func (t_ Task) State() TaskState {
 	rv := objc.Send[TaskState](t_.ID, objc.Sel("state"))
 	return rv
@@ -140,7 +133,6 @@ func (t_ Task) State() TaskState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/taskIdentifier
-
 func (t_ Task) TaskIdentifier() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("taskIdentifier"))
 	return rv

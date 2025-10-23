@@ -46,7 +46,6 @@ type IRenderInfo interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo
-
 type RenderInfo struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewRenderInfo() RenderInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelCompileTime
-
 func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
 	return rv
@@ -104,7 +102,6 @@ func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelExecutionTime
-
 func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
 	return rv
@@ -115,7 +112,6 @@ func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/passCount
-
 func (r_ RenderInfo) PassCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("passCount"))
 	return rv
@@ -126,7 +122,6 @@ func (r_ RenderInfo) PassCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/pixelsProcessed
-
 func (r_ RenderInfo) PixelsProcessed() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("pixelsProcessed"))
 	return rv

@@ -63,7 +63,6 @@ type ISearchField interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField
-
 type SearchField struct {
 	TextField
 }
@@ -110,36 +109,30 @@ func NewSearchField() SearchField {
 
 
 
-
 // The rectangle for the cancel button within the bounds of the search field.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForCancelButton(whenCentered:)
-
 func (s_ SearchField) RectForCancelButtonWhenCentered(isCentered bool) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rectForCancelButtonWhenCentered:"), isCentered)
 	return rv
 }
 
 
-
 // The rectangle for the search button within the bounds of the search field.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForSearchButton(whenCentered:)
-
 func (s_ SearchField) RectForSearchButtonWhenCentered(isCentered bool) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rectForSearchButtonWhenCentered:"), isCentered)
 	return rv
 }
 
 
-
 // The rectangle for the search text within the bounds of the field.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForSearchText(whenCentered:)
-
 func (s_ SearchField) RectForSearchTextWhenCentered(isCentered bool) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rectForSearchTextWhenCentered:"), isCentered)
 	return rv
@@ -150,7 +143,6 @@ func (s_ SearchField) RectForSearchTextWhenCentered(isCentered bool) coregraphic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/cancelButtonBounds
-
 func (s_ SearchField) CancelButtonBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("cancelButtonBounds"))
 	return rv
@@ -161,7 +153,6 @@ func (s_ SearchField) CancelButtonBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/centersPlaceholder
-
 func (s_ SearchField) CentersPlaceholder() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("centersPlaceholder"))
 	return rv
@@ -172,7 +163,6 @@ func (s_ SearchField) CentersPlaceholder() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/centersPlaceholder
-
 func (s_ SearchField) SetCentersPlaceholder(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCentersPlaceholder:"), value)
 }
@@ -182,7 +172,6 @@ func (s_ SearchField) SetCentersPlaceholder(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/delegate
-
 func (s_ SearchField) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -193,7 +182,6 @@ func (s_ SearchField) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/delegate
-
 func (s_ SearchField) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -203,7 +191,6 @@ func (s_ SearchField) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/maximumRecents
-
 func (s_ SearchField) MaximumRecents() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("maximumRecents"))
 	return rv
@@ -214,7 +201,6 @@ func (s_ SearchField) MaximumRecents() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/maximumRecents
-
 func (s_ SearchField) SetMaximumRecents(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRecents:"), value)
 }
@@ -224,7 +210,6 @@ func (s_ SearchField) SetMaximumRecents(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentSearches
-
 func (s_ SearchField) RecentSearches() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("recentSearches"))
 	return rv
@@ -235,7 +220,6 @@ func (s_ SearchField) RecentSearches() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentSearches
-
 func (s_ SearchField) SetRecentSearches(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -255,7 +239,6 @@ func (s_ SearchField) SetRecentSearches(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
-
 func (s_ SearchField) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
 	rv := objc.Send[SearchFieldRecentsAutosaveName](s_.ID, objc.Sel("recentsAutosaveName"))
 	return rv
@@ -266,7 +249,6 @@ func (s_ SearchField) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
-
 func (s_ SearchField) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
 }
@@ -276,7 +258,6 @@ func (s_ SearchField) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveNa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchButtonBounds
-
 func (s_ SearchField) SearchButtonBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchButtonBounds"))
 	return rv
@@ -287,7 +268,6 @@ func (s_ SearchField) SearchButtonBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchMenuTemplate
-
 func (s_ SearchField) SearchMenuTemplate() NSMenu {
 	rv := objc.Send[NSMenu](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
@@ -298,7 +278,6 @@ func (s_ SearchField) SearchMenuTemplate() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchMenuTemplate
-
 func (s_ SearchField) SetSearchMenuTemplate(value IMenu) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchMenuTemplate:"), value)
 }
@@ -308,7 +287,6 @@ func (s_ SearchField) SetSearchMenuTemplate(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchTextBounds
-
 func (s_ SearchField) SearchTextBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchTextBounds"))
 	return rv
@@ -319,7 +297,6 @@ func (s_ SearchField) SearchTextBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/sendsSearchStringImmediately
-
 func (s_ SearchField) SendsSearchStringImmediately() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsSearchStringImmediately"))
 	return rv
@@ -330,7 +307,6 @@ func (s_ SearchField) SendsSearchStringImmediately() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/sendsSearchStringImmediately
-
 func (s_ SearchField) SetSendsSearchStringImmediately(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsSearchStringImmediately:"), value)
 }
@@ -340,7 +316,6 @@ func (s_ SearchField) SetSendsSearchStringImmediately(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/sendsWholeSearchString
-
 func (s_ SearchField) SendsWholeSearchString() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsWholeSearchString"))
 	return rv
@@ -351,7 +326,6 @@ func (s_ SearchField) SendsWholeSearchString() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/sendsWholeSearchString
-
 func (s_ SearchField) SetSendsWholeSearchString(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsWholeSearchString:"), value)
 }

@@ -52,7 +52,6 @@ type IMonitoringEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent
-
 type MonitoringEvent struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewMonitoringEvent() MonitoringEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/authorizationDeniedGlobally
-
 func (m_ MonitoringEvent) AuthorizationDeniedGlobally() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
@@ -110,7 +108,6 @@ func (m_ MonitoringEvent) AuthorizationDeniedGlobally() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/authorizationRequestInProgress
-
 func (m_ MonitoringEvent) AuthorizationRequestInProgress() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
@@ -121,7 +118,6 @@ func (m_ MonitoringEvent) AuthorizationRequestInProgress() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/conditionLimitExceeded
-
 func (m_ MonitoringEvent) ConditionLimitExceeded() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("conditionLimitExceeded"))
 	return rv
@@ -132,7 +128,6 @@ func (m_ MonitoringEvent) ConditionLimitExceeded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/conditionUnsupported
-
 func (m_ MonitoringEvent) ConditionUnsupported() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("conditionUnsupported"))
 	return rv
@@ -143,7 +138,6 @@ func (m_ MonitoringEvent) ConditionUnsupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/date
-
 func (m_ MonitoringEvent) Date() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("date"))
 	return rv
@@ -154,7 +148,6 @@ func (m_ MonitoringEvent) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/identifier
-
 func (m_ MonitoringEvent) Identifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
@@ -165,7 +158,6 @@ func (m_ MonitoringEvent) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/insufficientlyInUse
-
 func (m_ MonitoringEvent) InsufficientlyInUse() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
@@ -176,7 +168,6 @@ func (m_ MonitoringEvent) InsufficientlyInUse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/persistenceUnavailable
-
 func (m_ MonitoringEvent) PersistenceUnavailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("persistenceUnavailable"))
 	return rv
@@ -185,7 +176,6 @@ func (m_ MonitoringEvent) PersistenceUnavailable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/serviceSessionRequired
-
 func (m_ MonitoringEvent) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
@@ -196,7 +186,6 @@ func (m_ MonitoringEvent) ServiceSessionRequired() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/state
-
 func (m_ MonitoringEvent) State() MonitoringState {
 	rv := objc.Send[MonitoringState](m_.ID, objc.Sel("state"))
 	return rv

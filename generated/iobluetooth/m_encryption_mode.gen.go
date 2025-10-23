@@ -32,7 +32,9 @@ type ImEncryptionMode interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mEncryptionMode
 type mEncryptionMode struct {
 	objectivec.Object

@@ -32,9 +32,9 @@ type IMapTable interface {
 	objectivec.IObject
 	Count() int
 	SetCount(value int)
-	KeyPointerFunctions() NSPointerFunctions
+	KeyPointerFunctions() IPointerFunctions
 	SetKeyPointerFunctions(value IPointerFunctions)
-	ValuePointerFunctions() NSPointerFunctions
+	ValuePointerFunctions() IPointerFunctions
 	SetValuePointerFunctions(value IPointerFunctions)
 }
 
@@ -114,7 +114,7 @@ func (m_ MapTable) SetCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
-func (m_ MapTable) KeyPointerFunctions() NSPointerFunctions {
+func (m_ MapTable) KeyPointerFunctions() IPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("keyPointerFunctions"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (m_ MapTable) SetKeyPointerFunctions(value IPointerFunctions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-func (m_ MapTable) ValuePointerFunctions() NSPointerFunctions {
+func (m_ MapTable) ValuePointerFunctions() IPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("valuePointerFunctions"))
 	return rv
 }

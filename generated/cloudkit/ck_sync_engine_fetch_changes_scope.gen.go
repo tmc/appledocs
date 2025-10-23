@@ -39,7 +39,6 @@ type ICKSyncEngineFetchChangesScope interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope
-
 type CKSyncEngineFetchChangesScope struct {
 	objectivec.Object
 }
@@ -82,10 +81,8 @@ func NewCKSyncEngineFetchChangesScope() CKSyncEngineFetchChangesScope {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope/initWithExcludedZoneIDs:
-
 func NewCKSyncEngineFetchChangesScopeWithExcludedZoneIDs(zoneIDs unsafe.Pointer) CKSyncEngineFetchChangesScope {
 	instance := getCKSyncEngineFetchChangesScopeClass().Alloc()
 	rv := objc.Send[CKSyncEngineFetchChangesScope](instance.ID, objc.Sel("initWithExcludedZoneIDs:"), zoneIDs)
@@ -94,10 +91,8 @@ func NewCKSyncEngineFetchChangesScopeWithExcludedZoneIDs(zoneIDs unsafe.Pointer)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope/initWithZoneIDs:
-
 func NewCKSyncEngineFetchChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEngineFetchChangesScope {
 	instance := getCKSyncEngineFetchChangesScopeClass().Alloc()
 	rv := objc.Send[CKSyncEngineFetchChangesScope](instance.ID, objc.Sel("initWithZoneIDs:"), zoneIDs)
@@ -107,10 +102,8 @@ func NewCKSyncEngineFetchChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncE
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope/containsZoneID:
-
 func (c_ CKSyncEngineFetchChangesScope) ContainsZoneID(zoneID ICKRecordZoneID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsZoneID:"), zoneID)
 	return rv
@@ -119,7 +112,6 @@ func (c_ CKSyncEngineFetchChangesScope) ContainsZoneID(zoneID ICKRecordZoneID) b
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope/excludedZoneIDs
-
 func (c_ CKSyncEngineFetchChangesScope) ExcludedZoneIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("excludedZoneIDs"))
 	return rv
@@ -128,7 +120,6 @@ func (c_ CKSyncEngineFetchChangesScope) ExcludedZoneIDs() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope/zoneIDs
-
 func (c_ CKSyncEngineFetchChangesScope) ZoneIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneIDs"))
 	return rv

@@ -40,7 +40,6 @@ type IBatchInsertResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult
-
 type BatchInsertResult struct {
 	PersistentStoreResult
 }
@@ -91,7 +90,6 @@ func NewBatchInsertResult() BatchInsertResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/result
-
 func (b_ BatchInsertResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("result"))
 	return rv
@@ -102,7 +100,6 @@ func (b_ BatchInsertResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/resultType
-
 func (b_ BatchInsertResult) ResultType() BatchInsertRequestResultType {
 	rv := objc.Send[BatchInsertRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv

@@ -37,7 +37,11 @@ type IILClassificationUIExtensionContext interface {
 }
 
 // An object that manages the state of the current request.
+
+
+// An object that manages the state of the current request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionContext
 type ILClassificationUIExtensionContext struct {
 	foundation.ExtensionContext
@@ -84,8 +88,10 @@ func NewILClassificationUIExtensionContext() ILClassificationUIExtensionContext 
 }
 
 
+
 // A Boolean value that determines whether the extension has enough information to complete the report.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse
 func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("readyForClassificationResponse"))
@@ -93,17 +99,18 @@ func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bo
 }
 
 
-// SetReadyForClassificationResponse sets the value of the readyForClassificationResponse property.
 // A Boolean value that determines whether the extension has enough information to complete the report.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse
 func (i_ ILClassificationUIExtensionContext) SetReadyForClassificationResponse(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReadyForClassificationResponse:"), value)
 }
 
+
 // A Boolean value that determines whether the extension has enough information to complete the report.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse
 func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isReadyForClassificationResponse"))
@@ -111,10 +118,9 @@ func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() 
 }
 
 
-// SetIsReadyForClassificationResponse sets the value of the isReadyForClassificationResponse property.
 // A Boolean value that determines whether the extension has enough information to complete the report.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse
 func (i_ ILClassificationUIExtensionContext) SetIsReadyForClassificationResponse(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReadyForClassificationResponse:"), value)

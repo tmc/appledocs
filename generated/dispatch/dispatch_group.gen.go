@@ -41,7 +41,6 @@ type IDispatchGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchGroup
-
 type DispatchGroup struct {
 	objectivec.Object
 }

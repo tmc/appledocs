@@ -37,7 +37,11 @@ type IIMKServer interface {
 }
 
 // The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
+
+
+// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer
 type IMKServer struct {
 	objectivec.Object
@@ -83,9 +87,9 @@ func NewIMKServer() IMKServer {
 
 
 
-
 // Creates and returns a server object from property list information contained in the provided bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:bundleIdentifier:)
 func NewIMKServerWithNameBundleIdentifier(name string, bundleIdentifier string) IMKServer {
 	instance := getIMKServerClass().Alloc()
@@ -95,9 +99,9 @@ func NewIMKServerWithNameBundleIdentifier(name string, bundleIdentifier string) 
 }
 
 
-
 // Creates and returns a server object initialized with the provided parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:controllerClass:delegateClass:)
 func NewIMKServerWithNameControllerClassDelegateClass(name string, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
 	instance := getIMKServerClass().Alloc()
@@ -107,22 +111,26 @@ func NewIMKServerWithNameControllerClassDelegateClass(name string, controllerCla
 }
 
 
+
 // Returns an object for the input method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/bundle()
 func (i_ IMKServer) Bundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](i_.ID, objc.Sel("bundle"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/lastKeyEventWasDeadKey()
 func (i_ IMKServer) LastKeyEventWasDeadKey() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("lastKeyEventWasDeadKey"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/paletteWillTerminate()
 func (i_ IMKServer) PaletteWillTerminate() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("paletteWillTerminate"))

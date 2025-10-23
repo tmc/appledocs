@@ -52,7 +52,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceStartStream(_:_:)
-
 func CMIODeviceStartStream(deviceID unsafe.Pointer, streamID unsafe.Pointer) unsafe.Pointer {
 	return _CMIODeviceStartStream(deviceID, streamID)
 	}
@@ -64,7 +63,6 @@ func CMIODeviceStartStream(deviceID unsafe.Pointer, streamID unsafe.Pointer) uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectIsPropertySettable(_:_:_:)
-
 func CMIOObjectIsPropertySettable(objectID unsafe.Pointer, address unsafe.Pointer, isSettable unsafe.Pointer) unsafe.Pointer {
 	return _CMIOObjectIsPropertySettable(objectID, address, isSettable)
 	}
@@ -76,7 +74,6 @@ func CMIOObjectIsPropertySettable(objectID unsafe.Pointer, address unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferGetSequenceNumber
-
 func CMIOSampleBufferGetSequenceNumber(sbuf unsafe.Pointer) unsafe.Pointer {
 	return _CMIOSampleBufferGetSequenceNumber(sbuf)
 	}
@@ -88,7 +85,6 @@ func CMIOSampleBufferGetSequenceNumber(sbuf unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckJog(_:_:)
-
 func CMIOStreamDeckJog(streamID unsafe.Pointer, speed unsafe.Pointer) unsafe.Pointer {
 	return _CMIOStreamDeckJog(streamID, speed)
 	}

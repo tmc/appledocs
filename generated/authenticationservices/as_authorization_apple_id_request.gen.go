@@ -40,7 +40,6 @@ type IAuthorizationAppleIDRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest
-
 type AuthorizationAppleIDRequest struct {
 	AuthorizationOpenIDRequest
 }
@@ -91,7 +90,6 @@ func NewAuthorizationAppleIDRequest() AuthorizationAppleIDRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-
 func (a_ AuthorizationAppleIDRequest) User() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
@@ -102,7 +100,6 @@ func (a_ AuthorizationAppleIDRequest) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-
 func (a_ AuthorizationAppleIDRequest) SetUser(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
 }

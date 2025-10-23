@@ -42,7 +42,6 @@ type ISKNodeComponent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent
-
 type SKNodeComponent struct {
 	Component
 }
@@ -89,12 +88,10 @@ func NewSKNodeComponent() SKNodeComponent {
 
 
 
-
 // Initializes a component to manage the specified SpriteKit node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/init(node:)
-
 func NewSKNodeComponentWithNode(node unsafe.Pointer) SKNodeComponent {
 	instance := getSKNodeComponentClass().Alloc()
 	rv := objc.Send[SKNodeComponent](instance.ID, objc.Sel("initWithNode:"), node)
@@ -108,7 +105,6 @@ func NewSKNodeComponentWithNode(node unsafe.Pointer) SKNodeComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/componentWithNode:
-
 func (nc _SKNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
 	return rv
@@ -119,7 +115,6 @@ func (nc _SKNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
-
 func (n_ SKNodeComponent) Node() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("node"))
 	return rv
@@ -130,7 +125,6 @@ func (n_ SKNodeComponent) Node() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
-
 func (n_ SKNodeComponent) SetNode(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNode:"), value)
 }

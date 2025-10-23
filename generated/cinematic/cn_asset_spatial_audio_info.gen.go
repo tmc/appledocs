@@ -40,7 +40,6 @@ type ICNAssetSpatialAudioInfo interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5
-
 type CNAssetSpatialAudioInfo struct {
 	objectivec.Object
 }
@@ -85,7 +84,6 @@ func NewCNAssetSpatialAudioInfo() CNAssetSpatialAudioInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/loadFromAsset:completionHandler:
-
 func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
@@ -93,7 +91,6 @@ func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset avf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/defaultRenderingStyle
-
 func (c_ CNAssetSpatialAudioInfo) DefaultRenderingStyle() CNSpatialAudioRenderingStyle {
 	rv := objc.Send[CNSpatialAudioRenderingStyle](c_.ID, objc.Sel("defaultRenderingStyle"))
 	return rv
@@ -102,7 +99,6 @@ func (c_ CNAssetSpatialAudioInfo) DefaultRenderingStyle() CNSpatialAudioRenderin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/spatialAudioMixMetadata
-
 func (c_ CNAssetSpatialAudioInfo) SpatialAudioMixMetadata() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("spatialAudioMixMetadata"))
 	return rv

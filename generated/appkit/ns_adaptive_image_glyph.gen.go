@@ -48,7 +48,6 @@ type IAdaptiveImageGlyph interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph
-
 type AdaptiveImageGlyph struct {
 	objectivec.Object
 }
@@ -93,11 +92,23 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 
 
 
+// Create an adaptive image glyph from the previously saved data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(imageContent:)
+func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.IData) AdaptiveImageGlyph {
+	instance := getAdaptiveImageGlyphClass().Alloc()
+	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithImageContent:"), imageContent)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // An alternate textual description of the image contents.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentdescription
-
 func (a_ AdaptiveImageGlyph) ContentDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("contentDescription"))
 	return rv
@@ -108,7 +119,6 @@ func (a_ AdaptiveImageGlyph) ContentDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentdescription
-
 func (a_ AdaptiveImageGlyph) SetContentDescription(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContentDescription:"), objc.String(value))
 }
@@ -118,7 +128,6 @@ func (a_ AdaptiveImageGlyph) SetContentDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentidentifier
-
 func (a_ AdaptiveImageGlyph) ContentIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("contentIdentifier"))
 	return rv
@@ -129,7 +138,6 @@ func (a_ AdaptiveImageGlyph) ContentIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentidentifier
-
 func (a_ AdaptiveImageGlyph) SetContentIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContentIdentifier:"), objc.String(value))
 }
@@ -139,7 +147,6 @@ func (a_ AdaptiveImageGlyph) SetContentIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-
 func (a_ AdaptiveImageGlyph) ImageContent() foundation.Data {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("imageContent"))
 	return rv
@@ -150,10 +157,8 @@ func (a_ AdaptiveImageGlyph) ImageContent() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-
 func (a_ AdaptiveImageGlyph) SetImageContent(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImageContent:"), value)
 }
-
 
 

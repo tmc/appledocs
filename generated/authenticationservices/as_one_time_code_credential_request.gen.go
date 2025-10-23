@@ -36,7 +36,6 @@ type IOneTimeCodeCredentialRequest interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredentialRequest
-
 type OneTimeCodeCredentialRequest struct {
 	objectivec.Object
 }

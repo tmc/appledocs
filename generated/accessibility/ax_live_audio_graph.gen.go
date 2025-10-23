@@ -41,7 +41,6 @@ type IAXLiveAudioGraph interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph
-
 type AXLiveAudioGraph struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewAXLiveAudioGraph() AXLiveAudioGraph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/start()
-
 func (ac _AXLiveAudioGraphClass) Start() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("start"))
 }
@@ -100,7 +98,6 @@ func (ac _AXLiveAudioGraphClass) Start() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/stop()
-
 func (ac _AXLiveAudioGraphClass) Stop() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("stop"))
 }
@@ -110,7 +107,6 @@ func (ac _AXLiveAudioGraphClass) Stop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/updateValue(_:)
-
 func (ac _AXLiveAudioGraphClass) UpdateValue(value float64) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("updateValue:"), value)
 }

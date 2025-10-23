@@ -31,7 +31,7 @@ type _TextTabClass struct {
 type ITextTab interface {
 	objectivec.IObject
 	Alignment() TextAlignment
-	SetAlignment(value TextAlignment)
+	SetAlignment(value ITextAlignment)
 	Location() float64
 	SetLocation(value float64)
 	Options() unsafe.Pointer
@@ -49,7 +49,6 @@ type ITextTab interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTab
-
 type TextTab struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewTextTab() TextTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
-
 func (t_ TextTab) Alignment() TextAlignment {
 	rv := objc.Send[TextAlignment](t_.ID, objc.Sel("alignment"))
 	return rv
@@ -109,8 +107,7 @@ func (t_ TextTab) Alignment() TextAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
-
-func (t_ TextTab) SetAlignment(value TextAlignment) {
+func (t_ TextTab) SetAlignment(value ITextAlignment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -119,7 +116,6 @@ func (t_ TextTab) SetAlignment(value TextAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/location
-
 func (t_ TextTab) Location() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("location"))
 	return rv
@@ -130,7 +126,6 @@ func (t_ TextTab) Location() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/location
-
 func (t_ TextTab) SetLocation(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
 }
@@ -140,7 +135,6 @@ func (t_ TextTab) SetLocation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/options
-
 func (t_ TextTab) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("options"))
 	return rv
@@ -151,7 +145,6 @@ func (t_ TextTab) Options() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/options
-
 func (t_ TextTab) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setOptions:"), value)
 }
@@ -161,7 +154,6 @@ func (t_ TextTab) SetOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/tabstoptype
-
 func (t_ TextTab) TabStopType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabStopType"))
 	return rv
@@ -172,7 +164,6 @@ func (t_ TextTab) TabStopType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/tabstoptype
-
 func (t_ TextTab) SetTabStopType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabStopType:"), value)
 }

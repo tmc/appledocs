@@ -31,16 +31,16 @@ type _EnergyFormatterClass struct {
 type IEnergyFormatter interface {
 	IFormatter
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	StringFromJoules(numberInJoules float64) String
-	StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String
-	UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) String
-	UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String
+	StringFromJoules(numberInJoules float64) IString
+	StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString
+	UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) IString
+	UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString
 	ForFoodEnergyUse() bool
 	SetForFoodEnergyUse(value bool)
-	NumberFormatter() NSNumberFormatter
+	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
-	UnitStyle() FormattingUnitStyle
-	SetUnitStyle(value FormattingUnitStyle)
+	UnitStyle() NSFormattingUnitStyle
+	SetUnitStyle(value NSFormattingUnitStyle)
 	IsForFoodEnergyUse() bool
 	SetIsForFoodEnergyUse(value bool)
 }
@@ -112,7 +112,7 @@ func (e_ EnergyFormatter) GetObjectValueForStringErrorDescription(obj objectivec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/string(fromJoules:)
-func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64) String {
+func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("stringFromJoules:"), numberInJoules)
 	return rv
 }
@@ -122,7 +122,7 @@ func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/string(fromValue:unit:)
-func (e_ EnergyFormatter) StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String {
+func (e_ EnergyFormatter) StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("stringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -132,7 +132,7 @@ func (e_ EnergyFormatter) StringFromValueUnit(value float64, unit NSEnergyFormat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromJoules:usedUnit:)
-func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) String {
+func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromJoules:usedUnit:"), numberInJoules, unitp)
 	return rv
 }
@@ -142,7 +142,7 @@ func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64, u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromValue:unit:)
-func (e_ EnergyFormatter) UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String {
+func (e_ EnergyFormatter) UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -171,7 +171,7 @@ func (e_ EnergyFormatter) SetForFoodEnergyUse(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/numberFormatter
-func (e_ EnergyFormatter) NumberFormatter() NSNumberFormatter {
+func (e_ EnergyFormatter) NumberFormatter() INumberFormatter {
 	rv := objc.Send[NSNumberFormatter](e_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (e_ EnergyFormatter) SetNumberFormatter(value INumberFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitStyle
-func (e_ EnergyFormatter) UnitStyle() FormattingUnitStyle {
+func (e_ EnergyFormatter) UnitStyle() NSFormattingUnitStyle {
 	rv := objc.Send[FormattingUnitStyle](e_.ID, objc.Sel("unitStyle"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (e_ EnergyFormatter) UnitStyle() FormattingUnitStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitStyle
-func (e_ EnergyFormatter) SetUnitStyle(value FormattingUnitStyle) {
+func (e_ EnergyFormatter) SetUnitStyle(value NSFormattingUnitStyle) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUnitStyle:"), value)
 }
 

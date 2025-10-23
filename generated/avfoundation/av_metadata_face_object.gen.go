@@ -50,7 +50,6 @@ type IMetadataFaceObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataFaceObject
-
 type MetadataFaceObject struct {
 	MetadataObject
 }
@@ -101,7 +100,6 @@ func NewMetadataFaceObject() MetadataFaceObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/faceid
-
 func (m_ MetadataFaceObject) FaceID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("faceID"))
 	return rv
@@ -112,7 +110,6 @@ func (m_ MetadataFaceObject) FaceID() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/faceid
-
 func (m_ MetadataFaceObject) SetFaceID(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaceID:"), value)
 }
@@ -122,7 +119,6 @@ func (m_ MetadataFaceObject) SetFaceID(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasrollangle
-
 func (m_ MetadataFaceObject) HasRollAngle() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasRollAngle"))
 	return rv
@@ -133,7 +129,6 @@ func (m_ MetadataFaceObject) HasRollAngle() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasrollangle
-
 func (m_ MetadataFaceObject) SetHasRollAngle(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasRollAngle:"), value)
 }
@@ -143,7 +138,6 @@ func (m_ MetadataFaceObject) SetHasRollAngle(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasyawangle
-
 func (m_ MetadataFaceObject) HasYawAngle() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasYawAngle"))
 	return rv
@@ -154,7 +148,6 @@ func (m_ MetadataFaceObject) HasYawAngle() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/hasyawangle
-
 func (m_ MetadataFaceObject) SetHasYawAngle(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasYawAngle:"), value)
 }
@@ -164,7 +157,6 @@ func (m_ MetadataFaceObject) SetHasYawAngle(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/rollangle
-
 func (m_ MetadataFaceObject) RollAngle() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("rollAngle"))
 	return rv
@@ -175,7 +167,6 @@ func (m_ MetadataFaceObject) RollAngle() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/rollangle
-
 func (m_ MetadataFaceObject) SetRollAngle(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRollAngle:"), value)
 }
@@ -185,7 +176,6 @@ func (m_ MetadataFaceObject) SetRollAngle(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/yawangle
-
 func (m_ MetadataFaceObject) YawAngle() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("yawAngle"))
 	return rv
@@ -196,7 +186,6 @@ func (m_ MetadataFaceObject) YawAngle() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject/yawangle
-
 func (m_ MetadataFaceObject) SetYawAngle(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setYawAngle:"), value)
 }

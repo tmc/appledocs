@@ -34,7 +34,11 @@ type IINCallRecordResolutionResult interface {
 // A resolution result for the details of a call.
 //
 // You return an object when resolving parameters containing an value. The can be different than the original . This flexibility allows app extensions to apply business logic constraints. Use to continue with a value. For additional resolution operators, see .
+
+
+// A resolution result for the details of a call.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCallRecordResolutionResult
 type INCallRecordResolutionResult struct {
 	INIntentResolutionResult

@@ -36,9 +36,9 @@ type IDateComponents interface {
 	SetYearForWeekOfYear(value int)
 	NSDateComponentUndefined() int
 	SetNSDateComponentUndefined(value int)
-	Calendar() Calendar
+	Calendar() ICalendar
 	SetCalendar(value ICalendar)
-	Date() Date
+	Date() IDate
 	SetDate(value IDate)
 	Day() int
 	SetDay(value int)
@@ -64,7 +64,7 @@ type IDateComponents interface {
 	SetQuarter(value int)
 	Second() int
 	SetSecond(value int)
-	TimeZone() TimeZone
+	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	WeekOfMonth() int
 	SetWeekOfMonth(value int)
@@ -190,7 +190,7 @@ func (d_ DateComponents) SetNSDateComponentUndefined(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/calendar
-func (d_ DateComponents) Calendar() Calendar {
+func (d_ DateComponents) Calendar() ICalendar {
 	rv := objc.Send[Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (d_ DateComponents) SetCalendar(value ICalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/date
-func (d_ DateComponents) Date() Date {
+func (d_ DateComponents) Date() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("date"))
 	return rv
 }
@@ -448,7 +448,7 @@ func (d_ DateComponents) SetSecond(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/timezone
-func (d_ DateComponents) TimeZone() TimeZone {
+func (d_ DateComponents) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }

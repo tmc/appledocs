@@ -46,7 +46,6 @@ type ICXCallController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController
-
 type CXCallController struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewCXCallController() CXCallController {
 
 
 
-
 // Initializes a new call controller with a specified queue, which is used for calling completion blocks.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/init(queue:)
-
 func NewCXCallControllerWithQueue(queue unsafe.Pointer) CXCallController {
 	instance := getCXCallControllerClass().Alloc()
 	rv := objc.Send[CXCallController](instance.ID, objc.Sel("initWithQueue:"), queue)
@@ -106,34 +103,28 @@ func NewCXCallControllerWithQueue(queue unsafe.Pointer) CXCallController {
 
 
 
-
 // Requests that the actions in the specified transaction be asynchronously performed by the telephony provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/request(_:completion:)
-
 func (c_ CXCallController) RequestTransactionCompletion(transaction ICXTransaction, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransaction:completion:"), transaction, completion)
 }
-
 
 
 // Requests that the transaction that contains the specified actions be asynchronously performed by the telephony provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4
-
 func (c_ CXCallController) RequestTransactionWithActionsCompletion(actions []CXAction, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithActions:completion:"), actions, completion)
 }
-
 
 
 // Requests that the transaction that contains the specified action be asynchronously performed by the telephony provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-ffme
-
 func (c_ CXCallController) RequestTransactionWithActionCompletion(action ICXAction, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithAction:completion:"), action, completion)
 }
@@ -143,7 +134,6 @@ func (c_ CXCallController) RequestTransactionWithActionCompletion(action ICXActi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/callObserver
-
 func (c_ CXCallController) CallObserver() CXCallObserver {
 	rv := objc.Send[CXCallObserver](c_.ID, objc.Sel("callObserver"))
 	return rv
@@ -154,7 +144,6 @@ func (c_ CXCallController) CallObserver() CXCallObserver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction
-
 func (c_ CXCallController) CXErrorDomainRequestTransaction() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainRequestTransaction"))
 	return rv

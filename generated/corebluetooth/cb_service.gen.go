@@ -44,7 +44,6 @@ type ICBService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService
-
 type CBService struct {
 	CBAttribute
 }
@@ -95,7 +94,6 @@ func NewCBService() CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/characteristics
-
 func (c_ CBService) Characteristics() []CBCharacteristic {
 	rv := objc.Send[[]CBCharacteristic](c_.ID, objc.Sel("characteristics"))
 	return rv
@@ -106,7 +104,6 @@ func (c_ CBService) Characteristics() []CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/includedServices
-
 func (c_ CBService) IncludedServices() []CBService {
 	rv := objc.Send[[]CBService](c_.ID, objc.Sel("includedServices"))
 	return rv
@@ -117,7 +114,6 @@ func (c_ CBService) IncludedServices() []CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/isPrimary
-
 func (c_ CBService) IsPrimary() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPrimary"))
 	return rv
@@ -128,7 +124,6 @@ func (c_ CBService) IsPrimary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/peripheral
-
 func (c_ CBService) Peripheral() CBPeripheral {
 	rv := objc.Send[CBPeripheral](c_.ID, objc.Sel("peripheral"))
 	return rv

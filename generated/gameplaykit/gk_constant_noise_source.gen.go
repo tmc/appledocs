@@ -42,7 +42,6 @@ type IConstantNoiseSource interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource
-
 type ConstantNoiseSource struct {
 	NoiseSource
 }
@@ -89,12 +88,10 @@ func NewConstantNoiseSource() ConstantNoiseSource {
 
 
 
-
 // Initializes a noise source with the specified constant value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/init(value:)
-
 func NewConstantNoiseSourceWithValue(value float64) ConstantNoiseSource {
 	instance := getConstantNoiseSourceClass().Alloc()
 	rv := objc.Send[ConstantNoiseSource](instance.ID, objc.Sel("initWithValue:"), value)
@@ -108,7 +105,6 @@ func NewConstantNoiseSourceWithValue(value float64) ConstantNoiseSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/constantNoise(withValue:)
-
 func (cc _ConstantNoiseSourceClass) ConstantNoiseWithValue(value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constantNoiseWithValue:"), value)
 	return rv
@@ -119,7 +115,6 @@ func (cc _ConstantNoiseSourceClass) ConstantNoiseWithValue(value float64) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/value
-
 func (c_ ConstantNoiseSource) Value() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("value"))
 	return rv
@@ -130,7 +125,6 @@ func (c_ ConstantNoiseSource) Value() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/value
-
 func (c_ ConstantNoiseSource) SetValue(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }

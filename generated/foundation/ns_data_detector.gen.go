@@ -32,13 +32,13 @@ type IDataDetector interface {
 	CheckingTypes() unsafe.Pointer
 	SetCheckingTypes(value unsafe.Pointer)
 	NSNotFound() int
-	Date() Date
+	Date() IDate
 	SetDate(value IDate)
 	Duration() TimeInterval
-	SetDuration(value ITimeInterval)
-	TimeZone() TimeZone
+	SetDuration(value TimeInterval)
+	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
-	Url() URL
+	Url() IURL
 	SetUrl(value IURL)
 }
 
@@ -130,7 +130,7 @@ func (d_ DataDetector) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
-func (d_ DataDetector) Date() Date {
+func (d_ DataDetector) Date() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("date"))
 	return rv
 }
@@ -159,7 +159,7 @@ func (d_ DataDetector) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (d_ DataDetector) SetDuration(value ITimeInterval) {
+func (d_ DataDetector) SetDuration(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -168,7 +168,7 @@ func (d_ DataDetector) SetDuration(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-func (d_ DataDetector) TimeZone() TimeZone {
+func (d_ DataDetector) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (d_ DataDetector) SetTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-func (d_ DataDetector) Url() URL {
+func (d_ DataDetector) Url() IURL {
 	rv := objc.Send[URL](d_.ID, objc.Sel("url"))
 	return rv
 }

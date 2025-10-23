@@ -48,7 +48,6 @@ type ITKTokenDriver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver
-
 type TKTokenDriver struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewTKTokenDriver() TKTokenDriver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
-
 func (t_ TKTokenDriver) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -108,7 +106,6 @@ func (t_ TKTokenDriver) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenDriver/delegate
-
 func (t_ TKTokenDriver) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -118,7 +115,6 @@ func (t_ TKTokenDriver) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-
 func (t_ TKTokenDriver) ConfigurationData() foundation.Data {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("configurationData"))
 	return rv
@@ -129,7 +125,6 @@ func (t_ TKTokenDriver) ConfigurationData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-
 func (t_ TKTokenDriver) SetConfigurationData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setConfigurationData:"), value)
 }
@@ -139,7 +134,6 @@ func (t_ TKTokenDriver) SetConfigurationData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems
-
 func (t_ TKTokenDriver) KeychainItems() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keychainItems"))
 	return rv
@@ -150,7 +144,6 @@ func (t_ TKTokenDriver) KeychainItems() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems
-
 func (t_ TKTokenDriver) SetKeychainItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainItems:"), value)
 }

@@ -40,7 +40,6 @@ type IPersistentHistoryResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult
-
 type PersistentHistoryResult struct {
 	PersistentStoreResult
 }
@@ -91,7 +90,6 @@ func NewPersistentHistoryResult() PersistentHistoryResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult/result
-
 func (p_ PersistentHistoryResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("result"))
 	return rv
@@ -102,7 +100,6 @@ func (p_ PersistentHistoryResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult/resultType
-
 func (p_ PersistentHistoryResult) ResultType() PersistentHistoryResultType {
 	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv

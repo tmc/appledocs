@@ -49,7 +49,6 @@ type IOctree interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree
-
 type Octree struct {
 	objectivec.Object
 }
@@ -94,12 +93,10 @@ func NewOctree() Octree {
 
 
 
-
 // Initializes an octree with the specified dimensions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/init(boundingBox:minimumCellSize:)
-
 func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float32) Octree {
 	instance := getOctreeClass().Alloc()
 	rv := objc.Send[Octree](instance.ID, objc.Sel("initWithBoundingBox:minimumCellSize:"), box, minCellSize)
@@ -113,79 +110,66 @@ func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/octreeWithBoundingBox:minimumCellSize:
-
 func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("octreeWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	return rv
 }
 
 
-
 // Adds an object to the tree corresponding to the specified point in 3D space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/add(_:at:)
-
 func (o_ Octree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) OctreeNode {
 	rv := objc.Send[OctreeNode](o_.ID, objc.Sel("addElement:withPoint:"), element, point)
 	return rv
 }
 
 
-
 // Adds an object to the tree corresponding to the specified volume of 3D space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/add(_:in:)
-
 func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box appkit.IBox) OctreeNode {
 	rv := objc.Send[OctreeNode](o_.ID, objc.Sel("addElement:withBox:"), element, box)
 	return rv
 }
 
 
-
 // Returns all objects whose corresponding locations overlap the specified point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(at:)
-
 func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
 	rv := objc.Send[[]foundation.Object](o_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
 
-
 // Returns all objects whose corresponding locations overlap the specified volume.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(in:)
-
 func (o_ Octree) ElementsInBox(box appkit.IBox) []foundation.Object {
 	rv := objc.Send[[]foundation.Object](o_.ID, objc.Sel("elementsInBox:"), box)
 	return rv
 }
 
 
-
 // Searches for the specified object and removes it from the tree.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/remove(_:)
-
 func (o_ Octree) RemoveElement(element unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeElement:"), element)
 	return rv
 }
 
 
-
 // Removes the specified object from the tree, using a reference to its containing node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/remove(_:using:)
-
 func (o_ Octree) RemoveElementWithNode(element unsafe.Pointer, node IGKOctreeNode) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeElement:withNode:"), element, node)
 	return rv

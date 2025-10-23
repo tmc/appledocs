@@ -32,7 +32,9 @@ type ImChannelPSM interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mChannelPSM
 type mChannelPSM struct {
 	objectivec.Object

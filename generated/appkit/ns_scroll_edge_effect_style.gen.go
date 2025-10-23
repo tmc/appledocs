@@ -39,7 +39,6 @@ type IScrollEdgeEffectStyle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle
-
 type ScrollEdgeEffectStyle struct {
 	objectivec.Object
 }
@@ -88,7 +87,6 @@ func NewScrollEdgeEffectStyle() ScrollEdgeEffectStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
-
 func (sc _ScrollEdgeEffectStyleClass) AutomaticStyle() ScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("automaticStyle"))
 	return rv
@@ -98,7 +96,6 @@ func (sc _ScrollEdgeEffectStyleClass) AutomaticStyle() ScrollEdgeEffectStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/hard
-
 func (sc _ScrollEdgeEffectStyleClass) HardStyle() ScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("hardStyle"))
 	return rv
@@ -108,7 +105,6 @@ func (sc _ScrollEdgeEffectStyleClass) HardStyle() ScrollEdgeEffectStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/soft
-
 func (sc _ScrollEdgeEffectStyleClass) SoftStyle() ScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("softStyle"))
 	return rv
@@ -118,7 +114,6 @@ func (sc _ScrollEdgeEffectStyleClass) SoftStyle() ScrollEdgeEffectStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
-
 func (s_ ScrollEdgeEffectStyle) AutomaticStyle() NSScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](s_.ID, objc.Sel("automaticStyle"))
 	return rv
@@ -129,7 +124,6 @@ func (s_ ScrollEdgeEffectStyle) AutomaticStyle() NSScrollEdgeEffectStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/hard
-
 func (s_ ScrollEdgeEffectStyle) HardStyle() NSScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](s_.ID, objc.Sel("hardStyle"))
 	return rv
@@ -140,7 +134,6 @@ func (s_ ScrollEdgeEffectStyle) HardStyle() NSScrollEdgeEffectStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/soft
-
 func (s_ ScrollEdgeEffectStyle) SoftStyle() NSScrollEdgeEffectStyle {
 	rv := objc.Send[NSScrollEdgeEffectStyle](s_.ID, objc.Sel("softStyle"))
 	return rv

@@ -33,7 +33,11 @@ type IINShareFocusStatusIntent interface {
 }
 
 // An object that indicates the user’s focus status is changing.
+
+
+// An object that indicates the user’s focus status is changing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent
 type INShareFocusStatusIntent struct {
 	INIntent
@@ -81,9 +85,9 @@ func NewINShareFocusStatusIntent() INShareFocusStatusIntent {
 
 
 
-
 // Creates an intent with the specified focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/init(focusStatus:)
 func NewINShareFocusStatusIntentWithFocusStatus(focusStatus INFocusStatus) INShareFocusStatusIntent {
 	instance := getINShareFocusStatusIntentClass().Alloc()
@@ -93,8 +97,10 @@ func NewINShareFocusStatusIntentWithFocusStatus(focusStatus INFocusStatus) INSha
 }
 
 
+
 // The user’s preference for receiving communication notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/focusStatus
 func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
 	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))

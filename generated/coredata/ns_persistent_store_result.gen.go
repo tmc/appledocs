@@ -39,7 +39,6 @@ type IPersistentStoreResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreResult
-
 type PersistentStoreResult struct {
 	objectivec.Object
 }

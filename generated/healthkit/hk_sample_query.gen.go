@@ -46,7 +46,6 @@ type IHKSampleQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery
-
 type HKSampleQuery struct {
 	HKQuery
 }
@@ -93,12 +92,10 @@ func NewHKSampleQuery() HKSampleQuery {
 
 
 
-
 // Creates a query for samples that match any of the query descriptors you provided, sorted by the sort descriptors you provided.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)
-
 func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors []HKQueryDescriptor, limit int, sortDescriptors []foundation.ISortDescriptor, resultsHandler unsafe.Pointer) HKSampleQuery {
 	instance := getHKSampleQueryClass().Alloc()
 	rv := objc.Send[HKSampleQuery](instance.ID, objc.Sel("initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"), queryDescriptors, limit, sortDescriptors, resultsHandler)
@@ -112,7 +109,6 @@ func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(quer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-
 func (h_ HKSampleQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
@@ -123,7 +119,6 @@ func (h_ HKSampleQuery) HKObjectQueryNoLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
-
 func (h_ HKSampleQuery) Limit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
 	return rv
@@ -134,7 +129,6 @@ func (h_ HKSampleQuery) Limit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
-
 func (h_ HKSampleQuery) SetLimit(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
@@ -144,7 +138,6 @@ func (h_ HKSampleQuery) SetLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-
 func (h_ HKSampleQuery) SortDescriptors() foundation.SortDescriptor {
 	rv := objc.Send[foundation.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
@@ -155,7 +148,6 @@ func (h_ HKSampleQuery) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-
 func (h_ HKSampleQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }

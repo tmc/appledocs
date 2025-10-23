@@ -40,7 +40,6 @@ type ICNChangeHistoryAddSubgroupToGroupEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent
-
 type CNChangeHistoryAddSubgroupToGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -91,7 +90,6 @@ func NewCNChangeHistoryAddSubgroupToGroupEvent() CNChangeHistoryAddSubgroupToGro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent/group
-
 func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent/subgroup
-
 func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Subgroup() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv

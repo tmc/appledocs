@@ -42,7 +42,6 @@ type IDDMatchLink interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink
-
 type DDMatchLink struct {
 	DDMatch
 }
@@ -93,7 +92,6 @@ func NewDDMatchLink() DDMatchLink {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink/url
-
 func (d_ DDMatchLink) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("URL"))
 	return rv

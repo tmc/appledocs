@@ -45,7 +45,6 @@ type IMIDIUMPCIProfile interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile
-
 type MIDIUMPCIProfile struct {
 	objectivec.Object
 }
@@ -88,10 +87,8 @@ func NewMIDIUMPCIProfile() MIDIUMPCIProfile {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/setProfileState(_:enabledChannelCount:)
-
 func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount IMIDIUInteger14, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setProfileState:enabledChannelCount:error:"), isEnabled, enabledChannelCount, error_)
 	return rv
@@ -100,7 +97,6 @@ func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled boo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/enabledChannelCount
-
 func (m_ MIDIUMPCIProfile) EnabledChannelCount() MIDIUInteger14 {
 	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("enabledChannelCount"))
 	return rv
@@ -109,7 +105,6 @@ func (m_ MIDIUMPCIProfile) EnabledChannelCount() MIDIUInteger14 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/firstChannel
-
 func (m_ MIDIUMPCIProfile) FirstChannel() MIDIChannelNumber {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("firstChannel"))
 	return rv
@@ -118,7 +113,6 @@ func (m_ MIDIUMPCIProfile) FirstChannel() MIDIChannelNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/groupOffset
-
 func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber {
 	rv := objc.Send[MIDIUMPGroupNumber](m_.ID, objc.Sel("groupOffset"))
 	return rv
@@ -127,7 +121,6 @@ func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/isEnabled
-
 func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -136,7 +129,6 @@ func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/name
-
 func (m_ MIDIUMPCIProfile) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -145,7 +137,6 @@ func (m_ MIDIUMPCIProfile) Name() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/profileID
-
 func (m_ MIDIUMPCIProfile) ProfileID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileID"))
 	return rv
@@ -154,7 +145,6 @@ func (m_ MIDIUMPCIProfile) ProfileID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/profileType
-
 func (m_ MIDIUMPCIProfile) ProfileType() MIDICIProfileType {
 	rv := objc.Send[MIDICIProfileType](m_.ID, objc.Sel("profileType"))
 	return rv
@@ -163,7 +153,6 @@ func (m_ MIDIUMPCIProfile) ProfileType() MIDICIProfileType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/totalChannelCount
-
 func (m_ MIDIUMPCIProfile) TotalChannelCount() MIDIUInteger14 {
 	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("totalChannelCount"))
 	return rv

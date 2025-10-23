@@ -37,7 +37,11 @@ type IINDateRelevanceProvider interface {
 }
 
 // The provider class that specifies a relevant day and time.
+
+
+// The provider class that specifies a relevant day and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INDateRelevanceProvider
 type INDateRelevanceProvider struct {
 	objectivec.Object
@@ -82,16 +86,20 @@ func NewINDateRelevanceProvider() INDateRelevanceProvider {
 }
 
 
+
 // The relevant start date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INDateRelevanceProvider/startDate
 func (i_ INDateRelevanceProvider) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("startDate"))
 	return rv
 }
 
+
 // The relevant end date.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indaterelevanceprovider/enddate
 func (i_ INDateRelevanceProvider) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("endDate"))
@@ -99,10 +107,9 @@ func (i_ INDateRelevanceProvider) EndDate() foundation.Date {
 }
 
 
-// SetEndDate sets the value of the endDate property.
 // The relevant end date.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indaterelevanceprovider/enddate
 func (i_ INDateRelevanceProvider) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDate:"), value)

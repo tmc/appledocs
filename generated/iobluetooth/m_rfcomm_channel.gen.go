@@ -32,7 +32,9 @@ type ImRFCOMMChannel interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/mRFCOMMChannel
 type mRFCOMMChannel struct {
 	objectivec.Object

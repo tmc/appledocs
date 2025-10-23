@@ -48,7 +48,6 @@ type IDraggingImageComponent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent
-
 type DraggingImageComponent struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewDraggingImageComponent() DraggingImageComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/contents
-
 func (d_ DraggingImageComponent) Contents() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contents"))
 	return rv
@@ -108,7 +106,6 @@ func (d_ DraggingImageComponent) Contents() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/contents
-
 func (d_ DraggingImageComponent) SetContents(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContents:"), value)
 }
@@ -118,7 +115,6 @@ func (d_ DraggingImageComponent) SetContents(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
-
 func (d_ DraggingImageComponent) Frame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("frame"))
 	return rv
@@ -129,7 +125,6 @@ func (d_ DraggingImageComponent) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
-
 func (d_ DraggingImageComponent) SetFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrame:"), value)
 }
@@ -139,7 +134,6 @@ func (d_ DraggingImageComponent) SetFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/key
-
 func (d_ DraggingImageComponent) Key() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("key"))
 	return rv
@@ -150,7 +144,6 @@ func (d_ DraggingImageComponent) Key() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/key
-
 func (d_ DraggingImageComponent) SetKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKey:"), value)
 }

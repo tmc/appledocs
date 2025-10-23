@@ -2,11 +2,14 @@
 
 // Package immersivemediasupport provides Go bindings for the ImmersiveMediaSupport framework.
 //
-// Read and write essential Apple Immersive Video metadata. [Full Topic]
+// Read and write essential Apple Immersive Video metadata.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImmersiveMediaSupport without requiring cgo.
+
+// Read and write essential Apple Immersive Video metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImmersiveMediaSupport
 package immersivemediasupport
 

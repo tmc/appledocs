@@ -43,7 +43,6 @@ type IUserInterfaceCompressionOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions
-
 type UserInterfaceCompressionOptions struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewUserInterfaceCompressionOptions() UserInterfaceCompressionOptions {
 
 
 
-
 // Creates an option object with the given identifier string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(identifier:)
-
 func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInterfaceCompressionOptions {
 	instance := getUserInterfaceCompressionOptionsClass().Alloc()
 	rv := objc.Send[UserInterfaceCompressionOptions](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
@@ -107,7 +104,6 @@ func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/isempty
-
 func (u_ UserInterfaceCompressionOptions) IsEmpty() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEmpty"))
 	return rv
@@ -118,7 +114,6 @@ func (u_ UserInterfaceCompressionOptions) IsEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/isempty
-
 func (u_ UserInterfaceCompressionOptions) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEmpty:"), value)
 }

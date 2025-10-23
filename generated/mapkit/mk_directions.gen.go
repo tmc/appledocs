@@ -38,7 +38,11 @@ type IMKDirections interface {
 // A utility object that computes directions and travel-time information based on the route information you provide.
 //
 // You use an object to ask the Apple servers to provide walking or driving directions for a route, which you specify using an object. After making a request, MapKit delivers the results asynchronously to the completion handler that you provide. You can also get the estimated travel time for the route. Each object handles a single request for directions, although you can cancel and restart that request as needed. You can create multiple instances of this class and process different route requests at the same time, but make requests only when you plan to present the corresponding route information to the user. Apps may receive an error if the device makes too many requests in too short a time period.
+
+
+// A utility object that computes directions and travel-time information based on the route information you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKDirections
 type MKDirections struct {
 	objectivec.Object
@@ -83,15 +87,19 @@ func NewMKDirections() MKDirections {
 }
 
 
+
 // Begins calculating the requested travel-time information asynchronously.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKDirections/calculateETA(completionHandler:)
 func (m_ MKDirections) CalculateETAWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("calculateETAWithCompletionHandler:"), completionHandler)
 }
 
+
 // A Boolean value that indicates whether a request is in process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/iscalculating
 func (m_ MKDirections) IsCalculating() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCalculating"))
@@ -99,10 +107,9 @@ func (m_ MKDirections) IsCalculating() bool {
 }
 
 
-// SetIsCalculating sets the value of the isCalculating property.
 // A Boolean value that indicates whether a request is in process.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/iscalculating
 func (m_ MKDirections) SetIsCalculating(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCalculating:"), value)

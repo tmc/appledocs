@@ -32,26 +32,26 @@ type IDictionary interface {
 	objectivec.IObject
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
 	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len_ uint) uint
-	DescriptionWithLocale(locale objectivec.IObject) String
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
+	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
-	FileCreationDate() Date
+	FileCreationDate() IDate
 	FileExtensionHidden() bool
-	FileGroupOwnerAccountID() Number
-	FileGroupOwnerAccountName() String
+	FileGroupOwnerAccountID() INumber
+	FileGroupOwnerAccountName() IString
 	FileHFSCreatorCode() unsafe.Pointer
 	FileHFSTypeCode() unsafe.Pointer
 	FileIsAppendOnly() bool
 	FileIsImmutable() bool
-	FileModificationDate() Date
-	FileOwnerAccountID() Number
-	FileOwnerAccountName() String
+	FileModificationDate() IDate
+	FileOwnerAccountID() INumber
+	FileOwnerAccountName() IString
 	FilePosixPermissions() uint
 	FileSize() uint64
 	FileSystemFileNumber() uint
 	FileSystemNumber() int
-	FileType() String
+	FileType() IString
 	GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Pointer)
 	GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint)
 	IsEqualToDictionary(otherDictionary IDictionary) bool
@@ -371,7 +371,7 @@ func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:)
-func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) String {
+func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -381,7 +381,7 @@ func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:indent:)
-func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String {
+func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -409,7 +409,7 @@ func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts NSEnumera
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileCreationDate()
-func (d_ Dictionary) FileCreationDate() Date {
+func (d_ Dictionary) FileCreationDate() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("fileCreationDate"))
 	return rv
 }
@@ -429,7 +429,7 @@ func (d_ Dictionary) FileExtensionHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileGroupOwnerAccountID()
-func (d_ Dictionary) FileGroupOwnerAccountID() Number {
+func (d_ Dictionary) FileGroupOwnerAccountID() INumber {
 	rv := objc.Send[Number](d_.ID, objc.Sel("fileGroupOwnerAccountID"))
 	return rv
 }
@@ -439,7 +439,7 @@ func (d_ Dictionary) FileGroupOwnerAccountID() Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileGroupOwnerAccountName()
-func (d_ Dictionary) FileGroupOwnerAccountName() String {
+func (d_ Dictionary) FileGroupOwnerAccountName() IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("fileGroupOwnerAccountName"))
 	return rv
 }
@@ -489,7 +489,7 @@ func (d_ Dictionary) FileIsImmutable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileModificationDate()
-func (d_ Dictionary) FileModificationDate() Date {
+func (d_ Dictionary) FileModificationDate() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("fileModificationDate"))
 	return rv
 }
@@ -499,7 +499,7 @@ func (d_ Dictionary) FileModificationDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileOwnerAccountID()
-func (d_ Dictionary) FileOwnerAccountID() Number {
+func (d_ Dictionary) FileOwnerAccountID() INumber {
 	rv := objc.Send[Number](d_.ID, objc.Sel("fileOwnerAccountID"))
 	return rv
 }
@@ -509,7 +509,7 @@ func (d_ Dictionary) FileOwnerAccountID() Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileOwnerAccountName()
-func (d_ Dictionary) FileOwnerAccountName() String {
+func (d_ Dictionary) FileOwnerAccountName() IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("fileOwnerAccountName"))
 	return rv
 }
@@ -559,7 +559,7 @@ func (d_ Dictionary) FileSystemNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileType()
-func (d_ Dictionary) FileType() String {
+func (d_ Dictionary) FileType() IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("fileType"))
 	return rv
 }

@@ -43,7 +43,6 @@ type ILogItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem
-
 type LogItem struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewLogItem() LogItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem/timestamp
-
 func (l_ LogItem) Timestamp() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timestamp"))
 	return rv

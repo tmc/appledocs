@@ -42,7 +42,6 @@ type IMutableTimedMetadataGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableTimedMetadataGroup
-
 type MutableTimedMetadataGroup struct {
 	TimedMetadataGroup
 }
@@ -93,7 +92,6 @@ func NewMutableTimedMetadataGroup() MutableTimedMetadataGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/items
-
 func (m_ MutableTimedMetadataGroup) Items() AVMetadataItem {
 	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("items"))
 	return rv
@@ -104,7 +102,6 @@ func (m_ MutableTimedMetadataGroup) Items() AVMetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/items
-
 func (m_ MutableTimedMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
 }
@@ -114,7 +111,6 @@ func (m_ MutableTimedMetadataGroup) SetItems(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/timerange
-
 func (m_ MutableTimedMetadataGroup) TimeRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeRange"))
 	return rv
@@ -125,7 +121,6 @@ func (m_ MutableTimedMetadataGroup) TimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/timerange
-
 func (m_ MutableTimedMetadataGroup) SetTimeRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeRange:"), value)
 }

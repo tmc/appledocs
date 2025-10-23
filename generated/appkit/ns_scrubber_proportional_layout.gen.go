@@ -40,7 +40,6 @@ type IScrubberProportionalLayout interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout
-
 type ScrubberProportionalLayout struct {
 	ScrubberLayout
 }
@@ -91,7 +90,6 @@ func NewScrubberProportionalLayout() ScrubberProportionalLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
-
 func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("numberOfVisibleItems"))
 	return rv
@@ -102,7 +100,6 @@ func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
-
 func (s_ ScrubberProportionalLayout) SetNumberOfVisibleItems(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }

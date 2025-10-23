@@ -315,7 +315,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferCopyAttachment(_:_:_:)
-
 func CVBufferCopyAttachment(buffer unsafe.Pointer, key unsafe.Pointer, attachmentMode unsafe.Pointer) unsafe.Pointer {
 	return _CVBufferCopyAttachment(buffer, key, attachmentMode)
 	}
@@ -329,7 +328,6 @@ func CVBufferCopyAttachment(buffer unsafe.Pointer, key unsafe.Pointer, attachmen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferCopyAttachments(_:_:)
-
 func CVBufferCopyAttachments(buffer unsafe.Pointer, attachmentMode unsafe.Pointer) unsafe.Pointer {
 	return _CVBufferCopyAttachments(buffer, attachmentMode)
 	}
@@ -345,7 +343,6 @@ func CVBufferCopyAttachments(buffer unsafe.Pointer, attachmentMode unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferGetAttachment(_:_:_:)
-
 func CVBufferGetAttachment(buffer unsafe.Pointer, key unsafe.Pointer, attachmentMode unsafe.Pointer) unsafe.Pointer {
 	return _CVBufferGetAttachment(buffer, key, attachmentMode)
 	}
@@ -361,7 +358,6 @@ func CVBufferGetAttachment(buffer unsafe.Pointer, key unsafe.Pointer, attachment
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferGetAttachments(_:_:)
-
 func CVBufferGetAttachments(buffer unsafe.Pointer, attachmentMode unsafe.Pointer) unsafe.Pointer {
 	return _CVBufferGetAttachments(buffer, attachmentMode)
 	}
@@ -375,7 +371,6 @@ func CVBufferGetAttachments(buffer unsafe.Pointer, attachmentMode unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferHasAttachment(_:_:)
-
 func CVBufferHasAttachment(buffer unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
 	return _CVBufferHasAttachment(buffer, key)
 	}
@@ -389,7 +384,6 @@ func CVBufferHasAttachment(buffer unsafe.Pointer, key unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferPropagateAttachments(_:_:)
-
 func CVBufferPropagateAttachments(sourceBuffer unsafe.Pointer, destinationBuffer unsafe.Pointer) {
 	_CVBufferPropagateAttachments(sourceBuffer, destinationBuffer)
 	}
@@ -403,7 +397,6 @@ func CVBufferPropagateAttachments(sourceBuffer unsafe.Pointer, destinationBuffer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferRelease
-
 func CVBufferRelease(buffer unsafe.Pointer) {
 	_CVBufferRelease(buffer)
 	}
@@ -417,7 +410,6 @@ func CVBufferRelease(buffer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferRemoveAllAttachments(_:)
-
 func CVBufferRemoveAllAttachments(buffer unsafe.Pointer) {
 	_CVBufferRemoveAllAttachments(buffer)
 	}
@@ -431,7 +423,6 @@ func CVBufferRemoveAllAttachments(buffer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferRemoveAttachment(_:_:)
-
 func CVBufferRemoveAttachment(buffer unsafe.Pointer, key unsafe.Pointer) {
 	_CVBufferRemoveAttachment(buffer, key)
 	}
@@ -445,7 +436,6 @@ func CVBufferRemoveAttachment(buffer unsafe.Pointer, key unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferRetain
-
 func CVBufferRetain(buffer unsafe.Pointer) unsafe.Pointer {
 	return _CVBufferRetain(buffer)
 	}
@@ -459,7 +449,6 @@ func CVBufferRetain(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferSetAttachment(_:_:_:_:)
-
 func CVBufferSetAttachment(buffer unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, attachmentMode unsafe.Pointer) {
 	_CVBufferSetAttachment(buffer, key, value, attachmentMode)
 	}
@@ -473,7 +462,6 @@ func CVBufferSetAttachment(buffer unsafe.Pointer, key unsafe.Pointer, value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBufferSetAttachments(_:_:_:)
-
 func CVBufferSetAttachments(buffer unsafe.Pointer, theAttachments unsafe.Pointer, attachmentMode unsafe.Pointer) {
 	_CVBufferSetAttachments(buffer, theAttachments, attachmentMode)
 	}
@@ -487,7 +475,6 @@ func CVBufferSetAttachments(buffer unsafe.Pointer, theAttachments unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVColorPrimariesGetIntegerCodePointForString(_:)
-
 func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Pointer) int {
 	return _CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString)
 	}
@@ -501,7 +488,6 @@ func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVColorPrimariesGetStringForIntegerCodePoint(_:)
-
 func CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint int) unsafe.Pointer {
 	return _CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint)
 	}
@@ -517,7 +503,6 @@ func CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint int) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkCreateWithActiveCGDisplays(_:)
-
 func CVDisplayLinkCreateWithActiveCGDisplays(displayLinkOut unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkCreateWithActiveCGDisplays(displayLinkOut)
 	}
@@ -533,7 +518,6 @@ func CVDisplayLinkCreateWithActiveCGDisplays(displayLinkOut unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplay(_:_:)
-
 func CVDisplayLinkCreateWithCGDisplay(displayID unsafe.Pointer, displayLinkOut unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkCreateWithCGDisplay(displayID, displayLinkOut)
 	}
@@ -549,7 +533,6 @@ func CVDisplayLinkCreateWithCGDisplay(displayID unsafe.Pointer, displayLinkOut u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplays(_:_:_:)
-
 func CVDisplayLinkCreateWithCGDisplays(displayArray unsafe.Pointer, count unsafe.Pointer, displayLinkOut unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkCreateWithCGDisplays(displayArray, count, displayLinkOut)
 	}
@@ -565,7 +548,6 @@ func CVDisplayLinkCreateWithCGDisplays(displayArray unsafe.Pointer, count unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)
-
 func CVDisplayLinkCreateWithOpenGLDisplayMask(mask unsafe.Pointer, displayLinkOut unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkCreateWithOpenGLDisplayMask(mask, displayLinkOut)
 	}
@@ -581,7 +563,6 @@ func CVDisplayLinkCreateWithOpenGLDisplayMask(mask unsafe.Pointer, displayLinkOu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)
-
 func CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink)
 	}
@@ -597,7 +578,6 @@ func CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetCurrentCGDisplay(_:)
-
 func CVDisplayLinkGetCurrentCGDisplay(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkGetCurrentCGDisplay(displayLink)
 	}
@@ -613,7 +593,6 @@ func CVDisplayLinkGetCurrentCGDisplay(displayLink unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetCurrentTime(_:_:)
-
 func CVDisplayLinkGetCurrentTime(displayLink unsafe.Pointer, outTime unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkGetCurrentTime(displayLink, outTime)
 	}
@@ -629,7 +608,6 @@ func CVDisplayLinkGetCurrentTime(displayLink unsafe.Pointer, outTime unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)
-
 func CVDisplayLinkGetNominalOutputVideoRefreshPeriod(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkGetNominalOutputVideoRefreshPeriod(displayLink)
 	}
@@ -645,7 +623,6 @@ func CVDisplayLinkGetNominalOutputVideoRefreshPeriod(displayLink unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetOutputVideoLatency(_:)
-
 func CVDisplayLinkGetOutputVideoLatency(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkGetOutputVideoLatency(displayLink)
 	}
@@ -661,7 +638,6 @@ func CVDisplayLinkGetOutputVideoLatency(displayLink unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkGetTypeID()
-
 func CVDisplayLinkGetTypeID() unsafe.Pointer {
 	return _CVDisplayLinkGetTypeID()
 	}
@@ -677,7 +653,6 @@ func CVDisplayLinkGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkIsRunning(_:)
-
 func CVDisplayLinkIsRunning(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkIsRunning(displayLink)
 	}
@@ -693,7 +668,6 @@ func CVDisplayLinkIsRunning(displayLink unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkRelease
-
 func CVDisplayLinkRelease(displayLink unsafe.Pointer) {
 	_CVDisplayLinkRelease(displayLink)
 	}
@@ -709,7 +683,6 @@ func CVDisplayLinkRelease(displayLink unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkRetain
-
 func CVDisplayLinkRetain(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkRetain(displayLink)
 	}
@@ -725,7 +698,6 @@ func CVDisplayLinkRetain(displayLink unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplay(_:_:)
-
 func CVDisplayLinkSetCurrentCGDisplay(displayLink unsafe.Pointer, displayID unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkSetCurrentCGDisplay(displayLink, displayID)
 	}
@@ -741,7 +713,6 @@ func CVDisplayLinkSetCurrentCGDisplay(displayLink unsafe.Pointer, displayID unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)
-
 func CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink unsafe.Pointer, cglContext unsafe.Pointer, cglPixelFormat unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink, cglContext, cglPixelFormat)
 	}
@@ -757,7 +728,6 @@ func CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkSetOutputCallback(_:_:_:)
-
 func CVDisplayLinkSetOutputCallback(displayLink unsafe.Pointer, callback unsafe.Pointer, userInfo unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkSetOutputCallback(displayLink, callback, userInfo)
 	}
@@ -771,7 +741,6 @@ func CVDisplayLinkSetOutputCallback(displayLink unsafe.Pointer, callback unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkSetOutputHandler(_:_:)
-
 func CVDisplayLinkSetOutputHandler(displayLink unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkSetOutputHandler(displayLink, handler)
 	}
@@ -787,7 +756,6 @@ func CVDisplayLinkSetOutputHandler(displayLink unsafe.Pointer, handler unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkStart(_:)
-
 func CVDisplayLinkStart(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkStart(displayLink)
 	}
@@ -803,7 +771,6 @@ func CVDisplayLinkStart(displayLink unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkStop(_:)
-
 func CVDisplayLinkStop(displayLink unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkStop(displayLink)
 	}
@@ -819,7 +786,6 @@ func CVDisplayLinkStop(displayLink unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkTranslateTime(_:_:_:)
-
 func CVDisplayLinkTranslateTime(displayLink unsafe.Pointer, inTime unsafe.Pointer, outTime unsafe.Pointer) unsafe.Pointer {
 	return _CVDisplayLinkTranslateTime(displayLink, inTime, outTime)
 	}
@@ -833,7 +799,6 @@ func CVDisplayLinkTranslateTime(displayLink unsafe.Pointer, inTime unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVGetCurrentHostTime()
-
 func CVGetCurrentHostTime() unsafe.Pointer {
 	return _CVGetCurrentHostTime()
 	}
@@ -847,7 +812,6 @@ func CVGetCurrentHostTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVGetHostClockFrequency()
-
 func CVGetHostClockFrequency() unsafe.Pointer {
 	return _CVGetHostClockFrequency()
 	}
@@ -861,7 +825,6 @@ func CVGetHostClockFrequency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVGetHostClockMinimumTimeDelta()
-
 func CVGetHostClockMinimumTimeDelta() unsafe.Pointer {
 	return _CVGetHostClockMinimumTimeDelta()
 	}
@@ -875,7 +838,6 @@ func CVGetHostClockMinimumTimeDelta() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferCreateColorSpaceFromAttachments(_:)
-
 func CVImageBufferCreateColorSpaceFromAttachments(attachments unsafe.Pointer) coregraphics.CGColorSpaceRef {
 	return _CVImageBufferCreateColorSpaceFromAttachments(attachments)
 	}
@@ -889,7 +851,6 @@ func CVImageBufferCreateColorSpaceFromAttachments(attachments unsafe.Pointer) co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferGetCleanRect(_:)
-
 func CVImageBufferGetCleanRect(imageBuffer unsafe.Pointer) coregraphics.CGRect {
 	return _CVImageBufferGetCleanRect(imageBuffer)
 	}
@@ -903,7 +864,6 @@ func CVImageBufferGetCleanRect(imageBuffer unsafe.Pointer) coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferGetColorSpace(_:)
-
 func CVImageBufferGetColorSpace(imageBuffer unsafe.Pointer) coregraphics.CGColorSpaceRef {
 	return _CVImageBufferGetColorSpace(imageBuffer)
 	}
@@ -917,7 +877,6 @@ func CVImageBufferGetColorSpace(imageBuffer unsafe.Pointer) coregraphics.CGColor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferGetDisplaySize(_:)
-
 func CVImageBufferGetDisplaySize(imageBuffer unsafe.Pointer) coregraphics.CGSize {
 	return _CVImageBufferGetDisplaySize(imageBuffer)
 	}
@@ -931,7 +890,6 @@ func CVImageBufferGetDisplaySize(imageBuffer unsafe.Pointer) coregraphics.CGSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferGetEncodedSize(_:)
-
 func CVImageBufferGetEncodedSize(imageBuffer unsafe.Pointer) coregraphics.CGSize {
 	return _CVImageBufferGetEncodedSize(imageBuffer)
 	}
@@ -945,7 +903,6 @@ func CVImageBufferGetEncodedSize(imageBuffer unsafe.Pointer) coregraphics.CGSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferIsFlipped(_:)
-
 func CVImageBufferIsFlipped(imageBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVImageBufferIsFlipped(imageBuffer)
 	}
@@ -957,7 +914,6 @@ func CVImageBufferIsFlipped(imageBuffer unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVIsCompressedPixelFormatAvailable(_:)
-
 func CVIsCompressedPixelFormatAvailable(pixelFormatType unsafe.Pointer) unsafe.Pointer {
 	return _CVIsCompressedPixelFormatAvailable(pixelFormatType)
 	}
@@ -969,7 +925,6 @@ func CVIsCompressedPixelFormatAvailable(pixelFormatType unsafe.Pointer) unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferCacheCreate(_:_:_:_:)
-
 func CVMetalBufferCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.Pointer, metalDevice unsafe.Pointer, cacheOut unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalBufferCacheCreate(allocator, cacheAttributes, metalDevice, cacheOut)
 	}
@@ -981,7 +936,6 @@ func CVMetalBufferCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferCacheCreateBufferFromImage(_:_:_:_:)
-
 func CVMetalBufferCacheCreateBufferFromImage(allocator unsafe.Pointer, bufferCache unsafe.Pointer, imageBuffer unsafe.Pointer, bufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalBufferCacheCreateBufferFromImage(allocator, bufferCache, imageBuffer, bufferOut)
 	}
@@ -993,7 +947,6 @@ func CVMetalBufferCacheCreateBufferFromImage(allocator unsafe.Pointer, bufferCac
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferCacheFlush(_:_:)
-
 func CVMetalBufferCacheFlush(bufferCache unsafe.Pointer, options unsafe.Pointer) {
 	_CVMetalBufferCacheFlush(bufferCache, options)
 	}
@@ -1005,7 +958,6 @@ func CVMetalBufferCacheFlush(bufferCache unsafe.Pointer, options unsafe.Pointer)
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferCacheGetTypeID()
-
 func CVMetalBufferCacheGetTypeID() unsafe.Pointer {
 	return _CVMetalBufferCacheGetTypeID()
 	}
@@ -1017,7 +969,6 @@ func CVMetalBufferCacheGetTypeID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferGetBuffer(_:)
-
 func CVMetalBufferGetBuffer(buffer unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalBufferGetBuffer(buffer)
 	}
@@ -1029,7 +980,6 @@ func CVMetalBufferGetBuffer(buffer unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferGetTypeID()
-
 func CVMetalBufferGetTypeID() unsafe.Pointer {
 	return _CVMetalBufferGetTypeID()
 	}
@@ -1043,7 +993,6 @@ func CVMetalBufferGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureCacheCreate(_:_:_:_:_:)
-
 func CVMetalTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.Pointer, metalDevice unsafe.Pointer, textureAttributes unsafe.Pointer, cacheOut unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalTextureCacheCreate(allocator, cacheAttributes, metalDevice, textureAttributes, cacheOut)
 	}
@@ -1057,7 +1006,6 @@ func CVMetalTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureCacheCreateTextureFromImage(_:_:_:_:_:_:_:_:_:)
-
 func CVMetalTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, textureAttributes unsafe.Pointer, pixelFormat unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, planeIndex unsafe.Pointer, textureOut unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalTextureCacheCreateTextureFromImage(allocator, textureCache, sourceImage, textureAttributes, pixelFormat, width, height, planeIndex, textureOut)
 	}
@@ -1071,7 +1019,6 @@ func CVMetalTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, texture
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureCacheFlush(_:_:)
-
 func CVMetalTextureCacheFlush(textureCache unsafe.Pointer, options unsafe.Pointer) {
 	_CVMetalTextureCacheFlush(textureCache, options)
 	}
@@ -1085,7 +1032,6 @@ func CVMetalTextureCacheFlush(textureCache unsafe.Pointer, options unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureCacheGetTypeID()
-
 func CVMetalTextureCacheGetTypeID() unsafe.Pointer {
 	return _CVMetalTextureCacheGetTypeID()
 	}
@@ -1099,7 +1045,6 @@ func CVMetalTextureCacheGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureGetCleanTexCoords(_:_:_:_:_:)
-
 func CVMetalTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.Pointer, lowerRight unsafe.Pointer, upperRight unsafe.Pointer, upperLeft unsafe.Pointer, p5 unsafe.Pointer) {
 	_CVMetalTextureGetCleanTexCoords(image, lowerLeft, lowerRight, upperRight, upperLeft, p5)
 	}
@@ -1113,7 +1058,6 @@ func CVMetalTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureGetTexture(_:)
-
 func CVMetalTextureGetTexture(image unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalTextureGetTexture(image)
 	}
@@ -1127,7 +1071,6 @@ func CVMetalTextureGetTexture(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureGetTypeID()
-
 func CVMetalTextureGetTypeID() unsafe.Pointer {
 	return _CVMetalTextureGetTypeID()
 	}
@@ -1141,7 +1084,6 @@ func CVMetalTextureGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTextureIsFlipped(_:)
-
 func CVMetalTextureIsFlipped(image unsafe.Pointer) unsafe.Pointer {
 	return _CVMetalTextureIsFlipped(image)
 	}
@@ -1157,7 +1099,6 @@ func CVMetalTextureIsFlipped(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferAttach(_:_:_:_:_:)
-
 func CVOpenGLBufferAttach(openGLBuffer unsafe.Pointer, cglContext unsafe.Pointer, face unsafe.Pointer, level unsafe.Pointer, screen unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferAttach(openGLBuffer, cglContext, face, level, screen)
 	}
@@ -1173,7 +1114,6 @@ func CVOpenGLBufferAttach(openGLBuffer unsafe.Pointer, cglContext unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferCreate(_:_:_:_:_:)
-
 func CVOpenGLBufferCreate(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, attributes unsafe.Pointer, bufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferCreate(allocator, width, height, attributes, bufferOut)
 	}
@@ -1189,7 +1129,6 @@ func CVOpenGLBufferCreate(allocator unsafe.Pointer, width unsafe.Pointer, height
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferGetAttributes(_:)
-
 func CVOpenGLBufferGetAttributes(openGLBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferGetAttributes(openGLBuffer)
 	}
@@ -1205,7 +1144,6 @@ func CVOpenGLBufferGetAttributes(openGLBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferGetTypeID()
-
 func CVOpenGLBufferGetTypeID() unsafe.Pointer {
 	return _CVOpenGLBufferGetTypeID()
 	}
@@ -1221,7 +1159,6 @@ func CVOpenGLBufferGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolCreate(_:_:_:_:)
-
 func CVOpenGLBufferPoolCreate(allocator unsafe.Pointer, poolAttributes unsafe.Pointer, openGLBufferAttributes unsafe.Pointer, poolOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferPoolCreate(allocator, poolAttributes, openGLBufferAttributes, poolOut)
 	}
@@ -1237,7 +1174,6 @@ func CVOpenGLBufferPoolCreate(allocator unsafe.Pointer, poolAttributes unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolCreateOpenGLBuffer(_:_:_:)
-
 func CVOpenGLBufferPoolCreateOpenGLBuffer(allocator unsafe.Pointer, openGLBufferPool unsafe.Pointer, openGLBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferPoolCreateOpenGLBuffer(allocator, openGLBufferPool, openGLBufferOut)
 	}
@@ -1253,7 +1189,6 @@ func CVOpenGLBufferPoolCreateOpenGLBuffer(allocator unsafe.Pointer, openGLBuffer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolGetAttributes(_:)
-
 func CVOpenGLBufferPoolGetAttributes(pool unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferPoolGetAttributes(pool)
 	}
@@ -1269,7 +1204,6 @@ func CVOpenGLBufferPoolGetAttributes(pool unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolGetOpenGLBufferAttributes(_:)
-
 func CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool)
 	}
@@ -1285,7 +1219,6 @@ func CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolGetTypeID()
-
 func CVOpenGLBufferPoolGetTypeID() unsafe.Pointer {
 	return _CVOpenGLBufferPoolGetTypeID()
 	}
@@ -1301,7 +1234,6 @@ func CVOpenGLBufferPoolGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolRelease
-
 func CVOpenGLBufferPoolRelease(openGLBufferPool unsafe.Pointer) {
 	_CVOpenGLBufferPoolRelease(openGLBufferPool)
 	}
@@ -1317,7 +1249,6 @@ func CVOpenGLBufferPoolRelease(openGLBufferPool unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferPoolRetain
-
 func CVOpenGLBufferPoolRetain(openGLBufferPool unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferPoolRetain(openGLBufferPool)
 	}
@@ -1333,7 +1264,6 @@ func CVOpenGLBufferPoolRetain(openGLBufferPool unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferRelease
-
 func CVOpenGLBufferRelease(buffer unsafe.Pointer) {
 	_CVOpenGLBufferRelease(buffer)
 	}
@@ -1349,7 +1279,6 @@ func CVOpenGLBufferRelease(buffer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLBufferRetain
-
 func CVOpenGLBufferRetain(buffer unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLBufferRetain(buffer)
 	}
@@ -1361,7 +1290,6 @@ func CVOpenGLBufferRetain(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureCacheCreate(_:_:_:_:_:)
-
 func CVOpenGLESTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.Pointer, eaglContext unsafe.Pointer, textureAttributes unsafe.Pointer, cacheOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLESTextureCacheCreate(allocator, cacheAttributes, eaglContext, textureAttributes, cacheOut)
 	}
@@ -1373,7 +1301,6 @@ func CVOpenGLESTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureCacheCreateTextureFromImage(_:_:_:_:_:_:_:_:_:_:_:_:)
-
 func CVOpenGLESTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, textureAttributes unsafe.Pointer, target unsafe.Pointer, internalFormat unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, format unsafe.Pointer, type_ unsafe.Pointer, planeIndex unsafe.Pointer, textureOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLESTextureCacheCreateTextureFromImage(allocator, textureCache, sourceImage, textureAttributes, target, internalFormat, width, height, format, type_, planeIndex, textureOut)
 	}
@@ -1385,7 +1312,6 @@ func CVOpenGLESTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, text
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureCacheFlush(_:_:)
-
 func CVOpenGLESTextureCacheFlush(textureCache unsafe.Pointer, options unsafe.Pointer) {
 	_CVOpenGLESTextureCacheFlush(textureCache, options)
 	}
@@ -1397,7 +1323,6 @@ func CVOpenGLESTextureCacheFlush(textureCache unsafe.Pointer, options unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureCacheGetTypeID()
-
 func CVOpenGLESTextureCacheGetTypeID() unsafe.Pointer {
 	return _CVOpenGLESTextureCacheGetTypeID()
 	}
@@ -1409,7 +1334,6 @@ func CVOpenGLESTextureCacheGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureGetCleanTexCoords(_:_:_:_:_:)
-
 func CVOpenGLESTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.Pointer, lowerRight unsafe.Pointer, upperRight unsafe.Pointer, upperLeft unsafe.Pointer, p5 unsafe.Pointer) {
 	_CVOpenGLESTextureGetCleanTexCoords(image, lowerLeft, lowerRight, upperRight, upperLeft, p5)
 	}
@@ -1421,7 +1345,6 @@ func CVOpenGLESTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureGetName(_:)
-
 func CVOpenGLESTextureGetName(image unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLESTextureGetName(image)
 	}
@@ -1433,7 +1356,6 @@ func CVOpenGLESTextureGetName(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureGetTarget(_:)
-
 func CVOpenGLESTextureGetTarget(image unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLESTextureGetTarget(image)
 	}
@@ -1445,7 +1367,6 @@ func CVOpenGLESTextureGetTarget(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureGetTypeID()
-
 func CVOpenGLESTextureGetTypeID() unsafe.Pointer {
 	return _CVOpenGLESTextureGetTypeID()
 	}
@@ -1457,7 +1378,6 @@ func CVOpenGLESTextureGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLESTextureIsFlipped(_:)
-
 func CVOpenGLESTextureIsFlipped(image unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLESTextureIsFlipped(image)
 	}
@@ -1473,7 +1393,6 @@ func CVOpenGLESTextureIsFlipped(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureCacheCreate(_:_:_:_:_:_:)
-
 func CVOpenGLTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe.Pointer, cglContext unsafe.Pointer, cglPixelFormat unsafe.Pointer, textureAttributes unsafe.Pointer, cacheOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureCacheCreate(allocator, cacheAttributes, cglContext, cglPixelFormat, textureAttributes, cacheOut)
 	}
@@ -1489,7 +1408,6 @@ func CVOpenGLTextureCacheCreate(allocator unsafe.Pointer, cacheAttributes unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureCacheCreateTextureFromImage(_:_:_:_:_:)
-
 func CVOpenGLTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textureCache unsafe.Pointer, sourceImage unsafe.Pointer, attributes unsafe.Pointer, textureOut unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureCacheCreateTextureFromImage(allocator, textureCache, sourceImage, attributes, textureOut)
 	}
@@ -1505,7 +1423,6 @@ func CVOpenGLTextureCacheCreateTextureFromImage(allocator unsafe.Pointer, textur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureCacheFlush(_:_:)
-
 func CVOpenGLTextureCacheFlush(textureCache unsafe.Pointer, options unsafe.Pointer) {
 	_CVOpenGLTextureCacheFlush(textureCache, options)
 	}
@@ -1521,7 +1438,6 @@ func CVOpenGLTextureCacheFlush(textureCache unsafe.Pointer, options unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureCacheGetTypeID()
-
 func CVOpenGLTextureCacheGetTypeID() unsafe.Pointer {
 	return _CVOpenGLTextureCacheGetTypeID()
 	}
@@ -1537,7 +1453,6 @@ func CVOpenGLTextureCacheGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureCacheRelease
-
 func CVOpenGLTextureCacheRelease(textureCache unsafe.Pointer) {
 	_CVOpenGLTextureCacheRelease(textureCache)
 	}
@@ -1553,7 +1468,6 @@ func CVOpenGLTextureCacheRelease(textureCache unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureCacheRetain
-
 func CVOpenGLTextureCacheRetain(textureCache unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureCacheRetain(textureCache)
 	}
@@ -1569,7 +1483,6 @@ func CVOpenGLTextureCacheRetain(textureCache unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureGetCleanTexCoords(_:_:_:_:_:)
-
 func CVOpenGLTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.Pointer, lowerRight unsafe.Pointer, upperRight unsafe.Pointer, upperLeft unsafe.Pointer, p5 unsafe.Pointer) {
 	_CVOpenGLTextureGetCleanTexCoords(image, lowerLeft, lowerRight, upperRight, upperLeft, p5)
 	}
@@ -1585,7 +1498,6 @@ func CVOpenGLTextureGetCleanTexCoords(image unsafe.Pointer, lowerLeft unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureGetName(_:)
-
 func CVOpenGLTextureGetName(image unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureGetName(image)
 	}
@@ -1601,7 +1513,6 @@ func CVOpenGLTextureGetName(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureGetTarget(_:)
-
 func CVOpenGLTextureGetTarget(image unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureGetTarget(image)
 	}
@@ -1617,7 +1528,6 @@ func CVOpenGLTextureGetTarget(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureGetTypeID()
-
 func CVOpenGLTextureGetTypeID() unsafe.Pointer {
 	return _CVOpenGLTextureGetTypeID()
 	}
@@ -1633,7 +1543,6 @@ func CVOpenGLTextureGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureIsFlipped(_:)
-
 func CVOpenGLTextureIsFlipped(image unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureIsFlipped(image)
 	}
@@ -1649,7 +1558,6 @@ func CVOpenGLTextureIsFlipped(image unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureRelease
-
 func CVOpenGLTextureRelease(texture unsafe.Pointer) {
 	_CVOpenGLTextureRelease(texture)
 	}
@@ -1665,7 +1573,6 @@ func CVOpenGLTextureRelease(texture unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVOpenGLTextureRetain
-
 func CVOpenGLTextureRetain(texture unsafe.Pointer) unsafe.Pointer {
 	return _CVOpenGLTextureRetain(texture)
 	}
@@ -1677,7 +1584,6 @@ func CVOpenGLTextureRetain(texture unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCopyCreationAttributes(_:)
-
 func CVPixelBufferCopyCreationAttributes(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCopyCreationAttributes(pixelBuffer)
 	}
@@ -1691,7 +1597,6 @@ func CVPixelBufferCopyCreationAttributes(pixelBuffer unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreate(_:_:_:_:_:_:)
-
 func CVPixelBufferCreate(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, pixelFormatType unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreate(allocator, width, height, pixelFormatType, pixelBufferAttributes, pixelBufferOut)
 	}
@@ -1705,7 +1610,6 @@ func CVPixelBufferCreate(allocator unsafe.Pointer, width unsafe.Pointer, height 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreateResolvedAttributesDictionary(_:_:_:)
-
 func CVPixelBufferCreateResolvedAttributesDictionary(allocator unsafe.Pointer, attributes unsafe.Pointer, resolvedDictionaryOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreateResolvedAttributesDictionary(allocator, attributes, resolvedDictionaryOut)
 	}
@@ -1719,7 +1623,6 @@ func CVPixelBufferCreateResolvedAttributesDictionary(allocator unsafe.Pointer, a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreateWithBytes(_:_:_:_:_:_:_:_:_:_:)
-
 func CVPixelBufferCreateWithBytes(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, pixelFormatType unsafe.Pointer, baseAddress unsafe.Pointer, bytesPerRow unsafe.Pointer, releaseCallback unsafe.Pointer, releaseRefCon unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreateWithBytes(allocator, width, height, pixelFormatType, baseAddress, bytesPerRow, releaseCallback, releaseRefCon, pixelBufferAttributes, pixelBufferOut)
 	}
@@ -1733,7 +1636,6 @@ func CVPixelBufferCreateWithBytes(allocator unsafe.Pointer, width unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreateWithIOSurface(_:_:_:_:)
-
 func CVPixelBufferCreateWithIOSurface(allocator unsafe.Pointer, surface unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreateWithIOSurface(allocator, surface, pixelBufferAttributes, pixelBufferOut)
 	}
@@ -1747,7 +1649,6 @@ func CVPixelBufferCreateWithIOSurface(allocator unsafe.Pointer, surface unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferCreateWithPlanarBytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
-
 func CVPixelBufferCreateWithPlanarBytes(allocator unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, pixelFormatType unsafe.Pointer, dataPtr unsafe.Pointer, dataSize unsafe.Pointer, numberOfPlanes unsafe.Pointer, planeBaseAddress unsafe.Pointer, planeWidth unsafe.Pointer, planeHeight unsafe.Pointer, planeBytesPerRow unsafe.Pointer, releaseCallback unsafe.Pointer, releaseRefCon unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferCreateWithPlanarBytes(allocator, width, height, pixelFormatType, dataPtr, dataSize, numberOfPlanes, planeBaseAddress, planeWidth, planeHeight, planeBytesPerRow, releaseCallback, releaseRefCon, pixelBufferAttributes, pixelBufferOut)
 	}
@@ -1761,7 +1662,6 @@ func CVPixelBufferCreateWithPlanarBytes(allocator unsafe.Pointer, width unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferFillExtendedPixels(_:)
-
 func CVPixelBufferFillExtendedPixels(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferFillExtendedPixels(pixelBuffer)
 	}
@@ -1775,7 +1675,6 @@ func CVPixelBufferFillExtendedPixels(pixelBuffer unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBaseAddress(_:)
-
 func CVPixelBufferGetBaseAddress(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBaseAddress(pixelBuffer)
 	}
@@ -1789,7 +1688,6 @@ func CVPixelBufferGetBaseAddress(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBaseAddressOfPlane(_:_:)
-
 func CVPixelBufferGetBaseAddressOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, planeIndex)
 	}
@@ -1803,7 +1701,6 @@ func CVPixelBufferGetBaseAddressOfPlane(pixelBuffer unsafe.Pointer, planeIndex u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBytesPerRow(_:)
-
 func CVPixelBufferGetBytesPerRow(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBytesPerRow(pixelBuffer)
 	}
@@ -1817,7 +1714,6 @@ func CVPixelBufferGetBytesPerRow(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetBytesPerRowOfPlane(_:_:)
-
 func CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, planeIndex)
 	}
@@ -1831,7 +1727,6 @@ func CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer unsafe.Pointer, planeIndex u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetDataSize(_:)
-
 func CVPixelBufferGetDataSize(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetDataSize(pixelBuffer)
 	}
@@ -1845,7 +1740,6 @@ func CVPixelBufferGetDataSize(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetExtendedPixels(_:_:_:_:_:)
-
 func CVPixelBufferGetExtendedPixels(pixelBuffer unsafe.Pointer, extraColumnsOnLeft unsafe.Pointer, extraColumnsOnRight unsafe.Pointer, extraRowsOnTop unsafe.Pointer, extraRowsOnBottom unsafe.Pointer) {
 	_CVPixelBufferGetExtendedPixels(pixelBuffer, extraColumnsOnLeft, extraColumnsOnRight, extraRowsOnTop, extraRowsOnBottom)
 	}
@@ -1859,7 +1753,6 @@ func CVPixelBufferGetExtendedPixels(pixelBuffer unsafe.Pointer, extraColumnsOnLe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetHeight(_:)
-
 func CVPixelBufferGetHeight(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetHeight(pixelBuffer)
 	}
@@ -1873,7 +1766,6 @@ func CVPixelBufferGetHeight(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetHeightOfPlane(_:_:)
-
 func CVPixelBufferGetHeightOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetHeightOfPlane(pixelBuffer, planeIndex)
 	}
@@ -1887,7 +1779,6 @@ func CVPixelBufferGetHeightOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetIOSurface(_:)
-
 func CVPixelBufferGetIOSurface(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetIOSurface(pixelBuffer)
 	}
@@ -1901,7 +1792,6 @@ func CVPixelBufferGetIOSurface(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetPixelFormatType(_:)
-
 func CVPixelBufferGetPixelFormatType(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetPixelFormatType(pixelBuffer)
 	}
@@ -1915,7 +1805,6 @@ func CVPixelBufferGetPixelFormatType(pixelBuffer unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetPlaneCount(_:)
-
 func CVPixelBufferGetPlaneCount(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetPlaneCount(pixelBuffer)
 	}
@@ -1929,7 +1818,6 @@ func CVPixelBufferGetPlaneCount(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetTypeID()
-
 func CVPixelBufferGetTypeID() unsafe.Pointer {
 	return _CVPixelBufferGetTypeID()
 	}
@@ -1943,7 +1831,6 @@ func CVPixelBufferGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetWidth(_:)
-
 func CVPixelBufferGetWidth(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetWidth(pixelBuffer)
 	}
@@ -1957,7 +1844,6 @@ func CVPixelBufferGetWidth(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferGetWidthOfPlane(_:_:)
-
 func CVPixelBufferGetWidthOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferGetWidthOfPlane(pixelBuffer, planeIndex)
 	}
@@ -1969,7 +1855,6 @@ func CVPixelBufferGetWidthOfPlane(pixelBuffer unsafe.Pointer, planeIndex unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferIsCompatibleWithAttributes(_:_:)
-
 func CVPixelBufferIsCompatibleWithAttributes(pixelBuffer unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferIsCompatibleWithAttributes(pixelBuffer, attributes)
 	}
@@ -1983,7 +1868,6 @@ func CVPixelBufferIsCompatibleWithAttributes(pixelBuffer unsafe.Pointer, attribu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferIsPlanar(_:)
-
 func CVPixelBufferIsPlanar(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferIsPlanar(pixelBuffer)
 	}
@@ -1997,7 +1881,6 @@ func CVPixelBufferIsPlanar(pixelBuffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)
-
 func CVPixelBufferLockBaseAddress(pixelBuffer unsafe.Pointer, lockFlags unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferLockBaseAddress(pixelBuffer, lockFlags)
 	}
@@ -2011,7 +1894,6 @@ func CVPixelBufferLockBaseAddress(pixelBuffer unsafe.Pointer, lockFlags unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolCreate(_:_:_:_:)
-
 func CVPixelBufferPoolCreate(allocator unsafe.Pointer, poolAttributes unsafe.Pointer, pixelBufferAttributes unsafe.Pointer, poolOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferPoolCreate(allocator, poolAttributes, pixelBufferAttributes, poolOut)
 	}
@@ -2025,7 +1907,6 @@ func CVPixelBufferPoolCreate(allocator unsafe.Pointer, poolAttributes unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolCreatePixelBuffer(_:_:_:)
-
 func CVPixelBufferPoolCreatePixelBuffer(allocator unsafe.Pointer, pixelBufferPool unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferPoolCreatePixelBuffer(allocator, pixelBufferPool, pixelBufferOut)
 	}
@@ -2039,7 +1920,6 @@ func CVPixelBufferPoolCreatePixelBuffer(allocator unsafe.Pointer, pixelBufferPoo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(_:_:_:_:)
-
 func CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator unsafe.Pointer, pixelBufferPool unsafe.Pointer, auxAttributes unsafe.Pointer, pixelBufferOut unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator, pixelBufferPool, auxAttributes, pixelBufferOut)
 	}
@@ -2053,7 +1933,6 @@ func CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolFlush(_:_:)
-
 func CVPixelBufferPoolFlush(pool unsafe.Pointer, options unsafe.Pointer) {
 	_CVPixelBufferPoolFlush(pool, options)
 	}
@@ -2067,7 +1946,6 @@ func CVPixelBufferPoolFlush(pool unsafe.Pointer, options unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolGetAttributes(_:)
-
 func CVPixelBufferPoolGetAttributes(pool unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferPoolGetAttributes(pool)
 	}
@@ -2081,7 +1959,6 @@ func CVPixelBufferPoolGetAttributes(pool unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolGetPixelBufferAttributes(_:)
-
 func CVPixelBufferPoolGetPixelBufferAttributes(pool unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferPoolGetPixelBufferAttributes(pool)
 	}
@@ -2095,7 +1972,6 @@ func CVPixelBufferPoolGetPixelBufferAttributes(pool unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolGetTypeID()
-
 func CVPixelBufferPoolGetTypeID() unsafe.Pointer {
 	return _CVPixelBufferPoolGetTypeID()
 	}
@@ -2109,7 +1985,6 @@ func CVPixelBufferPoolGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolRelease
-
 func CVPixelBufferPoolRelease(pixelBufferPool unsafe.Pointer) {
 	_CVPixelBufferPoolRelease(pixelBufferPool)
 	}
@@ -2123,7 +1998,6 @@ func CVPixelBufferPoolRelease(pixelBufferPool unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolRetain
-
 func CVPixelBufferPoolRetain(pixelBufferPool unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferPoolRetain(pixelBufferPool)
 	}
@@ -2137,7 +2011,6 @@ func CVPixelBufferPoolRetain(pixelBufferPool unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferRelease
-
 func CVPixelBufferRelease(texture unsafe.Pointer) {
 	_CVPixelBufferRelease(texture)
 	}
@@ -2151,7 +2024,6 @@ func CVPixelBufferRelease(texture unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferRetain
-
 func CVPixelBufferRetain(texture unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferRetain(texture)
 	}
@@ -2165,7 +2037,6 @@ func CVPixelBufferRetain(texture unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferUnlockBaseAddress(_:_:)
-
 func CVPixelBufferUnlockBaseAddress(pixelBuffer unsafe.Pointer, unlockFlags unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelBufferUnlockBaseAddress(pixelBuffer, unlockFlags)
 	}
@@ -2177,7 +2048,6 @@ func CVPixelBufferUnlockBaseAddress(pixelBuffer unsafe.Pointer, unlockFlags unsa
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelFormatTypeCopyFourCharCodeString(_:)
-
 func CVPixelFormatTypeCopyFourCharCodeString(pixelFormat unsafe.Pointer) unsafe.Pointer {
 	return _CVPixelFormatTypeCopyFourCharCodeString(pixelFormat)
 	}
@@ -2191,7 +2061,6 @@ func CVPixelFormatTypeCopyFourCharCodeString(pixelFormat unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTransferFunctionGetIntegerCodePointForString(_:)
-
 func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsafe.Pointer) int {
 	return _CVTransferFunctionGetIntegerCodePointForString(transferFunctionString)
 	}
@@ -2205,7 +2074,6 @@ func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTransferFunctionGetStringForIntegerCodePoint(_:)
-
 func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint int) unsafe.Pointer {
 	return _CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint)
 	}
@@ -2219,7 +2087,6 @@ func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVYCbCrMatrixGetIntegerCodePointForString(_:)
-
 func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer) int {
 	return _CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString)
 	}
@@ -2233,7 +2100,6 @@ func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVYCbCrMatrixGetStringForIntegerCodePoint(_:)
-
 func CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint int) unsafe.Pointer {
 	return _CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint)
 	}

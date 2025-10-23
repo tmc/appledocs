@@ -51,7 +51,11 @@ type IINInteraction interface {
 // An interaction between the user and your app involving an intent object.
 //
 // An object encapsulates information about a SiriKit request and your app’s response. SiriKit creates interaction objects automatically when it needs your app to respond to a specific intent, either by handling the intent or providing an error explaining why your app couldn’t handle the intent. SiriKit places the interaction in an object that the system passes to your app at launch time. You can also create instances of this class in your app and donate relevant interactions to the system. Donating interactions provides contextual information that might be helpful to other apps. Some system apps use donated interactions to improve search results or to anticipate user actions. For example, a ride-booking app could donate an interaction containing the user’s planned ride information. If the user subsequently uses the Maps app to search for restaurants, Maps can show relevant results near the user’s destination. You choose which of your app’s interactions you want to donate to the system. To donate an interaction, create an instance of this class, filling it with your intent object and response, and call the method. You can also use the methods of this class to delete interactions when they are no longer relevant.
+
+
+// An interaction between the user and your app involving an intent object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction
 type INInteraction struct {
 	objectivec.Object
@@ -96,30 +100,38 @@ func NewINInteraction() INInteraction {
 }
 
 
+
 // Deletes the interactions with the specified group identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/delete(with:completion:)-tcq9
 func (ic _INInteractionClass) DeleteInteractionsWithGroupIdentifierCompletion(groupIdentifier string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithGroupIdentifier:completion:"), objc.String(groupIdentifier), completion)
 }
 
+
 // Donates this interaction object to the system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/donate(completion:)
 func (i_ INInteraction) DonateInteractionWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("donateInteractionWithCompletion:"), completion)
 }
 
+
 // Returns the value of the specified parameter of this interaction object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/parameterValue(for:)
 func (i_ INInteraction) ParameterValueForParameter(parameter INParameter) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("parameterValueForParameter:"), parameter)
 	return rv
 }
 
+
 // The unique identifier of the interaction’s group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
 func (i_ INInteraction) GroupIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("groupIdentifier"))
@@ -127,17 +139,18 @@ func (i_ INInteraction) GroupIdentifier() string {
 }
 
 
-// SetGroupIdentifier sets the value of the groupIdentifier property.
 // The unique identifier of the interaction’s group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
 func (i_ INInteraction) SetGroupIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
+
 // The unique identifier of the interaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
 func (i_ INInteraction) Identifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
@@ -145,25 +158,28 @@ func (i_ INInteraction) Identifier() string {
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // The unique identifier of the interaction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
 func (i_ INInteraction) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
+
 // The current state of the interaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/intentHandlingStatus
 func (i_ INInteraction) IntentHandlingStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intentHandlingStatus"))
 	return rv
 }
 
+
 // The time at which the interaction started and its duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
 func (i_ INInteraction) DateInterval() foundation.DateInterval {
 	rv := objc.Send[foundation.DateInterval](i_.ID, objc.Sel("dateInterval"))
@@ -171,17 +187,18 @@ func (i_ INInteraction) DateInterval() foundation.DateInterval {
 }
 
 
-// SetDateInterval sets the value of the dateInterval property.
 // The time at which the interaction started and its duration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
 func (i_ INInteraction) SetDateInterval(value foundation.IDateInterval) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateInterval:"), value)
 }
 
+
 // The direction in which information flowed to or from the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/direction
 func (i_ INInteraction) Direction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("direction"))
@@ -189,17 +206,18 @@ func (i_ INInteraction) Direction() unsafe.Pointer {
 }
 
 
-// SetDirection sets the value of the direction property.
 // The direction in which information flowed to or from the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/direction
 func (i_ INInteraction) SetDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDirection:"), value)
 }
 
+
 // The intent object that describes the user’s request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
 func (i_ INInteraction) Intent() INIntent {
 	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
@@ -207,17 +225,18 @@ func (i_ INInteraction) Intent() INIntent {
 }
 
 
-// SetIntent sets the value of the intent property.
 // The intent object that describes the user’s request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
 func (i_ INInteraction) SetIntent(value INIntent) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
 
+
 // The response object that your app created in response to the request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
 func (i_ INInteraction) IntentResponse() INIntentResponse {
 	rv := objc.Send[INIntentResponse](i_.ID, objc.Sel("intentResponse"))
@@ -225,10 +244,9 @@ func (i_ INInteraction) IntentResponse() INIntentResponse {
 }
 
 
-// SetIntentResponse sets the value of the intentResponse property.
 // The response object that your app created in response to the request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
 func (i_ INInteraction) SetIntentResponse(value INIntentResponse) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentResponse:"), value)

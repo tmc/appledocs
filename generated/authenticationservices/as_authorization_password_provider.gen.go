@@ -40,7 +40,6 @@ type IAuthorizationPasswordProvider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPasswordProvider
-
 type AuthorizationPasswordProvider struct {
 	objectivec.Object
 }
@@ -85,12 +84,10 @@ func NewAuthorizationPasswordProvider() AuthorizationPasswordProvider {
 
 
 
-
 // Creates a new password authorization request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPasswordProvider/createRequest()
-
 func (a_ AuthorizationPasswordProvider) CreateRequest() AuthorizationPasswordRequest {
 	rv := objc.Send[AuthorizationPasswordRequest](a_.ID, objc.Sel("createRequest"))
 	return rv

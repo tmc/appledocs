@@ -42,7 +42,6 @@ type IHKCumulativeQuantitySample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCumulativeQuantitySample
-
 type HKCumulativeQuantitySample struct {
 	HKQuantitySample
 }
@@ -93,7 +92,6 @@ func NewHKCumulativeQuantitySample() HKCumulativeQuantitySample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample/sumquantity
-
 func (h_ HKCumulativeQuantitySample) SumQuantity() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sumQuantity"))
 	return rv
@@ -104,7 +102,6 @@ func (h_ HKCumulativeQuantitySample) SumQuantity() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample/sumquantity
-
 func (h_ HKCumulativeQuantitySample) SetSumQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSumQuantity:"), value)
 }

@@ -31,31 +31,31 @@ type _ExpressionClass struct {
 type IExpression interface {
 	objectivec.IObject
 	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
-	Arguments() NSExpression
+	Arguments() IExpression
 	SetArguments(value IExpression)
 	Collection() unsafe.Pointer
 	SetCollection(value unsafe.Pointer)
 	ConstantValue() unsafe.Pointer
 	SetConstantValue(value unsafe.Pointer)
-	ExpressionBlock() NSMutableDictionary
+	ExpressionBlock() IMutableDictionary
 	SetExpressionBlock(value IMutableDictionary)
 	ExpressionType() unsafe.Pointer
 	SetExpressionType(value unsafe.Pointer)
-	False() NSExpression
+	False() IExpression
 	SetFalse(value IExpression)
 	Function() string
 	SetFunction(value string)
 	KeyPath() string
 	SetKeyPath(value string)
-	Left() NSExpression
+	Left() IExpression
 	SetLeft(value IExpression)
-	Operand() NSExpression
+	Operand() IExpression
 	SetOperand(value IExpression)
-	Predicate() NSPredicate
+	Predicate() IPredicate
 	SetPredicate(value IPredicate)
-	Right() NSExpression
+	Right() IExpression
 	SetRight(value IExpression)
-	True() NSExpression
+	True() IExpression
 	SetTrue(value IExpression)
 	Variable() string
 	SetVariable(value string)
@@ -128,7 +128,7 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) Arguments() NSExpression {
+func (e_ Expression) Arguments() IExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("arguments"))
 	return rv
 }
@@ -185,7 +185,7 @@ func (e_ Expression) SetConstantValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-func (e_ Expression) ExpressionBlock() NSMutableDictionary {
+func (e_ Expression) ExpressionBlock() IMutableDictionary {
 	rv := objc.Send[NSMutableDictionary](e_.ID, objc.Sel("expressionBlock"))
 	return rv
 }
@@ -223,7 +223,7 @@ func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) False() NSExpression {
+func (e_ Expression) False() IExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("false"))
 	return rv
 }
@@ -280,7 +280,7 @@ func (e_ Expression) SetKeyPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-func (e_ Expression) Left() NSExpression {
+func (e_ Expression) Left() IExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("left"))
 	return rv
 }
@@ -299,7 +299,7 @@ func (e_ Expression) SetLeft(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) Operand() NSExpression {
+func (e_ Expression) Operand() IExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("operand"))
 	return rv
 }
@@ -318,7 +318,7 @@ func (e_ Expression) SetOperand(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/predicate
-func (e_ Expression) Predicate() NSPredicate {
+func (e_ Expression) Predicate() IPredicate {
 	rv := objc.Send[NSPredicate](e_.ID, objc.Sel("predicate"))
 	return rv
 }
@@ -337,7 +337,7 @@ func (e_ Expression) SetPredicate(value IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-func (e_ Expression) Right() NSExpression {
+func (e_ Expression) Right() IExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("right"))
 	return rv
 }
@@ -356,7 +356,7 @@ func (e_ Expression) SetRight(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) True() NSExpression {
+func (e_ Expression) True() IExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("true"))
 	return rv
 }

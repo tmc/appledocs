@@ -40,7 +40,6 @@ type IAudioSinkNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSinkNode
-
 type AudioSinkNode struct {
 	AudioNode
 }

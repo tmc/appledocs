@@ -40,7 +40,11 @@ type IINSnoozeTasksIntent interface {
 // A request to snooze one or more tasks.
 //
 // Siri creates an object when the user marks one or more tasks for snoozing. The intent object can contain the task information. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task information.
+
+
+// A request to snooze one or more tasks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSnoozeTasksIntent
 type INSnoozeTasksIntent struct {
 	INIntent
@@ -87,8 +91,10 @@ func NewINSnoozeTasksIntent() INSnoozeTasksIntent {
 }
 
 
+
 // A Boolean value that indicates whether to snooze all of the tasks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/all-spsb
 func (i_ INSnoozeTasksIntent) All() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("all"))
@@ -96,17 +102,18 @@ func (i_ INSnoozeTasksIntent) All() bool {
 }
 
 
-// SetAll sets the value of the all property.
 // A Boolean value that indicates whether to snooze all of the tasks.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/all-spsb
 func (i_ INSnoozeTasksIntent) SetAll(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAll:"), value)
 }
 
+
 // The next time after the current time that triggers a task to snooze.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
 func (i_ INSnoozeTasksIntent) NextTriggerTime() INDateComponentsRange {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("nextTriggerTime"))
@@ -114,17 +121,18 @@ func (i_ INSnoozeTasksIntent) NextTriggerTime() INDateComponentsRange {
 }
 
 
-// SetNextTriggerTime sets the value of the nextTriggerTime property.
 // The next time after the current time that triggers a task to snooze.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
 func (i_ INSnoozeTasksIntent) SetNextTriggerTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNextTriggerTime:"), value)
 }
 
+
 // An array of tasks to snooze.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
 func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tasks"))
@@ -132,10 +140,9 @@ func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
 }
 
 
-// SetTasks sets the value of the tasks property.
 // An array of tasks to snooze.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/tasks
 func (i_ INSnoozeTasksIntent) SetTasks(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)

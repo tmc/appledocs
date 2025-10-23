@@ -40,7 +40,6 @@ type IBatchDeleteResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteResult
-
 type BatchDeleteResult struct {
 	PersistentStoreResult
 }
@@ -91,7 +90,6 @@ func NewBatchDeleteResult() BatchDeleteResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteResult/result
-
 func (b_ BatchDeleteResult) Result() objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("result"))
 	return rv
@@ -102,7 +100,6 @@ func (b_ BatchDeleteResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteResult/resultType
-
 func (b_ BatchDeleteResult) ResultType() BatchDeleteRequestResultType {
 	rv := objc.Send[BatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv

@@ -61,7 +61,6 @@ type ITKSmartCard interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard
-
 type TKSmartCard struct {
 	objectivec.Object
 }
@@ -106,23 +105,19 @@ func NewTKSmartCard() TKSmartCard {
 
 
 
-
 // Begins a session with the Smart Card.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)
-
 func (t_ TKSmartCard) BeginSessionWithReply(reply unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("beginSessionWithReply:"), reply)
 }
-
 
 
 // Completes any pending transmissions and ends the session to the Smart Card.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/endSession()
-
 func (t_ TKSmartCard) EndSession() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
 }
@@ -132,7 +127,6 @@ func (t_ TKSmartCard) EndSession() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
-
 func (t_ TKSmartCard) Context() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("context"))
 	return rv
@@ -143,7 +137,6 @@ func (t_ TKSmartCard) Context() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
-
 func (t_ TKSmartCard) SetContext(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContext:"), value)
 }
@@ -153,7 +146,6 @@ func (t_ TKSmartCard) SetContext(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/allowedprotocols
-
 func (t_ TKSmartCard) AllowedProtocols() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedProtocols"))
 	return rv
@@ -164,7 +156,6 @@ func (t_ TKSmartCard) AllowedProtocols() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/allowedprotocols
-
 func (t_ TKSmartCard) SetAllowedProtocols(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedProtocols:"), value)
 }
@@ -174,7 +165,6 @@ func (t_ TKSmartCard) SetAllowedProtocols(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
-
 func (t_ TKSmartCard) Cla() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("cla"))
 	return rv
@@ -185,7 +175,6 @@ func (t_ TKSmartCard) Cla() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
-
 func (t_ TKSmartCard) SetCla(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCla:"), value)
 }
@@ -195,7 +184,6 @@ func (t_ TKSmartCard) SetCla(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/currentprotocol
-
 func (t_ TKSmartCard) CurrentProtocol() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentProtocol"))
 	return rv
@@ -206,7 +194,6 @@ func (t_ TKSmartCard) CurrentProtocol() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/currentprotocol
-
 func (t_ TKSmartCard) SetCurrentProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentProtocol:"), value)
 }
@@ -216,7 +203,6 @@ func (t_ TKSmartCard) SetCurrentProtocol(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/issensitive
-
 func (t_ TKSmartCard) IsSensitive() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSensitive"))
 	return rv
@@ -227,7 +213,6 @@ func (t_ TKSmartCard) IsSensitive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/issensitive
-
 func (t_ TKSmartCard) SetIsSensitive(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSensitive:"), value)
 }
@@ -237,7 +222,6 @@ func (t_ TKSmartCard) SetIsSensitive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
-
 func (t_ TKSmartCard) IsValid() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
 	return rv
@@ -248,7 +232,6 @@ func (t_ TKSmartCard) IsValid() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
-
 func (t_ TKSmartCard) SetIsValid(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
 }
@@ -258,7 +241,6 @@ func (t_ TKSmartCard) SetIsValid(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-
 func (t_ TKSmartCard) Slot() TKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slot"))
 	return rv
@@ -269,7 +251,6 @@ func (t_ TKSmartCard) Slot() TKSmartCardSlot {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-
 func (t_ TKSmartCard) SetSlot(value ITKSmartCardSlot) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSlot:"), value)
 }
@@ -279,7 +260,6 @@ func (t_ TKSmartCard) SetSlot(value ITKSmartCardSlot) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/usecommandchaining
-
 func (t_ TKSmartCard) UseCommandChaining() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("useCommandChaining"))
 	return rv
@@ -290,7 +270,6 @@ func (t_ TKSmartCard) UseCommandChaining() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/usecommandchaining
-
 func (t_ TKSmartCard) SetUseCommandChaining(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUseCommandChaining:"), value)
 }
@@ -300,7 +279,6 @@ func (t_ TKSmartCard) SetUseCommandChaining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
-
 func (t_ TKSmartCard) UseExtendedLength() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("useExtendedLength"))
 	return rv
@@ -311,7 +289,6 @@ func (t_ TKSmartCard) UseExtendedLength() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
-
 func (t_ TKSmartCard) SetUseExtendedLength(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUseExtendedLength:"), value)
 }

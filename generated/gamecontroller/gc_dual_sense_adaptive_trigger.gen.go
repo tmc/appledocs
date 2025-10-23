@@ -47,7 +47,6 @@ type IGCDualSenseAdaptiveTrigger interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualSenseAdaptiveTrigger
-
 type GCDualSenseAdaptiveTrigger struct {
 	GCControllerButtonInput
 }
@@ -94,12 +93,10 @@ func NewGCDualSenseAdaptiveTrigger() GCDualSenseAdaptiveTrigger {
 
 
 
-
 // Sets the mode to vibrate with the specified amplitudes for each possible trigger position.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualSenseAdaptiveTrigger/setModeVibration(amplitudes:frequency:)
-
 func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModeVibrationWithAmplitudes:frequency:"), positionalAmplitudes, frequency)
 }
@@ -109,7 +106,6 @@ func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(pos
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
-
 func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("armPosition"))
 	return rv
@@ -120,7 +116,6 @@ func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
-
 func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setArmPosition:"), value)
 }
@@ -130,7 +125,6 @@ func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.property
-
 func (g_ GCDualSenseAdaptiveTrigger) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mode"))
 	return rv
@@ -141,7 +135,6 @@ func (g_ GCDualSenseAdaptiveTrigger) Mode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.property
-
 func (g_ GCDualSenseAdaptiveTrigger) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMode:"), value)
 }
@@ -151,7 +144,6 @@ func (g_ GCDualSenseAdaptiveTrigger) SetMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
-
 func (g_ GCDualSenseAdaptiveTrigger) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("status"))
 	return rv
@@ -162,7 +154,6 @@ func (g_ GCDualSenseAdaptiveTrigger) Status() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.property
-
 func (g_ GCDualSenseAdaptiveTrigger) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStatus:"), value)
 }

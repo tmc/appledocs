@@ -42,7 +42,6 @@ type IHKWorkoutEffortRelationship interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEffortRelationship
-
 type HKWorkoutEffortRelationship struct {
 	objectivec.Object
 }
@@ -87,7 +86,6 @@ func NewHKWorkoutEffortRelationship() HKWorkoutEffortRelationship {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/activity
-
 func (h_ HKWorkoutEffortRelationship) Activity() HKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("activity"))
 	return rv
@@ -96,7 +94,6 @@ func (h_ HKWorkoutEffortRelationship) Activity() HKWorkoutActivity {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/activity
-
 func (h_ HKWorkoutEffortRelationship) SetActivity(value IHKWorkoutActivity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivity:"), value)
 }
@@ -104,7 +101,6 @@ func (h_ HKWorkoutEffortRelationship) SetActivity(value IHKWorkoutActivity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
-
 func (h_ HKWorkoutEffortRelationship) Samples() HKSample {
 	rv := objc.Send[HKSample](h_.ID, objc.Sel("samples"))
 	return rv
@@ -113,7 +109,6 @@ func (h_ HKWorkoutEffortRelationship) Samples() HKSample {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
-
 func (h_ HKWorkoutEffortRelationship) SetSamples(value IHKSample) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSamples:"), value)
 }
@@ -121,7 +116,6 @@ func (h_ HKWorkoutEffortRelationship) SetSamples(value IHKSample) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
-
 func (h_ HKWorkoutEffortRelationship) Workout() HKWorkout {
 	rv := objc.Send[HKWorkout](h_.ID, objc.Sel("workout"))
 	return rv
@@ -130,7 +124,6 @@ func (h_ HKWorkoutEffortRelationship) Workout() HKWorkout {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
-
 func (h_ HKWorkoutEffortRelationship) SetWorkout(value IHKWorkout) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkout:"), value)
 }

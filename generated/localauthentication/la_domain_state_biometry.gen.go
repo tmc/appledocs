@@ -35,7 +35,9 @@ type IDomainStateBiometry interface {
 	StateHash() foundation.NSData
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry
 type DomainStateBiometry struct {
 	objectivec.Object
@@ -78,16 +80,20 @@ func NewDomainStateBiometry() DomainStateBiometry {
 }
 
 
+
 // Indicates biometry type available on the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/biometryType
 func (d_ DomainStateBiometry) BiometryType() BiometryType {
 	rv := objc.Send[BiometryType](d_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
+
 // Contains state hash data for the available biometry type. Returns if no biometry entities are enrolled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/stateHash
 func (d_ DomainStateBiometry) StateHash() foundation.NSData {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))

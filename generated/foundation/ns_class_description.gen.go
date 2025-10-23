@@ -30,7 +30,7 @@ type _ClassDescriptionClass struct {
 // An interface definition for the [ClassDescription] class.
 type IClassDescription interface {
 	objectivec.IObject
-	InverseForRelationshipKey(relationshipKey string) String
+	InverseForRelationshipKey(relationshipKey string) IString
 	AttributeKeys() []string
 	ToManyRelationshipKeys() []string
 	ToOneRelationshipKeys() []string
@@ -104,7 +104,7 @@ func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
-func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) ClassDescription {
+func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) IClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
 }
@@ -132,7 +132,7 @@ func (cc _ClassDescriptionClass) RegisterClassDescriptionForClass(description IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/inverse(forRelationshipKey:)
-func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey string) String {
+func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey string) IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("inverseForRelationshipKey:"), objc.String(relationshipKey))
 	return rv
 }

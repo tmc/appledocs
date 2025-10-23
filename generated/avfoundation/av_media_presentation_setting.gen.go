@@ -43,7 +43,6 @@ type IMediaPresentationSetting interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaPresentationSetting
-
 type MediaPresentationSetting struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewMediaPresentationSetting() MediaPresentationSetting {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
-
 func (m_ MediaPresentationSetting) MediaCharacteristic() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaCharacteristic"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ MediaPresentationSetting) MediaCharacteristic() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
-
 func (m_ MediaPresentationSetting) SetMediaCharacteristic(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaCharacteristic:"), value)
 }

@@ -63,7 +63,6 @@ type ISegmentedControl interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl
-
 type SegmentedControl struct {
 	Control
 }
@@ -110,12 +109,10 @@ func NewSegmentedControl() SegmentedControl {
 
 
 
-
 // Selects the segment with the specified tag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectSegment(withTag:)
-
 func (s_ SegmentedControl) SelectSegmentWithTag(tag int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("selectSegmentWithTag:"), tag)
 	return rv
@@ -126,7 +123,6 @@ func (s_ SegmentedControl) SelectSegmentWithTag(tag int) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor
-
 func (s_ SegmentedControl) SelectedSegmentBezelColor() NSColor {
 	rv := objc.Send[NSColor](s_.ID, objc.Sel("selectedSegmentBezelColor"))
 	return rv
@@ -137,7 +133,6 @@ func (s_ SegmentedControl) SelectedSegmentBezelColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor
-
 func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
@@ -145,7 +140,6 @@ func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-
 func (s_ SegmentedControl) ActiveCompressionOptions() NSUserInterfaceCompressionOptions {
 	rv := objc.Send[NSUserInterfaceCompressionOptions](s_.ID, objc.Sel("activeCompressionOptions"))
 	return rv
@@ -154,7 +148,6 @@ func (s_ SegmentedControl) ActiveCompressionOptions() NSUserInterfaceCompression
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-
 func (s_ SegmentedControl) SetActiveCompressionOptions(value NSUserInterfaceCompressionOptions) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActiveCompressionOptions:"), value)
 }
@@ -162,7 +155,6 @@ func (s_ SegmentedControl) SetActiveCompressionOptions(value NSUserInterfaceComp
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/bordershape
-
 func (s_ SegmentedControl) BorderShape() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("borderShape"))
 	return rv
@@ -171,7 +163,6 @@ func (s_ SegmentedControl) BorderShape() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/bordershape
-
 func (s_ SegmentedControl) SetBorderShape(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderShape:"), value)
 }
@@ -181,7 +172,6 @@ func (s_ SegmentedControl) SetBorderShape(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-
 func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
 	return rv
@@ -192,7 +182,6 @@ func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-
 func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValueForSelectedSegment:"), value)
 }
@@ -200,7 +189,6 @@ func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value float64) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
-
 func (s_ SegmentedControl) IndexOfSelectedItem() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("indexOfSelectedItem"))
 	return rv
@@ -209,7 +197,6 @@ func (s_ SegmentedControl) IndexOfSelectedItem() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
-
 func (s_ SegmentedControl) SetIndexOfSelectedItem(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexOfSelectedItem:"), value)
 }
@@ -219,7 +206,6 @@ func (s_ SegmentedControl) SetIndexOfSelectedItem(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/isspringloaded
-
 func (s_ SegmentedControl) IsSpringLoaded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSpringLoaded"))
 	return rv
@@ -230,7 +216,6 @@ func (s_ SegmentedControl) IsSpringLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/isspringloaded
-
 func (s_ SegmentedControl) SetIsSpringLoaded(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
@@ -240,7 +225,6 @@ func (s_ SegmentedControl) SetIsSpringLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
-
 func (s_ SegmentedControl) SegmentCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
 	return rv
@@ -251,7 +235,6 @@ func (s_ SegmentedControl) SegmentCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
-
 func (s_ SegmentedControl) SetSegmentCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
 }
@@ -259,7 +242,6 @@ func (s_ SegmentedControl) SetSegmentCount(value int) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentdistribution
-
 func (s_ SegmentedControl) SegmentDistribution() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentDistribution"))
 	return rv
@@ -268,7 +250,6 @@ func (s_ SegmentedControl) SegmentDistribution() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentdistribution
-
 func (s_ SegmentedControl) SetSegmentDistribution(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentDistribution:"), value)
 }
@@ -278,7 +259,6 @@ func (s_ SegmentedControl) SetSegmentDistribution(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle
-
 func (s_ SegmentedControl) SegmentStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentStyle"))
 	return rv
@@ -289,7 +269,6 @@ func (s_ SegmentedControl) SegmentStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle
-
 func (s_ SegmentedControl) SetSegmentStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
 }
@@ -299,7 +278,6 @@ func (s_ SegmentedControl) SetSegmentStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
-
 func (s_ SegmentedControl) SelectedSegment() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
 	return rv
@@ -310,7 +288,6 @@ func (s_ SegmentedControl) SelectedSegment() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
-
 func (s_ SegmentedControl) SetSelectedSegment(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
 }
@@ -320,7 +297,6 @@ func (s_ SegmentedControl) SetSelectedSegment(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
-
 func (s_ SegmentedControl) TrackingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackingMode"))
 	return rv
@@ -331,7 +307,6 @@ func (s_ SegmentedControl) TrackingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
-
 func (s_ SegmentedControl) SetTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
 }

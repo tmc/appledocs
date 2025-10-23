@@ -52,7 +52,6 @@ type ICKFetchRecordZonesOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation
-
 type CKFetchRecordZonesOperation struct {
 	CKDatabaseOperation
 }
@@ -99,12 +98,10 @@ func NewCKFetchRecordZonesOperation() CKFetchRecordZonesOperation {
 
 
 
-
 // Creates an operation for fetching the specified record zones.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/init(recordZoneIDs:)
-
 func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs []CKRecordZoneID) CKFetchRecordZonesOperation {
 	instance := getCKFetchRecordZonesOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordZonesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:"), zoneIDs)
@@ -118,7 +115,6 @@ func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs []CKRecordZoneID) C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchAllRecordZonesOperation()
-
 func (cc _CKFetchRecordZonesOperationClass) FetchAllRecordZonesOperation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("fetchAllRecordZonesOperation"))
 	return rv
@@ -129,7 +125,6 @@ func (cc _CKFetchRecordZonesOperationClass) FetchAllRecordZonesOperation() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock
-
 func (c_ CKFetchRecordZonesOperation) FetchRecordZonesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZonesCompletionBlock"))
 	return rv
@@ -140,7 +135,6 @@ func (c_ CKFetchRecordZonesOperation) FetchRecordZonesCompletionBlock() unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock
-
 func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZonesCompletionBlock:"), value)
 }
@@ -148,7 +142,6 @@ func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesCompletionBlock(value u
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/perRecordZoneCompletionBlock
-
 func (c_ CKFetchRecordZonesOperation) PerRecordZoneCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneCompletionBlock"))
 	return rv
@@ -157,7 +150,6 @@ func (c_ CKFetchRecordZonesOperation) PerRecordZoneCompletionBlock() unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/perRecordZoneCompletionBlock
-
 func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneCompletionBlock:"), value)
 }
@@ -167,7 +159,6 @@ func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneCompletionBlock(value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/recordZoneIDs
-
 func (c_ CKFetchRecordZonesOperation) RecordZoneIDs() []CKRecordZoneID {
 	rv := objc.Send[[]CKRecordZoneID](c_.ID, objc.Sel("recordZoneIDs"))
 	return rv
@@ -178,7 +169,6 @@ func (c_ CKFetchRecordZonesOperation) RecordZoneIDs() []CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/recordZoneIDs
-
 func (c_ CKFetchRecordZonesOperation) SetRecordZoneIDs(value []CKRecordZoneID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -196,7 +186,6 @@ func (c_ CKFetchRecordZonesOperation) SetRecordZoneIDs(value []CKRecordZoneID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/fetchrecordzonesresultblock
-
 func (c_ CKFetchRecordZonesOperation) FetchRecordZonesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZonesResultBlock"))
 	return rv
@@ -205,7 +194,6 @@ func (c_ CKFetchRecordZonesOperation) FetchRecordZonesResultBlock() unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/fetchrecordzonesresultblock
-
 func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZonesResultBlock:"), value)
 }
@@ -213,7 +201,6 @@ func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesResultBlock(value unsaf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/perrecordzoneresultblock
-
 func (c_ CKFetchRecordZonesOperation) PerRecordZoneResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordZoneResultBlock"))
 	return rv
@@ -222,7 +209,6 @@ func (c_ CKFetchRecordZonesOperation) PerRecordZoneResultBlock() unsafe.Pointer 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation/perrecordzoneresultblock
-
 func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordZoneResultBlock:"), value)
 }
@@ -232,7 +218,6 @@ func (c_ CKFetchRecordZonesOperation) SetPerRecordZoneResultBlock(value unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchRecordZonesOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -243,7 +228,6 @@ func (c_ CKFetchRecordZonesOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchRecordZonesOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

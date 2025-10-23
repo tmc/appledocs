@@ -40,7 +40,6 @@ type IAutomaticSpatialAudio interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAAutomaticSpatialAudio
-
 type AutomaticSpatialAudio struct {
 	SpatialAudioExperience
 }

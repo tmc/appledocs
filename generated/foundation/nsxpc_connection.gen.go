@@ -41,8 +41,8 @@ type IXPCConnection interface {
 	AuditSessionIdentifier() unsafe.Pointer
 	EffectiveGroupIdentifier() unsafe.Pointer
 	EffectiveUserIdentifier() unsafe.Pointer
-	Endpoint() NSXPCListenerEndpoint
-	ExportedInterface() NSXPCInterface
+	Endpoint() IXPCListenerEndpoint
+	ExportedInterface() IXPCInterface
 	SetExportedInterface(value IXPCInterface)
 	ExportedObject() objc.ID
 	SetExportedObject(value objc.ID)
@@ -51,7 +51,7 @@ type IXPCConnection interface {
 	InvalidationHandler() unsafe.Pointer
 	SetInvalidationHandler(value unsafe.Pointer)
 	ProcessIdentifier() unsafe.Pointer
-	RemoteObjectInterface() NSXPCInterface
+	RemoteObjectInterface() IXPCInterface
 	SetRemoteObjectInterface(value IXPCInterface)
 	RemoteObjectProxy() objc.ID
 	ServiceName() string
@@ -163,7 +163,7 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/current()
-func (xc _XPCConnectionClass) CurrentConnection() XPCConnection {
+func (xc _XPCConnectionClass) CurrentConnection() IXPCConnection {
 	rv := objc.Send[XPCConnection](objc.ID(xc.class), objc.Sel("currentConnection"))
 	return rv
 }
@@ -275,7 +275,7 @@ func (x_ XPCConnection) EffectiveUserIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/endpoint
-func (x_ XPCConnection) Endpoint() NSXPCListenerEndpoint {
+func (x_ XPCConnection) Endpoint() IXPCListenerEndpoint {
 	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
@@ -285,7 +285,7 @@ func (x_ XPCConnection) Endpoint() NSXPCListenerEndpoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
-func (x_ XPCConnection) ExportedInterface() NSXPCInterface {
+func (x_ XPCConnection) ExportedInterface() IXPCInterface {
 	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("exportedInterface"))
 	return rv
 }
@@ -371,7 +371,7 @@ func (x_ XPCConnection) ProcessIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
-func (x_ XPCConnection) RemoteObjectInterface() NSXPCInterface {
+func (x_ XPCConnection) RemoteObjectInterface() IXPCInterface {
 	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("remoteObjectInterface"))
 	return rv
 }

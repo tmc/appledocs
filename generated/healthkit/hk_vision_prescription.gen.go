@@ -47,7 +47,6 @@ type IHKVisionPrescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVisionPrescription
-
 type HKVisionPrescription struct {
 	HKSample
 }
@@ -98,7 +97,6 @@ func NewHKVisionPrescription() HKVisionPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-
 func (h_ HKVisionPrescription) DateIssued() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("dateIssued"))
 	return rv
@@ -109,7 +107,6 @@ func (h_ HKVisionPrescription) DateIssued() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-
 func (h_ HKVisionPrescription) SetDateIssued(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
 }
@@ -119,7 +116,6 @@ func (h_ HKVisionPrescription) SetDateIssued(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-
 func (h_ HKVisionPrescription) ExpirationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("expirationDate"))
 	return rv
@@ -130,7 +126,6 @@ func (h_ HKVisionPrescription) ExpirationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-
 func (h_ HKVisionPrescription) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
@@ -140,7 +135,6 @@ func (h_ HKVisionPrescription) SetExpirationDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/prescriptiontype
-
 func (h_ HKVisionPrescription) PrescriptionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("prescriptionType"))
 	return rv
@@ -151,7 +145,6 @@ func (h_ HKVisionPrescription) PrescriptionType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/prescriptiontype
-
 func (h_ HKVisionPrescription) SetPrescriptionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPrescriptionType:"), value)
 }

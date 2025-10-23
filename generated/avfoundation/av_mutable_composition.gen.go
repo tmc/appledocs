@@ -30,7 +30,6 @@ type _MutableCompositionClass struct {
 // An interface definition for the [MutableComposition] class.
 type IMutableComposition interface {
 	IComposition
-	InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset IAVAsset, startTime unsafe.Pointer, outError unsafe.Pointer) bool
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
 	Tracks() unsafe.Pointer
@@ -46,7 +45,6 @@ type IMutableComposition interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition
-
 type MutableComposition struct {
 	Composition
 }
@@ -93,23 +91,10 @@ func NewMutableComposition() MutableComposition {
 
 
 
-
-// Inserts all the tracks within a given time range of a specified asset into the composition.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:)
-
-func (m_ MutableComposition) InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset IAVAsset, startTime unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("insertTimeRange:ofAsset:atTime:error:"), timeRange, asset, startTime, outError)
-	return rv
-}
-
-
 // The encoded or authored size of the visual portion of the asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
-
 func (m_ MutableComposition) NaturalSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("naturalSize"))
 	return rv
@@ -120,7 +105,6 @@ func (m_ MutableComposition) NaturalSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
-
 func (m_ MutableComposition) SetNaturalSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
 }
@@ -130,7 +114,6 @@ func (m_ MutableComposition) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
-
 func (m_ MutableComposition) Tracks() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tracks"))
 	return rv
@@ -141,7 +124,6 @@ func (m_ MutableComposition) Tracks() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
-
 func (m_ MutableComposition) SetTracks(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }

@@ -30,9 +30,9 @@ type _SortDescriptorClass struct {
 // An interface definition for the [SortDescriptor] class.
 type ISortDescriptor interface {
 	objectivec.IObject
-	CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) ComparisonResult
+	CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) NSComparisonResult
 	Key() string
-	SortDescriptors() NSSortDescriptor
+	SortDescriptors() ISortDescriptor
 	SetSortDescriptors(value ISortDescriptor)
 	Ascending() bool
 	SetAscending(value bool)
@@ -126,7 +126,7 @@ func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/compare(_:to:)
-func (s_ SortDescriptor) CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) ComparisonResult {
+func (s_ SortDescriptor) CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) NSComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compareObject:toObject:"), object1, object2)
 	return rv
 }
@@ -146,7 +146,7 @@ func (s_ SortDescriptor) Key() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (s_ SortDescriptor) SortDescriptors() NSSortDescriptor {
+func (s_ SortDescriptor) SortDescriptors() ISortDescriptor {
 	rv := objc.Send[NSSortDescriptor](s_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }

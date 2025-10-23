@@ -43,7 +43,6 @@ type IAudioMixingDestination interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixingDestination
-
 type AudioMixingDestination struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewAudioMixingDestination() AudioMixingDestination {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiomixingdestination/connectionpoint
-
 func (a_ AudioMixingDestination) ConnectionPoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("connectionPoint"))
 	return rv
@@ -103,7 +101,6 @@ func (a_ AudioMixingDestination) ConnectionPoint() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiomixingdestination/connectionpoint
-
 func (a_ AudioMixingDestination) SetConnectionPoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConnectionPoint:"), value)
 }

@@ -48,7 +48,6 @@ type ISequence interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence
-
 type Sequence struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewSequence() Sequence {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-
 func (s_ Sequence) Int64Values() foundation.Number {
 	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("int64Values"))
 	return rv
@@ -108,7 +106,6 @@ func (s_ Sequence) Int64Values() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-
 func (s_ Sequence) SetInt64Values(value foundation.INumber) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
 }
@@ -118,7 +115,6 @@ func (s_ Sequence) SetInt64Values(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-
 func (s_ Sequence) StringValues() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("stringValues"))
 	return rv
@@ -129,7 +125,6 @@ func (s_ Sequence) StringValues() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-
 func (s_ Sequence) SetStringValues(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
 }
@@ -139,7 +134,6 @@ func (s_ Sequence) SetStringValues(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-
 func (s_ Sequence) Type() FeatureType {
 	rv := objc.Send[FeatureType](s_.ID, objc.Sel("type"))
 	return rv
@@ -150,7 +144,6 @@ func (s_ Sequence) Type() FeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-
 func (s_ Sequence) SetType(value FeatureType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
 }

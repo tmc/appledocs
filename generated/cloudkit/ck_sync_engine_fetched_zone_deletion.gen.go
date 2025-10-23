@@ -39,7 +39,6 @@ type ICKSyncEngineFetchedZoneDeletion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedZoneDeletion
-
 type CKSyncEngineFetchedZoneDeletion struct {
 	objectivec.Object
 }

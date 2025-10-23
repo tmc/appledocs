@@ -32,7 +32,7 @@ type IURLProtectionSpace interface {
 	objectivec.IObject
 	AuthenticationMethod() string
 	SetAuthenticationMethod(value string)
-	DistinguishedNames() Data
+	DistinguishedNames() IData
 	SetDistinguishedNames(value IData)
 	Host() string
 	SetHost(value string)
@@ -126,7 +126,7 @@ func (u_ URLProtectionSpace) SetAuthenticationMethod(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/distinguishednames
-func (u_ URLProtectionSpace) DistinguishedNames() Data {
+func (u_ URLProtectionSpace) DistinguishedNames() IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("distinguishedNames"))
 	return rv
 }

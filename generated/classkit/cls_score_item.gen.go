@@ -44,7 +44,6 @@ type ISScoreItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem
-
 type SScoreItem struct {
 	SActivityItem
 }
@@ -91,12 +90,10 @@ func NewSScoreItem() SScoreItem {
 
 
 
-
 // Initializes an activity item that holds a score value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/init(identifier:title:score:maxScore:)
-
 func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier string, title string, score float64, maxScore float64) SScoreItem {
 	instance := getSScoreItemClass().Alloc()
 	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), objc.String(identifier), objc.String(title), score, maxScore)
@@ -110,7 +107,6 @@ func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier string, title stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/maxScore
-
 func (s_ SScoreItem) MaxScore() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxScore"))
 	return rv
@@ -121,7 +117,6 @@ func (s_ SScoreItem) MaxScore() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/maxScore
-
 func (s_ SScoreItem) SetMaxScore(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxScore:"), value)
 }
@@ -131,7 +126,6 @@ func (s_ SScoreItem) SetMaxScore(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
-
 func (s_ SScoreItem) Score() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("score"))
 	return rv
@@ -142,7 +136,6 @@ func (s_ SScoreItem) Score() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
-
 func (s_ SScoreItem) SetScore(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScore:"), value)
 }

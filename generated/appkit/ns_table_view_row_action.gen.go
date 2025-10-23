@@ -49,7 +49,6 @@ type ITableViewRowAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction
-
 type TableViewRowAction struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewTableViewRowAction() TableViewRowAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
-
 func (t_ TableViewRowAction) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -109,7 +107,6 @@ func (t_ TableViewRowAction) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
-
 func (t_ TableViewRowAction) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -117,7 +114,6 @@ func (t_ TableViewRowAction) SetBackgroundColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
-
 func (t_ TableViewRowAction) Image() Image {
 	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
@@ -126,7 +122,6 @@ func (t_ TableViewRowAction) Image() Image {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
-
 func (t_ TableViewRowAction) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
@@ -136,7 +131,6 @@ func (t_ TableViewRowAction) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.property
-
 func (t_ TableViewRowAction) Style() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("style"))
 	return rv
@@ -147,7 +141,6 @@ func (t_ TableViewRowAction) Style() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.property
-
 func (t_ TableViewRowAction) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
 }
@@ -157,7 +150,6 @@ func (t_ TableViewRowAction) SetStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/title
-
 func (t_ TableViewRowAction) Title() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("title"))
 	return rv
@@ -168,7 +160,6 @@ func (t_ TableViewRowAction) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/title
-
 func (t_ TableViewRowAction) SetTitle(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
 }

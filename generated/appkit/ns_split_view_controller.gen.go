@@ -56,7 +56,6 @@ type ISplitViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController
-
 type SplitViewController struct {
 	ViewController
 }
@@ -103,77 +102,63 @@ func NewSplitViewController() SplitViewController {
 
 
 
-
 // Adds a split view item to the end of the array of split view items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/addSplitViewItem(_:)
-
 func (s_ SplitViewController) AddSplitViewItem(splitViewItem ISplitViewItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addSplitViewItem:"), splitViewItem)
 }
-
 
 
 // Adds a split view item to the array of split view items at the specified index position.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/insertSplitViewItem(_:at:)
-
 func (s_ SplitViewController) InsertSplitViewItemAtIndex(splitViewItem ISplitViewItem, index int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertSplitViewItem:atIndex:"), splitViewItem, index)
 }
-
 
 
 // Removes a specified split view item from the split view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/removeSplitViewItem(_:)
-
 func (s_ SplitViewController) RemoveSplitViewItem(splitViewItem ISplitViewItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeSplitViewItem:"), splitViewItem)
 }
-
 
 
 // Returns the corresponding split view item for the specified child view controller of the split view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitViewItem(for:)
-
 func (s_ SplitViewController) SplitViewItemForViewController(viewController IViewController) SplitViewItem {
 	rv := objc.Send[SplitViewItem](s_.ID, objc.Sel("splitViewItemForViewController:"), viewController)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/toggleInspector(_:)
-
 func (s_ SplitViewController) ToggleInspector(sender objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("toggleInspector:"), sender)
 }
-
 
 
 // Collapses or expands the first sidebar in the split view controller using an animation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/toggleSidebar(_:)
-
 func (s_ SplitViewController) ToggleSidebar(sender objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("toggleSidebar:"), sender)
 }
-
 
 
 // Configures the split view controller after its view loads into memory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/viewDidLoad()
-
 func (s_ SplitViewController) ViewDidLoad() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("viewDidLoad"))
 }
@@ -183,7 +168,6 @@ func (s_ SplitViewController) ViewDidLoad() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars
-
 func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumThicknessForInlineSidebars"))
 	return rv
@@ -194,7 +178,6 @@ func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars
-
 func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumThicknessForInlineSidebars:"), value)
 }
@@ -204,7 +187,6 @@ func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitView
-
 func (s_ SplitViewController) SplitView() NSSplitView {
 	rv := objc.Send[NSSplitView](s_.ID, objc.Sel("splitView"))
 	return rv
@@ -215,7 +197,6 @@ func (s_ SplitViewController) SplitView() NSSplitView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitView
-
 func (s_ SplitViewController) SetSplitView(value ISplitView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSplitView:"), value)
 }
@@ -225,7 +206,6 @@ func (s_ SplitViewController) SetSplitView(value ISplitView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitViewItems
-
 func (s_ SplitViewController) SplitViewItems() []SplitViewItem {
 	rv := objc.Send[[]SplitViewItem](s_.ID, objc.Sel("splitViewItems"))
 	return rv
@@ -236,7 +216,6 @@ func (s_ SplitViewController) SplitViewItems() []SplitViewItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitViewItems
-
 func (s_ SplitViewController) SetSplitViewItems(value []SplitViewItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -256,7 +235,6 @@ func (s_ SplitViewController) SetSplitViewItems(value []SplitViewItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
-
 func (s_ SplitViewController) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
@@ -267,7 +245,6 @@ func (s_ SplitViewController) IsVertical() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
-
 func (s_ SplitViewController) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }

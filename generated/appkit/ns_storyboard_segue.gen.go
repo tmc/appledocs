@@ -45,7 +45,6 @@ type IStoryboardSegue interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue
-
 type StoryboardSegue struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewStoryboardSegue() StoryboardSegue {
 
 
 
-
 // The designated initializer for a storyboard segue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:)
-
 func NewStoryboardSegueWithIdentifierSourceDestination(identifier IStoryboardSegueIdentifier, sourceController objectivec.IObject, destinationController objectivec.IObject) StoryboardSegue {
 	instance := getStoryboardSegueClass().Alloc()
 	rv := objc.Send[StoryboardSegue](instance.ID, objc.Sel("initWithIdentifier:source:destination:"), identifier, sourceController, destinationController)
@@ -104,12 +101,10 @@ func NewStoryboardSegueWithIdentifierSourceDestination(identifier IStoryboardSeg
 }
 
 
-
 // Creates a storyboard segue and a block used when the segue is performed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:performHandler:)
-
 func NewStoryboardSegueWithIdentifierSourceDestinationPerformHandler(identifier IStoryboardSegueIdentifier, sourceController objectivec.IObject, destinationController objectivec.IObject, performHandler unsafe.Pointer) StoryboardSegue {
 	rv := objc.Send[StoryboardSegue](objc.ID(getStoryboardSegueClass().class), objc.Sel("segueWithIdentifier:source:destination:performHandler:"), identifier, sourceController, destinationController, performHandler)
 	return rv
@@ -121,19 +116,16 @@ func NewStoryboardSegueWithIdentifierSourceDestinationPerformHandler(identifier 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:performHandler:)
-
 func (sc _StoryboardSegueClass) SegueWithIdentifierSourceDestinationPerformHandler(identifier IStoryboardSegueIdentifier, sourceController objectivec.IObject, destinationController objectivec.IObject, performHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("segueWithIdentifier:source:destination:performHandler:"), identifier, sourceController, destinationController, performHandler)
 	return rv
 }
 
 
-
 // Performs a visual transition from one controller to another.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/perform()
-
 func (s_ StoryboardSegue) Perform() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("perform"))
 }
@@ -143,7 +135,6 @@ func (s_ StoryboardSegue) Perform() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/destinationController
-
 func (s_ StoryboardSegue) DestinationController() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("destinationController"))
 	return rv
@@ -154,7 +145,6 @@ func (s_ StoryboardSegue) DestinationController() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/identifier-swift.property
-
 func (s_ StoryboardSegue) Identifier() StoryboardSegueIdentifier {
 	rv := objc.Send[StoryboardSegueIdentifier](s_.ID, objc.Sel("identifier"))
 	return rv
@@ -165,7 +155,6 @@ func (s_ StoryboardSegue) Identifier() StoryboardSegueIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/sourceController
-
 func (s_ StoryboardSegue) SourceController() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sourceController"))
 	return rv

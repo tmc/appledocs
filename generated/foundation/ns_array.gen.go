@@ -34,10 +34,10 @@ type IArray interface {
 	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID
 	ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID
 	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
-	ComponentsJoinedByString(separator string) String
+	ComponentsJoinedByString(separator string) IString
 	ContainsObject(anObject unsafe.Pointer) bool
-	DescriptionWithLocale(locale objectivec.IObject) String
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
+	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
 	DifferenceFromArray(other []objc.ID) unsafe.Pointer
 	DifferenceFromArrayWithOptions(other []objc.ID, options unsafe.Pointer) unsafe.Pointer
 	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer
@@ -56,9 +56,9 @@ type IArray interface {
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
 	IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint
 	IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range) uint
-	IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts NSEnumerationOptions, predicate unsafe.Pointer) IndexSet
-	IndexesOfObjectsWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) IndexSet
-	IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IndexSet
+	IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts NSEnumerationOptions, predicate unsafe.Pointer) IIndexSet
+	IndexesOfObjectsWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) IIndexSet
+	IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet
 	IsEqualToArray(otherArray []objc.ID) bool
 	MakeObjectsPerformSelector(aSelector objc.SEL)
 	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject)
@@ -86,7 +86,7 @@ type IArray interface {
 	Description() string
 	FirstObject() unsafe.Pointer
 	LastObject() unsafe.Pointer
-	SortedArrayHint() NSData
+	SortedArrayHint() IData
 }
 
 // A static ordered collection of objects.
@@ -375,7 +375,7 @@ func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/componentsJoined(by:)
-func (a_ Array) ComponentsJoinedByString(separator string) String {
+func (a_ Array) ComponentsJoinedByString(separator string) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("componentsJoinedByString:"), objc.String(separator))
 	return rv
 }
@@ -395,7 +395,7 @@ func (a_ Array) ContainsObject(anObject unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:)
-func (a_ Array) DescriptionWithLocale(locale objectivec.IObject) String {
+func (a_ Array) DescriptionWithLocale(locale objectivec.IObject) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -405,7 +405,7 @@ func (a_ Array) DescriptionWithLocale(locale objectivec.IObject) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:indent:)
-func (a_ Array) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String {
+func (a_ Array) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -590,7 +590,7 @@ func (a_ Array) IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexesOfObjects(at:options:passingTest:)
-func (a_ Array) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts NSEnumerationOptions, predicate unsafe.Pointer) IndexSet {
+func (a_ Array) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts NSEnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](a_.ID, objc.Sel("indexesOfObjectsAtIndexes:options:passingTest:"), s, opts, predicate)
 	return rv
 }
@@ -600,7 +600,7 @@ func (a_ Array) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexesOfObjects(options:passingTest:)
-func (a_ Array) IndexesOfObjectsWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) IndexSet {
+func (a_ Array) IndexesOfObjectsWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](a_.ID, objc.Sel("indexesOfObjectsWithOptions:passingTest:"), opts, predicate)
 	return rv
 }
@@ -610,7 +610,7 @@ func (a_ Array) IndexesOfObjectsWithOptionsPassingTest(opts NSEnumerationOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexesOfObjects(passingTest:)
-func (a_ Array) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IndexSet {
+func (a_ Array) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](a_.ID, objc.Sel("indexesOfObjectsPassingTest:"), predicate)
 	return rv
 }
@@ -921,7 +921,7 @@ func (a_ Array) LastObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArrayHint
-func (a_ Array) SortedArrayHint() NSData {
+func (a_ Array) SortedArrayHint() IData {
 	rv := objc.Send[NSData](a_.ID, objc.Sel("sortedArrayHint"))
 	return rv
 }

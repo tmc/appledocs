@@ -47,8 +47,7 @@ type IABMutableMultiValue interface {
 // A mutable representation of a property that might have multiple values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue-swift.class
-
+// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue
 type ABMutableMultiValue struct {
 	ABMultiValue
 }
@@ -95,72 +94,60 @@ func NewABMutableMultiValue() ABMutableMultiValue {
 
 
 
-
 // Adds a value and its label to a multivalue list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/add(_:withLabel:)
-
 func (a_ ABMutableMultiValue) AddValueWithLabel(value objectivec.IObject, label string) foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("addValue:withLabel:"), value, objc.String(label))
 	return rv
 }
 
 
-
 // Inserts a value and its label at the given index in a multivalue list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/insert(_:withLabel:at:)
-
 func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objectivec.IObject, label string, index uint) foundation.String {
 	rv := objc.Send[foundation.String](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, objc.String(label), index)
 	return rv
 }
 
 
-
 // Removes the value and label at the given index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/removeAndLabel(at:)
-
 func (a_ ABMutableMultiValue) RemoveValueAndLabelAtIndex(index uint) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueAndLabelAtIndex:"), index)
 	return rv
 }
 
 
-
 // Replaces the value at the given index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/replace(at:withValue:)
-
 func (a_ ABMutableMultiValue) ReplaceValueAtIndexWithValue(index uint, value objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("replaceValueAtIndex:withValue:"), index, value)
 	return rv
 }
 
 
-
 // Replaces the label at the given index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/replaceLabel(at:withLabel:)
-
 func (a_ ABMutableMultiValue) ReplaceLabelAtIndexWithLabel(index uint, label string) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("replaceLabelAtIndex:withLabel:"), index, objc.String(label))
 	return rv
 }
 
 
-
 // Sets the primary value to be the value for the given identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/setPrimaryIdentifier(_:)
-
 func (a_ ABMutableMultiValue) SetPrimaryIdentifier(identifier string) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrimaryIdentifier:"), objc.String(identifier))
 	return rv

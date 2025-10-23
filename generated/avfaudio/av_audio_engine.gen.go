@@ -49,13 +49,13 @@ type IAudioEngine interface {
 	ManualRenderingBlock() unsafe.Pointer
 	SetManualRenderingBlock(value unsafe.Pointer)
 	ManualRenderingFormat() AVAudioFormat
-	SetManualRenderingFormat(value AVAudioFormat)
+	SetManualRenderingFormat(value IAVAudioFormat)
 	ManualRenderingMaximumFrameCount() AudioFrameCount
 	SetManualRenderingMaximumFrameCount(value IAudioFrameCount)
 	ManualRenderingMode() unsafe.Pointer
 	SetManualRenderingMode(value unsafe.Pointer)
 	ManualRenderingSampleTime() AudioFramePosition
-	SetManualRenderingSampleTime(value AudioFramePosition)
+	SetManualRenderingSampleTime(value IAudioFramePosition)
 }
 
 // An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.
@@ -67,7 +67,6 @@ type IAudioEngine interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine
-
 type AudioEngine struct {
 	objectivec.Object
 }
@@ -112,35 +111,29 @@ func NewAudioEngine() AudioEngine {
 
 
 
-
 // Prepares the audio engine for starting.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/prepare()
-
 func (a_ AudioEngine) Prepare() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepare"))
 }
-
 
 
 // Starts the audio engine.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/start()
-
 func (a_ AudioEngine) StartAndReturnError(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("startAndReturnError:"), outError)
 	return rv
 }
 
 
-
 // Stops the audio engine and releases any previously prepared resources.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/stop()
-
 func (a_ AudioEngine) Stop() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stop"))
 }
@@ -150,7 +143,6 @@ func (a_ AudioEngine) Stop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/inputNode
-
 func (a_ AudioEngine) InputNode() AVAudioInputNode {
 	rv := objc.Send[AVAudioInputNode](a_.ID, objc.Sel("inputNode"))
 	return rv
@@ -161,7 +153,6 @@ func (a_ AudioEngine) InputNode() AVAudioInputNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/mainMixerNode
-
 func (a_ AudioEngine) MainMixerNode() AVAudioMixerNode {
 	rv := objc.Send[AVAudioMixerNode](a_.ID, objc.Sel("mainMixerNode"))
 	return rv
@@ -172,7 +163,6 @@ func (a_ AudioEngine) MainMixerNode() AVAudioMixerNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/musicSequence
-
 func (a_ AudioEngine) MusicSequence() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("musicSequence"))
 	return rv
@@ -183,7 +173,6 @@ func (a_ AudioEngine) MusicSequence() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/musicSequence
-
 func (a_ AudioEngine) SetMusicSequence(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicSequence:"), value)
 }
@@ -193,7 +182,6 @@ func (a_ AudioEngine) SetMusicSequence(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/outputNode
-
 func (a_ AudioEngine) OutputNode() AVAudioOutputNode {
 	rv := objc.Send[AVAudioOutputNode](a_.ID, objc.Sel("outputNode"))
 	return rv
@@ -204,7 +192,6 @@ func (a_ AudioEngine) OutputNode() AVAudioOutputNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/attachednodes
-
 func (a_ AudioEngine) AttachedNodes() AVAudioNode {
 	rv := objc.Send[AVAudioNode](a_.ID, objc.Sel("attachedNodes"))
 	return rv
@@ -215,7 +202,6 @@ func (a_ AudioEngine) AttachedNodes() AVAudioNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/attachednodes
-
 func (a_ AudioEngine) SetAttachedNodes(value IAVAudioNode) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttachedNodes:"), value)
 }
@@ -225,7 +211,6 @@ func (a_ AudioEngine) SetAttachedNodes(value IAVAudioNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isautoshutdownenabled
-
 func (a_ AudioEngine) IsAutoShutdownEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isAutoShutdownEnabled"))
 	return rv
@@ -236,7 +221,6 @@ func (a_ AudioEngine) IsAutoShutdownEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isautoshutdownenabled
-
 func (a_ AudioEngine) SetIsAutoShutdownEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAutoShutdownEnabled:"), value)
 }
@@ -246,7 +230,6 @@ func (a_ AudioEngine) SetIsAutoShutdownEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isinmanualrenderingmode
-
 func (a_ AudioEngine) IsInManualRenderingMode() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInManualRenderingMode"))
 	return rv
@@ -257,7 +240,6 @@ func (a_ AudioEngine) IsInManualRenderingMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isinmanualrenderingmode
-
 func (a_ AudioEngine) SetIsInManualRenderingMode(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInManualRenderingMode:"), value)
 }
@@ -267,7 +249,6 @@ func (a_ AudioEngine) SetIsInManualRenderingMode(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isrunning
-
 func (a_ AudioEngine) IsRunning() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
@@ -278,7 +259,6 @@ func (a_ AudioEngine) IsRunning() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isrunning
-
 func (a_ AudioEngine) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
@@ -288,7 +268,6 @@ func (a_ AudioEngine) SetIsRunning(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingblock
-
 func (a_ AudioEngine) ManualRenderingBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingBlock"))
 	return rv
@@ -299,7 +278,6 @@ func (a_ AudioEngine) ManualRenderingBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingblock
-
 func (a_ AudioEngine) SetManualRenderingBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingBlock:"), value)
 }
@@ -309,7 +287,6 @@ func (a_ AudioEngine) SetManualRenderingBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-
 func (a_ AudioEngine) ManualRenderingFormat() AVAudioFormat {
 	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
@@ -320,8 +297,7 @@ func (a_ AudioEngine) ManualRenderingFormat() AVAudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-
-func (a_ AudioEngine) SetManualRenderingFormat(value AVAudioFormat) {
+func (a_ AudioEngine) SetManualRenderingFormat(value IAVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
 }
 
@@ -330,7 +306,6 @@ func (a_ AudioEngine) SetManualRenderingFormat(value AVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmaximumframecount
-
 func (a_ AudioEngine) ManualRenderingMaximumFrameCount() AudioFrameCount {
 	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("manualRenderingMaximumFrameCount"))
 	return rv
@@ -341,7 +316,6 @@ func (a_ AudioEngine) ManualRenderingMaximumFrameCount() AudioFrameCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmaximumframecount
-
 func (a_ AudioEngine) SetManualRenderingMaximumFrameCount(value IAudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingMaximumFrameCount:"), value)
 }
@@ -351,7 +325,6 @@ func (a_ AudioEngine) SetManualRenderingMaximumFrameCount(value IAudioFrameCount
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmode
-
 func (a_ AudioEngine) ManualRenderingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingMode"))
 	return rv
@@ -362,7 +335,6 @@ func (a_ AudioEngine) ManualRenderingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmode
-
 func (a_ AudioEngine) SetManualRenderingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingMode:"), value)
 }
@@ -372,7 +344,6 @@ func (a_ AudioEngine) SetManualRenderingMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingsampletime
-
 func (a_ AudioEngine) ManualRenderingSampleTime() AudioFramePosition {
 	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("manualRenderingSampleTime"))
 	return rv
@@ -383,8 +354,7 @@ func (a_ AudioEngine) ManualRenderingSampleTime() AudioFramePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingsampletime
-
-func (a_ AudioEngine) SetManualRenderingSampleTime(value AudioFramePosition) {
+func (a_ AudioEngine) SetManualRenderingSampleTime(value IAudioFramePosition) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingSampleTime:"), value)
 }
 

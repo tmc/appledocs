@@ -39,7 +39,6 @@ type IRotationRateData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRotationRateData
-
 type RotationRateData struct {
 	LogItem
 }
@@ -90,7 +89,6 @@ func NewRotationRateData() RotationRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRotationRateData/rotationRate
-
 func (r_ RotationRateData) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rotationRate"))
 	return rv

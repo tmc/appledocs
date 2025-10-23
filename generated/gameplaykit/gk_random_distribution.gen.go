@@ -48,7 +48,6 @@ type IRandomDistribution interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution
-
 type RandomDistribution struct {
 	objectivec.Object
 }
@@ -93,36 +92,30 @@ func NewRandomDistribution() RandomDistribution {
 
 
 
-
 // Creates a random distribution equivalent to a die with the specified number of sides.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(forDieWithSideCount:)
-
 func NewRandomDistributionForDieWithSideCount(sideCount int) RandomDistribution {
 	rv := objc.Send[RandomDistribution](objc.ID(getRandomDistributionClass().class), objc.Sel("distributionForDieWithSideCount:"), sideCount)
 	return rv
 }
 
 
-
 // Creates a random distribution with the specified lower and upper bounds, using the Arc4 randomizer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(lowestValue:highestValue:)
-
 func NewRandomDistributionWithLowestValueHighestValue(lowestInclusive int, highestInclusive int) RandomDistribution {
 	rv := objc.Send[RandomDistribution](objc.ID(getRandomDistributionClass().class), objc.Sel("distributionWithLowestValue:highestValue:"), lowestInclusive, highestInclusive)
 	return rv
 }
 
 
-
 // Initializes a uniform random distribution with the specified lower and upper bounds, using the specified source randomizer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(randomSource:lowestValue:highestValue:)
-
 func NewRandomDistributionWithRandomSourceLowestValueHighestValue(source objectivec.IObject, lowestInclusive int, highestInclusive int) RandomDistribution {
 	instance := getRandomDistributionClass().Alloc()
 	rv := objc.Send[RandomDistribution](instance.ID, objc.Sel("initWithRandomSource:lowestValue:highestValue:"), source, lowestInclusive, highestInclusive)
@@ -136,7 +129,6 @@ func NewRandomDistributionWithRandomSourceLowestValueHighestValue(source objecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/d20()
-
 func (rc _RandomDistributionClass) D20() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("d20"))
 	return rv
@@ -147,7 +139,6 @@ func (rc _RandomDistributionClass) D20() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/d6()
-
 func (rc _RandomDistributionClass) D6() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("d6"))
 	return rv
@@ -158,7 +149,6 @@ func (rc _RandomDistributionClass) D6() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(forDieWithSideCount:)
-
 func (rc _RandomDistributionClass) DistributionForDieWithSideCount(sideCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("distributionForDieWithSideCount:"), sideCount)
 	return rv
@@ -169,55 +159,46 @@ func (rc _RandomDistributionClass) DistributionForDieWithSideCount(sideCount int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(lowestValue:highestValue:)
-
 func (rc _RandomDistributionClass) DistributionWithLowestValueHighestValue(lowestInclusive int, highestInclusive int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("distributionWithLowestValue:highestValue:"), lowestInclusive, highestInclusive)
 	return rv
 }
 
 
-
 // Generates and returns a new random Boolean value within the characteristics of the distribution.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextBool()
-
 func (r_ RandomDistribution) NextBool() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("nextBool"))
 	return rv
 }
 
 
-
 // Generates and returns a new random integer within the bounds of the distribution.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextInt()
-
 func (r_ RandomDistribution) NextInt() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("nextInt"))
 	return rv
 }
 
 
-
 // Generates and returns a new random integer within the bounds of the distribution and less than the specified limit.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextInt(upperBound:)
-
 func (r_ RandomDistribution) NextIntWithUpperBound(upperBound uint) uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("nextIntWithUpperBound:"), upperBound)
 	return rv
 }
 
 
-
 // Generates and returns a new random floating-point value within the characteristics of the distribution.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextUniform()
-
 func (r_ RandomDistribution) NextUniform() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("nextUniform"))
 	return rv
@@ -228,7 +209,6 @@ func (r_ RandomDistribution) NextUniform() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/highestValue
-
 func (r_ RandomDistribution) HighestValue() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("highestValue"))
 	return rv
@@ -239,7 +219,6 @@ func (r_ RandomDistribution) HighestValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/lowestValue
-
 func (r_ RandomDistribution) LowestValue() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("lowestValue"))
 	return rv
@@ -250,7 +229,6 @@ func (r_ RandomDistribution) LowestValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/numberOfPossibleOutcomes
-
 func (r_ RandomDistribution) NumberOfPossibleOutcomes() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfPossibleOutcomes"))
 	return rv

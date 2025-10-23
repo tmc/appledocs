@@ -42,7 +42,6 @@ type IAXBrailleTranslationResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult
-
 type AXBrailleTranslationResult struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewAXBrailleTranslationResult() AXBrailleTranslationResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/locationMap
-
 func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("locationMap"))
 	return rv
@@ -102,7 +100,6 @@ func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
-
 func (a_ AXBrailleTranslationResult) ResultString() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
 	return rv

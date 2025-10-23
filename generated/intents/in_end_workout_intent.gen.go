@@ -36,7 +36,11 @@ type IINEndWorkoutIntent interface {
 // A request to end the current workout that also validates workout parameters and saves the results.
 //
 // SiriKit creates an object when the user asks to finish an in-progress workout. Finishing a workout stops it and records any progress made toward the workout’s goals. Use this intent object to validate the workout parameters. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that indicates it’s possible to end the workout. For the successful handling of the intent, SiriKit launches your app and passes it an object your app must then use to end the workout.
+
+
+// A request to end the current workout that also validates workout parameters and saves the results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INEndWorkoutIntent
 type INEndWorkoutIntent struct {
 	INIntent
@@ -84,9 +88,9 @@ func NewINEndWorkoutIntent() INEndWorkoutIntent {
 
 
 
-
 // Initializes an intent object with the specified workout name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INEndWorkoutIntent/init(workoutName:)
 func NewINEndWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INEndWorkoutIntent {
 	instance := getINEndWorkoutIntentClass().Alloc()
@@ -96,8 +100,10 @@ func NewINEndWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INEndWo
 }
 
 
+
 // The name of the workout.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inendworkoutintent/workoutname
 func (i_ INEndWorkoutIntent) WorkoutName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
@@ -105,10 +111,9 @@ func (i_ INEndWorkoutIntent) WorkoutName() INSpeakableString {
 }
 
 
-// SetWorkoutName sets the value of the workoutName property.
 // The name of the workout.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inendworkoutintent/workoutname
 func (i_ INEndWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)

@@ -51,7 +51,6 @@ type ICKQueryCursor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/Cursor-swift.class
-
 type CKQueryCursor struct {
 	objectivec.Object
 }
@@ -100,7 +99,6 @@ func NewCKQueryCursor() CKQueryCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
-
 func (c_ CKQueryCursor) Cursor() CKQueryCursor {
 	rv := objc.Send[CKQueryCursor](c_.ID, objc.Sel("cursor"))
 	return rv
@@ -111,7 +109,6 @@ func (c_ CKQueryCursor) Cursor() CKQueryCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
-
 func (c_ CKQueryCursor) SetCursor(value ICKQueryCursor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCursor:"), value)
 }
@@ -121,7 +118,6 @@ func (c_ CKQueryCursor) SetCursor(value ICKQueryCursor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/desiredkeys-7qrse
-
 func (c_ CKQueryCursor) DesiredKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("desiredKeys"))
 	return rv
@@ -132,7 +128,6 @@ func (c_ CKQueryCursor) DesiredKeys() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/desiredkeys-7qrse
-
 func (c_ CKQueryCursor) SetDesiredKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
 }
@@ -142,7 +137,6 @@ func (c_ CKQueryCursor) SetDesiredKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
-
 func (c_ CKQueryCursor) Query() CKQuery {
 	rv := objc.Send[CKQuery](c_.ID, objc.Sel("query"))
 	return rv
@@ -153,7 +147,6 @@ func (c_ CKQueryCursor) Query() CKQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
-
 func (c_ CKQueryCursor) SetQuery(value ICKQuery) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQuery:"), value)
 }
@@ -163,7 +156,6 @@ func (c_ CKQueryCursor) SetQuery(value ICKQuery) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
-
 func (c_ CKQueryCursor) ResultsLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
@@ -174,7 +166,6 @@ func (c_ CKQueryCursor) ResultsLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
-
 func (c_ CKQueryCursor) SetResultsLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
@@ -184,7 +175,6 @@ func (c_ CKQueryCursor) SetResultsLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
-
 func (c_ CKQueryCursor) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
@@ -195,7 +185,6 @@ func (c_ CKQueryCursor) ZoneID() CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
-
 func (c_ CKQueryCursor) SetZoneID(value ICKRecordZoneID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
 }

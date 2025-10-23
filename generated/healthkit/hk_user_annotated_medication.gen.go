@@ -45,7 +45,6 @@ type IHKUserAnnotatedMedication interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication
-
 type HKUserAnnotatedMedication struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewHKUserAnnotatedMedication() HKUserAnnotatedMedication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/hasSchedule
-
 func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("hasSchedule"))
 	return rv
@@ -105,7 +103,6 @@ func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/isArchived
-
 func (h_ HKUserAnnotatedMedication) IsArchived() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isArchived"))
 	return rv
@@ -116,7 +113,6 @@ func (h_ HKUserAnnotatedMedication) IsArchived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/medication
-
 func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
 	rv := objc.Send[HKMedicationConcept](h_.ID, objc.Sel("medication"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/nickname
-
 func (h_ HKUserAnnotatedMedication) Nickname() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
 	return rv

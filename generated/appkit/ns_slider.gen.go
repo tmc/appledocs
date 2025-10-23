@@ -68,7 +68,6 @@ type ISlider interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider
-
 type Slider struct {
 	Control
 }
@@ -115,24 +114,20 @@ func NewSlider() Slider {
 
 
 
-
 // Returns the index of the tick mark closest to the location of the slider represented by the given point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/indexOfTickMark(at:)
-
 func (s_ Slider) IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("indexOfTickMarkAtPoint:"), point)
 	return rv
 }
 
 
-
 // Sets the font used to draw the slider’s title.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/setTitleFont:
-
 func (s_ Slider) SetTitleFont(fontObj IFont) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitleFont:"), fontObj)
 }
@@ -142,7 +137,6 @@ func (s_ Slider) SetTitleFont(fontObj IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/isVertical
-
 func (s_ Slider) Vertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("vertical"))
 	return rv
@@ -153,7 +147,6 @@ func (s_ Slider) Vertical() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/isVertical
-
 func (s_ Slider) SetVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
 }
@@ -163,7 +156,6 @@ func (s_ Slider) SetVertical(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/knobThickness
-
 func (s_ Slider) KnobThickness() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("knobThickness"))
 	return rv
@@ -174,7 +166,6 @@ func (s_ Slider) KnobThickness() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/maxValue
-
 func (s_ Slider) MaxValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
 	return rv
@@ -185,7 +176,6 @@ func (s_ Slider) MaxValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/maxValue
-
 func (s_ Slider) SetMaxValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
@@ -195,7 +185,6 @@ func (s_ Slider) SetMaxValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
-
 func (s_ Slider) TrackFillColor() NSColor {
 	rv := objc.Send[NSColor](s_.ID, objc.Sel("trackFillColor"))
 	return rv
@@ -206,7 +195,6 @@ func (s_ Slider) TrackFillColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
-
 func (s_ Slider) SetTrackFillColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackFillColor:"), value)
 }
@@ -216,7 +204,6 @@ func (s_ Slider) SetTrackFillColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/allowstickmarkvaluesonly
-
 func (s_ Slider) AllowsTickMarkValuesOnly() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
 	return rv
@@ -227,7 +214,6 @@ func (s_ Slider) AllowsTickMarkValuesOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/allowstickmarkvaluesonly
-
 func (s_ Slider) SetAllowsTickMarkValuesOnly(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
 }
@@ -237,7 +223,6 @@ func (s_ Slider) SetAllowsTickMarkValuesOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/altincrementvalue
-
 func (s_ Slider) AltIncrementValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("altIncrementValue"))
 	return rv
@@ -248,7 +233,6 @@ func (s_ Slider) AltIncrementValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/altincrementvalue
-
 func (s_ Slider) SetAltIncrementValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
 }
@@ -258,7 +242,6 @@ func (s_ Slider) SetAltIncrementValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/isvertical
-
 func (s_ Slider) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
@@ -269,7 +252,6 @@ func (s_ Slider) IsVertical() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/isvertical
-
 func (s_ Slider) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }
@@ -279,7 +261,6 @@ func (s_ Slider) SetIsVertical(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/minvalue
-
 func (s_ Slider) MinValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
 	return rv
@@ -290,7 +271,6 @@ func (s_ Slider) MinValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/minvalue
-
 func (s_ Slider) SetMinValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
@@ -300,7 +280,6 @@ func (s_ Slider) SetMinValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/neutralvalue
-
 func (s_ Slider) NeutralValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("neutralValue"))
 	return rv
@@ -311,7 +290,6 @@ func (s_ Slider) NeutralValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/neutralvalue
-
 func (s_ Slider) SetNeutralValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNeutralValue:"), value)
 }
@@ -321,7 +299,6 @@ func (s_ Slider) SetNeutralValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/numberoftickmarks
-
 func (s_ Slider) NumberOfTickMarks() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
 	return rv
@@ -332,7 +309,6 @@ func (s_ Slider) NumberOfTickMarks() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/numberoftickmarks
-
 func (s_ Slider) SetNumberOfTickMarks(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
 }
@@ -342,7 +318,6 @@ func (s_ Slider) SetNumberOfTickMarks(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
-
 func (s_ Slider) SliderType() SliderType {
 	rv := objc.Send[SliderType](s_.ID, objc.Sel("sliderType"))
 	return rv
@@ -353,7 +328,6 @@ func (s_ Slider) SliderType() SliderType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
-
 func (s_ Slider) SetSliderType(value SliderType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
 }
@@ -363,7 +337,6 @@ func (s_ Slider) SetSliderType(value SliderType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.property
-
 func (s_ Slider) TickMarkPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tickMarkPosition"))
 	return rv
@@ -374,7 +347,6 @@ func (s_ Slider) TickMarkPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.property
-
 func (s_ Slider) SetTickMarkPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
 }
@@ -384,7 +356,6 @@ func (s_ Slider) SetTickMarkPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
-
 func (s_ Slider) TintProminence() TintProminence {
 	rv := objc.Send[TintProminence](s_.ID, objc.Sel("tintProminence"))
 	return rv
@@ -395,7 +366,6 @@ func (s_ Slider) TintProminence() TintProminence {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
-
 func (s_ Slider) SetTintProminence(value ITintProminence) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTintProminence:"), value)
 }

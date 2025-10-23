@@ -45,7 +45,6 @@ type IContentKeySpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeySpecifier
-
 type ContentKeySpecifier struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewContentKeySpecifier() ContentKeySpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/identifier
-
 func (c_ ContentKeySpecifier) Identifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ ContentKeySpecifier) Identifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/identifier
-
 func (c_ ContentKeySpecifier) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
@@ -115,7 +112,6 @@ func (c_ ContentKeySpecifier) SetIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
-
 func (c_ ContentKeySpecifier) KeySystem() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keySystem"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ ContentKeySpecifier) KeySystem() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
-
 func (c_ ContentKeySpecifier) SetKeySystem(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySystem:"), value)
 }
@@ -136,7 +131,6 @@ func (c_ ContentKeySpecifier) SetKeySystem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/options
-
 func (c_ ContentKeySpecifier) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
 	return rv
@@ -147,7 +141,6 @@ func (c_ ContentKeySpecifier) Options() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/options
-
 func (c_ ContentKeySpecifier) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
 }

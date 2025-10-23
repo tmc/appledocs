@@ -44,7 +44,6 @@ type IHKDeletedObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject
-
 type HKDeletedObject struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewHKDeletedObject() HKDeletedObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/metadata
-
 func (h_ HKDeletedObject) Metadata() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("metadata"))
 	return rv
@@ -104,7 +102,6 @@ func (h_ HKDeletedObject) Metadata() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/uuid
-
 func (h_ HKDeletedObject) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("UUID"))
 	return rv

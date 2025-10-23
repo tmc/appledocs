@@ -56,7 +56,6 @@ type ICKFetchRecordsOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation
-
 type CKFetchRecordsOperation struct {
 	CKDatabaseOperation
 }
@@ -103,12 +102,10 @@ func NewCKFetchRecordsOperation() CKFetchRecordsOperation {
 
 
 
-
 // Creates a fetch operation for retrieving the records with the specified IDs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/init(recordIDs:)
-
 func NewCKFetchRecordsOperationWithRecordIDs(recordIDs []CKRecordID) CKFetchRecordsOperation {
 	instance := getCKFetchRecordsOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordsOperation](instance.ID, objc.Sel("initWithRecordIDs:"), recordIDs)
@@ -122,7 +119,6 @@ func NewCKFetchRecordsOperationWithRecordIDs(recordIDs []CKRecordID) CKFetchReco
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/fetchCurrentUserRecordOperation()
-
 func (cc _CKFetchRecordsOperationClass) FetchCurrentUserRecordOperation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("fetchCurrentUserRecordOperation"))
 	return rv
@@ -133,7 +129,6 @@ func (cc _CKFetchRecordsOperationClass) FetchCurrentUserRecordOperation() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-34l1l
-
 func (c_ CKFetchRecordsOperation) DesiredKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
@@ -144,7 +139,6 @@ func (c_ CKFetchRecordsOperation) DesiredKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-34l1l
-
 func (c_ CKFetchRecordsOperation) SetDesiredKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -164,7 +158,6 @@ func (c_ CKFetchRecordsOperation) SetDesiredKeys(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/fetchRecordsCompletionBlock
-
 func (c_ CKFetchRecordsOperation) FetchRecordsCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordsCompletionBlock"))
 	return rv
@@ -175,7 +168,6 @@ func (c_ CKFetchRecordsOperation) FetchRecordsCompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/fetchRecordsCompletionBlock
-
 func (c_ CKFetchRecordsOperation) SetFetchRecordsCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordsCompletionBlock:"), value)
 }
@@ -185,7 +177,6 @@ func (c_ CKFetchRecordsOperation) SetFetchRecordsCompletionBlock(value unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordCompletionBlock
-
 func (c_ CKFetchRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordCompletionBlock"))
 	return rv
@@ -196,7 +187,6 @@ func (c_ CKFetchRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordCompletionBlock
-
 func (c_ CKFetchRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordCompletionBlock:"), value)
 }
@@ -206,7 +196,6 @@ func (c_ CKFetchRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordProgressBlock
-
 func (c_ CKFetchRecordsOperation) PerRecordProgressBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordProgressBlock"))
 	return rv
@@ -217,7 +206,6 @@ func (c_ CKFetchRecordsOperation) PerRecordProgressBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordProgressBlock
-
 func (c_ CKFetchRecordsOperation) SetPerRecordProgressBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordProgressBlock:"), value)
 }
@@ -227,7 +215,6 @@ func (c_ CKFetchRecordsOperation) SetPerRecordProgressBlock(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
-
 func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID {
 	rv := objc.Send[[]CKRecordID](c_.ID, objc.Sel("recordIDs"))
 	return rv
@@ -238,7 +225,6 @@ func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
-
 func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -256,7 +242,6 @@ func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/fetchrecordsresultblock
-
 func (c_ CKFetchRecordsOperation) FetchRecordsResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordsResultBlock"))
 	return rv
@@ -265,7 +250,6 @@ func (c_ CKFetchRecordsOperation) FetchRecordsResultBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/fetchrecordsresultblock
-
 func (c_ CKFetchRecordsOperation) SetFetchRecordsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordsResultBlock:"), value)
 }
@@ -273,7 +257,6 @@ func (c_ CKFetchRecordsOperation) SetFetchRecordsResultBlock(value unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/perrecordresultblock
-
 func (c_ CKFetchRecordsOperation) PerRecordResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordResultBlock"))
 	return rv
@@ -282,7 +265,6 @@ func (c_ CKFetchRecordsOperation) PerRecordResultBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/perrecordresultblock
-
 func (c_ CKFetchRecordsOperation) SetPerRecordResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordResultBlock:"), value)
 }
@@ -292,7 +274,6 @@ func (c_ CKFetchRecordsOperation) SetPerRecordResultBlock(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchRecordsOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -303,7 +284,6 @@ func (c_ CKFetchRecordsOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchRecordsOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

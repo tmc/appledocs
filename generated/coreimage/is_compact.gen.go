@@ -35,8 +35,7 @@ type IisCompact interface {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/isCompact-c.ivar
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/isCompact-c.ivar
 type isCompact struct {
 	objectivec.Object
 }

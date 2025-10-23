@@ -32,7 +32,9 @@ type Idelegate interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/delegate-c.ivar
 type delegate struct {
 	objectivec.Object

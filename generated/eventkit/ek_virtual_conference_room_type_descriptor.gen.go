@@ -43,7 +43,6 @@ type IEKVirtualConferenceRoomTypeDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor
-
 type EKVirtualConferenceRoomTypeDescriptor struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewEKVirtualConferenceRoomTypeDescriptor() EKVirtualConferenceRoomTypeDescr
 
 
 
-
 // Creates an object that describes a location where a virtual conference takes place.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/init(title:identifier:)
-
 func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, identifier IEKVirtualConferenceRoomTypeIdentifier) EKVirtualConferenceRoomTypeDescriptor {
 	instance := getEKVirtualConferenceRoomTypeDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), objc.String(title), identifier)
@@ -107,7 +104,6 @@ func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/identifier
-
 func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConferenceRoomTypeIdentifier {
 	rv := objc.Send[EKVirtualConferenceRoomTypeIdentifier](e_.ID, objc.Sel("identifier"))
 	return rv
@@ -118,7 +114,6 @@ func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConference
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/title
-
 func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv

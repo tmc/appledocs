@@ -30,8 +30,8 @@ type _PortCoderClass struct {
 // An interface definition for the [PortCoder] class.
 type IPortCoder interface {
 	ICoder
-	Connection() Connection
-	DecodePortObject() Port
+	Connection() IConnection
+	DecodePortObject() IPort
 	Dispatch()
 	EncodePortObject(aport IPort)
 	IsBycopy() bool
@@ -120,7 +120,7 @@ func (pc _PortCoderClass) PortCoderWithReceivePortSendPortComponents(rcvPort IPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/connection
-func (p_ PortCoder) Connection() Connection {
+func (p_ PortCoder) Connection() IConnection {
 	rv := objc.Send[Connection](p_.ID, objc.Sel("connection"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (p_ PortCoder) Connection() Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/decodePortObject
-func (p_ PortCoder) DecodePortObject() Port {
+func (p_ PortCoder) DecodePortObject() IPort {
 	rv := objc.Send[Port](p_.ID, objc.Sel("decodePortObject"))
 	return rv
 }

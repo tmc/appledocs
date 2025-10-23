@@ -33,20 +33,20 @@ type IXMLElement interface {
 	AddAttribute(attribute IXMLNode)
 	AddChild(child IXMLNode)
 	AddNamespace(aNamespace IXMLNode)
-	AttributeForLocalNameURI(localName string, URI string) XMLNode
-	AttributeForName(name string) XMLNode
+	AttributeForLocalNameURI(localName string, URI string) IXMLNode
+	AttributeForName(name string) IXMLNode
 	ElementsForLocalNameURI(localName string, URI string) []XMLElement
 	ElementsForName(name string) []XMLElement
 	InsertChildAtIndex(child IXMLNode, index uint)
 	InsertChildrenAtIndex(children []XMLNode, index uint)
-	NamespaceForPrefix(name string) XMLNode
+	NamespaceForPrefix(name string) IXMLNode
 	NormalizeAdjacentTextNodesPreservingCDATA(preserve bool)
 	RemoveAttributeForName(name string)
 	RemoveChildAtIndex(index uint)
 	RemoveNamespaceForPrefix(name string)
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
-	ResolveNamespaceForName(name string) XMLNode
-	ResolvePrefixForNamespaceURI(namespaceURI string) String
+	ResolveNamespaceForName(name string) IXMLNode
+	ResolvePrefixForNamespaceURI(namespaceURI string) IString
 	SetAttributesAsDictionary(attributes objectivec.IObject)
 	SetAttributesWithDictionary(attributes IDictionary)
 	SetChildren(children []XMLNode)
@@ -201,7 +201,7 @@ func (x_ XMLElement) AddNamespace(aNamespace IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forLocalName:uri:)
-func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) XMLNode {
+func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForLocalName:URI:"), objc.String(localName), objc.String(URI))
 	return rv
 }
@@ -211,7 +211,7 @@ func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) XMLN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forName:)
-func (x_ XMLElement) AttributeForName(name string) XMLNode {
+func (x_ XMLElement) AttributeForName(name string) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForName:"), objc.String(name))
 	return rv
 }
@@ -259,7 +259,7 @@ func (x_ XMLElement) InsertChildrenAtIndex(children []XMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/namespace(forPrefix:)
-func (x_ XMLElement) NamespaceForPrefix(name string) XMLNode {
+func (x_ XMLElement) NamespaceForPrefix(name string) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("namespaceForPrefix:"), objc.String(name))
 	return rv
 }
@@ -314,7 +314,7 @@ func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolveNamespace(forName:)
-func (x_ XMLElement) ResolveNamespaceForName(name string) XMLNode {
+func (x_ XMLElement) ResolveNamespaceForName(name string) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("resolveNamespaceForName:"), objc.String(name))
 	return rv
 }
@@ -324,7 +324,7 @@ func (x_ XMLElement) ResolveNamespaceForName(name string) XMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolvePrefix(forNamespaceURI:)
-func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI string) String {
+func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI string) IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("resolvePrefixForNamespaceURI:"), objc.String(namespaceURI))
 	return rv
 }

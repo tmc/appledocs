@@ -36,7 +36,11 @@ type IMKPointAnnotation interface {
 // A string-based piece of location-specific data that you apply to a specific point on a map.
 //
 // You use this class, rather than define a custom annotation object, in situations where all you want to do is display a title string at the specified point on the map.
+
+
+// A string-based piece of location-specific data that you apply to a specific point on a map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPointAnnotation
 type MKPointAnnotation struct {
 	MKShape
@@ -83,8 +87,10 @@ func NewMKPointAnnotation() MKPointAnnotation {
 }
 
 
+
 // The coordinate point of the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpointannotation/coordinate
 func (m_ MKPointAnnotation) Coordinate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("coordinate"))
@@ -92,10 +98,9 @@ func (m_ MKPointAnnotation) Coordinate() unsafe.Pointer {
 }
 
 
-// SetCoordinate sets the value of the coordinate property.
 // The coordinate point of the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpointannotation/coordinate
 func (m_ MKPointAnnotation) SetCoordinate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoordinate:"), value)

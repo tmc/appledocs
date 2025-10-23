@@ -36,7 +36,6 @@ type IhasFaceAngle interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasFaceAngle-c.ivar
-
 type hasFaceAngle struct {
 	objectivec.Object
 }

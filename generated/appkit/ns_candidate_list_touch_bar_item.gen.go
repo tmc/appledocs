@@ -58,7 +58,6 @@ type ICandidateListTouchBarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem
-
 type CandidateListTouchBarItem struct {
 	TouchBarItem
 }
@@ -109,7 +108,6 @@ func NewCandidateListTouchBarItem() CandidateListTouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/attributedStringForCandidate
-
 func (c_ CandidateListTouchBarItem) AttributedStringForCandidate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringForCandidate"))
 	return rv
@@ -120,7 +118,6 @@ func (c_ CandidateListTouchBarItem) AttributedStringForCandidate() unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/attributedStringForCandidate
-
 func (c_ CandidateListTouchBarItem) SetAttributedStringForCandidate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringForCandidate:"), value)
 }
@@ -130,7 +127,6 @@ func (c_ CandidateListTouchBarItem) SetAttributedStringForCandidate(value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/isCollapsed
-
 func (c_ CandidateListTouchBarItem) Collapsed() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("collapsed"))
 	return rv
@@ -141,7 +137,6 @@ func (c_ CandidateListTouchBarItem) Collapsed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/isCollapsed
-
 func (c_ CandidateListTouchBarItem) SetCollapsed(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollapsed:"), value)
 }
@@ -151,7 +146,6 @@ func (c_ CandidateListTouchBarItem) SetCollapsed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/allowscollapsing
-
 func (c_ CandidateListTouchBarItem) AllowsCollapsing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCollapsing"))
 	return rv
@@ -162,7 +156,6 @@ func (c_ CandidateListTouchBarItem) AllowsCollapsing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/allowscollapsing
-
 func (c_ CandidateListTouchBarItem) SetAllowsCollapsing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCollapsing:"), value)
 }
@@ -172,7 +165,6 @@ func (c_ CandidateListTouchBarItem) SetAllowsCollapsing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/allowstextinputcontextcandidates
-
 func (c_ CandidateListTouchBarItem) AllowsTextInputContextCandidates() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsTextInputContextCandidates"))
 	return rv
@@ -183,7 +175,6 @@ func (c_ CandidateListTouchBarItem) AllowsTextInputContextCandidates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/allowstextinputcontextcandidates
-
 func (c_ CandidateListTouchBarItem) SetAllowsTextInputContextCandidates(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsTextInputContextCandidates:"), value)
 }
@@ -193,7 +184,6 @@ func (c_ CandidateListTouchBarItem) SetAllowsTextInputContextCandidates(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/candidates
-
 func (c_ CandidateListTouchBarItem) Candidates() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("candidates"))
 	return rv
@@ -204,7 +194,6 @@ func (c_ CandidateListTouchBarItem) Candidates() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/candidates
-
 func (c_ CandidateListTouchBarItem) SetCandidates(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCandidates:"), value)
 }
@@ -214,7 +203,6 @@ func (c_ CandidateListTouchBarItem) SetCandidates(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/client
-
 func (c_ CandidateListTouchBarItem) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("client"))
 	return rv
@@ -225,7 +213,6 @@ func (c_ CandidateListTouchBarItem) Client() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/client
-
 func (c_ CandidateListTouchBarItem) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClient:"), value)
 }
@@ -235,7 +222,6 @@ func (c_ CandidateListTouchBarItem) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/customizationlabel
-
 func (c_ CandidateListTouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -246,7 +232,6 @@ func (c_ CandidateListTouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/customizationlabel
-
 func (c_ CandidateListTouchBarItem) SetCustomizationLabel(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
@@ -256,7 +241,6 @@ func (c_ CandidateListTouchBarItem) SetCustomizationLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/delegate
-
 func (c_ CandidateListTouchBarItem) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -267,7 +251,6 @@ func (c_ CandidateListTouchBarItem) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/delegate
-
 func (c_ CandidateListTouchBarItem) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -277,7 +260,6 @@ func (c_ CandidateListTouchBarItem) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/iscandidatelistvisible
-
 func (c_ CandidateListTouchBarItem) IsCandidateListVisible() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCandidateListVisible"))
 	return rv
@@ -288,7 +270,6 @@ func (c_ CandidateListTouchBarItem) IsCandidateListVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/iscandidatelistvisible
-
 func (c_ CandidateListTouchBarItem) SetIsCandidateListVisible(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCandidateListVisible:"), value)
 }
@@ -298,7 +279,6 @@ func (c_ CandidateListTouchBarItem) SetIsCandidateListVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/iscollapsed
-
 func (c_ CandidateListTouchBarItem) IsCollapsed() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCollapsed"))
 	return rv
@@ -309,7 +289,6 @@ func (c_ CandidateListTouchBarItem) IsCollapsed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/iscollapsed
-
 func (c_ CandidateListTouchBarItem) SetIsCollapsed(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCollapsed:"), value)
 }

@@ -41,7 +41,6 @@ type IAudioSessionPortExtensionBluetoothMicrophone interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone
-
 type AudioSessionPortExtensionBluetoothMicrophone struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewAudioSessionPortExtensionBluetoothMicrophone() AudioSessionPortExtension
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/farFieldCapture
-
 func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() AVAudioSessionCapability {
 	rv := objc.Send[AVAudioSessionCapability](a_.ID, objc.Sel("farFieldCapture"))
 	return rv
@@ -101,7 +99,6 @@ func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() AVAudio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/highQualityRecording
-
 func (a_ AudioSessionPortExtensionBluetoothMicrophone) HighQualityRecording() AVAudioSessionCapability {
 	rv := objc.Send[AVAudioSessionCapability](a_.ID, objc.Sel("highQualityRecording"))
 	return rv

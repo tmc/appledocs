@@ -31,7 +31,7 @@ type _FileHandleClass struct {
 type IFileHandle interface {
 	objectivec.IObject
 	CloseFile()
-	AvailableData() Data
+	AvailableData() IData
 	SetAvailableData(value IData)
 	Bytes() unsafe.Pointer
 	SetBytes(value unsafe.Pointer)
@@ -112,7 +112,7 @@ func (f_ FileHandle) CloseFile() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filehandle/availabledata
-func (f_ FileHandle) AvailableData() Data {
+func (f_ FileHandle) AvailableData() IData {
 	rv := objc.Send[Data](f_.ID, objc.Sel("availableData"))
 	return rv
 }

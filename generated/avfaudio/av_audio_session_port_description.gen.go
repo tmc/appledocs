@@ -65,7 +65,6 @@ type IAudioSessionPortDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortDescription
-
 type AudioSessionPortDescription struct {
 	objectivec.Object
 }
@@ -114,7 +113,6 @@ func NewAudioSessionPortDescription() AudioSessionPortDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortDescription/preferredDataSource
-
 func (a_ AudioSessionPortDescription) PreferredDataSource() AVAudioSessionDataSourceDescription {
 	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("preferredDataSource"))
 	return rv
@@ -125,7 +123,6 @@ func (a_ AudioSessionPortDescription) PreferredDataSource() AVAudioSessionDataSo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/availableinputs
-
 func (a_ AudioSessionPortDescription) AvailableInputs() AVAudioSessionPortDescription {
 	rv := objc.Send[AVAudioSessionPortDescription](a_.ID, objc.Sel("availableInputs"))
 	return rv
@@ -136,7 +133,6 @@ func (a_ AudioSessionPortDescription) AvailableInputs() AVAudioSessionPortDescri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/availableinputs
-
 func (a_ AudioSessionPortDescription) SetAvailableInputs(value IAVAudioSessionPortDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableInputs:"), value)
 }
@@ -146,7 +142,6 @@ func (a_ AudioSessionPortDescription) SetAvailableInputs(value IAVAudioSessionPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-
 func (a_ AudioSessionPortDescription) CurrentRoute() AVAudioSessionRouteDescription {
 	rv := objc.Send[AVAudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
 	return rv
@@ -157,7 +152,6 @@ func (a_ AudioSessionPortDescription) CurrentRoute() AVAudioSessionRouteDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-
 func (a_ AudioSessionPortDescription) SetCurrentRoute(value IAVAudioSessionRouteDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentRoute:"), value)
 }
@@ -167,7 +161,6 @@ func (a_ AudioSessionPortDescription) SetCurrentRoute(value IAVAudioSessionRoute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/bluetoothmicrophoneextension
-
 func (a_ AudioSessionPortDescription) BluetoothMicrophoneExtension() AVAudioSessionPortExtensionBluetoothMicrophone {
 	rv := objc.Send[AVAudioSessionPortExtensionBluetoothMicrophone](a_.ID, objc.Sel("bluetoothMicrophoneExtension"))
 	return rv
@@ -178,7 +171,6 @@ func (a_ AudioSessionPortDescription) BluetoothMicrophoneExtension() AVAudioSess
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/bluetoothmicrophoneextension
-
 func (a_ AudioSessionPortDescription) SetBluetoothMicrophoneExtension(value IAVAudioSessionPortExtensionBluetoothMicrophone) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBluetoothMicrophoneExtension:"), value)
 }
@@ -188,7 +180,6 @@ func (a_ AudioSessionPortDescription) SetBluetoothMicrophoneExtension(value IAVA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
-
 func (a_ AudioSessionPortDescription) Channels() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channels"))
 	return rv
@@ -199,7 +190,6 @@ func (a_ AudioSessionPortDescription) Channels() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
-
 func (a_ AudioSessionPortDescription) SetChannels(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannels:"), value)
 }
@@ -209,7 +199,6 @@ func (a_ AudioSessionPortDescription) SetChannels(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-
 func (a_ AudioSessionPortDescription) DataSources() AVAudioSessionDataSourceDescription {
 	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("dataSources"))
 	return rv
@@ -220,7 +209,6 @@ func (a_ AudioSessionPortDescription) DataSources() AVAudioSessionDataSourceDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-
 func (a_ AudioSessionPortDescription) SetDataSources(value IAVAudioSessionDataSourceDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSources:"), value)
 }
@@ -230,7 +218,6 @@ func (a_ AudioSessionPortDescription) SetDataSources(value IAVAudioSessionDataSo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing
-
 func (a_ AudioSessionPortDescription) HasHardwareVoiceCallProcessing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasHardwareVoiceCallProcessing"))
 	return rv
@@ -241,7 +228,6 @@ func (a_ AudioSessionPortDescription) HasHardwareVoiceCallProcessing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing
-
 func (a_ AudioSessionPortDescription) SetHasHardwareVoiceCallProcessing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasHardwareVoiceCallProcessing:"), value)
 }
@@ -251,7 +237,6 @@ func (a_ AudioSessionPortDescription) SetHasHardwareVoiceCallProcessing(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
-
 func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSpatialAudioEnabled"))
 	return rv
@@ -262,7 +247,6 @@ func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
-
 func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSpatialAudioEnabled:"), value)
 }
@@ -272,7 +256,6 @@ func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-
 func (a_ AudioSessionPortDescription) PortName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("portName"))
 	return rv
@@ -283,7 +266,6 @@ func (a_ AudioSessionPortDescription) PortName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-
 func (a_ AudioSessionPortDescription) SetPortName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), objc.String(value))
 }
@@ -293,7 +275,6 @@ func (a_ AudioSessionPortDescription) SetPortName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/porttype
-
 func (a_ AudioSessionPortDescription) PortType() foundation.Port {
 	rv := objc.Send[foundation.Port](a_.ID, objc.Sel("portType"))
 	return rv
@@ -304,7 +285,6 @@ func (a_ AudioSessionPortDescription) PortType() foundation.Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/porttype
-
 func (a_ AudioSessionPortDescription) SetPortType(value foundation.IPort) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortType:"), value)
 }
@@ -314,7 +294,6 @@ func (a_ AudioSessionPortDescription) SetPortType(value foundation.IPort) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
-
 func (a_ AudioSessionPortDescription) SelectedDataSource() AVAudioSessionDataSourceDescription {
 	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("selectedDataSource"))
 	return rv
@@ -325,7 +304,6 @@ func (a_ AudioSessionPortDescription) SelectedDataSource() AVAudioSessionDataSou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
-
 func (a_ AudioSessionPortDescription) SetSelectedDataSource(value IAVAudioSessionDataSourceDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedDataSource:"), value)
 }
@@ -335,7 +313,6 @@ func (a_ AudioSessionPortDescription) SetSelectedDataSource(value IAVAudioSessio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-
 func (a_ AudioSessionPortDescription) Uid() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("uid"))
 	return rv
@@ -346,7 +323,6 @@ func (a_ AudioSessionPortDescription) Uid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-
 func (a_ AudioSessionPortDescription) SetUid(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), objc.String(value))
 }

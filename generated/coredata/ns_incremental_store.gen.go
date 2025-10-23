@@ -42,7 +42,6 @@ type IIncrementalStore interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore
-
 type IncrementalStore struct {
 	PersistentStore
 }
@@ -89,24 +88,20 @@ func NewIncrementalStore() IncrementalStore {
 
 
 
-
 // Returns a value as appropriate for the given request, or nil if the request cannot be completed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore/execute(_:with:)
-
 func (i_ IncrementalStore) ExecuteRequestWithContextError(request IPersistentStoreRequest, context IManagedObjectContext, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("executeRequest:withContext:error:"), request, context, error_)
 	return rv
 }
 
 
-
 // Loads the metadata for the store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore/loadMetadata()
-
 func (i_ IncrementalStore) LoadMetadata(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("loadMetadata:"), error_)
 	return rv

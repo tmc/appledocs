@@ -46,7 +46,6 @@ type IComputePlan interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw
-
 type ComputePlan struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewComputePlan() ComputePlan {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:
-
 func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.IURL, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
@@ -105,42 +103,35 @@ func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadModelAsset:configuration:completionHandler:
-
 func (cc _ComputePlanClass) LoadModelAssetConfigurationCompletionHandler(asset IMLModelAsset, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadModelAsset:configuration:completionHandler:"), asset, configuration, handler)
 }
-
 
 
 // Returns The anticipated compute devices that would be used for executing an ML Program operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForMLProgramOperation:
-
 func (c_ ComputePlan) ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanDeviceUsage {
 	rv := objc.Send[ComputePlanDeviceUsage](c_.ID, objc.Sel("computeDeviceUsageForMLProgramOperation:"), operation)
 	return rv
 }
 
 
-
 // Returns the anticipated compute devices that would be used for executing a NeuralNetwork layer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForNeuralNetworkLayer:
-
 func (c_ ComputePlan) ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) ComputePlanDeviceUsage {
 	rv := objc.Send[ComputePlanDeviceUsage](c_.ID, objc.Sel("computeDeviceUsageForNeuralNetworkLayer:"), layer)
 	return rv
 }
 
 
-
 // Returns the estimated cost of executing an ML Program operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/estimatedCostOfMLProgramOperation:
-
 func (c_ ComputePlan) EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanCost {
 	rv := objc.Send[ComputePlanCost](c_.ID, objc.Sel("estimatedCostOfMLProgramOperation:"), operation)
 	return rv
@@ -151,7 +142,6 @@ func (c_ ComputePlan) EstimatedCostOfMLProgramOperation(operation IMLModelStruct
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/modelStructure
-
 func (c_ ComputePlan) ModelStructure() MLModelStructure {
 	rv := objc.Send[MLModelStructure](c_.ID, objc.Sel("modelStructure"))
 	return rv

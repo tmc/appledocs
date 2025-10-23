@@ -37,7 +37,7 @@ type ICoder interface {
 	SetAllowedClasses(value unsafe.Pointer)
 	AllowsKeyedCoding() bool
 	SetAllowsKeyedCoding(value bool)
-	Error() Error
+	Error() IError
 	SetError(value IError)
 	RequiresSecureCoding() bool
 	SetRequiresSecureCoding(value bool)
@@ -180,7 +180,7 @@ func (c_ Coder) SetAllowsKeyedCoding(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
-func (c_ Coder) Error() Error {
+func (c_ Coder) Error() IError {
 	rv := objc.Send[Error](c_.ID, objc.Sel("error"))
 	return rv
 }

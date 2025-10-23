@@ -32,7 +32,9 @@ type ImWeAreAborting interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mWeAreAborting
 type mWeAreAborting struct {
 	objectivec.Object

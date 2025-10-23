@@ -144,7 +144,7 @@ func (uc _UnitAngleClass) Revolutions() UnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcMinutes
-func (u_ UnitAngle) ArcMinutes() NSUnitAngle {
+func (u_ UnitAngle) ArcMinutes() IUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("arcMinutes"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (u_ UnitAngle) ArcMinutes() NSUnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
-func (u_ UnitAngle) ArcSeconds() NSUnitAngle {
+func (u_ UnitAngle) ArcSeconds() IUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("arcSeconds"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (u_ UnitAngle) ArcSeconds() NSUnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
-func (u_ UnitAngle) Degrees() NSUnitAngle {
+func (u_ UnitAngle) Degrees() IUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("degrees"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (u_ UnitAngle) Degrees() NSUnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/gradians
-func (u_ UnitAngle) Gradians() NSUnitAngle {
+func (u_ UnitAngle) Gradians() IUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("gradians"))
 	return rv
 }
@@ -184,7 +184,7 @@ func (u_ UnitAngle) Gradians() NSUnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/radians
-func (u_ UnitAngle) Radians() NSUnitAngle {
+func (u_ UnitAngle) Radians() IUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("radians"))
 	return rv
 }
@@ -194,7 +194,7 @@ func (u_ UnitAngle) Radians() NSUnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/revolutions
-func (u_ UnitAngle) Revolutions() NSUnitAngle {
+func (u_ UnitAngle) Revolutions() IUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("revolutions"))
 	return rv
 }

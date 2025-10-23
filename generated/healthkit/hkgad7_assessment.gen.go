@@ -39,7 +39,6 @@ type IHKGAD7Assessment interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGAD7Assessment
-
 type HKGAD7Assessment struct {
 	HKScoredAssessment
 }
@@ -86,7 +85,6 @@ func NewHKGAD7Assessment() HKGAD7Assessment {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkgad7assessment/answers-1zj1
-
 func (h_ HKGAD7Assessment) Answers() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("answers"))
 	return rv
@@ -95,7 +93,6 @@ func (h_ HKGAD7Assessment) Answers() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkgad7assessment/answers-1zj1
-
 func (h_ HKGAD7Assessment) SetAnswers(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnswers:"), value)
 }
@@ -103,7 +100,6 @@ func (h_ HKGAD7Assessment) SetAnswers(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.property
-
 func (h_ HKGAD7Assessment) Risk() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("risk"))
 	return rv
@@ -112,7 +108,6 @@ func (h_ HKGAD7Assessment) Risk() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.property
-
 func (h_ HKGAD7Assessment) SetRisk(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRisk:"), value)
 }

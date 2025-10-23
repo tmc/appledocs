@@ -32,9 +32,9 @@ type IUserNotificationAction interface {
 	objectivec.IObject
 	Identifier() string
 	Title() string
-	AdditionalActions() NSUserNotificationAction
+	AdditionalActions() IUserNotificationAction
 	SetAdditionalActions(value IUserNotificationAction)
-	AdditionalActivationAction() NSUserNotificationAction
+	AdditionalActivationAction() IUserNotificationAction
 	SetAdditionalActivationAction(value IUserNotificationAction)
 }
 
@@ -136,7 +136,7 @@ func (u_ UserNotificationAction) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
-func (u_ UserNotificationAction) AdditionalActions() NSUserNotificationAction {
+func (u_ UserNotificationAction) AdditionalActions() IUserNotificationAction {
 	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActions"))
 	return rv
 }
@@ -155,7 +155,7 @@ func (u_ UserNotificationAction) SetAdditionalActions(value IUserNotificationAct
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
-func (u_ UserNotificationAction) AdditionalActivationAction() NSUserNotificationAction {
+func (u_ UserNotificationAction) AdditionalActivationAction() IUserNotificationAction {
 	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
 }

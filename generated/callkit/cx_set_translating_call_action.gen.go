@@ -45,7 +45,6 @@ type ICXSetTranslatingCallAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction
-
 type CXSetTranslatingCallAction struct {
 	CXCallAction
 }
@@ -92,10 +91,8 @@ func NewCXSetTranslatingCallAction() CXSetTranslatingCallAction {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
-
 func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid foundation.IUUID, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
@@ -104,12 +101,10 @@ func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLa
 }
 
 
-
 // Creates a new action to start or stop translating a call with the provided data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(coder:)
-
 func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -119,10 +114,8 @@ func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTra
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/fulfill(using:)
-
 func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillUsingTranslationEngine:"), translationEngine)
 }
@@ -132,7 +125,6 @@ func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/isTranslating
-
 func (c_ CXSetTranslatingCallAction) IsTranslating() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isTranslating"))
 	return rv
@@ -141,7 +133,6 @@ func (c_ CXSetTranslatingCallAction) IsTranslating() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/localLanguage
-
 func (c_ CXSetTranslatingCallAction) LocalLanguage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("localLanguage"))
 	return rv
@@ -150,7 +141,6 @@ func (c_ CXSetTranslatingCallAction) LocalLanguage() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/remoteLanguage
-
 func (c_ CXSetTranslatingCallAction) RemoteLanguage() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("remoteLanguage"))
 	return rv

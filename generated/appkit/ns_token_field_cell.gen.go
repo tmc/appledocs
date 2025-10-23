@@ -49,7 +49,6 @@ type ITokenFieldCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell
-
 type TokenFieldCell struct {
 	TextFieldCell
 }
@@ -100,7 +99,6 @@ func NewTokenFieldCell() TokenFieldCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenStyle
-
 func (t_ TokenFieldCell) TokenStyle() TokenStyle {
 	rv := objc.Send[TokenStyle](t_.ID, objc.Sel("tokenStyle"))
 	return rv
@@ -111,7 +109,6 @@ func (t_ TokenFieldCell) TokenStyle() TokenStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenStyle
-
 func (t_ TokenFieldCell) SetTokenStyle(value TokenStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
@@ -121,7 +118,6 @@ func (t_ TokenFieldCell) SetTokenStyle(value TokenStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
-
 func (t_ TokenFieldCell) CompletionDelay() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
 	return rv
@@ -132,7 +128,6 @@ func (t_ TokenFieldCell) CompletionDelay() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
-
 func (t_ TokenFieldCell) SetCompletionDelay(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
 }
@@ -142,7 +137,6 @@ func (t_ TokenFieldCell) SetCompletionDelay(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
-
 func (t_ TokenFieldCell) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
@@ -153,7 +147,6 @@ func (t_ TokenFieldCell) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
-
 func (t_ TokenFieldCell) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -163,7 +156,6 @@ func (t_ TokenFieldCell) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
-
 func (t_ TokenFieldCell) TokenizingCharacterSet() foundation.CharacterSet {
 	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
@@ -174,7 +166,6 @@ func (t_ TokenFieldCell) TokenizingCharacterSet() foundation.CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
-
 func (t_ TokenFieldCell) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }

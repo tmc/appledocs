@@ -44,7 +44,6 @@ type IACAccountCredential interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential
-
 type ACAccountCredential struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewACAccountCredential() ACAccountCredential {
 
 
 
-
 // Initializes an account credential using OAuth 2.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuth2Token:refreshToken:expiryDate:)
-
 func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, refreshToken string, expiryDate foundation.IDate) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
 	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuth2Token:refreshToken:expiryDate:"), objc.String(token), objc.String(refreshToken), expiryDate)
@@ -103,12 +100,10 @@ func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, r
 }
 
 
-
 // Initializes an account credential using OAuth.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuthToken:tokenSecret:)
-
 func NewACAccountCredentialWithOAuthTokenTokenSecret(token string, secret string) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
 	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuthToken:tokenSecret:"), objc.String(token), objc.String(secret))
@@ -122,7 +117,6 @@ func NewACAccountCredentialWithOAuthTokenTokenSecret(token string, secret string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/oauthToken
-
 func (a_ ACAccountCredential) OauthToken() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("oauthToken"))
 	return rv
@@ -133,7 +127,6 @@ func (a_ ACAccountCredential) OauthToken() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/oauthToken
-
 func (a_ ACAccountCredential) SetOauthToken(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOauthToken:"), objc.String(value))
 }

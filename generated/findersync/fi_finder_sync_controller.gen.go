@@ -52,7 +52,6 @@ type IFIFinderSyncController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController
-
 type FIFinderSyncController struct {
 	foundation.ExtensionContext
 }
@@ -103,7 +102,6 @@ func NewFIFinderSyncController() FIFinderSyncController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/default()
-
 func (fc _FIFinderSyncControllerClass) DefaultController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("defaultController"))
 	return rv
@@ -112,7 +110,6 @@ func (fc _FIFinderSyncControllerClass) DefaultController() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/showExtensionManagementInterface()
-
 func (fc _FIFinderSyncControllerClass) ShowExtensionManagementInterface() {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("showExtensionManagementInterface"))
 }
@@ -120,90 +117,73 @@ func (fc _FIFinderSyncControllerClass) ShowExtensionManagementInterface() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/isExtensionEnabled
-
 func (fc _FIFinderSyncControllerClass) ExtensionEnabled() bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("extensionEnabled"))
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/lastUsedDateForItem(with:)
-
 func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL foundation.IURL) foundation.Date {
 	rv := objc.Send[foundation.Date](f_.ID, objc.Sel("lastUsedDateForItemWithURL:"), itemURL)
 	return rv
 }
 
 
-
 // Returns an array of selected items.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/selectedItemURLs()
-
 func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.URL {
 	rv := objc.Send[[]foundation.URL](f_.ID, objc.Sel("selectedItemURLs"))
 	return rv
 }
 
 
-
 // Sets the badge for a file or directory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeIdentifier(_:for:)
-
 func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url foundation.IURL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeIdentifier:forURL:"), objc.String(badgeID), url)
 }
-
 
 
 // Sets the badge image and label for the given ID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeImage(_:label:forBadgeIdentifier:)
-
 func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label string, badgeID string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeImage:label:forBadgeIdentifier:"), image, objc.String(label), objc.String(badgeID))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setLastUsedDate(_:forItemWith:completion:)
-
 func (f_ FIFinderSyncController) SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.IDate, itemURL foundation.IURL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLastUsedDate:forItemWithURL:completion:"), lastUsedDate, itemURL, completion)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setTagData(_:forItemWith:completion:)
-
 func (f_ FIFinderSyncController) SetTagDataForItemWithURLCompletion(tagData foundation.IData, itemURL foundation.IURL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTagData:forItemWithURL:completion:"), tagData, itemURL, completion)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/tagDataForItem(with:)
-
 func (f_ FIFinderSyncController) TagDataForItemWithURL(itemURL foundation.IURL) foundation.Data {
 	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("tagDataForItemWithURL:"), itemURL)
 	return rv
 }
 
 
-
 // Returns the URL of the Finder’s current target.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/targetedURL()
-
 func (f_ FIFinderSyncController) TargetedURL() foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("targetedURL"))
 	return rv
@@ -214,7 +194,6 @@ func (f_ FIFinderSyncController) TargetedURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/directoryURLs
-
 func (f_ FIFinderSyncController) DirectoryURLs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("directoryURLs"))
 	return rv
@@ -225,7 +204,6 @@ func (f_ FIFinderSyncController) DirectoryURLs() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/directoryURLs
-
 func (f_ FIFinderSyncController) SetDirectoryURLs(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDirectoryURLs:"), value)
 }
@@ -233,7 +211,6 @@ func (f_ FIFinderSyncController) SetDirectoryURLs(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/isExtensionEnabled
-
 func (f_ FIFinderSyncController) ExtensionEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("extensionEnabled"))
 	return rv

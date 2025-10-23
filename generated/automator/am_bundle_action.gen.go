@@ -48,7 +48,6 @@ type IAMBundleAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction
-
 type AMBundleAction struct {
 	AMAction
 }
@@ -95,12 +94,10 @@ func NewAMBundleAction() AMBundleAction {
 
 
 
-
 // Allows the action object to perform setup tasks requiring the presence of all bundle objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/awakeFromBundle()
-
 func (a_ AMBundleAction) AwakeFromBundle() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("awakeFromBundle"))
 }
@@ -110,7 +107,6 @@ func (a_ AMBundleAction) AwakeFromBundle() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/bundle
-
 func (a_ AMBundleAction) Bundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](a_.ID, objc.Sel("bundle"))
 	return rv
@@ -121,7 +117,6 @@ func (a_ AMBundleAction) Bundle() foundation.Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/hasView
-
 func (a_ AMBundleAction) HasView() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasView"))
 	return rv
@@ -132,7 +127,6 @@ func (a_ AMBundleAction) HasView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/parameters
-
 func (a_ AMBundleAction) Parameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("parameters"))
 	return rv
@@ -143,7 +137,6 @@ func (a_ AMBundleAction) Parameters() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/parameters
-
 func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameters:"), value)
 }
@@ -153,7 +146,6 @@ func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/view
-
 func (a_ AMBundleAction) View() appkit.View {
 	rv := objc.Send[appkit.View](a_.ID, objc.Sel("view"))
 	return rv

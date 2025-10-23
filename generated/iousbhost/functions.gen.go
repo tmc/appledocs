@@ -50,60 +50,68 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Obtains the number of supported streams. [Full Topic]
+// Obtains the number of supported streams.
 //
 // Added in macOS 10.15.
+
+// Obtains the number of supported streams.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBGetEndpointMaxStreams(_:_:_:)
 func IOUSBGetEndpointMaxStreams(usbDeviceSpeed unsafe.Pointer, descriptor unsafe.Pointer, companionDescriptor unsafe.Pointer) unsafe.Pointer {
 	return _IOUSBGetEndpointMaxStreams(usbDeviceSpeed, descriptor, companionDescriptor)
 	}
 
 
-// IOUSBHostCIControllerStateToString is a IOUSBHost function. [Full Topic]
+// IOUSBHostCIControllerStateToString is a IOUSBHost function.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateToString(_:)
 func IOUSBHostCIControllerStateToString(controllerState unsafe.Pointer) unsafe.Pointer {
 	return _IOUSBHostCIControllerStateToString(controllerState)
 	}
 
 
-// IOUSBHostCIDeviceStateToString is a IOUSBHost function. [Full Topic]
+// IOUSBHostCIDeviceStateToString is a IOUSBHost function.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateToString(_:)
 func IOUSBHostCIDeviceStateToString(deviceState unsafe.Pointer) unsafe.Pointer {
 	return _IOUSBHostCIDeviceStateToString(deviceState)
 	}
 
 
-// IOUSBHostCILinkStateToString is a IOUSBHost function. [Full Topic]
+// IOUSBHostCILinkStateToString is a IOUSBHost function.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCILinkStateToString(_:)
 func IOUSBHostCILinkStateToString(linkState unsafe.Pointer) unsafe.Pointer {
 	return _IOUSBHostCILinkStateToString(linkState)
 	}
 
 
-// IOUSBHostCIMessageStatusFromIOReturn is a IOUSBHost function. [Full Topic]
+// IOUSBHostCIMessageStatusFromIOReturn is a IOUSBHost function.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIMessageStatusFromIOReturn(_:)
 func IOUSBHostCIMessageStatusFromIOReturn(status unsafe.Pointer) unsafe.Pointer {
 	return _IOUSBHostCIMessageStatusFromIOReturn(status)
 	}
 
 
-// IOUSBHostCIPortStateToString is a IOUSBHost function. [Full Topic]
+// IOUSBHostCIPortStateToString is a IOUSBHost function.
 //
 // Added in macOS 10.15.
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateToString(_:)
 func IOUSBHostCIPortStateToString(portState unsafe.Pointer) unsafe.Pointer {
 	return _IOUSBHostCIPortStateToString(portState)

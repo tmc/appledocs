@@ -34,7 +34,11 @@ type IINShareFocusStatusIntentResponse interface {
 }
 
 // Your app’s response to an intent that shares the user’s focus status.
+
+
+// Your app’s response to an intent that shares the user’s focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntentResponse
 type INShareFocusStatusIntentResponse struct {
 	INIntentResponse
@@ -82,9 +86,9 @@ func NewINShareFocusStatusIntentResponse() INShareFocusStatusIntentResponse {
 
 
 
-
 // Creates a response with the specified response code and user activity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntentResponse/init(code:userActivity:)
 func NewINShareFocusStatusIntentResponseWithCodeUserActivity(code INShareFocusStatusIntentResponseCode, userActivity foundation.IUserActivity) INShareFocusStatusIntentResponse {
 	instance := getINShareFocusStatusIntentResponseClass().Alloc()
@@ -94,8 +98,10 @@ func NewINShareFocusStatusIntentResponseWithCodeUserActivity(code INShareFocusSt
 }
 
 
+
 // Your app’s ability to handle an intent that shares the user’s focus status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntentResponse/code
 func (i_ INShareFocusStatusIntentResponse) Code() INShareFocusStatusIntentResponseCode {
 	rv := objc.Send[INShareFocusStatusIntentResponseCode](i_.ID, objc.Sel("code"))

@@ -30,9 +30,9 @@ type _DecimalNumberHandlerClass struct {
 // An interface definition for the [DecimalNumberHandler] class.
 type IDecimalNumberHandler interface {
 	objectivec.IObject
-	RoundingBehavior() NSDecimalNumberHandler
+	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() Number
+	RoundingIncrement() INumber
 	SetRoundingIncrement(value INumber)
 	RoundingMode() unsafe.Pointer
 	SetRoundingMode(value unsafe.Pointer)
@@ -95,7 +95,7 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
-func (d_ DecimalNumberHandler) RoundingBehavior() NSDecimalNumberHandler {
+func (d_ DecimalNumberHandler) RoundingBehavior() IDecimalNumberHandler {
 	rv := objc.Send[NSDecimalNumberHandler](d_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) RoundingIncrement() Number {
+func (d_ DecimalNumberHandler) RoundingIncrement() INumber {
 	rv := objc.Send[Number](d_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }

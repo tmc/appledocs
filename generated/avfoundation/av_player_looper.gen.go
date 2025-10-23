@@ -30,11 +30,11 @@ type _PlayerLooperClass struct {
 // An interface definition for the [PlayerLooper] class.
 type IPlayerLooper interface {
 	objectivec.IObject
-	Error() Error
-	SetError(value IError)
+	Error() AVError
+	SetError(value AVError)
 	LoopCount() int
 	SetLoopCount(value int)
-	LoopingPlayerItems() AVPlayerItem
+	LoopingPlayerItems() IAVPlayerItem
 	SetLoopingPlayerItems(value IAVPlayerItem)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
@@ -49,7 +49,6 @@ type IPlayerLooper interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper
-
 type PlayerLooper struct {
 	objectivec.Object
 }
@@ -98,8 +97,7 @@ func NewPlayerLooper() PlayerLooper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-
-func (p_ PlayerLooper) Error() Error {
+func (p_ PlayerLooper) Error() AVError {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
@@ -109,8 +107,7 @@ func (p_ PlayerLooper) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-
-func (p_ PlayerLooper) SetError(value IError) {
+func (p_ PlayerLooper) SetError(value AVError) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
 }
 
@@ -119,7 +116,6 @@ func (p_ PlayerLooper) SetError(value IError) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-
 func (p_ PlayerLooper) LoopCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
 	return rv
@@ -130,7 +126,6 @@ func (p_ PlayerLooper) LoopCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-
 func (p_ PlayerLooper) SetLoopCount(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopCount:"), value)
 }
@@ -140,8 +135,7 @@ func (p_ PlayerLooper) SetLoopCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
-
-func (p_ PlayerLooper) LoopingPlayerItems() AVPlayerItem {
+func (p_ PlayerLooper) LoopingPlayerItems() IAVPlayerItem {
 	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("loopingPlayerItems"))
 	return rv
 }
@@ -151,7 +145,6 @@ func (p_ PlayerLooper) LoopingPlayerItems() AVPlayerItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
-
 func (p_ PlayerLooper) SetLoopingPlayerItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopingPlayerItems:"), value)
 }
@@ -161,7 +154,6 @@ func (p_ PlayerLooper) SetLoopingPlayerItems(value IAVPlayerItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.property
-
 func (p_ PlayerLooper) Status() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("status"))
 	return rv
@@ -172,7 +164,6 @@ func (p_ PlayerLooper) Status() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.property
-
 func (p_ PlayerLooper) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStatus:"), value)
 }

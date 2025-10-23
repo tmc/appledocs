@@ -31,16 +31,16 @@ type _LengthFormatterClass struct {
 type ILengthFormatter interface {
 	IFormatter
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	StringFromMeters(numberInMeters float64) String
-	StringFromValueUnit(value float64, unit NSLengthFormatterUnit) String
-	UnitStringFromMetersUsedUnit(numberInMeters float64, unitp NSLengthFormatterUnit) String
-	UnitStringFromValueUnit(value float64, unit NSLengthFormatterUnit) String
+	StringFromMeters(numberInMeters float64) IString
+	StringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString
+	UnitStringFromMetersUsedUnit(numberInMeters float64, unitp NSLengthFormatterUnit) IString
+	UnitStringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString
 	ForPersonHeightUse() bool
 	SetForPersonHeightUse(value bool)
-	NumberFormatter() NSNumberFormatter
+	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
-	UnitStyle() FormattingUnitStyle
-	SetUnitStyle(value FormattingUnitStyle)
+	UnitStyle() NSFormattingUnitStyle
+	SetUnitStyle(value NSFormattingUnitStyle)
 	IsForPersonHeightUse() bool
 	SetIsForPersonHeightUse(value bool)
 }
@@ -112,7 +112,7 @@ func (l_ LengthFormatter) GetObjectValueForStringErrorDescription(obj objectivec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/string(fromMeters:)
-func (l_ LengthFormatter) StringFromMeters(numberInMeters float64) String {
+func (l_ LengthFormatter) StringFromMeters(numberInMeters float64) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("stringFromMeters:"), numberInMeters)
 	return rv
 }
@@ -122,7 +122,7 @@ func (l_ LengthFormatter) StringFromMeters(numberInMeters float64) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/string(fromValue:unit:)
-func (l_ LengthFormatter) StringFromValueUnit(value float64, unit NSLengthFormatterUnit) String {
+func (l_ LengthFormatter) StringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("stringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -132,7 +132,7 @@ func (l_ LengthFormatter) StringFromValueUnit(value float64, unit NSLengthFormat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromMeters:usedUnit:)
-func (l_ LengthFormatter) UnitStringFromMetersUsedUnit(numberInMeters float64, unitp NSLengthFormatterUnit) String {
+func (l_ LengthFormatter) UnitStringFromMetersUsedUnit(numberInMeters float64, unitp NSLengthFormatterUnit) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("unitStringFromMeters:usedUnit:"), numberInMeters, unitp)
 	return rv
 }
@@ -142,7 +142,7 @@ func (l_ LengthFormatter) UnitStringFromMetersUsedUnit(numberInMeters float64, u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromValue:unit:)
-func (l_ LengthFormatter) UnitStringFromValueUnit(value float64, unit NSLengthFormatterUnit) String {
+func (l_ LengthFormatter) UnitStringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -171,7 +171,7 @@ func (l_ LengthFormatter) SetForPersonHeightUse(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
-func (l_ LengthFormatter) NumberFormatter() NSNumberFormatter {
+func (l_ LengthFormatter) NumberFormatter() INumberFormatter {
 	rv := objc.Send[NSNumberFormatter](l_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (l_ LengthFormatter) SetNumberFormatter(value INumberFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitStyle
-func (l_ LengthFormatter) UnitStyle() FormattingUnitStyle {
+func (l_ LengthFormatter) UnitStyle() NSFormattingUnitStyle {
 	rv := objc.Send[FormattingUnitStyle](l_.ID, objc.Sel("unitStyle"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (l_ LengthFormatter) UnitStyle() FormattingUnitStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitStyle
-func (l_ LengthFormatter) SetUnitStyle(value FormattingUnitStyle) {
+func (l_ LengthFormatter) SetUnitStyle(value NSFormattingUnitStyle) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setUnitStyle:"), value)
 }
 

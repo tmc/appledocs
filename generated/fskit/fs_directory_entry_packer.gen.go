@@ -41,7 +41,6 @@ type IFSDirectoryEntryPacker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSDirectoryEntryPacker
-
 type FSDirectoryEntryPacker struct {
 	objectivec.Object
 }

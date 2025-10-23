@@ -40,7 +40,6 @@ type IAmbientPressureData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAmbientPressureData
-
 type AmbientPressureData struct {
 	LogItem
 }
@@ -91,7 +90,6 @@ func NewAmbientPressureData() AmbientPressureData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAmbientPressureData/pressure
-
 func (a_ AmbientPressureData) Pressure() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pressure"))
 	return rv
@@ -102,7 +100,6 @@ func (a_ AmbientPressureData) Pressure() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAmbientPressureData/temperature
-
 func (a_ AmbientPressureData) Temperature() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("temperature"))
 	return rv

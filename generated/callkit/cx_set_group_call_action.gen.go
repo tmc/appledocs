@@ -43,7 +43,6 @@ type ICXSetGroupCallAction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction
-
 type CXSetGroupCallAction struct {
 	CXCallAction
 }
@@ -90,12 +89,10 @@ func NewCXSetGroupCallAction() CXSetGroupCallAction {
 
 
 
-
 // Initializes a new action for a call identified by a given UUID, as well as a call to group with identified by another UUID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(call:callUUIDToGroupWith:)
-
 func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID foundation.IUUID, callUUIDToGroupWith foundation.IUUID) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCallUUID:callUUIDToGroupWith:"), callUUID, callUUIDToGroupWith)
@@ -104,12 +101,10 @@ func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID foundation.
 }
 
 
-
 // Creates a new action to group calls with data in an unarchiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(coder:)
-
 func NewCXSetGroupCallActionWithCoder(aDecoder foundation.ICoder) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
@@ -123,7 +118,6 @@ func NewCXSetGroupCallActionWithCoder(aDecoder foundation.ICoder) CXSetGroupCall
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-
 func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("callUUIDToGroupWith"))
 	return rv
@@ -134,7 +128,6 @@ func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-
 func (c_ CXSetGroupCallAction) SetCallUUIDToGroupWith(value foundation.IUUID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallUUIDToGroupWith:"), value)
 }

@@ -34,6 +34,8 @@ type ICKModifyRecordsOperation interface {
 	SetPerRecordDeleteBlock(value unsafe.Pointer)
 	PerRecordProgressBlock() unsafe.Pointer
 	SetPerRecordProgressBlock(value unsafe.Pointer)
+	SavePolicy() CKRecordSavePolicy
+	SetSavePolicy(value CKRecordSavePolicy)
 	ClientChangeTokenData() foundation.Data
 	SetClientChangeTokenData(value foundation.IData)
 	IsAtomic() bool
@@ -50,8 +52,6 @@ type ICKModifyRecordsOperation interface {
 	SetRecordIDsToDelete(value ICKRecordID)
 	RecordsToSave() CKRecord
 	SetRecordsToSave(value ICKRecord)
-	SavePolicy() unsafe.Pointer
-	SetSavePolicy(value unsafe.Pointer)
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
 	Parent() CKReference
@@ -69,7 +69,6 @@ type ICKModifyRecordsOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation
-
 type CKModifyRecordsOperation struct {
 	CKDatabaseOperation
 }
@@ -118,7 +117,6 @@ func NewCKModifyRecordsOperation() CKModifyRecordsOperation {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordDeleteBlock-7gaqj
-
 func (c_ CKModifyRecordsOperation) PerRecordDeleteBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordDeleteBlock"))
 	return rv
@@ -127,7 +125,6 @@ func (c_ CKModifyRecordsOperation) PerRecordDeleteBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordDeleteBlock-7gaqj
-
 func (c_ CKModifyRecordsOperation) SetPerRecordDeleteBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordDeleteBlock:"), value)
 }
@@ -137,7 +134,6 @@ func (c_ CKModifyRecordsOperation) SetPerRecordDeleteBlock(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordProgressBlock
-
 func (c_ CKModifyRecordsOperation) PerRecordProgressBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordProgressBlock"))
 	return rv
@@ -148,9 +144,27 @@ func (c_ CKModifyRecordsOperation) PerRecordProgressBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordProgressBlock
-
 func (c_ CKModifyRecordsOperation) SetPerRecordProgressBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordProgressBlock:"), value)
+}
+
+
+// The policy to use when saving changes to records.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/savePolicy
+func (c_ CKModifyRecordsOperation) SavePolicy() CKRecordSavePolicy {
+	rv := objc.Send[CKRecordSavePolicy](c_.ID, objc.Sel("savePolicy"))
+	return rv
+}
+
+
+// The policy to use when saving changes to records.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/savePolicy
+func (c_ CKModifyRecordsOperation) SetSavePolicy(value CKRecordSavePolicy) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSavePolicy:"), value)
 }
 
 
@@ -158,7 +172,6 @@ func (c_ CKModifyRecordsOperation) SetPerRecordProgressBlock(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-
 func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.Data {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("clientChangeTokenData"))
 	return rv
@@ -169,7 +182,6 @@ func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-
 func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClientChangeTokenData:"), value)
 }
@@ -179,7 +191,6 @@ func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.IDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-
 func (c_ CKModifyRecordsOperation) IsAtomic() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAtomic"))
 	return rv
@@ -190,7 +201,6 @@ func (c_ CKModifyRecordsOperation) IsAtomic() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-
 func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAtomic:"), value)
 }
@@ -200,7 +210,6 @@ func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordscompletionblock
-
 func (c_ CKModifyRecordsOperation) ModifyRecordsCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordsCompletionBlock"))
 	return rv
@@ -211,7 +220,6 @@ func (c_ CKModifyRecordsOperation) ModifyRecordsCompletionBlock() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordscompletionblock
-
 func (c_ CKModifyRecordsOperation) SetModifyRecordsCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordsCompletionBlock:"), value)
 }
@@ -219,7 +227,6 @@ func (c_ CKModifyRecordsOperation) SetModifyRecordsCompletionBlock(value unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordsresultblock
-
 func (c_ CKModifyRecordsOperation) ModifyRecordsResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordsResultBlock"))
 	return rv
@@ -228,7 +235,6 @@ func (c_ CKModifyRecordsOperation) ModifyRecordsResultBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/modifyrecordsresultblock
-
 func (c_ CKModifyRecordsOperation) SetModifyRecordsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordsResultBlock:"), value)
 }
@@ -238,7 +244,6 @@ func (c_ CKModifyRecordsOperation) SetModifyRecordsResultBlock(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordcompletionblock
-
 func (c_ CKModifyRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordCompletionBlock"))
 	return rv
@@ -249,7 +254,6 @@ func (c_ CKModifyRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordcompletionblock
-
 func (c_ CKModifyRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordCompletionBlock:"), value)
 }
@@ -257,7 +261,6 @@ func (c_ CKModifyRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordsaveblock-7yq9d
-
 func (c_ CKModifyRecordsOperation) PerRecordSaveBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordSaveBlock"))
 	return rv
@@ -266,7 +269,6 @@ func (c_ CKModifyRecordsOperation) PerRecordSaveBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/perrecordsaveblock-7yq9d
-
 func (c_ CKModifyRecordsOperation) SetPerRecordSaveBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordSaveBlock:"), value)
 }
@@ -276,7 +278,6 @@ func (c_ CKModifyRecordsOperation) SetPerRecordSaveBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
-
 func (c_ CKModifyRecordsOperation) RecordIDsToDelete() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordIDsToDelete"))
 	return rv
@@ -287,7 +288,6 @@ func (c_ CKModifyRecordsOperation) RecordIDsToDelete() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
-
 func (c_ CKModifyRecordsOperation) SetRecordIDsToDelete(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDsToDelete:"), value)
 }
@@ -297,7 +297,6 @@ func (c_ CKModifyRecordsOperation) SetRecordIDsToDelete(value ICKRecordID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordstosave
-
 func (c_ CKModifyRecordsOperation) RecordsToSave() CKRecord {
 	rv := objc.Send[CKRecord](c_.ID, objc.Sel("recordsToSave"))
 	return rv
@@ -308,30 +307,8 @@ func (c_ CKModifyRecordsOperation) RecordsToSave() CKRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordstosave
-
 func (c_ CKModifyRecordsOperation) SetRecordsToSave(value ICKRecord) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordsToSave:"), value)
-}
-
-
-// The policy to use when saving changes to records.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy
-
-func (c_ CKModifyRecordsOperation) SavePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("savePolicy"))
-	return rv
-}
-
-
-// The policy to use when saving changes to records.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy
-
-func (c_ CKModifyRecordsOperation) SetSavePolicy(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSavePolicy:"), value)
 }
 
 
@@ -339,7 +316,6 @@ func (c_ CKModifyRecordsOperation) SetSavePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
-
 func (c_ CKModifyRecordsOperation) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
 	return rv
@@ -350,7 +326,6 @@ func (c_ CKModifyRecordsOperation) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property
-
 func (c_ CKModifyRecordsOperation) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
@@ -360,7 +335,6 @@ func (c_ CKModifyRecordsOperation) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-
 func (c_ CKModifyRecordsOperation) Parent() CKReference {
 	rv := objc.Send[CKReference](c_.ID, objc.Sel("parent"))
 	return rv
@@ -371,7 +345,6 @@ func (c_ CKModifyRecordsOperation) Parent() CKReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-
 func (c_ CKModifyRecordsOperation) SetParent(value ICKReference) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
 }
@@ -381,7 +354,6 @@ func (c_ CKModifyRecordsOperation) SetParent(value ICKReference) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKModifyRecordsOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -392,7 +364,6 @@ func (c_ CKModifyRecordsOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKModifyRecordsOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

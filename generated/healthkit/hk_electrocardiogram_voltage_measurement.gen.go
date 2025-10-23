@@ -41,7 +41,6 @@ type IHKElectrocardiogramVoltageMeasurement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement
-
 type HKElectrocardiogramVoltageMeasurement struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewHKElectrocardiogramVoltageMeasurement() HKElectrocardiogramVoltageMeasur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/voltagemeasurement/timesincesamplestart
-
 func (h_ HKElectrocardiogramVoltageMeasurement) TimeSinceSampleStart() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("timeSinceSampleStart"))
 	return rv
@@ -101,7 +99,6 @@ func (h_ HKElectrocardiogramVoltageMeasurement) TimeSinceSampleStart() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/voltagemeasurement/timesincesamplestart
-
 func (h_ HKElectrocardiogramVoltageMeasurement) SetTimeSinceSampleStart(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setTimeSinceSampleStart:"), value)
 }

@@ -67,7 +67,6 @@ type IDatePickerCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell
-
 type DatePickerCell struct {
 	ActionCell
 }
@@ -118,7 +117,6 @@ func NewDatePickerCell() DatePickerCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
-
 func (d_ DatePickerCell) MaxDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("maxDate"))
 	return rv
@@ -129,7 +127,6 @@ func (d_ DatePickerCell) MaxDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
-
 func (d_ DatePickerCell) SetMaxDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
@@ -139,7 +136,6 @@ func (d_ DatePickerCell) SetMaxDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/backgroundcolor
-
 func (d_ DatePickerCell) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](d_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -150,7 +146,6 @@ func (d_ DatePickerCell) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/backgroundcolor
-
 func (d_ DatePickerCell) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -160,7 +155,6 @@ func (d_ DatePickerCell) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/calendar
-
 func (d_ DatePickerCell) Calendar() foundation.Calendar {
 	rv := objc.Send[foundation.Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
@@ -171,7 +165,6 @@ func (d_ DatePickerCell) Calendar() foundation.Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/calendar
-
 func (d_ DatePickerCell) SetCalendar(value foundation.ICalendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
@@ -181,7 +174,6 @@ func (d_ DatePickerCell) SetCalendar(value foundation.ICalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datepickerelements
-
 func (d_ DatePickerCell) DatePickerElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("datePickerElements"))
 	return rv
@@ -192,7 +184,6 @@ func (d_ DatePickerCell) DatePickerElements() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datepickerelements
-
 func (d_ DatePickerCell) SetDatePickerElements(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDatePickerElements:"), value)
 }
@@ -202,7 +193,6 @@ func (d_ DatePickerCell) SetDatePickerElements(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datepickermode
-
 func (d_ DatePickerCell) DatePickerMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("datePickerMode"))
 	return rv
@@ -213,7 +203,6 @@ func (d_ DatePickerCell) DatePickerMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datepickermode
-
 func (d_ DatePickerCell) SetDatePickerMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDatePickerMode:"), value)
 }
@@ -223,7 +212,6 @@ func (d_ DatePickerCell) SetDatePickerMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datepickerstyle
-
 func (d_ DatePickerCell) DatePickerStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("datePickerStyle"))
 	return rv
@@ -234,7 +222,6 @@ func (d_ DatePickerCell) DatePickerStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datepickerstyle
-
 func (d_ DatePickerCell) SetDatePickerStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDatePickerStyle:"), value)
 }
@@ -244,7 +231,6 @@ func (d_ DatePickerCell) SetDatePickerStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datevalue
-
 func (d_ DatePickerCell) DateValue() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("dateValue"))
 	return rv
@@ -255,7 +241,6 @@ func (d_ DatePickerCell) DateValue() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datevalue
-
 func (d_ DatePickerCell) SetDateValue(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateValue:"), value)
 }
@@ -265,7 +250,6 @@ func (d_ DatePickerCell) SetDateValue(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/delegate
-
 func (d_ DatePickerCell) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("delegate"))
 	return rv
@@ -276,7 +260,6 @@ func (d_ DatePickerCell) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/delegate
-
 func (d_ DatePickerCell) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -286,7 +269,6 @@ func (d_ DatePickerCell) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/drawsbackground
-
 func (d_ DatePickerCell) DrawsBackground() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("drawsBackground"))
 	return rv
@@ -297,7 +279,6 @@ func (d_ DatePickerCell) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/drawsbackground
-
 func (d_ DatePickerCell) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDrawsBackground:"), value)
 }
@@ -307,7 +288,6 @@ func (d_ DatePickerCell) SetDrawsBackground(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/locale
-
 func (d_ DatePickerCell) Locale() foundation.Locale {
 	rv := objc.Send[foundation.Locale](d_.ID, objc.Sel("locale"))
 	return rv
@@ -318,7 +298,6 @@ func (d_ DatePickerCell) Locale() foundation.Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/locale
-
 func (d_ DatePickerCell) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
 }
@@ -328,7 +307,6 @@ func (d_ DatePickerCell) SetLocale(value foundation.ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/mindate
-
 func (d_ DatePickerCell) MinDate() foundation.Date {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("minDate"))
 	return rv
@@ -339,7 +317,6 @@ func (d_ DatePickerCell) MinDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/mindate
-
 func (d_ DatePickerCell) SetMinDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinDate:"), value)
 }
@@ -349,7 +326,6 @@ func (d_ DatePickerCell) SetMinDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/textcolor
-
 func (d_ DatePickerCell) TextColor() NSColor {
 	rv := objc.Send[NSColor](d_.ID, objc.Sel("textColor"))
 	return rv
@@ -360,7 +336,6 @@ func (d_ DatePickerCell) TextColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/textcolor
-
 func (d_ DatePickerCell) SetTextColor(value IColor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTextColor:"), value)
 }
@@ -370,7 +345,6 @@ func (d_ DatePickerCell) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timeinterval
-
 func (d_ DatePickerCell) TimeInterval() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeInterval"))
 	return rv
@@ -381,7 +355,6 @@ func (d_ DatePickerCell) TimeInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timeinterval
-
 func (d_ DatePickerCell) SetTimeInterval(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeInterval:"), value)
 }
@@ -391,7 +364,6 @@ func (d_ DatePickerCell) SetTimeInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timezone
-
 func (d_ DatePickerCell) TimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
@@ -402,7 +374,6 @@ func (d_ DatePickerCell) TimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timezone
-
 func (d_ DatePickerCell) SetTimeZone(value foundation.ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }

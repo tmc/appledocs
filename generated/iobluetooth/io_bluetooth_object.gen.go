@@ -32,7 +32,9 @@ type IBluetoothObject interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObject
 type BluetoothObject struct {
 	objectivec.Object

@@ -55,7 +55,6 @@ type ITreeNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode
-
 type TreeNode struct {
 	objectivec.Object
 }
@@ -104,7 +103,6 @@ func NewTreeNode() TreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode/treeNodeWithRepresentedObject:
-
 func (tc _TreeNodeClass) TreeNodeWithRepresentedObject(modelObject objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("treeNodeWithRepresentedObject:"), modelObject)
 	return rv
@@ -115,7 +113,6 @@ func (tc _TreeNodeClass) TreeNodeWithRepresentedObject(modelObject objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode/children
-
 func (t_ TreeNode) ChildNodes() []TreeNode {
 	rv := objc.Send[[]TreeNode](t_.ID, objc.Sel("childNodes"))
 	return rv
@@ -126,7 +123,6 @@ func (t_ TreeNode) ChildNodes() []TreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/children
-
 func (t_ TreeNode) Children() NSTreeNode {
 	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("children"))
 	return rv
@@ -137,7 +133,6 @@ func (t_ TreeNode) Children() NSTreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/children
-
 func (t_ TreeNode) SetChildren(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildren:"), value)
 }
@@ -147,7 +142,6 @@ func (t_ TreeNode) SetChildren(value ITreeNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/indexpath
-
 func (t_ TreeNode) IndexPath() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("indexPath"))
 	return rv
@@ -158,7 +152,6 @@ func (t_ TreeNode) IndexPath() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/indexpath
-
 func (t_ TreeNode) SetIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIndexPath:"), value)
 }
@@ -168,7 +161,6 @@ func (t_ TreeNode) SetIndexPath(value foundation.IIndexPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/isleaf
-
 func (t_ TreeNode) IsLeaf() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isLeaf"))
 	return rv
@@ -179,7 +171,6 @@ func (t_ TreeNode) IsLeaf() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/isleaf
-
 func (t_ TreeNode) SetIsLeaf(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsLeaf:"), value)
 }
@@ -189,7 +180,6 @@ func (t_ TreeNode) SetIsLeaf(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/mutablechildren
-
 func (t_ TreeNode) MutableChildren() foundation.MutableArray {
 	rv := objc.Send[foundation.MutableArray](t_.ID, objc.Sel("mutableChildren"))
 	return rv
@@ -200,7 +190,6 @@ func (t_ TreeNode) MutableChildren() foundation.MutableArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/mutablechildren
-
 func (t_ TreeNode) SetMutableChildren(value foundation.IMutableArray) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMutableChildren:"), value)
 }
@@ -210,7 +199,6 @@ func (t_ TreeNode) SetMutableChildren(value foundation.IMutableArray) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/parent
-
 func (t_ TreeNode) Parent() NSTreeNode {
 	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("parent"))
 	return rv
@@ -221,7 +209,6 @@ func (t_ TreeNode) Parent() NSTreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/parent
-
 func (t_ TreeNode) SetParent(value ITreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
 }
@@ -231,7 +218,6 @@ func (t_ TreeNode) SetParent(value ITreeNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/representedobject
-
 func (t_ TreeNode) RepresentedObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("representedObject"))
 	return rv
@@ -242,7 +228,6 @@ func (t_ TreeNode) RepresentedObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreenode/representedobject
-
 func (t_ TreeNode) SetRepresentedObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRepresentedObject:"), value)
 }

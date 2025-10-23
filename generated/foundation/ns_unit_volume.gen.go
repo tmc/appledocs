@@ -369,7 +369,7 @@ func (uc _UnitVolumeClass) Teaspoons() UnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/acreFeet
-func (u_ UnitVolume) AcreFeet() NSUnitVolume {
+func (u_ UnitVolume) AcreFeet() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("acreFeet"))
 	return rv
 }
@@ -379,7 +379,7 @@ func (u_ UnitVolume) AcreFeet() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/bushels
-func (u_ UnitVolume) Bushels() NSUnitVolume {
+func (u_ UnitVolume) Bushels() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("bushels"))
 	return rv
 }
@@ -389,7 +389,7 @@ func (u_ UnitVolume) Bushels() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/centiliters
-func (u_ UnitVolume) Centiliters() NSUnitVolume {
+func (u_ UnitVolume) Centiliters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("centiliters"))
 	return rv
 }
@@ -399,7 +399,7 @@ func (u_ UnitVolume) Centiliters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicCentimeters
-func (u_ UnitVolume) CubicCentimeters() NSUnitVolume {
+func (u_ UnitVolume) CubicCentimeters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicCentimeters"))
 	return rv
 }
@@ -409,7 +409,7 @@ func (u_ UnitVolume) CubicCentimeters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicDecimeters
-func (u_ UnitVolume) CubicDecimeters() NSUnitVolume {
+func (u_ UnitVolume) CubicDecimeters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicDecimeters"))
 	return rv
 }
@@ -419,7 +419,7 @@ func (u_ UnitVolume) CubicDecimeters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicFeet
-func (u_ UnitVolume) CubicFeet() NSUnitVolume {
+func (u_ UnitVolume) CubicFeet() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicFeet"))
 	return rv
 }
@@ -429,7 +429,7 @@ func (u_ UnitVolume) CubicFeet() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicInches
-func (u_ UnitVolume) CubicInches() NSUnitVolume {
+func (u_ UnitVolume) CubicInches() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicInches"))
 	return rv
 }
@@ -439,7 +439,7 @@ func (u_ UnitVolume) CubicInches() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicKilometers
-func (u_ UnitVolume) CubicKilometers() NSUnitVolume {
+func (u_ UnitVolume) CubicKilometers() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicKilometers"))
 	return rv
 }
@@ -449,7 +449,7 @@ func (u_ UnitVolume) CubicKilometers() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicMeters
-func (u_ UnitVolume) CubicMeters() NSUnitVolume {
+func (u_ UnitVolume) CubicMeters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicMeters"))
 	return rv
 }
@@ -459,7 +459,7 @@ func (u_ UnitVolume) CubicMeters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicMiles
-func (u_ UnitVolume) CubicMiles() NSUnitVolume {
+func (u_ UnitVolume) CubicMiles() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicMiles"))
 	return rv
 }
@@ -469,7 +469,7 @@ func (u_ UnitVolume) CubicMiles() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicMillimeters
-func (u_ UnitVolume) CubicMillimeters() NSUnitVolume {
+func (u_ UnitVolume) CubicMillimeters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicMillimeters"))
 	return rv
 }
@@ -479,7 +479,7 @@ func (u_ UnitVolume) CubicMillimeters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cubicYards
-func (u_ UnitVolume) CubicYards() NSUnitVolume {
+func (u_ UnitVolume) CubicYards() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cubicYards"))
 	return rv
 }
@@ -489,7 +489,7 @@ func (u_ UnitVolume) CubicYards() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/cups
-func (u_ UnitVolume) Cups() NSUnitVolume {
+func (u_ UnitVolume) Cups() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("cups"))
 	return rv
 }
@@ -499,7 +499,7 @@ func (u_ UnitVolume) Cups() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/deciliters
-func (u_ UnitVolume) Deciliters() NSUnitVolume {
+func (u_ UnitVolume) Deciliters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("deciliters"))
 	return rv
 }
@@ -509,7 +509,7 @@ func (u_ UnitVolume) Deciliters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/fluidOunces
-func (u_ UnitVolume) FluidOunces() NSUnitVolume {
+func (u_ UnitVolume) FluidOunces() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("fluidOunces"))
 	return rv
 }
@@ -519,7 +519,7 @@ func (u_ UnitVolume) FluidOunces() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/gallons
-func (u_ UnitVolume) Gallons() NSUnitVolume {
+func (u_ UnitVolume) Gallons() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("gallons"))
 	return rv
 }
@@ -529,7 +529,7 @@ func (u_ UnitVolume) Gallons() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialFluidOunces
-func (u_ UnitVolume) ImperialFluidOunces() NSUnitVolume {
+func (u_ UnitVolume) ImperialFluidOunces() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialFluidOunces"))
 	return rv
 }
@@ -539,7 +539,7 @@ func (u_ UnitVolume) ImperialFluidOunces() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialGallons
-func (u_ UnitVolume) ImperialGallons() NSUnitVolume {
+func (u_ UnitVolume) ImperialGallons() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialGallons"))
 	return rv
 }
@@ -549,7 +549,7 @@ func (u_ UnitVolume) ImperialGallons() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialPints
-func (u_ UnitVolume) ImperialPints() NSUnitVolume {
+func (u_ UnitVolume) ImperialPints() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialPints"))
 	return rv
 }
@@ -559,7 +559,7 @@ func (u_ UnitVolume) ImperialPints() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialQuarts
-func (u_ UnitVolume) ImperialQuarts() NSUnitVolume {
+func (u_ UnitVolume) ImperialQuarts() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialQuarts"))
 	return rv
 }
@@ -569,7 +569,7 @@ func (u_ UnitVolume) ImperialQuarts() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialTablespoons
-func (u_ UnitVolume) ImperialTablespoons() NSUnitVolume {
+func (u_ UnitVolume) ImperialTablespoons() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialTablespoons"))
 	return rv
 }
@@ -579,7 +579,7 @@ func (u_ UnitVolume) ImperialTablespoons() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialTeaspoons
-func (u_ UnitVolume) ImperialTeaspoons() NSUnitVolume {
+func (u_ UnitVolume) ImperialTeaspoons() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialTeaspoons"))
 	return rv
 }
@@ -589,7 +589,7 @@ func (u_ UnitVolume) ImperialTeaspoons() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/kiloliters
-func (u_ UnitVolume) Kiloliters() NSUnitVolume {
+func (u_ UnitVolume) Kiloliters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("kiloliters"))
 	return rv
 }
@@ -599,7 +599,7 @@ func (u_ UnitVolume) Kiloliters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
-func (u_ UnitVolume) Liters() NSUnitVolume {
+func (u_ UnitVolume) Liters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("liters"))
 	return rv
 }
@@ -609,7 +609,7 @@ func (u_ UnitVolume) Liters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/megaliters
-func (u_ UnitVolume) Megaliters() NSUnitVolume {
+func (u_ UnitVolume) Megaliters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("megaliters"))
 	return rv
 }
@@ -619,7 +619,7 @@ func (u_ UnitVolume) Megaliters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/metricCups
-func (u_ UnitVolume) MetricCups() NSUnitVolume {
+func (u_ UnitVolume) MetricCups() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("metricCups"))
 	return rv
 }
@@ -629,7 +629,7 @@ func (u_ UnitVolume) MetricCups() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/milliliters
-func (u_ UnitVolume) Milliliters() NSUnitVolume {
+func (u_ UnitVolume) Milliliters() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("milliliters"))
 	return rv
 }
@@ -639,7 +639,7 @@ func (u_ UnitVolume) Milliliters() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/pints
-func (u_ UnitVolume) Pints() NSUnitVolume {
+func (u_ UnitVolume) Pints() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("pints"))
 	return rv
 }
@@ -649,7 +649,7 @@ func (u_ UnitVolume) Pints() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/quarts
-func (u_ UnitVolume) Quarts() NSUnitVolume {
+func (u_ UnitVolume) Quarts() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("quarts"))
 	return rv
 }
@@ -659,7 +659,7 @@ func (u_ UnitVolume) Quarts() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/tablespoons
-func (u_ UnitVolume) Tablespoons() NSUnitVolume {
+func (u_ UnitVolume) Tablespoons() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("tablespoons"))
 	return rv
 }
@@ -669,7 +669,7 @@ func (u_ UnitVolume) Tablespoons() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/teaspoons
-func (u_ UnitVolume) Teaspoons() NSUnitVolume {
+func (u_ UnitVolume) Teaspoons() IUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("teaspoons"))
 	return rv
 }

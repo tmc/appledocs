@@ -32,7 +32,9 @@ type ImAddress interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mAddress
 type mAddress struct {
 	objectivec.Object

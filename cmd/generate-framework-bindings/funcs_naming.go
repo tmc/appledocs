@@ -108,7 +108,6 @@ func classTestFileName(className string) string {
 	return occ2go.ClassTestFileName(className)
 }
 
-
 // receiverName generates a short receiver name for methods.
 // Delegates to occ2go.ReceiverName.
 func receiverName(className string, isClass bool) string {

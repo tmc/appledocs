@@ -111,7 +111,6 @@ type IBrowser interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser
-
 type Browser struct {
 	Control
 }
@@ -162,7 +161,6 @@ func NewBrowser() Browser {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowsbranchselection
-
 func (b_ Browser) AllowsBranchSelection() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsBranchSelection"))
 	return rv
@@ -173,7 +171,6 @@ func (b_ Browser) AllowsBranchSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowsbranchselection
-
 func (b_ Browser) SetAllowsBranchSelection(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsBranchSelection:"), value)
 }
@@ -183,7 +180,6 @@ func (b_ Browser) SetAllowsBranchSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowsemptyselection
-
 func (b_ Browser) AllowsEmptySelection() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsEmptySelection"))
 	return rv
@@ -194,7 +190,6 @@ func (b_ Browser) AllowsEmptySelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowsemptyselection
-
 func (b_ Browser) SetAllowsEmptySelection(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsEmptySelection:"), value)
 }
@@ -204,7 +199,6 @@ func (b_ Browser) SetAllowsEmptySelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowsmultipleselection
-
 func (b_ Browser) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
@@ -215,7 +209,6 @@ func (b_ Browser) AllowsMultipleSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowsmultipleselection
-
 func (b_ Browser) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
@@ -225,7 +218,6 @@ func (b_ Browser) SetAllowsMultipleSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowstypeselect
-
 func (b_ Browser) AllowsTypeSelect() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsTypeSelect"))
 	return rv
@@ -236,7 +228,6 @@ func (b_ Browser) AllowsTypeSelect() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/allowstypeselect
-
 func (b_ Browser) SetAllowsTypeSelect(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsTypeSelect:"), value)
 }
@@ -246,7 +237,6 @@ func (b_ Browser) SetAllowsTypeSelect(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/autohidesscroller
-
 func (b_ Browser) AutohidesScroller() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("autohidesScroller"))
 	return rv
@@ -257,7 +247,6 @@ func (b_ Browser) AutohidesScroller() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/autohidesscroller
-
 func (b_ Browser) SetAutohidesScroller(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAutohidesScroller:"), value)
 }
@@ -267,7 +256,6 @@ func (b_ Browser) SetAutohidesScroller(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/backgroundcolor
-
 func (b_ Browser) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](b_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -278,7 +266,6 @@ func (b_ Browser) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/backgroundcolor
-
 func (b_ Browser) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -288,7 +275,6 @@ func (b_ Browser) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/cellprototype
-
 func (b_ Browser) CellPrototype() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("cellPrototype"))
 	return rv
@@ -299,7 +285,6 @@ func (b_ Browser) CellPrototype() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/cellprototype
-
 func (b_ Browser) SetCellPrototype(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCellPrototype:"), value)
 }
@@ -309,7 +294,6 @@ func (b_ Browser) SetCellPrototype(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/clickedcolumn
-
 func (b_ Browser) ClickedColumn() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("clickedColumn"))
 	return rv
@@ -320,7 +304,6 @@ func (b_ Browser) ClickedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/clickedcolumn
-
 func (b_ Browser) SetClickedColumn(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setClickedColumn:"), value)
 }
@@ -330,7 +313,6 @@ func (b_ Browser) SetClickedColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/clickedrow
-
 func (b_ Browser) ClickedRow() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("clickedRow"))
 	return rv
@@ -341,7 +323,6 @@ func (b_ Browser) ClickedRow() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/clickedrow
-
 func (b_ Browser) SetClickedRow(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setClickedRow:"), value)
 }
@@ -351,7 +332,6 @@ func (b_ Browser) SetClickedRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.property
-
 func (b_ Browser) ColumnResizingType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("columnResizingType"))
 	return rv
@@ -362,7 +342,6 @@ func (b_ Browser) ColumnResizingType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.property
-
 func (b_ Browser) SetColumnResizingType(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setColumnResizingType:"), value)
 }
@@ -372,7 +351,6 @@ func (b_ Browser) SetColumnResizingType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/columnsautosavename-swift.property
-
 func (b_ Browser) ColumnsAutosaveName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("columnsAutosaveName"))
 	return rv
@@ -383,7 +361,6 @@ func (b_ Browser) ColumnsAutosaveName() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/columnsautosavename-swift.property
-
 func (b_ Browser) SetColumnsAutosaveName(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setColumnsAutosaveName:"), value)
 }
@@ -393,7 +370,6 @@ func (b_ Browser) SetColumnsAutosaveName(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/delegate
-
 func (b_ Browser) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("delegate"))
 	return rv
@@ -404,7 +380,6 @@ func (b_ Browser) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/delegate
-
 func (b_ Browser) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -414,7 +389,6 @@ func (b_ Browser) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/doubleaction
-
 func (b_ Browser) DoubleAction() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("doubleAction"))
 	return rv
@@ -425,7 +399,6 @@ func (b_ Browser) DoubleAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/doubleaction
-
 func (b_ Browser) SetDoubleAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDoubleAction:"), value)
 }
@@ -435,7 +408,6 @@ func (b_ Browser) SetDoubleAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/firstvisiblecolumn
-
 func (b_ Browser) FirstVisibleColumn() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("firstVisibleColumn"))
 	return rv
@@ -446,7 +418,6 @@ func (b_ Browser) FirstVisibleColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/firstvisiblecolumn
-
 func (b_ Browser) SetFirstVisibleColumn(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFirstVisibleColumn:"), value)
 }
@@ -456,7 +427,6 @@ func (b_ Browser) SetFirstVisibleColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/hashorizontalscroller
-
 func (b_ Browser) HasHorizontalScroller() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("hasHorizontalScroller"))
 	return rv
@@ -467,7 +437,6 @@ func (b_ Browser) HasHorizontalScroller() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/hashorizontalscroller
-
 func (b_ Browser) SetHasHorizontalScroller(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setHasHorizontalScroller:"), value)
 }
@@ -477,7 +446,6 @@ func (b_ Browser) SetHasHorizontalScroller(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/isloaded
-
 func (b_ Browser) IsLoaded() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
 	return rv
@@ -488,7 +456,6 @@ func (b_ Browser) IsLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/isloaded
-
 func (b_ Browser) SetIsLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
 }
@@ -498,7 +465,6 @@ func (b_ Browser) SetIsLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/istitled
-
 func (b_ Browser) IsTitled() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTitled"))
 	return rv
@@ -509,7 +475,6 @@ func (b_ Browser) IsTitled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/istitled
-
 func (b_ Browser) SetIsTitled(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTitled:"), value)
 }
@@ -519,7 +484,6 @@ func (b_ Browser) SetIsTitled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/lastcolumn
-
 func (b_ Browser) LastColumn() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("lastColumn"))
 	return rv
@@ -530,7 +494,6 @@ func (b_ Browser) LastColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/lastcolumn
-
 func (b_ Browser) SetLastColumn(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLastColumn:"), value)
 }
@@ -540,7 +503,6 @@ func (b_ Browser) SetLastColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/lastvisiblecolumn
-
 func (b_ Browser) LastVisibleColumn() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("lastVisibleColumn"))
 	return rv
@@ -551,7 +513,6 @@ func (b_ Browser) LastVisibleColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/lastvisiblecolumn
-
 func (b_ Browser) SetLastVisibleColumn(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLastVisibleColumn:"), value)
 }
@@ -561,7 +522,6 @@ func (b_ Browser) SetLastVisibleColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/maxvisiblecolumns
-
 func (b_ Browser) MaxVisibleColumns() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("maxVisibleColumns"))
 	return rv
@@ -572,7 +532,6 @@ func (b_ Browser) MaxVisibleColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/maxvisiblecolumns
-
 func (b_ Browser) SetMaxVisibleColumns(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMaxVisibleColumns:"), value)
 }
@@ -582,7 +541,6 @@ func (b_ Browser) SetMaxVisibleColumns(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/mincolumnwidth
-
 func (b_ Browser) MinColumnWidth() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("minColumnWidth"))
 	return rv
@@ -593,7 +551,6 @@ func (b_ Browser) MinColumnWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/mincolumnwidth
-
 func (b_ Browser) SetMinColumnWidth(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinColumnWidth:"), value)
 }
@@ -603,7 +560,6 @@ func (b_ Browser) SetMinColumnWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/numberofvisiblecolumns
-
 func (b_ Browser) NumberOfVisibleColumns() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("numberOfVisibleColumns"))
 	return rv
@@ -614,7 +570,6 @@ func (b_ Browser) NumberOfVisibleColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/numberofvisiblecolumns
-
 func (b_ Browser) SetNumberOfVisibleColumns(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNumberOfVisibleColumns:"), value)
 }
@@ -624,7 +579,6 @@ func (b_ Browser) SetNumberOfVisibleColumns(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/pathseparator
-
 func (b_ Browser) PathSeparator() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("pathSeparator"))
 	return rv
@@ -635,7 +589,6 @@ func (b_ Browser) PathSeparator() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/pathseparator
-
 func (b_ Browser) SetPathSeparator(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPathSeparator:"), objc.String(value))
 }
@@ -645,7 +598,6 @@ func (b_ Browser) SetPathSeparator(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/prefersallcolumnuserresizing
-
 func (b_ Browser) PrefersAllColumnUserResizing() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("prefersAllColumnUserResizing"))
 	return rv
@@ -656,7 +608,6 @@ func (b_ Browser) PrefersAllColumnUserResizing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/prefersallcolumnuserresizing
-
 func (b_ Browser) SetPrefersAllColumnUserResizing(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPrefersAllColumnUserResizing:"), value)
 }
@@ -666,7 +617,6 @@ func (b_ Browser) SetPrefersAllColumnUserResizing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/reusescolumns
-
 func (b_ Browser) ReusesColumns() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("reusesColumns"))
 	return rv
@@ -677,7 +627,6 @@ func (b_ Browser) ReusesColumns() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/reusescolumns
-
 func (b_ Browser) SetReusesColumns(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setReusesColumns:"), value)
 }
@@ -687,7 +636,6 @@ func (b_ Browser) SetReusesColumns(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/rowheight
-
 func (b_ Browser) RowHeight() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("rowHeight"))
 	return rv
@@ -698,7 +646,6 @@ func (b_ Browser) RowHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/rowheight
-
 func (b_ Browser) SetRowHeight(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setRowHeight:"), value)
 }
@@ -708,7 +655,6 @@ func (b_ Browser) SetRowHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectedcells
-
 func (b_ Browser) SelectedCells() NSCell {
 	rv := objc.Send[NSCell](b_.ID, objc.Sel("selectedCells"))
 	return rv
@@ -719,7 +665,6 @@ func (b_ Browser) SelectedCells() NSCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectedcells
-
 func (b_ Browser) SetSelectedCells(value ICell) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectedCells:"), value)
 }
@@ -729,7 +674,6 @@ func (b_ Browser) SetSelectedCells(value ICell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectedcolumn
-
 func (b_ Browser) SelectedColumn() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("selectedColumn"))
 	return rv
@@ -740,7 +684,6 @@ func (b_ Browser) SelectedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectedcolumn
-
 func (b_ Browser) SetSelectedColumn(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectedColumn:"), value)
 }
@@ -750,7 +693,6 @@ func (b_ Browser) SetSelectedColumn(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpath
-
 func (b_ Browser) SelectionIndexPath() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](b_.ID, objc.Sel("selectionIndexPath"))
 	return rv
@@ -761,7 +703,6 @@ func (b_ Browser) SelectionIndexPath() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpath
-
 func (b_ Browser) SetSelectionIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectionIndexPath:"), value)
 }
@@ -771,7 +712,6 @@ func (b_ Browser) SetSelectionIndexPath(value foundation.IIndexPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpaths
-
 func (b_ Browser) SelectionIndexPaths() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](b_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
@@ -782,7 +722,6 @@ func (b_ Browser) SelectionIndexPaths() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/selectionindexpaths
-
 func (b_ Browser) SetSelectionIndexPaths(value foundation.IIndexPath) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
@@ -792,7 +731,6 @@ func (b_ Browser) SetSelectionIndexPaths(value foundation.IIndexPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/sendsactiononarrowkeys
-
 func (b_ Browser) SendsActionOnArrowKeys() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("sendsActionOnArrowKeys"))
 	return rv
@@ -803,7 +741,6 @@ func (b_ Browser) SendsActionOnArrowKeys() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/sendsactiononarrowkeys
-
 func (b_ Browser) SetSendsActionOnArrowKeys(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSendsActionOnArrowKeys:"), value)
 }
@@ -813,7 +750,6 @@ func (b_ Browser) SetSendsActionOnArrowKeys(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/separatescolumns
-
 func (b_ Browser) SeparatesColumns() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("separatesColumns"))
 	return rv
@@ -824,7 +760,6 @@ func (b_ Browser) SeparatesColumns() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/separatescolumns
-
 func (b_ Browser) SetSeparatesColumns(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSeparatesColumns:"), value)
 }
@@ -834,7 +769,6 @@ func (b_ Browser) SetSeparatesColumns(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/takestitlefrompreviouscolumn
-
 func (b_ Browser) TakesTitleFromPreviousColumn() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("takesTitleFromPreviousColumn"))
 	return rv
@@ -845,7 +779,6 @@ func (b_ Browser) TakesTitleFromPreviousColumn() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/takestitlefrompreviouscolumn
-
 func (b_ Browser) SetTakesTitleFromPreviousColumn(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTakesTitleFromPreviousColumn:"), value)
 }
@@ -855,7 +788,6 @@ func (b_ Browser) SetTakesTitleFromPreviousColumn(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/titleheight
-
 func (b_ Browser) TitleHeight() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("titleHeight"))
 	return rv
@@ -866,7 +798,6 @@ func (b_ Browser) TitleHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowser/titleheight
-
 func (b_ Browser) SetTitleHeight(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleHeight:"), value)
 }
@@ -876,7 +807,6 @@ func (b_ Browser) SetTitleHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/isopaque
-
 func (b_ Browser) IsOpaque() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isOpaque"))
 	return rv
@@ -887,7 +817,6 @@ func (b_ Browser) IsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/isopaque
-
 func (b_ Browser) SetIsOpaque(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsOpaque:"), value)
 }

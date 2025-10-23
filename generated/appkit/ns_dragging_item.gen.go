@@ -50,7 +50,6 @@ type IDraggingItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem
-
 type DraggingItem struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewDraggingItem() DraggingItem {
 
 
 
-
 // Creates and returns a dragging item using the specified content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/init(pasteboardWriter:)
-
 func NewDraggingItemWithPasteboardWriter(pasteboardWriter objectivec.IObject) DraggingItem {
 	instance := getDraggingItemClass().Alloc()
 	rv := objc.Send[DraggingItem](instance.ID, objc.Sel("initWithPasteboardWriter:"), pasteboardWriter)
@@ -114,7 +111,6 @@ func NewDraggingItemWithPasteboardWriter(pasteboardWriter objectivec.IObject) Dr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
-
 func (d_ DraggingItem) ImageComponentsProvider() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](d_.ID, objc.Sel("imageComponentsProvider"))
 	return rv
@@ -125,7 +121,6 @@ func (d_ DraggingItem) ImageComponentsProvider() []DraggingImageComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
-
 func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -145,7 +140,6 @@ func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
-
 func (d_ DraggingItem) DraggingFrame() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("draggingFrame"))
 	return rv
@@ -156,7 +150,6 @@ func (d_ DraggingItem) DraggingFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
-
 func (d_ DraggingItem) SetDraggingFrame(value coregraphics.CGRect) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFrame:"), value)
 }
@@ -166,7 +159,6 @@ func (d_ DraggingItem) SetDraggingFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
-
 func (d_ DraggingItem) ImageComponents() NSDraggingImageComponent {
 	rv := objc.Send[NSDraggingImageComponent](d_.ID, objc.Sel("imageComponents"))
 	return rv
@@ -177,7 +169,6 @@ func (d_ DraggingItem) ImageComponents() NSDraggingImageComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
-
 func (d_ DraggingItem) SetImageComponents(value IDraggingImageComponent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponents:"), value)
 }
@@ -187,7 +178,6 @@ func (d_ DraggingItem) SetImageComponents(value IDraggingImageComponent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/item
-
 func (d_ DraggingItem) Item() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("item"))
 	return rv
@@ -198,7 +188,6 @@ func (d_ DraggingItem) Item() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/item
-
 func (d_ DraggingItem) SetItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItem:"), value)
 }

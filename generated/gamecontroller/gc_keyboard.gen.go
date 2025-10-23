@@ -43,7 +43,6 @@ type IGCKeyboard interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCKeyboard
-
 type GCKeyboard struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewGCKeyboard() GCKeyboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput
-
 func (g_ GCKeyboard) KeyboardInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("keyboardInput"))
 	return rv
@@ -103,7 +101,6 @@ func (g_ GCKeyboard) KeyboardInput() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput
-
 func (g_ GCKeyboard) SetKeyboardInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setKeyboardInput:"), value)
 }

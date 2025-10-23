@@ -32,7 +32,9 @@ type ImAttributeDictionary interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/mAttributeDictionary
 type mAttributeDictionary struct {
 	objectivec.Object

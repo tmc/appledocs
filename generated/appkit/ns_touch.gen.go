@@ -57,7 +57,6 @@ type ITouch interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch
-
 type Touch struct {
 	objectivec.Object
 }
@@ -102,24 +101,20 @@ func NewTouch() Touch {
 
 
 
-
 // Indicates the location of the touch in the view’s coordinates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/location(in:)
-
 func (t_ Touch) LocationInView(view IView) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("locationInView:"), view)
 	return rv
 }
 
 
-
 // Indicates the previous location of the touch in the view’s coordinates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
-
 func (t_ Touch) PreviousLocationInView(view IView) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
@@ -130,7 +125,6 @@ func (t_ Touch) PreviousLocationInView(view IView) coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/isResting
-
 func (t_ Touch) Resting() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resting"))
 	return rv
@@ -141,7 +135,6 @@ func (t_ Touch) Resting() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/normalizedPosition
-
 func (t_ Touch) NormalizedPosition() coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("normalizedPosition"))
 	return rv
@@ -152,7 +145,6 @@ func (t_ Touch) NormalizedPosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/phase-swift.property
-
 func (t_ Touch) Phase() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("phase"))
 	return rv
@@ -163,7 +155,6 @@ func (t_ Touch) Phase() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/device
-
 func (t_ Touch) Device() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("device"))
 	return rv
@@ -174,7 +165,6 @@ func (t_ Touch) Device() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/device
-
 func (t_ Touch) SetDevice(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDevice:"), value)
 }
@@ -184,7 +174,6 @@ func (t_ Touch) SetDevice(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
-
 func (t_ Touch) DeviceSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("deviceSize"))
 	return rv
@@ -195,7 +184,6 @@ func (t_ Touch) DeviceSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
-
 func (t_ Touch) SetDeviceSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceSize:"), value)
 }
@@ -205,7 +193,6 @@ func (t_ Touch) SetDeviceSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/identity
-
 func (t_ Touch) Identity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identity"))
 	return rv
@@ -216,7 +203,6 @@ func (t_ Touch) Identity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/identity
-
 func (t_ Touch) SetIdentity(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentity:"), value)
 }
@@ -226,7 +212,6 @@ func (t_ Touch) SetIdentity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
-
 func (t_ Touch) IsResting() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isResting"))
 	return rv
@@ -237,7 +222,6 @@ func (t_ Touch) IsResting() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
-
 func (t_ Touch) SetIsResting(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsResting:"), value)
 }
@@ -247,7 +231,6 @@ func (t_ Touch) SetIsResting(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
-
 func (t_ Touch) Type() TouchType {
 	rv := objc.Send[TouchType](t_.ID, objc.Sel("type"))
 	return rv
@@ -258,7 +241,6 @@ func (t_ Touch) Type() TouchType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
-
 func (t_ Touch) SetType(value TouchType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }

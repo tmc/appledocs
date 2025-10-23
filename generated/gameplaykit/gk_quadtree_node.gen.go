@@ -42,7 +42,6 @@ type IQuadtreeNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtreeNode
-
 type QuadtreeNode struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewQuadtreeNode() QuadtreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtreeNode/quad
-
 func (q_ QuadtreeNode) Quad() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("quad"))
 	return rv

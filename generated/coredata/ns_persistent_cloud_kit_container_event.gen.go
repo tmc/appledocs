@@ -52,7 +52,6 @@ type IPersistentCloudKitContainerEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event
-
 type PersistentCloudKitContainerEvent struct {
 	objectivec.Object
 }
@@ -101,7 +100,6 @@ func NewPersistentCloudKitContainerEvent() PersistentCloudKitContainerEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/error
-
 func (p_ PersistentCloudKitContainerEvent) Error() foundation.Error {
 	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("error"))
 	return rv
@@ -112,7 +110,6 @@ func (p_ PersistentCloudKitContainerEvent) Error() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/succeeded
-
 func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("succeeded"))
 	return rv
@@ -123,7 +120,6 @@ func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
-
 func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("endDate"))
 	return rv
@@ -134,7 +130,6 @@ func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
-
 func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
@@ -144,7 +139,6 @@ func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-
 func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](p_.ID, objc.Sel("identifier"))
 	return rv
@@ -155,7 +149,6 @@ func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-
 func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
@@ -165,7 +158,6 @@ func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.IUUID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-
 func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.Date {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("startDate"))
 	return rv
@@ -176,7 +168,6 @@ func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-
 func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
@@ -186,7 +177,6 @@ func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.IDate) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-
 func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
 	return rv
@@ -197,7 +187,6 @@ func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-
 func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
 }
@@ -207,7 +196,6 @@ func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
-
 func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
 	return rv
@@ -218,7 +206,6 @@ func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/type
-
 func (p_ PersistentCloudKitContainerEvent) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }

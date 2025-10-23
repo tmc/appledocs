@@ -50,7 +50,6 @@ type ICKFetchWebAuthTokenOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation
-
 type CKFetchWebAuthTokenOperation struct {
 	CKDatabaseOperation
 }
@@ -97,12 +96,10 @@ func NewCKFetchWebAuthTokenOperation() CKFetchWebAuthTokenOperation {
 
 
 
-
 // Creates a fetch operation for the specified API token.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/init(apiToken:)
-
 func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken string) CKFetchWebAuthTokenOperation {
 	instance := getCKFetchWebAuthTokenOperationClass().Alloc()
 	rv := objc.Send[CKFetchWebAuthTokenOperation](instance.ID, objc.Sel("initWithAPIToken:"), objc.String(APIToken))
@@ -116,7 +113,6 @@ func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken string) CKFetchWebAuth
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken
-
 func (c_ CKFetchWebAuthTokenOperation) APIToken() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("APIToken"))
 	return rv
@@ -127,7 +123,6 @@ func (c_ CKFetchWebAuthTokenOperation) APIToken() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken
-
 func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), objc.String(value))
 }
@@ -137,7 +132,6 @@ func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/fetchWebAuthTokenCompletionBlock
-
 func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchWebAuthTokenCompletionBlock"))
 	return rv
@@ -148,7 +142,6 @@ func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenCompletionBlock() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/fetchWebAuthTokenCompletionBlock
-
 func (c_ CKFetchWebAuthTokenOperation) SetFetchWebAuthTokenCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchWebAuthTokenCompletionBlock:"), value)
 }
@@ -156,7 +149,6 @@ func (c_ CKFetchWebAuthTokenOperation) SetFetchWebAuthTokenCompletionBlock(value
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation/fetchwebauthtokenresultblock
-
 func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchWebAuthTokenResultBlock"))
 	return rv
@@ -165,7 +157,6 @@ func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenResultBlock() unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation/fetchwebauthtokenresultblock
-
 func (c_ CKFetchWebAuthTokenOperation) SetFetchWebAuthTokenResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchWebAuthTokenResultBlock:"), value)
 }
@@ -175,7 +166,6 @@ func (c_ CKFetchWebAuthTokenOperation) SetFetchWebAuthTokenResultBlock(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchWebAuthTokenOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -186,7 +176,6 @@ func (c_ CKFetchWebAuthTokenOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchWebAuthTokenOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
@@ -196,7 +185,6 @@ func (c_ CKFetchWebAuthTokenOperation) SetCompletionBlock(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-
 func (c_ CKFetchWebAuthTokenOperation) QualityOfService() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
 	return rv
@@ -207,7 +195,6 @@ func (c_ CKFetchWebAuthTokenOperation) QualityOfService() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-
 func (c_ CKFetchWebAuthTokenOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }

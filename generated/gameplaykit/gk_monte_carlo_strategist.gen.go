@@ -49,7 +49,6 @@ type IMonteCarloStrategist interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist
-
 type MonteCarloStrategist struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewMonteCarloStrategist() MonteCarloStrategist {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget
-
 func (m_ MonteCarloStrategist) Budget() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("budget"))
 	return rv
@@ -109,7 +107,6 @@ func (m_ MonteCarloStrategist) Budget() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget
-
 func (m_ MonteCarloStrategist) SetBudget(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBudget:"), value)
 }
@@ -119,7 +116,6 @@ func (m_ MonteCarloStrategist) SetBudget(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
-
 func (m_ MonteCarloStrategist) ExplorationParameter() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("explorationParameter"))
 	return rv
@@ -130,7 +126,6 @@ func (m_ MonteCarloStrategist) ExplorationParameter() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
-
 func (m_ MonteCarloStrategist) SetExplorationParameter(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExplorationParameter:"), value)
 }
@@ -140,7 +135,6 @@ func (m_ MonteCarloStrategist) SetExplorationParameter(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
-
 func (m_ MonteCarloStrategist) GameModel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gameModel"))
 	return rv
@@ -151,7 +145,6 @@ func (m_ MonteCarloStrategist) GameModel() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
-
 func (m_ MonteCarloStrategist) SetGameModel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGameModel:"), value)
 }
@@ -161,7 +154,6 @@ func (m_ MonteCarloStrategist) SetGameModel(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
-
 func (m_ MonteCarloStrategist) RandomSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("randomSource"))
 	return rv
@@ -172,7 +164,6 @@ func (m_ MonteCarloStrategist) RandomSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
-
 func (m_ MonteCarloStrategist) SetRandomSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRandomSource:"), value)
 }

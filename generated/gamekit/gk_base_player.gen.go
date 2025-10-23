@@ -44,7 +44,6 @@ type IBasePlayer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer
-
 type BasePlayer struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewBasePlayer() BasePlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID
-
 func (b_ BasePlayer) PlayerID() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("playerID"))
 	return rv
@@ -104,7 +102,6 @@ func (b_ BasePlayer) PlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-
 func (b_ BasePlayer) DisplayName() string {
 	rv := objc.Send[string](b_.ID, objc.Sel("displayName"))
 	return rv
@@ -115,7 +112,6 @@ func (b_ BasePlayer) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-
 func (b_ BasePlayer) SetDisplayName(value string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }

@@ -64,7 +64,6 @@ type ICKFetchRecordZoneChangesOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation
-
 type CKFetchRecordZoneChangesOperation struct {
 	CKDatabaseOperation
 }
@@ -111,12 +110,10 @@ func NewCKFetchRecordZoneChangesOperation() CKFetchRecordZoneChangesOperation {
 
 
 
-
 // Creates an operation for fetching record zone changes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/initWithRecordZoneIDs:configurationsByRecordZoneID:
-
 func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsConfigurationsByRecordZoneID(recordZoneIDs []CKRecordZoneID, configurationsByRecordZoneID unsafe.Pointer) CKFetchRecordZoneChangesOperation {
 	instance := getCKFetchRecordZoneChangesOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordZoneChangesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:configurationsByRecordZoneID:"), recordZoneIDs, configurationsByRecordZoneID)
@@ -125,12 +122,10 @@ func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsConfigurationsByRecord
 }
 
 
-
 // Creates an operation for fetching record zone changes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/init(recordZoneIDs:optionsByRecordZoneID:)
-
 func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs []CKRecordZoneID, optionsByRecordZoneID unsafe.Pointer) CKFetchRecordZoneChangesOperation {
 	instance := getCKFetchRecordZoneChangesOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordZoneChangesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:optionsByRecordZoneID:"), recordZoneIDs, optionsByRecordZoneID)
@@ -144,7 +139,6 @@ func NewCKFetchRecordZoneChangesOperationWithRecordZoneIDsOptionsByRecordZoneID(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/configurationsByRecordZoneID
-
 func (c_ CKFetchRecordZoneChangesOperation) ConfigurationsByRecordZoneID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("configurationsByRecordZoneID"))
 	return rv
@@ -155,7 +149,6 @@ func (c_ CKFetchRecordZoneChangesOperation) ConfigurationsByRecordZoneID() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/configurationsByRecordZoneID
-
 func (c_ CKFetchRecordZoneChangesOperation) SetConfigurationsByRecordZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfigurationsByRecordZoneID:"), value)
 }
@@ -165,7 +158,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetConfigurationsByRecordZoneID(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/fetchAllChanges
-
 func (c_ CKFetchRecordZoneChangesOperation) FetchAllChanges() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
 	return rv
@@ -176,7 +168,6 @@ func (c_ CKFetchRecordZoneChangesOperation) FetchAllChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/fetchAllChanges
-
 func (c_ CKFetchRecordZoneChangesOperation) SetFetchAllChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
@@ -186,7 +177,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetFetchAllChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/fetchRecordZoneChangesCompletionBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) FetchRecordZoneChangesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZoneChangesCompletionBlock"))
 	return rv
@@ -197,7 +187,6 @@ func (c_ CKFetchRecordZoneChangesOperation) FetchRecordZoneChangesCompletionBloc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/fetchRecordZoneChangesCompletionBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) SetFetchRecordZoneChangesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZoneChangesCompletionBlock:"), value)
 }
@@ -207,7 +196,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetFetchRecordZoneChangesCompletionB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/optionsByRecordZoneID
-
 func (c_ CKFetchRecordZoneChangesOperation) OptionsByRecordZoneID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optionsByRecordZoneID"))
 	return rv
@@ -218,7 +206,6 @@ func (c_ CKFetchRecordZoneChangesOperation) OptionsByRecordZoneID() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/optionsByRecordZoneID
-
 func (c_ CKFetchRecordZoneChangesOperation) SetOptionsByRecordZoneID(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptionsByRecordZoneID:"), value)
 }
@@ -228,7 +215,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetOptionsByRecordZoneID(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordChangedBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordChangedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordChangedBlock"))
 	return rv
@@ -239,7 +225,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordChangedBlock() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordChangedBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangedBlock:"), value)
 }
@@ -247,7 +232,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordChangedBlock(value unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordWasChangedBlock-90bon
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordWasChangedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordWasChangedBlock"))
 	return rv
@@ -256,7 +240,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordWasChangedBlock() unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordWasChangedBlock-90bon
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordWasChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordWasChangedBlock:"), value)
 }
@@ -266,7 +249,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordWasChangedBlock(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordWithIDWasDeletedBlock-912xy
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordWithIDWasDeletedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordWithIDWasDeletedBlock"))
 	return rv
@@ -277,7 +259,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordWithIDWasDeletedBlock() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordWithIDWasDeletedBlock-912xy
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordWithIDWasDeletedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordWithIDWasDeletedBlock:"), value)
 }
@@ -287,7 +268,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordWithIDWasDeletedBlock(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneChangeTokensUpdatedBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordZoneChangeTokensUpdatedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneChangeTokensUpdatedBlock"))
 	return rv
@@ -298,7 +278,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordZoneChangeTokensUpdatedBlock()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneChangeTokensUpdatedBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneChangeTokensUpdatedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneChangeTokensUpdatedBlock:"), value)
 }
@@ -308,7 +287,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneChangeTokensUpdatedBloc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneFetchCompletionBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordZoneFetchCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneFetchCompletionBlock"))
 	return rv
@@ -319,7 +297,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordZoneFetchCompletionBlock() uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneFetchCompletionBlock
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneFetchCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneFetchCompletionBlock:"), value)
 }
@@ -329,7 +306,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneFetchCompletionBlock(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneIDs
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordZoneIDs() []CKRecordZoneID {
 	rv := objc.Send[[]CKRecordZoneID](c_.ID, objc.Sel("recordZoneIDs"))
 	return rv
@@ -340,7 +316,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordZoneIDs() []CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/recordZoneIDs
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneIDs(value []CKRecordZoneID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -358,7 +333,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneIDs(value []CKRecordZon
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchrecordzonechangesresultblock
-
 func (c_ CKFetchRecordZoneChangesOperation) FetchRecordZoneChangesResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZoneChangesResultBlock"))
 	return rv
@@ -367,7 +341,6 @@ func (c_ CKFetchRecordZoneChangesOperation) FetchRecordZoneChangesResultBlock() 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchrecordzonechangesresultblock
-
 func (c_ CKFetchRecordZoneChangesOperation) SetFetchRecordZoneChangesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZoneChangesResultBlock:"), value)
 }
@@ -375,7 +348,6 @@ func (c_ CKFetchRecordZoneChangesOperation) SetFetchRecordZoneChangesResultBlock
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzonefetchresultblock
-
 func (c_ CKFetchRecordZoneChangesOperation) RecordZoneFetchResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneFetchResultBlock"))
 	return rv
@@ -384,7 +356,6 @@ func (c_ CKFetchRecordZoneChangesOperation) RecordZoneFetchResultBlock() unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/recordzonefetchresultblock
-
 func (c_ CKFetchRecordZoneChangesOperation) SetRecordZoneFetchResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneFetchResultBlock:"), value)
 }

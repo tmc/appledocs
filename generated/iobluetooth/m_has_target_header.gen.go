@@ -32,7 +32,9 @@ type ImHasTargetHeader interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mHasTargetHeader
 type mHasTargetHeader struct {
 	objectivec.Object

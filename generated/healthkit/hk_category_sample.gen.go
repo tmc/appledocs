@@ -44,7 +44,6 @@ type IHKCategorySample interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample
-
 type HKCategorySample struct {
 	HKSample
 }
@@ -95,7 +94,6 @@ func NewHKCategorySample() HKCategorySample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample/categoryType
-
 func (h_ HKCategorySample) CategoryType() HKCategoryType {
 	rv := objc.Send[HKCategoryType](h_.ID, objc.Sel("categoryType"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HKCategorySample) CategoryType() HKCategoryType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/value
-
 func (h_ HKCategorySample) Value() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("value"))
 	return rv
@@ -117,7 +114,6 @@ func (h_ HKCategorySample) Value() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/value
-
 func (h_ HKCategorySample) SetValue(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), value)
 }
@@ -127,7 +123,6 @@ func (h_ HKCategorySample) SetValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue
-
 func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
 	return rv

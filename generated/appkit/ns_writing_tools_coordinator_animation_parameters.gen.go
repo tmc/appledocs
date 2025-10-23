@@ -49,7 +49,6 @@ type IWritingToolsCoordinatorAnimationParameters interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters
-
 type WritingToolsCoordinatorAnimationParameters struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewWritingToolsCoordinatorAnimationParameters() WritingToolsCoordinatorAnim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/completionhandler
-
 func (w_ WritingToolsCoordinatorAnimationParameters) CompletionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("completionHandler"))
 	return rv
@@ -109,7 +107,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) CompletionHandler() unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/completionhandler
-
 func (w_ WritingToolsCoordinatorAnimationParameters) SetCompletionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCompletionHandler:"), value)
 }
@@ -119,7 +116,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) SetCompletionHandler(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/delay
-
 func (w_ WritingToolsCoordinatorAnimationParameters) Delay() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("delay"))
 	return rv
@@ -130,7 +126,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) Delay() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/delay
-
 func (w_ WritingToolsCoordinatorAnimationParameters) SetDelay(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDelay:"), value)
 }
@@ -140,7 +135,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) SetDelay(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/duration
-
 func (w_ WritingToolsCoordinatorAnimationParameters) Duration() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("duration"))
 	return rv
@@ -151,7 +145,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) Duration() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/duration
-
 func (w_ WritingToolsCoordinatorAnimationParameters) SetDuration(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDuration:"), value)
 }
@@ -161,7 +154,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) SetDuration(value float64) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/progresshandler
-
 func (w_ WritingToolsCoordinatorAnimationParameters) ProgressHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("progressHandler"))
 	return rv
@@ -172,7 +164,6 @@ func (w_ WritingToolsCoordinatorAnimationParameters) ProgressHandler() unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/progresshandler
-
 func (w_ WritingToolsCoordinatorAnimationParameters) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setProgressHandler:"), value)
 }

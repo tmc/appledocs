@@ -45,7 +45,6 @@ type ICKFetchRecordZoneChangesOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions
-
 type CKFetchRecordZoneChangesOptions struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewCKFetchRecordZoneChangesOptions() CKFetchRecordZoneChangesOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys
-
 func (c_ CKFetchRecordZoneChangesOptions) DesiredKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ CKFetchRecordZoneChangesOptions) DesiredKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation/ZoneOptions/desiredKeys
-
 func (c_ CKFetchRecordZoneChangesOptions) SetDesiredKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -125,7 +122,6 @@ func (c_ CKFetchRecordZoneChangesOptions) SetDesiredKeys(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
-
 func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() CKServerChangeToken {
 	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
@@ -136,7 +132,6 @@ func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() CKServerCh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
-
 func (c_ CKFetchRecordZoneChangesOptions) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
@@ -146,7 +141,6 @@ func (c_ CKFetchRecordZoneChangesOptions) SetPreviousServerChangeToken(value ICK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/resultslimit
-
 func (c_ CKFetchRecordZoneChangesOptions) ResultsLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
@@ -157,7 +151,6 @@ func (c_ CKFetchRecordZoneChangesOptions) ResultsLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/resultslimit
-
 func (c_ CKFetchRecordZoneChangesOptions) SetResultsLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }

@@ -42,7 +42,6 @@ type IPasswordCredential interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential
-
 type PasswordCredential struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewPasswordCredential() PasswordCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/credentialWithUser:password:
-
 func (pc _PasswordCredentialClass) CredentialWithUserPassword(user string, password string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("credentialWithUser:password:"), objc.String(user), objc.String(password))
 	return rv
@@ -102,7 +100,6 @@ func (pc _PasswordCredentialClass) CredentialWithUserPassword(user string, passw
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/password
-
 func (p_ PasswordCredential) Password() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("password"))
 	return rv
@@ -113,7 +110,6 @@ func (p_ PasswordCredential) Password() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-
 func (p_ PasswordCredential) User() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("user"))
 	return rv
@@ -124,7 +120,6 @@ func (p_ PasswordCredential) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-
 func (p_ PasswordCredential) SetUser(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), objc.String(value))
 }

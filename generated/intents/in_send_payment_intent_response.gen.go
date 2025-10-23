@@ -38,7 +38,11 @@ type IINSendPaymentIntentResponse interface {
 // Your app’s response to a send payment intent.
 //
 // Use an object to specify the details of the financial transaction that you perform. After creating the object, assign the details of the payment transaction to the property, the details of which Siri communicates to the user at appropriate times. You create an object in the and methods of your handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a send payment intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse
 type INSendPaymentIntentResponse struct {
 	INIntentResponse
@@ -86,9 +90,9 @@ func NewINSendPaymentIntentResponse() INSendPaymentIntentResponse {
 
 
 
-
 // Initializes the response object with the specified code and user activity object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/init(code:userActivity:)
 func NewINSendPaymentIntentResponseWithCodeUserActivity(code unsafe.Pointer, userActivity foundation.IUserActivity) INSendPaymentIntentResponse {
 	instance := getINSendPaymentIntentResponseClass().Alloc()
@@ -98,16 +102,20 @@ func NewINSendPaymentIntentResponseWithCodeUserActivity(code unsafe.Pointer, use
 }
 
 
+
 // The code indicating whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/code
 func (i_ INSendPaymentIntentResponse) Code() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
 	return rv
 }
 
+
 // The details of the payment transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/paymentRecord
 func (i_ INSendPaymentIntentResponse) PaymentRecord() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentRecord"))
@@ -115,10 +123,9 @@ func (i_ INSendPaymentIntentResponse) PaymentRecord() unsafe.Pointer {
 }
 
 
-// SetPaymentRecord sets the value of the paymentRecord property.
 // The details of the payment transaction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/paymentRecord
 func (i_ INSendPaymentIntentResponse) SetPaymentRecord(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentRecord:"), value)

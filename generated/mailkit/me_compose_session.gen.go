@@ -40,7 +40,11 @@ type IMEComposeSession interface {
 }
 
 // An object that represents a single mail compose window.
+
+
+// An object that represents a single mail compose window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeSession
 type MEComposeSession struct {
 	objectivec.Object
@@ -85,7 +89,8 @@ func NewMEComposeSession() MEComposeSession {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/composecontext
 func (m_ MEComposeSession) ComposeContext() MEComposeContext {
 	rv := objc.Send[MEComposeContext](m_.ID, objc.Sel("composeContext"))
@@ -93,15 +98,16 @@ func (m_ MEComposeSession) ComposeContext() MEComposeContext {
 }
 
 
-// SetComposeContext sets the value of the composeContext property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/composecontext
 func (m_ MEComposeSession) SetComposeContext(value IMEComposeContext) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComposeContext:"), value)
 }
 
+
 // The properties of the mail message, such as the subject and recipients.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/mailmessage
 func (m_ MEComposeSession) MailMessage() MEMessage {
 	rv := objc.Send[MEMessage](m_.ID, objc.Sel("mailMessage"))
@@ -109,17 +115,18 @@ func (m_ MEComposeSession) MailMessage() MEMessage {
 }
 
 
-// SetMailMessage sets the value of the mailMessage property.
 // The properties of the mail message, such as the subject and recipients.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/mailmessage
 func (m_ MEComposeSession) SetMailMessage(value IMEMessage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMailMessage:"), value)
 }
 
+
 // A unique identifier for the session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/sessionid
 func (m_ MEComposeSession) SessionID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("sessionID"))
@@ -127,10 +134,9 @@ func (m_ MEComposeSession) SessionID() foundation.UUID {
 }
 
 
-// SetSessionID sets the value of the sessionID property.
 // A unique identifier for the session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/sessionid
 func (m_ MEComposeSession) SetSessionID(value foundation.IUUID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)

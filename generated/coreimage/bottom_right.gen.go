@@ -35,8 +35,7 @@ type IbottomRight interface {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomRight-c.ivar
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomRight-c.ivar
 type bottomRight struct {
 	objectivec.Object
 }

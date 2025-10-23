@@ -618,10 +618,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitParameterOptions/flag_PlotHistory
 	kAudioUnitParameterFlag_PlotHistory AudioUnitParameterOptions = 0
-	// kAudioUnitParameterFlag_PlotHistory - If set, getting the   property fills out the   struct containing the recommended update rate and history duration.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/kaudiounitparameterflag_plothistory
-	kAudioUnitParameterFlag_PlotHistory AudioUnitParameterOptions = 0
 )
 
 // AudioUnitParameterUnit - The unit-of-measure for an audio unit parameter.

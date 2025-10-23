@@ -41,7 +41,6 @@ type IController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController
-
 type Controller struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewController() Controller {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
-
 func (c_ Controller) IsEditing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEditing"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ Controller) IsEditing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
-
 func (c_ Controller) SetIsEditing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditing:"), value)
 }

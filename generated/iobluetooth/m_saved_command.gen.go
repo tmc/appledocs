@@ -32,7 +32,9 @@ type ImSavedCommand interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mSavedCommand
 type mSavedCommand struct {
 	objectivec.Object

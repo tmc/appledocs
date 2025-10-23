@@ -40,7 +40,11 @@ type IUSBHostStream interface {
 // The class responsible for sending stream data for function drivers.
 //
 // The method creates stream objects.
+
+
+// The class responsible for sending stream data for function drivers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream
 type USBHostStream struct {
 	USBHostIOSource
@@ -87,40 +91,50 @@ func NewUSBHostStream() USBHostStream {
 }
 
 
+
 // Aborts pending input/output requests synchronously.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/abort()
 func (u_ USBHostStream) AbortWithError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("abortWithError:"), error_)
 	return rv
 }
 
+
 // Aborts pending input/output requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/abort(with:)
 func (u_ USBHostStream) AbortWithOptionError(option unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("abortWithOption:error:"), option, error_)
 	return rv
 }
 
+
 // Enqueues an input/output request on the stream.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/enqueueIORequest(with:completionHandler:)
 func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data foundation.IMutableData, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueIORequestWithData:error:completionHandler:"), data, error_, completionHandler)
 	return rv
 }
 
+
 // The pipe that creates the stream.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/hostPipe
 func (u_ USBHostStream) HostPipe() IOUSBHostPipe {
 	rv := objc.Send[IOUSBHostPipe](u_.ID, objc.Sel("hostPipe"))
 	return rv
 }
 
+
 // The ID for the stream.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/streamID
 func (u_ USBHostStream) StreamID() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("streamID"))

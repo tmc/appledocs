@@ -36,7 +36,11 @@ type IINVocabulary interface {
 // An object for registering user-specific vocabulary that Siri requests might include.
 //
 // The object lets you augment your app’s global vocabulary with terms that are both unique to your app and to the current user of your app. Registering custom terms provides Siri with hints it needs to apply those terms appropriately to the corresponding intent objects. You may register custom terms only for specific types of content, including users of your app, custom workout names, or custom tags applied to a photo. Some tips for specifying custom vocabulary include: Be selective about the terms that you register for users. Include words and phrases only when their use in your app by the current user might differ from everyday usage. Order terms from most important to least important. If you register a large number of entries, Siri may ingest only the ones at the beginning of your list. Don’t register contact names that you retrieved from the user’s Contacts database. Register contacts only if your app manages contact information separately from the system databases. Don’t use this class to register terms that are common to all users of your app. Include vocabulary that’s common to all users of your app in your app’s global vocabulary file. For information about specifying your app’s global vocabulary file, see . Your Intents extension must support at least one intent that uses the registered terms. It’s a programmer error to register terms that aren’t supported by any of your extension’s intents. Use the shared vocabulary object only in your iOS app. Don’t try to register vocabulary from your Intents extension or Intents UI extension.
+
+
+// An object for registering user-specific vocabulary that Siri requests might include.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVocabulary
 type INVocabulary struct {
 	objectivec.Object
@@ -81,16 +85,20 @@ func NewINVocabulary() INVocabulary {
 }
 
 
+
 // Returns the shared vocabulary object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVocabulary/shared()
 func (ic _INVocabularyClass) SharedVocabulary() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("sharedVocabulary"))
 	return rv
 }
 
+
 // Registers the specified vocabulary strings with the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVocabulary/setVocabulary(_:of:)
 func (i_ INVocabulary) SetVocabularyOfType(vocabulary unsafe.Pointer, type_ INVocabularyStringType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVocabulary:ofType:"), vocabulary, type_)

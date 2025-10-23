@@ -43,7 +43,6 @@ type IScrubberSelectionStyle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle
-
 type ScrubberSelectionStyle struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewScrubberSelectionStyle() ScrubberSelectionStyle {
 
 
 
-
 // Initializes a scrubber selection style when included from a nib or Storyboard.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/init(coder:)
-
 func NewScrubberSelectionStyleWithCoder(coder foundation.ICoder) ScrubberSelectionStyle {
 	instance := getScrubberSelectionStyleClass().Alloc()
 	rv := objc.Send[ScrubberSelectionStyle](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -107,18 +104,15 @@ func NewScrubberSelectionStyleWithCoder(coder foundation.ICoder) ScrubberSelecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
-
 func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() ScrubberSelectionStyle {
 	rv := objc.Send[NSScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
 	return rv
 }
 
-
 // Provides an opportunity to create a customized scrubber selection style.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/makeSelectionView()
-
 func (s_ ScrubberSelectionStyle) MakeSelectionView() ScrubberSelectionView {
 	rv := objc.Send[ScrubberSelectionView](s_.ID, objc.Sel("makeSelectionView"))
 	return rv
@@ -129,7 +123,6 @@ func (s_ ScrubberSelectionStyle) MakeSelectionView() ScrubberSelectionView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
-
 func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() NSScrubberSelectionStyle {
 	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("outlineOverlayStyle"))
 	return rv

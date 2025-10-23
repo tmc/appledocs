@@ -38,7 +38,6 @@ type ICKSyncEngineStateUpdateEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineStateUpdateEvent
-
 type CKSyncEngineStateUpdateEvent struct {
 	CKSyncEngineEvent
 }

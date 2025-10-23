@@ -46,7 +46,6 @@ type IFontPanel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel
-
 type FontPanel struct {
 	Panel
 }
@@ -97,7 +96,6 @@ func NewFontPanel() FontPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel/worksWhenModal
-
 func (f_ FontPanel) WorksWhenModal() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("worksWhenModal"))
 	return rv
@@ -108,7 +106,6 @@ func (f_ FontPanel) WorksWhenModal() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel/worksWhenModal
-
 func (f_ FontPanel) SetWorksWhenModal(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
@@ -118,7 +115,6 @@ func (f_ FontPanel) SetWorksWhenModal(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/accessoryview
-
 func (f_ FontPanel) AccessoryView() NSView {
 	rv := objc.Send[NSView](f_.ID, objc.Sel("accessoryView"))
 	return rv
@@ -129,7 +125,6 @@ func (f_ FontPanel) AccessoryView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/accessoryview
-
 func (f_ FontPanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAccessoryView:"), value)
 }
@@ -139,7 +134,6 @@ func (f_ FontPanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/isenabled
-
 func (f_ FontPanel) IsEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -150,7 +144,6 @@ func (f_ FontPanel) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontpanel/isenabled
-
 func (f_ FontPanel) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }

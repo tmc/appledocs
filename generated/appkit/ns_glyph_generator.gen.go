@@ -41,7 +41,6 @@ type IGlyphGenerator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator
-
 type GlyphGenerator struct {
 	objectivec.Object
 }

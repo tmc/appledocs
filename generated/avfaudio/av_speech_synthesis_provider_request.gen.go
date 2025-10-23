@@ -42,7 +42,6 @@ type ISpeechSynthesisProviderRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest
-
 type SpeechSynthesisProviderRequest struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewSpeechSynthesisProviderRequest() SpeechSynthesisProviderRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest/voice
-
 func (s_ SpeechSynthesisProviderRequest) Voice() AVSpeechSynthesisProviderVoice {
 	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("voice"))
 	return rv
@@ -102,7 +100,6 @@ func (s_ SpeechSynthesisProviderRequest) Voice() AVSpeechSynthesisProviderVoice 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest/ssmlrepresentation
-
 func (s_ SpeechSynthesisProviderRequest) SsmlRepresentation() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("ssmlRepresentation"))
 	return rv
@@ -113,7 +110,6 @@ func (s_ SpeechSynthesisProviderRequest) SsmlRepresentation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest/ssmlrepresentation
-
 func (s_ SpeechSynthesisProviderRequest) SetSsmlRepresentation(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSsmlRepresentation:"), objc.String(value))
 }

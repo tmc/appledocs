@@ -57,7 +57,6 @@ type ICBIdentity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity
-
 type CBIdentity struct {
 	objectivec.Object
 }
@@ -102,46 +101,38 @@ func NewCBIdentity() CBIdentity {
 
 
 
-
 // Returns the identity object with the given name from the specified identity authority.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-
 func NewCBIdentityWithNameAuthority(name string, authority ICBIdentityAuthority) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
 	return rv
 }
 
 
-
 // Returns the identity object matching the persistent reference data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(persistentReference:)
-
 func NewCBIdentityWithPersistentReference(data foundation.IData) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithPersistentReference:"), data)
 	return rv
 }
 
 
-
 // Returns the identity object with the given UUID from the specified identity authority.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uuidString:authority:)
-
 func NewCBIdentityWithUUIDStringAuthority(uuid string, authority ICBIdentityAuthority) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUUIDString:authority:"), objc.String(uuid), authority)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)
-
 func NewCBIdentityWithUniqueIdentifierAuthority(uuid foundation.IUUID, authority ICBIdentityAuthority) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUniqueIdentifier:authority:"), uuid, authority)
 	return rv
@@ -153,7 +144,6 @@ func NewCBIdentityWithUniqueIdentifierAuthority(uuid foundation.IUUID, authority
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/identityWithCSIdentity:
-
 func (cc _CBIdentityClass) IdentityWithCSIdentity(csIdentity unsafe.Pointer) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithCSIdentity:"), csIdentity)
 	return rv
@@ -164,7 +154,6 @@ func (cc _CBIdentityClass) IdentityWithCSIdentity(csIdentity unsafe.Pointer) CBI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-
 func (cc _CBIdentityClass) IdentityWithNameAuthority(name string, authority ICBIdentityAuthority) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
 	return rv
@@ -175,7 +164,6 @@ func (cc _CBIdentityClass) IdentityWithNameAuthority(name string, authority ICBI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(persistentReference:)
-
 func (cc _CBIdentityClass) IdentityWithPersistentReference(data foundation.IData) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithPersistentReference:"), data)
 	return rv
@@ -184,7 +172,6 @@ func (cc _CBIdentityClass) IdentityWithPersistentReference(data foundation.IData
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)
-
 func (cc _CBIdentityClass) IdentityWithUniqueIdentifierAuthority(uuid foundation.IUUID, authority ICBIdentityAuthority) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithUniqueIdentifier:authority:"), uuid, authority)
 	return rv
@@ -195,19 +182,16 @@ func (cc _CBIdentityClass) IdentityWithUniqueIdentifierAuthority(uuid foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uuidString:authority:)
-
 func (cc _CBIdentityClass) IdentityWithUUIDStringAuthority(uuid string, authority ICBIdentityAuthority) CBIdentity {
 	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithUUIDString:authority:"), objc.String(uuid), authority)
 	return rv
 }
 
 
-
 // Returns a Boolean value indicating whether the identity is a member of the specified group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/isMember(ofGroup:)
-
 func (c_ CBIdentity) IsMemberOfGroup(group ICBGroupIdentity) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMemberOfGroup:"), group)
 	return rv
@@ -218,7 +202,6 @@ func (c_ CBIdentity) IsMemberOfGroup(group ICBGroupIdentity) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/CSIdentity
-
 func (c_ CBIdentity) CSIdentity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("CSIdentity"))
 	return rv
@@ -229,7 +212,6 @@ func (c_ CBIdentity) CSIdentity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/aliases
-
 func (c_ CBIdentity) Aliases() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("aliases"))
 	return rv
@@ -240,7 +222,6 @@ func (c_ CBIdentity) Aliases() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/authority
-
 func (c_ CBIdentity) Authority() CBIdentityAuthority {
 	rv := objc.Send[CBIdentityAuthority](c_.ID, objc.Sel("authority"))
 	return rv
@@ -251,7 +232,6 @@ func (c_ CBIdentity) Authority() CBIdentityAuthority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/emailAddress
-
 func (c_ CBIdentity) EmailAddress() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
 	return rv
@@ -262,7 +242,6 @@ func (c_ CBIdentity) EmailAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/fullName
-
 func (c_ CBIdentity) FullName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("fullName"))
 	return rv
@@ -273,7 +252,6 @@ func (c_ CBIdentity) FullName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/image
-
 func (c_ CBIdentity) Image() appkit.Image {
 	rv := objc.Send[appkit.Image](c_.ID, objc.Sel("image"))
 	return rv
@@ -284,7 +262,6 @@ func (c_ CBIdentity) Image() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/isHidden
-
 func (c_ CBIdentity) Hidden() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hidden"))
 	return rv
@@ -295,7 +272,6 @@ func (c_ CBIdentity) Hidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/persistentReference
-
 func (c_ CBIdentity) PersistentReference() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("persistentReference"))
 	return rv
@@ -306,7 +282,6 @@ func (c_ CBIdentity) PersistentReference() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/posixName
-
 func (c_ CBIdentity) PosixName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("posixName"))
 	return rv
@@ -315,7 +290,6 @@ func (c_ CBIdentity) PosixName() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/uniqueIdentifier
-
 func (c_ CBIdentity) UniqueIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
@@ -326,7 +300,6 @@ func (c_ CBIdentity) UniqueIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/uuidString
-
 func (c_ CBIdentity) UUIDString() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("UUIDString"))
 	return rv
@@ -337,7 +310,6 @@ func (c_ CBIdentity) UUIDString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
-
 func (c_ CBIdentity) IsHidden() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHidden"))
 	return rv
@@ -348,7 +320,6 @@ func (c_ CBIdentity) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
-
 func (c_ CBIdentity) SetIsHidden(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHidden:"), value)
 }

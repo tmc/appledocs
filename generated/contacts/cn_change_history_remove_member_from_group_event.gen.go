@@ -40,7 +40,6 @@ type ICNChangeHistoryRemoveMemberFromGroupEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent
-
 type CNChangeHistoryRemoveMemberFromGroupEvent struct {
 	CNChangeHistoryEvent
 }
@@ -91,7 +90,6 @@ func NewCNChangeHistoryRemoveMemberFromGroupEvent() CNChangeHistoryRemoveMemberF
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent/group
-
 func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() CNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
@@ -102,7 +100,6 @@ func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent/member
-
 func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Member() CNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("member"))
 	return rv

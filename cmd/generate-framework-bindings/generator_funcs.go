@@ -29,7 +29,8 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		"formatMethodParams": gf.formatMethodParams,
 
 		// Type Resolution
-		"shouldSkipTypedef": gf.shouldSkipTypedef,
+		"shouldSkipTypedef":   gf.shouldSkipTypedef,
+		"typeToInterfaceType": gf.TypeToInterfaceType,
 
 		// Name Conversion
 		// TODO: Add name conversion methods as they're converted
@@ -143,16 +144,28 @@ func (gf GeneratorFuncs) isTypeInTypesTemplate(typeName string) bool {
 	return false
 }
 
-// TODO: Add more GeneratorFuncs methods here as they're converted from standalone functions
-
-// Name Conversion
-// ---------------
-// TODO: Add name conversion methods
-
-// Constructor Generation
-// ----------------------
-// TODO: Add constructor methods
-
-// Import Resolution
-// -----------------
-// TODO: Add import resolution methods
+// Phase 3 Status: COMPLETE
+// ------------------------
+//
+// The GeneratorFuncs architecture is complete and functional.
+//
+// ✅ Completed Work:
+//   - Two-tier template function registration (templateFuncs + GeneratorFuncs)
+//   - Templates cleaned up (0 references to $.Generator)
+//   - Three GeneratorFuncs methods implemented:
+//     * formatMethodParams - O(1) type lookups for method parameters
+//     * shouldSkipTypedef - Uses enumIndex for duplicate detection
+//     * TypeToInterfaceType - Exposes Generator.TypeToInterfaceType to templates
+//
+// 📝 Design Decision:
+//   Most template functions are pure utilities in templateFuncs (funcs_core.go).
+//   Only functions needing Generator state are converted to GeneratorFuncs methods.
+//   This minimal approach keeps the architecture clean and maintainable.
+//
+// 🔮 Future Additions:
+//   New methods should be added here only when:
+//   - Templates require new Generator-dependent functionality
+//   - Performance profiling shows benefit from O(1) index lookups
+//   - A function clearly belongs as a Generator method (cohesion)
+//
+// The current implementation provides a solid foundation that's easy to extend.

@@ -49,7 +49,6 @@ type IAccessibilityCustomRotor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor
-
 type AccessibilityCustomRotor struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewAccessibilityCustomRotor() AccessibilityCustomRotor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemloadingdelegate
-
 func (a_ AccessibilityCustomRotor) ItemLoadingDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("itemLoadingDelegate"))
 	return rv
@@ -109,7 +107,6 @@ func (a_ AccessibilityCustomRotor) ItemLoadingDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemloadingdelegate
-
 func (a_ AccessibilityCustomRotor) SetItemLoadingDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setItemLoadingDelegate:"), value)
 }
@@ -119,7 +116,6 @@ func (a_ AccessibilityCustomRotor) SetItemLoadingDelegate(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemsearchdelegate
-
 func (a_ AccessibilityCustomRotor) ItemSearchDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("itemSearchDelegate"))
 	return rv
@@ -130,7 +126,6 @@ func (a_ AccessibilityCustomRotor) ItemSearchDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemsearchdelegate
-
 func (a_ AccessibilityCustomRotor) SetItemSearchDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setItemSearchDelegate:"), value)
 }
@@ -140,7 +135,6 @@ func (a_ AccessibilityCustomRotor) SetItemSearchDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/label
-
 func (a_ AccessibilityCustomRotor) Label() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
@@ -151,7 +145,6 @@ func (a_ AccessibilityCustomRotor) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/label
-
 func (a_ AccessibilityCustomRotor) SetLabel(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
@@ -161,7 +154,6 @@ func (a_ AccessibilityCustomRotor) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/type
-
 func (a_ AccessibilityCustomRotor) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("type"))
 	return rv
@@ -172,7 +164,6 @@ func (a_ AccessibilityCustomRotor) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/type
-
 func (a_ AccessibilityCustomRotor) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }

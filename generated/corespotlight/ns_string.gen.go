@@ -36,7 +36,6 @@ type IString interface {
 
 
 // A parent class referenced by other CoreSpotlight classes. [Full Topic]
-
 type String struct {
 	objectivec.Object
 }

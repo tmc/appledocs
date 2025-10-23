@@ -43,7 +43,6 @@ type ISBinaryItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem
-
 type SBinaryItem struct {
 	SActivityItem
 }
@@ -90,12 +89,10 @@ func NewSBinaryItem() SBinaryItem {
 
 
 
-
 // Initializes a new binary activity item of the given type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
-
 func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valueType SBinaryValueType) SBinaryItem {
 	instance := getSBinaryItemClass().Alloc()
 	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), objc.String(identifier), objc.String(title), valueType)
@@ -109,7 +106,6 @@ func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
-
 func (s_ SBinaryItem) Value() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("value"))
 	return rv
@@ -120,7 +116,6 @@ func (s_ SBinaryItem) Value() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
-
 func (s_ SBinaryItem) SetValue(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
 }
@@ -130,7 +125,6 @@ func (s_ SBinaryItem) SetValue(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/valueType
-
 func (s_ SBinaryItem) ValueType() SBinaryValueType {
 	rv := objc.Send[SBinaryValueType](s_.ID, objc.Sel("valueType"))
 	return rv

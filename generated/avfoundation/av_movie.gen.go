@@ -51,7 +51,6 @@ type IMovie interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie
-
 type Movie struct {
 	Asset
 }
@@ -98,13 +97,11 @@ func NewMovie() Movie {
 
 
 
-
 // Creates a movie object from a movie header stored in a QuickTime movie file of ISO base media file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/init(url:options:)
-
-func NewMovieWithURLOptions(URL foundation.IURL, options unsafe.Pointer) Movie {
+func NewMovieWithURLOptions(URL foundation.IURL, options foundation.IDictionary) Movie {
 	instance := getMovieClass().Alloc()
 	rv := objc.Send[Movie](instance.ID, objc.Sel("initWithURL:options:"), URL, options)
 	rv.Autorelease()
@@ -117,7 +114,6 @@ func NewMovieWithURLOptions(URL foundation.IURL, options unsafe.Pointer) Movie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/canContainMovieFragments
-
 func (m_ Movie) CanContainMovieFragments() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canContainMovieFragments"))
 	return rv
@@ -128,7 +124,6 @@ func (m_ Movie) CanContainMovieFragments() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/data
-
 func (m_ Movie) Data() foundation.NSData {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
@@ -139,7 +134,6 @@ func (m_ Movie) Data() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/containsmoviefragments
-
 func (m_ Movie) ContainsMovieFragments() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("containsMovieFragments"))
 	return rv
@@ -150,7 +144,6 @@ func (m_ Movie) ContainsMovieFragments() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/containsmoviefragments
-
 func (m_ Movie) SetContainsMovieFragments(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContainsMovieFragments:"), value)
 }
@@ -160,7 +153,6 @@ func (m_ Movie) SetContainsMovieFragments(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-
 func (m_ Movie) DefaultMediaDataStorage() AVMediaDataStorage {
 	rv := objc.Send[AVMediaDataStorage](m_.ID, objc.Sel("defaultMediaDataStorage"))
 	return rv
@@ -171,7 +163,6 @@ func (m_ Movie) DefaultMediaDataStorage() AVMediaDataStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-
 func (m_ Movie) SetDefaultMediaDataStorage(value IAVMediaDataStorage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultMediaDataStorage:"), value)
 }
@@ -181,7 +172,6 @@ func (m_ Movie) SetDefaultMediaDataStorage(value IAVMediaDataStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-
 func (m_ Movie) Tracks() AVMovieTrack {
 	rv := objc.Send[AVMovieTrack](m_.ID, objc.Sel("tracks"))
 	return rv
@@ -192,7 +182,6 @@ func (m_ Movie) Tracks() AVMovieTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-
 func (m_ Movie) SetTracks(value IAVMovieTrack) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
@@ -202,7 +191,6 @@ func (m_ Movie) SetTracks(value IAVMovieTrack) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-
 func (m_ Movie) Url() foundation.URL {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
 	return rv
@@ -213,7 +201,6 @@ func (m_ Movie) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-
 func (m_ Movie) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }

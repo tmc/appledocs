@@ -33,9 +33,9 @@ type IPortMessage interface {
 	SendBeforeDate(date IDate) bool
 	Components() objc.ID
 	Msgid() uint32
-	SetMsgid(value Iuint32)
-	ReceivePort() NSPort
-	SendPort() NSPort
+	SetMsgid(value uint32)
+	ReceivePort() IPort
+	SendPort() IPort
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
@@ -138,7 +138,7 @@ func (p_ PortMessage) Msgid() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-func (p_ PortMessage) SetMsgid(value Iuint32) {
+func (p_ PortMessage) SetMsgid(value uint32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
 
@@ -147,7 +147,7 @@ func (p_ PortMessage) SetMsgid(value Iuint32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
-func (p_ PortMessage) ReceivePort() NSPort {
+func (p_ PortMessage) ReceivePort() IPort {
 	rv := objc.Send[NSPort](p_.ID, objc.Sel("receivePort"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (p_ PortMessage) ReceivePort() NSPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/sendPort
-func (p_ PortMessage) SendPort() NSPort {
+func (p_ PortMessage) SendPort() IPort {
 	rv := objc.Send[NSPort](p_.ID, objc.Sel("sendPort"))
 	return rv
 }

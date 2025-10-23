@@ -37,7 +37,11 @@ type IMKGeoJSONDecoder interface {
 // An object that decodes GeoJSON objects into MapKit types.
 //
 // The GeoJSON decoder returns objects that conform to the protocol.
+
+
+// An object that decodes GeoJSON objects into MapKit types.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONDecoder
 type MKGeoJSONDecoder struct {
 	objectivec.Object
@@ -82,8 +86,10 @@ func NewMKGeoJSONDecoder() MKGeoJSONDecoder {
 }
 
 
+
 // Decodes the provided data into native MapKit types that a map can display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONDecoder/decode(_:)
 func (m_ MKGeoJSONDecoder) GeoJSONObjectsWithDataError(data foundation.IData, errorPtr unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("geoJSONObjectsWithData:error:"), data, errorPtr)

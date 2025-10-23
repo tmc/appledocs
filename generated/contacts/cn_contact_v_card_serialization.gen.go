@@ -40,7 +40,6 @@ type ICNContactVCardSerialization interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization
-
 type CNContactVCardSerialization struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewCNContactVCardSerialization() CNContactVCardSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/contacts(with:)
-
 func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.IData, error_ unsafe.Pointer) []CNContact {
 	rv := objc.Send[[]CNContact](objc.ID(cc.class), objc.Sel("contactsWithData:error:"), data, error_)
 	return rv
@@ -100,7 +98,6 @@ func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/data(with:)
-
 func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNContact, error_ unsafe.Pointer) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
 	return rv
@@ -111,7 +108,6 @@ func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/descriptorForRequiredKeys()
-
 func (cc _CNContactVCardSerializationClass) DescriptorForRequiredKeys() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeys"))
 	return rv

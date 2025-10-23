@@ -45,7 +45,6 @@ type IAXDataPointValue interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPointValue
-
 type AXDataPointValue struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewAXDataPointValue() AXDataPointValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
-
 func (a_ AXDataPointValue) XValue() AXDataPointValue {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("xValue"))
 	return rv
@@ -105,7 +103,6 @@ func (a_ AXDataPointValue) XValue() AXDataPointValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
-
 func (a_ AXDataPointValue) SetXValue(value IAXDataPointValue) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setXValue:"), value)
 }
@@ -115,7 +112,6 @@ func (a_ AXDataPointValue) SetXValue(value IAXDataPointValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
-
 func (a_ AXDataPointValue) YValue() AXDataPointValue {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("yValue"))
 	return rv
@@ -126,7 +122,6 @@ func (a_ AXDataPointValue) YValue() AXDataPointValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
-
 func (a_ AXDataPointValue) SetYValue(value IAXDataPointValue) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setYValue:"), value)
 }

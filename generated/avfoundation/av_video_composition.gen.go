@@ -67,7 +67,6 @@ type IVideoComposition interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition
-
 type VideoComposition struct {
 	objectivec.Object
 }
@@ -112,12 +111,10 @@ func NewVideoComposition() VideoComposition {
 
 
 
-
 // Indicates whether the time ranges of the composition’s instructions conform to validation requirements.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/isValid(for:timeRange:validationDelegate:)
-
 func (v_ VideoComposition) IsValidForAssetTimeRangeValidationDelegate(asset IAVAsset, timeRange unsafe.Pointer, validationDelegate objectivec.IObject) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isValidForAsset:timeRange:validationDelegate:"), asset, timeRange, validationDelegate)
 	return rv
@@ -128,7 +125,6 @@ func (v_ VideoComposition) IsValidForAssetTimeRangeValidationDelegate(asset IAVA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/customVideoCompositorClass
-
 func (v_ VideoComposition) CustomVideoCompositorClass() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("customVideoCompositorClass"))
 	return rv
@@ -139,7 +135,6 @@ func (v_ VideoComposition) CustomVideoCompositorClass() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/frameDuration
-
 func (v_ VideoComposition) FrameDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("frameDuration"))
 	return rv
@@ -150,7 +145,6 @@ func (v_ VideoComposition) FrameDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/instructions
-
 func (v_ VideoComposition) Instructions() []objc.ID {
 	rv := objc.Send[[]objc.ID](v_.ID, objc.Sel("instructions"))
 	return rv
@@ -161,7 +155,6 @@ func (v_ VideoComposition) Instructions() []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoComposition/renderScale
-
 func (v_ VideoComposition) RenderScale() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("renderScale"))
 	return rv
@@ -172,7 +165,6 @@ func (v_ VideoComposition) RenderScale() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/animationtool
-
 func (v_ VideoComposition) AnimationTool() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("animationTool"))
 	return rv
@@ -183,7 +175,6 @@ func (v_ VideoComposition) AnimationTool() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/animationtool
-
 func (v_ VideoComposition) SetAnimationTool(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAnimationTool:"), value)
 }
@@ -193,7 +184,6 @@ func (v_ VideoComposition) SetAnimationTool(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorprimaries
-
 func (v_ VideoComposition) ColorPrimaries() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("colorPrimaries"))
 	return rv
@@ -204,7 +194,6 @@ func (v_ VideoComposition) ColorPrimaries() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorprimaries
-
 func (v_ VideoComposition) SetColorPrimaries(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setColorPrimaries:"), objc.String(value))
 }
@@ -214,7 +203,6 @@ func (v_ VideoComposition) SetColorPrimaries(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colortransferfunction
-
 func (v_ VideoComposition) ColorTransferFunction() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("colorTransferFunction"))
 	return rv
@@ -225,7 +213,6 @@ func (v_ VideoComposition) ColorTransferFunction() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colortransferfunction
-
 func (v_ VideoComposition) SetColorTransferFunction(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setColorTransferFunction:"), objc.String(value))
 }
@@ -235,7 +222,6 @@ func (v_ VideoComposition) SetColorTransferFunction(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorycbcrmatrix
-
 func (v_ VideoComposition) ColorYCbCrMatrix() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("colorYCbCrMatrix"))
 	return rv
@@ -246,7 +232,6 @@ func (v_ VideoComposition) ColorYCbCrMatrix() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/colorycbcrmatrix
-
 func (v_ VideoComposition) SetColorYCbCrMatrix(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setColorYCbCrMatrix:"), objc.String(value))
 }
@@ -256,7 +241,6 @@ func (v_ VideoComposition) SetColorYCbCrMatrix(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/outputbufferdescription-3ayt8
-
 func (v_ VideoComposition) OutputBufferDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("outputBufferDescription"))
 	return rv
@@ -267,7 +251,6 @@ func (v_ VideoComposition) OutputBufferDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/outputbufferdescription-3ayt8
-
 func (v_ VideoComposition) SetOutputBufferDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOutputBufferDescription:"), value)
 }
@@ -277,7 +260,6 @@ func (v_ VideoComposition) SetOutputBufferDescription(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.property
-
 func (v_ VideoComposition) PerFrameHDRDisplayMetadataPolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("perFrameHDRDisplayMetadataPolicy"))
 	return rv
@@ -288,7 +270,6 @@ func (v_ VideoComposition) PerFrameHDRDisplayMetadataPolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.property
-
 func (v_ VideoComposition) SetPerFrameHDRDisplayMetadataPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPerFrameHDRDisplayMetadataPolicy:"), value)
 }
@@ -298,7 +279,6 @@ func (v_ VideoComposition) SetPerFrameHDRDisplayMetadataPolicy(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/rendersize
-
 func (v_ VideoComposition) RenderSize() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("renderSize"))
 	return rv
@@ -309,7 +289,6 @@ func (v_ VideoComposition) RenderSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/rendersize
-
 func (v_ VideoComposition) SetRenderSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRenderSize:"), value)
 }
@@ -319,7 +298,6 @@ func (v_ VideoComposition) SetRenderSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcesampledatatrackids-2hgue
-
 func (v_ VideoComposition) SourceSampleDataTrackIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sourceSampleDataTrackIDs"))
 	return rv
@@ -330,7 +308,6 @@ func (v_ VideoComposition) SourceSampleDataTrackIDs() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcesampledatatrackids-2hgue
-
 func (v_ VideoComposition) SetSourceSampleDataTrackIDs(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSourceSampleDataTrackIDs:"), value)
 }
@@ -340,7 +317,6 @@ func (v_ VideoComposition) SetSourceSampleDataTrackIDs(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcetrackidforframetiming
-
 func (v_ VideoComposition) SourceTrackIDForFrameTiming() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sourceTrackIDForFrameTiming"))
 	return rv
@@ -351,7 +327,6 @@ func (v_ VideoComposition) SourceTrackIDForFrameTiming() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/sourcetrackidforframetiming
-
 func (v_ VideoComposition) SetSourceTrackIDForFrameTiming(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSourceTrackIDForFrameTiming:"), value)
 }
@@ -361,7 +336,6 @@ func (v_ VideoComposition) SetSourceTrackIDForFrameTiming(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/spatialvideoconfigurations-80iab
-
 func (v_ VideoComposition) SpatialVideoConfigurations() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("spatialVideoConfigurations"))
 	return rv
@@ -372,7 +346,6 @@ func (v_ VideoComposition) SpatialVideoConfigurations() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/spatialvideoconfigurations-80iab
-
 func (v_ VideoComposition) SetSpatialVideoConfigurations(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSpatialVideoConfigurations:"), value)
 }

@@ -66,7 +66,6 @@ type IGCMotion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion
-
 type GCMotion struct {
 	objectivec.Object
 }
@@ -115,7 +114,6 @@ func NewGCMotion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/hasAttitudeAndRotationRate
-
 func (g_ GCMotion) HasAttitudeAndRotationRate() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitudeAndRotationRate"))
 	return rv
@@ -126,7 +124,6 @@ func (g_ GCMotion) HasAttitudeAndRotationRate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/rotationRate
-
 func (g_ GCMotion) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
 	return rv
@@ -137,7 +134,6 @@ func (g_ GCMotion) RotationRate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/sensorsRequireManualActivation
-
 func (g_ GCMotion) SensorsRequireManualActivation() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsRequireManualActivation"))
 	return rv
@@ -148,7 +144,6 @@ func (g_ GCMotion) SensorsRequireManualActivation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCMotion) Motion() GCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
@@ -159,7 +154,6 @@ func (g_ GCMotion) Motion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-
 func (g_ GCMotion) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
@@ -169,7 +163,6 @@ func (g_ GCMotion) SetMotion(value IGCMotion) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/acceleration
-
 func (g_ GCMotion) Acceleration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("acceleration"))
 	return rv
@@ -180,7 +173,6 @@ func (g_ GCMotion) Acceleration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/acceleration
-
 func (g_ GCMotion) SetAcceleration(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAcceleration:"), value)
 }
@@ -190,7 +182,6 @@ func (g_ GCMotion) SetAcceleration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/attitude
-
 func (g_ GCMotion) Attitude() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("attitude"))
 	return rv
@@ -201,7 +192,6 @@ func (g_ GCMotion) Attitude() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/attitude
-
 func (g_ GCMotion) SetAttitude(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAttitude:"), value)
 }
@@ -211,7 +201,6 @@ func (g_ GCMotion) SetAttitude(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
-
 func (g_ GCMotion) Controller() GCController {
 	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv
@@ -222,7 +211,6 @@ func (g_ GCMotion) Controller() GCController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
-
 func (g_ GCMotion) SetController(value IGCController) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
 }
@@ -232,7 +220,6 @@ func (g_ GCMotion) SetController(value IGCController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/gravity
-
 func (g_ GCMotion) Gravity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gravity"))
 	return rv
@@ -243,7 +230,6 @@ func (g_ GCMotion) Gravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/gravity
-
 func (g_ GCMotion) SetGravity(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGravity:"), value)
 }
@@ -253,7 +239,6 @@ func (g_ GCMotion) SetGravity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
-
 func (g_ GCMotion) HasAttitude() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitude"))
 	return rv
@@ -264,7 +249,6 @@ func (g_ GCMotion) HasAttitude() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
-
 func (g_ GCMotion) SetHasAttitude(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasAttitude:"), value)
 }
@@ -274,7 +258,6 @@ func (g_ GCMotion) SetHasAttitude(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasgravityanduseracceleration
-
 func (g_ GCMotion) HasGravityAndUserAcceleration() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasGravityAndUserAcceleration"))
 	return rv
@@ -285,7 +268,6 @@ func (g_ GCMotion) HasGravityAndUserAcceleration() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasgravityanduseracceleration
-
 func (g_ GCMotion) SetHasGravityAndUserAcceleration(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasGravityAndUserAcceleration:"), value)
 }
@@ -295,7 +277,6 @@ func (g_ GCMotion) SetHasGravityAndUserAcceleration(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
-
 func (g_ GCMotion) HasRotationRate() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasRotationRate"))
 	return rv
@@ -306,7 +287,6 @@ func (g_ GCMotion) HasRotationRate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
-
 func (g_ GCMotion) SetHasRotationRate(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasRotationRate:"), value)
 }
@@ -316,7 +296,6 @@ func (g_ GCMotion) SetHasRotationRate(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
-
 func (g_ GCMotion) SensorsActive() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsActive"))
 	return rv
@@ -327,7 +306,6 @@ func (g_ GCMotion) SensorsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
-
 func (g_ GCMotion) SetSensorsActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsActive:"), value)
 }
@@ -337,7 +315,6 @@ func (g_ GCMotion) SetSensorsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/useracceleration
-
 func (g_ GCMotion) UserAcceleration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("userAcceleration"))
 	return rv
@@ -348,7 +325,6 @@ func (g_ GCMotion) UserAcceleration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/useracceleration
-
 func (g_ GCMotion) SetUserAcceleration(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUserAcceleration:"), value)
 }
@@ -358,7 +334,6 @@ func (g_ GCMotion) SetUserAcceleration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/valuechangedhandler
-
 func (g_ GCMotion) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
@@ -369,7 +344,6 @@ func (g_ GCMotion) ValueChangedHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/valuechangedhandler
-
 func (g_ GCMotion) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
 }

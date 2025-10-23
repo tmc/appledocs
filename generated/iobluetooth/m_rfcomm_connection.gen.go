@@ -32,7 +32,9 @@ type ImRFCOMMConnection interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mRFCOMMConnection
 type mRFCOMMConnection struct {
 	objectivec.Object

@@ -34,7 +34,7 @@ type IPointerFunctions interface {
 	SetUsesStrongWriteBarrier(value bool)
 	UsesWeakReadAndWriteBarriers() bool
 	SetUsesWeakReadAndWriteBarriers(value bool)
-	PointerFunctions() NSPointerFunctions
+	PointerFunctions() IPointerFunctions
 	SetPointerFunctions(value IPointerFunctions)
 }
 
@@ -108,7 +108,7 @@ func NewPointerFunctionsWithOptions(options NSPointerFunctionsOptions) PointerFu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/pointerFunctionsWithOptions:
-func (pc _PointerFunctionsClass) PointerFunctionsWithOptions(options NSPointerFunctionsOptions) PointerFunctions {
+func (pc _PointerFunctionsClass) PointerFunctionsWithOptions(options NSPointerFunctionsOptions) IPointerFunctions {
 	rv := objc.Send[PointerFunctions](objc.ID(pc.class), objc.Sel("pointerFunctionsWithOptions:"), options)
 	return rv
 }
@@ -156,7 +156,7 @@ func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-func (p_ PointerFunctions) PointerFunctions() NSPointerFunctions {
+func (p_ PointerFunctions) PointerFunctions() IPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }

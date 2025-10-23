@@ -46,7 +46,6 @@ type IMenuToolbarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem
-
 type MenuToolbarItem struct {
 	ToolbarItem
 }
@@ -97,7 +96,6 @@ func NewMenuToolbarItem() MenuToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
-
 func (m_ MenuToolbarItem) Menu() NSMenu {
 	rv := objc.Send[NSMenu](m_.ID, objc.Sel("menu"))
 	return rv
@@ -108,7 +106,6 @@ func (m_ MenuToolbarItem) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
-
 func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
@@ -116,7 +113,6 @@ func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
-
 func (m_ MenuToolbarItem) ItemMenu() Menu {
 	rv := objc.Send[Menu](m_.ID, objc.Sel("itemMenu"))
 	return rv
@@ -125,7 +121,6 @@ func (m_ MenuToolbarItem) ItemMenu() Menu {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
-
 func (m_ MenuToolbarItem) SetItemMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemMenu:"), value)
 }
@@ -135,7 +130,6 @@ func (m_ MenuToolbarItem) SetItemMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
-
 func (m_ MenuToolbarItem) ShowsIndicator() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsIndicator"))
 	return rv
@@ -146,7 +140,6 @@ func (m_ MenuToolbarItem) ShowsIndicator() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
-
 func (m_ MenuToolbarItem) SetShowsIndicator(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsIndicator:"), value)
 }

@@ -45,7 +45,6 @@ type IAccountAuthenticationModificationViewController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController
-
 type AccountAuthenticationModificationViewController struct {
 	appkit.ViewController
 }
@@ -92,12 +91,10 @@ func NewAccountAuthenticationModificationViewController() AccountAuthenticationM
 
 
 
-
 // Prepares the view controller’s interface that displays when converting an account that uses password authentication to use Sign in with Apple.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)
-
 func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"), serviceIdentifier, existingCredential, userInfo)
 }
@@ -107,7 +104,6 @@ func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
-
 func (a_ AccountAuthenticationModificationViewController) ExtensionContext() ASAccountAuthenticationModificationExtensionContext {
 	rv := objc.Send[ASAccountAuthenticationModificationExtensionContext](a_.ID, objc.Sel("extensionContext"))
 	return rv
@@ -118,7 +114,6 @@ func (a_ AccountAuthenticationModificationViewController) ExtensionContext() ASA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
-
 func (a_ AccountAuthenticationModificationViewController) SetExtensionContext(value IASAccountAuthenticationModificationExtensionContext) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtensionContext:"), value)
 }

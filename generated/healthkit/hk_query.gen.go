@@ -50,7 +50,6 @@ type IHKQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery
-
 type HKQuery struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewHKQuery() HKQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)
-
 func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source IHKSource, resourceType HKFHIRResourceType, identifier string) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, objc.String(identifier))
 	return rv
@@ -110,7 +108,6 @@ func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIde
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)
-
 func (hc _HKQueryClass) PredicateForClinicalRecordsWithFHIRResourceType(resourceType HKFHIRResourceType) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsWithFHIRResourceType:"), resourceType)
 	return rv
@@ -121,7 +118,6 @@ func (hc _HKQueryClass) PredicateForClinicalRecordsWithFHIRResourceType(resource
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForObjects(from:)-5irg9
-
 func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout IHKWorkout) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForObjectsFromWorkout:"), workout)
 	return rv
@@ -132,7 +128,6 @@ func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout IHKWorkout) found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-
 func (h_ HKQuery) HKPredicateKeyPathMetadata() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
@@ -143,7 +138,6 @@ func (h_ HKQuery) HKPredicateKeyPathMetadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-
 func (h_ HKQuery) HKPredicateKeyPathUUID() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
@@ -154,7 +148,6 @@ func (h_ HKQuery) HKPredicateKeyPathUUID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-
 func (h_ HKQuery) ObjectType() HKObjectType {
 	rv := objc.Send[HKObjectType](h_.ID, objc.Sel("objectType"))
 	return rv
@@ -165,7 +158,6 @@ func (h_ HKQuery) ObjectType() HKObjectType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-
 func (h_ HKQuery) SetObjectType(value HKObjectType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjectType:"), value)
 }
@@ -175,7 +167,6 @@ func (h_ HKQuery) SetObjectType(value HKObjectType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
-
 func (h_ HKQuery) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
@@ -186,7 +177,6 @@ func (h_ HKQuery) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
-
 func (h_ HKQuery) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
@@ -196,7 +186,6 @@ func (h_ HKQuery) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-
 func (h_ HKQuery) SampleType() HKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
@@ -207,7 +196,6 @@ func (h_ HKQuery) SampleType() HKSampleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-
 func (h_ HKQuery) SetSampleType(value HKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }

@@ -36,7 +36,9 @@ type IEnvironmentState interface {
 	UserPassword() LAEnvironmentMechanismUserPassword
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class
 type EnvironmentState struct {
 	objectivec.Object
@@ -79,28 +81,32 @@ func NewEnvironmentState() EnvironmentState {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/allMechanisms
 func (e_ EnvironmentState) AllMechanisms() []EnvironmentMechanism {
 	rv := objc.Send[[]EnvironmentMechanism](e_.ID, objc.Sel("allMechanisms"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/biometry
 func (e_ EnvironmentState) Biometry() LAEnvironmentMechanismBiometry {
 	rv := objc.Send[LAEnvironmentMechanismBiometry](e_.ID, objc.Sel("biometry"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/companions
 func (e_ EnvironmentState) Companions() []EnvironmentMechanismCompanion {
 	rv := objc.Send[[]EnvironmentMechanismCompanion](e_.ID, objc.Sel("companions"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/userPassword
 func (e_ EnvironmentState) UserPassword() LAEnvironmentMechanismUserPassword {
 	rv := objc.Send[LAEnvironmentMechanismUserPassword](e_.ID, objc.Sel("userPassword"))

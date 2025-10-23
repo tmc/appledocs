@@ -41,7 +41,6 @@ type ICNContactsUserDefaults interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults
-
 type CNContactsUserDefaults struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewCNContactsUserDefaults() CNContactsUserDefaults {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/shared()
-
 func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedDefaults"))
 	return rv
@@ -101,7 +99,6 @@ func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/countryCode
-
 func (c_ CNContactsUserDefaults) CountryCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
@@ -112,7 +109,6 @@ func (c_ CNContactsUserDefaults) CountryCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/sortOrder
-
 func (c_ CNContactsUserDefaults) SortOrder() CNContactSortOrder {
 	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv

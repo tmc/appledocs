@@ -39,14 +39,14 @@ type IGLKView interface {
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DrawableColorFormat() GLKViewDrawableColorFormat
-	SetDrawableColorFormat(value GLKViewDrawableColorFormat)
+	SetDrawableColorFormat(value IGLKViewDrawableColorFormat)
 	DrawableDepthFormat() GLKViewDrawableDepthFormat
-	SetDrawableDepthFormat(value GLKViewDrawableDepthFormat)
+	SetDrawableDepthFormat(value IGLKViewDrawableDepthFormat)
 	DrawableHeight() int
 	DrawableMultisample() GLKViewDrawableMultisample
 	SetDrawableMultisample(value IGLKViewDrawableMultisample)
 	DrawableStencilFormat() GLKViewDrawableStencilFormat
-	SetDrawableStencilFormat(value GLKViewDrawableStencilFormat)
+	SetDrawableStencilFormat(value IGLKViewDrawableStencilFormat)
 	DrawableWidth() int
 	EnableSetNeedsDisplay() bool
 	SetEnableSetNeedsDisplay(value bool)
@@ -62,7 +62,6 @@ type IGLKView interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView
-
 type GLKView struct {
 	appkit.View
 }
@@ -109,12 +108,10 @@ func NewGLKView() GLKView {
 
 
 
-
 // Initializes a new view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/init(frame:context:)
-
 func NewGLKViewWithFrameContext(frame coregraphics.CGRect, context unsafe.Pointer) GLKView {
 	instance := getGLKViewClass().Alloc()
 	rv := objc.Send[GLKView](instance.ID, objc.Sel("initWithFrame:context:"), frame, context)
@@ -124,34 +121,28 @@ func NewGLKViewWithFrameContext(frame coregraphics.CGRect, context unsafe.Pointe
 
 
 
-
 // Binds the underlying framebuffer object to OpenGL ES.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/bindDrawable()
-
 func (g_ GLKView) BindDrawable() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("bindDrawable"))
 }
-
 
 
 // Deletes the drawable object associated with the view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/deleteDrawable()
-
 func (g_ GLKView) DeleteDrawable() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("deleteDrawable"))
 }
-
 
 
 // Redraws the view’s contents immediately.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/display()
-
 func (g_ GLKView) Display() {
 	objc.Send[objc.ID](g_.ID, objc.Sel("display"))
 }
@@ -161,7 +152,6 @@ func (g_ GLKView) Display() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/context
-
 func (g_ GLKView) Context() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("context"))
 	return rv
@@ -172,7 +162,6 @@ func (g_ GLKView) Context() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/context
-
 func (g_ GLKView) SetContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContext:"), value)
 }
@@ -182,7 +171,6 @@ func (g_ GLKView) SetContext(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/delegate
-
 func (g_ GLKView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
 	return rv
@@ -193,7 +181,6 @@ func (g_ GLKView) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/delegate
-
 func (g_ GLKView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -203,7 +190,6 @@ func (g_ GLKView) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-
 func (g_ GLKView) DrawableColorFormat() GLKViewDrawableColorFormat {
 	rv := objc.Send[GLKViewDrawableColorFormat](g_.ID, objc.Sel("drawableColorFormat"))
 	return rv
@@ -214,8 +200,7 @@ func (g_ GLKView) DrawableColorFormat() GLKViewDrawableColorFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-
-func (g_ GLKView) SetDrawableColorFormat(value GLKViewDrawableColorFormat) {
+func (g_ GLKView) SetDrawableColorFormat(value IGLKViewDrawableColorFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableColorFormat:"), value)
 }
 
@@ -224,7 +209,6 @@ func (g_ GLKView) SetDrawableColorFormat(value GLKViewDrawableColorFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-
 func (g_ GLKView) DrawableDepthFormat() GLKViewDrawableDepthFormat {
 	rv := objc.Send[GLKViewDrawableDepthFormat](g_.ID, objc.Sel("drawableDepthFormat"))
 	return rv
@@ -235,8 +219,7 @@ func (g_ GLKView) DrawableDepthFormat() GLKViewDrawableDepthFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-
-func (g_ GLKView) SetDrawableDepthFormat(value GLKViewDrawableDepthFormat) {
+func (g_ GLKView) SetDrawableDepthFormat(value IGLKViewDrawableDepthFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableDepthFormat:"), value)
 }
 
@@ -245,7 +228,6 @@ func (g_ GLKView) SetDrawableDepthFormat(value GLKViewDrawableDepthFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableHeight
-
 func (g_ GLKView) DrawableHeight() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("drawableHeight"))
 	return rv
@@ -256,7 +238,6 @@ func (g_ GLKView) DrawableHeight() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-
 func (g_ GLKView) DrawableMultisample() GLKViewDrawableMultisample {
 	rv := objc.Send[GLKViewDrawableMultisample](g_.ID, objc.Sel("drawableMultisample"))
 	return rv
@@ -267,7 +248,6 @@ func (g_ GLKView) DrawableMultisample() GLKViewDrawableMultisample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-
 func (g_ GLKView) SetDrawableMultisample(value IGLKViewDrawableMultisample) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableMultisample:"), value)
 }
@@ -277,7 +257,6 @@ func (g_ GLKView) SetDrawableMultisample(value IGLKViewDrawableMultisample) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-
 func (g_ GLKView) DrawableStencilFormat() GLKViewDrawableStencilFormat {
 	rv := objc.Send[GLKViewDrawableStencilFormat](g_.ID, objc.Sel("drawableStencilFormat"))
 	return rv
@@ -288,8 +267,7 @@ func (g_ GLKView) DrawableStencilFormat() GLKViewDrawableStencilFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-
-func (g_ GLKView) SetDrawableStencilFormat(value GLKViewDrawableStencilFormat) {
+func (g_ GLKView) SetDrawableStencilFormat(value IGLKViewDrawableStencilFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableStencilFormat:"), value)
 }
 
@@ -298,7 +276,6 @@ func (g_ GLKView) SetDrawableStencilFormat(value GLKViewDrawableStencilFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableWidth
-
 func (g_ GLKView) DrawableWidth() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("drawableWidth"))
 	return rv
@@ -309,7 +286,6 @@ func (g_ GLKView) DrawableWidth() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/enableSetNeedsDisplay
-
 func (g_ GLKView) EnableSetNeedsDisplay() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("enableSetNeedsDisplay"))
 	return rv
@@ -320,7 +296,6 @@ func (g_ GLKView) EnableSetNeedsDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/enableSetNeedsDisplay
-
 func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnableSetNeedsDisplay:"), value)
 }
@@ -330,7 +305,6 @@ func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/snapshot
-
 func (g_ GLKView) Snapshot() appkit.Image {
 	rv := objc.Send[appkit.Image](g_.ID, objc.Sel("snapshot"))
 	return rv

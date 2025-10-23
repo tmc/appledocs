@@ -135,7 +135,7 @@ func (uc _UnitEnergyClass) KilowattHours() UnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/calories
-func (u_ UnitEnergy) Calories() NSUnitEnergy {
+func (u_ UnitEnergy) Calories() IUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("calories"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (u_ UnitEnergy) Calories() NSUnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/joules
-func (u_ UnitEnergy) Joules() NSUnitEnergy {
+func (u_ UnitEnergy) Joules() IUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("joules"))
 	return rv
 }
@@ -155,7 +155,7 @@ func (u_ UnitEnergy) Joules() NSUnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
-func (u_ UnitEnergy) Kilocalories() NSUnitEnergy {
+func (u_ UnitEnergy) Kilocalories() IUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilocalories"))
 	return rv
 }
@@ -165,7 +165,7 @@ func (u_ UnitEnergy) Kilocalories() NSUnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilojoules
-func (u_ UnitEnergy) Kilojoules() NSUnitEnergy {
+func (u_ UnitEnergy) Kilojoules() IUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilojoules"))
 	return rv
 }
@@ -175,7 +175,7 @@ func (u_ UnitEnergy) Kilojoules() NSUnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilowattHours
-func (u_ UnitEnergy) KilowattHours() NSUnitEnergy {
+func (u_ UnitEnergy) KilowattHours() IUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilowattHours"))
 	return rv
 }

@@ -49,7 +49,7 @@ type IAudioUnit interface {
 	SaveUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool
 	SelectViewConfiguration(viewConfiguration coreaudiokit.IAudioUnitViewConfiguration)
 	SetDeviceIDError(deviceID IAudioObjectID, outError unsafe.Pointer) bool
-	ShouldChangeToFormatForBus(format avfaudio.AudioFormat, bus IAUAudioUnitBus) bool
+	ShouldChangeToFormatForBus(format avfaudio.IAudioFormat, bus IAUAudioUnitBus) bool
 	StartHardwareAndReturnError(outError unsafe.Pointer) bool
 	StopHardware()
 	SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.IAudioUnitViewConfiguration) foundation.IndexSet
@@ -188,7 +188,6 @@ type IAudioUnit interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit
-
 type AudioUnit struct {
 	objectivec.Object
 }
@@ -233,12 +232,10 @@ func NewAudioUnit() AudioUnit {
 
 
 
-
 // Synchronously initializes a new audio unit object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/init(componentDescription:)
-
 func NewAudioUnitWithComponentDescriptionError(componentDescription unsafe.Pointer, outError unsafe.Pointer) AudioUnit {
 	instance := getAudioUnitClass().Alloc()
 	rv := objc.Send[AudioUnit](instance.ID, objc.Sel("initWithComponentDescription:error:"), componentDescription, outError)
@@ -247,12 +244,10 @@ func NewAudioUnitWithComponentDescriptionError(componentDescription unsafe.Point
 }
 
 
-
 // Synchronously initializes a new audio unit object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/init(componentDescription:options:)
-
 func NewAudioUnitWithComponentDescriptionOptionsError(componentDescription unsafe.Pointer, options AudioComponentInstantiationOptions, outError unsafe.Pointer) AudioUnit {
 	instance := getAudioUnitClass().Alloc()
 	rv := objc.Send[AudioUnit](instance.ID, objc.Sel("initWithComponentDescription:options:error:"), componentDescription, options, outError)
@@ -266,7 +261,6 @@ func NewAudioUnitWithComponentDescriptionOptionsError(componentDescription unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/instantiate(with:options:completionHandler:)
-
 func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHandler(componentDescription unsafe.Pointer, options AudioComponentInstantiationOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("instantiateWithComponentDescription:options:completionHandler:"), componentDescription, options, completionHandler)
 }
@@ -276,224 +270,183 @@ func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/registerSubclass(_:as:name:version:)
-
 func (ac _AudioUnitClass) RegisterSubclassAsComponentDescriptionNameVersion(cls objc.Class, componentDescription unsafe.Pointer, name string, version unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("registerSubclass:asComponentDescription:name:version:"), cls, componentDescription, objc.String(name), version)
 }
-
 
 
 // Allocates resources required to render audio.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/allocateRenderResources()
-
 func (a_ AudioUnit) AllocateRenderResourcesAndReturnError(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allocateRenderResourcesAndReturnError:"), outError)
 	return rv
 }
 
 
-
 // Deallocates resources required to render audio.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/deallocateRenderResources()
-
 func (a_ AudioUnit) DeallocateRenderResources() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("deallocateRenderResources"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/deleteUserPreset(_:)
-
 func (a_ AudioUnit) DeleteUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("deleteUserPreset:error:"), userPreset, outError)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/disableProfile(_:cable:onChannel:)
-
 func (a_ AudioUnit) DisableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("disableProfile:cable:onChannel:error:"), profile, cable, channel, outError)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/enable(_:cable:onChannel:)
-
 func (a_ AudioUnit) EnableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enableProfile:cable:onChannel:error:"), profile, cable, channel, outError)
 	return rv
 }
 
 
-
 // Returns an object for bidirectional communication between an audio unit and its host.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/messageChannel(for:)
-
 func (a_ AudioUnit) MessageChannelFor(channelName string) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("messageChannelFor:"), objc.String(channelName))
 	return rv
 }
 
 
-
 // Returns the audio unit’s most important parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/parametersForOverview(withCount:)
-
 func (a_ AudioUnit) ParametersForOverviewWithCount(count int) []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("parametersForOverviewWithCount:"), count)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/presetState(for:)
-
 func (a_ AudioUnit) PresetStateForError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presetStateFor:error:"), userPreset, outError)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/profileState(forCable:channel:)
-
 func (a_ AudioUnit) ProfileStateForCableChannel(cable unsafe.Pointer, channel IMIDIChannelNumber) coremidi.MIDICIProfileState {
 	rv := objc.Send[coremidi.MIDICIProfileState](a_.ID, objc.Sel("profileStateForCable:channel:"), cable, channel)
 	return rv
 }
 
 
-
 // Removes an observer block previously added to the render cycle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/removeRenderObserver(_:)
-
 func (a_ AudioUnit) RemoveRenderObserver(token int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeRenderObserver:"), token)
 }
-
 
 
 // Requests an audio unit’s custom view controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/requestViewController(completionHandler:)
-
 func (a_ AudioUnit) RequestViewControllerWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("requestViewControllerWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Resets transitory rendering state to its initial state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/reset()
-
 func (a_ AudioUnit) Reset() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("reset"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/saveUserPreset(_:)
-
 func (a_ AudioUnit) SaveUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("saveUserPreset:error:"), userPreset, outError)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/select(_:)
-
 func (a_ AudioUnit) SelectViewConfiguration(viewConfiguration coreaudiokit.IAudioUnitViewConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectViewConfiguration:"), viewConfiguration)
 }
-
 
 
 // Sets the I/O hardware device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/setDeviceID(_:)
-
 func (a_ AudioUnit) SetDeviceIDError(deviceID IAudioObjectID, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setDeviceID:error:"), deviceID, outError)
 	return rv
 }
 
 
-
 // This is called when you set the format on a bus.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/shouldChange(to:for:)
-
-func (a_ AudioUnit) ShouldChangeToFormatForBus(format avfaudio.AudioFormat, bus IAUAudioUnitBus) bool {
+func (a_ AudioUnit) ShouldChangeToFormatForBus(format avfaudio.IAudioFormat, bus IAUAudioUnitBus) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldChangeToFormat:forBus:"), format, bus)
 	return rv
 }
-
 
 
 // Starts the audio hardware.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/startHardware()
-
 func (a_ AudioUnit) StartHardwareAndReturnError(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("startHardwareAndReturnError:"), outError)
 	return rv
 }
 
 
-
 // Stops the audio hardware.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/stopHardware()
-
 func (a_ AudioUnit) StopHardware() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stopHardware"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/supportedViewConfigurations(_:)
-
 func (a_ AudioUnit) SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.IAudioUnitViewConfiguration) foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](a_.ID, objc.Sel("supportedViewConfigurations:"), availableViewConfigurations)
 	return rv
 }
 
 
-
 // Adds a block to be called on each render cycle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/token(byAddingRenderObserver:)
-
 func (a_ AudioUnit) TokenByAddingRenderObserver(observer unsafe.Pointer) int {
 	rv := objc.Send[int](a_.ID, objc.Sel("tokenByAddingRenderObserver:"), observer)
 	return rv
@@ -504,7 +457,6 @@ func (a_ AudioUnit) TokenByAddingRenderObserver(observer unsafe.Pointer) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/allParameterValues
-
 func (a_ AudioUnit) AllParameterValues() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allParameterValues"))
 	return rv
@@ -513,7 +465,6 @@ func (a_ AudioUnit) AllParameterValues() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitMIDIProtocol
-
 func (a_ AudioUnit) AudioUnitMIDIProtocol() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("AudioUnitMIDIProtocol"))
 	return rv
@@ -524,7 +475,6 @@ func (a_ AudioUnit) AudioUnitMIDIProtocol() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitName
-
 func (a_ AudioUnit) AudioUnitName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("audioUnitName"))
 	return rv
@@ -533,7 +483,6 @@ func (a_ AudioUnit) AudioUnitName() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitShortName
-
 func (a_ AudioUnit) AudioUnitShortName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("audioUnitShortName"))
 	return rv
@@ -544,7 +493,6 @@ func (a_ AudioUnit) AudioUnitShortName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/canPerformInput
-
 func (a_ AudioUnit) CanPerformInput() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformInput"))
 	return rv
@@ -555,7 +503,6 @@ func (a_ AudioUnit) CanPerformInput() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/canPerformOutput
-
 func (a_ AudioUnit) CanPerformOutput() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformOutput"))
 	return rv
@@ -566,7 +513,6 @@ func (a_ AudioUnit) CanPerformOutput() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/canProcessInPlace
-
 func (a_ AudioUnit) CanProcessInPlace() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canProcessInPlace"))
 	return rv
@@ -577,7 +523,6 @@ func (a_ AudioUnit) CanProcessInPlace() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelCapabilities
-
 func (a_ AudioUnit) ChannelCapabilities() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("channelCapabilities"))
 	return rv
@@ -586,7 +531,6 @@ func (a_ AudioUnit) ChannelCapabilities() []foundation.Number {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelMap
-
 func (a_ AudioUnit) ChannelMap() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("channelMap"))
 	return rv
@@ -595,7 +539,6 @@ func (a_ AudioUnit) ChannelMap() []foundation.Number {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelMap
-
 func (a_ AudioUnit) SetChannelMap(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -615,7 +558,6 @@ func (a_ AudioUnit) SetChannelMap(value []foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/component
-
 func (a_ AudioUnit) Component() AudioComponent {
 	rv := objc.Send[AudioComponent](a_.ID, objc.Sel("component"))
 	return rv
@@ -626,7 +568,6 @@ func (a_ AudioUnit) Component() AudioComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/componentDescription
-
 func (a_ AudioUnit) ComponentDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("componentDescription"))
 	return rv
@@ -637,7 +578,6 @@ func (a_ AudioUnit) ComponentDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/componentName
-
 func (a_ AudioUnit) ComponentName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("componentName"))
 	return rv
@@ -648,7 +588,6 @@ func (a_ AudioUnit) ComponentName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/componentVersion
-
 func (a_ AudioUnit) ComponentVersion() uint32 {
 	rv := objc.Send[uint32](a_.ID, objc.Sel("componentVersion"))
 	return rv
@@ -659,7 +598,6 @@ func (a_ AudioUnit) ComponentVersion() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/contextName
-
 func (a_ AudioUnit) ContextName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("contextName"))
 	return rv
@@ -670,7 +608,6 @@ func (a_ AudioUnit) ContextName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/contextName
-
 func (a_ AudioUnit) SetContextName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContextName:"), objc.String(value))
 }
@@ -680,7 +617,6 @@ func (a_ AudioUnit) SetContextName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/currentPreset
-
 func (a_ AudioUnit) CurrentPreset() AUAudioUnitPreset {
 	rv := objc.Send[AUAudioUnitPreset](a_.ID, objc.Sel("currentPreset"))
 	return rv
@@ -691,7 +627,6 @@ func (a_ AudioUnit) CurrentPreset() AUAudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/currentPreset
-
 func (a_ AudioUnit) SetCurrentPreset(value IAUAudioUnitPreset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPreset:"), value)
 }
@@ -701,7 +636,6 @@ func (a_ AudioUnit) SetCurrentPreset(value IAUAudioUnitPreset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/deviceID
-
 func (a_ AudioUnit) DeviceID() AudioObjectID {
 	rv := objc.Send[AudioObjectID](a_.ID, objc.Sel("deviceID"))
 	return rv
@@ -712,7 +646,6 @@ func (a_ AudioUnit) DeviceID() AudioObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/deviceInputLatency
-
 func (a_ AudioUnit) DeviceInputLatency() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("deviceInputLatency"))
 	return rv
@@ -723,7 +656,6 @@ func (a_ AudioUnit) DeviceInputLatency() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/deviceOutputLatency
-
 func (a_ AudioUnit) DeviceOutputLatency() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("deviceOutputLatency"))
 	return rv
@@ -734,7 +666,6 @@ func (a_ AudioUnit) DeviceOutputLatency() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/factoryPresets
-
 func (a_ AudioUnit) FactoryPresets() []AudioUnitPreset {
 	rv := objc.Send[[]AudioUnitPreset](a_.ID, objc.Sel("factoryPresets"))
 	return rv
@@ -745,7 +676,6 @@ func (a_ AudioUnit) FactoryPresets() []AudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullState
-
 func (a_ AudioUnit) FullState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fullState"))
 	return rv
@@ -756,7 +686,6 @@ func (a_ AudioUnit) FullState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullState
-
 func (a_ AudioUnit) SetFullState(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), value)
 }
@@ -766,7 +695,6 @@ func (a_ AudioUnit) SetFullState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument
-
 func (a_ AudioUnit) FullStateForDocument() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fullStateForDocument"))
 	return rv
@@ -777,7 +705,6 @@ func (a_ AudioUnit) FullStateForDocument() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument
-
 func (a_ AudioUnit) SetFullStateForDocument(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), value)
 }
@@ -785,7 +712,6 @@ func (a_ AudioUnit) SetFullStateForDocument(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/hostMIDIProtocol
-
 func (a_ AudioUnit) HostMIDIProtocol() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("hostMIDIProtocol"))
 	return rv
@@ -794,7 +720,6 @@ func (a_ AudioUnit) HostMIDIProtocol() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/hostMIDIProtocol
-
 func (a_ AudioUnit) SetHostMIDIProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHostMIDIProtocol:"), value)
 }
@@ -804,7 +729,6 @@ func (a_ AudioUnit) SetHostMIDIProtocol(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/inputBusses
-
 func (a_ AudioUnit) InputBusses() AUAudioUnitBusArray {
 	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("inputBusses"))
 	return rv
@@ -815,7 +739,6 @@ func (a_ AudioUnit) InputBusses() AUAudioUnitBusArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/inputHandler
-
 func (a_ AudioUnit) InputHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputHandler"))
 	return rv
@@ -826,7 +749,6 @@ func (a_ AudioUnit) InputHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/inputHandler
-
 func (a_ AudioUnit) SetInputHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputHandler:"), value)
 }
@@ -836,7 +758,6 @@ func (a_ AudioUnit) SetInputHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/intendedSpatialExperience-1dvhd
-
 func (a_ AudioUnit) IntendedSpatialExperience() CASpatialAudioExperience {
 	rv := objc.Send[CASpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
@@ -847,7 +768,6 @@ func (a_ AudioUnit) IntendedSpatialExperience() CASpatialAudioExperience {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/intendedSpatialExperience-1dvhd
-
 func (a_ AudioUnit) SetIntendedSpatialExperience(value ISpatialAudioExperience) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }
@@ -857,7 +777,6 @@ func (a_ AudioUnit) SetIntendedSpatialExperience(value ISpatialAudioExperience) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/internalRenderBlock
-
 func (a_ AudioUnit) InternalRenderBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("internalRenderBlock"))
 	return rv
@@ -868,7 +787,6 @@ func (a_ AudioUnit) InternalRenderBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isInputEnabled
-
 func (a_ AudioUnit) InputEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("inputEnabled"))
 	return rv
@@ -879,7 +797,6 @@ func (a_ AudioUnit) InputEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isInputEnabled
-
 func (a_ AudioUnit) SetInputEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputEnabled:"), value)
 }
@@ -887,7 +804,6 @@ func (a_ AudioUnit) SetInputEnabled(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isLoadedInProcess
-
 func (a_ AudioUnit) IsLoadedInProcess() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isLoadedInProcess"))
 	return rv
@@ -898,7 +814,6 @@ func (a_ AudioUnit) IsLoadedInProcess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isMusicDeviceOrEffect
-
 func (a_ AudioUnit) MusicDeviceOrEffect() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("musicDeviceOrEffect"))
 	return rv
@@ -909,7 +824,6 @@ func (a_ AudioUnit) MusicDeviceOrEffect() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isOutputEnabled
-
 func (a_ AudioUnit) OutputEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("outputEnabled"))
 	return rv
@@ -920,7 +834,6 @@ func (a_ AudioUnit) OutputEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isOutputEnabled
-
 func (a_ AudioUnit) SetOutputEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputEnabled:"), value)
 }
@@ -930,7 +843,6 @@ func (a_ AudioUnit) SetOutputEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isRenderingOffline
-
 func (a_ AudioUnit) RenderingOffline() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("renderingOffline"))
 	return rv
@@ -941,7 +853,6 @@ func (a_ AudioUnit) RenderingOffline() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isRenderingOffline
-
 func (a_ AudioUnit) SetRenderingOffline(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRenderingOffline:"), value)
 }
@@ -949,7 +860,6 @@ func (a_ AudioUnit) SetRenderingOffline(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/isRunning
-
 func (a_ AudioUnit) Running() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("running"))
 	return rv
@@ -960,7 +870,6 @@ func (a_ AudioUnit) Running() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/latency
-
 func (a_ AudioUnit) Latency() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("latency"))
 	return rv
@@ -971,7 +880,6 @@ func (a_ AudioUnit) Latency() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/manufacturerName
-
 func (a_ AudioUnit) ManufacturerName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
 	return rv
@@ -982,7 +890,6 @@ func (a_ AudioUnit) ManufacturerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/maximumFramesToRender
-
 func (a_ AudioUnit) MaximumFramesToRender() AudioFrameCount {
 	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("maximumFramesToRender"))
 	return rv
@@ -993,7 +900,6 @@ func (a_ AudioUnit) MaximumFramesToRender() AudioFrameCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/maximumFramesToRender
-
 func (a_ AudioUnit) SetMaximumFramesToRender(value IAudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumFramesToRender:"), value)
 }
@@ -1001,7 +907,6 @@ func (a_ AudioUnit) SetMaximumFramesToRender(value IAudioFrameCount) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputBufferSizeHint
-
 func (a_ AudioUnit) MIDIOutputBufferSizeHint() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("MIDIOutputBufferSizeHint"))
 	return rv
@@ -1010,7 +915,6 @@ func (a_ AudioUnit) MIDIOutputBufferSizeHint() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputBufferSizeHint
-
 func (a_ AudioUnit) SetMIDIOutputBufferSizeHint(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMIDIOutputBufferSizeHint:"), value)
 }
@@ -1018,7 +922,6 @@ func (a_ AudioUnit) SetMIDIOutputBufferSizeHint(value int) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock
-
 func (a_ AudioUnit) MIDIOutputEventBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("MIDIOutputEventBlock"))
 	return rv
@@ -1027,7 +930,6 @@ func (a_ AudioUnit) MIDIOutputEventBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock
-
 func (a_ AudioUnit) SetMIDIOutputEventBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMIDIOutputEventBlock:"), value)
 }
@@ -1035,7 +937,6 @@ func (a_ AudioUnit) SetMIDIOutputEventBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputEventListBlock
-
 func (a_ AudioUnit) MIDIOutputEventListBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("MIDIOutputEventListBlock"))
 	return rv
@@ -1044,7 +945,6 @@ func (a_ AudioUnit) MIDIOutputEventListBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputEventListBlock
-
 func (a_ AudioUnit) SetMIDIOutputEventListBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMIDIOutputEventListBlock:"), value)
 }
@@ -1054,7 +954,6 @@ func (a_ AudioUnit) SetMIDIOutputEventListBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/midiOutputNames
-
 func (a_ AudioUnit) MIDIOutputNames() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("MIDIOutputNames"))
 	return rv
@@ -1063,7 +962,6 @@ func (a_ AudioUnit) MIDIOutputNames() []string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/migrateFromPlugin
-
 func (a_ AudioUnit) MigrateFromPlugin() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("migrateFromPlugin"))
 	return rv
@@ -1074,7 +972,6 @@ func (a_ AudioUnit) MigrateFromPlugin() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/musicalContextBlock
-
 func (a_ AudioUnit) MusicalContextBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("musicalContextBlock"))
 	return rv
@@ -1085,7 +982,6 @@ func (a_ AudioUnit) MusicalContextBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/musicalContextBlock
-
 func (a_ AudioUnit) SetMusicalContextBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicalContextBlock:"), value)
 }
@@ -1095,7 +991,6 @@ func (a_ AudioUnit) SetMusicalContextBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/osWorkgroup
-
 func (a_ AudioUnit) OsWorkgroup() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("osWorkgroup"))
 	return rv
@@ -1106,7 +1001,6 @@ func (a_ AudioUnit) OsWorkgroup() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/outputBusses
-
 func (a_ AudioUnit) OutputBusses() AUAudioUnitBusArray {
 	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("outputBusses"))
 	return rv
@@ -1117,7 +1011,6 @@ func (a_ AudioUnit) OutputBusses() AUAudioUnitBusArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/outputProvider
-
 func (a_ AudioUnit) OutputProvider() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputProvider"))
 	return rv
@@ -1128,7 +1021,6 @@ func (a_ AudioUnit) OutputProvider() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/outputProvider
-
 func (a_ AudioUnit) SetOutputProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputProvider:"), value)
 }
@@ -1138,7 +1030,6 @@ func (a_ AudioUnit) SetOutputProvider(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/parameterTree
-
 func (a_ AudioUnit) ParameterTree() AUParameterTree {
 	rv := objc.Send[AUParameterTree](a_.ID, objc.Sel("parameterTree"))
 	return rv
@@ -1149,7 +1040,6 @@ func (a_ AudioUnit) ParameterTree() AUParameterTree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/parameterTree
-
 func (a_ AudioUnit) SetParameterTree(value IAUParameterTree) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameterTree:"), value)
 }
@@ -1157,7 +1047,6 @@ func (a_ AudioUnit) SetParameterTree(value IAUParameterTree) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/profileChangedBlock
-
 func (a_ AudioUnit) ProfileChangedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("profileChangedBlock"))
 	return rv
@@ -1166,7 +1055,6 @@ func (a_ AudioUnit) ProfileChangedBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/profileChangedBlock
-
 func (a_ AudioUnit) SetProfileChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProfileChangedBlock:"), value)
 }
@@ -1176,7 +1064,6 @@ func (a_ AudioUnit) SetProfileChangedBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/providesUserInterface
-
 func (a_ AudioUnit) ProvidesUserInterface() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("providesUserInterface"))
 	return rv
@@ -1187,7 +1074,6 @@ func (a_ AudioUnit) ProvidesUserInterface() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/renderBlock
-
 func (a_ AudioUnit) RenderBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("renderBlock"))
 	return rv
@@ -1198,7 +1084,6 @@ func (a_ AudioUnit) RenderBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/renderContextObserver
-
 func (a_ AudioUnit) RenderContextObserver() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("renderContextObserver"))
 	return rv
@@ -1209,7 +1094,6 @@ func (a_ AudioUnit) RenderContextObserver() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/renderQuality
-
 func (a_ AudioUnit) RenderQuality() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("renderQuality"))
 	return rv
@@ -1220,7 +1104,6 @@ func (a_ AudioUnit) RenderQuality() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/renderQuality
-
 func (a_ AudioUnit) SetRenderQuality(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRenderQuality:"), value)
 }
@@ -1230,7 +1113,6 @@ func (a_ AudioUnit) SetRenderQuality(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/renderResourcesAllocated
-
 func (a_ AudioUnit) RenderResourcesAllocated() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("renderResourcesAllocated"))
 	return rv
@@ -1241,7 +1123,6 @@ func (a_ AudioUnit) RenderResourcesAllocated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/scheduleMIDIEventBlock
-
 func (a_ AudioUnit) ScheduleMIDIEventBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("scheduleMIDIEventBlock"))
 	return rv
@@ -1250,7 +1131,6 @@ func (a_ AudioUnit) ScheduleMIDIEventBlock() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/scheduleMIDIEventListBlock
-
 func (a_ AudioUnit) ScheduleMIDIEventListBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("scheduleMIDIEventListBlock"))
 	return rv
@@ -1261,7 +1141,6 @@ func (a_ AudioUnit) ScheduleMIDIEventListBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/scheduleParameterBlock
-
 func (a_ AudioUnit) ScheduleParameterBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("scheduleParameterBlock"))
 	return rv
@@ -1272,7 +1151,6 @@ func (a_ AudioUnit) ScheduleParameterBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/shouldBypassEffect
-
 func (a_ AudioUnit) ShouldBypassEffect() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldBypassEffect"))
 	return rv
@@ -1283,7 +1161,6 @@ func (a_ AudioUnit) ShouldBypassEffect() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/shouldBypassEffect
-
 func (a_ AudioUnit) SetShouldBypassEffect(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldBypassEffect:"), value)
 }
@@ -1293,7 +1170,6 @@ func (a_ AudioUnit) SetShouldBypassEffect(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/supportsMPE
-
 func (a_ AudioUnit) SupportsMPE() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supportsMPE"))
 	return rv
@@ -1302,7 +1178,6 @@ func (a_ AudioUnit) SupportsMPE() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/supportsUserPresets
-
 func (a_ AudioUnit) SupportsUserPresets() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supportsUserPresets"))
 	return rv
@@ -1313,7 +1188,6 @@ func (a_ AudioUnit) SupportsUserPresets() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/tailTime
-
 func (a_ AudioUnit) TailTime() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("tailTime"))
 	return rv
@@ -1324,7 +1198,6 @@ func (a_ AudioUnit) TailTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/transportStateBlock
-
 func (a_ AudioUnit) TransportStateBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transportStateBlock"))
 	return rv
@@ -1335,7 +1208,6 @@ func (a_ AudioUnit) TransportStateBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/transportStateBlock
-
 func (a_ AudioUnit) SetTransportStateBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransportStateBlock:"), value)
 }
@@ -1343,7 +1215,6 @@ func (a_ AudioUnit) SetTransportStateBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/userPresets
-
 func (a_ AudioUnit) UserPresets() []AudioUnitPreset {
 	rv := objc.Send[[]AudioUnitPreset](a_.ID, objc.Sel("userPresets"))
 	return rv
@@ -1354,7 +1225,6 @@ func (a_ AudioUnit) UserPresets() []AudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/virtualMIDICableCount
-
 func (a_ AudioUnit) VirtualMIDICableCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("virtualMIDICableCount"))
 	return rv
@@ -1365,7 +1235,6 @@ func (a_ AudioUnit) VirtualMIDICableCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isinputenabled
-
 func (a_ AudioUnit) IsInputEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInputEnabled"))
 	return rv
@@ -1376,7 +1245,6 @@ func (a_ AudioUnit) IsInputEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isinputenabled
-
 func (a_ AudioUnit) SetIsInputEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInputEnabled:"), value)
 }
@@ -1386,7 +1254,6 @@ func (a_ AudioUnit) SetIsInputEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect
-
 func (a_ AudioUnit) IsMusicDeviceOrEffect() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isMusicDeviceOrEffect"))
 	return rv
@@ -1397,7 +1264,6 @@ func (a_ AudioUnit) IsMusicDeviceOrEffect() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect
-
 func (a_ AudioUnit) SetIsMusicDeviceOrEffect(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMusicDeviceOrEffect:"), value)
 }
@@ -1407,7 +1273,6 @@ func (a_ AudioUnit) SetIsMusicDeviceOrEffect(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isoutputenabled
-
 func (a_ AudioUnit) IsOutputEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isOutputEnabled"))
 	return rv
@@ -1418,7 +1283,6 @@ func (a_ AudioUnit) IsOutputEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isoutputenabled
-
 func (a_ AudioUnit) SetIsOutputEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOutputEnabled:"), value)
 }
@@ -1428,7 +1292,6 @@ func (a_ AudioUnit) SetIsOutputEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrenderingoffline
-
 func (a_ AudioUnit) IsRenderingOffline() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRenderingOffline"))
 	return rv
@@ -1439,7 +1302,6 @@ func (a_ AudioUnit) IsRenderingOffline() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrenderingoffline
-
 func (a_ AudioUnit) SetIsRenderingOffline(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRenderingOffline:"), value)
 }
@@ -1447,7 +1309,6 @@ func (a_ AudioUnit) SetIsRenderingOffline(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrunning
-
 func (a_ AudioUnit) IsRunning() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
@@ -1456,7 +1317,6 @@ func (a_ AudioUnit) IsRunning() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/isrunning
-
 func (a_ AudioUnit) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
@@ -1464,7 +1324,6 @@ func (a_ AudioUnit) SetIsRunning(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
-
 func (a_ AudioUnit) KAUPresetCPULoadKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetCPULoadKey"))
 	return rv
@@ -1473,7 +1332,6 @@ func (a_ AudioUnit) KAUPresetCPULoadKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
-
 func (a_ AudioUnit) SetKAUPresetCPULoadKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetCPULoadKey:"), objc.String(value))
 }
@@ -1481,7 +1339,6 @@ func (a_ AudioUnit) SetKAUPresetCPULoadKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
-
 func (a_ AudioUnit) KAUPresetDataKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetDataKey"))
 	return rv
@@ -1490,7 +1347,6 @@ func (a_ AudioUnit) KAUPresetDataKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
-
 func (a_ AudioUnit) SetKAUPresetDataKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetDataKey:"), objc.String(value))
 }
@@ -1498,7 +1354,6 @@ func (a_ AudioUnit) SetKAUPresetDataKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
-
 func (a_ AudioUnit) KAUPresetElementNameKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetElementNameKey"))
 	return rv
@@ -1507,7 +1362,6 @@ func (a_ AudioUnit) KAUPresetElementNameKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
-
 func (a_ AudioUnit) SetKAUPresetElementNameKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetElementNameKey:"), objc.String(value))
 }
@@ -1515,7 +1369,6 @@ func (a_ AudioUnit) SetKAUPresetElementNameKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
-
 func (a_ AudioUnit) KAUPresetExternalFileRefs() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetExternalFileRefs"))
 	return rv
@@ -1524,7 +1377,6 @@ func (a_ AudioUnit) KAUPresetExternalFileRefs() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
-
 func (a_ AudioUnit) SetKAUPresetExternalFileRefs(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetExternalFileRefs:"), objc.String(value))
 }
@@ -1532,7 +1384,6 @@ func (a_ AudioUnit) SetKAUPresetExternalFileRefs(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
-
 func (a_ AudioUnit) KAUPresetMASDataKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetMASDataKey"))
 	return rv
@@ -1541,7 +1392,6 @@ func (a_ AudioUnit) KAUPresetMASDataKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
-
 func (a_ AudioUnit) SetKAUPresetMASDataKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetMASDataKey:"), objc.String(value))
 }
@@ -1549,7 +1399,6 @@ func (a_ AudioUnit) SetKAUPresetMASDataKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
-
 func (a_ AudioUnit) KAUPresetManufacturerKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetManufacturerKey"))
 	return rv
@@ -1558,7 +1407,6 @@ func (a_ AudioUnit) KAUPresetManufacturerKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
-
 func (a_ AudioUnit) SetKAUPresetManufacturerKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetManufacturerKey:"), objc.String(value))
 }
@@ -1566,7 +1414,6 @@ func (a_ AudioUnit) SetKAUPresetManufacturerKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
-
 func (a_ AudioUnit) KAUPresetNameKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNameKey"))
 	return rv
@@ -1575,7 +1422,6 @@ func (a_ AudioUnit) KAUPresetNameKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
-
 func (a_ AudioUnit) SetKAUPresetNameKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNameKey:"), objc.String(value))
 }
@@ -1583,7 +1429,6 @@ func (a_ AudioUnit) SetKAUPresetNameKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
-
 func (a_ AudioUnit) KAUPresetNumberKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNumberKey"))
 	return rv
@@ -1592,7 +1437,6 @@ func (a_ AudioUnit) KAUPresetNumberKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
-
 func (a_ AudioUnit) SetKAUPresetNumberKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNumberKey:"), objc.String(value))
 }
@@ -1602,7 +1446,6 @@ func (a_ AudioUnit) SetKAUPresetNumberKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
-
 func (a_ AudioUnit) KAUPresetPartKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetPartKey"))
 	return rv
@@ -1613,7 +1456,6 @@ func (a_ AudioUnit) KAUPresetPartKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
-
 func (a_ AudioUnit) SetKAUPresetPartKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetPartKey:"), objc.String(value))
 }
@@ -1621,7 +1463,6 @@ func (a_ AudioUnit) SetKAUPresetPartKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
-
 func (a_ AudioUnit) KAUPresetRenderQualityKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetRenderQualityKey"))
 	return rv
@@ -1630,7 +1471,6 @@ func (a_ AudioUnit) KAUPresetRenderQualityKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
-
 func (a_ AudioUnit) SetKAUPresetRenderQualityKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetRenderQualityKey:"), objc.String(value))
 }
@@ -1638,7 +1478,6 @@ func (a_ AudioUnit) SetKAUPresetRenderQualityKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
-
 func (a_ AudioUnit) KAUPresetSubtypeKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetSubtypeKey"))
 	return rv
@@ -1647,7 +1486,6 @@ func (a_ AudioUnit) KAUPresetSubtypeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
-
 func (a_ AudioUnit) SetKAUPresetSubtypeKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetSubtypeKey:"), objc.String(value))
 }
@@ -1655,7 +1493,6 @@ func (a_ AudioUnit) SetKAUPresetSubtypeKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
-
 func (a_ AudioUnit) KAUPresetTypeKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetTypeKey"))
 	return rv
@@ -1664,7 +1501,6 @@ func (a_ AudioUnit) KAUPresetTypeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
-
 func (a_ AudioUnit) SetKAUPresetTypeKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetTypeKey:"), objc.String(value))
 }
@@ -1674,7 +1510,6 @@ func (a_ AudioUnit) SetKAUPresetTypeKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
-
 func (a_ AudioUnit) KAUPresetVSTDataKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTDataKey"))
 	return rv
@@ -1685,7 +1520,6 @@ func (a_ AudioUnit) KAUPresetVSTDataKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
-
 func (a_ AudioUnit) SetKAUPresetVSTDataKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTDataKey:"), objc.String(value))
 }
@@ -1695,7 +1529,6 @@ func (a_ AudioUnit) SetKAUPresetVSTDataKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
-
 func (a_ AudioUnit) KAUPresetVSTPresetKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTPresetKey"))
 	return rv
@@ -1706,7 +1539,6 @@ func (a_ AudioUnit) KAUPresetVSTPresetKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
-
 func (a_ AudioUnit) SetKAUPresetVSTPresetKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTPresetKey:"), objc.String(value))
 }
@@ -1714,7 +1546,6 @@ func (a_ AudioUnit) SetKAUPresetVSTPresetKey(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
-
 func (a_ AudioUnit) KAUPresetVersionKey() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVersionKey"))
 	return rv
@@ -1723,7 +1554,6 @@ func (a_ AudioUnit) KAUPresetVersionKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
-
 func (a_ AudioUnit) SetKAUPresetVersionKey(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVersionKey:"), objc.String(value))
 }

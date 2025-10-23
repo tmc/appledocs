@@ -33,7 +33,7 @@ type IState interface {
 	objectivec.IObject
 	DidEnterWithPreviousState(previousState GKState)
 	IsValidNextState(stateClass objc.Class) bool
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	WillExitWithNextState(nextState GKState)
 	StateMachine() GKStateMachine
 }
@@ -47,7 +47,6 @@ type IState interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState
-
 type State struct {
 	objectivec.Object
 }
@@ -97,53 +96,44 @@ func NewState() State {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/state
-
 func (sc _StateClass) State() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("state"))
 	return rv
 }
 
 
-
 // Performs custom actions when a state machine transitions into this state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/didEnter(from:)
-
 func (s_ State) DidEnterWithPreviousState(previousState GKState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didEnterWithPreviousState:"), previousState)
 }
-
 
 
 // Returns a Boolean value indicating whether a state machine currently in this state is allowed to transition into the specified state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/isValidNextState(_:)
-
 func (s_ State) IsValidNextState(stateClass objc.Class) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isValidNextState:"), stateClass)
 	return rv
 }
 
 
-
 // Performs custom actions when a state machine updates while in this state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/update(deltaTime:)
-
-func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (s_ State) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
-
 
 
 // Performs custom actions when a state machine transitions out of this state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/willExit(to:)
-
 func (s_ State) WillExitWithNextState(nextState GKState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("willExitWithNextState:"), nextState)
 }
@@ -153,7 +143,6 @@ func (s_ State) WillExitWithNextState(nextState GKState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/stateMachine
-
 func (s_ State) StateMachine() GKStateMachine {
 	rv := objc.Send[GKStateMachine](s_.ID, objc.Sel("stateMachine"))
 	return rv

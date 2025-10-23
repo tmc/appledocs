@@ -45,7 +45,11 @@ type IMKRouteStep interface {
 // One portion of an overall route.
 //
 // Each object corresponds to a single instruction that the person needs to follow when navigating between two points. For example, a step might involve following a single road until continuing along the route requires a turn. You don’t create instances of this class directly. An object contains the objects associated with a route. For more information about requesting directions, see .
+
+
+// One portion of an overall route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step
 type MKRouteStep struct {
 	objectivec.Object
@@ -90,8 +94,10 @@ func NewMKRouteStep() MKRouteStep {
 }
 
 
+
 // The step distance, in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/distance
 func (m_ MKRouteStep) Distance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distance"))
@@ -99,17 +105,18 @@ func (m_ MKRouteStep) Distance() unsafe.Pointer {
 }
 
 
-// SetDistance sets the value of the distance property.
 // The step distance, in meters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/distance
 func (m_ MKRouteStep) SetDistance(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDistance:"), value)
 }
 
+
 // The written instructions for following the path that the step represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
 func (m_ MKRouteStep) Instructions() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
@@ -117,17 +124,18 @@ func (m_ MKRouteStep) Instructions() string {
 }
 
 
-// SetInstructions sets the value of the instructions property.
 // The written instructions for following the path that the step represents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
 func (m_ MKRouteStep) SetInstructions(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
 }
 
+
 // Additional notices that apply to the step.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
 func (m_ MKRouteStep) Notice() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("notice"))
@@ -135,17 +143,18 @@ func (m_ MKRouteStep) Notice() string {
 }
 
 
-// SetNotice sets the value of the notice property.
 // Additional notices that apply to the step.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
 func (m_ MKRouteStep) SetNotice(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), objc.String(value))
 }
 
+
 // The detailed step geometry.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
 func (m_ MKRouteStep) Polyline() MKPolyline {
 	rv := objc.Send[MKPolyline](m_.ID, objc.Sel("polyline"))
@@ -153,17 +162,18 @@ func (m_ MKRouteStep) Polyline() MKPolyline {
 }
 
 
-// SetPolyline sets the value of the polyline property.
 // The detailed step geometry.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
 func (m_ MKRouteStep) SetPolyline(value IMKPolyline) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPolyline:"), value)
 }
 
+
 // The transport type of the step.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
 func (m_ MKRouteStep) TransportType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
@@ -171,10 +181,9 @@ func (m_ MKRouteStep) TransportType() unsafe.Pointer {
 }
 
 
-// SetTransportType sets the value of the transportType property.
 // The transport type of the step.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
 func (m_ MKRouteStep) SetTransportType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)

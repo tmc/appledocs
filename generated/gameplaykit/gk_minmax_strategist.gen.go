@@ -49,7 +49,6 @@ type IMinmaxStrategist interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist
-
 type MinmaxStrategist struct {
 	objectivec.Object
 }
@@ -94,24 +93,20 @@ func NewMinmaxStrategist() MinmaxStrategist {
 
 
 
-
 // Computes and returns the best possible move for the specified player.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/bestMove(for:)
-
 func (m_ MinmaxStrategist) BestMoveForPlayer(player objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("bestMoveForPlayer:"), player)
 	return rv
 }
 
 
-
 // Computes several of the best possible moves for the specified player, and returns a move randomly selected from among them.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/randomMove(for:fromNumberOfBestMoves:)
-
 func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("randomMoveForPlayer:fromNumberOfBestMoves:"), player, numMovesToConsider)
 	return rv
@@ -122,7 +117,6 @@ func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth
-
 func (m_ MinmaxStrategist) MaxLookAheadDepth() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("maxLookAheadDepth"))
 	return rv
@@ -133,7 +127,6 @@ func (m_ MinmaxStrategist) MaxLookAheadDepth() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth
-
 func (m_ MinmaxStrategist) SetMaxLookAheadDepth(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxLookAheadDepth:"), value)
 }
@@ -143,7 +136,6 @@ func (m_ MinmaxStrategist) SetMaxLookAheadDepth(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
-
 func (m_ MinmaxStrategist) GameModel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gameModel"))
 	return rv
@@ -154,7 +146,6 @@ func (m_ MinmaxStrategist) GameModel() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
-
 func (m_ MinmaxStrategist) SetGameModel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGameModel:"), value)
 }
@@ -164,7 +155,6 @@ func (m_ MinmaxStrategist) SetGameModel(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
-
 func (m_ MinmaxStrategist) RandomSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("randomSource"))
 	return rv
@@ -175,7 +165,6 @@ func (m_ MinmaxStrategist) RandomSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
-
 func (m_ MinmaxStrategist) SetRandomSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRandomSource:"), value)
 }

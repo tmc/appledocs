@@ -52,7 +52,6 @@ type IClickGestureRecognizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer
-
 type ClickGestureRecognizer struct {
 	GestureRecognizer
 }
@@ -103,7 +102,6 @@ func NewClickGestureRecognizer() ClickGestureRecognizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/buttonmask
-
 func (c_ ClickGestureRecognizer) ButtonMask() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("buttonMask"))
 	return rv
@@ -114,7 +112,6 @@ func (c_ ClickGestureRecognizer) ButtonMask() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/buttonmask
-
 func (c_ ClickGestureRecognizer) SetButtonMask(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonMask:"), value)
 }
@@ -124,7 +121,6 @@ func (c_ ClickGestureRecognizer) SetButtonMask(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberofclicksrequired
-
 func (c_ ClickGestureRecognizer) NumberOfClicksRequired() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfClicksRequired"))
 	return rv
@@ -135,7 +131,6 @@ func (c_ ClickGestureRecognizer) NumberOfClicksRequired() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberofclicksrequired
-
 func (c_ ClickGestureRecognizer) SetNumberOfClicksRequired(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfClicksRequired:"), value)
 }
@@ -145,7 +140,6 @@ func (c_ ClickGestureRecognizer) SetNumberOfClicksRequired(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberoftouchesrequired
-
 func (c_ ClickGestureRecognizer) NumberOfTouchesRequired() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfTouchesRequired"))
 	return rv
@@ -156,7 +150,6 @@ func (c_ ClickGestureRecognizer) NumberOfTouchesRequired() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberoftouchesrequired
-
 func (c_ ClickGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }
@@ -166,7 +159,6 @@ func (c_ ClickGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysothermousebuttonevents
-
 func (c_ ClickGestureRecognizer) DelaysOtherMouseButtonEvents() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("delaysOtherMouseButtonEvents"))
 	return rv
@@ -177,7 +169,6 @@ func (c_ ClickGestureRecognizer) DelaysOtherMouseButtonEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysothermousebuttonevents
-
 func (c_ ClickGestureRecognizer) SetDelaysOtherMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelaysOtherMouseButtonEvents:"), value)
 }
@@ -187,7 +178,6 @@ func (c_ ClickGestureRecognizer) SetDelaysOtherMouseButtonEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
-
 func (c_ ClickGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("delaysPrimaryMouseButtonEvents"))
 	return rv
@@ -198,7 +188,6 @@ func (c_ ClickGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
-
 func (c_ ClickGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
 }
@@ -208,7 +197,6 @@ func (c_ ClickGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delayssecondarymousebuttonevents
-
 func (c_ ClickGestureRecognizer) DelaysSecondaryMouseButtonEvents() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("delaysSecondaryMouseButtonEvents"))
 	return rv
@@ -219,7 +207,6 @@ func (c_ ClickGestureRecognizer) DelaysSecondaryMouseButtonEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delayssecondarymousebuttonevents
-
 func (c_ ClickGestureRecognizer) SetDelaysSecondaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelaysSecondaryMouseButtonEvents:"), value)
 }

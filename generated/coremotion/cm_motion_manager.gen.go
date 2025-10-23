@@ -47,14 +47,14 @@ type IMotionManager interface {
 	StopMagnetometerUpdates()
 	AccelerometerData() CMAccelerometerData
 	AccelerometerUpdateInterval() foundation.TimeInterval
-	SetAccelerometerUpdateInterval(value foundation.TimeInterval)
+	SetAccelerometerUpdateInterval(value foundation.ITimeInterval)
 	AttitudeReferenceFrame() AttitudeReferenceFrame
 	DeviceMotion() CMDeviceMotion
 	DeviceMotionUpdateInterval() foundation.TimeInterval
-	SetDeviceMotionUpdateInterval(value foundation.TimeInterval)
+	SetDeviceMotionUpdateInterval(value foundation.ITimeInterval)
 	GyroData() CMGyroData
 	GyroUpdateInterval() foundation.TimeInterval
-	SetGyroUpdateInterval(value foundation.TimeInterval)
+	SetGyroUpdateInterval(value foundation.ITimeInterval)
 	AccelerometerActive() bool
 	AccelerometerAvailable() bool
 	DeviceMotionActive() bool
@@ -65,7 +65,7 @@ type IMotionManager interface {
 	MagnetometerAvailable() bool
 	MagnetometerData() CMMagnetometerData
 	MagnetometerUpdateInterval() foundation.TimeInterval
-	SetMagnetometerUpdateInterval(value foundation.TimeInterval)
+	SetMagnetometerUpdateInterval(value foundation.ITimeInterval)
 	ShowsDeviceMovementDisplay() bool
 	SetShowsDeviceMovementDisplay(value bool)
 	CMErrorDomain() string
@@ -96,7 +96,6 @@ type IMotionManager interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager
-
 type MotionManager struct {
 	objectivec.Object
 }
@@ -145,162 +144,133 @@ func NewMotionManager() MotionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/availableAttitudeReferenceFrames()
-
 func (mc _MotionManagerClass) AvailableAttitudeReferenceFrames() AttitudeReferenceFrame {
 	rv := objc.Send[AttitudeReferenceFrame](objc.ID(mc.class), objc.Sel("availableAttitudeReferenceFrames"))
 	return rv
 }
 
 
-
 // Starts accelerometer updates without a handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates()
-
 func (m_ MotionManager) StartAccelerometerUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startAccelerometerUpdates"))
 }
-
 
 
 // Starts accelerometer updates on an operation queue and with a specified handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates(to:withHandler:)
-
 func (m_ MotionManager) StartAccelerometerUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startAccelerometerUpdatesToQueue:withHandler:"), queue, handler)
 }
-
 
 
 // Starts device-motion updates without a block handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates()
-
 func (m_ MotionManager) StartDeviceMotionUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDeviceMotionUpdates"))
 }
-
 
 
 // Starts device-motion updates on an operation queue and using a specified block handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(to:withHandler:)
-
 func (m_ MotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDeviceMotionUpdatesToQueue:withHandler:"), queue, handler)
 }
-
 
 
 // Starts device-motion updates using a reference frame but without a block handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:)
-
 func (m_ MotionManager) StartDeviceMotionUpdatesUsingReferenceFrame(referenceFrame IAttitudeReferenceFrame) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDeviceMotionUpdatesUsingReferenceFrame:"), referenceFrame)
 }
-
 
 
 // Starts device-motion updates on an operation queue and using a specified reference frame and block handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:to:withHandler:)
-
 func (m_ MotionManager) StartDeviceMotionUpdatesUsingReferenceFrameToQueueWithHandler(referenceFrame IAttitudeReferenceFrame, queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:"), referenceFrame, queue, handler)
 }
-
 
 
 // Starts gyroscope updates without a handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startGyroUpdates()
-
 func (m_ MotionManager) StartGyroUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startGyroUpdates"))
 }
-
 
 
 // Starts gyroscope updates on an operation queue and with a specified handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startGyroUpdates(to:withHandler:)
-
 func (m_ MotionManager) StartGyroUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startGyroUpdatesToQueue:withHandler:"), queue, handler)
 }
-
 
 
 // Starts magnetometer updates without a block handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates()
-
 func (m_ MotionManager) StartMagnetometerUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startMagnetometerUpdates"))
 }
-
 
 
 // Starts magnetometer updates on an operation queue and with a specified handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)
-
 func (m_ MotionManager) StartMagnetometerUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startMagnetometerUpdatesToQueue:withHandler:"), queue, handler)
 }
-
 
 
 // Stops accelerometer updates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/stopAccelerometerUpdates()
-
 func (m_ MotionManager) StopAccelerometerUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopAccelerometerUpdates"))
 }
-
 
 
 // Stops device-motion updates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/stopDeviceMotionUpdates()
-
 func (m_ MotionManager) StopDeviceMotionUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopDeviceMotionUpdates"))
 }
-
 
 
 // Stops gyroscope updates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/stopGyroUpdates()
-
 func (m_ MotionManager) StopGyroUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopGyroUpdates"))
 }
-
 
 
 // Stops magnetometer updates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/stopMagnetometerUpdates()
-
 func (m_ MotionManager) StopMagnetometerUpdates() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopMagnetometerUpdates"))
 }
@@ -310,7 +280,6 @@ func (m_ MotionManager) StopMagnetometerUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/accelerometerData
-
 func (m_ MotionManager) AccelerometerData() CMAccelerometerData {
 	rv := objc.Send[CMAccelerometerData](m_.ID, objc.Sel("accelerometerData"))
 	return rv
@@ -321,7 +290,6 @@ func (m_ MotionManager) AccelerometerData() CMAccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval
-
 func (m_ MotionManager) AccelerometerUpdateInterval() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("accelerometerUpdateInterval"))
 	return rv
@@ -332,8 +300,7 @@ func (m_ MotionManager) AccelerometerUpdateInterval() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval
-
-func (m_ MotionManager) SetAccelerometerUpdateInterval(value foundation.TimeInterval) {
+func (m_ MotionManager) SetAccelerometerUpdateInterval(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccelerometerUpdateInterval:"), value)
 }
 
@@ -342,7 +309,6 @@ func (m_ MotionManager) SetAccelerometerUpdateInterval(value foundation.TimeInte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/attitudeReferenceFrame
-
 func (m_ MotionManager) AttitudeReferenceFrame() AttitudeReferenceFrame {
 	rv := objc.Send[AttitudeReferenceFrame](m_.ID, objc.Sel("attitudeReferenceFrame"))
 	return rv
@@ -353,7 +319,6 @@ func (m_ MotionManager) AttitudeReferenceFrame() AttitudeReferenceFrame {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/deviceMotion
-
 func (m_ MotionManager) DeviceMotion() CMDeviceMotion {
 	rv := objc.Send[CMDeviceMotion](m_.ID, objc.Sel("deviceMotion"))
 	return rv
@@ -364,7 +329,6 @@ func (m_ MotionManager) DeviceMotion() CMDeviceMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/deviceMotionUpdateInterval
-
 func (m_ MotionManager) DeviceMotionUpdateInterval() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("deviceMotionUpdateInterval"))
 	return rv
@@ -375,8 +339,7 @@ func (m_ MotionManager) DeviceMotionUpdateInterval() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/deviceMotionUpdateInterval
-
-func (m_ MotionManager) SetDeviceMotionUpdateInterval(value foundation.TimeInterval) {
+func (m_ MotionManager) SetDeviceMotionUpdateInterval(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceMotionUpdateInterval:"), value)
 }
 
@@ -385,7 +348,6 @@ func (m_ MotionManager) SetDeviceMotionUpdateInterval(value foundation.TimeInter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/gyroData
-
 func (m_ MotionManager) GyroData() CMGyroData {
 	rv := objc.Send[CMGyroData](m_.ID, objc.Sel("gyroData"))
 	return rv
@@ -396,7 +358,6 @@ func (m_ MotionManager) GyroData() CMGyroData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval
-
 func (m_ MotionManager) GyroUpdateInterval() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("gyroUpdateInterval"))
 	return rv
@@ -407,8 +368,7 @@ func (m_ MotionManager) GyroUpdateInterval() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval
-
-func (m_ MotionManager) SetGyroUpdateInterval(value foundation.TimeInterval) {
+func (m_ MotionManager) SetGyroUpdateInterval(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGyroUpdateInterval:"), value)
 }
 
@@ -417,7 +377,6 @@ func (m_ MotionManager) SetGyroUpdateInterval(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isAccelerometerActive
-
 func (m_ MotionManager) AccelerometerActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("accelerometerActive"))
 	return rv
@@ -428,7 +387,6 @@ func (m_ MotionManager) AccelerometerActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isAccelerometerAvailable
-
 func (m_ MotionManager) AccelerometerAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("accelerometerAvailable"))
 	return rv
@@ -439,7 +397,6 @@ func (m_ MotionManager) AccelerometerAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isDeviceMotionActive
-
 func (m_ MotionManager) DeviceMotionActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("deviceMotionActive"))
 	return rv
@@ -450,7 +407,6 @@ func (m_ MotionManager) DeviceMotionActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isDeviceMotionAvailable
-
 func (m_ MotionManager) DeviceMotionAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("deviceMotionAvailable"))
 	return rv
@@ -461,7 +417,6 @@ func (m_ MotionManager) DeviceMotionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isGyroActive
-
 func (m_ MotionManager) GyroActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("gyroActive"))
 	return rv
@@ -472,7 +427,6 @@ func (m_ MotionManager) GyroActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isGyroAvailable
-
 func (m_ MotionManager) GyroAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("gyroAvailable"))
 	return rv
@@ -483,7 +437,6 @@ func (m_ MotionManager) GyroAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isMagnetometerActive
-
 func (m_ MotionManager) MagnetometerActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("magnetometerActive"))
 	return rv
@@ -494,7 +447,6 @@ func (m_ MotionManager) MagnetometerActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/isMagnetometerAvailable
-
 func (m_ MotionManager) MagnetometerAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("magnetometerAvailable"))
 	return rv
@@ -505,7 +457,6 @@ func (m_ MotionManager) MagnetometerAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/magnetometerData
-
 func (m_ MotionManager) MagnetometerData() CMMagnetometerData {
 	rv := objc.Send[CMMagnetometerData](m_.ID, objc.Sel("magnetometerData"))
 	return rv
@@ -516,7 +467,6 @@ func (m_ MotionManager) MagnetometerData() CMMagnetometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval
-
 func (m_ MotionManager) MagnetometerUpdateInterval() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("magnetometerUpdateInterval"))
 	return rv
@@ -527,8 +477,7 @@ func (m_ MotionManager) MagnetometerUpdateInterval() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval
-
-func (m_ MotionManager) SetMagnetometerUpdateInterval(value foundation.TimeInterval) {
+func (m_ MotionManager) SetMagnetometerUpdateInterval(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnetometerUpdateInterval:"), value)
 }
 
@@ -537,7 +486,6 @@ func (m_ MotionManager) SetMagnetometerUpdateInterval(value foundation.TimeInter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/showsDeviceMovementDisplay
-
 func (m_ MotionManager) ShowsDeviceMovementDisplay() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsDeviceMovementDisplay"))
 	return rv
@@ -548,7 +496,6 @@ func (m_ MotionManager) ShowsDeviceMovementDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/showsDeviceMovementDisplay
-
 func (m_ MotionManager) SetShowsDeviceMovementDisplay(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsDeviceMovementDisplay:"), value)
 }
@@ -558,7 +505,6 @@ func (m_ MotionManager) SetShowsDeviceMovementDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmerrordomain
-
 func (m_ MotionManager) CMErrorDomain() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("CMErrorDomain"))
 	return rv
@@ -569,7 +515,6 @@ func (m_ MotionManager) CMErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
-
 func (m_ MotionManager) IsAccelerometerActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerActive"))
 	return rv
@@ -580,7 +525,6 @@ func (m_ MotionManager) IsAccelerometerActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
-
 func (m_ MotionManager) SetIsAccelerometerActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerActive:"), value)
 }
@@ -590,7 +534,6 @@ func (m_ MotionManager) SetIsAccelerometerActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
-
 func (m_ MotionManager) IsAccelerometerAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerAvailable"))
 	return rv
@@ -601,7 +544,6 @@ func (m_ MotionManager) IsAccelerometerAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
-
 func (m_ MotionManager) SetIsAccelerometerAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerAvailable:"), value)
 }
@@ -611,7 +553,6 @@ func (m_ MotionManager) SetIsAccelerometerAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
-
 func (m_ MotionManager) IsDeviceMotionActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionActive"))
 	return rv
@@ -622,7 +563,6 @@ func (m_ MotionManager) IsDeviceMotionActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
-
 func (m_ MotionManager) SetIsDeviceMotionActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
 }
@@ -632,7 +572,6 @@ func (m_ MotionManager) SetIsDeviceMotionActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
-
 func (m_ MotionManager) IsDeviceMotionAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionAvailable"))
 	return rv
@@ -643,7 +582,6 @@ func (m_ MotionManager) IsDeviceMotionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
-
 func (m_ MotionManager) SetIsDeviceMotionAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionAvailable:"), value)
 }
@@ -653,7 +591,6 @@ func (m_ MotionManager) SetIsDeviceMotionAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
-
 func (m_ MotionManager) IsGyroActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroActive"))
 	return rv
@@ -664,7 +601,6 @@ func (m_ MotionManager) IsGyroActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
-
 func (m_ MotionManager) SetIsGyroActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroActive:"), value)
 }
@@ -674,7 +610,6 @@ func (m_ MotionManager) SetIsGyroActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
-
 func (m_ MotionManager) IsGyroAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroAvailable"))
 	return rv
@@ -685,7 +620,6 @@ func (m_ MotionManager) IsGyroAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
-
 func (m_ MotionManager) SetIsGyroAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroAvailable:"), value)
 }
@@ -695,7 +629,6 @@ func (m_ MotionManager) SetIsGyroAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
-
 func (m_ MotionManager) IsMagnetometerActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerActive"))
 	return rv
@@ -706,7 +639,6 @@ func (m_ MotionManager) IsMagnetometerActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
-
 func (m_ MotionManager) SetIsMagnetometerActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerActive:"), value)
 }
@@ -716,7 +648,6 @@ func (m_ MotionManager) SetIsMagnetometerActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
-
 func (m_ MotionManager) IsMagnetometerAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerAvailable"))
 	return rv
@@ -727,7 +658,6 @@ func (m_ MotionManager) IsMagnetometerAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
-
 func (m_ MotionManager) SetIsMagnetometerAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerAvailable:"), value)
 }

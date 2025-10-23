@@ -70,7 +70,6 @@ type IPopUpButtonCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButtonCell
-
 type PopUpButtonCell struct {
 	MenuItemCell
 }
@@ -121,7 +120,6 @@ func NewPopUpButtonCell() PopUpButtonCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/image
-
 func (p_ PopUpButtonCell) Image() Image {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
@@ -132,7 +130,6 @@ func (p_ PopUpButtonCell) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/image
-
 func (p_ PopUpButtonCell) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
@@ -142,7 +139,6 @@ func (p_ PopUpButtonCell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/altersstateofselecteditem
-
 func (p_ PopUpButtonCell) AltersStateOfSelectedItem() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("altersStateOfSelectedItem"))
 	return rv
@@ -153,7 +149,6 @@ func (p_ PopUpButtonCell) AltersStateOfSelectedItem() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/altersstateofselecteditem
-
 func (p_ PopUpButtonCell) SetAltersStateOfSelectedItem(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAltersStateOfSelectedItem:"), value)
 }
@@ -163,7 +158,6 @@ func (p_ PopUpButtonCell) SetAltersStateOfSelectedItem(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/arrowposition
-
 func (p_ PopUpButtonCell) ArrowPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("arrowPosition"))
 	return rv
@@ -174,7 +168,6 @@ func (p_ PopUpButtonCell) ArrowPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/arrowposition
-
 func (p_ PopUpButtonCell) SetArrowPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setArrowPosition:"), value)
 }
@@ -184,7 +177,6 @@ func (p_ PopUpButtonCell) SetArrowPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/autoenablesitems
-
 func (p_ PopUpButtonCell) AutoenablesItems() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("autoenablesItems"))
 	return rv
@@ -195,7 +187,6 @@ func (p_ PopUpButtonCell) AutoenablesItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/autoenablesitems
-
 func (p_ PopUpButtonCell) SetAutoenablesItems(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutoenablesItems:"), value)
 }
@@ -205,7 +196,6 @@ func (p_ PopUpButtonCell) SetAutoenablesItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/indexofselecteditem
-
 func (p_ PopUpButtonCell) IndexOfSelectedItem() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfSelectedItem"))
 	return rv
@@ -216,7 +206,6 @@ func (p_ PopUpButtonCell) IndexOfSelectedItem() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/indexofselecteditem
-
 func (p_ PopUpButtonCell) SetIndexOfSelectedItem(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexOfSelectedItem:"), value)
 }
@@ -226,7 +215,6 @@ func (p_ PopUpButtonCell) SetIndexOfSelectedItem(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemarray
-
 func (p_ PopUpButtonCell) ItemArray() NSMenuItem {
 	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("itemArray"))
 	return rv
@@ -237,7 +225,6 @@ func (p_ PopUpButtonCell) ItemArray() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemarray
-
 func (p_ PopUpButtonCell) SetItemArray(value IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setItemArray:"), value)
 }
@@ -247,7 +234,6 @@ func (p_ PopUpButtonCell) SetItemArray(value IMenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemtitles
-
 func (p_ PopUpButtonCell) ItemTitles() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("itemTitles"))
 	return rv
@@ -258,7 +244,6 @@ func (p_ PopUpButtonCell) ItemTitles() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemtitles
-
 func (p_ PopUpButtonCell) SetItemTitles(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setItemTitles:"), objc.String(value))
 }
@@ -268,7 +253,6 @@ func (p_ PopUpButtonCell) SetItemTitles(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/lastitem
-
 func (p_ PopUpButtonCell) LastItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("lastItem"))
 	return rv
@@ -279,7 +263,6 @@ func (p_ PopUpButtonCell) LastItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/lastitem
-
 func (p_ PopUpButtonCell) SetLastItem(value IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLastItem:"), value)
 }
@@ -289,7 +272,6 @@ func (p_ PopUpButtonCell) SetLastItem(value IMenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/menu
-
 func (p_ PopUpButtonCell) Menu() NSMenu {
 	rv := objc.Send[NSMenu](p_.ID, objc.Sel("menu"))
 	return rv
@@ -300,7 +282,6 @@ func (p_ PopUpButtonCell) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/menu
-
 func (p_ PopUpButtonCell) SetMenu(value IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMenu:"), value)
 }
@@ -310,7 +291,6 @@ func (p_ PopUpButtonCell) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/numberofitems
-
 func (p_ PopUpButtonCell) NumberOfItems() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfItems"))
 	return rv
@@ -321,7 +301,6 @@ func (p_ PopUpButtonCell) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/numberofitems
-
 func (p_ PopUpButtonCell) SetNumberOfItems(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfItems:"), value)
 }
@@ -331,7 +310,6 @@ func (p_ PopUpButtonCell) SetNumberOfItems(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/preferrededge
-
 func (p_ PopUpButtonCell) PreferredEdge() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("preferredEdge"))
 	return rv
@@ -342,7 +320,6 @@ func (p_ PopUpButtonCell) PreferredEdge() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/preferrededge
-
 func (p_ PopUpButtonCell) SetPreferredEdge(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredEdge:"), value)
 }
@@ -352,7 +329,6 @@ func (p_ PopUpButtonCell) SetPreferredEdge(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/pullsdown
-
 func (p_ PopUpButtonCell) PullsDown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pullsDown"))
 	return rv
@@ -363,7 +339,6 @@ func (p_ PopUpButtonCell) PullsDown() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/pullsdown
-
 func (p_ PopUpButtonCell) SetPullsDown(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPullsDown:"), value)
 }
@@ -373,7 +348,6 @@ func (p_ PopUpButtonCell) SetPullsDown(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/selecteditem
-
 func (p_ PopUpButtonCell) SelectedItem() NSMenuItem {
 	rv := objc.Send[NSMenuItem](p_.ID, objc.Sel("selectedItem"))
 	return rv
@@ -384,7 +358,6 @@ func (p_ PopUpButtonCell) SelectedItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/selecteditem
-
 func (p_ PopUpButtonCell) SetSelectedItem(value IMenuItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedItem:"), value)
 }
@@ -394,7 +367,6 @@ func (p_ PopUpButtonCell) SetSelectedItem(value IMenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/titleofselecteditem
-
 func (p_ PopUpButtonCell) TitleOfSelectedItem() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("titleOfSelectedItem"))
 	return rv
@@ -405,7 +377,6 @@ func (p_ PopUpButtonCell) TitleOfSelectedItem() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/titleofselecteditem
-
 func (p_ PopUpButtonCell) SetTitleOfSelectedItem(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitleOfSelectedItem:"), objc.String(value))
 }
@@ -415,7 +386,6 @@ func (p_ PopUpButtonCell) SetTitleOfSelectedItem(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/usesitemfrommenu
-
 func (p_ PopUpButtonCell) UsesItemFromMenu() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesItemFromMenu"))
 	return rv
@@ -426,7 +396,6 @@ func (p_ PopUpButtonCell) UsesItemFromMenu() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/usesitemfrommenu
-
 func (p_ PopUpButtonCell) SetUsesItemFromMenu(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesItemFromMenu:"), value)
 }

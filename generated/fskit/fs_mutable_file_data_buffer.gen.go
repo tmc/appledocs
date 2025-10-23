@@ -43,7 +43,6 @@ type IFSMutableFileDataBuffer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMutableFileDataBuffer
-
 type FSMutableFileDataBuffer struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewFSMutableFileDataBuffer() FSMutableFileDataBuffer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
-
 func (f_ FSMutableFileDataBuffer) Length() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("length"))
 	return rv
@@ -103,7 +101,6 @@ func (f_ FSMutableFileDataBuffer) Length() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
-
 func (f_ FSMutableFileDataBuffer) SetLength(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLength:"), value)
 }

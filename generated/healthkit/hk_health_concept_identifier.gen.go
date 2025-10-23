@@ -42,7 +42,6 @@ type IHKHealthConceptIdentifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier
-
 type HKHealthConceptIdentifier struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewHKHealthConceptIdentifier() HKHealthConceptIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier/domain
-
 func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain {
 	rv := objc.Send[HKHealthConceptDomain](h_.ID, objc.Sel("domain"))
 	return rv

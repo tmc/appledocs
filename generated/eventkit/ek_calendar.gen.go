@@ -61,7 +61,6 @@ type IEKCalendar interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar
-
 type EKCalendar struct {
 	EKObject
 }
@@ -108,24 +107,20 @@ func NewEKCalendar() EKCalendar {
 
 
 
-
 // Creates a new calendar that can contain the given entity type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
-
 func NewEKCalendarForEntityTypeEventStore(entityType EKEntityType, eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
 	return rv
 }
 
 
-
 // Creates and returns a calendar belonging to a specified event store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
-
 func NewEKCalendarWithEventStore(eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(getEKCalendarClass().class), objc.Sel("calendarWithEventStore:"), eventStore)
 	return rv
@@ -137,7 +132,6 @@ func NewEKCalendarWithEventStore(eventStore IEKEventStore) EKCalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(eventStore:)
-
 func (ec _EKCalendarClass) CalendarWithEventStore(eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(ec.class), objc.Sel("calendarWithEventStore:"), eventStore)
 	return rv
@@ -148,7 +142,6 @@ func (ec _EKCalendarClass) CalendarWithEventStore(eventStore IEKEventStore) EKCa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/init(for:eventStore:)
-
 func (ec _EKCalendarClass) CalendarForEntityTypeEventStore(entityType EKEntityType, eventStore IEKEventStore) EKCalendar {
 	rv := objc.Send[EKCalendar](objc.ID(ec.class), objc.Sel("calendarForEntityType:eventStore:"), entityType, eventStore)
 	return rv
@@ -159,7 +152,6 @@ func (ec _EKCalendarClass) CalendarForEntityTypeEventStore(entityType EKEntityTy
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowedEntityTypes
-
 func (e_ EKCalendar) AllowedEntityTypes() EKEntityMask {
 	rv := objc.Send[EKEntityMask](e_.ID, objc.Sel("allowedEntityTypes"))
 	return rv
@@ -170,7 +162,6 @@ func (e_ EKCalendar) AllowedEntityTypes() EKEntityMask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowsContentModifications
-
 func (e_ EKCalendar) AllowsContentModifications() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("allowsContentModifications"))
 	return rv
@@ -181,7 +172,6 @@ func (e_ EKCalendar) AllowsContentModifications() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/calendarIdentifier
-
 func (e_ EKCalendar) CalendarIdentifier() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
@@ -192,7 +182,6 @@ func (e_ EKCalendar) CalendarIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-
 func (e_ EKCalendar) CGColor() coregraphics.CGColorRef {
 	rv := objc.Send[coregraphics.CGColorRef](e_.ID, objc.Sel("CGColor"))
 	return rv
@@ -203,7 +192,6 @@ func (e_ EKCalendar) CGColor() coregraphics.CGColorRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-
 func (e_ EKCalendar) SetCGColor(value coregraphics.CGColorRef) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCGColor:"), value)
 }
@@ -213,7 +201,6 @@ func (e_ EKCalendar) SetCGColor(value coregraphics.CGColorRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
-
 func (e_ EKCalendar) Color() appkit.Color {
 	rv := objc.Send[appkit.Color](e_.ID, objc.Sel("color"))
 	return rv
@@ -224,7 +211,6 @@ func (e_ EKCalendar) Color() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
-
 func (e_ EKCalendar) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setColor:"), value)
 }
@@ -234,7 +220,6 @@ func (e_ EKCalendar) SetColor(value appkit.IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isImmutable
-
 func (e_ EKCalendar) Immutable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("immutable"))
 	return rv
@@ -245,7 +230,6 @@ func (e_ EKCalendar) Immutable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isSubscribed
-
 func (e_ EKCalendar) Subscribed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("subscribed"))
 	return rv
@@ -256,7 +240,6 @@ func (e_ EKCalendar) Subscribed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/source
-
 func (e_ EKCalendar) Source() EKSource {
 	rv := objc.Send[EKSource](e_.ID, objc.Sel("source"))
 	return rv
@@ -267,7 +250,6 @@ func (e_ EKCalendar) Source() EKSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/source
-
 func (e_ EKCalendar) SetSource(value IEKSource) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSource:"), value)
 }
@@ -277,7 +259,6 @@ func (e_ EKCalendar) SetSource(value IEKSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/supportedEventAvailabilities
-
 func (e_ EKCalendar) SupportedEventAvailabilities() EKCalendarEventAvailabilityMask {
 	rv := objc.Send[EKCalendarEventAvailabilityMask](e_.ID, objc.Sel("supportedEventAvailabilities"))
 	return rv
@@ -288,7 +269,6 @@ func (e_ EKCalendar) SupportedEventAvailabilities() EKCalendarEventAvailabilityM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-
 func (e_ EKCalendar) Title() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
@@ -299,7 +279,6 @@ func (e_ EKCalendar) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-
 func (e_ EKCalendar) SetTitle(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -309,7 +288,6 @@ func (e_ EKCalendar) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/type
-
 func (e_ EKCalendar) Type() EKCalendarType {
 	rv := objc.Send[EKCalendarType](e_.ID, objc.Sel("type"))
 	return rv
@@ -320,7 +298,6 @@ func (e_ EKCalendar) Type() EKCalendarType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
-
 func (e_ EKCalendar) IsImmutable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isImmutable"))
 	return rv
@@ -331,7 +308,6 @@ func (e_ EKCalendar) IsImmutable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
-
 func (e_ EKCalendar) SetIsImmutable(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsImmutable:"), value)
 }
@@ -341,7 +317,6 @@ func (e_ EKCalendar) SetIsImmutable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
-
 func (e_ EKCalendar) IsSubscribed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isSubscribed"))
 	return rv
@@ -352,7 +327,6 @@ func (e_ EKCalendar) IsSubscribed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
-
 func (e_ EKCalendar) SetIsSubscribed(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsSubscribed:"), value)
 }

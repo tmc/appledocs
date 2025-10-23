@@ -42,7 +42,6 @@ type IImageProcessorKernel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel
-
 type ImageProcessorKernel struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewImageProcessorKernel() ImageProcessorKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtent:inputs:arguments:)
-
 func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs []Image, arguments unsafe.Pointer, error_ unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error_)
 	return rv
@@ -102,7 +100,6 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtents:inputs:arguments:)
-
 func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents []Vector, inputs []Image, arguments unsafe.Pointer, error_ unsafe.Pointer) []Image {
 	rv := objc.Send[[]Image](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error_)
 	return rv
@@ -113,7 +110,6 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/formatForInput(at:)
-
 func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) Format {
 	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("formatForInputAtIndex:"), inputIndex)
 	return rv
@@ -124,7 +120,6 @@ func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) Forma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat(at:arguments:)
-
 func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex int, arguments unsafe.Pointer) Format {
 	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("outputFormatAtIndex:arguments:"), outputIndex, arguments)
 	return rv
@@ -135,7 +130,6 @@ func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:output:)
-
 func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs []objc.ID, arguments unsafe.Pointer, output objectivec.IObject, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error_)
 	return rv
@@ -146,7 +140,6 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(input
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:outputs:)
-
 func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs []objc.ID, arguments unsafe.Pointer, outputs []objc.ID, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:outputs:error:"), inputs, arguments, outputs, error_)
 	return rv
@@ -157,7 +150,6 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inpu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roi(forInput:arguments:outputRect:)
-
 func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex int, arguments unsafe.Pointer, outputRect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](objc.ID(ic.class), objc.Sel("roiForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
@@ -168,7 +160,6 @@ func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roiTileArray(forInput:arguments:outputRect:)
-
 func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex int, arguments unsafe.Pointer, outputRect coregraphics.CGRect) []Vector {
 	rv := objc.Send[[]Vector](objc.ID(ic.class), objc.Sel("roiTileArrayForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
@@ -179,7 +170,6 @@ func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
-
 func (ic _ImageProcessorKernelClass) OutputFormat() Format {
 	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("outputFormat"))
 	return rv
@@ -189,7 +179,6 @@ func (ic _ImageProcessorKernelClass) OutputFormat() Format {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputIsOpaque
-
 func (ic _ImageProcessorKernelClass) OutputIsOpaque() bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("outputIsOpaque"))
 	return rv
@@ -199,7 +188,6 @@ func (ic _ImageProcessorKernelClass) OutputIsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/synchronizeInputs
-
 func (ic _ImageProcessorKernelClass) SynchronizeInputs() bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("synchronizeInputs"))
 	return rv
@@ -209,7 +197,6 @@ func (ic _ImageProcessorKernelClass) SynchronizeInputs() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
-
 func (i_ ImageProcessorKernel) OutputFormat() Format {
 	rv := objc.Send[Format](i_.ID, objc.Sel("outputFormat"))
 	return rv
@@ -220,7 +207,6 @@ func (i_ ImageProcessorKernel) OutputFormat() Format {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputIsOpaque
-
 func (i_ ImageProcessorKernel) OutputIsOpaque() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("outputIsOpaque"))
 	return rv
@@ -231,7 +217,6 @@ func (i_ ImageProcessorKernel) OutputIsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/synchronizeInputs
-
 func (i_ ImageProcessorKernel) SynchronizeInputs() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("synchronizeInputs"))
 	return rv

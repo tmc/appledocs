@@ -44,7 +44,6 @@ type IPasswordCredentialIdentity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity
-
 type PasswordCredentialIdentity struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewPasswordCredentialIdentity() PasswordCredentialIdentity {
 
 
 
-
 // Initializes a password credential identity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/init(serviceIdentifier:user:recordIdentifier:)
-
 func NewPasswordCredentialIdentityWithServiceIdentifierUserRecordIdentifier(serviceIdentifier unsafe.Pointer, user string, recordIdentifier string) PasswordCredentialIdentity {
 	instance := getPasswordCredentialIdentityClass().Alloc()
 	rv := objc.Send[PasswordCredentialIdentity](instance.ID, objc.Sel("initWithServiceIdentifier:user:recordIdentifier:"), serviceIdentifier, objc.String(user), objc.String(recordIdentifier))
@@ -108,7 +105,6 @@ func NewPasswordCredentialIdentityWithServiceIdentifierUserRecordIdentifier(serv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/identityWithServiceIdentifier:user:recordIdentifier:
-
 func (pc _PasswordCredentialIdentityClass) IdentityWithServiceIdentifierUserRecordIdentifier(serviceIdentifier unsafe.Pointer, user string, recordIdentifier string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("identityWithServiceIdentifier:user:recordIdentifier:"), serviceIdentifier, objc.String(user), objc.String(recordIdentifier))
 	return rv
@@ -119,7 +115,6 @@ func (pc _PasswordCredentialIdentityClass) IdentityWithServiceIdentifierUserReco
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/rank
-
 func (p_ PasswordCredentialIdentity) Rank() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("rank"))
 	return rv
@@ -130,7 +125,6 @@ func (p_ PasswordCredentialIdentity) Rank() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/rank
-
 func (p_ PasswordCredentialIdentity) SetRank(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRank:"), value)
 }
@@ -140,7 +134,6 @@ func (p_ PasswordCredentialIdentity) SetRank(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/recordIdentifier
-
 func (p_ PasswordCredentialIdentity) RecordIdentifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("recordIdentifier"))
 	return rv
@@ -151,7 +144,6 @@ func (p_ PasswordCredentialIdentity) RecordIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/serviceIdentifier
-
 func (p_ PasswordCredentialIdentity) ServiceIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("serviceIdentifier"))
 	return rv
@@ -162,7 +154,6 @@ func (p_ PasswordCredentialIdentity) ServiceIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/user
-
 func (p_ PasswordCredentialIdentity) User() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("user"))
 	return rv

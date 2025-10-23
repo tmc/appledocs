@@ -48,7 +48,6 @@ type IBrowserCell interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell
-
 type BrowserCell struct {
 	Cell
 }
@@ -99,7 +98,6 @@ func NewBrowserCell() BrowserCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
-
 func (b_ BrowserCell) AlternateImage() Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("alternateImage"))
 	return rv
@@ -110,7 +108,6 @@ func (b_ BrowserCell) AlternateImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
-
 func (b_ BrowserCell) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateImage:"), value)
 }
@@ -120,7 +117,6 @@ func (b_ BrowserCell) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
-
 func (b_ BrowserCell) Image() Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("image"))
 	return rv
@@ -131,7 +127,6 @@ func (b_ BrowserCell) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
-
 func (b_ BrowserCell) SetImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
 }
@@ -141,7 +136,6 @@ func (b_ BrowserCell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isleaf
-
 func (b_ BrowserCell) IsLeaf() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isLeaf"))
 	return rv
@@ -152,7 +146,6 @@ func (b_ BrowserCell) IsLeaf() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isleaf
-
 func (b_ BrowserCell) SetIsLeaf(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLeaf:"), value)
 }
@@ -162,7 +155,6 @@ func (b_ BrowserCell) SetIsLeaf(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isloaded
-
 func (b_ BrowserCell) IsLoaded() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
 	return rv
@@ -173,7 +165,6 @@ func (b_ BrowserCell) IsLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/isloaded
-
 func (b_ BrowserCell) SetIsLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
 }

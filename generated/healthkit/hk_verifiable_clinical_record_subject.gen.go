@@ -46,7 +46,6 @@ type IHKVerifiableClinicalRecordSubject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordSubject
-
 type HKVerifiableClinicalRecordSubject struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewHKVerifiableClinicalRecordSubject() HKVerifiableClinicalRecordSubject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-
 func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateOfBirthComponents"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() foundation.D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-
 func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateOfBirthComponents:"), value)
 }
@@ -116,7 +113,6 @@ func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-
 func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("fullName"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-
 func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), objc.String(value))
 }

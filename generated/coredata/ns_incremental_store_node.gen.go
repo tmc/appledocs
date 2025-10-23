@@ -44,7 +44,6 @@ type IIncrementalStoreNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode
-
 type IncrementalStoreNode struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
-
 func (i_ IncrementalStoreNode) ObjectID() NSManagedObjectID {
 	rv := objc.Send[NSManagedObjectID](i_.ID, objc.Sel("objectID"))
 	return rv
@@ -104,7 +102,6 @@ func (i_ IncrementalStoreNode) ObjectID() NSManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
-
 func (i_ IncrementalStoreNode) Version() uint64 {
 	rv := objc.Send[uint64](i_.ID, objc.Sel("version"))
 	return rv
@@ -115,7 +112,6 @@ func (i_ IncrementalStoreNode) Version() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
-
 func (i_ IncrementalStoreNode) SetVersion(value uint64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVersion:"), value)
 }

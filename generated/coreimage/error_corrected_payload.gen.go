@@ -35,8 +35,7 @@ type IerrorCorrectedPayload interface {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectedPayload-c.ivar
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-c.ivar
 type errorCorrectedPayload struct {
 	objectivec.Object
 }

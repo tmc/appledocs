@@ -32,7 +32,9 @@ type ImWeOpenedTheOBEXConnection interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mWeOpenedTheOBEXConnection
 type mWeOpenedTheOBEXConnection struct {
 	objectivec.Object

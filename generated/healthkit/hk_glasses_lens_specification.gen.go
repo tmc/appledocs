@@ -48,7 +48,6 @@ type IHKGlassesLensSpecification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGlassesLensSpecification
-
 type HKGlassesLensSpecification struct {
 	HKLensSpecification
 }
@@ -99,7 +98,6 @@ func NewHKGlassesLensSpecification() HKGlassesLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/farpupillarydistance
-
 func (h_ HKGlassesLensSpecification) FarPupillaryDistance() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("farPupillaryDistance"))
 	return rv
@@ -110,7 +108,6 @@ func (h_ HKGlassesLensSpecification) FarPupillaryDistance() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/farpupillarydistance
-
 func (h_ HKGlassesLensSpecification) SetFarPupillaryDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFarPupillaryDistance:"), value)
 }
@@ -120,7 +117,6 @@ func (h_ HKGlassesLensSpecification) SetFarPupillaryDistance(value IHKQuantity) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/nearpupillarydistance
-
 func (h_ HKGlassesLensSpecification) NearPupillaryDistance() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("nearPupillaryDistance"))
 	return rv
@@ -131,7 +127,6 @@ func (h_ HKGlassesLensSpecification) NearPupillaryDistance() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/nearpupillarydistance
-
 func (h_ HKGlassesLensSpecification) SetNearPupillaryDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNearPupillaryDistance:"), value)
 }
@@ -141,7 +136,6 @@ func (h_ HKGlassesLensSpecification) SetNearPupillaryDistance(value IHKQuantity)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/prism
-
 func (h_ HKGlassesLensSpecification) Prism() HKVisionPrism {
 	rv := objc.Send[HKVisionPrism](h_.ID, objc.Sel("prism"))
 	return rv
@@ -152,7 +146,6 @@ func (h_ HKGlassesLensSpecification) Prism() HKVisionPrism {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/prism
-
 func (h_ HKGlassesLensSpecification) SetPrism(value IHKVisionPrism) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPrism:"), value)
 }
@@ -162,7 +155,6 @@ func (h_ HKGlassesLensSpecification) SetPrism(value IHKVisionPrism) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/vertexdistance
-
 func (h_ HKGlassesLensSpecification) VertexDistance() HKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("vertexDistance"))
 	return rv
@@ -173,7 +165,6 @@ func (h_ HKGlassesLensSpecification) VertexDistance() HKQuantity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/vertexdistance
-
 func (h_ HKGlassesLensSpecification) SetVertexDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVertexDistance:"), value)
 }

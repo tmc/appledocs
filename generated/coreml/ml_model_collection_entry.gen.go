@@ -45,7 +45,6 @@ type IModelCollectionEntry interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry
-
 type ModelCollectionEntry struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewModelCollectionEntry() ModelCollectionEntry {
 
 
 
-
 // Returns a Boolean value that indicates whether the two entries are equal.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/isEqual(to:)
-
 func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry IMLModelCollectionEntry) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEqualToModelCollectionEntry:"), entry)
 	return rv
@@ -106,7 +103,6 @@ func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry IMLModelColle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-
 func (m_ ModelCollectionEntry) ModelIdentifier() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
@@ -117,7 +113,6 @@ func (m_ ModelCollectionEntry) ModelIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelURL
-
 func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
 	return rv
@@ -128,7 +123,6 @@ func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
-
 func (m_ ModelCollectionEntry) Entries() MLModelCollectionEntry {
 	rv := objc.Send[MLModelCollectionEntry](m_.ID, objc.Sel("entries"))
 	return rv
@@ -139,7 +133,6 @@ func (m_ ModelCollectionEntry) Entries() MLModelCollectionEntry {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
-
 func (m_ ModelCollectionEntry) SetEntries(value IMLModelCollectionEntry) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntries:"), value)
 }

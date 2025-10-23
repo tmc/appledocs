@@ -43,7 +43,6 @@ type ICWChannel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel
-
 type CWChannel struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewCWChannel() CWChannel {
 
 
 
-
 // Determine CWChannel object equality.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/isEqual(to:)
-
 func (c_ CWChannel) IsEqualToChannel(channel ICWChannel) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToChannel:"), channel)
 	return rv
@@ -104,7 +101,6 @@ func (c_ CWChannel) IsEqualToChannel(channel ICWChannel) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/channelBand
-
 func (c_ CWChannel) ChannelBand() CWChannelBand {
 	rv := objc.Send[CWChannelBand](c_.ID, objc.Sel("channelBand"))
 	return rv
@@ -115,7 +111,6 @@ func (c_ CWChannel) ChannelBand() CWChannelBand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/channelNumber
-
 func (c_ CWChannel) ChannelNumber() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("channelNumber"))
 	return rv
@@ -126,7 +121,6 @@ func (c_ CWChannel) ChannelNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/channelWidth
-
 func (c_ CWChannel) ChannelWidth() CWChannelWidth {
 	rv := objc.Send[CWChannelWidth](c_.ID, objc.Sel("channelWidth"))
 	return rv

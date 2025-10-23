@@ -90,7 +90,7 @@ func NewUnitConcentrationMass() UnitConcentrationMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/millimolesPerLiter(withGramsPerMole:)
-func (uc _UnitConcentrationMassClass) MillimolesPerLiterWithGramsPerMole(gramsPerMole float64) UnitConcentrationMass {
+func (uc _UnitConcentrationMassClass) MillimolesPerLiterWithGramsPerMole(gramsPerMole float64) IUnitConcentrationMass {
 	rv := objc.Send[UnitConcentrationMass](objc.ID(uc.class), objc.Sel("millimolesPerLiterWithGramsPerMole:"), gramsPerMole)
 	return rv
 }
@@ -118,7 +118,7 @@ func (uc _UnitConcentrationMassClass) MilligramsPerDeciliter() UnitConcentration
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
-func (u_ UnitConcentrationMass) GramsPerLiter() NSUnitConcentrationMass {
+func (u_ UnitConcentrationMass) GramsPerLiter() IUnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](u_.ID, objc.Sel("gramsPerLiter"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (u_ UnitConcentrationMass) GramsPerLiter() NSUnitConcentrationMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/milligramsPerDeciliter
-func (u_ UnitConcentrationMass) MilligramsPerDeciliter() NSUnitConcentrationMass {
+func (u_ UnitConcentrationMass) MilligramsPerDeciliter() IUnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](u_.ID, objc.Sel("milligramsPerDeciliter"))
 	return rv
 }

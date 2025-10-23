@@ -43,7 +43,6 @@ type IBlendKernel interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel
-
 type BlendKernel struct {
 	ColorKernel
 }
@@ -90,12 +89,10 @@ func NewBlendKernel() BlendKernel {
 
 
 
-
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-
 func NewBlendKernelWithString(string_ string) BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
@@ -107,7 +104,6 @@ func NewBlendKernelWithString(string_ string) BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-
 func (bc _BlendKernelClass) KernelWithString(string_ string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
@@ -118,7 +114,6 @@ func (bc _BlendKernelClass) KernelWithString(string_ string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/clear
-
 func (bc _BlendKernelClass) Clear() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("clear"))
 	return rv
@@ -128,7 +123,6 @@ func (bc _BlendKernelClass) Clear() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/color
-
 func (bc _BlendKernelClass) Color() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("color"))
 	return rv
@@ -138,7 +132,6 @@ func (bc _BlendKernelClass) Color() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorBurn
-
 func (bc _BlendKernelClass) ColorBurn() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("colorBurn"))
 	return rv
@@ -148,7 +141,6 @@ func (bc _BlendKernelClass) ColorBurn() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorDodge
-
 func (bc _BlendKernelClass) ColorDodge() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("colorDodge"))
 	return rv
@@ -158,7 +150,6 @@ func (bc _BlendKernelClass) ColorDodge() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentAdd
-
 func (bc _BlendKernelClass) ComponentAdd() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentAdd"))
 	return rv
@@ -168,7 +159,6 @@ func (bc _BlendKernelClass) ComponentAdd() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMax
-
 func (bc _BlendKernelClass) ComponentMax() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentMax"))
 	return rv
@@ -178,7 +168,6 @@ func (bc _BlendKernelClass) ComponentMax() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMin
-
 func (bc _BlendKernelClass) ComponentMin() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentMin"))
 	return rv
@@ -188,7 +177,6 @@ func (bc _BlendKernelClass) ComponentMin() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMultiply
-
 func (bc _BlendKernelClass) ComponentMultiply() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentMultiply"))
 	return rv
@@ -198,7 +186,6 @@ func (bc _BlendKernelClass) ComponentMultiply() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darken
-
 func (bc _BlendKernelClass) Darken() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("darken"))
 	return rv
@@ -208,7 +195,6 @@ func (bc _BlendKernelClass) Darken() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darkerColor
-
 func (bc _BlendKernelClass) DarkerColor() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("darkerColor"))
 	return rv
@@ -218,7 +204,6 @@ func (bc _BlendKernelClass) DarkerColor() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destination
-
 func (bc _BlendKernelClass) Destination() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destination"))
 	return rv
@@ -228,7 +213,6 @@ func (bc _BlendKernelClass) Destination() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationAtop
-
 func (bc _BlendKernelClass) DestinationAtop() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationAtop"))
 	return rv
@@ -238,7 +222,6 @@ func (bc _BlendKernelClass) DestinationAtop() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationIn
-
 func (bc _BlendKernelClass) DestinationIn() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationIn"))
 	return rv
@@ -248,7 +231,6 @@ func (bc _BlendKernelClass) DestinationIn() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOut
-
 func (bc _BlendKernelClass) DestinationOut() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationOut"))
 	return rv
@@ -258,7 +240,6 @@ func (bc _BlendKernelClass) DestinationOut() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOver
-
 func (bc _BlendKernelClass) DestinationOver() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationOver"))
 	return rv
@@ -268,7 +249,6 @@ func (bc _BlendKernelClass) DestinationOver() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/difference
-
 func (bc _BlendKernelClass) Difference() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("difference"))
 	return rv
@@ -278,7 +258,6 @@ func (bc _BlendKernelClass) Difference() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/divide
-
 func (bc _BlendKernelClass) Divide() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("divide"))
 	return rv
@@ -288,7 +267,6 @@ func (bc _BlendKernelClass) Divide() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusion
-
 func (bc _BlendKernelClass) Exclusion() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("exclusion"))
 	return rv
@@ -298,7 +276,6 @@ func (bc _BlendKernelClass) Exclusion() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusiveOr
-
 func (bc _BlendKernelClass) ExclusiveOr() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("exclusiveOr"))
 	return rv
@@ -308,7 +285,6 @@ func (bc _BlendKernelClass) ExclusiveOr() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardLight
-
 func (bc _BlendKernelClass) HardLight() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("hardLight"))
 	return rv
@@ -318,7 +294,6 @@ func (bc _BlendKernelClass) HardLight() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardMix
-
 func (bc _BlendKernelClass) HardMix() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("hardMix"))
 	return rv
@@ -328,7 +303,6 @@ func (bc _BlendKernelClass) HardMix() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hue
-
 func (bc _BlendKernelClass) Hue() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("hue"))
 	return rv
@@ -338,7 +312,6 @@ func (bc _BlendKernelClass) Hue() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighten
-
 func (bc _BlendKernelClass) Lighten() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("lighten"))
 	return rv
@@ -348,7 +321,6 @@ func (bc _BlendKernelClass) Lighten() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighterColor
-
 func (bc _BlendKernelClass) LighterColor() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("lighterColor"))
 	return rv
@@ -358,7 +330,6 @@ func (bc _BlendKernelClass) LighterColor() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearBurn
-
 func (bc _BlendKernelClass) LinearBurn() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("linearBurn"))
 	return rv
@@ -368,7 +339,6 @@ func (bc _BlendKernelClass) LinearBurn() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearDodge
-
 func (bc _BlendKernelClass) LinearDodge() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("linearDodge"))
 	return rv
@@ -378,7 +348,6 @@ func (bc _BlendKernelClass) LinearDodge() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearLight
-
 func (bc _BlendKernelClass) LinearLight() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("linearLight"))
 	return rv
@@ -388,7 +357,6 @@ func (bc _BlendKernelClass) LinearLight() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/luminosity
-
 func (bc _BlendKernelClass) Luminosity() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("luminosity"))
 	return rv
@@ -398,7 +366,6 @@ func (bc _BlendKernelClass) Luminosity() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/multiply
-
 func (bc _BlendKernelClass) Multiply() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("multiply"))
 	return rv
@@ -408,7 +375,6 @@ func (bc _BlendKernelClass) Multiply() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/overlay
-
 func (bc _BlendKernelClass) Overlay() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("overlay"))
 	return rv
@@ -418,7 +384,6 @@ func (bc _BlendKernelClass) Overlay() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/pinLight
-
 func (bc _BlendKernelClass) PinLight() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("pinLight"))
 	return rv
@@ -428,7 +393,6 @@ func (bc _BlendKernelClass) PinLight() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/saturation
-
 func (bc _BlendKernelClass) Saturation() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("saturation"))
 	return rv
@@ -438,7 +402,6 @@ func (bc _BlendKernelClass) Saturation() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/screen
-
 func (bc _BlendKernelClass) Screen() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("screen"))
 	return rv
@@ -448,7 +411,6 @@ func (bc _BlendKernelClass) Screen() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/softLight
-
 func (bc _BlendKernelClass) SoftLight() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("softLight"))
 	return rv
@@ -458,7 +420,6 @@ func (bc _BlendKernelClass) SoftLight() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/source
-
 func (bc _BlendKernelClass) Source() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("source"))
 	return rv
@@ -468,7 +429,6 @@ func (bc _BlendKernelClass) Source() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceAtop
-
 func (bc _BlendKernelClass) SourceAtop() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceAtop"))
 	return rv
@@ -478,7 +438,6 @@ func (bc _BlendKernelClass) SourceAtop() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceIn
-
 func (bc _BlendKernelClass) SourceIn() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceIn"))
 	return rv
@@ -488,7 +447,6 @@ func (bc _BlendKernelClass) SourceIn() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOut
-
 func (bc _BlendKernelClass) SourceOut() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceOut"))
 	return rv
@@ -498,7 +456,6 @@ func (bc _BlendKernelClass) SourceOut() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOver
-
 func (bc _BlendKernelClass) SourceOver() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceOver"))
 	return rv
@@ -508,7 +465,6 @@ func (bc _BlendKernelClass) SourceOver() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/subtract
-
 func (bc _BlendKernelClass) Subtract() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("subtract"))
 	return rv
@@ -518,28 +474,23 @@ func (bc _BlendKernelClass) Subtract() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/vividLight
-
 func (bc _BlendKernelClass) VividLight() BlendKernel {
 	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("vividLight"))
 	return rv
 }
 
-
 // Creates a new image using the blend kernel and specified foreground and background images.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:)
-
 func (b_ BlendKernel) ApplyWithForegroundBackground(foreground ICIImage, background ICIImage) Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("applyWithForeground:background:"), foreground, background)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:colorSpace:)
-
 func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground ICIImage, background ICIImage, colorSpace coregraphics.CGColorSpaceRef) Image {
 	rv := objc.Send[Image](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
 	return rv
@@ -550,7 +501,6 @@ func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground ICIImag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/clear
-
 func (b_ BlendKernel) Clear() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("clear"))
 	return rv
@@ -561,7 +511,6 @@ func (b_ BlendKernel) Clear() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/color
-
 func (b_ BlendKernel) Color() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("color"))
 	return rv
@@ -572,7 +521,6 @@ func (b_ BlendKernel) Color() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorBurn
-
 func (b_ BlendKernel) ColorBurn() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("colorBurn"))
 	return rv
@@ -583,7 +531,6 @@ func (b_ BlendKernel) ColorBurn() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorDodge
-
 func (b_ BlendKernel) ColorDodge() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("colorDodge"))
 	return rv
@@ -594,7 +541,6 @@ func (b_ BlendKernel) ColorDodge() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentAdd
-
 func (b_ BlendKernel) ComponentAdd() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentAdd"))
 	return rv
@@ -605,7 +551,6 @@ func (b_ BlendKernel) ComponentAdd() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMax
-
 func (b_ BlendKernel) ComponentMax() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentMax"))
 	return rv
@@ -616,7 +561,6 @@ func (b_ BlendKernel) ComponentMax() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMin
-
 func (b_ BlendKernel) ComponentMin() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentMin"))
 	return rv
@@ -627,7 +571,6 @@ func (b_ BlendKernel) ComponentMin() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMultiply
-
 func (b_ BlendKernel) ComponentMultiply() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentMultiply"))
 	return rv
@@ -638,7 +581,6 @@ func (b_ BlendKernel) ComponentMultiply() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darken
-
 func (b_ BlendKernel) Darken() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("darken"))
 	return rv
@@ -649,7 +591,6 @@ func (b_ BlendKernel) Darken() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darkerColor
-
 func (b_ BlendKernel) DarkerColor() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("darkerColor"))
 	return rv
@@ -660,7 +601,6 @@ func (b_ BlendKernel) DarkerColor() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destination
-
 func (b_ BlendKernel) Destination() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destination"))
 	return rv
@@ -671,7 +611,6 @@ func (b_ BlendKernel) Destination() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationAtop
-
 func (b_ BlendKernel) DestinationAtop() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationAtop"))
 	return rv
@@ -682,7 +621,6 @@ func (b_ BlendKernel) DestinationAtop() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationIn
-
 func (b_ BlendKernel) DestinationIn() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationIn"))
 	return rv
@@ -693,7 +631,6 @@ func (b_ BlendKernel) DestinationIn() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOut
-
 func (b_ BlendKernel) DestinationOut() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationOut"))
 	return rv
@@ -704,7 +641,6 @@ func (b_ BlendKernel) DestinationOut() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOver
-
 func (b_ BlendKernel) DestinationOver() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationOver"))
 	return rv
@@ -715,7 +651,6 @@ func (b_ BlendKernel) DestinationOver() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/difference
-
 func (b_ BlendKernel) Difference() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("difference"))
 	return rv
@@ -726,7 +661,6 @@ func (b_ BlendKernel) Difference() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/divide
-
 func (b_ BlendKernel) Divide() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("divide"))
 	return rv
@@ -737,7 +671,6 @@ func (b_ BlendKernel) Divide() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusion
-
 func (b_ BlendKernel) Exclusion() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("exclusion"))
 	return rv
@@ -748,7 +681,6 @@ func (b_ BlendKernel) Exclusion() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusiveOr
-
 func (b_ BlendKernel) ExclusiveOr() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("exclusiveOr"))
 	return rv
@@ -759,7 +691,6 @@ func (b_ BlendKernel) ExclusiveOr() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardLight
-
 func (b_ BlendKernel) HardLight() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("hardLight"))
 	return rv
@@ -770,7 +701,6 @@ func (b_ BlendKernel) HardLight() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardMix
-
 func (b_ BlendKernel) HardMix() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("hardMix"))
 	return rv
@@ -781,7 +711,6 @@ func (b_ BlendKernel) HardMix() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hue
-
 func (b_ BlendKernel) Hue() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("hue"))
 	return rv
@@ -792,7 +721,6 @@ func (b_ BlendKernel) Hue() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighten
-
 func (b_ BlendKernel) Lighten() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("lighten"))
 	return rv
@@ -803,7 +731,6 @@ func (b_ BlendKernel) Lighten() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighterColor
-
 func (b_ BlendKernel) LighterColor() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("lighterColor"))
 	return rv
@@ -814,7 +741,6 @@ func (b_ BlendKernel) LighterColor() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearBurn
-
 func (b_ BlendKernel) LinearBurn() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("linearBurn"))
 	return rv
@@ -825,7 +751,6 @@ func (b_ BlendKernel) LinearBurn() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearDodge
-
 func (b_ BlendKernel) LinearDodge() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("linearDodge"))
 	return rv
@@ -836,7 +761,6 @@ func (b_ BlendKernel) LinearDodge() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearLight
-
 func (b_ BlendKernel) LinearLight() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("linearLight"))
 	return rv
@@ -847,7 +771,6 @@ func (b_ BlendKernel) LinearLight() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/luminosity
-
 func (b_ BlendKernel) Luminosity() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("luminosity"))
 	return rv
@@ -858,7 +781,6 @@ func (b_ BlendKernel) Luminosity() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/multiply
-
 func (b_ BlendKernel) Multiply() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("multiply"))
 	return rv
@@ -869,7 +791,6 @@ func (b_ BlendKernel) Multiply() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/overlay
-
 func (b_ BlendKernel) Overlay() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("overlay"))
 	return rv
@@ -880,7 +801,6 @@ func (b_ BlendKernel) Overlay() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/pinLight
-
 func (b_ BlendKernel) PinLight() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("pinLight"))
 	return rv
@@ -891,7 +811,6 @@ func (b_ BlendKernel) PinLight() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/saturation
-
 func (b_ BlendKernel) Saturation() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("saturation"))
 	return rv
@@ -902,7 +821,6 @@ func (b_ BlendKernel) Saturation() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/screen
-
 func (b_ BlendKernel) Screen() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("screen"))
 	return rv
@@ -913,7 +831,6 @@ func (b_ BlendKernel) Screen() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/softLight
-
 func (b_ BlendKernel) SoftLight() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("softLight"))
 	return rv
@@ -924,7 +841,6 @@ func (b_ BlendKernel) SoftLight() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/source
-
 func (b_ BlendKernel) Source() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("source"))
 	return rv
@@ -935,7 +851,6 @@ func (b_ BlendKernel) Source() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceAtop
-
 func (b_ BlendKernel) SourceAtop() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceAtop"))
 	return rv
@@ -946,7 +861,6 @@ func (b_ BlendKernel) SourceAtop() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceIn
-
 func (b_ BlendKernel) SourceIn() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceIn"))
 	return rv
@@ -957,7 +871,6 @@ func (b_ BlendKernel) SourceIn() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOut
-
 func (b_ BlendKernel) SourceOut() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceOut"))
 	return rv
@@ -968,7 +881,6 @@ func (b_ BlendKernel) SourceOut() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOver
-
 func (b_ BlendKernel) SourceOver() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceOver"))
 	return rv
@@ -979,7 +891,6 @@ func (b_ BlendKernel) SourceOver() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/subtract
-
 func (b_ BlendKernel) Subtract() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("subtract"))
 	return rv
@@ -990,7 +901,6 @@ func (b_ BlendKernel) Subtract() CIBlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/vividLight
-
 func (b_ BlendKernel) VividLight() CIBlendKernel {
 	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("vividLight"))
 	return rv

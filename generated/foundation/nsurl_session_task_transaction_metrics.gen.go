@@ -32,13 +32,13 @@ type IURLSessionTaskTransactionMetrics interface {
 	objectivec.IObject
 	RedirectCount() int
 	SetRedirectCount(value int)
-	TaskInterval() DateInterval
+	TaskInterval() IDateInterval
 	SetTaskInterval(value IDateInterval)
-	TransactionMetrics() NSURLSessionTaskTransactionMetrics
+	TransactionMetrics() IURLSessionTaskTransactionMetrics
 	SetTransactionMetrics(value IURLSessionTaskTransactionMetrics)
-	ConnectEndDate() Date
+	ConnectEndDate() IDate
 	SetConnectEndDate(value IDate)
-	ConnectStartDate() Date
+	ConnectStartDate() IDate
 	SetConnectStartDate(value IDate)
 	CountOfRequestBodyBytesBeforeEncoding() unsafe.Pointer
 	SetCountOfRequestBodyBytesBeforeEncoding(value unsafe.Pointer)
@@ -52,13 +52,13 @@ type IURLSessionTaskTransactionMetrics interface {
 	SetCountOfResponseBodyBytesReceived(value unsafe.Pointer)
 	CountOfResponseHeaderBytesReceived() unsafe.Pointer
 	SetCountOfResponseHeaderBytesReceived(value unsafe.Pointer)
-	DomainLookupEndDate() Date
+	DomainLookupEndDate() IDate
 	SetDomainLookupEndDate(value IDate)
-	DomainLookupStartDate() Date
+	DomainLookupStartDate() IDate
 	SetDomainLookupStartDate(value IDate)
 	DomainResolutionProtocol() unsafe.Pointer
 	SetDomainResolutionProtocol(value unsafe.Pointer)
-	FetchStartDate() Date
+	FetchStartDate() IDate
 	SetFetchStartDate(value IDate)
 	IsCellular() bool
 	SetIsCellular(value bool)
@@ -86,23 +86,23 @@ type IURLSessionTaskTransactionMetrics interface {
 	SetRemoteAddress(value string)
 	RemotePort() int
 	SetRemotePort(value int)
-	Request() URLRequest
+	Request() IURLRequest
 	SetRequest(value IURLRequest)
-	RequestEndDate() Date
+	RequestEndDate() IDate
 	SetRequestEndDate(value IDate)
-	RequestStartDate() Date
+	RequestStartDate() IDate
 	SetRequestStartDate(value IDate)
 	ResourceFetchType() unsafe.Pointer
 	SetResourceFetchType(value unsafe.Pointer)
-	Response() NSURLResponse
+	Response() IURLResponse
 	SetResponse(value IURLResponse)
-	ResponseEndDate() Date
+	ResponseEndDate() IDate
 	SetResponseEndDate(value IDate)
-	ResponseStartDate() Date
+	ResponseStartDate() IDate
 	SetResponseStartDate(value IDate)
-	SecureConnectionEndDate() Date
+	SecureConnectionEndDate() IDate
 	SetSecureConnectionEndDate(value IDate)
-	SecureConnectionStartDate() Date
+	SecureConnectionStartDate() IDate
 	SetSecureConnectionStartDate(value IDate)
 }
 
@@ -182,7 +182,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetRedirectCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/taskinterval
-func (u_ URLSessionTaskTransactionMetrics) TaskInterval() DateInterval {
+func (u_ URLSessionTaskTransactionMetrics) TaskInterval() IDateInterval {
 	rv := objc.Send[DateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }
@@ -201,7 +201,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetTaskInterval(value IDateInterval) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/transactionmetrics
-func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() NSURLSessionTaskTransactionMetrics {
+func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() IURLSessionTaskTransactionMetrics {
 	rv := objc.Send[NSURLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
 }
@@ -220,7 +220,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetTransactionMetrics(value IURLSessi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectenddate
-func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("connectEndDate"))
 	return rv
 }
@@ -239,7 +239,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetConnectEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectstartdate
-func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("connectStartDate"))
 	return rv
 }
@@ -372,7 +372,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseHeaderBytesReceived
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupenddate
-func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("domainLookupEndDate"))
 	return rv
 }
@@ -391,7 +391,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupstartdate
-func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("domainLookupStartDate"))
 	return rv
 }
@@ -425,7 +425,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainResolutionProtocol(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/fetchstartdate
-func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("fetchStartDate"))
 	return rv
 }
@@ -691,7 +691,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetRemotePort(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/request
-func (u_ URLSessionTaskTransactionMetrics) Request() URLRequest {
+func (u_ URLSessionTaskTransactionMetrics) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
@@ -710,7 +710,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetRequest(value IURLRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requestenddate
-func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("requestEndDate"))
 	return rv
 }
@@ -729,7 +729,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetRequestEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requeststartdate
-func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("requestStartDate"))
 	return rv
 }
@@ -767,7 +767,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetResourceFetchType(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
-func (u_ URLSessionTaskTransactionMetrics) Response() NSURLResponse {
+func (u_ URLSessionTaskTransactionMetrics) Response() IURLResponse {
 	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
@@ -786,7 +786,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetResponse(value IURLResponse) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responseenddate
-func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("responseEndDate"))
 	return rv
 }
@@ -805,7 +805,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetResponseEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responsestartdate
-func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("responseStartDate"))
 	return rv
 }
@@ -824,7 +824,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetResponseStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionenddate
-func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("secureConnectionEndDate"))
 	return rv
 }
@@ -843,7 +843,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionEndDate(value IDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionstartdate
-func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() Date {
+func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("secureConnectionStartDate"))
 	return rv
 }

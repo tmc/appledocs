@@ -53,7 +53,6 @@ type ISpeechRecognizer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer
-
 type SpeechRecognizer struct {
 	objectivec.Object
 }
@@ -99,23 +98,19 @@ func NewSpeechRecognizer() SpeechRecognizer {
 
 
 
-
 // Tells the speech recognition engine to begin listening for commands.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/startListening()
-
 func (s_ SpeechRecognizer) StartListening() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startListening"))
 }
-
 
 
 // Tells the speech recognition engine to suspend listening for commands.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/stopListening()
-
 func (s_ SpeechRecognizer) StopListening() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopListening"))
 }
@@ -125,7 +120,6 @@ func (s_ SpeechRecognizer) StopListening() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers
-
 func (s_ SpeechRecognizer) BlocksOtherRecognizers() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("blocksOtherRecognizers"))
 	return rv
@@ -136,7 +130,6 @@ func (s_ SpeechRecognizer) BlocksOtherRecognizers() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers
-
 func (s_ SpeechRecognizer) SetBlocksOtherRecognizers(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBlocksOtherRecognizers:"), value)
 }
@@ -146,7 +139,6 @@ func (s_ SpeechRecognizer) SetBlocksOtherRecognizers(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/commands
-
 func (s_ SpeechRecognizer) Commands() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("commands"))
 	return rv
@@ -157,7 +149,6 @@ func (s_ SpeechRecognizer) Commands() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/commands
-
 func (s_ SpeechRecognizer) SetCommands(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -177,7 +168,6 @@ func (s_ SpeechRecognizer) SetCommands(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/delegate
-
 func (s_ SpeechRecognizer) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -188,7 +178,6 @@ func (s_ SpeechRecognizer) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/delegate
-
 func (s_ SpeechRecognizer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -198,7 +187,6 @@ func (s_ SpeechRecognizer) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle
-
 func (s_ SpeechRecognizer) DisplayedCommandsTitle() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("displayedCommandsTitle"))
 	return rv
@@ -209,7 +197,6 @@ func (s_ SpeechRecognizer) DisplayedCommandsTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle
-
 func (s_ SpeechRecognizer) SetDisplayedCommandsTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayedCommandsTitle:"), objc.String(value))
 }
@@ -219,7 +206,6 @@ func (s_ SpeechRecognizer) SetDisplayedCommandsTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly
-
 func (s_ SpeechRecognizer) ListensInForegroundOnly() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("listensInForegroundOnly"))
 	return rv
@@ -230,7 +216,6 @@ func (s_ SpeechRecognizer) ListensInForegroundOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly
-
 func (s_ SpeechRecognizer) SetListensInForegroundOnly(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setListensInForegroundOnly:"), value)
 }

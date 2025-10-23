@@ -67,7 +67,6 @@ type IObjectController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController
-
 type ObjectController struct {
 	Controller
 }
@@ -114,12 +113,10 @@ func NewObjectController() ObjectController {
 
 
 
-
 // Typically overridden by subclasses that require additional control over the creation of new objects.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/prepareContent()
-
 func (o_ ObjectController) PrepareContent() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("prepareContent"))
 }
@@ -129,7 +126,6 @@ func (o_ ObjectController) PrepareContent() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/automaticallyPreparesContent
-
 func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("automaticallyPreparesContent"))
 	return rv
@@ -140,7 +136,6 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/automaticallyPreparesContent
-
 func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomaticallyPreparesContent:"), value)
 }
@@ -150,7 +145,6 @@ func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
-
 func (o_ ObjectController) Content() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("content"))
 	return rv
@@ -161,7 +155,6 @@ func (o_ ObjectController) Content() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
-
 func (o_ ObjectController) SetContent(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setContent:"), value)
 }
@@ -171,7 +164,6 @@ func (o_ ObjectController) SetContent(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
-
 func (o_ ObjectController) ObjectClass() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("objectClass"))
 	return rv
@@ -182,7 +174,6 @@ func (o_ ObjectController) ObjectClass() objc.Class {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
-
 func (o_ ObjectController) SetObjectClass(value objc.Class) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
 }
@@ -192,7 +183,6 @@ func (o_ ObjectController) SetObjectClass(value objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canadd
-
 func (o_ ObjectController) CanAdd() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canAdd"))
 	return rv
@@ -203,7 +193,6 @@ func (o_ ObjectController) CanAdd() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canadd
-
 func (o_ ObjectController) SetCanAdd(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanAdd:"), value)
 }
@@ -213,7 +202,6 @@ func (o_ ObjectController) SetCanAdd(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canremove
-
 func (o_ ObjectController) CanRemove() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canRemove"))
 	return rv
@@ -224,7 +212,6 @@ func (o_ ObjectController) CanRemove() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canremove
-
 func (o_ ObjectController) SetCanRemove(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanRemove:"), value)
 }
@@ -234,7 +221,6 @@ func (o_ ObjectController) SetCanRemove(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
-
 func (o_ ObjectController) EntityName() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("entityName"))
 	return rv
@@ -245,7 +231,6 @@ func (o_ ObjectController) EntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
-
 func (o_ ObjectController) SetEntityName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setEntityName:"), objc.String(value))
 }
@@ -255,7 +240,6 @@ func (o_ ObjectController) SetEntityName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-
 func (o_ ObjectController) FetchPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](o_.ID, objc.Sel("fetchPredicate"))
 	return rv
@@ -266,7 +250,6 @@ func (o_ ObjectController) FetchPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-
 func (o_ ObjectController) SetFetchPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFetchPredicate:"), value)
 }
@@ -276,7 +259,6 @@ func (o_ ObjectController) SetFetchPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/iseditable
-
 func (o_ ObjectController) IsEditable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEditable"))
 	return rv
@@ -287,7 +269,6 @@ func (o_ ObjectController) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/iseditable
-
 func (o_ ObjectController) SetIsEditable(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsEditable:"), value)
 }
@@ -297,7 +278,6 @@ func (o_ ObjectController) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-
 func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext {
 	rv := objc.Send[coredata.ManagedObjectContext](o_.ID, objc.Sel("managedObjectContext"))
 	return rv
@@ -308,7 +288,6 @@ func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-
 func (o_ ObjectController) SetManagedObjectContext(value coredata.IManagedObjectContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManagedObjectContext:"), value)
 }
@@ -318,7 +297,6 @@ func (o_ ObjectController) SetManagedObjectContext(value coredata.IManagedObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selectedobjects
-
 func (o_ ObjectController) SelectedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("selectedObjects"))
 	return rv
@@ -329,7 +307,6 @@ func (o_ ObjectController) SelectedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selectedobjects
-
 func (o_ ObjectController) SetSelectedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSelectedObjects:"), value)
 }
@@ -339,7 +316,6 @@ func (o_ ObjectController) SetSelectedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selection
-
 func (o_ ObjectController) Selection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("selection"))
 	return rv
@@ -350,7 +326,6 @@ func (o_ ObjectController) Selection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selection
-
 func (o_ ObjectController) SetSelection(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSelection:"), value)
 }
@@ -360,7 +335,6 @@ func (o_ ObjectController) SetSelection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/useslazyfetching
-
 func (o_ ObjectController) UsesLazyFetching() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("usesLazyFetching"))
 	return rv
@@ -371,7 +345,6 @@ func (o_ ObjectController) UsesLazyFetching() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/useslazyfetching
-
 func (o_ ObjectController) SetUsesLazyFetching(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUsesLazyFetching:"), value)
 }

@@ -42,7 +42,11 @@ type IINDateComponentsRange interface {
 // A span of time.
 //
 // Use an object to specify date- or time-related information when responding to an intent. For example, a ride service might use this object to specify possible pickup times for the user. You create date components range objects when providing a response that includes a time span. Use this object to specify a range of times to include in the corresponding response. When displaying the date range information to the user, Siri or Maps formats the information appropriately.
+
+
+// A span of time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INDateComponentsRange
 type INDateComponentsRange struct {
 	objectivec.Object
@@ -87,8 +91,10 @@ func NewINDateComponentsRange() INDateComponentsRange {
 }
 
 
+
 // The end date of the range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/enddatecomponents
 func (i_ INDateComponentsRange) EndDateComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("endDateComponents"))
@@ -96,17 +102,18 @@ func (i_ INDateComponentsRange) EndDateComponents() foundation.DateComponents {
 }
 
 
-// SetEndDateComponents sets the value of the endDateComponents property.
 // The end date of the range.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/enddatecomponents
 func (i_ INDateComponentsRange) SetEndDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDateComponents:"), value)
 }
 
+
 // The rule for repeating the date range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/recurrencerule
 func (i_ INDateComponentsRange) RecurrenceRule() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recurrenceRule"))
@@ -114,17 +121,18 @@ func (i_ INDateComponentsRange) RecurrenceRule() unsafe.Pointer {
 }
 
 
-// SetRecurrenceRule sets the value of the recurrenceRule property.
 // The rule for repeating the date range.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/recurrencerule
 func (i_ INDateComponentsRange) SetRecurrenceRule(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecurrenceRule:"), value)
 }
 
+
 // The start date of the range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/startdatecomponents
 func (i_ INDateComponentsRange) StartDateComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("startDateComponents"))
@@ -132,10 +140,9 @@ func (i_ INDateComponentsRange) StartDateComponents() foundation.DateComponents 
 }
 
 
-// SetStartDateComponents sets the value of the startDateComponents property.
 // The start date of the range.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/startdatecomponents
 func (i_ INDateComponentsRange) SetStartDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStartDateComponents:"), value)

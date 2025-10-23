@@ -48,7 +48,6 @@ type ICustomDeviceRoute interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute
-
 type CustomDeviceRoute struct {
 	objectivec.Object
 }
@@ -97,7 +96,6 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/bluetoothIdentifier
-
 func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("bluetoothIdentifier"))
 	return rv
@@ -108,7 +106,6 @@ func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/networkEndpoint
-
 func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkEndpoint"))
 	return rv
@@ -119,7 +116,6 @@ func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-
 func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
@@ -130,7 +126,6 @@ func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-
 func (c_ CustomDeviceRoute) SetReason(value ICustomRoutingEventReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
 }
@@ -140,7 +135,6 @@ func (c_ CustomDeviceRoute) SetReason(value ICustomRoutingEventReason) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-
 func (c_ CustomDeviceRoute) Route() AVCustomDeviceRoute {
 	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv
@@ -151,7 +145,6 @@ func (c_ CustomDeviceRoute) Route() AVCustomDeviceRoute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-
 func (c_ CustomDeviceRoute) SetRoute(value IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRoute:"), value)
 }

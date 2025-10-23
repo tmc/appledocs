@@ -29,34 +29,34 @@ type _MutableParagraphStyleClass struct {
 // An interface definition for the [MutableParagraphStyle] class.
 type IMutableParagraphStyle interface {
 	IParagraphStyle
+	HeaderLevel() int
+	SetHeaderLevel(value int)
+	LineBreakStrategy() LineBreakStrategy
+	SetLineBreakStrategy(value LineBreakStrategy)
+	MaximumLineHeight() float64
+	SetMaximumLineHeight(value float64)
+	MinimumLineHeight() float64
+	SetMinimumLineHeight(value float64)
 	Alignment() TextAlignment
-	SetAlignment(value TextAlignment)
+	SetAlignment(value ITextAlignment)
 	AllowsDefaultTighteningForTruncation() bool
 	SetAllowsDefaultTighteningForTruncation(value bool)
 	BaseWritingDirection() WritingDirection
-	SetBaseWritingDirection(value WritingDirection)
+	SetBaseWritingDirection(value IWritingDirection)
 	DefaultTabInterval() float64
 	SetDefaultTabInterval(value float64)
 	FirstLineHeadIndent() float64
 	SetFirstLineHeadIndent(value float64)
 	HeadIndent() float64
 	SetHeadIndent(value float64)
-	HeaderLevel() int
-	SetHeaderLevel(value int)
 	HyphenationFactor() float32
 	SetHyphenationFactor(value float32)
 	LineBreakMode() LineBreakMode
 	SetLineBreakMode(value LineBreakMode)
-	LineBreakStrategy() LineBreakStrategy
-	SetLineBreakStrategy(value LineBreakStrategy)
 	LineHeightMultiple() float64
 	SetLineHeightMultiple(value float64)
 	LineSpacing() float64
 	SetLineSpacing(value float64)
-	MaximumLineHeight() float64
-	SetMaximumLineHeight(value float64)
-	MinimumLineHeight() float64
-	SetMinimumLineHeight(value float64)
 	ParagraphSpacing() float64
 	SetParagraphSpacing(value float64)
 	ParagraphSpacingBefore() float64
@@ -84,7 +84,6 @@ type IMutableParagraphStyle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle
-
 type MutableParagraphStyle struct {
 	ParagraphStyle
 }
@@ -131,11 +130,86 @@ func NewMutableParagraphStyle() MutableParagraphStyle {
 
 
 
+// The paragraph’s header level for HTML generation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/headerLevel
+func (m_ MutableParagraphStyle) HeaderLevel() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("headerLevel"))
+	return rv
+}
+
+
+// The paragraph’s header level for HTML generation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/headerLevel
+func (m_ MutableParagraphStyle) SetHeaderLevel(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHeaderLevel:"), value)
+}
+
+
+// The strategies that the text system may use to break lines while laying out the paragraph.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineBreakStrategy
+func (m_ MutableParagraphStyle) LineBreakStrategy() LineBreakStrategy {
+	rv := objc.Send[LineBreakStrategy](m_.ID, objc.Sel("lineBreakStrategy"))
+	return rv
+}
+
+
+// The strategies that the text system may use to break lines while laying out the paragraph.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineBreakStrategy
+func (m_ MutableParagraphStyle) SetLineBreakStrategy(value LineBreakStrategy) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakStrategy:"), value)
+}
+
+
+// The paragraph’s maximum line height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/maximumLineHeight
+func (m_ MutableParagraphStyle) MaximumLineHeight() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("maximumLineHeight"))
+	return rv
+}
+
+
+// The paragraph’s maximum line height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/maximumLineHeight
+func (m_ MutableParagraphStyle) SetMaximumLineHeight(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumLineHeight:"), value)
+}
+
+
+// The paragraph’s minimum line height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/minimumLineHeight
+func (m_ MutableParagraphStyle) MinimumLineHeight() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("minimumLineHeight"))
+	return rv
+}
+
+
+// The paragraph’s minimum line height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/minimumLineHeight
+func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumLineHeight:"), value)
+}
+
+
 // The text alignment of the paragraph.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/alignment
-
 func (m_ MutableParagraphStyle) Alignment() TextAlignment {
 	rv := objc.Send[TextAlignment](m_.ID, objc.Sel("alignment"))
 	return rv
@@ -146,8 +220,7 @@ func (m_ MutableParagraphStyle) Alignment() TextAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/alignment
-
-func (m_ MutableParagraphStyle) SetAlignment(value TextAlignment) {
+func (m_ MutableParagraphStyle) SetAlignment(value ITextAlignment) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -156,7 +229,6 @@ func (m_ MutableParagraphStyle) SetAlignment(value TextAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/allowsdefaulttighteningfortruncation
-
 func (m_ MutableParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsDefaultTighteningForTruncation"))
 	return rv
@@ -167,7 +239,6 @@ func (m_ MutableParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/allowsdefaulttighteningfortruncation
-
 func (m_ MutableParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsDefaultTighteningForTruncation:"), value)
 }
@@ -177,7 +248,6 @@ func (m_ MutableParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/basewritingdirection
-
 func (m_ MutableParagraphStyle) BaseWritingDirection() WritingDirection {
 	rv := objc.Send[WritingDirection](m_.ID, objc.Sel("baseWritingDirection"))
 	return rv
@@ -188,8 +258,7 @@ func (m_ MutableParagraphStyle) BaseWritingDirection() WritingDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/basewritingdirection
-
-func (m_ MutableParagraphStyle) SetBaseWritingDirection(value WritingDirection) {
+func (m_ MutableParagraphStyle) SetBaseWritingDirection(value IWritingDirection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -198,7 +267,6 @@ func (m_ MutableParagraphStyle) SetBaseWritingDirection(value WritingDirection) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/defaulttabinterval
-
 func (m_ MutableParagraphStyle) DefaultTabInterval() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("defaultTabInterval"))
 	return rv
@@ -209,7 +277,6 @@ func (m_ MutableParagraphStyle) DefaultTabInterval() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/defaulttabinterval
-
 func (m_ MutableParagraphStyle) SetDefaultTabInterval(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultTabInterval:"), value)
 }
@@ -219,7 +286,6 @@ func (m_ MutableParagraphStyle) SetDefaultTabInterval(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/firstlineheadindent
-
 func (m_ MutableParagraphStyle) FirstLineHeadIndent() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("firstLineHeadIndent"))
 	return rv
@@ -230,7 +296,6 @@ func (m_ MutableParagraphStyle) FirstLineHeadIndent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/firstlineheadindent
-
 func (m_ MutableParagraphStyle) SetFirstLineHeadIndent(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFirstLineHeadIndent:"), value)
 }
@@ -240,7 +305,6 @@ func (m_ MutableParagraphStyle) SetFirstLineHeadIndent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/headindent
-
 func (m_ MutableParagraphStyle) HeadIndent() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("headIndent"))
 	return rv
@@ -251,30 +315,8 @@ func (m_ MutableParagraphStyle) HeadIndent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/headindent
-
 func (m_ MutableParagraphStyle) SetHeadIndent(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeadIndent:"), value)
-}
-
-
-// The paragraph’s header level for HTML generation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/headerlevel
-
-func (m_ MutableParagraphStyle) HeaderLevel() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("headerLevel"))
-	return rv
-}
-
-
-// The paragraph’s header level for HTML generation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/headerlevel
-
-func (m_ MutableParagraphStyle) SetHeaderLevel(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHeaderLevel:"), value)
 }
 
 
@@ -282,7 +324,6 @@ func (m_ MutableParagraphStyle) SetHeaderLevel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/hyphenationfactor
-
 func (m_ MutableParagraphStyle) HyphenationFactor() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("hyphenationFactor"))
 	return rv
@@ -293,7 +334,6 @@ func (m_ MutableParagraphStyle) HyphenationFactor() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/hyphenationfactor
-
 func (m_ MutableParagraphStyle) SetHyphenationFactor(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHyphenationFactor:"), value)
 }
@@ -303,7 +343,6 @@ func (m_ MutableParagraphStyle) SetHyphenationFactor(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakmode
-
 func (m_ MutableParagraphStyle) LineBreakMode() LineBreakMode {
 	rv := objc.Send[LineBreakMode](m_.ID, objc.Sel("lineBreakMode"))
 	return rv
@@ -314,30 +353,8 @@ func (m_ MutableParagraphStyle) LineBreakMode() LineBreakMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakmode
-
 func (m_ MutableParagraphStyle) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakMode:"), value)
-}
-
-
-// The strategies that the text system may use to break lines while laying out the paragraph.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakstrategy
-
-func (m_ MutableParagraphStyle) LineBreakStrategy() LineBreakStrategy {
-	rv := objc.Send[LineBreakStrategy](m_.ID, objc.Sel("lineBreakStrategy"))
-	return rv
-}
-
-
-// The strategies that the text system may use to break lines while laying out the paragraph.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakstrategy
-
-func (m_ MutableParagraphStyle) SetLineBreakStrategy(value LineBreakStrategy) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakStrategy:"), value)
 }
 
 
@@ -345,7 +362,6 @@ func (m_ MutableParagraphStyle) SetLineBreakStrategy(value LineBreakStrategy) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/lineheightmultiple
-
 func (m_ MutableParagraphStyle) LineHeightMultiple() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("lineHeightMultiple"))
 	return rv
@@ -356,7 +372,6 @@ func (m_ MutableParagraphStyle) LineHeightMultiple() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/lineheightmultiple
-
 func (m_ MutableParagraphStyle) SetLineHeightMultiple(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineHeightMultiple:"), value)
 }
@@ -366,7 +381,6 @@ func (m_ MutableParagraphStyle) SetLineHeightMultiple(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linespacing
-
 func (m_ MutableParagraphStyle) LineSpacing() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("lineSpacing"))
 	return rv
@@ -377,51 +391,8 @@ func (m_ MutableParagraphStyle) LineSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linespacing
-
 func (m_ MutableParagraphStyle) SetLineSpacing(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineSpacing:"), value)
-}
-
-
-// The paragraph’s maximum line height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/maximumlineheight
-
-func (m_ MutableParagraphStyle) MaximumLineHeight() float64 {
-	rv := objc.Send[float64](m_.ID, objc.Sel("maximumLineHeight"))
-	return rv
-}
-
-
-// The paragraph’s maximum line height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/maximumlineheight
-
-func (m_ MutableParagraphStyle) SetMaximumLineHeight(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumLineHeight:"), value)
-}
-
-
-// The paragraph’s minimum line height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/minimumlineheight
-
-func (m_ MutableParagraphStyle) MinimumLineHeight() float64 {
-	rv := objc.Send[float64](m_.ID, objc.Sel("minimumLineHeight"))
-	return rv
-}
-
-
-// The paragraph’s minimum line height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/minimumlineheight
-
-func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumLineHeight:"), value)
 }
 
 
@@ -429,7 +400,6 @@ func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/paragraphspacing
-
 func (m_ MutableParagraphStyle) ParagraphSpacing() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("paragraphSpacing"))
 	return rv
@@ -440,7 +410,6 @@ func (m_ MutableParagraphStyle) ParagraphSpacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/paragraphspacing
-
 func (m_ MutableParagraphStyle) SetParagraphSpacing(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParagraphSpacing:"), value)
 }
@@ -450,7 +419,6 @@ func (m_ MutableParagraphStyle) SetParagraphSpacing(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/paragraphspacingbefore
-
 func (m_ MutableParagraphStyle) ParagraphSpacingBefore() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("paragraphSpacingBefore"))
 	return rv
@@ -461,7 +429,6 @@ func (m_ MutableParagraphStyle) ParagraphSpacingBefore() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/paragraphspacingbefore
-
 func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParagraphSpacingBefore:"), value)
 }
@@ -471,7 +438,6 @@ func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tabstops
-
 func (m_ MutableParagraphStyle) TabStops() NSTextTab {
 	rv := objc.Send[NSTextTab](m_.ID, objc.Sel("tabStops"))
 	return rv
@@ -482,7 +448,6 @@ func (m_ MutableParagraphStyle) TabStops() NSTextTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tabstops
-
 func (m_ MutableParagraphStyle) SetTabStops(value ITextTab) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTabStops:"), value)
 }
@@ -492,7 +457,6 @@ func (m_ MutableParagraphStyle) SetTabStops(value ITextTab) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tailindent
-
 func (m_ MutableParagraphStyle) TailIndent() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("tailIndent"))
 	return rv
@@ -503,7 +467,6 @@ func (m_ MutableParagraphStyle) TailIndent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tailindent
-
 func (m_ MutableParagraphStyle) SetTailIndent(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTailIndent:"), value)
 }
@@ -513,7 +476,6 @@ func (m_ MutableParagraphStyle) SetTailIndent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textblocks
-
 func (m_ MutableParagraphStyle) TextBlocks() NSTextBlock {
 	rv := objc.Send[NSTextBlock](m_.ID, objc.Sel("textBlocks"))
 	return rv
@@ -524,7 +486,6 @@ func (m_ MutableParagraphStyle) TextBlocks() NSTextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textblocks
-
 func (m_ MutableParagraphStyle) SetTextBlocks(value ITextBlock) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTextBlocks:"), value)
 }
@@ -534,7 +495,6 @@ func (m_ MutableParagraphStyle) SetTextBlocks(value ITextBlock) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-
 func (m_ MutableParagraphStyle) TextLists() NSTextList {
 	rv := objc.Send[NSTextList](m_.ID, objc.Sel("textLists"))
 	return rv
@@ -545,7 +505,6 @@ func (m_ MutableParagraphStyle) TextLists() NSTextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-
 func (m_ MutableParagraphStyle) SetTextLists(value ITextList) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTextLists:"), value)
 }
@@ -555,7 +514,6 @@ func (m_ MutableParagraphStyle) SetTextLists(value ITextList) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tighteningfactorfortruncation
-
 func (m_ MutableParagraphStyle) TighteningFactorForTruncation() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("tighteningFactorForTruncation"))
 	return rv
@@ -566,7 +524,6 @@ func (m_ MutableParagraphStyle) TighteningFactorForTruncation() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tighteningfactorfortruncation
-
 func (m_ MutableParagraphStyle) SetTighteningFactorForTruncation(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTighteningFactorForTruncation:"), value)
 }
@@ -574,7 +531,6 @@ func (m_ MutableParagraphStyle) SetTighteningFactorForTruncation(value float32) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/usesdefaulthyphenation
-
 func (m_ MutableParagraphStyle) UsesDefaultHyphenation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("usesDefaultHyphenation"))
 	return rv
@@ -583,7 +539,6 @@ func (m_ MutableParagraphStyle) UsesDefaultHyphenation() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/usesdefaulthyphenation
-
 func (m_ MutableParagraphStyle) SetUsesDefaultHyphenation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesDefaultHyphenation:"), value)
 }

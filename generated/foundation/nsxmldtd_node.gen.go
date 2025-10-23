@@ -29,8 +29,8 @@ type _XMLDTDNodeClass struct {
 // An interface definition for the [XMLDTDNode] class.
 type IXMLDTDNode interface {
 	IXMLNode
-	DTDKind() XMLDTDNodeKind
-	SetDTDKind(value XMLDTDNodeKind)
+	DTDKind() NSXMLDTDNodeKind
+	SetDTDKind(value NSXMLDTDNodeKind)
 	External() bool
 	NotationName() string
 	SetNotationName(value string)
@@ -124,7 +124,7 @@ func NewXMLDTDNodeWithXMLString(string_ string) XMLDTDNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/dtdKind-swift.property
-func (x_ XMLDTDNode) DTDKind() XMLDTDNodeKind {
+func (x_ XMLDTDNode) DTDKind() NSXMLDTDNodeKind {
 	rv := objc.Send[XMLDTDNodeKind](x_.ID, objc.Sel("DTDKind"))
 	return rv
 }
@@ -134,7 +134,7 @@ func (x_ XMLDTDNode) DTDKind() XMLDTDNodeKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/dtdKind-swift.property
-func (x_ XMLDTDNode) SetDTDKind(value XMLDTDNodeKind) {
+func (x_ XMLDTDNode) SetDTDKind(value NSXMLDTDNodeKind) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDTDKind:"), value)
 }
 

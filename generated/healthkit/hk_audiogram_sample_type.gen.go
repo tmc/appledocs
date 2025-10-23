@@ -40,7 +40,6 @@ type IHKAudiogramSampleType interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSampleType
-
 type HKAudiogramSampleType struct {
 	HKSampleType
 }

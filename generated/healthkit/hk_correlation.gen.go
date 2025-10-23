@@ -45,7 +45,6 @@ type IHKCorrelation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation
-
 type HKCorrelation struct {
 	HKSample
 }
@@ -96,7 +95,6 @@ func NewHKCorrelation() HKCorrelation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation/correlationType
-
 func (h_ HKCorrelation) CorrelationType() HKCorrelationType {
 	rv := objc.Send[HKCorrelationType](h_.ID, objc.Sel("correlationType"))
 	return rv
@@ -107,7 +105,6 @@ func (h_ HKCorrelation) CorrelationType() HKCorrelationType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/objects
-
 func (h_ HKCorrelation) Objects() HKSample {
 	rv := objc.Send[HKSample](h_.ID, objc.Sel("objects"))
 	return rv
@@ -118,7 +115,6 @@ func (h_ HKCorrelation) Objects() HKSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/objects
-
 func (h_ HKCorrelation) SetObjects(value IHKSample) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjects:"), value)
 }
@@ -128,7 +124,6 @@ func (h_ HKCorrelation) SetObjects(value IHKSample) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
-
 func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
 	return rv
@@ -139,7 +134,6 @@ func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation
-
 func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
 	return rv

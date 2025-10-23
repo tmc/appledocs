@@ -37,7 +37,11 @@ type IJSVirtualMachine interface {
 // A self-contained environment for JavaScript execution.
 //
 // You use this class for two main purposes: to support concurrent JavaScript execution, and to manage memory for objects that bridge between JavaScript and Objective-C or Swift.
+
+
+// A self-contained environment for JavaScript execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSVirtualMachine
 type JSVirtualMachine struct {
 	objectivec.Object
@@ -83,15 +87,19 @@ func NewJSVirtualMachine() JSVirtualMachine {
 
 
 
+
 // Notifies the JavaScriptCore virtual machine of an external object relationship.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSVirtualMachine/addManagedReference(_:withOwner:)
 func (j_ JSVirtualMachine) AddManagedReferenceWithOwner(object objectivec.IObject, owner objectivec.IObject) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("addManagedReference:withOwner:"), object, owner)
 }
 
+
 // Notifies the JavaScriptCore virtual machine that a previously registered object relationship no longer exists.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSVirtualMachine/removeManagedReference(_:withOwner:)
 func (j_ JSVirtualMachine) RemoveManagedReferenceWithOwner(object objectivec.IObject, owner objectivec.IObject) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("removeManagedReference:withOwner:"), object, owner)

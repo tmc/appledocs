@@ -32,7 +32,7 @@ type IComboButton interface {
 	Image() Image
 	SetImage(value IImage)
 	ImageScaling() ImageScaling
-	SetImageScaling(value ImageScaling)
+	SetImageScaling(value IImageScaling)
 	Menu() NSMenu
 	SetMenu(value IMenu)
 	Style() unsafe.Pointer
@@ -54,7 +54,6 @@ type IComboButton interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton
-
 type ComboButton struct {
 	Control
 }
@@ -105,7 +104,6 @@ func NewComboButton() ComboButton {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
-
 func (c_ ComboButton) Image() Image {
 	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
@@ -116,7 +114,6 @@ func (c_ ComboButton) Image() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
-
 func (c_ ComboButton) SetImage(value IImage) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
@@ -126,7 +123,6 @@ func (c_ ComboButton) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
-
 func (c_ ComboButton) ImageScaling() ImageScaling {
 	rv := objc.Send[ImageScaling](c_.ID, objc.Sel("imageScaling"))
 	return rv
@@ -137,8 +133,7 @@ func (c_ ComboButton) ImageScaling() ImageScaling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
-
-func (c_ ComboButton) SetImageScaling(value ImageScaling) {
+func (c_ ComboButton) SetImageScaling(value IImageScaling) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageScaling:"), value)
 }
 
@@ -147,7 +142,6 @@ func (c_ ComboButton) SetImageScaling(value ImageScaling) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
-
 func (c_ ComboButton) Menu() NSMenu {
 	rv := objc.Send[NSMenu](c_.ID, objc.Sel("menu"))
 	return rv
@@ -158,7 +152,6 @@ func (c_ ComboButton) Menu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
-
 func (c_ ComboButton) SetMenu(value IMenu) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMenu:"), value)
 }
@@ -168,7 +161,6 @@ func (c_ ComboButton) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.property
-
 func (c_ ComboButton) Style() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
 	return rv
@@ -179,7 +171,6 @@ func (c_ ComboButton) Style() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.property
-
 func (c_ ComboButton) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
 }
@@ -189,7 +180,6 @@ func (c_ ComboButton) SetStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/title
-
 func (c_ ComboButton) Title() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
@@ -200,7 +190,6 @@ func (c_ ComboButton) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/title
-
 func (c_ ComboButton) SetTitle(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -210,7 +199,6 @@ func (c_ ComboButton) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
-
 func (c_ ComboButton) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
 	return rv
@@ -221,7 +209,6 @@ func (c_ ComboButton) Action() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
-
 func (c_ ComboButton) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
@@ -231,7 +218,6 @@ func (c_ ComboButton) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
-
 func (c_ ComboButton) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("target"))
 	return rv
@@ -242,7 +228,6 @@ func (c_ ComboButton) Target() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
-
 func (c_ ComboButton) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
 }

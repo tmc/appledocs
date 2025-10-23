@@ -68,7 +68,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFCreateDevice(_:_:)
-
 func FFCreateDevice(hidDevice unsafe.Pointer, pDeviceReference unsafe.Pointer) unsafe.Pointer {
 	return _FFCreateDevice(hidDevice, pDeviceReference)
 	}
@@ -82,7 +81,6 @@ func FFCreateDevice(hidDevice unsafe.Pointer, pDeviceReference unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFDeviceCreateEffect(_:_:_:_:)
-
 func FFDeviceCreateEffect(deviceReference unsafe.Pointer, uuidRef unsafe.Pointer, pEffectDefinition unsafe.Pointer, pEffectReference unsafe.Pointer) unsafe.Pointer {
 	return _FFDeviceCreateEffect(deviceReference, uuidRef, pEffectDefinition, pEffectReference)
 	}
@@ -96,7 +94,6 @@ func FFDeviceCreateEffect(deviceReference unsafe.Pointer, uuidRef unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFDeviceGetForceFeedbackCapabilities(_:_:)
-
 func FFDeviceGetForceFeedbackCapabilities(deviceReference unsafe.Pointer, pFFCapabilities unsafe.Pointer) unsafe.Pointer {
 	return _FFDeviceGetForceFeedbackCapabilities(deviceReference, pFFCapabilities)
 	}
@@ -110,7 +107,6 @@ func FFDeviceGetForceFeedbackCapabilities(deviceReference unsafe.Pointer, pFFCap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFDeviceGetForceFeedbackState(_:_:)
-
 func FFDeviceGetForceFeedbackState(deviceReference unsafe.Pointer, pFFState unsafe.Pointer) unsafe.Pointer {
 	return _FFDeviceGetForceFeedbackState(deviceReference, pFFState)
 	}
@@ -124,7 +120,6 @@ func FFDeviceGetForceFeedbackState(deviceReference unsafe.Pointer, pFFState unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFEffectEscape(_:_:)
-
 func FFEffectEscape(effectReference unsafe.Pointer, pFFEffectEscape unsafe.Pointer) unsafe.Pointer {
 	return _FFEffectEscape(effectReference, pFFEffectEscape)
 	}
@@ -138,7 +133,6 @@ func FFEffectEscape(effectReference unsafe.Pointer, pFFEffectEscape unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFEffectGetEffectStatus(_:_:)
-
 func FFEffectGetEffectStatus(effectReference unsafe.Pointer, pFlags unsafe.Pointer) unsafe.Pointer {
 	return _FFEffectGetEffectStatus(effectReference, pFlags)
 	}
@@ -152,7 +146,6 @@ func FFEffectGetEffectStatus(effectReference unsafe.Pointer, pFlags unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFEffectSetParameters(_:_:_:)
-
 func FFEffectSetParameters(effectReference unsafe.Pointer, pFFEffect unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _FFEffectSetParameters(effectReference, pFFEffect, flags)
 	}
@@ -166,7 +159,6 @@ func FFEffectSetParameters(effectReference unsafe.Pointer, pFFEffect unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFEffectStart(_:_:_:)
-
 func FFEffectStart(effectReference unsafe.Pointer, iterations unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _FFEffectStart(effectReference, iterations, flags)
 	}
@@ -180,7 +172,6 @@ func FFEffectStart(effectReference unsafe.Pointer, iterations unsafe.Pointer, fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFEffectUnload(_:)
-
 func FFEffectUnload(effectReference unsafe.Pointer) unsafe.Pointer {
 	return _FFEffectUnload(effectReference)
 	}
@@ -194,7 +185,6 @@ func FFEffectUnload(effectReference unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFIsForceFeedback(_:)
-
 func FFIsForceFeedback(hidDevice unsafe.Pointer) unsafe.Pointer {
 	return _FFIsForceFeedback(hidDevice)
 	}
@@ -208,7 +198,6 @@ func FFIsForceFeedback(hidDevice unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFReleaseDevice(_:)
-
 func FFReleaseDevice(deviceReference unsafe.Pointer) unsafe.Pointer {
 	return _FFReleaseDevice(deviceReference)
 	}

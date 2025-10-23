@@ -99,7 +99,7 @@ func (uc _UnitIlluminanceClass) Lux() UnitIlluminance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
-func (u_ UnitIlluminance) Lux() NSUnitIlluminance {
+func (u_ UnitIlluminance) Lux() IUnitIlluminance {
 	rv := objc.Send[NSUnitIlluminance](u_.ID, objc.Sel("lux"))
 	return rv
 }

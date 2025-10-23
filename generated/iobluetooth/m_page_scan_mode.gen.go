@@ -32,7 +32,9 @@ type ImPageScanMode interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mPageScanMode
 type mPageScanMode struct {
 	objectivec.Object

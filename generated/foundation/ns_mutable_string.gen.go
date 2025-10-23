@@ -111,7 +111,7 @@ func NewMutableStringWithCapacity(capacity uint) MutableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/stringWithCapacity:
-func (mc _MutableStringClass) StringWithCapacity(capacity uint) MutableString {
+func (mc _MutableStringClass) StringWithCapacity(capacity uint) IMutableString {
 	rv := objc.Send[MutableString](objc.ID(mc.class), objc.Sel("stringWithCapacity:"), capacity)
 	return rv
 }

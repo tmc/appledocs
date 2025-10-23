@@ -53,7 +53,6 @@ type IEKParticipant interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant
-
 type EKParticipant struct {
 	EKObject
 }
@@ -100,24 +99,20 @@ func NewEKParticipant() EKParticipant {
 
 
 
-
 // Returns the address book record that represents the participant.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abPerson(in:)
-
 func (e_ EKParticipant) ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson {
 	rv := objc.Send[addressbook.ABPerson](e_.ID, objc.Sel("ABPersonInAddressBook:"), addressBook)
 	return rv
 }
 
 
-
 // Returns the address book record that represents the participant.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
-
 func (e_ EKParticipant) ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef {
 	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
 	return rv
@@ -128,7 +123,6 @@ func (e_ EKParticipant) ABRecordWithAddressBook(addressBook IABAddressBookRef) A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
-
 func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("contactPredicate"))
 	return rv
@@ -139,7 +133,6 @@ func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/isCurrentUser
-
 func (e_ EKParticipant) CurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("currentUser"))
 	return rv
@@ -150,7 +143,6 @@ func (e_ EKParticipant) CurrentUser() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
-
 func (e_ EKParticipant) Name() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
@@ -161,7 +153,6 @@ func (e_ EKParticipant) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantRole
-
 func (e_ EKParticipant) ParticipantRole() EKParticipantRole {
 	rv := objc.Send[EKParticipantRole](e_.ID, objc.Sel("participantRole"))
 	return rv
@@ -172,7 +163,6 @@ func (e_ EKParticipant) ParticipantRole() EKParticipantRole {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantStatus
-
 func (e_ EKParticipant) ParticipantStatus() EKParticipantStatus {
 	rv := objc.Send[EKParticipantStatus](e_.ID, objc.Sel("participantStatus"))
 	return rv
@@ -183,7 +173,6 @@ func (e_ EKParticipant) ParticipantStatus() EKParticipantStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantType
-
 func (e_ EKParticipant) ParticipantType() EKParticipantType {
 	rv := objc.Send[EKParticipantType](e_.ID, objc.Sel("participantType"))
 	return rv
@@ -194,7 +183,6 @@ func (e_ EKParticipant) ParticipantType() EKParticipantType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/url
-
 func (e_ EKParticipant) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
 	return rv
@@ -205,7 +193,6 @@ func (e_ EKParticipant) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
-
 func (e_ EKParticipant) IsCurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCurrentUser"))
 	return rv
@@ -216,7 +203,6 @@ func (e_ EKParticipant) IsCurrentUser() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
-
 func (e_ EKParticipant) SetIsCurrentUser(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCurrentUser:"), value)
 }

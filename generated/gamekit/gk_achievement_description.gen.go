@@ -68,7 +68,6 @@ type IAchievementDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievementDescription
-
 type AchievementDescription struct {
 	objectivec.Object
 }
@@ -117,7 +116,6 @@ func NewAchievementDescription() AchievementDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievementDescription/incompleteAchievementImage()
-
 func (ac _AchievementDescriptionClass) IncompleteAchievementImage() appkit.Image {
 	rv := objc.Send[appkit.Image](objc.ID(ac.class), objc.Sel("incompleteAchievementImage"))
 	return rv
@@ -128,7 +126,6 @@ func (ac _AchievementDescriptionClass) IncompleteAchievementImage() appkit.Image
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievementDescription/placeholderCompletedAchievementImage()
-
 func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() appkit.Image {
 	rv := objc.Send[appkit.Image](objc.ID(ac.class), objc.Sel("placeholderCompletedAchievementImage"))
 	return rv
@@ -139,7 +136,6 @@ func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() ap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
-
 func (a_ AchievementDescription) AchievedDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("achievedDescription"))
 	return rv
@@ -150,7 +146,6 @@ func (a_ AchievementDescription) AchievedDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
-
 func (a_ AchievementDescription) SetAchievedDescription(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAchievedDescription:"), objc.String(value))
 }
@@ -160,7 +155,6 @@ func (a_ AchievementDescription) SetAchievedDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
-
 func (a_ AchievementDescription) ActivityIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("activityIdentifier"))
 	return rv
@@ -171,7 +165,6 @@ func (a_ AchievementDescription) ActivityIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
-
 func (a_ AchievementDescription) SetActivityIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
 }
@@ -181,7 +174,6 @@ func (a_ AchievementDescription) SetActivityIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
-
 func (a_ AchievementDescription) ActivityProperties() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("activityProperties"))
 	return rv
@@ -192,7 +184,6 @@ func (a_ AchievementDescription) ActivityProperties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
-
 func (a_ AchievementDescription) SetActivityProperties(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
 }
@@ -202,7 +193,6 @@ func (a_ AchievementDescription) SetActivityProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
-
 func (a_ AchievementDescription) GroupIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("groupIdentifier"))
 	return rv
@@ -213,7 +203,6 @@ func (a_ AchievementDescription) GroupIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
-
 func (a_ AchievementDescription) SetGroupIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
@@ -223,7 +212,6 @@ func (a_ AchievementDescription) SetGroupIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
-
 func (a_ AchievementDescription) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
@@ -234,7 +222,6 @@ func (a_ AchievementDescription) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
-
 func (a_ AchievementDescription) SetIdentifier(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
@@ -244,7 +231,6 @@ func (a_ AchievementDescription) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
-
 func (a_ AchievementDescription) Image() appkit.Image {
 	rv := objc.Send[appkit.Image](a_.ID, objc.Sel("image"))
 	return rv
@@ -255,7 +241,6 @@ func (a_ AchievementDescription) Image() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
-
 func (a_ AchievementDescription) SetImage(value appkit.IImage) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImage:"), value)
 }
@@ -265,7 +250,6 @@ func (a_ AchievementDescription) SetImage(value appkit.IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/ishidden
-
 func (a_ AchievementDescription) IsHidden() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isHidden"))
 	return rv
@@ -276,7 +260,6 @@ func (a_ AchievementDescription) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/ishidden
-
 func (a_ AchievementDescription) SetIsHidden(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -286,7 +269,6 @@ func (a_ AchievementDescription) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/isreplayable
-
 func (a_ AchievementDescription) IsReplayable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isReplayable"))
 	return rv
@@ -297,7 +279,6 @@ func (a_ AchievementDescription) IsReplayable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/isreplayable
-
 func (a_ AchievementDescription) SetIsReplayable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsReplayable:"), value)
 }
@@ -307,7 +288,6 @@ func (a_ AchievementDescription) SetIsReplayable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/maximumpoints
-
 func (a_ AchievementDescription) MaximumPoints() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("maximumPoints"))
 	return rv
@@ -318,7 +298,6 @@ func (a_ AchievementDescription) MaximumPoints() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/maximumpoints
-
 func (a_ AchievementDescription) SetMaximumPoints(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumPoints:"), value)
 }
@@ -328,7 +307,6 @@ func (a_ AchievementDescription) SetMaximumPoints(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
-
 func (a_ AchievementDescription) RarityPercent() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("rarityPercent"))
 	return rv
@@ -339,7 +317,6 @@ func (a_ AchievementDescription) RarityPercent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
-
 func (a_ AchievementDescription) SetRarityPercent(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRarityPercent:"), value)
 }
@@ -349,7 +326,6 @@ func (a_ AchievementDescription) SetRarityPercent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/releasestate
-
 func (a_ AchievementDescription) ReleaseState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("releaseState"))
 	return rv
@@ -360,7 +336,6 @@ func (a_ AchievementDescription) ReleaseState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/releasestate
-
 func (a_ AchievementDescription) SetReleaseState(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReleaseState:"), value)
 }
@@ -370,7 +345,6 @@ func (a_ AchievementDescription) SetReleaseState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
-
 func (a_ AchievementDescription) Title() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("title"))
 	return rv
@@ -381,7 +355,6 @@ func (a_ AchievementDescription) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
-
 func (a_ AchievementDescription) SetTitle(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -391,7 +364,6 @@ func (a_ AchievementDescription) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
-
 func (a_ AchievementDescription) UnachievedDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("unachievedDescription"))
 	return rv
@@ -402,7 +374,6 @@ func (a_ AchievementDescription) UnachievedDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
-
 func (a_ AchievementDescription) SetUnachievedDescription(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUnachievedDescription:"), objc.String(value))
 }

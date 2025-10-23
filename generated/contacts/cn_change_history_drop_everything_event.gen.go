@@ -40,7 +40,6 @@ type ICNChangeHistoryDropEverythingEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDropEverythingEvent
-
 type CNChangeHistoryDropEverythingEvent struct {
 	CNChangeHistoryEvent
 }

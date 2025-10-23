@@ -30,7 +30,8 @@ type _CaptureInputClass struct {
 // An interface definition for the [CaptureInput] class.
 type ICaptureInput interface {
 	objectivec.IObject
-	Ports() []CaptureInputPort
+	Ports() CaptureInputPort
+	SetPorts(value CaptureInputPort)
 }
 
 // An abstract superclass for objects that provide input data to a capture session.
@@ -42,7 +43,6 @@ type ICaptureInput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput
-
 type CaptureInput struct {
 	objectivec.Object
 }
@@ -90,11 +90,19 @@ func NewCaptureInput() CaptureInput {
 // The ports available on a capture input.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/ports
-
-func (c_ CaptureInput) Ports() []CaptureInputPort {
-	rv := objc.Send[[]CaptureInputPort](c_.ID, objc.Sel("ports"))
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
+func (c_ CaptureInput) Ports() CaptureInputPort {
+	rv := objc.Send[CaptureInputPort](c_.ID, objc.Sel("ports"))
 	return rv
+}
+
+
+// The ports available on a capture input.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
+func (c_ CaptureInput) SetPorts(value CaptureInputPort) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPorts:"), value)
 }
 
 

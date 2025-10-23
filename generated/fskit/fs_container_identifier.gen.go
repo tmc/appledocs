@@ -41,7 +41,6 @@ type IFSContainerIdentifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier
-
 type FSContainerIdentifier struct {
 	FSEntityIdentifier
 }
@@ -92,7 +91,6 @@ func NewFSContainerIdentifier() FSContainerIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier/volumeIdentifier
-
 func (f_ FSContainerIdentifier) VolumeIdentifier() FSVolumeIdentifier {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeIdentifier"))
 	return rv

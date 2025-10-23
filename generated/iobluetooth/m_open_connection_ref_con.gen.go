@@ -32,7 +32,9 @@ type ImOpenConnectionRefCon interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/mOpenConnectionRefCon
 type mOpenConnectionRefCon struct {
 	objectivec.Object

@@ -46,7 +46,6 @@ type IAudioIONode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioIONode
-
 type AudioIONode struct {
 	AudioNode
 }
@@ -97,7 +96,6 @@ func NewAudioIONode() AudioIONode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
-
 func (a_ AudioIONode) AudioUnit() AudioUnit {
 	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
 	return rv
@@ -108,7 +106,6 @@ func (a_ AudioIONode) AudioUnit() AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
-
 func (a_ AudioIONode) SetAudioUnit(value IAudioUnit) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioUnit:"), value)
 }
@@ -118,7 +115,6 @@ func (a_ AudioIONode) SetAudioUnit(value IAudioUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-
 func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingEnabled"))
 	return rv
@@ -129,7 +125,6 @@ func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-
 func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingEnabled:"), value)
 }
@@ -139,7 +134,6 @@ func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/presentationlatency
-
 func (a_ AudioIONode) PresentationLatency() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationLatency"))
 	return rv
@@ -150,7 +144,6 @@ func (a_ AudioIONode) PresentationLatency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/presentationlatency
-
 func (a_ AudioIONode) SetPresentationLatency(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationLatency:"), value)
 }

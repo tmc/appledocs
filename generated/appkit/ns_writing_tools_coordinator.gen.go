@@ -63,7 +63,6 @@ type IWritingToolsCoordinator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator
-
 type WritingToolsCoordinator struct {
 	objectivec.Object
 }
@@ -108,23 +107,19 @@ func NewWritingToolsCoordinator() WritingToolsCoordinator {
 
 
 
-
 // Informs the coordinator that a change occurred to the view or its text that requires a layout update.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)
-
 func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(contextID foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateForReflowedTextInContextWithIdentifier:"), contextID)
 }
-
 
 
 // Informs the coordinator about changes your app made to the text in the specified context object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-
 func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText foundation.IAttributedString, reason unsafe.Pointer, contextID foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
@@ -134,7 +129,6 @@ func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentif
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/behavior
-
 func (w_ WritingToolsCoordinator) Behavior() WritingToolsBehavior {
 	rv := objc.Send[WritingToolsBehavior](w_.ID, objc.Sel("behavior"))
 	return rv
@@ -145,7 +139,6 @@ func (w_ WritingToolsCoordinator) Behavior() WritingToolsBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView
-
 func (w_ WritingToolsCoordinator) DecorationContainerView() NSView {
 	rv := objc.Send[NSView](w_.ID, objc.Sel("decorationContainerView"))
 	return rv
@@ -156,7 +149,6 @@ func (w_ WritingToolsCoordinator) DecorationContainerView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView
-
 func (w_ WritingToolsCoordinator) SetDecorationContainerView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDecorationContainerView:"), value)
 }
@@ -166,7 +158,6 @@ func (w_ WritingToolsCoordinator) SetDecorationContainerView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView
-
 func (w_ WritingToolsCoordinator) EffectContainerView() NSView {
 	rv := objc.Send[NSView](w_.ID, objc.Sel("effectContainerView"))
 	return rv
@@ -177,7 +168,6 @@ func (w_ WritingToolsCoordinator) EffectContainerView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView
-
 func (w_ WritingToolsCoordinator) SetEffectContainerView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEffectContainerView:"), value)
 }
@@ -187,7 +177,6 @@ func (w_ WritingToolsCoordinator) SetEffectContainerView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior
-
 func (w_ WritingToolsCoordinator) PreferredBehavior() WritingToolsBehavior {
 	rv := objc.Send[WritingToolsBehavior](w_.ID, objc.Sel("preferredBehavior"))
 	return rv
@@ -198,7 +187,6 @@ func (w_ WritingToolsCoordinator) PreferredBehavior() WritingToolsBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior
-
 func (w_ WritingToolsCoordinator) SetPreferredBehavior(value WritingToolsBehavior) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredBehavior:"), value)
 }
@@ -208,7 +196,6 @@ func (w_ WritingToolsCoordinator) SetPreferredBehavior(value WritingToolsBehavio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions
-
 func (w_ WritingToolsCoordinator) PreferredResultOptions() WritingToolsResultOptions {
 	rv := objc.Send[WritingToolsResultOptions](w_.ID, objc.Sel("preferredResultOptions"))
 	return rv
@@ -219,7 +206,6 @@ func (w_ WritingToolsCoordinator) PreferredResultOptions() WritingToolsResultOpt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions
-
 func (w_ WritingToolsCoordinator) SetPreferredResultOptions(value WritingToolsResultOptions) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredResultOptions:"), value)
 }
@@ -229,7 +215,6 @@ func (w_ WritingToolsCoordinator) SetPreferredResultOptions(value WritingToolsRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/resultOptions
-
 func (w_ WritingToolsCoordinator) ResultOptions() WritingToolsResultOptions {
 	rv := objc.Send[WritingToolsResultOptions](w_.ID, objc.Sel("resultOptions"))
 	return rv
@@ -240,7 +225,6 @@ func (w_ WritingToolsCoordinator) ResultOptions() WritingToolsResultOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/state-swift.property
-
 func (w_ WritingToolsCoordinator) State() WritingToolsCoordinatorState {
 	rv := objc.Send[WritingToolsCoordinatorState](w_.ID, objc.Sel("state"))
 	return rv
@@ -249,7 +233,6 @@ func (w_ WritingToolsCoordinator) State() WritingToolsCoordinatorState {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
-
 func (w_ WritingToolsCoordinator) WritingToolsCoordinator() NSWritingToolsCoordinator {
 	rv := objc.Send[NSWritingToolsCoordinator](w_.ID, objc.Sel("writingToolsCoordinator"))
 	return rv
@@ -258,7 +241,6 @@ func (w_ WritingToolsCoordinator) WritingToolsCoordinator() NSWritingToolsCoordi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
-
 func (w_ WritingToolsCoordinator) SetWritingToolsCoordinator(value IWritingToolsCoordinator) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
 }
@@ -268,7 +250,6 @@ func (w_ WritingToolsCoordinator) SetWritingToolsCoordinator(value IWritingTools
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property
-
 func (w_ WritingToolsCoordinator) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("delegate"))
 	return rv
@@ -279,7 +260,6 @@ func (w_ WritingToolsCoordinator) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property
-
 func (w_ WritingToolsCoordinator) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -287,7 +267,6 @@ func (w_ WritingToolsCoordinator) SetDelegate(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/includestextlistmarkers
-
 func (w_ WritingToolsCoordinator) IncludesTextListMarkers() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("includesTextListMarkers"))
 	return rv
@@ -296,7 +275,6 @@ func (w_ WritingToolsCoordinator) IncludesTextListMarkers() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/includestextlistmarkers
-
 func (w_ WritingToolsCoordinator) SetIncludesTextListMarkers(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
 }
@@ -306,7 +284,6 @@ func (w_ WritingToolsCoordinator) SetIncludesTextListMarkers(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
-
 func (w_ WritingToolsCoordinator) View() NSView {
 	rv := objc.Send[NSView](w_.ID, objc.Sel("view"))
 	return rv
@@ -317,7 +294,6 @@ func (w_ WritingToolsCoordinator) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
-
 func (w_ WritingToolsCoordinator) SetView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setView:"), value)
 }

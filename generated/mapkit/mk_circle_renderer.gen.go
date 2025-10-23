@@ -39,7 +39,11 @@ type IMKCircleRenderer interface {
 // The visual representation of a circular overlay.
 //
 // This renderer fills and strokes the circular region that the overlay object represents. You can change the color and other drawing attributes of the circle by modifying the properties it inherits from the main class. You typically use this class as-is and don’t subclass it. You create an instance of this class in your map view delegate’s method.
+
+
+// The visual representation of a circular overlay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer
 type MKCircleRenderer struct {
 	MKOverlayPathRenderer
@@ -87,9 +91,9 @@ func NewMKCircleRenderer() MKCircleRenderer {
 
 
 
-
 // Creates a new overlay view using the specified circle overlay object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/init(circle:)
 func NewMKCircleRendererWithCircle(circle IMKCircle) MKCircleRenderer {
 	instance := getMKCircleRendererClass().Alloc()
@@ -99,16 +103,20 @@ func NewMKCircleRendererWithCircle(circle IMKCircle) MKCircleRenderer {
 }
 
 
+
 // The circle overlay object that contains the information for drawing the overlay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/circle
 func (m_ MKCircleRenderer) Circle() MKCircle {
 	rv := objc.Send[MKCircle](m_.ID, objc.Sel("circle"))
 	return rv
 }
 
+
 // The unit distance along the circle where the stroke ends.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/strokeEnd
 func (m_ MKCircleRenderer) StrokeEnd() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("strokeEnd"))
@@ -116,17 +124,18 @@ func (m_ MKCircleRenderer) StrokeEnd() float64 {
 }
 
 
-// SetStrokeEnd sets the value of the strokeEnd property.
 // The unit distance along the circle where the stroke ends.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/strokeEnd
 func (m_ MKCircleRenderer) SetStrokeEnd(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStrokeEnd:"), value)
 }
 
+
 // The unit distance along the circle where the stroke starts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/strokeStart
 func (m_ MKCircleRenderer) StrokeStart() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("strokeStart"))
@@ -134,10 +143,9 @@ func (m_ MKCircleRenderer) StrokeStart() float64 {
 }
 
 
-// SetStrokeStart sets the value of the strokeStart property.
 // The unit distance along the circle where the stroke starts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/strokeStart
 func (m_ MKCircleRenderer) SetStrokeStart(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStrokeStart:"), value)

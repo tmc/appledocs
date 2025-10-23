@@ -31,7 +31,7 @@ type IMassFormatter interface {
 	IFormatter
 	IsForPersonMassUse() bool
 	SetIsForPersonMassUse(value bool)
-	NumberFormatter() NSNumberFormatter
+	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
 	UnitStyle() unsafe.Pointer
 	SetUnitStyle(value unsafe.Pointer)
@@ -113,7 +113,7 @@ func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-func (m_ MassFormatter) NumberFormatter() NSNumberFormatter {
+func (m_ MassFormatter) NumberFormatter() INumberFormatter {
 	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
 }

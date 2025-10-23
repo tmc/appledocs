@@ -51,7 +51,6 @@ type IHKStatisticsCollectionQuery interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatisticsCollectionQuery
-
 type HKStatisticsCollectionQuery struct {
 	HKQuery
 }
@@ -102,7 +101,6 @@ func NewHKStatisticsCollectionQuery() HKStatisticsCollectionQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-
 func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.Date {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("anchorDate"))
 	return rv
@@ -113,7 +111,6 @@ func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-
 func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnchorDate:"), value)
 }
@@ -123,7 +120,6 @@ func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/initialresultshandler
-
 func (h_ HKStatisticsCollectionQuery) InitialResultsHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("initialResultsHandler"))
 	return rv
@@ -134,7 +130,6 @@ func (h_ HKStatisticsCollectionQuery) InitialResultsHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/initialresultshandler
-
 func (h_ HKStatisticsCollectionQuery) SetInitialResultsHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setInitialResultsHandler:"), value)
 }
@@ -144,7 +139,6 @@ func (h_ HKStatisticsCollectionQuery) SetInitialResultsHandler(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-
 func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("intervalComponents"))
 	return rv
@@ -155,7 +149,6 @@ func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.DateCompon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-
 func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIntervalComponents:"), value)
 }
@@ -165,7 +158,6 @@ func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.IDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/options
-
 func (h_ HKStatisticsCollectionQuery) Options() HKStatisticsOptions {
 	rv := objc.Send[HKStatisticsOptions](h_.ID, objc.Sel("options"))
 	return rv
@@ -176,7 +168,6 @@ func (h_ HKStatisticsCollectionQuery) Options() HKStatisticsOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/options
-
 func (h_ HKStatisticsCollectionQuery) SetOptions(value HKStatisticsOptions) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setOptions:"), value)
 }
@@ -186,7 +177,6 @@ func (h_ HKStatisticsCollectionQuery) SetOptions(value HKStatisticsOptions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler
-
 func (h_ HKStatisticsCollectionQuery) StatisticsUpdateHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("statisticsUpdateHandler"))
 	return rv
@@ -197,7 +187,6 @@ func (h_ HKStatisticsCollectionQuery) StatisticsUpdateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler
-
 func (h_ HKStatisticsCollectionQuery) SetStatisticsUpdateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStatisticsUpdateHandler:"), value)
 }

@@ -32,7 +32,9 @@ type IoutBuffer interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/outBuffer
 type outBuffer struct {
 	objectivec.Object

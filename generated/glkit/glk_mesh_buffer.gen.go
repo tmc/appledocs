@@ -42,7 +42,6 @@ type IGLKMeshBuffer interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer
-
 type GLKMeshBuffer struct {
 	objectivec.Object
 }
@@ -87,7 +86,6 @@ func NewGLKMeshBuffer() GLKMeshBuffer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/allocator
-
 func (g_ GLKMeshBuffer) Allocator() GLKMeshBufferAllocator {
 	rv := objc.Send[GLKMeshBufferAllocator](g_.ID, objc.Sel("allocator"))
 	return rv
@@ -96,7 +94,6 @@ func (g_ GLKMeshBuffer) Allocator() GLKMeshBufferAllocator {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/glBufferName
-
 func (g_ GLKMeshBuffer) GlBufferName() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("glBufferName"))
 	return rv
@@ -105,7 +102,6 @@ func (g_ GLKMeshBuffer) GlBufferName() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/length
-
 func (g_ GLKMeshBuffer) Length() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("length"))
 	return rv
@@ -114,7 +110,6 @@ func (g_ GLKMeshBuffer) Length() uint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/offset
-
 func (g_ GLKMeshBuffer) Offset() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("offset"))
 	return rv
@@ -123,7 +118,6 @@ func (g_ GLKMeshBuffer) Offset() uint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/type
-
 func (g_ GLKMeshBuffer) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("type"))
 	return rv
@@ -132,7 +126,6 @@ func (g_ GLKMeshBuffer) Type() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/zone
-
 func (g_ GLKMeshBuffer) Zone() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("zone"))
 	return rv

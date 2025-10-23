@@ -50,7 +50,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationCoordinate2DIsValid(_:)
-
 func CLLocationCoordinate2DIsValid(coord unsafe.Pointer, p1 unsafe.Pointer) unsafe.Pointer {
 	return _CLLocationCoordinate2DIsValid(coord, p1)
 	}
@@ -64,7 +63,6 @@ func CLLocationCoordinate2DIsValid(coord unsafe.Pointer, p1 unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationCoordinate2DMake(_:_:)
-
 func CLLocationCoordinate2DMake(latitude unsafe.Pointer, longitude unsafe.Pointer, p2 unsafe.Pointer) unsafe.Pointer {
 	return _CLLocationCoordinate2DMake(latitude, longitude, p2)
 	}

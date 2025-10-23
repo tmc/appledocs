@@ -29,10 +29,10 @@ type _MachBootstrapServerClass struct {
 // An interface definition for the [MachBootstrapServer] class.
 type IMachBootstrapServer interface {
 	IPortNameServer
-	PortForName(name string) Port
-	PortForNameHost(name string, host string) Port
+	PortForName(name string) IPort
+	PortForNameHost(name string, host string) IPort
 	RegisterPortName(port IPort, name string) bool
-	ServicePortWithName(name string) Port
+	ServicePortWithName(name string) IPort
 }
 
 // A port name server that takes and returns Mach port objects.
@@ -104,7 +104,7 @@ func (mc _MachBootstrapServerClass) SharedInstance() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/portForName:
-func (m_ MachBootstrapServer) PortForName(name string) Port {
+func (m_ MachBootstrapServer) PortForName(name string) IPort {
 	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
@@ -114,7 +114,7 @@ func (m_ MachBootstrapServer) PortForName(name string) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/portForName:host:
-func (m_ MachBootstrapServer) PortForNameHost(name string, host string) Port {
+func (m_ MachBootstrapServer) PortForNameHost(name string, host string) IPort {
 	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }
@@ -134,7 +134,7 @@ func (m_ MachBootstrapServer) RegisterPortName(port IPort, name string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/servicePortWithName:
-func (m_ MachBootstrapServer) ServicePortWithName(name string) Port {
+func (m_ MachBootstrapServer) ServicePortWithName(name string) IPort {
 	rv := objc.Send[Port](m_.ID, objc.Sel("servicePortWithName:"), objc.String(name))
 	return rv
 }

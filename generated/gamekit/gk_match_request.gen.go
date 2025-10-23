@@ -69,7 +69,6 @@ type IMatchRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest
-
 type MatchRequest struct {
 	objectivec.Object
 }
@@ -118,7 +117,6 @@ func NewMatchRequest() MatchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayersAllowedForMatch(of:)
-
 func (mc _MatchRequestClass) MaxPlayersAllowedForMatchOfType(matchType MatchType) uint {
 	rv := objc.Send[uint](objc.ID(mc.class), objc.Sel("maxPlayersAllowedForMatchOfType:"), matchType)
 	return rv
@@ -129,7 +127,6 @@ func (mc _MatchRequestClass) MaxPlayersAllowedForMatchOfType(matchType MatchType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/defaultNumberOfPlayers
-
 func (m_ MatchRequest) DefaultNumberOfPlayers() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("defaultNumberOfPlayers"))
 	return rv
@@ -140,7 +137,6 @@ func (m_ MatchRequest) DefaultNumberOfPlayers() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/defaultNumberOfPlayers
-
 func (m_ MatchRequest) SetDefaultNumberOfPlayers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNumberOfPlayers:"), value)
 }
@@ -150,7 +146,6 @@ func (m_ MatchRequest) SetDefaultNumberOfPlayers(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-
 func (m_ MatchRequest) InviteMessage() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("inviteMessage"))
 	return rv
@@ -161,7 +156,6 @@ func (m_ MatchRequest) InviteMessage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-
 func (m_ MatchRequest) SetInviteMessage(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), objc.String(value))
 }
@@ -171,7 +165,6 @@ func (m_ MatchRequest) SetInviteMessage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayers
-
 func (m_ MatchRequest) MaxPlayers() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxPlayers"))
 	return rv
@@ -182,7 +175,6 @@ func (m_ MatchRequest) MaxPlayers() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayers
-
 func (m_ MatchRequest) SetMaxPlayers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPlayers:"), value)
 }
@@ -192,7 +184,6 @@ func (m_ MatchRequest) SetMaxPlayers(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/minPlayers
-
 func (m_ MatchRequest) MinPlayers() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("minPlayers"))
 	return rv
@@ -203,7 +194,6 @@ func (m_ MatchRequest) MinPlayers() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/minPlayers
-
 func (m_ MatchRequest) SetMinPlayers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPlayers:"), value)
 }
@@ -213,7 +203,6 @@ func (m_ MatchRequest) SetMinPlayers(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientProperties
-
 func (m_ MatchRequest) RecipientProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("recipientProperties"))
 	return rv
@@ -224,7 +213,6 @@ func (m_ MatchRequest) RecipientProperties() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientProperties
-
 func (m_ MatchRequest) SetRecipientProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecipientProperties:"), value)
 }
@@ -234,7 +222,6 @@ func (m_ MatchRequest) SetRecipientProperties(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientResponseHandler
-
 func (m_ MatchRequest) RecipientResponseHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("recipientResponseHandler"))
 	return rv
@@ -245,7 +232,6 @@ func (m_ MatchRequest) RecipientResponseHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientResponseHandler
-
 func (m_ MatchRequest) SetRecipientResponseHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecipientResponseHandler:"), value)
 }
@@ -255,7 +241,6 @@ func (m_ MatchRequest) SetRecipientResponseHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/inviteeresponsehandler
-
 func (m_ MatchRequest) InviteeResponseHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inviteeResponseHandler"))
 	return rv
@@ -266,7 +251,6 @@ func (m_ MatchRequest) InviteeResponseHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/inviteeresponsehandler
-
 func (m_ MatchRequest) SetInviteeResponseHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteeResponseHandler:"), value)
 }
@@ -276,7 +260,6 @@ func (m_ MatchRequest) SetInviteeResponseHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerattributes
-
 func (m_ MatchRequest) PlayerAttributes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("playerAttributes"))
 	return rv
@@ -287,7 +270,6 @@ func (m_ MatchRequest) PlayerAttributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerattributes
-
 func (m_ MatchRequest) SetPlayerAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerAttributes:"), value)
 }
@@ -297,7 +279,6 @@ func (m_ MatchRequest) SetPlayerAttributes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playergroup
-
 func (m_ MatchRequest) PlayerGroup() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("playerGroup"))
 	return rv
@@ -308,7 +289,6 @@ func (m_ MatchRequest) PlayerGroup() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playergroup
-
 func (m_ MatchRequest) SetPlayerGroup(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerGroup:"), value)
 }
@@ -318,7 +298,6 @@ func (m_ MatchRequest) SetPlayerGroup(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerstoinvite
-
 func (m_ MatchRequest) PlayersToInvite() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("playersToInvite"))
 	return rv
@@ -329,7 +308,6 @@ func (m_ MatchRequest) PlayersToInvite() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerstoinvite
-
 func (m_ MatchRequest) SetPlayersToInvite(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayersToInvite:"), objc.String(value))
 }
@@ -339,7 +317,6 @@ func (m_ MatchRequest) SetPlayersToInvite(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties
-
 func (m_ MatchRequest) Properties() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
 	return rv
@@ -350,7 +327,6 @@ func (m_ MatchRequest) Properties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties
-
 func (m_ MatchRequest) SetProperties(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
 }
@@ -360,7 +336,6 @@ func (m_ MatchRequest) SetProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename
-
 func (m_ MatchRequest) QueueName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("queueName"))
 	return rv
@@ -371,7 +346,6 @@ func (m_ MatchRequest) QueueName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename
-
 func (m_ MatchRequest) SetQueueName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueName:"), objc.String(value))
 }
@@ -381,7 +355,6 @@ func (m_ MatchRequest) SetQueueName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipients
-
 func (m_ MatchRequest) Recipients() GKPlayer {
 	rv := objc.Send[GKPlayer](m_.ID, objc.Sel("recipients"))
 	return rv
@@ -392,7 +365,6 @@ func (m_ MatchRequest) Recipients() GKPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipients
-
 func (m_ MatchRequest) SetRecipients(value IGKPlayer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecipients:"), value)
 }
@@ -402,7 +374,6 @@ func (m_ MatchRequest) SetRecipients(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/restricttoautomatch
-
 func (m_ MatchRequest) RestrictToAutomatch() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("restrictToAutomatch"))
 	return rv
@@ -413,7 +384,6 @@ func (m_ MatchRequest) RestrictToAutomatch() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/restricttoautomatch
-
 func (m_ MatchRequest) SetRestrictToAutomatch(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictToAutomatch:"), value)
 }

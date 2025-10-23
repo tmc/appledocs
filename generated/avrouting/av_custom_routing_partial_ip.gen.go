@@ -47,7 +47,6 @@ type ICustomRoutingPartialIP interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingPartialIP
-
 type CustomRoutingPartialIP struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewCustomRoutingPartialIP() CustomRoutingPartialIP {
 
 
 
-
 // Creates an IP fragment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingPartialIP/init(address:mask:)
-
 func NewCustomRoutingPartialIPWithAddressMask(address foundation.IData, mask foundation.IData) CustomRoutingPartialIP {
 	instance := getCustomRoutingPartialIPClass().Alloc()
 	rv := objc.Send[CustomRoutingPartialIP](instance.ID, objc.Sel("initWithAddress:mask:"), address, mask)
@@ -111,7 +108,6 @@ func NewCustomRoutingPartialIPWithAddressMask(address foundation.IData, mask fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingPartialIP/address
-
 func (c_ CustomRoutingPartialIP) Address() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("address"))
 	return rv
@@ -122,7 +118,6 @@ func (c_ CustomRoutingPartialIP) Address() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-
 func (c_ CustomRoutingPartialIP) KnownRouteIPs() AVCustomRoutingPartialIP {
 	rv := objc.Send[AVCustomRoutingPartialIP](c_.ID, objc.Sel("knownRouteIPs"))
 	return rv
@@ -133,7 +128,6 @@ func (c_ CustomRoutingPartialIP) KnownRouteIPs() AVCustomRoutingPartialIP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-
 func (c_ CustomRoutingPartialIP) SetKnownRouteIPs(value IAVCustomRoutingPartialIP) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
 }
@@ -143,7 +137,6 @@ func (c_ CustomRoutingPartialIP) SetKnownRouteIPs(value IAVCustomRoutingPartialI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingpartialip/mask
-
 func (c_ CustomRoutingPartialIP) Mask() foundation.Data {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("mask"))
 	return rv
@@ -154,7 +147,6 @@ func (c_ CustomRoutingPartialIP) Mask() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingpartialip/mask
-
 func (c_ CustomRoutingPartialIP) SetMask(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMask:"), value)
 }

@@ -36,7 +36,11 @@ type IINFlightReservation interface {
 }
 
 // The information that describes a flight reservation.
+
+
+// The information that describes a flight reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFlightReservation
 type INFlightReservation struct {
 	INReservation
@@ -83,8 +87,10 @@ func NewINFlightReservation() INFlightReservation {
 }
 
 
+
 // The flight information associated with the reservation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inflightreservation/flight
 func (i_ INFlightReservation) Flight() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("flight"))
@@ -92,17 +98,18 @@ func (i_ INFlightReservation) Flight() unsafe.Pointer {
 }
 
 
-// SetFlight sets the value of the flight property.
 // The flight information associated with the reservation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inflightreservation/flight
 func (i_ INFlightReservation) SetFlight(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFlight:"), value)
 }
 
+
 // The user’s seat for the flight.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inflightreservation/reservedseat
 func (i_ INFlightReservation) ReservedSeat() INSeat {
 	rv := objc.Send[INSeat](i_.ID, objc.Sel("reservedSeat"))
@@ -110,10 +117,9 @@ func (i_ INFlightReservation) ReservedSeat() INSeat {
 }
 
 
-// SetReservedSeat sets the value of the reservedSeat property.
 // The user’s seat for the flight.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inflightreservation/reservedseat
 func (i_ INFlightReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)

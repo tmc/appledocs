@@ -36,7 +36,6 @@ type ISliderAccessoryBehavior interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior
-
 type SliderAccessoryBehavior struct {
 	objectivec.Object
 }

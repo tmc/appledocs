@@ -35,18 +35,18 @@ type IURLSessionTask interface {
 	Suspend()
 	CountOfBytesExpectedToSend() unsafe.Pointer
 	CountOfBytesSent() unsafe.Pointer
-	CurrentRequest() NSURLRequest
+	CurrentRequest() IURLRequest
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	EarliestBeginDate() NSDate
+	EarliestBeginDate() IDate
 	SetEarliestBeginDate(value IDate)
-	Error() NSError
-	OriginalRequest() NSURLRequest
+	Error() IError
+	OriginalRequest() IURLRequest
 	Priority() float32
 	SetPriority(value float32)
 	Progress() Progress
-	Response() NSURLResponse
-	State() URLSessionTaskState
+	Response() IURLResponse
+	State() NSURLSessionTaskState
 	TaskDescription() string
 	SetTaskDescription(value string)
 	TaskIdentifier() uint
@@ -167,7 +167,7 @@ func (u_ URLSessionTask) CountOfBytesSent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/currentRequest
-func (u_ URLSessionTask) CurrentRequest() NSURLRequest {
+func (u_ URLSessionTask) CurrentRequest() IURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
@@ -196,7 +196,7 @@ func (u_ URLSessionTask) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/earliestBeginDate
-func (u_ URLSessionTask) EarliestBeginDate() NSDate {
+func (u_ URLSessionTask) EarliestBeginDate() IDate {
 	rv := objc.Send[NSDate](u_.ID, objc.Sel("earliestBeginDate"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (u_ URLSessionTask) SetEarliestBeginDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/error
-func (u_ URLSessionTask) Error() NSError {
+func (u_ URLSessionTask) Error() IError {
 	rv := objc.Send[NSError](u_.ID, objc.Sel("error"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (u_ URLSessionTask) Error() NSError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/originalRequest
-func (u_ URLSessionTask) OriginalRequest() NSURLRequest {
+func (u_ URLSessionTask) OriginalRequest() IURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
@@ -264,7 +264,7 @@ func (u_ URLSessionTask) Progress() Progress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/response
-func (u_ URLSessionTask) Response() NSURLResponse {
+func (u_ URLSessionTask) Response() IURLResponse {
 	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
@@ -274,7 +274,7 @@ func (u_ URLSessionTask) Response() NSURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/state-swift.property
-func (u_ URLSessionTask) State() URLSessionTaskState {
+func (u_ URLSessionTask) State() NSURLSessionTaskState {
 	rv := objc.Send[URLSessionTaskState](u_.ID, objc.Sel("state"))
 	return rv
 }

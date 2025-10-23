@@ -40,7 +40,6 @@ type IFileProviderKnownFolderLocation interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/Location
-
 type FileProviderKnownFolderLocation struct {
 	objectivec.Object
 }
@@ -85,7 +84,6 @@ func NewFileProviderKnownFolderLocation() FileProviderKnownFolderLocation {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
-
 func (f_ FileProviderKnownFolderLocation) DesktopLocation() NSFileProviderKnownFolderLocation {
 	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
 	return rv
@@ -94,7 +92,6 @@ func (f_ FileProviderKnownFolderLocation) DesktopLocation() NSFileProviderKnownF
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
-
 func (f_ FileProviderKnownFolderLocation) SetDesktopLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
 }
@@ -102,7 +99,6 @@ func (f_ FileProviderKnownFolderLocation) SetDesktopLocation(value IFileProvider
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-
 func (f_ FileProviderKnownFolderLocation) DocumentsLocation() NSFileProviderKnownFolderLocation {
 	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
 	return rv
@@ -111,7 +107,6 @@ func (f_ FileProviderKnownFolderLocation) DocumentsLocation() NSFileProviderKnow
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-
 func (f_ FileProviderKnownFolderLocation) SetDocumentsLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }

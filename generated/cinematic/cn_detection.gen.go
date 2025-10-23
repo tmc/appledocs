@@ -44,7 +44,6 @@ type ICNDetection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class
-
 type CNDetection struct {
 	objectivec.Object
 }
@@ -93,7 +92,6 @@ func NewCNDetection() CNDetection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:
-
 func (cc _CNDetectionClass) DisparityInNormalizedRectSourceDisparityDetectionTypePriorDisparity(normalizedRect coregraphics.CGRect, sourceDisparity unsafe.Pointer, detectionType CNDetectionType, priorDisparity float32) float32 {
 	rv := objc.Send[float32](objc.ID(cc.class), objc.Sel("disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:"), normalizedRect, sourceDisparity, detectionType, priorDisparity)
 	return rv
@@ -104,7 +102,6 @@ func (cc _CNDetectionClass) DisparityInNormalizedRectSourceDisparityDetectionTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/isValidDetectionID:
-
 func (cc _CNDetectionClass) IsValidDetectionID(detectionID ICNDetectionID) bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isValidDetectionID:"), detectionID)
 	return rv
@@ -115,7 +112,6 @@ func (cc _CNDetectionClass) IsValidDetectionID(detectionID ICNDetectionID) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/focusDisparity
-
 func (c_ CNDetection) FocusDisparity() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ CNDetection) FocusDisparity() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/normalizedRect
-
 func (c_ CNDetection) NormalizedRect() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("normalizedRect"))
 	return rv

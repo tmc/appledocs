@@ -36,7 +36,11 @@ type IMKPolygon interface {
 // A closed polygon overlay.
 //
 // The points you add to this overlay connect end-to-end in the order you provide them. The first and last points connect to each other to create a closed shape. When creating a polygon, you can mask out portions of the polygon by specifying one or more interior polygons. For the polygons you specify, this class uses the even-odd fill rule to determine the final occupied area. When applied to overlapping polygons, this rule can cause the framework to mask specific regions out and thereby remove them from the total occupied area. For more information about how fill rules apply to paths, see in .
+
+
+// A closed polygon overlay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPolygon
 type MKPolygon struct {
 	MKMultiPoint
@@ -83,8 +87,10 @@ func NewMKPolygon() MKPolygon {
 }
 
 
+
 // The array of polygons that nest inside the enclosing polygon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpolygon/interiorpolygons
 func (m_ MKPolygon) InteriorPolygons() MKPolygon {
 	rv := objc.Send[MKPolygon](m_.ID, objc.Sel("interiorPolygons"))
@@ -92,10 +98,9 @@ func (m_ MKPolygon) InteriorPolygons() MKPolygon {
 }
 
 
-// SetInteriorPolygons sets the value of the interiorPolygons property.
 // The array of polygons that nest inside the enclosing polygon.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpolygon/interiorpolygons
 func (m_ MKPolygon) SetInteriorPolygons(value IMKPolygon) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInteriorPolygons:"), value)

@@ -45,7 +45,6 @@ type ICellularPlanProperties interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties
-
 type CellularPlanProperties struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewCellularPlanProperties() CellularPlanProperties {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/simCapability
-
 func (c_ CellularPlanProperties) SimCapability() CellularPlanCapability {
 	rv := objc.Send[CellularPlanCapability](c_.ID, objc.Sel("simCapability"))
 	return rv
@@ -105,7 +103,6 @@ func (c_ CellularPlanProperties) SimCapability() CellularPlanCapability {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/simCapability
-
 func (c_ CellularPlanProperties) SetSimCapability(value ICellularPlanCapability) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSimCapability:"), value)
 }
@@ -115,7 +112,6 @@ func (c_ CellularPlanProperties) SetSimCapability(value ICellularPlanCapability)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/supportedRegionCodes-5elox
-
 func (c_ CellularPlanProperties) SupportedRegionCodes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedRegionCodes"))
 	return rv
@@ -126,7 +122,6 @@ func (c_ CellularPlanProperties) SupportedRegionCodes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/supportedRegionCodes-5elox
-
 func (c_ CellularPlanProperties) SetSupportedRegionCodes(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -146,7 +141,6 @@ func (c_ CellularPlanProperties) SetSupportedRegionCodes(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/associatediccid
-
 func (c_ CellularPlanProperties) AssociatedIccid() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("associatedIccid"))
 	return rv
@@ -157,7 +151,6 @@ func (c_ CellularPlanProperties) AssociatedIccid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/associatediccid
-
 func (c_ CellularPlanProperties) SetAssociatedIccid(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAssociatedIccid:"), objc.String(value))
 }

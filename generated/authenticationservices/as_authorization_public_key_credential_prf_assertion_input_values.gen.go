@@ -38,7 +38,6 @@ type IAuthorizationPublicKeyCredentialPRFAssertionInputValues interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInputValues
-
 type AuthorizationPublicKeyCredentialPRFAssertionInputValues struct {
 	objectivec.Object
 }
@@ -83,7 +82,6 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInputValues() AuthorizationP
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInputValues/saltInput2
-
 func (a_ AuthorizationPublicKeyCredentialPRFAssertionInputValues) SaltInput2() foundation.NSData {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("saltInput2"))
 	return rv

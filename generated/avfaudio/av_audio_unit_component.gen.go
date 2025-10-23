@@ -94,7 +94,6 @@ type IAudioUnitComponent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitComponent
-
 type AudioUnitComponent struct {
 	objectivec.Object
 }
@@ -143,7 +142,6 @@ func NewAudioUnitComponent() AudioUnitComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/alltagnames
-
 func (a_ AudioUnitComponent) AllTagNames() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("allTagNames"))
 	return rv
@@ -154,7 +152,6 @@ func (a_ AudioUnitComponent) AllTagNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/alltagnames
-
 func (a_ AudioUnitComponent) SetAllTagNames(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllTagNames:"), objc.String(value))
 }
@@ -164,7 +161,6 @@ func (a_ AudioUnitComponent) SetAllTagNames(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/audiocomponent
-
 func (a_ AudioUnitComponent) AudioComponent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioComponent"))
 	return rv
@@ -175,7 +171,6 @@ func (a_ AudioUnitComponent) AudioComponent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/audiocomponent
-
 func (a_ AudioUnitComponent) SetAudioComponent(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioComponent:"), value)
 }
@@ -185,7 +180,6 @@ func (a_ AudioUnitComponent) SetAudioComponent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/audiocomponentdescription
-
 func (a_ AudioUnitComponent) AudioComponentDescription() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioComponentDescription"))
 	return rv
@@ -196,7 +190,6 @@ func (a_ AudioUnitComponent) AudioComponentDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/audiocomponentdescription
-
 func (a_ AudioUnitComponent) SetAudioComponentDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioComponentDescription:"), value)
 }
@@ -206,7 +199,6 @@ func (a_ AudioUnitComponent) SetAudioComponentDescription(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/availablearchitectures
-
 func (a_ AudioUnitComponent) AvailableArchitectures() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableArchitectures"))
 	return rv
@@ -217,7 +209,6 @@ func (a_ AudioUnitComponent) AvailableArchitectures() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/availablearchitectures
-
 func (a_ AudioUnitComponent) SetAvailableArchitectures(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableArchitectures:"), value)
 }
@@ -227,7 +218,6 @@ func (a_ AudioUnitComponent) SetAvailableArchitectures(value foundation.INumber)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/componenturl
-
 func (a_ AudioUnitComponent) ComponentURL() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("componentURL"))
 	return rv
@@ -238,7 +228,6 @@ func (a_ AudioUnitComponent) ComponentURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/componenturl
-
 func (a_ AudioUnitComponent) SetComponentURL(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setComponentURL:"), value)
 }
@@ -248,7 +237,6 @@ func (a_ AudioUnitComponent) SetComponentURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/configurationdictionary
-
 func (a_ AudioUnitComponent) ConfigurationDictionary() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("configurationDictionary"))
 	return rv
@@ -259,7 +247,6 @@ func (a_ AudioUnitComponent) ConfigurationDictionary() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/configurationdictionary
-
 func (a_ AudioUnitComponent) SetConfigurationDictionary(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationDictionary:"), objc.String(value))
 }
@@ -269,7 +256,6 @@ func (a_ AudioUnitComponent) SetConfigurationDictionary(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/hascustomview
-
 func (a_ AudioUnitComponent) HasCustomView() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasCustomView"))
 	return rv
@@ -280,7 +266,6 @@ func (a_ AudioUnitComponent) HasCustomView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/hascustomview
-
 func (a_ AudioUnitComponent) SetHasCustomView(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasCustomView:"), value)
 }
@@ -290,7 +275,6 @@ func (a_ AudioUnitComponent) SetHasCustomView(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/hasmidiinput
-
 func (a_ AudioUnitComponent) HasMIDIInput() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasMIDIInput"))
 	return rv
@@ -301,7 +285,6 @@ func (a_ AudioUnitComponent) HasMIDIInput() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/hasmidiinput
-
 func (a_ AudioUnitComponent) SetHasMIDIInput(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasMIDIInput:"), value)
 }
@@ -311,7 +294,6 @@ func (a_ AudioUnitComponent) SetHasMIDIInput(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/hasmidioutput
-
 func (a_ AudioUnitComponent) HasMIDIOutput() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasMIDIOutput"))
 	return rv
@@ -322,7 +304,6 @@ func (a_ AudioUnitComponent) HasMIDIOutput() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/hasmidioutput
-
 func (a_ AudioUnitComponent) SetHasMIDIOutput(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasMIDIOutput:"), value)
 }
@@ -332,7 +313,6 @@ func (a_ AudioUnitComponent) SetHasMIDIOutput(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/icon
-
 func (a_ AudioUnitComponent) Icon() appkit.Image {
 	rv := objc.Send[appkit.Image](a_.ID, objc.Sel("icon"))
 	return rv
@@ -343,7 +323,6 @@ func (a_ AudioUnitComponent) Icon() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/icon
-
 func (a_ AudioUnitComponent) SetIcon(value appkit.IImage) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIcon:"), value)
 }
@@ -353,7 +332,6 @@ func (a_ AudioUnitComponent) SetIcon(value appkit.IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/iconurl
-
 func (a_ AudioUnitComponent) IconURL() foundation.URL {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("iconURL"))
 	return rv
@@ -364,7 +342,6 @@ func (a_ AudioUnitComponent) IconURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/iconurl
-
 func (a_ AudioUnitComponent) SetIconURL(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIconURL:"), value)
 }
@@ -374,7 +351,6 @@ func (a_ AudioUnitComponent) SetIconURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/issandboxsafe
-
 func (a_ AudioUnitComponent) IsSandboxSafe() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSandboxSafe"))
 	return rv
@@ -385,7 +361,6 @@ func (a_ AudioUnitComponent) IsSandboxSafe() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/issandboxsafe
-
 func (a_ AudioUnitComponent) SetIsSandboxSafe(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSandboxSafe:"), value)
 }
@@ -395,7 +370,6 @@ func (a_ AudioUnitComponent) SetIsSandboxSafe(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/localizedtypename
-
 func (a_ AudioUnitComponent) LocalizedTypeName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("localizedTypeName"))
 	return rv
@@ -406,7 +380,6 @@ func (a_ AudioUnitComponent) LocalizedTypeName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/localizedtypename
-
 func (a_ AudioUnitComponent) SetLocalizedTypeName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocalizedTypeName:"), objc.String(value))
 }
@@ -416,7 +389,6 @@ func (a_ AudioUnitComponent) SetLocalizedTypeName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/manufacturername
-
 func (a_ AudioUnitComponent) ManufacturerName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
 	return rv
@@ -427,7 +399,6 @@ func (a_ AudioUnitComponent) ManufacturerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/manufacturername
-
 func (a_ AudioUnitComponent) SetManufacturerName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), objc.String(value))
 }
@@ -437,7 +408,6 @@ func (a_ AudioUnitComponent) SetManufacturerName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/name
-
 func (a_ AudioUnitComponent) Name() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
@@ -448,7 +418,6 @@ func (a_ AudioUnitComponent) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/name
-
 func (a_ AudioUnitComponent) SetName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -458,7 +427,6 @@ func (a_ AudioUnitComponent) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/passesauval
-
 func (a_ AudioUnitComponent) PassesAUVal() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("passesAUVal"))
 	return rv
@@ -469,7 +437,6 @@ func (a_ AudioUnitComponent) PassesAUVal() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/passesauval
-
 func (a_ AudioUnitComponent) SetPassesAUVal(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPassesAUVal:"), value)
 }
@@ -479,7 +446,6 @@ func (a_ AudioUnitComponent) SetPassesAUVal(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/typename
-
 func (a_ AudioUnitComponent) TypeName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("typeName"))
 	return rv
@@ -490,7 +456,6 @@ func (a_ AudioUnitComponent) TypeName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/typename
-
 func (a_ AudioUnitComponent) SetTypeName(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTypeName:"), objc.String(value))
 }
@@ -500,7 +465,6 @@ func (a_ AudioUnitComponent) SetTypeName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/usertagnames
-
 func (a_ AudioUnitComponent) UserTagNames() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("userTagNames"))
 	return rv
@@ -511,7 +475,6 @@ func (a_ AudioUnitComponent) UserTagNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/usertagnames
-
 func (a_ AudioUnitComponent) SetUserTagNames(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserTagNames:"), objc.String(value))
 }
@@ -521,7 +484,6 @@ func (a_ AudioUnitComponent) SetUserTagNames(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/version
-
 func (a_ AudioUnitComponent) Version() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("version"))
 	return rv
@@ -532,7 +494,6 @@ func (a_ AudioUnitComponent) Version() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/version
-
 func (a_ AudioUnitComponent) SetVersion(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), value)
 }
@@ -542,7 +503,6 @@ func (a_ AudioUnitComponent) SetVersion(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/versionstring
-
 func (a_ AudioUnitComponent) VersionString() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("versionString"))
 	return rv
@@ -553,7 +513,6 @@ func (a_ AudioUnitComponent) VersionString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/versionstring
-
 func (a_ AudioUnitComponent) SetVersionString(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionString:"), objc.String(value))
 }
@@ -563,7 +522,6 @@ func (a_ AudioUnitComponent) SetVersionString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitmanufacturernameapple
-
 func (a_ AudioUnitComponent) AVAudioUnitManufacturerNameApple() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitManufacturerNameApple"))
 	return rv
@@ -574,7 +532,6 @@ func (a_ AudioUnitComponent) AVAudioUnitManufacturerNameApple() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypeeffect
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeEffect() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeEffect"))
 	return rv
@@ -585,7 +542,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeEffect() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypeformatconverter
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeFormatConverter() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeFormatConverter"))
 	return rv
@@ -596,7 +552,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeFormatConverter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypegenerator
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeGenerator() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeGenerator"))
 	return rv
@@ -607,7 +562,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeGenerator() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypemidiprocessor
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeMIDIProcessor() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeMIDIProcessor"))
 	return rv
@@ -618,7 +572,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMIDIProcessor() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypemixer
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeMixer() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeMixer"))
 	return rv
@@ -629,7 +582,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMixer() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypemusicdevice
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeMusicDevice() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeMusicDevice"))
 	return rv
@@ -640,7 +592,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMusicDevice() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypemusiceffect
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeMusicEffect() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeMusicEffect"))
 	return rv
@@ -651,7 +602,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMusicEffect() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypeofflineeffect
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeOfflineEffect() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeOfflineEffect"))
 	return rv
@@ -662,7 +612,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeOfflineEffect() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypeoutput
-
 func (a_ AudioUnitComponent) AVAudioUnitTypeOutput() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypeOutput"))
 	return rv
@@ -673,7 +622,6 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeOutput() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounittypepanner
-
 func (a_ AudioUnitComponent) AVAudioUnitTypePanner() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioUnitTypePanner"))
 	return rv

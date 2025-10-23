@@ -41,7 +41,6 @@ type ICKSyncEngineSendChangesScope interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope
-
 type CKSyncEngineSendChangesScope struct {
 	objectivec.Object
 }
@@ -84,10 +83,8 @@ func NewCKSyncEngineSendChangesScope() CKSyncEngineSendChangesScope {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithExcludedZoneIDs:
-
 func NewCKSyncEngineSendChangesScopeWithExcludedZoneIDs(excludedZoneIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
 	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithExcludedZoneIDs:"), excludedZoneIDs)
@@ -96,10 +93,8 @@ func NewCKSyncEngineSendChangesScopeWithExcludedZoneIDs(excludedZoneIDs unsafe.P
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithRecordIDs:
-
 func NewCKSyncEngineSendChangesScopeWithRecordIDs(recordIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
 	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithRecordIDs:"), recordIDs)
@@ -108,10 +103,8 @@ func NewCKSyncEngineSendChangesScopeWithRecordIDs(recordIDs unsafe.Pointer) CKSy
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithZoneIDs:
-
 func NewCKSyncEngineSendChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEngineSendChangesScope {
 	instance := getCKSyncEngineSendChangesScopeClass().Alloc()
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithZoneIDs:"), zoneIDs)
@@ -121,20 +114,16 @@ func NewCKSyncEngineSendChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEn
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/containsPendingRecordZoneChange:
-
 func (c_ CKSyncEngineSendChangesScope) ContainsPendingRecordZoneChange(pendingRecordZoneChange ICKSyncEnginePendingRecordZoneChange) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsPendingRecordZoneChange:"), pendingRecordZoneChange)
 	return rv
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/containsRecordID:
-
 func (c_ CKSyncEngineSendChangesScope) ContainsRecordID(recordID ICKRecordID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsRecordID:"), recordID)
 	return rv
@@ -143,7 +132,6 @@ func (c_ CKSyncEngineSendChangesScope) ContainsRecordID(recordID ICKRecordID) bo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/excludedZoneIDs
-
 func (c_ CKSyncEngineSendChangesScope) ExcludedZoneIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("excludedZoneIDs"))
 	return rv
@@ -152,7 +140,6 @@ func (c_ CKSyncEngineSendChangesScope) ExcludedZoneIDs() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/recordIDs
-
 func (c_ CKSyncEngineSendChangesScope) RecordIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordIDs"))
 	return rv
@@ -161,7 +148,6 @@ func (c_ CKSyncEngineSendChangesScope) RecordIDs() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/zoneIDs
-
 func (c_ CKSyncEngineSendChangesScope) ZoneIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneIDs"))
 	return rv

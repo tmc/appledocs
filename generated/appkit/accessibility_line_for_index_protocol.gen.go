@@ -6,9 +6,6 @@ import "github.com/ebitengine/purego/objc"
 
 // accessibilityLineForIndexProtocol is the accessibilityLineForIndex: protocol.
 //
-// Availability:
-//   - macOS 10.10+
-//
 // Use this protocol when registering custom classes that conform to accessibilityLineForIndex:.
 var accessibilityLineForIndexProtocol *objc.Protocol
 

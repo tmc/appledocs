@@ -30,15 +30,15 @@ type _ByteCountFormatterClass struct {
 // An interface definition for the [ByteCountFormatter] class.
 type IByteCountFormatter interface {
 	IFormatter
-	StringForObjectValue(obj objectivec.IObject) String
-	StringFromMeasurement(measurement unsafe.Pointer) String
-	StringFromByteCount(byteCount unsafe.Pointer) String
-	AllowedUnits() ByteCountFormatterUnits
-	SetAllowedUnits(value IByteCountFormatterUnits)
+	StringForObjectValue(obj objectivec.IObject) IString
+	StringFromMeasurement(measurement unsafe.Pointer) IString
+	StringFromByteCount(byteCount unsafe.Pointer) IString
+	AllowedUnits() NSByteCountFormatterUnits
+	SetAllowedUnits(value NSByteCountFormatterUnits)
 	AllowsNonnumericFormatting() bool
 	SetAllowsNonnumericFormatting(value bool)
-	CountStyle() ByteCountFormatterCountStyle
-	SetCountStyle(value ByteCountFormatterCountStyle)
+	CountStyle() NSByteCountFormatterCountStyle
+	SetCountStyle(value NSByteCountFormatterCountStyle)
 	FormattingContext() int
 	SetFormattingContext(value int)
 	IncludesActualByteCount() bool
@@ -110,7 +110,7 @@ func NewByteCountFormatter() ByteCountFormatter {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(from:countStyle:)
-func (bc _ByteCountFormatterClass) StringFromMeasurementCountStyle(measurement unsafe.Pointer, countStyle NSByteCountFormatterCountStyle) String {
+func (bc _ByteCountFormatterClass) StringFromMeasurementCountStyle(measurement unsafe.Pointer, countStyle NSByteCountFormatterCountStyle) IString {
 	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("stringFromMeasurement:countStyle:"), measurement, countStyle)
 	return rv
 }
@@ -120,7 +120,7 @@ func (bc _ByteCountFormatterClass) StringFromMeasurementCountStyle(measurement u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(fromByteCount:countStyle:)
-func (bc _ByteCountFormatterClass) StringFromByteCountCountStyle(byteCount unsafe.Pointer, countStyle NSByteCountFormatterCountStyle) String {
+func (bc _ByteCountFormatterClass) StringFromByteCountCountStyle(byteCount unsafe.Pointer, countStyle NSByteCountFormatterCountStyle) IString {
 	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("stringFromByteCount:countStyle:"), byteCount, countStyle)
 	return rv
 }
@@ -128,7 +128,7 @@ func (bc _ByteCountFormatterClass) StringFromByteCountCountStyle(byteCount unsaf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(for:)
-func (b_ ByteCountFormatter) StringForObjectValue(obj objectivec.IObject) String {
+func (b_ ByteCountFormatter) StringForObjectValue(obj objectivec.IObject) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
@@ -136,7 +136,7 @@ func (b_ ByteCountFormatter) StringForObjectValue(obj objectivec.IObject) String
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(from:)
-func (b_ ByteCountFormatter) StringFromMeasurement(measurement unsafe.Pointer) String {
+func (b_ ByteCountFormatter) StringFromMeasurement(measurement unsafe.Pointer) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("stringFromMeasurement:"), measurement)
 	return rv
 }
@@ -146,7 +146,7 @@ func (b_ ByteCountFormatter) StringFromMeasurement(measurement unsafe.Pointer) S
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(fromByteCount:)
-func (b_ ByteCountFormatter) StringFromByteCount(byteCount unsafe.Pointer) String {
+func (b_ ByteCountFormatter) StringFromByteCount(byteCount unsafe.Pointer) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("stringFromByteCount:"), byteCount)
 	return rv
 }
@@ -156,7 +156,7 @@ func (b_ ByteCountFormatter) StringFromByteCount(byteCount unsafe.Pointer) Strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowedUnits
-func (b_ ByteCountFormatter) AllowedUnits() ByteCountFormatterUnits {
+func (b_ ByteCountFormatter) AllowedUnits() NSByteCountFormatterUnits {
 	rv := objc.Send[ByteCountFormatterUnits](b_.ID, objc.Sel("allowedUnits"))
 	return rv
 }
@@ -166,7 +166,7 @@ func (b_ ByteCountFormatter) AllowedUnits() ByteCountFormatterUnits {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowedUnits
-func (b_ ByteCountFormatter) SetAllowedUnits(value IByteCountFormatterUnits) {
+func (b_ ByteCountFormatter) SetAllowedUnits(value NSByteCountFormatterUnits) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowedUnits:"), value)
 }
 
@@ -194,7 +194,7 @@ func (b_ ByteCountFormatter) SetAllowsNonnumericFormatting(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/countStyle-swift.property
-func (b_ ByteCountFormatter) CountStyle() ByteCountFormatterCountStyle {
+func (b_ ByteCountFormatter) CountStyle() NSByteCountFormatterCountStyle {
 	rv := objc.Send[ByteCountFormatterCountStyle](b_.ID, objc.Sel("countStyle"))
 	return rv
 }
@@ -204,7 +204,7 @@ func (b_ ByteCountFormatter) CountStyle() ByteCountFormatterCountStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/countStyle-swift.property
-func (b_ ByteCountFormatter) SetCountStyle(value ByteCountFormatterCountStyle) {
+func (b_ ByteCountFormatter) SetCountStyle(value NSByteCountFormatterCountStyle) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCountStyle:"), value)
 }
 

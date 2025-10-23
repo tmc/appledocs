@@ -456,6 +456,11 @@ const (
 	CKShareParticipantTypeUnknown CKShareParticipantType = 0
 )
 
+// CKSharingParticipantPermissionOption - An object that controls participant permission options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantPermissionOption
+type CKSharingParticipantPermissionOption uint
+
 // CKSyncEngineEventType - Describes an event that occurs during a sync operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType

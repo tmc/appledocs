@@ -48,7 +48,11 @@ type IINRideVehicle interface {
 // A specific vehicle used by a ride-booking service.
 //
 // An object provides information about a vehicle in your fleet. Use a vehicle object to convey details about a specific vehicle to the user. Siri and Maps present information about your vehicle’s location on the map and let the user know when the vehicle arrives. You create an object when the user books a ride or when you provide the current status of a ride. You assign the vehicle object to the property of the object that you include with your response.
+
+
+// A specific vehicle used by a ride-booking service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle
 type INRideVehicle struct {
 	objectivec.Object
@@ -93,8 +97,10 @@ func NewINRideVehicle() INRideVehicle {
 }
 
 
+
 // The most recent location of the vehicle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/location
 func (i_ INRideVehicle) Location() corelocation.Location {
 	rv := objc.Send[corelocation.Location](i_.ID, objc.Sel("location"))
@@ -102,17 +108,18 @@ func (i_ INRideVehicle) Location() corelocation.Location {
 }
 
 
-// SetLocation sets the value of the location property.
 // The most recent location of the vehicle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/location
 func (i_ INRideVehicle) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocation:"), value)
 }
 
+
 // The name of the vehicle’s manufacturer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/manufacturer
 func (i_ INRideVehicle) Manufacturer() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("manufacturer"))
@@ -120,17 +127,18 @@ func (i_ INRideVehicle) Manufacturer() string {
 }
 
 
-// SetManufacturer sets the value of the manufacturer property.
 // The name of the vehicle’s manufacturer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/manufacturer
 func (i_ INRideVehicle) SetManufacturer(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setManufacturer:"), objc.String(value))
 }
 
+
 // The image to use for the vehicle when displaying its position on the map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/mapAnnotationImage
 func (i_ INRideVehicle) MapAnnotationImage() INImage {
 	rv := objc.Send[INImage](i_.ID, objc.Sel("mapAnnotationImage"))
@@ -138,17 +146,18 @@ func (i_ INRideVehicle) MapAnnotationImage() INImage {
 }
 
 
-// SetMapAnnotationImage sets the value of the mapAnnotationImage property.
 // The image to use for the vehicle when displaying its position on the map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/mapAnnotationImage
 func (i_ INRideVehicle) SetMapAnnotationImage(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMapAnnotationImage:"), value)
 }
 
+
 // The model of the vehicle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/model
 func (i_ INRideVehicle) Model() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("model"))
@@ -156,17 +165,18 @@ func (i_ INRideVehicle) Model() string {
 }
 
 
-// SetModel sets the value of the model property.
 // The model of the vehicle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/model
 func (i_ INRideVehicle) SetModel(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setModel:"), objc.String(value))
 }
 
+
 // The text on the license plate or registration plate of the vehicle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/registrationPlate
 func (i_ INRideVehicle) RegistrationPlate() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("registrationPlate"))
@@ -174,17 +184,18 @@ func (i_ INRideVehicle) RegistrationPlate() string {
 }
 
 
-// SetRegistrationPlate sets the value of the registrationPlate property.
 // The text on the license plate or registration plate of the vehicle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideVehicle/registrationPlate
 func (i_ INRideVehicle) SetRegistrationPlate(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegistrationPlate:"), objc.String(value))
 }
 
+
 // The vehicle assigned to pick up the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/vehicle
 func (i_ INRideVehicle) Vehicle() INRideVehicle {
 	rv := objc.Send[INRideVehicle](i_.ID, objc.Sel("vehicle"))
@@ -192,10 +203,9 @@ func (i_ INRideVehicle) Vehicle() INRideVehicle {
 }
 
 
-// SetVehicle sets the value of the vehicle property.
 // The vehicle assigned to pick up the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/vehicle
 func (i_ INRideVehicle) SetVehicle(value INRideVehicle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVehicle:"), value)

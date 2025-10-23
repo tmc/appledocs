@@ -52,7 +52,6 @@ type ICaptureMetadataOutput interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataOutput
-
 type CaptureMetadataOutput struct {
 	CaptureOutput
 }
@@ -103,7 +102,6 @@ func NewCaptureMetadataOutput() CaptureMetadataOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataOutput/metadataObjectsCallbackQueue
-
 func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsCallbackQueue"))
 	return rv
@@ -114,7 +112,6 @@ func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/availablemetadataobjecttypes
-
 func (c_ CaptureMetadataOutput) AvailableMetadataObjectTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableMetadataObjectTypes"))
 	return rv
@@ -125,7 +122,6 @@ func (c_ CaptureMetadataOutput) AvailableMetadataObjectTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/availablemetadataobjecttypes
-
 func (c_ CaptureMetadataOutput) SetAvailableMetadataObjectTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableMetadataObjectTypes:"), value)
 }
@@ -135,7 +131,6 @@ func (c_ CaptureMetadataOutput) SetAvailableMetadataObjectTypes(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjecttypes
-
 func (c_ CaptureMetadataOutput) MetadataObjectTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectTypes"))
 	return rv
@@ -146,7 +141,6 @@ func (c_ CaptureMetadataOutput) MetadataObjectTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjecttypes
-
 func (c_ CaptureMetadataOutput) SetMetadataObjectTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectTypes:"), value)
 }
@@ -156,7 +150,6 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectsdelegate
-
 func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsDelegate"))
 	return rv
@@ -167,7 +160,6 @@ func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectsdelegate
-
 func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectsDelegate:"), value)
 }
@@ -177,7 +169,6 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/rectofinterest
-
 func (c_ CaptureMetadataOutput) RectOfInterest() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("rectOfInterest"))
 	return rv
@@ -188,7 +179,6 @@ func (c_ CaptureMetadataOutput) RectOfInterest() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/rectofinterest
-
 func (c_ CaptureMetadataOutput) SetRectOfInterest(value coregraphics.CGRect) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRectOfInterest:"), value)
 }
@@ -198,7 +188,6 @@ func (c_ CaptureMetadataOutput) SetRectOfInterest(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/requiredmetadataobjecttypesforcinematicvideocapture
-
 func (c_ CaptureMetadataOutput) RequiredMetadataObjectTypesForCinematicVideoCapture() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("requiredMetadataObjectTypesForCinematicVideoCapture"))
 	return rv
@@ -209,7 +198,6 @@ func (c_ CaptureMetadataOutput) RequiredMetadataObjectTypesForCinematicVideoCapt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/requiredmetadataobjecttypesforcinematicvideocapture
-
 func (c_ CaptureMetadataOutput) SetRequiredMetadataObjectTypesForCinematicVideoCapture(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiredMetadataObjectTypesForCinematicVideoCapture:"), value)
 }

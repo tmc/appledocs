@@ -46,7 +46,6 @@ type ICXTransaction interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction
-
 type CXTransaction struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewCXTransaction() CXTransaction {
 
 
 
-
 // Initializes a new transaction with the specified action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(action:)
-
 func NewCXTransactionWithAction(action ICXAction) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithAction:"), action)
@@ -105,12 +102,10 @@ func NewCXTransactionWithAction(action ICXAction) CXTransaction {
 }
 
 
-
 // Initializes a new transaction with the specified actions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(actions:)
-
 func NewCXTransactionWithActions(actions []CXAction) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithActions:"), actions)
@@ -120,12 +115,10 @@ func NewCXTransactionWithActions(actions []CXAction) CXTransaction {
 
 
 
-
 // Adds the specified action to the transaction.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/addAction(_:)
-
 func (c_ CXTransaction) AddAction(action ICXAction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addAction:"), action)
 }
@@ -135,7 +128,6 @@ func (c_ CXTransaction) AddAction(action ICXAction) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/actions
-
 func (c_ CXTransaction) Actions() []CXAction {
 	rv := objc.Send[[]CXAction](c_.ID, objc.Sel("actions"))
 	return rv
@@ -146,7 +138,6 @@ func (c_ CXTransaction) Actions() []CXAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/isComplete
-
 func (c_ CXTransaction) Complete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))
 	return rv
@@ -157,7 +148,6 @@ func (c_ CXTransaction) Complete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/uuid
-
 func (c_ CXTransaction) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
@@ -168,7 +158,6 @@ func (c_ CXTransaction) UUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
-
 func (c_ CXTransaction) IsComplete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
 	return rv
@@ -179,7 +168,6 @@ func (c_ CXTransaction) IsComplete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
-
 func (c_ CXTransaction) SetIsComplete(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
 }

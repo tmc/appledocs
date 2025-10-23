@@ -31,45 +31,45 @@ type _BundleClass struct {
 type IBundle interface {
 	objectivec.IObject
 	ClassNamed(className string) objc.Class
-	ContextHelpForKey(key unsafe.Pointer) AttributedString
+	ContextHelpForKey(key unsafe.Pointer) IAttributedString
 	LoadAndReturnError(error_ IError) bool
 	LoadAppleScriptObjectiveCScripts()
-	LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) Array
+	LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) IArray
 	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objectivec.IObject, topLevelObjects objectivec.IObject) bool
-	LocalizedStringForKeyValueTable(key string, value string, tableName string) String
+	LocalizedStringForKeyValueTable(key string, value string, tableName string) IString
 	ObjectForInfoDictionaryKey(key string) objc.ID
-	PathForAuxiliaryExecutable(executableName string) String
-	PathForResourceOfType(name string, ext string) String
-	PathForResourceOfTypeInDirectory(name string, ext string, subpath string) String
-	PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) String
-	PathForSoundResource(name unsafe.Pointer) String
-	PathForImageResource(name unsafe.Pointer) String
+	PathForAuxiliaryExecutable(executableName string) IString
+	PathForResourceOfType(name string, ext string) IString
+	PathForResourceOfTypeInDirectory(name string, ext string, subpath string) IString
+	PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) IString
+	PathForSoundResource(name unsafe.Pointer) IString
+	PathForImageResource(name unsafe.Pointer) IString
 	PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string
 	PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string
 	PreflightAndReturnError(error_ IError) bool
 	PreservationPriorityForTag(tag string) float64
 	SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer)
 	Unload() bool
-	URLForAuxiliaryExecutable(executableName string) URL
-	URLForResourceWithExtension(name string, ext string) URL
-	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) URL
-	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) URL
-	URLForImageResource(name unsafe.Pointer) URL
+	URLForAuxiliaryExecutable(executableName string) IURL
+	URLForResourceWithExtension(name string, ext string) IURL
+	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) IURL
+	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) IURL
+	URLForImageResource(name unsafe.Pointer) IURL
 	URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL
 	URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL
 	LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool
-	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) AttributedString
-	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) String
-	AppStoreReceiptURL() URL
+	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) IAttributedString
+	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) IString
+	AppStoreReceiptURL() IURL
 	BuiltInPlugInsPath() string
-	BuiltInPlugInsURL() URL
+	BuiltInPlugInsURL() IURL
 	BundleIdentifier() string
 	BundlePath() string
-	BundleURL() URL
+	BundleURL() IURL
 	DevelopmentLocalization() string
 	ExecutableArchitectures() []Number
 	ExecutablePath() string
-	ExecutableURL() URL
+	ExecutableURL() IURL
 	InfoDictionary() IDictionary
 	Loaded() bool
 	Localizations() []string
@@ -77,13 +77,13 @@ type IBundle interface {
 	PreferredLocalizations() []string
 	PrincipalClass() objc.Class
 	PrivateFrameworksPath() string
-	PrivateFrameworksURL() URL
+	PrivateFrameworksURL() IURL
 	ResourcePath() string
-	ResourceURL() URL
+	ResourceURL() IURL
 	SharedFrameworksPath() string
-	SharedFrameworksURL() URL
+	SharedFrameworksURL() IURL
 	SharedSupportPath() string
-	SharedSupportURL() URL
+	SharedSupportURL() IURL
 	IsLoaded() bool
 	SetIsLoaded(value bool)
 	NSExecutableArchitectureMismatchError() int
@@ -205,7 +205,7 @@ func NewBundleWithURL(url IURL) Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
-func (bc _BundleClass) BundleForClass(aClass objc.Class) Bundle {
+func (bc _BundleClass) BundleForClass(aClass objc.Class) IBundle {
 	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleForClass:"), aClass)
 	return rv
 }
@@ -215,7 +215,7 @@ func (bc _BundleClass) BundleForClass(aClass objc.Class) Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
-func (bc _BundleClass) BundleWithIdentifier(identifier string) Bundle {
+func (bc _BundleClass) BundleWithIdentifier(identifier string) IBundle {
 	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
@@ -225,7 +225,7 @@ func (bc _BundleClass) BundleWithIdentifier(identifier string) Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:)-swift.type.method
-func (bc _BundleClass) PathForResourceOfTypeInDirectory(name string, ext string, bundlePath string) String {
+func (bc _BundleClass) PathForResourceOfTypeInDirectory(name string, ext string, bundlePath string) IString {
 	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("pathForResource:ofType:inDirectory:"), objc.String(name), objc.String(ext), objc.String(bundlePath))
 	return rv
 }
@@ -265,7 +265,7 @@ func (bc _BundleClass) PreferredLocalizationsFromArrayForPreferences(localizatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:in:)
-func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL IURL) URL {
+func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL IURL) IURL {
 	rv := objc.Send[URL](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), objc.String(name), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
@@ -362,7 +362,7 @@ func (b_ Bundle) ClassNamed(className string) objc.Class {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/contextHelp(forKey:)
-func (b_ Bundle) ContextHelpForKey(key unsafe.Pointer) AttributedString {
+func (b_ Bundle) ContextHelpForKey(key unsafe.Pointer) IAttributedString {
 	rv := objc.Send[AttributedString](b_.ID, objc.Sel("contextHelpForKey:"), key)
 	return rv
 }
@@ -399,7 +399,7 @@ func (b_ Bundle) LoadAppleScriptObjectiveCScripts() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadNibNamed(_:owner:options:)
-func (b_ Bundle) LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) Array {
+func (b_ Bundle) LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) IArray {
 	rv := objc.Send[Array](b_.ID, objc.Sel("loadNibNamed:owner:options:"), objc.String(name), owner, options)
 	return rv
 }
@@ -419,7 +419,7 @@ func (b_ Bundle) LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedString(forKey:value:table:)
-func (b_ Bundle) LocalizedStringForKeyValueTable(key string, value string, tableName string) String {
+func (b_ Bundle) LocalizedStringForKeyValueTable(key string, value string, tableName string) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
@@ -439,7 +439,7 @@ func (b_ Bundle) ObjectForInfoDictionaryKey(key string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forAuxiliaryExecutable:)
-func (b_ Bundle) PathForAuxiliaryExecutable(executableName string) String {
+func (b_ Bundle) PathForAuxiliaryExecutable(executableName string) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForAuxiliaryExecutable:"), objc.String(executableName))
 	return rv
 }
@@ -449,7 +449,7 @@ func (b_ Bundle) PathForAuxiliaryExecutable(executableName string) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:)
-func (b_ Bundle) PathForResourceOfType(name string, ext string) String {
+func (b_ Bundle) PathForResourceOfType(name string, ext string) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:"), objc.String(name), objc.String(ext))
 	return rv
 }
@@ -459,7 +459,7 @@ func (b_ Bundle) PathForResourceOfType(name string, ext string) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:)-swift.method
-func (b_ Bundle) PathForResourceOfTypeInDirectory(name string, ext string, subpath string) String {
+func (b_ Bundle) PathForResourceOfTypeInDirectory(name string, ext string, subpath string) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
 	return rv
 }
@@ -469,7 +469,7 @@ func (b_ Bundle) PathForResourceOfTypeInDirectory(name string, ext string, subpa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forResource:ofType:inDirectory:forLocalization:)
-func (b_ Bundle) PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) String {
+func (b_ Bundle) PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForResource:ofType:inDirectory:forLocalization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
@@ -479,7 +479,7 @@ func (b_ Bundle) PathForResourceOfTypeInDirectoryForLocalization(name string, ex
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/path(forSoundResource:)
-func (b_ Bundle) PathForSoundResource(name unsafe.Pointer) String {
+func (b_ Bundle) PathForSoundResource(name unsafe.Pointer) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForSoundResource:"), name)
 	return rv
 }
@@ -489,7 +489,7 @@ func (b_ Bundle) PathForSoundResource(name unsafe.Pointer) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/pathForImageResource(_:)
-func (b_ Bundle) PathForImageResource(name unsafe.Pointer) String {
+func (b_ Bundle) PathForImageResource(name unsafe.Pointer) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("pathForImageResource:"), name)
 	return rv
 }
@@ -558,7 +558,7 @@ func (b_ Bundle) Unload() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forAuxiliaryExecutable:)
-func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) URL {
+func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForAuxiliaryExecutable:"), objc.String(executableName))
 	return rv
 }
@@ -568,7 +568,7 @@ func (b_ Bundle) URLForAuxiliaryExecutable(executableName string) URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:)
-func (b_ Bundle) URLForResourceWithExtension(name string, ext string) URL {
+func (b_ Bundle) URLForResourceWithExtension(name string, ext string) IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:"), objc.String(name), objc.String(ext))
 	return rv
 }
@@ -578,7 +578,7 @@ func (b_ Bundle) URLForResourceWithExtension(name string, ext string) URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:)
-func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) URL {
+func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:"), objc.String(name), objc.String(ext), objc.String(subpath))
 	return rv
 }
@@ -588,7 +588,7 @@ func (b_ Bundle) URLForResourceWithExtensionSubdirectory(name string, ext string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:localization:)
-func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) URL {
+func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForResource:withExtension:subdirectory:localization:"), objc.String(name), objc.String(ext), objc.String(subpath), objc.String(localizationName))
 	return rv
 }
@@ -598,7 +598,7 @@ func (b_ Bundle) URLForResourceWithExtensionSubdirectoryLocalization(name string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urlForImageResource(_:)
-func (b_ Bundle) URLForImageResource(name unsafe.Pointer) URL {
+func (b_ Bundle) URLForImageResource(name unsafe.Pointer) IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("URLForImageResource:"), name)
 	return rv
 }
@@ -636,7 +636,7 @@ func (b_ Bundle) LoadNibFileExternalNameTableWithZone(fileName string, context o
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/localizedAttributedStringForKey:value:table:
-func (b_ Bundle) LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) AttributedString {
+func (b_ Bundle) LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) IAttributedString {
 	rv := objc.Send[AttributedString](b_.ID, objc.Sel("localizedAttributedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
@@ -646,7 +646,7 @@ func (b_ Bundle) LocalizedAttributedStringForKeyValueTable(key string, value str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/localizedStringForKey:value:table:localizations:
-func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) String {
+func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:localizations:"), objc.String(key), objc.String(value), objc.String(tableName), localizations)
 	return rv
 }
@@ -676,7 +676,7 @@ func (b_ Bundle) AllFrameworks() []Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/appStoreReceiptURL
-func (b_ Bundle) AppStoreReceiptURL() URL {
+func (b_ Bundle) AppStoreReceiptURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("appStoreReceiptURL"))
 	return rv
 }
@@ -696,7 +696,7 @@ func (b_ Bundle) BuiltInPlugInsPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/builtInPlugInsURL
-func (b_ Bundle) BuiltInPlugInsURL() URL {
+func (b_ Bundle) BuiltInPlugInsURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("builtInPlugInsURL"))
 	return rv
 }
@@ -726,7 +726,7 @@ func (b_ Bundle) BundlePath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/bundleURL
-func (b_ Bundle) BundleURL() URL {
+func (b_ Bundle) BundleURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("bundleURL"))
 	return rv
 }
@@ -766,7 +766,7 @@ func (b_ Bundle) ExecutablePath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/executableURL
-func (b_ Bundle) ExecutableURL() URL {
+func (b_ Bundle) ExecutableURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("executableURL"))
 	return rv
 }
@@ -816,7 +816,7 @@ func (b_ Bundle) LocalizedInfoDictionary() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
-func (b_ Bundle) MainBundle() NSBundle {
+func (b_ Bundle) MainBundle() IBundle {
 	rv := objc.Send[NSBundle](b_.ID, objc.Sel("mainBundle"))
 	return rv
 }
@@ -856,7 +856,7 @@ func (b_ Bundle) PrivateFrameworksPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/privateFrameworksURL
-func (b_ Bundle) PrivateFrameworksURL() URL {
+func (b_ Bundle) PrivateFrameworksURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("privateFrameworksURL"))
 	return rv
 }
@@ -876,7 +876,7 @@ func (b_ Bundle) ResourcePath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/resourceURL
-func (b_ Bundle) ResourceURL() URL {
+func (b_ Bundle) ResourceURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("resourceURL"))
 	return rv
 }
@@ -896,7 +896,7 @@ func (b_ Bundle) SharedFrameworksPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedFrameworksURL
-func (b_ Bundle) SharedFrameworksURL() URL {
+func (b_ Bundle) SharedFrameworksURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("sharedFrameworksURL"))
 	return rv
 }
@@ -916,7 +916,7 @@ func (b_ Bundle) SharedSupportPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/sharedSupportURL
-func (b_ Bundle) SharedSupportURL() URL {
+func (b_ Bundle) SharedSupportURL() IURL {
 	rv := objc.Send[URL](b_.ID, objc.Sel("sharedSupportURL"))
 	return rv
 }

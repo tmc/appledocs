@@ -55,7 +55,11 @@ type IOBEXFileTransferServices interface {
 // Implements advanced OBEX operations in addition to simple PUT and GET.
 //
 // All operations are asynchronous and will callback over a respective delegate method if the initial return value is successful. The initial return value usually concerns the state of this object where as the delegate return value reflects the response of the remote device.
+
+
+// Implements advanced OBEX operations in addition to simple PUT and GET.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices
 type OBEXFileTransferServices struct {
 	objectivec.Object
@@ -101,9 +105,9 @@ func NewOBEXFileTransferServices() OBEXFileTransferServices {
 
 
 
-
 // Create a new OBEXFileTransferServices object
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/init(obexSession:)
 func NewOBEXFileTransferServicesWithOBEXSession(inOBEXSession IOBluetoothOBEXSession) OBEXFileTransferServices {
 	instance := getOBEXFileTransferServicesClass().Alloc()
@@ -113,151 +117,188 @@ func NewOBEXFileTransferServicesWithOBEXSession(inOBEXSession IOBluetoothOBEXSes
 }
 
 
+
 // Create a new OBEXFileTransferServices object
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/withOBEXSession(_:)
 func (oc _OBEXFileTransferServicesClass) WithOBEXSession(inOBEXSession IOBluetoothOBEXSession) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("withOBEXSession:"), inOBEXSession)
 	return rv
 }
 
+
 // Abort the current operation
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/abort()
 func (o_ OBEXFileTransferServices) Abort() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("abort"))
 	return rv
 }
 
+
 // Change to the directory above the current level if not at the root
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/changeCurrentFolderBackward()
 func (o_ OBEXFileTransferServices) ChangeCurrentFolderBackward() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderBackward"))
 	return rv
 }
 
+
 // Change the remote path
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/changeCurrentFolderForward(toPath:)
 func (o_ OBEXFileTransferServices) ChangeCurrentFolderForwardToPath(inDirName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderForwardToPath:"), objc.String(inDirName))
 	return rv
 }
 
+
 // Asynchronously change to the remote root directory
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/changeCurrentFolderToRoot()
 func (o_ OBEXFileTransferServices) ChangeCurrentFolderToRoot() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderToRoot"))
 	return rv
 }
 
+
 // Connect to a remote device for FTP operations
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/connectToFTPService()
 func (o_ OBEXFileTransferServices) ConnectToFTPService() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("connectToFTPService"))
 	return rv
 }
 
+
 // Connect to a remote device for ObjectPush operations. Most of the FTP functionality of this object will be disabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/connectToObjectPushService()
 func (o_ OBEXFileTransferServices) ConnectToObjectPushService() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("connectToObjectPushService"))
 	return rv
 }
 
+
 // Copy a remote file to a local path
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/copyRemoteFile(_:toLocalPath:)
 func (o_ OBEXFileTransferServices) CopyRemoteFileToLocalPath(inRemoteFileName string, inLocalPathAndName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("copyRemoteFile:toLocalPath:"), objc.String(inRemoteFileName), objc.String(inLocalPathAndName))
 	return rv
 }
 
+
 // Create a folder on the remote target
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/createFolder(_:)
 func (o_ OBEXFileTransferServices) CreateFolder(inDirName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("createFolder:"), objc.String(inDirName))
 	return rv
 }
 
+
 // Get the remote current directory path during an FTP session
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/currentPath()
 func (o_ OBEXFileTransferServices) CurrentPath() foundation.String {
 	rv := objc.Send[foundation.String](o_.ID, objc.Sel("currentPath"))
 	return rv
 }
 
+
 // Disconnect from the remote device
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/disconnect()
 func (o_ OBEXFileTransferServices) Disconnect() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("disconnect"))
 	return rv
 }
 
+
 // Get the remote default VCard, if it is supported
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/getDefaultVCard(_:)
 func (o_ OBEXFileTransferServices) GetDefaultVCard(inLocalPathAndName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("getDefaultVCard:"), objc.String(inLocalPathAndName))
 	return rv
 }
 
+
 // Get the action state of the module
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/isBusy()
 func (o_ OBEXFileTransferServices) IsBusy() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isBusy"))
 	return rv
 }
 
+
 // Get the connected state of this module.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/isConnected()
 func (o_ OBEXFileTransferServices) IsConnected() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isConnected"))
 	return rv
 }
 
+
 // Remove a remote item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/removeItem(_:)
 func (o_ OBEXFileTransferServices) RemoveItem(inItemName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("removeItem:"), objc.String(inItemName))
 	return rv
 }
 
+
 // Get a remote directory listing
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/retrieveFolderListing()
 func (o_ OBEXFileTransferServices) RetrieveFolderListing() OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("retrieveFolderListing"))
 	return rv
 }
 
+
 // Send data to a remote target
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/send(_:type:name:)
 func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.IData, inType string, inName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendData:type:name:"), inData, objc.String(inType), objc.String(inName))
 	return rv
 }
 
+
 // Put a local file to the remote target
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/sendFile(_:)
 func (o_ OBEXFileTransferServices) SendFile(inLocalPathAndName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendFile:"), objc.String(inLocalPathAndName))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/delegate
 func (o_ OBEXFileTransferServices) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("delegate"))
@@ -265,8 +306,7 @@ func (o_ OBEXFileTransferServices) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/delegate
 func (o_ OBEXFileTransferServices) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)

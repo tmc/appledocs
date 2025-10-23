@@ -40,7 +40,6 @@ type IHKActivityMoveModeObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivityMoveModeObject
-
 type HKActivityMoveModeObject struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewHKActivityMoveModeObject() HKActivityMoveModeObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivityMoveModeObject/activityMoveMode
-
 func (h_ HKActivityMoveModeObject) ActivityMoveMode() HKActivityMoveMode {
 	rv := objc.Send[HKActivityMoveMode](h_.ID, objc.Sel("activityMoveMode"))
 	return rv

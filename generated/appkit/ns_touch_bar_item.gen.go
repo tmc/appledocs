@@ -64,7 +64,6 @@ type ITouchBarItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem
-
 type TouchBarItem struct {
 	objectivec.Object
 }
@@ -113,7 +112,6 @@ func NewTouchBarItem() TouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/customizationLabel
-
 func (t_ TouchBarItem) CustomizationLabel() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -124,7 +122,6 @@ func (t_ TouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/view
-
 func (t_ TouchBarItem) View() NSView {
 	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
 	return rv
@@ -135,7 +132,6 @@ func (t_ TouchBarItem) View() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/viewController
-
 func (t_ TouchBarItem) ViewController() NSViewController {
 	rv := objc.Send[NSViewController](t_.ID, objc.Sel("viewController"))
 	return rv
@@ -146,7 +142,6 @@ func (t_ TouchBarItem) ViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/visibilityPriority
-
 func (t_ TouchBarItem) VisibilityPriority() TouchBarItemPriority {
 	rv := objc.Send[TouchBarItemPriority](t_.ID, objc.Sel("visibilityPriority"))
 	return rv
@@ -157,7 +152,6 @@ func (t_ TouchBarItem) VisibilityPriority() TouchBarItemPriority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/visibilityPriority
-
 func (t_ TouchBarItem) SetVisibilityPriority(value TouchBarItemPriority) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
@@ -167,7 +161,6 @@ func (t_ TouchBarItem) SetVisibilityPriority(value TouchBarItemPriority) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
-
 func (t_ TouchBarItem) IsContinuous() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isContinuous"))
 	return rv
@@ -178,7 +171,6 @@ func (t_ TouchBarItem) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
-
 func (t_ TouchBarItem) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsContinuous:"), value)
 }
@@ -188,7 +180,6 @@ func (t_ TouchBarItem) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-
 func (t_ TouchBarItem) GroupTouchBar() NSTouchBar {
 	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("groupTouchBar"))
 	return rv
@@ -199,7 +190,6 @@ func (t_ TouchBarItem) GroupTouchBar() NSTouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-
 func (t_ TouchBarItem) SetGroupTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
 }
@@ -209,7 +199,6 @@ func (t_ TouchBarItem) SetGroupTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
-
 func (t_ TouchBarItem) CollapsedRepresentation() NSView {
 	rv := objc.Send[NSView](t_.ID, objc.Sel("collapsedRepresentation"))
 	return rv
@@ -220,7 +209,6 @@ func (t_ TouchBarItem) CollapsedRepresentation() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
-
 func (t_ TouchBarItem) SetCollapsedRepresentation(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCollapsedRepresentation:"), value)
 }
@@ -230,7 +218,6 @@ func (t_ TouchBarItem) SetCollapsedRepresentation(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-
 func (t_ TouchBarItem) PopoverTouchBar() NSTouchBar {
 	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("popoverTouchBar"))
 	return rv
@@ -241,7 +228,6 @@ func (t_ TouchBarItem) PopoverTouchBar() NSTouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-
 func (t_ TouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
@@ -251,7 +237,6 @@ func (t_ TouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-
 func (t_ TouchBarItem) PressAndHoldTouchBar() NSTouchBar {
 	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
@@ -262,7 +247,6 @@ func (t_ TouchBarItem) PressAndHoldTouchBar() NSTouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-
 func (t_ TouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
@@ -272,7 +256,6 @@ func (t_ TouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
-
 func (t_ TouchBarItem) TrackingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("trackingMode"))
 	return rv
@@ -283,7 +266,6 @@ func (t_ TouchBarItem) TrackingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
-
 func (t_ TouchBarItem) SetTrackingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackingMode:"), value)
 }
@@ -293,7 +275,6 @@ func (t_ TouchBarItem) SetTrackingMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier
-
 func (t_ TouchBarItem) PrincipalItemIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("principalItemIdentifier"))
 	return rv
@@ -304,7 +285,6 @@ func (t_ TouchBarItem) PrincipalItemIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier
-
 func (t_ TouchBarItem) SetPrincipalItemIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
 }
@@ -314,7 +294,6 @@ func (t_ TouchBarItem) SetPrincipalItemIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.property
-
 func (t_ TouchBarItem) Identifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
 	return rv
@@ -325,7 +304,6 @@ func (t_ TouchBarItem) Identifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.property
-
 func (t_ TouchBarItem) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
@@ -335,7 +313,6 @@ func (t_ TouchBarItem) SetIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/isvisible
-
 func (t_ TouchBarItem) IsVisible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
 	return rv
@@ -346,7 +323,6 @@ func (t_ TouchBarItem) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/isvisible
-
 func (t_ TouchBarItem) SetIsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
 }

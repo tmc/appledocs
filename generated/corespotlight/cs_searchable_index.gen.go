@@ -55,7 +55,6 @@ type ICSSearchableIndex interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex
-
 type CSSearchableIndex struct {
 	objectivec.Object
 }
@@ -100,12 +99,10 @@ func NewCSSearchableIndex() CSSearchableIndex {
 
 
 
-
 // Returns an on-device index with the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
-
 func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
 	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), objc.String(name))
@@ -114,12 +111,10 @@ func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
 }
 
 
-
 // Returns an on-device index with the specified name and data protection class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)
-
 func NewCSSearchableIndexWithNameProtectionClass(name string, protectionClass unsafe.Pointer) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
 	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), objc.String(name), protectionClass)
@@ -133,7 +128,6 @@ func NewCSSearchableIndexWithNameProtectionClass(name string, protectionClass un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/default()
-
 func (cc _CSSearchableIndexClass) DefaultSearchableIndex() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultSearchableIndex"))
 	return rv
@@ -144,107 +138,88 @@ func (cc _CSSearchableIndexClass) DefaultSearchableIndex() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/isIndexingAvailable()
-
 func (cc _CSSearchableIndexClass) IsIndexingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isIndexingAvailable"))
 	return rv
 }
 
 
-
 // Begins a batch of updates to an index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/beginBatch()
-
 func (c_ CSSearchableIndex) BeginIndexBatch() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("beginIndexBatch"))
 }
-
 
 
 // Deletes all searchable items from the index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/deleteAllSearchableItems(completionHandler:)
-
 func (c_ CSSearchableIndex) DeleteAllSearchableItemsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteAllSearchableItemsWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Removes from the index all searchable items associated with the specified domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withDomainIdentifiers:completionHandler:)
-
 func (c_ CSSearchableIndex) DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSearchableItemsWithDomainIdentifiers:completionHandler:"), domainIdentifiers, completionHandler)
 }
-
 
 
 // Removes from the index all items with the specified identifiers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withIdentifiers:completionHandler:)
-
 func (c_ CSSearchableIndex) DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSearchableItemsWithIdentifiers:completionHandler:"), identifiers, completionHandler)
 }
-
 
 
 // Ends a batch of index updates and stores the specified state information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)
-
 func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(clientState foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endIndexBatchWithClientState:completionHandler:"), clientState, completionHandler)
 }
-
 
 
 // Ends a batch of index updates and stores the specified state information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)
-
 func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.IData, newClientState foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endIndexBatchWithExpectedClientState:newClientState:completionHandler:"), expectedClientState, newClientState, completionHandler)
 }
-
 
 
 // Fetches data from an external provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)
-
 func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), objc.String(bundleIdentifier), objc.String(itemIdentifier), contentType, completionHandler)
 }
-
 
 
 // Fetches the app’s most recent client state information asynchronously.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)
-
 func (c_ CSSearchableIndex) FetchLastClientStateWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchLastClientStateWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Adds or updates items in the index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)
-
 func (c_ CSSearchableIndex) IndexSearchableItemsCompletionHandler(items []CSSearchableItem, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("indexSearchableItems:completionHandler:"), items, completionHandler)
 }
@@ -254,7 +229,6 @@ func (c_ CSSearchableIndex) IndexSearchableItemsCompletionHandler(items []CSSear
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate
-
 func (c_ CSSearchableIndex) IndexDelegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("indexDelegate"))
 	return rv
@@ -265,7 +239,6 @@ func (c_ CSSearchableIndex) IndexDelegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate
-
 func (c_ CSSearchableIndex) SetIndexDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexDelegate:"), value)
 }
@@ -275,7 +248,6 @@ func (c_ CSSearchableIndex) SetIndexDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-
 func (c_ CSSearchableIndex) IsEligibleForSearch() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEligibleForSearch"))
 	return rv
@@ -286,7 +258,6 @@ func (c_ CSSearchableIndex) IsEligibleForSearch() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-
 func (c_ CSSearchableIndex) SetIsEligibleForSearch(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEligibleForSearch:"), value)
 }

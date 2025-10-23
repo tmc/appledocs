@@ -30,7 +30,7 @@ type _MetricKeyClass struct {
 type IMetricKey interface {
 	IKey
 	Metrics() MLMetricKey
-	SetMetrics(value MLMetricKey)
+	SetMetrics(value IMLMetricKey)
 }
 
 // A key for the metrics dictionary in an update context.
@@ -40,7 +40,6 @@ type IMetricKey interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey
-
 type MetricKey struct {
 	Key
 }
@@ -91,7 +90,6 @@ func NewMetricKey() MetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/epochIndex
-
 func (mc _MetricKeyClass) EpochIndex() MetricKey {
 	rv := objc.Send[MLMetricKey](objc.ID(mc.class), objc.Sel("epochIndex"))
 	return rv
@@ -101,7 +99,6 @@ func (mc _MetricKeyClass) EpochIndex() MetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/lossValue
-
 func (mc _MetricKeyClass) LossValue() MetricKey {
 	rv := objc.Send[MLMetricKey](objc.ID(mc.class), objc.Sel("lossValue"))
 	return rv
@@ -111,7 +108,6 @@ func (mc _MetricKeyClass) LossValue() MetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/miniBatchIndex
-
 func (mc _MetricKeyClass) MiniBatchIndex() MetricKey {
 	rv := objc.Send[MLMetricKey](objc.ID(mc.class), objc.Sel("miniBatchIndex"))
 	return rv
@@ -121,7 +117,6 @@ func (mc _MetricKeyClass) MiniBatchIndex() MetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/epochIndex
-
 func (m_ MetricKey) EpochIndex() MLMetricKey {
 	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("epochIndex"))
 	return rv
@@ -132,7 +127,6 @@ func (m_ MetricKey) EpochIndex() MLMetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/lossValue
-
 func (m_ MetricKey) LossValue() MLMetricKey {
 	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("lossValue"))
 	return rv
@@ -143,7 +137,6 @@ func (m_ MetricKey) LossValue() MLMetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/miniBatchIndex
-
 func (m_ MetricKey) MiniBatchIndex() MLMetricKey {
 	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("miniBatchIndex"))
 	return rv
@@ -154,7 +147,6 @@ func (m_ MetricKey) MiniBatchIndex() MLMetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
-
 func (m_ MetricKey) Metrics() MLMetricKey {
 	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("metrics"))
 	return rv
@@ -165,8 +157,7 @@ func (m_ MetricKey) Metrics() MLMetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
-
-func (m_ MetricKey) SetMetrics(value MLMetricKey) {
+func (m_ MetricKey) SetMetrics(value IMLMetricKey) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetrics:"), value)
 }
 

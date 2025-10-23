@@ -32,7 +32,9 @@ type ImDeviceConnectNotification interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mDeviceConnectNotification
 type mDeviceConnectNotification struct {
 	objectivec.Object

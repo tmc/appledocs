@@ -43,7 +43,6 @@ type IPICTImageRep interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep
-
 type PICTImageRep struct {
 	ImageRep
 }
@@ -94,7 +93,6 @@ func NewPICTImageRep() PICTImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/pictRepresentation
-
 func (p_ PICTImageRep) PICTRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("PICTRepresentation"))
 	return rv
@@ -105,7 +103,6 @@ func (p_ PICTImageRep) PICTRepresentation() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
-
 func (p_ PICTImageRep) BoundingBox() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("boundingBox"))
 	return rv
@@ -116,7 +113,6 @@ func (p_ PICTImageRep) BoundingBox() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
-
 func (p_ PICTImageRep) SetBoundingBox(value coregraphics.CGRect) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBoundingBox:"), value)
 }

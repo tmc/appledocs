@@ -59,7 +59,11 @@ type IBluetoothL2CAPChannel interface {
 // An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.
 //
 // A client won’t create IOBluetoothL2CAPChannel objects directly. Instead, the IOBluetoothDevice’s L2CAP channel open API is responsible for opening a new L2CAP channel and returning an IOBluetoothL2CAPChannel instance representing that newly opened channel. Additionally, the IOBluetooth notification system will send notifications when new L2CAP channels are open (if requested). After a new L2CAP channel is opened, the L2CAP configuration process will not be completed until an incoming data listener is registered with the IOBluetoothL2CAPChannel object. The reason for this is to due to the limited buffering done of incoming L2CAP data. This way, we avoid the situation where incoming data is received before the client is ready for it. Once a client is done with an IOBluetoothL2CAPChannel that it opened, it should call -closeChannel. Additionally, if the client does not intend to use the connection to the remote device any further, it should call -closeConnection on the IOBluetoothDevice object.
+
+
+// An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel
 type BluetoothL2CAPChannel struct {
 	BluetoothObject
@@ -106,215 +110,268 @@ func NewBluetoothL2CAPChannel() BluetoothL2CAPChannel {
 }
 
 
+
 // Allows a client to register for L2CAP channel open notifications for any L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/register(forChannelOpenNotifications:selector:)
 func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelector(object objectivec.IObject, selector objc.SEL) BluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](objc.ID(bc.class), objc.Sel("registerForChannelOpenNotifications:selector:"), object, selector)
 	return rv
 }
 
+
 // Allows a client to register for L2CAP channel open notifications for certain types of L2CAP channels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/register(forChannelOpenNotifications:selector:withPSM:direction:)
-func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelectorWithPSMDirection(object objectivec.IObject, selector objc.SEL, psm IBluetoothL2CAPPSM, inDirection BluetoothUserNotificationChannelDirection) BluetoothUserNotification {
+func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelectorWithPSMDirection(object objectivec.IObject, selector objc.SEL, psm IBluetoothL2CAPPSM, inDirection IBluetoothUserNotificationChannelDirection) BluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](objc.ID(bc.class), objc.Sel("registerForChannelOpenNotifications:selector:withPSM:direction:"), object, selector, psm, inDirection)
 	return rv
 }
 
+
 // Returns the IObluetoothL2CAPChannel with the given IOBluetoothObjectID.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/withObjectID(_:)
 func (bc _BluetoothL2CAPChannelClass) WithObjectID(objectID IBluetoothObjectID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withObjectID:"), objectID)
 	return rv
 }
 
+
 // Initiates the close process on an open L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/close()
 func (b_ BluetoothL2CAPChannel) CloseChannel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("closeChannel"))
 	return rv
 }
 
+
 // Returns the currently assigned delegate
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/delegate()
 func (b_ BluetoothL2CAPChannel) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("delegate"))
 	return rv
 }
 
+
 // Returns the IOBluetoothDevice to which the target L2CAP channel is open.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getDevice
 func (b_ BluetoothL2CAPChannel) GetDevice() BluetoothDevice {
 	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("getDevice"))
 	return rv
 }
 
+
 // Returns the current incoming MTU for the L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getIncomingMTU
 func (b_ BluetoothL2CAPChannel) GetIncomingMTU() BluetoothL2CAPMTU {
 	rv := objc.Send[BluetoothL2CAPMTU](b_.ID, objc.Sel("getIncomingMTU"))
 	return rv
 }
 
+
 // Returns the local L2CAP channel ID for the target L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getLocalChannelID
 func (b_ BluetoothL2CAPChannel) GetLocalChannelID() BluetoothL2CAPChannelID {
 	rv := objc.Send[BluetoothL2CAPChannelID](b_.ID, objc.Sel("getLocalChannelID"))
 	return rv
 }
 
+
 // Returns the IOBluetoothObjectID of the given IOBluetoothL2CAPChannel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getObjectID
 func (b_ BluetoothL2CAPChannel) GetObjectID() BluetoothObjectID {
 	rv := objc.Send[BluetoothObjectID](b_.ID, objc.Sel("getObjectID"))
 	return rv
 }
 
+
 // Returns the current outgoing MTU for the L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getOutgoingMTU
 func (b_ BluetoothL2CAPChannel) GetOutgoingMTU() BluetoothL2CAPMTU {
 	rv := objc.Send[BluetoothL2CAPMTU](b_.ID, objc.Sel("getOutgoingMTU"))
 	return rv
 }
 
+
 // Returns the PSM for the target L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getPSM
 func (b_ BluetoothL2CAPChannel) GetPSM() BluetoothL2CAPPSM {
 	rv := objc.Send[BluetoothL2CAPPSM](b_.ID, objc.Sel("getPSM"))
 	return rv
 }
 
+
 // Returns the remote L2CAP channel ID for the target L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/getRemoteChannelID
 func (b_ BluetoothL2CAPChannel) GetRemoteChannelID() BluetoothL2CAPChannelID {
 	rv := objc.Send[BluetoothL2CAPChannelID](b_.ID, objc.Sel("getRemoteChannelID"))
 	return rv
 }
 
+
 // Returns TRUE if the channel is an incoming channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/isIncoming()
 func (b_ BluetoothL2CAPChannel) IsIncoming() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isIncoming"))
 	return rv
 }
 
+
 // Allows a client to register for a channel close notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/register(forChannelCloseNotification:selector:)
 func (b_ BluetoothL2CAPChannel) RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) BluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](b_.ID, objc.Sel("registerForChannelCloseNotification:selector:"), observer, inSelector)
 	return rv
 }
 
+
 // Initiates the process to reconfigure the L2CAP channel with a new outgoing MTU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/requestRemoteMTU(_:)
 func (b_ BluetoothL2CAPChannel) RequestRemoteMTU(remoteMTU IBluetoothL2CAPMTU) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("requestRemoteMTU:"), remoteMTU)
 	return rv
 }
 
+
 // Allows an object to register itself as client of the L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/setDelegate(_:)
 func (b_ BluetoothL2CAPChannel) SetDelegate(channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setDelegate:"), channelDelegate)
 	return rv
 }
 
+
 // Allows an object to register itself as client of the L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/setDelegate(_:withConfiguration:)
 func (b_ BluetoothL2CAPChannel) SetDelegateWithConfiguration(channelDelegate objectivec.IObject, channelConfiguration objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setDelegate:withConfiguration:"), channelDelegate, channelConfiguration)
 	return rv
 }
 
+
 // Writes the given data over the target L2CAP channel asynchronously to the remote device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/writeAsync(_:length:refcon:)
 func (b_ BluetoothL2CAPChannel) WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeAsync:length:refcon:"), data, length, refcon)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/writeAsyncTrap(_:length:refcon:)
 func (b_ BluetoothL2CAPChannel) WriteAsyncTrapLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeAsyncTrap:length:refcon:"), data, length, refcon)
 	return rv
 }
 
+
 // Writes the given data synchronously over the target L2CAP channel to the remote device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/writeSync(_:length:)
 func (b_ BluetoothL2CAPChannel) WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeSync:length:"), data, length)
 	return rv
 }
 
+
 // Returns the IOBluetoothDevice to which the target L2CAP channel is open.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/device
 func (b_ BluetoothL2CAPChannel) Device() IOBluetoothDevice {
 	rv := objc.Send[IOBluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
 
+
 // Returns the current incoming MTU for the L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/incomingMTU
 func (b_ BluetoothL2CAPChannel) IncomingMTU() BluetoothL2CAPMTU {
 	rv := objc.Send[BluetoothL2CAPMTU](b_.ID, objc.Sel("incomingMTU"))
 	return rv
 }
 
+
 // Returns the local L2CAP channel ID for the target L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/localChannelID
 func (b_ BluetoothL2CAPChannel) LocalChannelID() BluetoothL2CAPChannelID {
 	rv := objc.Send[BluetoothL2CAPChannelID](b_.ID, objc.Sel("localChannelID"))
 	return rv
 }
 
+
 // Returns the IOBluetoothObjectID of the given IOBluetoothL2CAPChannel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/objectID
 func (b_ BluetoothL2CAPChannel) ObjectID() BluetoothObjectID {
 	rv := objc.Send[BluetoothObjectID](b_.ID, objc.Sel("objectID"))
 	return rv
 }
 
+
 // Returns the current outgoing MTU for the L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/outgoingMTU
 func (b_ BluetoothL2CAPChannel) OutgoingMTU() BluetoothL2CAPMTU {
 	rv := objc.Send[BluetoothL2CAPMTU](b_.ID, objc.Sel("outgoingMTU"))
 	return rv
 }
 
+
 // Returns the PSM for the target L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/psm
 func (b_ BluetoothL2CAPChannel) PSM() BluetoothL2CAPPSM {
 	rv := objc.Send[BluetoothL2CAPPSM](b_.ID, objc.Sel("PSM"))
 	return rv
 }
 
+
 // Returns the remote L2CAP channel ID for the target L2CAP channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/remoteChannelID
 func (b_ BluetoothL2CAPChannel) RemoteChannelID() BluetoothL2CAPChannelID {
 	rv := objc.Send[BluetoothL2CAPChannelID](b_.ID, objc.Sel("remoteChannelID"))

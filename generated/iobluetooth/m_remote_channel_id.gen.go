@@ -32,7 +32,9 @@ type ImRemoteChannelID interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mRemoteChannelID
 type mRemoteChannelID struct {
 	objectivec.Object

@@ -49,7 +49,6 @@ type IPlaybackSpeed interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed
-
 type PlaybackSpeed struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewPlaybackSpeed() PlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizedname
-
 func (p_ PlaybackSpeed) LocalizedName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("localizedName"))
 	return rv
@@ -109,7 +107,6 @@ func (p_ PlaybackSpeed) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizedname
-
 func (p_ PlaybackSpeed) SetLocalizedName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
@@ -119,7 +116,6 @@ func (p_ PlaybackSpeed) SetLocalizedName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizednumericname
-
 func (p_ PlaybackSpeed) LocalizedNumericName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("localizedNumericName"))
 	return rv
@@ -130,7 +126,6 @@ func (p_ PlaybackSpeed) LocalizedNumericName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizednumericname
-
 func (p_ PlaybackSpeed) SetLocalizedNumericName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedNumericName:"), objc.String(value))
 }
@@ -140,7 +135,6 @@ func (p_ PlaybackSpeed) SetLocalizedNumericName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/rate
-
 func (p_ PlaybackSpeed) Rate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("rate"))
 	return rv
@@ -151,7 +145,6 @@ func (p_ PlaybackSpeed) Rate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/rate
-
 func (p_ PlaybackSpeed) SetRate(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
@@ -161,7 +154,6 @@ func (p_ PlaybackSpeed) SetRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/selectedspeed
-
 func (p_ PlaybackSpeed) SelectedSpeed() AVPlaybackSpeed {
 	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
 	return rv
@@ -172,7 +164,6 @@ func (p_ PlaybackSpeed) SelectedSpeed() AVPlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/selectedspeed
-
 func (p_ PlaybackSpeed) SetSelectedSpeed(value IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedSpeed:"), value)
 }
@@ -182,7 +173,6 @@ func (p_ PlaybackSpeed) SetSelectedSpeed(value IAVPlaybackSpeed) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/speeds
-
 func (p_ PlaybackSpeed) Speeds() AVPlaybackSpeed {
 	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("speeds"))
 	return rv
@@ -193,7 +183,6 @@ func (p_ PlaybackSpeed) Speeds() AVPlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/speeds
-
 func (p_ PlaybackSpeed) SetSpeeds(value IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), value)
 }

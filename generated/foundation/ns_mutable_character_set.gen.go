@@ -138,7 +138,7 @@ func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/alphanumeric()
-func (mc _MutableCharacterSetClass) AlphanumericCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) AlphanumericCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("alphanumericCharacterSet"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (mc _MutableCharacterSetClass) AlphanumericCharacterSet() MutableCharacterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/capitalizedLetter()
-func (mc _MutableCharacterSetClass) CapitalizedLetterCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CapitalizedLetterCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("capitalizedLetterCharacterSet"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (mc _MutableCharacterSetClass) CapitalizedLetterCharacterSet() MutableChara
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/control()
-func (mc _MutableCharacterSetClass) ControlCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) ControlCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("controlCharacterSet"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (mc _MutableCharacterSetClass) ControlCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/decimalDigit()
-func (mc _MutableCharacterSetClass) DecimalDigitCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) DecimalDigitCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("decimalDigitCharacterSet"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (mc _MutableCharacterSetClass) DecimalDigitCharacterSet() MutableCharacterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/decomposable()
-func (mc _MutableCharacterSetClass) DecomposableCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) DecomposableCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("decomposableCharacterSet"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (mc _MutableCharacterSetClass) DecomposableCharacterSet() MutableCharacterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/illegal()
-func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) IllegalCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("illegalCharacterSet"))
 	return rv
 }
@@ -198,7 +198,7 @@ func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
-func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
 	return rv
 }
@@ -208,7 +208,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
-func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString string) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString string) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
 }
@@ -218,7 +218,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
@@ -228,7 +228,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -238,7 +238,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/letter()
-func (mc _MutableCharacterSetClass) LetterCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) LetterCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("letterCharacterSet"))
 	return rv
 }
@@ -248,7 +248,7 @@ func (mc _MutableCharacterSetClass) LetterCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/lowercaseLetter()
-func (mc _MutableCharacterSetClass) LowercaseLetterCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) LowercaseLetterCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("lowercaseLetterCharacterSet"))
 	return rv
 }
@@ -258,7 +258,7 @@ func (mc _MutableCharacterSetClass) LowercaseLetterCharacterSet() MutableCharact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/newline()
-func (mc _MutableCharacterSetClass) NewlineCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) NewlineCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("newlineCharacterSet"))
 	return rv
 }
@@ -268,7 +268,7 @@ func (mc _MutableCharacterSetClass) NewlineCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/nonBase()
-func (mc _MutableCharacterSetClass) NonBaseCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) NonBaseCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("nonBaseCharacterSet"))
 	return rv
 }
@@ -278,7 +278,7 @@ func (mc _MutableCharacterSetClass) NonBaseCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/punctuation()
-func (mc _MutableCharacterSetClass) PunctuationCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) PunctuationCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("punctuationCharacterSet"))
 	return rv
 }
@@ -288,7 +288,7 @@ func (mc _MutableCharacterSetClass) PunctuationCharacterSet() MutableCharacterSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/symbol()
-func (mc _MutableCharacterSetClass) SymbolCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) SymbolCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("symbolCharacterSet"))
 	return rv
 }
@@ -298,7 +298,7 @@ func (mc _MutableCharacterSetClass) SymbolCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/uppercaseLetter()
-func (mc _MutableCharacterSetClass) UppercaseLetterCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) UppercaseLetterCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("uppercaseLetterCharacterSet"))
 	return rv
 }
@@ -308,7 +308,7 @@ func (mc _MutableCharacterSetClass) UppercaseLetterCharacterSet() MutableCharact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/whitespace()
-func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("whitespaceCharacterSet"))
 	return rv
 }
@@ -318,7 +318,7 @@ func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/whitespaceAndNewline()
-func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() MutableCharacterSet {
+func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("whitespaceAndNewlineCharacterSet"))
 	return rv
 }

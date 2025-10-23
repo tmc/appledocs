@@ -32,7 +32,9 @@ type ImIsClosed interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/mIsClosed
 type mIsClosed struct {
 	objectivec.Object

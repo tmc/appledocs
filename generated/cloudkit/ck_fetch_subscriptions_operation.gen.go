@@ -50,7 +50,6 @@ type ICKFetchSubscriptionsOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchSubscriptionsOperation
-
 type CKFetchSubscriptionsOperation struct {
 	CKDatabaseOperation
 }
@@ -101,7 +100,6 @@ func NewCKFetchSubscriptionsOperation() CKFetchSubscriptionsOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptioncompletionblock-6hhpi
-
 func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchSubscriptionCompletionBlock"))
 	return rv
@@ -112,7 +110,6 @@ func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionCompletionBlock() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptioncompletionblock-6hhpi
-
 func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchSubscriptionCompletionBlock:"), value)
 }
@@ -120,7 +117,6 @@ func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionCompletionBlock(valu
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptionsresultblock
-
 func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionsResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchSubscriptionsResultBlock"))
 	return rv
@@ -129,7 +125,6 @@ func (c_ CKFetchSubscriptionsOperation) FetchSubscriptionsResultBlock() unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/fetchsubscriptionsresultblock
-
 func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionsResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchSubscriptionsResultBlock:"), value)
 }
@@ -137,7 +132,6 @@ func (c_ CKFetchSubscriptionsOperation) SetFetchSubscriptionsResultBlock(value u
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/persubscriptionresultblock
-
 func (c_ CKFetchSubscriptionsOperation) PerSubscriptionResultBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionResultBlock"))
 	return rv
@@ -146,7 +140,6 @@ func (c_ CKFetchSubscriptionsOperation) PerSubscriptionResultBlock() unsafe.Poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/persubscriptionresultblock
-
 func (c_ CKFetchSubscriptionsOperation) SetPerSubscriptionResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionResultBlock:"), value)
 }
@@ -156,7 +149,6 @@ func (c_ CKFetchSubscriptionsOperation) SetPerSubscriptionResultBlock(value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/subscriptionids-17f4q
-
 func (c_ CKFetchSubscriptionsOperation) SubscriptionIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionIDs"))
 	return rv
@@ -167,7 +159,6 @@ func (c_ CKFetchSubscriptionsOperation) SubscriptionIDs() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsubscriptionsoperation/subscriptionids-17f4q
-
 func (c_ CKFetchSubscriptionsOperation) SetSubscriptionIDs(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionIDs:"), value)
 }
@@ -177,7 +168,6 @@ func (c_ CKFetchSubscriptionsOperation) SetSubscriptionIDs(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchSubscriptionsOperation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -188,7 +178,6 @@ func (c_ CKFetchSubscriptionsOperation) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
-
 func (c_ CKFetchSubscriptionsOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }

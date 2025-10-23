@@ -58,7 +58,6 @@ type IItemBadge interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class
-
 type ItemBadge struct {
 	objectivec.Object
 }
@@ -107,7 +106,6 @@ func NewItemBadge() ItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithCount:
-
 func (ic _ItemBadgeClass) BadgeWithCount(count int) ItemBadge {
 	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("badgeWithCount:"), count)
 	return rv
@@ -118,7 +116,6 @@ func (ic _ItemBadgeClass) BadgeWithCount(count int) ItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithText:
-
 func (ic _ItemBadgeClass) BadgeWithText(text string) ItemBadge {
 	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("badgeWithText:"), objc.String(text))
 	return rv
@@ -129,7 +126,6 @@ func (ic _ItemBadgeClass) BadgeWithText(text string) ItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/indicatorBadge
-
 func (ic _ItemBadgeClass) IndicatorBadge() ItemBadge {
 	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("indicatorBadge"))
 	return rv
@@ -140,7 +136,6 @@ func (ic _ItemBadgeClass) IndicatorBadge() ItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/text
-
 func (i_ ItemBadge) Text() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("text"))
 	return rv
@@ -151,7 +146,6 @@ func (i_ ItemBadge) Text() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
-
 func (i_ ItemBadge) IsBordered() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isBordered"))
 	return rv
@@ -162,7 +156,6 @@ func (i_ ItemBadge) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
-
 func (i_ ItemBadge) SetIsBordered(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsBordered:"), value)
 }
@@ -172,7 +165,6 @@ func (i_ ItemBadge) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
-
 func (i_ ItemBadge) IsEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEnabled"))
 	return rv
@@ -183,7 +175,6 @@ func (i_ ItemBadge) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
-
 func (i_ ItemBadge) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEnabled:"), value)
 }
@@ -191,7 +182,6 @@ func (i_ ItemBadge) SetIsEnabled(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
-
 func (i_ ItemBadge) IsHidden() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isHidden"))
 	return rv
@@ -200,7 +190,6 @@ func (i_ ItemBadge) IsHidden() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
-
 func (i_ ItemBadge) SetIsHidden(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHidden:"), value)
 }
@@ -210,7 +199,6 @@ func (i_ ItemBadge) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
-
 func (i_ ItemBadge) IsNavigational() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isNavigational"))
 	return rv
@@ -221,7 +209,6 @@ func (i_ ItemBadge) IsNavigational() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
-
 func (i_ ItemBadge) SetIsNavigational(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsNavigational:"), value)
 }
@@ -231,7 +218,6 @@ func (i_ ItemBadge) SetIsNavigational(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
-
 func (i_ ItemBadge) IsVisible() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isVisible"))
 	return rv
@@ -242,7 +228,6 @@ func (i_ ItemBadge) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
-
 func (i_ ItemBadge) SetIsVisible(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsVisible:"), value)
 }
@@ -252,7 +237,6 @@ func (i_ ItemBadge) SetIsVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.property
-
 func (i_ ItemBadge) Style() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("style"))
 	return rv
@@ -263,7 +247,6 @@ func (i_ ItemBadge) Style() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.property
-
 func (i_ ItemBadge) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStyle:"), value)
 }
@@ -273,7 +256,6 @@ func (i_ ItemBadge) SetStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/tag
-
 func (i_ ItemBadge) Tag() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("tag"))
 	return rv
@@ -284,7 +266,6 @@ func (i_ ItemBadge) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/tag
-
 func (i_ ItemBadge) SetTag(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTag:"), value)
 }
@@ -294,7 +275,6 @@ func (i_ ItemBadge) SetTag(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.property
-
 func (i_ ItemBadge) VisibilityPriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("visibilityPriority"))
 	return rv
@@ -305,7 +285,6 @@ func (i_ ItemBadge) VisibilityPriority() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.property
-
 func (i_ ItemBadge) SetVisibilityPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVisibilityPriority:"), value)
 }

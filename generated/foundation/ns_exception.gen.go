@@ -31,7 +31,7 @@ type _ExceptionClass struct {
 type IException interface {
 	objectivec.IObject
 	UserInfo() objc.ID
-	CallStackReturnAddresses() Number
+	CallStackReturnAddresses() INumber
 	SetCallStackReturnAddresses(value INumber)
 	CallStackSymbols() string
 	SetCallStackSymbols(value string)
@@ -108,7 +108,7 @@ func (e_ Exception) UserInfo() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstackreturnaddresses
-func (e_ Exception) CallStackReturnAddresses() Number {
+func (e_ Exception) CallStackReturnAddresses() INumber {
 	rv := objc.Send[Number](e_.ID, objc.Sel("callStackReturnAddresses"))
 	return rv
 }

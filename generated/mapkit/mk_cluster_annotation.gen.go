@@ -41,7 +41,11 @@ type IMKClusterAnnotation interface {
 // An annotation that groups two or more distinct annotations into a single entity.
 //
 // A cluster annotation object stands in for the group of annotations. Cluster views promote legibility of the underlying annotations by displaying a single annotation that takes it’s title from one annotation and includes a subtitle that indicates how many additional annotations belong to the group. MapKit automatically creates cluster annotations when two or more annotation views group too closely together on the map surface. To customize the cluster annotations that display on your map, implement the method in your map’s delegate.
+
+
+// An annotation that groups two or more distinct annotations into a single entity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKClusterAnnotation
 type MKClusterAnnotation struct {
 	objectivec.Object
@@ -86,8 +90,10 @@ func NewMKClusterAnnotation() MKClusterAnnotation {
 }
 
 
+
 // The annotations that the cluster contains.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/memberannotations
 func (m_ MKClusterAnnotation) MemberAnnotations() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("memberAnnotations"))
@@ -95,17 +101,18 @@ func (m_ MKClusterAnnotation) MemberAnnotations() unsafe.Pointer {
 }
 
 
-// SetMemberAnnotations sets the value of the memberAnnotations property.
 // The annotations that the cluster contains.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/memberannotations
 func (m_ MKClusterAnnotation) SetMemberAnnotations(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMemberAnnotations:"), value)
 }
 
+
 // The subtitle string to display for the group of annotations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/subtitle
 func (m_ MKClusterAnnotation) Subtitle() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
@@ -113,17 +120,18 @@ func (m_ MKClusterAnnotation) Subtitle() string {
 }
 
 
-// SetSubtitle sets the value of the subtitle property.
 // The subtitle string to display for the group of annotations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/subtitle
 func (m_ MKClusterAnnotation) SetSubtitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
+
 // The title string to display for the group of annotations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/title
 func (m_ MKClusterAnnotation) Title() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
@@ -131,10 +139,9 @@ func (m_ MKClusterAnnotation) Title() string {
 }
 
 
-// SetTitle sets the value of the title property.
 // The title string to display for the group of annotations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/title
 func (m_ MKClusterAnnotation) SetTitle(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))

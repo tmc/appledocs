@@ -46,7 +46,6 @@ type IHKQueryDescriptor interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor
-
 type HKQueryDescriptor struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewHKQueryDescriptor() HKQueryDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-
 func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
@@ -106,7 +104,6 @@ func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-
 func (h_ HKQueryDescriptor) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
@@ -116,7 +113,6 @@ func (h_ HKQueryDescriptor) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-
 func (h_ HKQueryDescriptor) SampleType() HKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
@@ -127,7 +123,6 @@ func (h_ HKQueryDescriptor) SampleType() HKSampleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-
 func (h_ HKQueryDescriptor) SetSampleType(value HKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }

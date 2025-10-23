@@ -41,7 +41,6 @@ type IBatchUpdateResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateResult
-
 type BatchUpdateResult struct {
 	PersistentStoreResult
 }
@@ -92,7 +91,6 @@ func NewBatchUpdateResult() BatchUpdateResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateResult/resultType
-
 func (b_ BatchUpdateResult) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
 	return rv
@@ -103,7 +101,6 @@ func (b_ BatchUpdateResult) ResultType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchupdateresult/result
-
 func (b_ BatchUpdateResult) Result() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("result"))
 	return rv
@@ -114,7 +111,6 @@ func (b_ BatchUpdateResult) Result() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchupdateresult/result
-
 func (b_ BatchUpdateResult) SetResult(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResult:"), value)
 }

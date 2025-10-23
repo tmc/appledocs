@@ -72,7 +72,6 @@ type IWindowController interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController
-
 type WindowController struct {
 	Responder
 }
@@ -119,10 +118,8 @@ func NewWindowController() WindowController {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(coder:)
-
 func NewWindowControllerWithCoder(coder foundation.ICoder) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -131,12 +128,10 @@ func NewWindowControllerWithCoder(coder foundation.ICoder) WindowController {
 }
 
 
-
 // Returns a window controller initialized with a given window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(window:)
-
 func NewWindowControllerWithWindow(window IWindow) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindow:"), window)
@@ -145,12 +140,10 @@ func NewWindowControllerWithWindow(window IWindow) WindowController {
 }
 
 
-
 // Returns a window controller initialized with a nib file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibName:)
-
 func NewWindowControllerWithWindowNibName(windowNibName INibName) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibName:"), windowNibName)
@@ -159,12 +152,10 @@ func NewWindowControllerWithWindowNibName(windowNibName INibName) WindowControll
 }
 
 
-
 // Returns a window controller initialized with a nib file and a specified owner for that nib file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibName:owner:)
-
 func NewWindowControllerWithWindowNibNameOwner(windowNibName INibName, owner objectivec.IObject) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibName:owner:"), windowNibName, owner)
@@ -173,12 +164,10 @@ func NewWindowControllerWithWindowNibNameOwner(windowNibName INibName, owner obj
 }
 
 
-
 // Returns a window controller initialized with a nib file at an absolute path and a specified owner.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)
-
 func NewWindowControllerWithWindowNibPathOwner(windowNibPath string, owner objectivec.IObject) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibPath:owner:"), objc.String(windowNibPath), owner)
@@ -188,101 +177,83 @@ func NewWindowControllerWithWindowNibPathOwner(windowNibPath string, owner objec
 
 
 
-
 // Closes the window if it was loaded.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/close()
-
 func (w_ WindowController) Close() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("close"))
 }
-
 
 
 // Dismisses the window controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/dismissController(_:)
-
 func (w_ WindowController) DismissController(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("dismissController:"), sender)
 }
-
 
 
 // Loads the receiver’s window from the nib file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/loadWindow()
-
 func (w_ WindowController) LoadWindow() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("loadWindow"))
 }
-
 
 
 // Sets the document edited flag for the window controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/setDocumentEdited(_:)
-
 func (w_ WindowController) SetDocumentEdited(dirtyFlag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDocumentEdited:"), dirtyFlag)
 }
-
 
 
 // Displays the window associated with the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/showWindow(_:)
-
 func (w_ WindowController) ShowWindow(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("showWindow:"), sender)
 }
-
 
 
 // Synchronizes the displayed window title and the represented filename with the information in the associated document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/synchronizeWindowTitleWithDocumentName()
-
 func (w_ WindowController) SynchronizeWindowTitleWithDocumentName() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("synchronizeWindowTitleWithDocumentName"))
 }
-
 
 
 // Sent after the window owned by the receiver has been loaded.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowDidLoad()
-
 func (w_ WindowController) WindowDidLoad() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("windowDidLoad"))
 }
-
 
 
 // Returns the window title to be used for a given document display name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)
-
 func (w_ WindowController) WindowTitleForDocumentDisplayName(displayName string) foundation.String {
 	rv := objc.Send[foundation.String](w_.ID, objc.Sel("windowTitleForDocumentDisplayName:"), objc.String(displayName))
 	return rv
 }
 
 
-
 // Sent before the window owned by the receiver is loaded.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowWillLoad()
-
 func (w_ WindowController) WindowWillLoad() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("windowWillLoad"))
 }
@@ -292,7 +263,6 @@ func (w_ WindowController) WindowWillLoad() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/contentViewController
-
 func (w_ WindowController) ContentViewController() NSViewController {
 	rv := objc.Send[NSViewController](w_.ID, objc.Sel("contentViewController"))
 	return rv
@@ -303,7 +273,6 @@ func (w_ WindowController) ContentViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/contentViewController
-
 func (w_ WindowController) SetContentViewController(value IViewController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentViewController:"), value)
 }
@@ -313,7 +282,6 @@ func (w_ WindowController) SetContentViewController(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/document
-
 func (w_ WindowController) Document() objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("document"))
 	return rv
@@ -324,7 +292,6 @@ func (w_ WindowController) Document() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/document
-
 func (w_ WindowController) SetDocument(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDocument:"), value)
 }
@@ -334,7 +301,6 @@ func (w_ WindowController) SetDocument(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/isWindowLoaded
-
 func (w_ WindowController) WindowLoaded() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("windowLoaded"))
 	return rv
@@ -345,7 +311,6 @@ func (w_ WindowController) WindowLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/owner
-
 func (w_ WindowController) Owner() objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("owner"))
 	return rv
@@ -354,7 +319,6 @@ func (w_ WindowController) Owner() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/previewRepresentableActivityItems
-
 func (w_ WindowController) PreviewRepresentableActivityItems() []objc.ID {
 	rv := objc.Send[[]objc.ID](w_.ID, objc.Sel("previewRepresentableActivityItems"))
 	return rv
@@ -363,7 +327,6 @@ func (w_ WindowController) PreviewRepresentableActivityItems() []objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/previewRepresentableActivityItems
-
 func (w_ WindowController) SetPreviewRepresentableActivityItems(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -383,7 +346,6 @@ func (w_ WindowController) SetPreviewRepresentableActivityItems(value []objc.ID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCascadeWindows
-
 func (w_ WindowController) ShouldCascadeWindows() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCascadeWindows"))
 	return rv
@@ -394,7 +356,6 @@ func (w_ WindowController) ShouldCascadeWindows() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCascadeWindows
-
 func (w_ WindowController) SetShouldCascadeWindows(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCascadeWindows:"), value)
 }
@@ -404,7 +365,6 @@ func (w_ WindowController) SetShouldCascadeWindows(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCloseDocument
-
 func (w_ WindowController) ShouldCloseDocument() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCloseDocument"))
 	return rv
@@ -415,7 +375,6 @@ func (w_ WindowController) ShouldCloseDocument() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCloseDocument
-
 func (w_ WindowController) SetShouldCloseDocument(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCloseDocument:"), value)
 }
@@ -425,7 +384,6 @@ func (w_ WindowController) SetShouldCloseDocument(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/storyboard
-
 func (w_ WindowController) Storyboard() NSStoryboard {
 	rv := objc.Send[NSStoryboard](w_.ID, objc.Sel("storyboard"))
 	return rv
@@ -436,7 +394,6 @@ func (w_ WindowController) Storyboard() NSStoryboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/window
-
 func (w_ WindowController) Window() NSWindow {
 	rv := objc.Send[NSWindow](w_.ID, objc.Sel("window"))
 	return rv
@@ -447,7 +404,6 @@ func (w_ WindowController) Window() NSWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/window
-
 func (w_ WindowController) SetWindow(value IWindow) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindow:"), value)
 }
@@ -457,7 +413,6 @@ func (w_ WindowController) SetWindow(value IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowFrameAutosaveName
-
 func (w_ WindowController) WindowFrameAutosaveName() WindowFrameAutosaveName {
 	rv := objc.Send[WindowFrameAutosaveName](w_.ID, objc.Sel("windowFrameAutosaveName"))
 	return rv
@@ -468,7 +423,6 @@ func (w_ WindowController) WindowFrameAutosaveName() WindowFrameAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowFrameAutosaveName
-
 func (w_ WindowController) SetWindowFrameAutosaveName(value IWindowFrameAutosaveName) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowFrameAutosaveName:"), value)
 }
@@ -478,7 +432,6 @@ func (w_ WindowController) SetWindowFrameAutosaveName(value IWindowFrameAutosave
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowNibName
-
 func (w_ WindowController) WindowNibName() NibName {
 	rv := objc.Send[NibName](w_.ID, objc.Sel("windowNibName"))
 	return rv
@@ -489,7 +442,6 @@ func (w_ WindowController) WindowNibName() NibName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowNibPath
-
 func (w_ WindowController) WindowNibPath() string {
 	rv := objc.Send[string](w_.ID, objc.Sel("windowNibPath"))
 	return rv
@@ -500,7 +452,6 @@ func (w_ WindowController) WindowNibPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/iswindowloaded
-
 func (w_ WindowController) IsWindowLoaded() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isWindowLoaded"))
 	return rv
@@ -511,7 +462,6 @@ func (w_ WindowController) IsWindowLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/iswindowloaded
-
 func (w_ WindowController) SetIsWindowLoaded(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsWindowLoaded:"), value)
 }

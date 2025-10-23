@@ -29,18 +29,18 @@ type _XMLDTDClass struct {
 // An interface definition for the [XMLDTD] class.
 type IXMLDTD interface {
 	IXMLNode
-	AttributeDeclarationForNameElementName(name string, elementName string) XMLDTDNode
-	ElementDeclarationForName(name string) XMLDTDNode
-	EntityDeclarationForName(name string) XMLDTDNode
+	AttributeDeclarationForNameElementName(name string, elementName string) IXMLDTDNode
+	ElementDeclarationForName(name string) IXMLDTDNode
+	EntityDeclarationForName(name string) IXMLDTDNode
 	InsertChildAtIndex(child IXMLNode, index uint)
 	InsertChildrenAtIndex(children []XMLNode, index uint)
-	NotationDeclarationForName(name string) XMLDTDNode
+	NotationDeclarationForName(name string) IXMLDTDNode
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
 	PublicID() string
 	SetPublicID(value string)
 	SystemID() string
 	SetSystemID(value string)
-	Dtd() NSXMLDTD
+	Dtd() IXMLDTD
 	SetDtd(value IXMLDTD)
 }
 
@@ -116,7 +116,7 @@ func NewXMLDTDWithDataOptionsError(data IData, mask NSXMLNodeOptions, error_ IEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/predefinedEntityDeclaration(forName:)
-func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) XMLDTDNode {
+func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](objc.ID(xc.class), objc.Sel("predefinedEntityDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -126,7 +126,7 @@ func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) XMLDTDNod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/attributeDeclaration(forName:elementName:)
-func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string, elementName string) XMLDTDNode {
+func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string, elementName string) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("attributeDeclarationForName:elementName:"), objc.String(name), objc.String(elementName))
 	return rv
 }
@@ -136,7 +136,7 @@ func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string, elementName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/elementDeclaration(forName:)
-func (x_ XMLDTD) ElementDeclarationForName(name string) XMLDTDNode {
+func (x_ XMLDTD) ElementDeclarationForName(name string) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("elementDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -146,7 +146,7 @@ func (x_ XMLDTD) ElementDeclarationForName(name string) XMLDTDNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/entityDeclaration(forName:)
-func (x_ XMLDTD) EntityDeclarationForName(name string) XMLDTDNode {
+func (x_ XMLDTD) EntityDeclarationForName(name string) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("entityDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -174,7 +174,7 @@ func (x_ XMLDTD) InsertChildrenAtIndex(children []XMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/notationDeclaration(forName:)
-func (x_ XMLDTD) NotationDeclarationForName(name string) XMLDTDNode {
+func (x_ XMLDTD) NotationDeclarationForName(name string) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("notationDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -231,7 +231,7 @@ func (x_ XMLDTD) SetSystemID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDTD) Dtd() NSXMLDTD {
+func (x_ XMLDTD) Dtd() IXMLDTD {
 	rv := objc.Send[NSXMLDTD](x_.ID, objc.Sel("dtd"))
 	return rv
 }

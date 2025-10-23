@@ -41,7 +41,6 @@ type ISampleBufferGenerator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator
-
 type SampleBufferGenerator struct {
 	objectivec.Object
 }

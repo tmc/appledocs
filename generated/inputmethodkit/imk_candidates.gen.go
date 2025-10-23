@@ -53,7 +53,7 @@ type IIMKCandidates interface {
 	SelectionKeysKeylayout() unsafe.Pointer
 	SetAttributes(attributes objectivec.IObject)
 	SetCandidateData(candidatesArray objectivec.IObject)
-	SetCandidateFrameTopLeft(point foundation.IPoint)
+	SetCandidateFrameTopLeft(point foundation.Point)
 	SetDismissesAutomatically(flag bool)
 	SetPanelType(panelType IMKCandidatePanelType)
 	SetSelectionKeys(keyCodes objectivec.IObject)
@@ -69,7 +69,11 @@ type IIMKCandidates interface {
 // The class presents candidates to users and notifies the appropriate object when the user selects a candidate. are alternate characters for a given input sequence. The class supports using a candidates window in your input method; using is optional. Not all input methods require them.
 //
 // When you create an object, you attach it to the object for your input method. You then need to override the methods and as well as implement a candidates method in your delegate object. The subclass supplies candidates to the object by implementing the candidates method. When you are ready to display a candidates window, call the candidates method to update candidates and to show the candidates window.
+
+
+// The class presents candidates to users and notifies the appropriate object when the user selects a candidate. are alternate characters for a given input sequence. The class supports using a candidates window in your input method; using is optional. Not all input methods require them.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates
 type IMKCandidates struct {
 	appkit.Responder
@@ -117,9 +121,9 @@ func NewIMKCandidates() IMKCandidates {
 
 
 
-
 // Returns the initialized object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)
 func NewIMKCandidatesWithServerPanelType(server IMKServer, panelType IMKCandidatePanelType) IMKCandidates {
 	instance := getIMKCandidatesClass().Alloc()
@@ -128,7 +132,8 @@ func NewIMKCandidatesWithServerPanelType(server IMKServer, panelType IMKCandidat
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)
 func NewIMKCandidatesWithServerPanelTypeStyleType(server IMKServer, panelType IMKCandidatePanelType, style IMKStyleType) IMKCandidates {
 	instance := getIMKCandidatesClass().Alloc()
@@ -138,221 +143,268 @@ func NewIMKCandidatesWithServerPanelTypeStyleType(server IMKServer, panelType IM
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)
 func (i_ IMKCandidates) AttachChildToCandidateType(child IMKCandidates, candidateIdentifier int, theType IMKStyleType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("attachChild:toCandidate:type:"), child, candidateIdentifier, theType)
 }
 
+
 // Returns a dictionary of the style attributes used for the candidates window..
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attributes()
 func (i_ IMKCandidates) Attributes() foundation.Dictionary {
 	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("attributes"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateFrame()
 func (i_ IMKCandidates) CandidateFrame() foundation.Rect {
 	rv := objc.Send[foundation.Rect](i_.ID, objc.Sel("candidateFrame"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateIdentifier(atLineNumber:)
 func (i_ IMKCandidates) CandidateIdentifierAtLineNumber(lineNumber int) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("candidateIdentifierAtLineNumber:"), lineNumber)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)
 func (i_ IMKCandidates) CandidateStringIdentifier(candidateString objectivec.IObject) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("candidateStringIdentifier:"), candidateString)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/clearSelection()
 func (i_ IMKCandidates) ClearSelection() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("clearSelection"))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/detachChild(_:)
 func (i_ IMKCandidates) DetachChild(candidateIdentifier int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("detachChild:"), candidateIdentifier)
 }
 
+
 // Returns the state of the flag that determines whether the candidates window dismisses automatically.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/dismissesAutomatically()
 func (i_ IMKCandidates) DismissesAutomatically() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("dismissesAutomatically"))
 	return rv
 }
 
+
 // Hides a candidates window, if it is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/hide()
 func (i_ IMKCandidates) Hide() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("hide"))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/hideChild()
 func (i_ IMKCandidates) HideChild() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("hideChild"))
 }
 
+
 // Returns whether or not the candidates window is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/isVisible()
 func (i_ IMKCandidates) IsVisible() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isVisible"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/lineNumberForCandidate(withIdentifier:)
 func (i_ IMKCandidates) LineNumberForCandidateWithIdentifier(candidateIdentifier int) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("lineNumberForCandidateWithIdentifier:"), candidateIdentifier)
 	return rv
 }
 
+
 // Returns the style of the candidates window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/panelType()
 func (i_ IMKCandidates) PanelType() IMKCandidatePanelType {
 	rv := objc.Send[IMKCandidatePanelType](i_.ID, objc.Sel("panelType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectCandidate(_:)
 func (i_ IMKCandidates) SelectCandidate(candidateIdentifier int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("selectCandidate:"), candidateIdentifier)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectCandidate(withIdentifier:)
 func (i_ IMKCandidates) SelectCandidateWithIdentifier(candidateIdentifier int) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("selectCandidateWithIdentifier:"), candidateIdentifier)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectedCandidate()
 func (i_ IMKCandidates) SelectedCandidate() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("selectedCandidate"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()
 func (i_ IMKCandidates) SelectedCandidateString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](i_.ID, objc.Sel("selectedCandidateString"))
 	return rv
 }
 
+
 // Returns an array of objects where each object represents a virtual key code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectionKeys()
 func (i_ IMKCandidates) SelectionKeys() foundation.Array {
 	rv := objc.Send[foundation.Array](i_.ID, objc.Sel("selectionKeys"))
 	return rv
 }
 
+
 // Returns the key layout that maps virtual key codes to selection keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectionKeysKeylayout()
 func (i_ IMKCandidates) SelectionKeysKeylayout() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectionKeysKeylayout"))
 	return rv
 }
 
+
 // Sets the style attributes for the candidates window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)
 func (i_ IMKCandidates) SetAttributes(attributes objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttributes:"), attributes)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)
 func (i_ IMKCandidates) SetCandidateData(candidatesArray objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCandidateData:"), candidatesArray)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)
-func (i_ IMKCandidates) SetCandidateFrameTopLeft(point foundation.IPoint) {
+func (i_ IMKCandidates) SetCandidateFrameTopLeft(point foundation.Point) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCandidateFrameTopLeft:"), point)
 }
 
+
 // Sets the state of the flag that determines whether the candidates window dismisses automatically.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setDismissesAutomatically(_:)
 func (i_ IMKCandidates) SetDismissesAutomatically(flag bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDismissesAutomatically:"), flag)
 }
 
+
 // Sets the style of the candidates window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)
 func (i_ IMKCandidates) SetPanelType(panelType IMKCandidatePanelType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPanelType:"), panelType)
 }
 
+
 // Sets the selection keys for the candidates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)
 func (i_ IMKCandidates) SetSelectionKeys(keyCodes objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectionKeys:"), keyCodes)
 }
 
+
 // Sets the key layout that is used to map virtual key codes to characters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setSelectionKeysKeylayout(_:)
 func (i_ IMKCandidates) SetSelectionKeysKeylayout(layout unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectionKeysKeylayout:"), layout)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/show()
 func (i_ IMKCandidates) ShowCandidates() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showCandidates"))
 }
 
+
 // Shows the candidates window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/show(_:)
 func (i_ IMKCandidates) Show(locationHint IMKCandidatesLocationHint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("show:"), locationHint)
 }
 
+
 // Displays an annotation string in an annotation window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)
 func (i_ IMKCandidates) ShowAnnotation(annotationString foundation.IAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showAnnotation:"), annotationString)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showChild()
 func (i_ IMKCandidates) ShowChild() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showChild"))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)
 func (i_ IMKCandidates) ShowSublistSubListDelegate(candidates objectivec.IObject, delegate objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showSublist:subListDelegate:"), candidates, delegate)
 }
 
+
 // Updates the candidates that are displayed in the candidates window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/update()
 func (i_ IMKCandidates) UpdateCandidates() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("updateCandidates"))

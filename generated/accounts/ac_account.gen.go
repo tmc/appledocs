@@ -51,7 +51,6 @@ type IACAccount interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount
-
 type ACAccount struct {
 	objectivec.Object
 }
@@ -96,12 +95,10 @@ func NewACAccount() ACAccount {
 
 
 
-
 // Initializes a new account of the specified type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/init(accountType:)
-
 func NewACAccountWithAccountType(type_ ACAccountType) ACAccount {
 	instance := getACAccountClass().Alloc()
 	rv := objc.Send[ACAccount](instance.ID, objc.Sel("initWithAccountType:"), type_)
@@ -115,7 +112,6 @@ func NewACAccountWithAccountType(type_ ACAccountType) ACAccount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-
 func (a_ ACAccount) AccountDescription() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("accountDescription"))
 	return rv
@@ -126,7 +122,6 @@ func (a_ ACAccount) AccountDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-
 func (a_ ACAccount) SetAccountDescription(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
 }
@@ -136,7 +131,6 @@ func (a_ ACAccount) SetAccountDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
-
 func (a_ ACAccount) AccountType() ACAccountType {
 	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
@@ -147,7 +141,6 @@ func (a_ ACAccount) AccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
-
 func (a_ ACAccount) SetAccountType(value ACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }
@@ -157,7 +150,6 @@ func (a_ ACAccount) SetAccountType(value ACAccountType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/credential
-
 func (a_ ACAccount) Credential() ACAccountCredential {
 	rv := objc.Send[ACAccountCredential](a_.ID, objc.Sel("credential"))
 	return rv
@@ -168,7 +160,6 @@ func (a_ ACAccount) Credential() ACAccountCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/credential
-
 func (a_ ACAccount) SetCredential(value IACAccountCredential) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCredential:"), value)
 }
@@ -178,7 +169,6 @@ func (a_ ACAccount) SetCredential(value IACAccountCredential) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
-
 func (a_ ACAccount) Identifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
@@ -189,7 +179,6 @@ func (a_ ACAccount) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/userFullName
-
 func (a_ ACAccount) UserFullName() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("userFullName"))
 	return rv
@@ -200,7 +189,6 @@ func (a_ ACAccount) UserFullName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-
 func (a_ ACAccount) Username() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("username"))
 	return rv
@@ -211,7 +199,6 @@ func (a_ ACAccount) Username() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-
 func (a_ ACAccount) SetUsername(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
 }

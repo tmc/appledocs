@@ -32,7 +32,9 @@ type ImOBEXFileGet interface {
 	objectivec.IObject
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mOBEXFileGet
 type mOBEXFileGet struct {
 	objectivec.Object

@@ -40,7 +40,6 @@ type IAAAttribution interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttribution
-
 type AAAttribution struct {
 	objectivec.Object
 }
@@ -89,7 +88,6 @@ func NewAAAttribution() AAAttribution {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttribution/attributionToken()
-
 func (ac _AAAttributionClass) AttributionTokenWithError(error_ unsafe.Pointer) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
 	return rv

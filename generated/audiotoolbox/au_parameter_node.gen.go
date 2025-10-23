@@ -60,7 +60,6 @@ type IParameterNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode
-
 type ParameterNode struct {
 	objectivec.Object
 }
@@ -105,57 +104,47 @@ func NewParameterNode() ParameterNode {
 
 
 
-
 // Another version of the display name, possibly truncated to a desired length.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName(withLength:)
-
 func (p_ ParameterNode) DisplayNameWithLength(maximumLength int) foundation.String {
 	rv := objc.Send[foundation.String](p_.ID, objc.Sel("displayNameWithLength:"), maximumLength)
 	return rv
 }
 
 
-
 // Remove a specific parameter observer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/removeParameterObserver(_:)
-
 func (p_ ParameterNode) RemoveParameterObserver(token IParameterObserverToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeParameterObserver:"), token)
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/token(byAddingParameterAutomationObserver:)
-
 func (p_ ParameterNode) TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) ParameterObserverToken {
 	rv := objc.Send[ParameterObserverToken](p_.ID, objc.Sel("tokenByAddingParameterAutomationObserver:"), observer)
 	return rv
 }
 
 
-
 // Adds an observer for a single parameter or all parameters in a group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/token(byAddingParameterObserver:)
-
 func (p_ ParameterNode) TokenByAddingParameterObserver(observer unsafe.Pointer) ParameterObserverToken {
 	rv := objc.Send[ParameterObserverToken](p_.ID, objc.Sel("tokenByAddingParameterObserver:"), observer)
 	return rv
 }
 
 
-
 // Adds a recording observer for a single parameter or all parameters in a group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/token(byAddingParameterRecordingObserver:)
-
 func (p_ ParameterNode) TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) ParameterObserverToken {
 	rv := objc.Send[ParameterObserverToken](p_.ID, objc.Sel("tokenByAddingParameterRecordingObserver:"), observer)
 	return rv
@@ -166,7 +155,6 @@ func (p_ ParameterNode) TokenByAddingParameterRecordingObserver(observer unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName
-
 func (p_ ParameterNode) DisplayName() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("displayName"))
 	return rv
@@ -177,7 +165,6 @@ func (p_ ParameterNode) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/identifier
-
 func (p_ ParameterNode) Identifier() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
@@ -188,7 +175,6 @@ func (p_ ParameterNode) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/implementorDisplayNameWithLengthCallback
-
 func (p_ ParameterNode) ImplementorDisplayNameWithLengthCallback() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorDisplayNameWithLengthCallback"))
 	return rv
@@ -199,7 +185,6 @@ func (p_ ParameterNode) ImplementorDisplayNameWithLengthCallback() unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/implementorDisplayNameWithLengthCallback
-
 func (p_ ParameterNode) SetImplementorDisplayNameWithLengthCallback(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorDisplayNameWithLengthCallback:"), value)
 }
@@ -209,7 +194,6 @@ func (p_ ParameterNode) SetImplementorDisplayNameWithLengthCallback(value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/implementorValueFromStringCallback
-
 func (p_ ParameterNode) ImplementorValueFromStringCallback() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueFromStringCallback"))
 	return rv
@@ -220,7 +204,6 @@ func (p_ ParameterNode) ImplementorValueFromStringCallback() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/implementorValueFromStringCallback
-
 func (p_ ParameterNode) SetImplementorValueFromStringCallback(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueFromStringCallback:"), value)
 }
@@ -230,7 +213,6 @@ func (p_ ParameterNode) SetImplementorValueFromStringCallback(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/keyPath
-
 func (p_ ParameterNode) KeyPath() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("keyPath"))
 	return rv
@@ -241,7 +223,6 @@ func (p_ ParameterNode) KeyPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback
-
 func (p_ ParameterNode) ImplementorStringFromValueCallback() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorStringFromValueCallback"))
 	return rv
@@ -252,7 +233,6 @@ func (p_ ParameterNode) ImplementorStringFromValueCallback() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback
-
 func (p_ ParameterNode) SetImplementorStringFromValueCallback(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorStringFromValueCallback:"), value)
 }
@@ -262,7 +242,6 @@ func (p_ ParameterNode) SetImplementorStringFromValueCallback(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueobserver
-
 func (p_ ParameterNode) ImplementorValueObserver() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueObserver"))
 	return rv
@@ -273,7 +252,6 @@ func (p_ ParameterNode) ImplementorValueObserver() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueobserver
-
 func (p_ ParameterNode) SetImplementorValueObserver(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueObserver:"), value)
 }
@@ -283,7 +261,6 @@ func (p_ ParameterNode) SetImplementorValueObserver(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueprovider
-
 func (p_ ParameterNode) ImplementorValueProvider() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("implementorValueProvider"))
 	return rv
@@ -294,7 +271,6 @@ func (p_ ParameterNode) ImplementorValueProvider() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/implementorvalueprovider
-
 func (p_ ParameterNode) SetImplementorValueProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImplementorValueProvider:"), value)
 }

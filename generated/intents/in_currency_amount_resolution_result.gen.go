@@ -34,7 +34,11 @@ type IINCurrencyAmountResolutionResult interface {
 // A resolution result for a currency amount associated with an intent.
 //
 // An object is what you return when resolving parameters containing an object. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see .
+
+
+// A resolution result for a currency amount associated with an intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCurrencyAmountResolutionResult
 type INCurrencyAmountResolutionResult struct {
 	INIntentResolutionResult

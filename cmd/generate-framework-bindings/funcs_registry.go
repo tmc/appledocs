@@ -64,30 +64,30 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 			matches := typeRegex.FindAllSubmatch(data, -1)
 
 			for _, match := range matches {
-			if len(match) > 1 {
-				typeName := string(match[1])
-				// Add to registry if not already present (first framework wins)
-				if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
-					crossFrameworkTypeRegistry[typeName] = frameworkPkg
-					if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
-						fmt.Fprintf(os.Stderr, "DEBUG registry: added %s -> %s (from %s)\n", typeName, frameworkPkg, filepath.Base(genFile))
-					}
-				}
-
-				// Also register stripped name (NSCellAttribute → CellAttribute)
-				// This allows lookups with ObjC names to find the stripped Go type
-				strippedName := stripObjCPrefix(typeName)
-				if strippedName != typeName {
-					// Register stripped name pointing to the STRIPPED type, not the original
-					// So NSCellAttribute lookup finds CellAttribute, not NSCellAttribute
-					if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
-						crossFrameworkTypeRegistry[strippedName] = frameworkPkg
+				if len(match) > 1 {
+					typeName := string(match[1])
+					// Add to registry if not already present (first framework wins)
+					if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
+						crossFrameworkTypeRegistry[typeName] = frameworkPkg
 						if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
-							fmt.Fprintf(os.Stderr, "DEBUG registry: added stripped %s (from %s) -> %s (from %s)\n", strippedName, typeName, frameworkPkg, filepath.Base(genFile))
+							fmt.Fprintf(os.Stderr, "DEBUG registry: added %s -> %s (from %s)\n", typeName, frameworkPkg, filepath.Base(genFile))
+						}
+					}
+
+					// Also register stripped name (NSCellAttribute → CellAttribute)
+					// This allows lookups with ObjC names to find the stripped Go type
+					strippedName := stripObjCPrefix(typeName)
+					if strippedName != typeName {
+						// Register stripped name pointing to the STRIPPED type, not the original
+						// So NSCellAttribute lookup finds CellAttribute, not NSCellAttribute
+						if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
+							crossFrameworkTypeRegistry[strippedName] = frameworkPkg
+							if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
+								fmt.Fprintf(os.Stderr, "DEBUG registry: added stripped %s (from %s) -> %s (from %s)\n", strippedName, typeName, frameworkPkg, filepath.Base(genFile))
+							}
 						}
 					}
 				}
-			}
 			}
 		}
 	}
@@ -105,9 +105,9 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		"NSData", "Data",
 		"NSDate", "Date",
 		"NSSet", "Set",
-		"NSErrorDomain",        // typedef to String - used across all frameworks for error domains
-		"NSExtensionContext",   // Foundation class, not CallKit/FileProviderUI/PhotosUI
-		"ExtensionContext",     // stripped name
+		"NSErrorDomain",      // typedef to String - used across all frameworks for error domains
+		"NSExtensionContext", // Foundation class, not CallKit/FileProviderUI/PhotosUI
+		"ExtensionContext",   // stripped name
 	}
 	for _, typeName := range foundationCoreTypes {
 		crossFrameworkTypeRegistry[typeName] = "foundation"

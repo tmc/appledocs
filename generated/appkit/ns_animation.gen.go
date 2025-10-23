@@ -62,7 +62,6 @@ type IAnimation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation
-
 type Animation struct {
 	objectivec.Object
 }
@@ -111,7 +110,6 @@ func NewAnimation() Animation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
-
 func (a_ Animation) CurrentProgress() AnimationProgress {
 	rv := objc.Send[AnimationProgress](a_.ID, objc.Sel("currentProgress"))
 	return rv
@@ -122,7 +120,6 @@ func (a_ Animation) CurrentProgress() AnimationProgress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
-
 func (a_ Animation) SetCurrentProgress(value IAnimationProgress) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
 }
@@ -132,7 +129,6 @@ func (a_ Animation) SetCurrentProgress(value IAnimationProgress) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationblockingmode
-
 func (a_ Animation) AnimationBlockingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("animationBlockingMode"))
 	return rv
@@ -143,7 +139,6 @@ func (a_ Animation) AnimationBlockingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationblockingmode
-
 func (a_ Animation) SetAnimationBlockingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationBlockingMode:"), value)
 }
@@ -153,7 +148,6 @@ func (a_ Animation) SetAnimationBlockingMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationcurve
-
 func (a_ Animation) AnimationCurve() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("animationCurve"))
 	return rv
@@ -164,7 +158,6 @@ func (a_ Animation) AnimationCurve() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/animationcurve
-
 func (a_ Animation) SetAnimationCurve(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAnimationCurve:"), value)
 }
@@ -174,7 +167,6 @@ func (a_ Animation) SetAnimationCurve(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-
 func (a_ Animation) CurrentValue() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("currentValue"))
 	return rv
@@ -185,7 +177,6 @@ func (a_ Animation) CurrentValue() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-
 func (a_ Animation) SetCurrentValue(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentValue:"), value)
 }
@@ -195,7 +186,6 @@ func (a_ Animation) SetCurrentValue(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/delegate
-
 func (a_ Animation) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
@@ -206,7 +196,6 @@ func (a_ Animation) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/delegate
-
 func (a_ Animation) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -216,7 +205,6 @@ func (a_ Animation) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/duration
-
 func (a_ Animation) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("duration"))
 	return rv
@@ -227,7 +215,6 @@ func (a_ Animation) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/duration
-
 func (a_ Animation) SetDuration(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
 }
@@ -237,7 +224,6 @@ func (a_ Animation) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-
 func (a_ Animation) FrameRate() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("frameRate"))
 	return rv
@@ -248,7 +234,6 @@ func (a_ Animation) FrameRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-
 func (a_ Animation) SetFrameRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameRate:"), value)
 }
@@ -258,7 +243,6 @@ func (a_ Animation) SetFrameRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
-
 func (a_ Animation) IsAnimating() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isAnimating"))
 	return rv
@@ -269,7 +253,6 @@ func (a_ Animation) IsAnimating() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
-
 func (a_ Animation) SetIsAnimating(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAnimating:"), value)
 }
@@ -279,7 +262,6 @@ func (a_ Animation) SetIsAnimating(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-
 func (a_ Animation) ProgressMarks() foundation.Number {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("progressMarks"))
 	return rv
@@ -290,7 +272,6 @@ func (a_ Animation) ProgressMarks() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-
 func (a_ Animation) SetProgressMarks(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressMarks:"), value)
 }
@@ -300,7 +281,6 @@ func (a_ Animation) SetProgressMarks(value foundation.INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/runloopmodesforanimating
-
 func (a_ Animation) RunLoopModesForAnimating() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("runLoopModesForAnimating"))
 	return rv
@@ -311,7 +291,6 @@ func (a_ Animation) RunLoopModesForAnimating() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/runloopmodesforanimating
-
 func (a_ Animation) SetRunLoopModesForAnimating(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRunLoopModesForAnimating:"), value)
 }

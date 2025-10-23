@@ -43,7 +43,11 @@ type IMKMapCameraBoundary interface {
 // A boundary of an area within which the map’s center needs to remain.
 //
 // The constraints of the camera boundary restrict the center point of your map.
+
+
+// A boundary of an area within which the map’s center needs to remain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/CameraBoundary-swift.class
 type MKMapCameraBoundary struct {
 	objectivec.Object
@@ -88,8 +92,10 @@ func NewMKMapCameraBoundary() MKMapCameraBoundary {
 }
 
 
+
 // The map rectangle that describes the camera boundary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.class/maprect
 func (m_ MKMapCameraBoundary) MapRect() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapRect"))
@@ -97,17 +103,18 @@ func (m_ MKMapCameraBoundary) MapRect() unsafe.Pointer {
 }
 
 
-// SetMapRect sets the value of the mapRect property.
 // The map rectangle that describes the camera boundary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.class/maprect
 func (m_ MKMapCameraBoundary) SetMapRect(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapRect:"), value)
 }
 
+
 // The coordinate region that describes the camera boundary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.class/region
 func (m_ MKMapCameraBoundary) Region() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("region"))
@@ -115,17 +122,18 @@ func (m_ MKMapCameraBoundary) Region() unsafe.Pointer {
 }
 
 
-// SetRegion sets the value of the region property.
 // The coordinate region that describes the camera boundary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.class/region
 func (m_ MKMapCameraBoundary) SetRegion(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
 
+
 // The boundary of the area within which the map view’s center needs to remain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.property
 func (m_ MKMapCameraBoundary) CameraBoundary() MKMapCameraBoundary {
 	rv := objc.Send[MKMapCameraBoundary](m_.ID, objc.Sel("cameraBoundary"))
@@ -133,17 +141,18 @@ func (m_ MKMapCameraBoundary) CameraBoundary() MKMapCameraBoundary {
 }
 
 
-// SetCameraBoundary sets the value of the cameraBoundary property.
 // The boundary of the area within which the map view’s center needs to remain.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.property
 func (m_ MKMapCameraBoundary) SetCameraBoundary(value IMKMapCameraBoundary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraBoundary:"), value)
 }
 
+
 // The zoom range to apply to the map view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.property
 func (m_ MKMapCameraBoundary) CameraZoomRange() MKMapCameraZoomRange {
 	rv := objc.Send[MKMapCameraZoomRange](m_.ID, objc.Sel("cameraZoomRange"))
@@ -151,10 +160,9 @@ func (m_ MKMapCameraBoundary) CameraZoomRange() MKMapCameraZoomRange {
 }
 
 
-// SetCameraZoomRange sets the value of the cameraZoomRange property.
 // The zoom range to apply to the map view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.property
 func (m_ MKMapCameraBoundary) SetCameraZoomRange(value IMKMapCameraZoomRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraZoomRange:"), value)

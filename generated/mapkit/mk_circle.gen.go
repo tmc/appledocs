@@ -37,7 +37,11 @@ type IMKCircle interface {
 // A circular overlay with a configurable radius that you center on a geographic coordinate.
 //
 // This class defines the portion of the map that the overlay covers. To draw the region, return an object from the method of your map view delegate.
+
+
+// A circular overlay with a configurable radius that you center on a geographic coordinate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle
 type MKCircle struct {
 	MKShape
@@ -85,9 +89,9 @@ func NewMKCircle() MKCircle {
 
 
 
-
 // Creates and returns a circle object using the specified coordinate and radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/init(center:radius:)
 func NewMKCircleWithCenterCoordinateRadius(coord unsafe.Pointer, radius unsafe.Pointer) MKCircle {
 	rv := objc.Send[MKCircle](objc.ID(getMKCircleClass().class), objc.Sel("circleWithCenterCoordinate:radius:"), coord, radius)
@@ -95,9 +99,9 @@ func NewMKCircleWithCenterCoordinateRadius(coord unsafe.Pointer, radius unsafe.P
 }
 
 
-
 // Creates and returns a circle object that derives the circular area from the specified rectangle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/init(mapRect:)
 func NewMKCircleWithMapRect(mapRect unsafe.Pointer) MKCircle {
 	rv := objc.Send[MKCircle](objc.ID(getMKCircleClass().class), objc.Sel("circleWithMapRect:"), mapRect)
@@ -105,40 +109,50 @@ func NewMKCircleWithMapRect(mapRect unsafe.Pointer) MKCircle {
 }
 
 
+
 // Creates and returns a circle object using the specified coordinate and radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/init(center:radius:)
 func (mc _MKCircleClass) CircleWithCenterCoordinateRadius(coord unsafe.Pointer, radius unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("circleWithCenterCoordinate:radius:"), coord, radius)
 	return rv
 }
 
+
 // Creates and returns a circle object that derives the circular area from the specified rectangle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/init(mapRect:)
 func (mc _MKCircleClass) CircleWithMapRect(mapRect unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("circleWithMapRect:"), mapRect)
 	return rv
 }
 
+
 // The bounding rectangle of the circular area.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/boundingMapRect
 func (m_ MKCircle) BoundingMapRect() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boundingMapRect"))
 	return rv
 }
 
+
 // The center point of the circular area, specified as a latitude and longitude.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/coordinate
 func (m_ MKCircle) Coordinate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("coordinate"))
 	return rv
 }
 
+
 // The radius of the circular area, in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircle/radius
 func (m_ MKCircle) Radius() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("radius"))

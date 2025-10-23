@@ -189,7 +189,7 @@ func (uc _UnitPowerClass) Watts() UnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/femtowatts
-func (u_ UnitPower) Femtowatts() NSUnitPower {
+func (u_ UnitPower) Femtowatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("femtowatts"))
 	return rv
 }
@@ -199,7 +199,7 @@ func (u_ UnitPower) Femtowatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/gigawatts
-func (u_ UnitPower) Gigawatts() NSUnitPower {
+func (u_ UnitPower) Gigawatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("gigawatts"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (u_ UnitPower) Gigawatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/horsepower
-func (u_ UnitPower) Horsepower() NSUnitPower {
+func (u_ UnitPower) Horsepower() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("horsepower"))
 	return rv
 }
@@ -219,7 +219,7 @@ func (u_ UnitPower) Horsepower() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/kilowatts
-func (u_ UnitPower) Kilowatts() NSUnitPower {
+func (u_ UnitPower) Kilowatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("kilowatts"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (u_ UnitPower) Kilowatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/megawatts
-func (u_ UnitPower) Megawatts() NSUnitPower {
+func (u_ UnitPower) Megawatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("megawatts"))
 	return rv
 }
@@ -239,7 +239,7 @@ func (u_ UnitPower) Megawatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/microwatts
-func (u_ UnitPower) Microwatts() NSUnitPower {
+func (u_ UnitPower) Microwatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("microwatts"))
 	return rv
 }
@@ -249,7 +249,7 @@ func (u_ UnitPower) Microwatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/milliwatts
-func (u_ UnitPower) Milliwatts() NSUnitPower {
+func (u_ UnitPower) Milliwatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("milliwatts"))
 	return rv
 }
@@ -259,7 +259,7 @@ func (u_ UnitPower) Milliwatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/nanowatts
-func (u_ UnitPower) Nanowatts() NSUnitPower {
+func (u_ UnitPower) Nanowatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("nanowatts"))
 	return rv
 }
@@ -269,7 +269,7 @@ func (u_ UnitPower) Nanowatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/picowatts
-func (u_ UnitPower) Picowatts() NSUnitPower {
+func (u_ UnitPower) Picowatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("picowatts"))
 	return rv
 }
@@ -279,7 +279,7 @@ func (u_ UnitPower) Picowatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/terawatts
-func (u_ UnitPower) Terawatts() NSUnitPower {
+func (u_ UnitPower) Terawatts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("terawatts"))
 	return rv
 }
@@ -289,7 +289,7 @@ func (u_ UnitPower) Terawatts() NSUnitPower {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/watts
-func (u_ UnitPower) Watts() NSUnitPower {
+func (u_ UnitPower) Watts() IUnitPower {
 	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("watts"))
 	return rv
 }

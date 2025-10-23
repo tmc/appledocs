@@ -38,7 +38,11 @@ type IINSearchForMessagesIntentResponse interface {
 // Your app’s response to a search for messages intent.
 //
 // Use an object to specify the results of searching the user’s messages. After performing a search using the criteria specified in the object, create an instance of this class with the results of that search. Siri communicates the status from your response to the user at appropriate times. You create an object in the and methods of your search for messages handler object. For more information about implementing your handler object, see .
+
+
+// Your app’s response to a search for messages intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse
 type INSearchForMessagesIntentResponse struct {
 	INIntentResponse
@@ -86,9 +90,9 @@ func NewINSearchForMessagesIntentResponse() INSearchForMessagesIntentResponse {
 
 
 
-
 // Initializes the response object with the specified code and user activity object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/init(code:userActivity:)
 func NewINSearchForMessagesIntentResponseWithCodeUserActivity(code INSearchForMessagesIntentResponseCode, userActivity foundation.IUserActivity) INSearchForMessagesIntentResponse {
 	instance := getINSearchForMessagesIntentResponseClass().Alloc()
@@ -98,16 +102,20 @@ func NewINSearchForMessagesIntentResponseWithCodeUserActivity(code INSearchForMe
 }
 
 
+
 // The code indicating whether you successfully handled the intent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/code
 func (i_ INSearchForMessagesIntentResponse) Code() INSearchForMessagesIntentResponseCode {
 	rv := objc.Send[INSearchForMessagesIntentResponseCode](i_.ID, objc.Sel("code"))
 	return rv
 }
 
+
 // The array of messages matching the search parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/messages
 func (i_ INSearchForMessagesIntentResponse) Messages() []INMessage {
 	rv := objc.Send[[]INMessage](i_.ID, objc.Sel("messages"))
@@ -115,10 +123,9 @@ func (i_ INSearchForMessagesIntentResponse) Messages() []INMessage {
 }
 
 
-// SetMessages sets the value of the messages property.
 // The array of messages matching the search parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/messages
 func (i_ INSearchForMessagesIntentResponse) SetMessages(value []INMessage) {
 	// Convert Go slice to NSArray

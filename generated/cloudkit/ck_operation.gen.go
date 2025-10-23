@@ -44,9 +44,9 @@ type ICKOperation interface {
 	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
 	OperationID() unsafe.Pointer
 	TimeoutIntervalForRequest() foundation.TimeInterval
-	SetTimeoutIntervalForRequest(value foundation.TimeInterval)
+	SetTimeoutIntervalForRequest(value foundation.ITimeInterval)
 	TimeoutIntervalForResource() foundation.TimeInterval
-	SetTimeoutIntervalForResource(value foundation.TimeInterval)
+	SetTimeoutIntervalForResource(value foundation.ITimeInterval)
 	IsLongLived() bool
 	SetIsLongLived(value bool)
 	QualityOfService() unsafe.Pointer
@@ -62,7 +62,6 @@ type ICKOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation
-
 type CKOperation struct {
 	Operation
 }
@@ -114,7 +113,6 @@ func NewCKOperation() CKOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/allowsCellularAccess
-
 func (c_ CKOperation) AllowsCellularAccess() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
@@ -125,7 +123,6 @@ func (c_ CKOperation) AllowsCellularAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/allowsCellularAccess
-
 func (c_ CKOperation) SetAllowsCellularAccess(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
@@ -135,7 +132,6 @@ func (c_ CKOperation) SetAllowsCellularAccess(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/configuration-swift.property
-
 func (c_ CKOperation) Configuration() CKOperationConfiguration {
 	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
@@ -146,7 +142,6 @@ func (c_ CKOperation) Configuration() CKOperationConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/configuration-swift.property
-
 func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
@@ -156,7 +151,6 @@ func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/container
-
 func (c_ CKOperation) Container() CKContainer {
 	rv := objc.Send[CKContainer](c_.ID, objc.Sel("container"))
 	return rv
@@ -167,7 +161,6 @@ func (c_ CKOperation) Container() CKContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/container
-
 func (c_ CKOperation) SetContainer(value ICKContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
@@ -177,7 +170,6 @@ func (c_ CKOperation) SetContainer(value ICKContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/group
-
 func (c_ CKOperation) Group() CKOperationGroup {
 	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
 	return rv
@@ -188,7 +180,6 @@ func (c_ CKOperation) Group() CKOperationGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/group
-
 func (c_ CKOperation) SetGroup(value ICKOperationGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
 }
@@ -198,7 +189,6 @@ func (c_ CKOperation) SetGroup(value ICKOperationGroup) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/isLongLived
-
 func (c_ CKOperation) LongLived() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("longLived"))
 	return rv
@@ -209,7 +199,6 @@ func (c_ CKOperation) LongLived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/isLongLived
-
 func (c_ CKOperation) SetLongLived(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLived:"), value)
 }
@@ -219,7 +208,6 @@ func (c_ CKOperation) SetLongLived(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/longLivedOperationWasPersistedBlock
-
 func (c_ CKOperation) LongLivedOperationWasPersistedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("longLivedOperationWasPersistedBlock"))
 	return rv
@@ -230,7 +218,6 @@ func (c_ CKOperation) LongLivedOperationWasPersistedBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/longLivedOperationWasPersistedBlock
-
 func (c_ CKOperation) SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLivedOperationWasPersistedBlock:"), value)
 }
@@ -240,7 +227,6 @@ func (c_ CKOperation) SetLongLivedOperationWasPersistedBlock(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/operationID-3eujz
-
 func (c_ CKOperation) OperationID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operationID"))
 	return rv
@@ -251,7 +237,6 @@ func (c_ CKOperation) OperationID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForRequest
-
 func (c_ CKOperation) TimeoutIntervalForRequest() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForRequest"))
 	return rv
@@ -262,8 +247,7 @@ func (c_ CKOperation) TimeoutIntervalForRequest() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForRequest
-
-func (c_ CKOperation) SetTimeoutIntervalForRequest(value foundation.TimeInterval) {
+func (c_ CKOperation) SetTimeoutIntervalForRequest(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
@@ -272,7 +256,6 @@ func (c_ CKOperation) SetTimeoutIntervalForRequest(value foundation.TimeInterval
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
-
 func (c_ CKOperation) TimeoutIntervalForResource() foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForResource"))
 	return rv
@@ -283,8 +266,7 @@ func (c_ CKOperation) TimeoutIntervalForResource() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
-
-func (c_ CKOperation) SetTimeoutIntervalForResource(value foundation.TimeInterval) {
+func (c_ CKOperation) SetTimeoutIntervalForResource(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 
@@ -293,7 +275,6 @@ func (c_ CKOperation) SetTimeoutIntervalForResource(value foundation.TimeInterva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-
 func (c_ CKOperation) IsLongLived() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
 	return rv
@@ -304,7 +285,6 @@ func (c_ CKOperation) IsLongLived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-
 func (c_ CKOperation) SetIsLongLived(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
 }
@@ -314,7 +294,6 @@ func (c_ CKOperation) SetIsLongLived(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-
 func (c_ CKOperation) QualityOfService() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
 	return rv
@@ -325,7 +304,6 @@ func (c_ CKOperation) QualityOfService() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-
 func (c_ CKOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }

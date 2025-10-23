@@ -41,7 +41,6 @@ type ICKSyncEngineDidFetchRecordZoneChangesEvent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent
-
 type CKSyncEngineDidFetchRecordZoneChangesEvent struct {
 	CKSyncEngineEvent
 }
@@ -92,7 +91,6 @@ func NewCKSyncEngineDidFetchRecordZoneChangesEvent() CKSyncEngineDidFetchRecordZ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent/error
-
 func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) Error() foundation.Error {
 	rv := objc.Send[foundation.Error](c_.ID, objc.Sel("error"))
 	return rv
@@ -103,7 +101,6 @@ func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) Error() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent/zoneID
-
 func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) ZoneID() CKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv

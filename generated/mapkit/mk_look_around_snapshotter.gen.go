@@ -35,7 +35,11 @@ type IMKLookAroundSnapshotter interface {
 }
 
 // A utility class that you use to create a static image from a LookAround scene.
+
+
+// A utility class that you use to create a static image from a LookAround scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLookAroundSnapshotter
 type MKLookAroundSnapshotter struct {
 	objectivec.Object
@@ -81,9 +85,9 @@ func NewMKLookAroundSnapshotter() MKLookAroundSnapshotter {
 
 
 
-
 // Create a new snapshotter object with the scene and options you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLookAroundSnapshotter/init(scene:options:)
 func NewMKLookAroundSnapshotterWithSceneOptions(scene IMKLookAroundScene, options unsafe.Pointer) MKLookAroundSnapshotter {
 	instance := getMKLookAroundSnapshotterClass().Alloc()
@@ -93,8 +97,10 @@ func NewMKLookAroundSnapshotterWithSceneOptions(scene IMKLookAroundScene, option
 }
 
 
+
 // A Boolean value that indicates whether the snapshot request is loading.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/isloading
 func (m_ MKLookAroundSnapshotter) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
@@ -102,10 +108,9 @@ func (m_ MKLookAroundSnapshotter) IsLoading() bool {
 }
 
 
-// SetIsLoading sets the value of the isLoading property.
 // A Boolean value that indicates whether the snapshot request is loading.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/isloading
 func (m_ MKLookAroundSnapshotter) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)

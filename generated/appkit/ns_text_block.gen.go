@@ -49,7 +49,6 @@ type ITextBlock interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock
-
 type TextBlock struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewTextBlock() TextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
-
 func (t_ TextBlock) BackgroundColor() NSColor {
 	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
 	return rv
@@ -109,7 +107,6 @@ func (t_ TextBlock) BackgroundColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
-
 func (t_ TextBlock) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
@@ -119,7 +116,6 @@ func (t_ TextBlock) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidth
-
 func (t_ TextBlock) ContentWidth() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("contentWidth"))
 	return rv
@@ -130,7 +126,6 @@ func (t_ TextBlock) ContentWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidth
-
 func (t_ TextBlock) SetContentWidth(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentWidth:"), value)
 }
@@ -140,7 +135,6 @@ func (t_ TextBlock) SetContentWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidthvaluetype
-
 func (t_ TextBlock) ContentWidthValueType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contentWidthValueType"))
 	return rv
@@ -151,7 +145,6 @@ func (t_ TextBlock) ContentWidthValueType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidthvaluetype
-
 func (t_ TextBlock) SetContentWidthValueType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentWidthValueType:"), value)
 }
@@ -161,7 +154,6 @@ func (t_ TextBlock) SetContentWidthValueType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.property
-
 func (t_ TextBlock) VerticalAlignment() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("verticalAlignment"))
 	return rv
@@ -172,7 +164,6 @@ func (t_ TextBlock) VerticalAlignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.property
-
 func (t_ TextBlock) SetVerticalAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVerticalAlignment:"), value)
 }

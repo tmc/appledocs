@@ -44,7 +44,6 @@ type IMergePolicy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy
-
 type MergePolicy struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewMergePolicy() MergePolicy {
 
 
 
-
 // Returns a merge policy initialized with a given policy type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/init(merge:)
-
 func NewMergePolicyWithMergeType(ty MergePolicyType) MergePolicy {
 	instance := getMergePolicyClass().Alloc()
 	rv := objc.Send[MergePolicy](instance.ID, objc.Sel("initWithMergeType:"), ty)
@@ -108,7 +105,6 @@ func NewMergePolicyWithMergeType(ty MergePolicyType) MergePolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyObjectTrump
-
 func (mc _MergePolicyClass) MergeByPropertyObjectTrumpMergePolicy() MergePolicy {
 	rv := objc.Send[NSMergePolicy](objc.ID(mc.class), objc.Sel("mergeByPropertyObjectTrumpMergePolicy"))
 	return rv
@@ -118,30 +114,25 @@ func (mc _MergePolicyClass) MergeByPropertyObjectTrumpMergePolicy() MergePolicy 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyStoreTrump
-
 func (mc _MergePolicyClass) MergeByPropertyStoreTrumpMergePolicy() MergePolicy {
 	rv := objc.Send[NSMergePolicy](objc.ID(mc.class), objc.Sel("mergeByPropertyStoreTrumpMergePolicy"))
 	return rv
 }
 
-
 // Resolves the conflicts in a given list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(constraintConflicts:)
-
 func (m_ MergePolicy) ResolveConstraintConflictsError(list []ConstraintConflict, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("resolveConstraintConflicts:error:"), list, error_)
 	return rv
 }
 
 
-
 // Resolves the conflicts in a given list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/resolve(optimisticLockingConflicts:)
-
 func (m_ MergePolicy) ResolveOptimisticLockingVersionConflictsError(list []MergeConflict, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("resolveOptimisticLockingVersionConflicts:error:"), list, error_)
 	return rv
@@ -152,7 +143,6 @@ func (m_ MergePolicy) ResolveOptimisticLockingVersionConflictsError(list []Merge
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyObjectTrump
-
 func (m_ MergePolicy) MergeByPropertyObjectTrumpMergePolicy() NSMergePolicy {
 	rv := objc.Send[NSMergePolicy](m_.ID, objc.Sel("mergeByPropertyObjectTrumpMergePolicy"))
 	return rv
@@ -163,7 +153,6 @@ func (m_ MergePolicy) MergeByPropertyObjectTrumpMergePolicy() NSMergePolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeByPropertyStoreTrump
-
 func (m_ MergePolicy) MergeByPropertyStoreTrumpMergePolicy() NSMergePolicy {
 	rv := objc.Send[NSMergePolicy](m_.ID, objc.Sel("mergeByPropertyStoreTrumpMergePolicy"))
 	return rv
@@ -174,7 +163,6 @@ func (m_ MergePolicy) MergeByPropertyStoreTrumpMergePolicy() NSMergePolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeType
-
 func (m_ MergePolicy) MergeType() MergePolicyType {
 	rv := objc.Send[MergePolicyType](m_.ID, objc.Sel("mergeType"))
 	return rv

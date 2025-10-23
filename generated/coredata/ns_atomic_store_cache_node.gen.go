@@ -46,7 +46,6 @@ type IAtomicStoreCacheNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode
-
 type AtomicStoreCacheNode struct {
 	objectivec.Object
 }
@@ -91,23 +90,19 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 
 
 
-
 // Sets the value for the given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/setValue(_:forKey:)
-
 func (a_ AtomicStoreCacheNode) SetValueForKey(value objectivec.IObject, key string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
-
 
 
 // Returns the value for a given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/value(forKey:)
-
 func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
@@ -118,7 +113,6 @@ func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/objectid
-
 func (a_ AtomicStoreCacheNode) ObjectID() NSManagedObjectID {
 	rv := objc.Send[NSManagedObjectID](a_.ID, objc.Sel("objectID"))
 	return rv
@@ -129,7 +123,6 @@ func (a_ AtomicStoreCacheNode) ObjectID() NSManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/objectid
-
 func (a_ AtomicStoreCacheNode) SetObjectID(value IManagedObjectID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setObjectID:"), value)
 }
@@ -139,7 +132,6 @@ func (a_ AtomicStoreCacheNode) SetObjectID(value IManagedObjectID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
-
 func (a_ AtomicStoreCacheNode) PropertyCache() foundation.MutableDictionary {
 	rv := objc.Send[foundation.MutableDictionary](a_.ID, objc.Sel("propertyCache"))
 	return rv
@@ -150,7 +142,6 @@ func (a_ AtomicStoreCacheNode) PropertyCache() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
-
 func (a_ AtomicStoreCacheNode) SetPropertyCache(value foundation.IMutableDictionary) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPropertyCache:"), value)
 }

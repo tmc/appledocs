@@ -42,7 +42,6 @@ type IMonitorConfiguration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration
-
 type MonitorConfiguration struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewMonitorConfiguration() MonitorConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/eventHandler
-
 func (m_ MonitorConfiguration) EventHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("eventHandler"))
 	return rv
@@ -102,7 +100,6 @@ func (m_ MonitorConfiguration) EventHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/name
-
 func (m_ MonitorConfiguration) Name() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
@@ -113,7 +110,6 @@ func (m_ MonitorConfiguration) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/queue
-
 func (m_ MonitorConfiguration) Queue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("queue"))
 	return rv

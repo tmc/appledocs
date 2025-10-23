@@ -36,7 +36,6 @@ type Idepth interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/depth-c.ivar
-
 type depth struct {
 	objectivec.Object
 }

@@ -45,7 +45,6 @@ type IMIDICIProfileState interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfileState
-
 type MIDICIProfileState struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewMIDICIProfileState() MIDICIProfileState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
-
 func (m_ MIDICIProfileState) DisabledProfiles() MIDICIProfile {
 	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("disabledProfiles"))
 	return rv
@@ -105,7 +103,6 @@ func (m_ MIDICIProfileState) DisabledProfiles() MIDICIProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
-
 func (m_ MIDICIProfileState) SetDisabledProfiles(value IMIDICIProfile) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisabledProfiles:"), value)
 }
@@ -115,7 +112,6 @@ func (m_ MIDICIProfileState) SetDisabledProfiles(value IMIDICIProfile) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
-
 func (m_ MIDICIProfileState) EnabledProfiles() MIDICIProfile {
 	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("enabledProfiles"))
 	return rv
@@ -126,7 +122,6 @@ func (m_ MIDICIProfileState) EnabledProfiles() MIDICIProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
-
 func (m_ MIDICIProfileState) SetEnabledProfiles(value IMIDICIProfile) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabledProfiles:"), value)
 }
@@ -136,7 +131,6 @@ func (m_ MIDICIProfileState) SetEnabledProfiles(value IMIDICIProfile) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
-
 func (m_ MIDICIProfileState) MidiChannel() MIDIChannelNumber {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("midiChannel"))
 	return rv
@@ -147,7 +141,6 @@ func (m_ MIDICIProfileState) MidiChannel() MIDIChannelNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
-
 func (m_ MIDICIProfileState) SetMidiChannel(value IMIDIChannelNumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiChannel:"), value)
 }
