@@ -15,830 +15,830 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CFRelease func(unsafe.Pointer)
-	_CFRetain func(unsafe.Pointer) unsafe.Pointer
-	_CFAbsoluteTimeAddGregorianUnits func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAbsoluteTimeGetCurrent func() unsafe.Pointer
-	_CFAbsoluteTimeGetDayOfWeek func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAbsoluteTimeGetDayOfYear func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAbsoluteTimeGetDifferenceAsGregorianUnits func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAbsoluteTimeGetGregorianDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAbsoluteTimeGetWeekOfYear func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorAllocate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorAllocateBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorAllocateTyped func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorCreateWithZone func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorDeallocate func(unsafe.Pointer, unsafe.Pointer)
-	_CFAllocatorGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFAllocatorGetDefault func() unsafe.Pointer
-	_CFAllocatorGetPreferredSizeForSize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorGetTypeID func() unsafe.Pointer
-	_CFAllocatorReallocate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorReallocateBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorReallocateTyped func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAllocatorSetDefault func(unsafe.Pointer)
-	_CFArrayAppendArray func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArrayAppendValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFArrayApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArrayBSearchValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayContainsValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayExchangeValuesAtIndices func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArrayGetCount func(unsafe.Pointer) unsafe.Pointer
-	_CFArrayGetCountOfValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayGetFirstIndexOfValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayGetLastIndexOfValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayGetTypeID func() unsafe.Pointer
-	_CFArrayGetValueAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFArrayGetValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArrayInsertValueAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArrayRemoveAllValues func(unsafe.Pointer)
-	_CFArrayRemoveValueAtIndex func(unsafe.Pointer, unsafe.Pointer)
-	_CFArrayReplaceValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArraySetValueAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFArraySortValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFAttributedStringBeginEditing func(unsafe.Pointer)
-	_CFAttributedStringCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringCreateMutable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringCreateWithSubstring func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringEndEditing func(unsafe.Pointer)
-	_CFAttributedStringGetAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetAttributeAndLongestEffectiveRange func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetAttributesAndLongestEffectiveRange func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CFAttributedStringGetLength func(unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetMutableString func(unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetStatisticalWritingDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CFAttributedStringGetString func(unsafe.Pointer) unsafe.Pointer
-	_CFAttributedStringGetTypeID func() unsafe.Pointer
-	_CFAttributedStringRemoveAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFAttributedStringReplaceAttributedString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFAttributedStringReplaceString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFAttributedStringSetAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFAttributedStringSetAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFAutorelease func(unsafe.Pointer) unsafe.Pointer
-	_CFBagAddValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFBagApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBagContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagGetCount func(unsafe.Pointer) unsafe.Pointer
-	_CFBagGetCountOfValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagGetTypeID func() unsafe.Pointer
-	_CFBagGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagGetValueIfPresent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBagGetValues func(unsafe.Pointer, unsafe.Pointer)
-	_CFBagRemoveAllValues func(unsafe.Pointer)
-	_CFBagRemoveValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFBagReplaceValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFBagSetValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFBinaryHeapAddValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFBinaryHeapApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBinaryHeapContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapCreateCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapGetCount func(unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapGetCountOfValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapGetMinimum func(unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapGetMinimumIfPresent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBinaryHeapGetTypeID func() unsafe.Pointer
-	_CFBinaryHeapGetValues func(unsafe.Pointer, unsafe.Pointer)
-	_CFBinaryHeapRemoveAllValues func(unsafe.Pointer)
-	_CFBinaryHeapRemoveMinimumValue func(unsafe.Pointer)
-	_CFBitVectorContainsBit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorCreateMutable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorFlipBitAtIndex func(unsafe.Pointer, unsafe.Pointer)
-	_CFBitVectorFlipBits func(unsafe.Pointer, unsafe.Pointer)
-	_CFBitVectorGetBitAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorGetBits func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBitVectorGetCount func(unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorGetCountOfBit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorGetFirstIndexOfBit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorGetLastIndexOfBit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBitVectorGetTypeID func() unsafe.Pointer
-	_CFBitVectorSetAllBits func(unsafe.Pointer, unsafe.Pointer)
-	_CFBitVectorSetBitAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBitVectorSetBits func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBitVectorSetCount func(unsafe.Pointer, unsafe.Pointer)
-	_CFBooleanGetTypeID func() unsafe.Pointer
-	_CFBooleanGetValue func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCloseBundleResourceMap func(unsafe.Pointer, unsafe.Pointer)
-	_CFBundleCopyAuxiliaryExecutableURL func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyBuiltInPlugInsURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyBundleLocalizations func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyBundleURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyExecutableArchitectures func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyExecutableArchitecturesForURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyExecutableURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyInfoDictionaryForURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyInfoDictionaryInDirectory func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyLocalizationsForPreferences func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyLocalizationsForURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyLocalizedString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyLocalizedStringForLocalizations func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyPreferredLocalizationsFromArray func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyPrivateFrameworksURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourceURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourceURLForLocalization func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourceURLInDirectory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourceURLsOfType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourceURLsOfTypeForLocalization func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourceURLsOfTypeInDirectory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopyResourcesDirectoryURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopySharedFrameworksURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopySharedSupportURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCopySupportFilesDirectoryURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleCreateBundlesFromDirectory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetAllBundles func() unsafe.Pointer
-	_CFBundleGetBundleWithIdentifier func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetDataPointerForName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetDataPointersForNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBundleGetDevelopmentRegion func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetFunctionPointerForName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetFunctionPointersForNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBundleGetIdentifier func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetInfoDictionary func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetLocalInfoDictionary func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetMainBundle func() unsafe.Pointer
-	_CFBundleGetPackageInfo func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFBundleGetPackageInfoInDirectory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetPlugIn func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetTypeID func() unsafe.Pointer
-	_CFBundleGetValueForInfoDictionaryKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleGetVersionNumber func(unsafe.Pointer) unsafe.Pointer
+	_CFAbsoluteTimeAddGregorianUnits func(AbsoluteTime, TimeZoneRef, unsafe.Pointer) AbsoluteTime
+	_CFAbsoluteTimeGetCurrent func() AbsoluteTime
+	_CFAbsoluteTimeGetDayOfWeek func(AbsoluteTime, TimeZoneRef) unsafe.Pointer
+	_CFAbsoluteTimeGetDayOfYear func(AbsoluteTime, TimeZoneRef) unsafe.Pointer
+	_CFAbsoluteTimeGetDifferenceAsGregorianUnits func(AbsoluteTime, AbsoluteTime, TimeZoneRef, OptionFlags) unsafe.Pointer
+	_CFAbsoluteTimeGetGregorianDate func(AbsoluteTime, TimeZoneRef) unsafe.Pointer
+	_CFAbsoluteTimeGetWeekOfYear func(AbsoluteTime, TimeZoneRef) unsafe.Pointer
+	_CFAllocatorAllocate func(AllocatorRef, Index, OptionFlags) unsafe.Pointer
+	_CFAllocatorAllocateBytes func(AllocatorRef, Index, OptionFlags) unsafe.Pointer
+	_CFAllocatorAllocateTyped func(AllocatorRef, Index, AllocatorTypeID, OptionFlags) unsafe.Pointer
+	_CFAllocatorCreate func(AllocatorRef, unsafe.Pointer) AllocatorRef
+	_CFAllocatorCreateWithZone func(AllocatorRef, unsafe.Pointer) AllocatorRef
+	_CFAllocatorDeallocate func(AllocatorRef, unsafe.Pointer)
+	_CFAllocatorGetContext func(AllocatorRef, unsafe.Pointer)
+	_CFAllocatorGetDefault func() AllocatorRef
+	_CFAllocatorGetPreferredSizeForSize func(AllocatorRef, Index, OptionFlags) Index
+	_CFAllocatorGetTypeID func() TypeID
+	_CFAllocatorReallocate func(AllocatorRef, unsafe.Pointer, Index, OptionFlags) unsafe.Pointer
+	_CFAllocatorReallocateBytes func(AllocatorRef, unsafe.Pointer, Index, OptionFlags) unsafe.Pointer
+	_CFAllocatorReallocateTyped func(AllocatorRef, unsafe.Pointer, Index, AllocatorTypeID, OptionFlags) unsafe.Pointer
+	_CFAllocatorSetDefault func(AllocatorRef)
+	_CFArrayAppendArray func(MutableArrayRef, ArrayRef, unsafe.Pointer)
+	_CFArrayAppendValue func(MutableArrayRef, unsafe.Pointer)
+	_CFArrayApplyFunction func(ArrayRef, unsafe.Pointer, ArrayApplierFunction, unsafe.Pointer)
+	_CFArrayBSearchValues func(ArrayRef, unsafe.Pointer, unsafe.Pointer, ComparatorFunction, unsafe.Pointer) Index
+	_CFArrayContainsValue func(ArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFArrayCreate func(AllocatorRef, unsafe.Pointer, Index, unsafe.Pointer) ArrayRef
+	_CFArrayCreateCopy func(AllocatorRef, ArrayRef) ArrayRef
+	_CFArrayCreateMutable func(AllocatorRef, Index, unsafe.Pointer) MutableArrayRef
+	_CFArrayCreateMutableCopy func(AllocatorRef, Index, ArrayRef) MutableArrayRef
+	_CFArrayExchangeValuesAtIndices func(MutableArrayRef, Index, Index)
+	_CFArrayGetCount func(ArrayRef) Index
+	_CFArrayGetCountOfValue func(ArrayRef, unsafe.Pointer, unsafe.Pointer) Index
+	_CFArrayGetFirstIndexOfValue func(ArrayRef, unsafe.Pointer, unsafe.Pointer) Index
+	_CFArrayGetLastIndexOfValue func(ArrayRef, unsafe.Pointer, unsafe.Pointer) Index
+	_CFArrayGetTypeID func() TypeID
+	_CFArrayGetValueAtIndex func(ArrayRef, Index) unsafe.Pointer
+	_CFArrayGetValues func(ArrayRef, unsafe.Pointer, unsafe.Pointer)
+	_CFArrayInsertValueAtIndex func(MutableArrayRef, Index, unsafe.Pointer)
+	_CFArrayRemoveAllValues func(MutableArrayRef)
+	_CFArrayRemoveValueAtIndex func(MutableArrayRef, Index)
+	_CFArrayReplaceValues func(MutableArrayRef, unsafe.Pointer, unsafe.Pointer, Index)
+	_CFArraySetValueAtIndex func(MutableArrayRef, Index, unsafe.Pointer)
+	_CFArraySortValues func(MutableArrayRef, unsafe.Pointer, ComparatorFunction, unsafe.Pointer)
+	_CFAttributedStringBeginEditing func(MutableAttributedStringRef)
+	_CFAttributedStringCreate func(AllocatorRef, StringRef, DictionaryRef) AttributedStringRef
+	_CFAttributedStringCreateCopy func(AllocatorRef, AttributedStringRef) AttributedStringRef
+	_CFAttributedStringCreateMutable func(AllocatorRef, Index) MutableAttributedStringRef
+	_CFAttributedStringCreateMutableCopy func(AllocatorRef, Index, AttributedStringRef) MutableAttributedStringRef
+	_CFAttributedStringCreateWithSubstring func(AllocatorRef, AttributedStringRef, unsafe.Pointer) AttributedStringRef
+	_CFAttributedStringEndEditing func(MutableAttributedStringRef)
+	_CFAttributedStringGetAttribute func(AttributedStringRef, Index, StringRef, unsafe.Pointer) TypeRef
+	_CFAttributedStringGetAttributeAndLongestEffectiveRange func(AttributedStringRef, Index, StringRef, unsafe.Pointer, unsafe.Pointer) TypeRef
+	_CFAttributedStringGetAttributes func(AttributedStringRef, Index, unsafe.Pointer) DictionaryRef
+	_CFAttributedStringGetAttributesAndLongestEffectiveRange func(AttributedStringRef, Index, unsafe.Pointer, unsafe.Pointer) DictionaryRef
+	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(AttributedStringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CFAttributedStringGetLength func(AttributedStringRef) Index
+	_CFAttributedStringGetMutableString func(MutableAttributedStringRef) MutableStringRef
+	_CFAttributedStringGetStatisticalWritingDirections func(AttributedStringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CFAttributedStringGetString func(AttributedStringRef) StringRef
+	_CFAttributedStringGetTypeID func() TypeID
+	_CFAttributedStringRemoveAttribute func(MutableAttributedStringRef, unsafe.Pointer, StringRef)
+	_CFAttributedStringReplaceAttributedString func(MutableAttributedStringRef, unsafe.Pointer, AttributedStringRef)
+	_CFAttributedStringReplaceString func(MutableAttributedStringRef, unsafe.Pointer, StringRef)
+	_CFAttributedStringSetAttribute func(MutableAttributedStringRef, unsafe.Pointer, StringRef, TypeRef)
+	_CFAttributedStringSetAttributes func(MutableAttributedStringRef, unsafe.Pointer, DictionaryRef, unsafe.Pointer)
+	_CFAutorelease func(TypeRef) TypeRef
+	_CFBagAddValue func(MutableBagRef, unsafe.Pointer)
+	_CFBagApplyFunction func(BagRef, BagApplierFunction, unsafe.Pointer)
+	_CFBagContainsValue func(BagRef, unsafe.Pointer) unsafe.Pointer
+	_CFBagCreate func(AllocatorRef, unsafe.Pointer, Index, unsafe.Pointer) BagRef
+	_CFBagCreateCopy func(AllocatorRef, BagRef) BagRef
+	_CFBagCreateMutable func(AllocatorRef, Index, unsafe.Pointer) MutableBagRef
+	_CFBagCreateMutableCopy func(AllocatorRef, Index, BagRef) MutableBagRef
+	_CFBagGetCount func(BagRef) Index
+	_CFBagGetCountOfValue func(BagRef, unsafe.Pointer) Index
+	_CFBagGetTypeID func() TypeID
+	_CFBagGetValue func(BagRef, unsafe.Pointer) unsafe.Pointer
+	_CFBagGetValueIfPresent func(BagRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFBagGetValues func(BagRef, unsafe.Pointer)
+	_CFBagRemoveAllValues func(MutableBagRef)
+	_CFBagRemoveValue func(MutableBagRef, unsafe.Pointer)
+	_CFBagReplaceValue func(MutableBagRef, unsafe.Pointer)
+	_CFBagSetValue func(MutableBagRef, unsafe.Pointer)
+	_CFBinaryHeapAddValue func(BinaryHeapRef, unsafe.Pointer)
+	_CFBinaryHeapApplyFunction func(BinaryHeapRef, BinaryHeapApplierFunction, unsafe.Pointer)
+	_CFBinaryHeapContainsValue func(BinaryHeapRef, unsafe.Pointer) unsafe.Pointer
+	_CFBinaryHeapCreate func(AllocatorRef, Index, unsafe.Pointer, unsafe.Pointer) BinaryHeapRef
+	_CFBinaryHeapCreateCopy func(AllocatorRef, Index, BinaryHeapRef) BinaryHeapRef
+	_CFBinaryHeapGetCount func(BinaryHeapRef) Index
+	_CFBinaryHeapGetCountOfValue func(BinaryHeapRef, unsafe.Pointer) Index
+	_CFBinaryHeapGetMinimum func(BinaryHeapRef) unsafe.Pointer
+	_CFBinaryHeapGetMinimumIfPresent func(BinaryHeapRef, unsafe.Pointer) unsafe.Pointer
+	_CFBinaryHeapGetTypeID func() TypeID
+	_CFBinaryHeapGetValues func(BinaryHeapRef, unsafe.Pointer)
+	_CFBinaryHeapRemoveAllValues func(BinaryHeapRef)
+	_CFBinaryHeapRemoveMinimumValue func(BinaryHeapRef)
+	_CFBitVectorContainsBit func(BitVectorRef, unsafe.Pointer, Bit) unsafe.Pointer
+	_CFBitVectorCreate func(AllocatorRef, unsafe.Pointer, Index) BitVectorRef
+	_CFBitVectorCreateCopy func(AllocatorRef, BitVectorRef) BitVectorRef
+	_CFBitVectorCreateMutable func(AllocatorRef, Index) MutableBitVectorRef
+	_CFBitVectorCreateMutableCopy func(AllocatorRef, Index, BitVectorRef) MutableBitVectorRef
+	_CFBitVectorFlipBitAtIndex func(MutableBitVectorRef, Index)
+	_CFBitVectorFlipBits func(MutableBitVectorRef, unsafe.Pointer)
+	_CFBitVectorGetBitAtIndex func(BitVectorRef, Index) Bit
+	_CFBitVectorGetBits func(BitVectorRef, unsafe.Pointer, unsafe.Pointer)
+	_CFBitVectorGetCount func(BitVectorRef) Index
+	_CFBitVectorGetCountOfBit func(BitVectorRef, unsafe.Pointer, Bit) Index
+	_CFBitVectorGetFirstIndexOfBit func(BitVectorRef, unsafe.Pointer, Bit) Index
+	_CFBitVectorGetLastIndexOfBit func(BitVectorRef, unsafe.Pointer, Bit) Index
+	_CFBitVectorGetTypeID func() TypeID
+	_CFBitVectorSetAllBits func(MutableBitVectorRef, Bit)
+	_CFBitVectorSetBitAtIndex func(MutableBitVectorRef, Index, Bit)
+	_CFBitVectorSetBits func(MutableBitVectorRef, unsafe.Pointer, Bit)
+	_CFBitVectorSetCount func(MutableBitVectorRef, Index)
+	_CFBooleanGetTypeID func() TypeID
+	_CFBooleanGetValue func(BooleanRef) unsafe.Pointer
+	_CFBundleCloseBundleResourceMap func(BundleRef, BundleRefNum)
+	_CFBundleCopyAuxiliaryExecutableURL func(BundleRef, StringRef) URLRef
+	_CFBundleCopyBuiltInPlugInsURL func(BundleRef) URLRef
+	_CFBundleCopyBundleLocalizations func(BundleRef) ArrayRef
+	_CFBundleCopyBundleURL func(BundleRef) URLRef
+	_CFBundleCopyExecutableArchitectures func(BundleRef) ArrayRef
+	_CFBundleCopyExecutableArchitecturesForURL func(URLRef) ArrayRef
+	_CFBundleCopyExecutableURL func(BundleRef) URLRef
+	_CFBundleCopyInfoDictionaryForURL func(URLRef) DictionaryRef
+	_CFBundleCopyInfoDictionaryInDirectory func(URLRef) DictionaryRef
+	_CFBundleCopyLocalizationsForPreferences func(ArrayRef, ArrayRef) ArrayRef
+	_CFBundleCopyLocalizationsForURL func(URLRef) ArrayRef
+	_CFBundleCopyLocalizedString func(BundleRef, StringRef, StringRef, StringRef) StringRef
+	_CFBundleCopyLocalizedStringForLocalizations func(BundleRef, StringRef, StringRef, StringRef, ArrayRef) StringRef
+	_CFBundleCopyPreferredLocalizationsFromArray func(ArrayRef) ArrayRef
+	_CFBundleCopyPrivateFrameworksURL func(BundleRef) URLRef
+	_CFBundleCopyResourceURL func(BundleRef, StringRef, StringRef, StringRef) URLRef
+	_CFBundleCopyResourceURLForLocalization func(BundleRef, StringRef, StringRef, StringRef, StringRef) URLRef
+	_CFBundleCopyResourceURLInDirectory func(URLRef, StringRef, StringRef, StringRef) URLRef
+	_CFBundleCopyResourceURLsOfType func(BundleRef, StringRef, StringRef) ArrayRef
+	_CFBundleCopyResourceURLsOfTypeForLocalization func(BundleRef, StringRef, StringRef, StringRef) ArrayRef
+	_CFBundleCopyResourceURLsOfTypeInDirectory func(URLRef, StringRef, StringRef) ArrayRef
+	_CFBundleCopyResourcesDirectoryURL func(BundleRef) URLRef
+	_CFBundleCopySharedFrameworksURL func(BundleRef) URLRef
+	_CFBundleCopySharedSupportURL func(BundleRef) URLRef
+	_CFBundleCopySupportFilesDirectoryURL func(BundleRef) URLRef
+	_CFBundleCreate func(AllocatorRef, URLRef) BundleRef
+	_CFBundleCreateBundlesFromDirectory func(AllocatorRef, URLRef, StringRef) ArrayRef
+	_CFBundleGetAllBundles func() ArrayRef
+	_CFBundleGetBundleWithIdentifier func(StringRef) BundleRef
+	_CFBundleGetDataPointerForName func(BundleRef, StringRef) unsafe.Pointer
+	_CFBundleGetDataPointersForNames func(BundleRef, ArrayRef, unsafe.Pointer)
+	_CFBundleGetDevelopmentRegion func(BundleRef) StringRef
+	_CFBundleGetFunctionPointerForName func(BundleRef, StringRef) unsafe.Pointer
+	_CFBundleGetFunctionPointersForNames func(BundleRef, ArrayRef, unsafe.Pointer)
+	_CFBundleGetIdentifier func(BundleRef) StringRef
+	_CFBundleGetInfoDictionary func(BundleRef) DictionaryRef
+	_CFBundleGetLocalInfoDictionary func(BundleRef) DictionaryRef
+	_CFBundleGetMainBundle func() BundleRef
+	_CFBundleGetPackageInfo func(BundleRef, unsafe.Pointer, unsafe.Pointer)
+	_CFBundleGetPackageInfoInDirectory func(URLRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFBundleGetPlugIn func(BundleRef) PlugInRef
+	_CFBundleGetTypeID func() TypeID
+	_CFBundleGetValueForInfoDictionaryKey func(BundleRef, StringRef) TypeRef
+	_CFBundleGetVersionNumber func(BundleRef) unsafe.Pointer
 	_CFBundleIsArchitectureLoadable func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleIsExecutableLoadable func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleIsExecutableLoadableForURL func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleIsExecutableLoaded func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleLoadExecutable func(unsafe.Pointer) unsafe.Pointer
-	_CFBundleLoadExecutableAndReturnError func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleOpenBundleResourceFiles func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleOpenBundleResourceMap func(unsafe.Pointer) unsafe.Pointer
-	_CFBundlePreflightExecutable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFBundleUnloadExecutable func(unsafe.Pointer)
-	_CFCalendarAddComponents func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarComposeAbsoluteTime func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarCopyCurrent func() unsafe.Pointer
-	_CFCalendarCopyLocale func(unsafe.Pointer) unsafe.Pointer
-	_CFCalendarCopyTimeZone func(unsafe.Pointer) unsafe.Pointer
-	_CFCalendarCreateWithIdentifier func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarDecomposeAbsoluteTime func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetComponentDifference func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetFirstWeekday func(unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetIdentifier func(unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetMaximumRangeOfUnit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetMinimumDaysInFirstWeek func(unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetMinimumRangeOfUnit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetOrdinalityOfUnit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetRangeOfUnit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetTimeRangeOfUnit func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCalendarGetTypeID func() unsafe.Pointer
-	_CFCalendarSetFirstWeekday func(unsafe.Pointer, unsafe.Pointer)
-	_CFCalendarSetLocale func(unsafe.Pointer, unsafe.Pointer)
-	_CFCalendarSetMinimumDaysInFirstWeek func(unsafe.Pointer, unsafe.Pointer)
-	_CFCalendarSetTimeZone func(unsafe.Pointer, unsafe.Pointer)
-	_CFCharacterSetAddCharactersInRange func(unsafe.Pointer, unsafe.Pointer)
-	_CFCharacterSetAddCharactersInString func(unsafe.Pointer, unsafe.Pointer)
-	_CFCharacterSetCreateBitmapRepresentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateInvertedSet func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateMutable func(unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateWithBitmapRepresentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateWithCharactersInRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetCreateWithCharactersInString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetGetPredefined func(unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetGetTypeID func() unsafe.Pointer
-	_CFCharacterSetHasMemberInPlane func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetIntersect func(unsafe.Pointer, unsafe.Pointer)
-	_CFCharacterSetInvert func(unsafe.Pointer)
-	_CFCharacterSetIsCharacterMember func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetIsLongCharacterMember func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetIsSupersetOfSet func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFCharacterSetRemoveCharactersInRange func(unsafe.Pointer, unsafe.Pointer)
-	_CFCharacterSetRemoveCharactersInString func(unsafe.Pointer, unsafe.Pointer)
-	_CFCharacterSetUnion func(unsafe.Pointer, unsafe.Pointer)
-	_CFCopyDescription func(unsafe.Pointer) unsafe.Pointer
-	_CFCopyHomeDirectoryURL func() unsafe.Pointer
-	_CFCopyTypeIDDescription func(unsafe.Pointer) unsafe.Pointer
-	_CFDataAppendBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDataCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDataCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDataCreateMutable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDataCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDataCreateWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDataDeleteBytes func(unsafe.Pointer, unsafe.Pointer)
-	_CFDataFind func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDataGetBytePtr func(unsafe.Pointer) unsafe.Pointer
-	_CFDataGetBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDataGetLength func(unsafe.Pointer) unsafe.Pointer
-	_CFDataGetMutableBytePtr func(unsafe.Pointer) unsafe.Pointer
-	_CFDataGetTypeID func() unsafe.Pointer
-	_CFDataIncreaseLength func(unsafe.Pointer, unsafe.Pointer)
-	_CFDataReplaceBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDataSetLength func(unsafe.Pointer, unsafe.Pointer)
-	_CFDateCompare func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCopyProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCreateDateFormatFromTemplate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCreateDateFromString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCreateISO8601Formatter func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCreateStringWithAbsoluteTime func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterCreateStringWithDate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterGetAbsoluteTimeFromString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterGetDateStyle func(unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterGetFormat func(unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterGetLocale func(unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterGetTimeStyle func(unsafe.Pointer) unsafe.Pointer
-	_CFDateFormatterGetTypeID func() unsafe.Pointer
-	_CFDateFormatterSetFormat func(unsafe.Pointer, unsafe.Pointer)
-	_CFDateFormatterSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDateGetAbsoluteTime func(unsafe.Pointer) unsafe.Pointer
-	_CFDateGetTimeIntervalSinceDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDateGetTypeID func() unsafe.Pointer
-	_CFDictionaryAddValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDictionaryApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDictionaryContainsKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryGetCount func(unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryGetCountOfKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryGetCountOfValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryGetKeysAndValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDictionaryGetTypeID func() unsafe.Pointer
-	_CFDictionaryGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryGetValueIfPresent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFDictionaryRemoveAllValues func(unsafe.Pointer)
-	_CFDictionaryRemoveValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFDictionaryReplaceValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFDictionarySetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFEqual func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFErrorCopyDescription func(unsafe.Pointer) unsafe.Pointer
-	_CFErrorCopyFailureReason func(unsafe.Pointer) unsafe.Pointer
-	_CFErrorCopyRecoverySuggestion func(unsafe.Pointer) unsafe.Pointer
-	_CFErrorCopyUserInfo func(unsafe.Pointer) unsafe.Pointer
-	_CFErrorCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFErrorCreateWithUserInfoKeysAndValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFErrorGetCode func(unsafe.Pointer) unsafe.Pointer
-	_CFErrorGetDomain func(unsafe.Pointer) unsafe.Pointer
-	_CFErrorGetTypeID func() unsafe.Pointer
-	_CFFileDescriptorCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileDescriptorCreateRunLoopSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileDescriptorDisableCallBacks func(unsafe.Pointer, unsafe.Pointer)
-	_CFFileDescriptorEnableCallBacks func(unsafe.Pointer, unsafe.Pointer)
-	_CFFileDescriptorGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFFileDescriptorGetNativeDescriptor func(unsafe.Pointer) unsafe.Pointer
-	_CFFileDescriptorGetTypeID func() unsafe.Pointer
-	_CFFileDescriptorInvalidate func(unsafe.Pointer)
-	_CFFileDescriptorIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityClearProperties func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityCopyAccessControlList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityCopyGroupUUID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityCopyOwnerUUID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityCreate func(unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityGetGroup func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityGetMode func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityGetOwner func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecurityGetTypeID func() unsafe.Pointer
-	_CFFileSecuritySetAccessControlList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecuritySetGroup func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecuritySetGroupUUID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecuritySetMode func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecuritySetOwner func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFFileSecuritySetOwnerUUID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFGetAllocator func(unsafe.Pointer) unsafe.Pointer
-	_CFGetRetainCount func(unsafe.Pointer) unsafe.Pointer
-	_CFGetTypeID func(unsafe.Pointer) unsafe.Pointer
-	_CFGregorianDateGetAbsoluteTime func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFGregorianDateIsValid func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFHash func(unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCopyAvailableLocaleIdentifiers func() unsafe.Pointer
-	_CFLocaleCopyCommonISOCurrencyCodes func() unsafe.Pointer
-	_CFLocaleCopyCurrent func() unsafe.Pointer
-	_CFLocaleCopyDisplayNameForPropertyValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCopyISOCountryCodes func() unsafe.Pointer
-	_CFLocaleCopyISOCurrencyCodes func() unsafe.Pointer
-	_CFLocaleCopyISOLanguageCodes func() unsafe.Pointer
-	_CFLocaleCopyPreferredLanguages func() unsafe.Pointer
-	_CFLocaleCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateCanonicalLanguageIdentifierFromString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateCanonicalLocaleIdentifierFromString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateComponentsFromLocaleIdentifier func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateLocaleIdentifierFromComponents func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode func(unsafe.Pointer, uint32) unsafe.Pointer
-	_CFLocaleGetIdentifier func(unsafe.Pointer) unsafe.Pointer
-	_CFLocaleGetLanguageCharacterDirection func(unsafe.Pointer) unsafe.Pointer
-	_CFLocaleGetLanguageLineDirection func(unsafe.Pointer) unsafe.Pointer
-	_CFLocaleGetSystem func() unsafe.Pointer
-	_CFLocaleGetTypeID func() unsafe.Pointer
-	_CFLocaleGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier func(unsafe.Pointer) uint32
-	_CFMachPortCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMachPortCreateRunLoopSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMachPortCreateWithPort func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMachPortGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFMachPortGetInvalidationCallBack func(unsafe.Pointer) unsafe.Pointer
-	_CFMachPortGetPort func(unsafe.Pointer) unsafe.Pointer
-	_CFMachPortGetTypeID func() unsafe.Pointer
-	_CFMachPortInvalidate func(unsafe.Pointer)
-	_CFMachPortIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFMachPortSetInvalidationCallBack func(unsafe.Pointer, unsafe.Pointer)
-	_CFMakeCollectable func(unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortCreateLocal func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortCreateRemote func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortCreateRunLoopSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFMessagePortGetInvalidationCallBack func(unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortGetName func(unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortGetTypeID func() unsafe.Pointer
-	_CFMessagePortInvalidate func(unsafe.Pointer)
-	_CFMessagePortIsRemote func(unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortSendRequest func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFMessagePortSetDispatchQueue func(unsafe.Pointer, unsafe.Pointer)
-	_CFMessagePortSetInvalidationCallBack func(unsafe.Pointer, unsafe.Pointer)
-	_CFMessagePortSetName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNotificationCenterAddObserver func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFNotificationCenterGetDarwinNotifyCenter func() unsafe.Pointer
-	_CFNotificationCenterGetDistributedCenter func() unsafe.Pointer
-	_CFNotificationCenterGetLocalCenter func() unsafe.Pointer
-	_CFNotificationCenterGetTypeID func() unsafe.Pointer
-	_CFNotificationCenterPostNotification func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFNotificationCenterPostNotificationWithOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFNotificationCenterRemoveEveryObserver func(unsafe.Pointer, unsafe.Pointer)
-	_CFNotificationCenterRemoveObserver func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFNullGetTypeID func() unsafe.Pointer
-	_CFNumberCompare func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterCopyProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterCreateNumberFromString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterCreateStringWithNumber func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterCreateStringWithValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterGetDecimalInfoForCurrencyCode func(unsafe.Pointer, unsafe.Pointer, []float64) unsafe.Pointer
-	_CFNumberFormatterGetFormat func(unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterGetLocale func(unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterGetStyle func(unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterGetTypeID func() unsafe.Pointer
-	_CFNumberFormatterGetValueFromString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberFormatterSetFormat func(unsafe.Pointer, unsafe.Pointer)
-	_CFNumberFormatterSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFNumberGetByteSize func(unsafe.Pointer) unsafe.Pointer
-	_CFNumberGetType func(unsafe.Pointer) unsafe.Pointer
-	_CFNumberGetTypeID func() unsafe.Pointer
-	_CFNumberGetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFNumberIsFloatType func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInAddInstanceForFactory func(unsafe.Pointer)
-	_CFPlugInCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInFindFactoriesForPlugInType func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInFindFactoriesForPlugInTypeInPlugIn func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInGetBundle func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInGetTypeID func() unsafe.Pointer
-	_CFPlugInInstanceCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInInstanceCreateWithInstanceDataSize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInInstanceGetFactoryName func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInInstanceGetInstanceData func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInInstanceGetInterfaceFunctionTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInInstanceGetTypeID func() unsafe.Pointer
-	_CFPlugInIsLoadOnDemand func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInRegisterFactoryFunction func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInRegisterFactoryFunctionByName func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInRegisterPlugInType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPlugInRemoveInstanceForFactory func(unsafe.Pointer)
-	_CFPlugInSetLoadOnDemand func(unsafe.Pointer, unsafe.Pointer)
-	_CFPlugInUnregisterFactory func(unsafe.Pointer) unsafe.Pointer
-	_CFPlugInUnregisterPlugInType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesAddSuitePreferencesToApp func(unsafe.Pointer, unsafe.Pointer)
-	_CFPreferencesAppSynchronize func(unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesAppValueIsForced func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesCopyAppValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesCopyApplicationList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesCopyKeyList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesCopyMultiple func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesCopyValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesGetAppBooleanValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesGetAppIntegerValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPreferencesRemoveSuitePreferencesFromApp func(unsafe.Pointer, unsafe.Pointer)
-	_CFPreferencesSetAppValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFPreferencesSetMultiple func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFPreferencesSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFPreferencesSynchronize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateDeepCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateFromStream func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateFromXMLData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateWithData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateWithStream func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListCreateXMLData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListIsValid func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListWrite func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFPropertyListWriteToStream func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamClose func(unsafe.Pointer)
-	_CFReadStreamCopyDispatchQueue func(unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamCopyError func(unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamCopyProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamCreateWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamCreateWithFile func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamGetBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamGetError func(unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamGetStatus func(unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamGetTypeID func() unsafe.Pointer
-	_CFReadStreamHasBytesAvailable func(unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamOpen func(unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamRead func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamScheduleWithRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFReadStreamSetClient func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamSetDispatchQueue func(unsafe.Pointer, unsafe.Pointer)
-	_CFReadStreamSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFReadStreamUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopAddCommonMode func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopAddObserver func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopAddSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopAddTimer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopContainsObserver func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopContainsSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopContainsTimer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopCopyAllModes func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopCopyCurrentMode func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopGetCurrent func() unsafe.Pointer
-	_CFRunLoopGetMain func() unsafe.Pointer
-	_CFRunLoopGetNextTimerFireDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopGetTypeID func() unsafe.Pointer
-	_CFRunLoopIsWaiting func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopObserverCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopObserverCreateWithHandler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopObserverDoesRepeat func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopObserverGetActivities func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopObserverGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopObserverGetOrder func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopObserverGetTypeID func() unsafe.Pointer
-	_CFRunLoopObserverInvalidate func(unsafe.Pointer)
-	_CFRunLoopObserverIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopPerformBlock func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopRemoveObserver func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopRemoveSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopRemoveTimer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFBundleIsExecutableLoadable func(BundleRef) unsafe.Pointer
+	_CFBundleIsExecutableLoadableForURL func(URLRef) unsafe.Pointer
+	_CFBundleIsExecutableLoaded func(BundleRef) unsafe.Pointer
+	_CFBundleLoadExecutable func(BundleRef) unsafe.Pointer
+	_CFBundleLoadExecutableAndReturnError func(BundleRef, unsafe.Pointer) unsafe.Pointer
+	_CFBundleOpenBundleResourceFiles func(BundleRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFBundleOpenBundleResourceMap func(BundleRef) BundleRefNum
+	_CFBundlePreflightExecutable func(BundleRef, unsafe.Pointer) unsafe.Pointer
+	_CFBundleUnloadExecutable func(BundleRef)
+	_CFCalendarAddComponents func(CalendarRef, unsafe.Pointer, OptionFlags, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarComposeAbsoluteTime func(CalendarRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarCopyCurrent func() CalendarRef
+	_CFCalendarCopyLocale func(CalendarRef) LocaleRef
+	_CFCalendarCopyTimeZone func(CalendarRef) TimeZoneRef
+	_CFCalendarCreateWithIdentifier func(AllocatorRef, CalendarIdentifier) CalendarRef
+	_CFCalendarDecomposeAbsoluteTime func(CalendarRef, AbsoluteTime, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarGetComponentDifference func(CalendarRef, AbsoluteTime, AbsoluteTime, OptionFlags, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarGetFirstWeekday func(CalendarRef) Index
+	_CFCalendarGetIdentifier func(CalendarRef) CalendarIdentifier
+	_CFCalendarGetMaximumRangeOfUnit func(CalendarRef, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarGetMinimumDaysInFirstWeek func(CalendarRef) Index
+	_CFCalendarGetMinimumRangeOfUnit func(CalendarRef, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarGetOrdinalityOfUnit func(CalendarRef, unsafe.Pointer, unsafe.Pointer, AbsoluteTime) Index
+	_CFCalendarGetRangeOfUnit func(CalendarRef, unsafe.Pointer, unsafe.Pointer, AbsoluteTime) unsafe.Pointer
+	_CFCalendarGetTimeRangeOfUnit func(CalendarRef, unsafe.Pointer, AbsoluteTime, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarGetTypeID func() TypeID
+	_CFCalendarSetFirstWeekday func(CalendarRef, Index)
+	_CFCalendarSetLocale func(CalendarRef, LocaleRef)
+	_CFCalendarSetMinimumDaysInFirstWeek func(CalendarRef, Index)
+	_CFCalendarSetTimeZone func(CalendarRef, TimeZoneRef)
+	_CFCharacterSetAddCharactersInRange func(MutableCharacterSetRef, unsafe.Pointer)
+	_CFCharacterSetAddCharactersInString func(MutableCharacterSetRef, StringRef)
+	_CFCharacterSetCreateBitmapRepresentation func(AllocatorRef, CharacterSetRef) DataRef
+	_CFCharacterSetCreateCopy func(AllocatorRef, CharacterSetRef) CharacterSetRef
+	_CFCharacterSetCreateInvertedSet func(AllocatorRef, CharacterSetRef) CharacterSetRef
+	_CFCharacterSetCreateMutable func(AllocatorRef) MutableCharacterSetRef
+	_CFCharacterSetCreateMutableCopy func(AllocatorRef, CharacterSetRef) MutableCharacterSetRef
+	_CFCharacterSetCreateWithBitmapRepresentation func(AllocatorRef, DataRef) CharacterSetRef
+	_CFCharacterSetCreateWithCharactersInRange func(AllocatorRef, unsafe.Pointer) CharacterSetRef
+	_CFCharacterSetCreateWithCharactersInString func(AllocatorRef, StringRef) CharacterSetRef
+	_CFCharacterSetGetPredefined func(unsafe.Pointer) CharacterSetRef
+	_CFCharacterSetGetTypeID func() TypeID
+	_CFCharacterSetHasMemberInPlane func(CharacterSetRef, Index) unsafe.Pointer
+	_CFCharacterSetIntersect func(MutableCharacterSetRef, CharacterSetRef)
+	_CFCharacterSetInvert func(MutableCharacterSetRef)
+	_CFCharacterSetIsCharacterMember func(CharacterSetRef, unsafe.Pointer) unsafe.Pointer
+	_CFCharacterSetIsLongCharacterMember func(CharacterSetRef, unsafe.Pointer) unsafe.Pointer
+	_CFCharacterSetIsSupersetOfSet func(CharacterSetRef, CharacterSetRef) unsafe.Pointer
+	_CFCharacterSetRemoveCharactersInRange func(MutableCharacterSetRef, unsafe.Pointer)
+	_CFCharacterSetRemoveCharactersInString func(MutableCharacterSetRef, StringRef)
+	_CFCharacterSetUnion func(MutableCharacterSetRef, CharacterSetRef)
+	_CFCopyDescription func(TypeRef) StringRef
+	_CFCopyHomeDirectoryURL func() URLRef
+	_CFCopyTypeIDDescription func(TypeID) StringRef
+	_CFDataAppendBytes func(MutableDataRef, unsafe.Pointer, Index)
+	_CFDataCreate func(AllocatorRef, unsafe.Pointer, Index) DataRef
+	_CFDataCreateCopy func(AllocatorRef, DataRef) DataRef
+	_CFDataCreateMutable func(AllocatorRef, Index) MutableDataRef
+	_CFDataCreateMutableCopy func(AllocatorRef, Index, DataRef) MutableDataRef
+	_CFDataCreateWithBytesNoCopy func(AllocatorRef, unsafe.Pointer, Index, AllocatorRef) DataRef
+	_CFDataDeleteBytes func(MutableDataRef, unsafe.Pointer)
+	_CFDataFind func(DataRef, DataRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFDataGetBytePtr func(DataRef) unsafe.Pointer
+	_CFDataGetBytes func(DataRef, unsafe.Pointer, unsafe.Pointer)
+	_CFDataGetLength func(DataRef) Index
+	_CFDataGetMutableBytePtr func(MutableDataRef) unsafe.Pointer
+	_CFDataGetTypeID func() TypeID
+	_CFDataIncreaseLength func(MutableDataRef, Index)
+	_CFDataReplaceBytes func(MutableDataRef, unsafe.Pointer, unsafe.Pointer, Index)
+	_CFDataSetLength func(MutableDataRef, Index)
+	_CFDateCompare func(DateRef, DateRef, unsafe.Pointer) unsafe.Pointer
+	_CFDateCreate func(AllocatorRef, AbsoluteTime) DateRef
+	_CFDateFormatterCopyProperty func(DateFormatterRef, DateFormatterKey) TypeRef
+	_CFDateFormatterCreate func(AllocatorRef, LocaleRef, unsafe.Pointer, unsafe.Pointer) DateFormatterRef
+	_CFDateFormatterCreateDateFormatFromTemplate func(AllocatorRef, StringRef, OptionFlags, LocaleRef) StringRef
+	_CFDateFormatterCreateDateFromString func(AllocatorRef, DateFormatterRef, StringRef, unsafe.Pointer) DateRef
+	_CFDateFormatterCreateISO8601Formatter func(AllocatorRef, unsafe.Pointer) DateFormatterRef
+	_CFDateFormatterCreateStringWithAbsoluteTime func(AllocatorRef, DateFormatterRef, AbsoluteTime) StringRef
+	_CFDateFormatterCreateStringWithDate func(AllocatorRef, DateFormatterRef, DateRef) StringRef
+	_CFDateFormatterGetAbsoluteTimeFromString func(DateFormatterRef, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFDateFormatterGetDateStyle func(DateFormatterRef) unsafe.Pointer
+	_CFDateFormatterGetFormat func(DateFormatterRef) StringRef
+	_CFDateFormatterGetLocale func(DateFormatterRef) LocaleRef
+	_CFDateFormatterGetTimeStyle func(DateFormatterRef) unsafe.Pointer
+	_CFDateFormatterGetTypeID func() TypeID
+	_CFDateFormatterSetFormat func(DateFormatterRef, StringRef)
+	_CFDateFormatterSetProperty func(DateFormatterRef, StringRef, TypeRef)
+	_CFDateGetAbsoluteTime func(DateRef) AbsoluteTime
+	_CFDateGetTimeIntervalSinceDate func(DateRef, DateRef) TimeInterval
+	_CFDateGetTypeID func() TypeID
+	_CFDictionaryAddValue func(MutableDictionaryRef, unsafe.Pointer, unsafe.Pointer)
+	_CFDictionaryApplyFunction func(DictionaryRef, DictionaryApplierFunction, unsafe.Pointer)
+	_CFDictionaryContainsKey func(DictionaryRef, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryContainsValue func(DictionaryRef, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryCreate func(AllocatorRef, unsafe.Pointer, unsafe.Pointer, Index, unsafe.Pointer, unsafe.Pointer) DictionaryRef
+	_CFDictionaryCreateCopy func(AllocatorRef, DictionaryRef) DictionaryRef
+	_CFDictionaryCreateMutable func(AllocatorRef, Index, unsafe.Pointer, unsafe.Pointer) MutableDictionaryRef
+	_CFDictionaryCreateMutableCopy func(AllocatorRef, Index, DictionaryRef) MutableDictionaryRef
+	_CFDictionaryGetCount func(DictionaryRef) Index
+	_CFDictionaryGetCountOfKey func(DictionaryRef, unsafe.Pointer) Index
+	_CFDictionaryGetCountOfValue func(DictionaryRef, unsafe.Pointer) Index
+	_CFDictionaryGetKeysAndValues func(DictionaryRef, unsafe.Pointer, unsafe.Pointer)
+	_CFDictionaryGetTypeID func() TypeID
+	_CFDictionaryGetValue func(DictionaryRef, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryGetValueIfPresent func(DictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryRemoveAllValues func(MutableDictionaryRef)
+	_CFDictionaryRemoveValue func(MutableDictionaryRef, unsafe.Pointer)
+	_CFDictionaryReplaceValue func(MutableDictionaryRef, unsafe.Pointer, unsafe.Pointer)
+	_CFDictionarySetValue func(MutableDictionaryRef, unsafe.Pointer, unsafe.Pointer)
+	_CFEqual func(TypeRef, TypeRef) unsafe.Pointer
+	_CFErrorCopyDescription func(ErrorRef) StringRef
+	_CFErrorCopyFailureReason func(ErrorRef) StringRef
+	_CFErrorCopyRecoverySuggestion func(ErrorRef) StringRef
+	_CFErrorCopyUserInfo func(ErrorRef) DictionaryRef
+	_CFErrorCreate func(AllocatorRef, ErrorDomain, Index, DictionaryRef) ErrorRef
+	_CFErrorCreateWithUserInfoKeysAndValues func(AllocatorRef, ErrorDomain, Index, unsafe.Pointer, unsafe.Pointer, Index) ErrorRef
+	_CFErrorGetCode func(ErrorRef) Index
+	_CFErrorGetDomain func(ErrorRef) ErrorDomain
+	_CFErrorGetTypeID func() TypeID
+	_CFFileDescriptorCreate func(AllocatorRef, FileDescriptorNativeDescriptor, unsafe.Pointer, FileDescriptorCallBack, unsafe.Pointer) FileDescriptorRef
+	_CFFileDescriptorCreateRunLoopSource func(AllocatorRef, FileDescriptorRef, Index) RunLoopSourceRef
+	_CFFileDescriptorDisableCallBacks func(FileDescriptorRef, OptionFlags)
+	_CFFileDescriptorEnableCallBacks func(FileDescriptorRef, OptionFlags)
+	_CFFileDescriptorGetContext func(FileDescriptorRef, unsafe.Pointer)
+	_CFFileDescriptorGetNativeDescriptor func(FileDescriptorRef) FileDescriptorNativeDescriptor
+	_CFFileDescriptorGetTypeID func() TypeID
+	_CFFileDescriptorInvalidate func(FileDescriptorRef)
+	_CFFileDescriptorIsValid func(FileDescriptorRef) unsafe.Pointer
+	_CFFileSecurityClearProperties func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityCopyAccessControlList func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityCopyGroupUUID func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityCopyOwnerUUID func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityCreate func(AllocatorRef) FileSecurityRef
+	_CFFileSecurityCreateCopy func(AllocatorRef, FileSecurityRef) FileSecurityRef
+	_CFFileSecurityGetGroup func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityGetMode func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityGetOwner func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecurityGetTypeID func() TypeID
+	_CFFileSecuritySetAccessControlList func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecuritySetGroup func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecuritySetGroupUUID func(FileSecurityRef, UUIDRef) unsafe.Pointer
+	_CFFileSecuritySetMode func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecuritySetOwner func(FileSecurityRef, unsafe.Pointer) unsafe.Pointer
+	_CFFileSecuritySetOwnerUUID func(FileSecurityRef, UUIDRef) unsafe.Pointer
+	_CFGetAllocator func(TypeRef) AllocatorRef
+	_CFGetRetainCount func(TypeRef) Index
+	_CFGetTypeID func(TypeRef) TypeID
+	_CFGregorianDateGetAbsoluteTime func(unsafe.Pointer, TimeZoneRef) AbsoluteTime
+	_CFGregorianDateIsValid func(unsafe.Pointer, OptionFlags) unsafe.Pointer
+	_CFHash func(TypeRef) HashCode
+	_CFLocaleCopyAvailableLocaleIdentifiers func() ArrayRef
+	_CFLocaleCopyCommonISOCurrencyCodes func() ArrayRef
+	_CFLocaleCopyCurrent func() LocaleRef
+	_CFLocaleCopyDisplayNameForPropertyValue func(LocaleRef, LocaleKey, StringRef) StringRef
+	_CFLocaleCopyISOCountryCodes func() ArrayRef
+	_CFLocaleCopyISOCurrencyCodes func() ArrayRef
+	_CFLocaleCopyISOLanguageCodes func() ArrayRef
+	_CFLocaleCopyPreferredLanguages func() ArrayRef
+	_CFLocaleCreate func(AllocatorRef, LocaleIdentifier) LocaleRef
+	_CFLocaleCreateCanonicalLanguageIdentifierFromString func(AllocatorRef, StringRef) LocaleIdentifier
+	_CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes func(AllocatorRef, unsafe.Pointer, unsafe.Pointer) LocaleIdentifier
+	_CFLocaleCreateCanonicalLocaleIdentifierFromString func(AllocatorRef, StringRef) LocaleIdentifier
+	_CFLocaleCreateComponentsFromLocaleIdentifier func(AllocatorRef, LocaleIdentifier) DictionaryRef
+	_CFLocaleCreateCopy func(AllocatorRef, LocaleRef) LocaleRef
+	_CFLocaleCreateLocaleIdentifierFromComponents func(AllocatorRef, DictionaryRef) LocaleIdentifier
+	_CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode func(AllocatorRef, uint32) LocaleIdentifier
+	_CFLocaleGetIdentifier func(LocaleRef) LocaleIdentifier
+	_CFLocaleGetLanguageCharacterDirection func(StringRef) unsafe.Pointer
+	_CFLocaleGetLanguageLineDirection func(StringRef) unsafe.Pointer
+	_CFLocaleGetSystem func() LocaleRef
+	_CFLocaleGetTypeID func() TypeID
+	_CFLocaleGetValue func(LocaleRef, LocaleKey) TypeRef
+	_CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier func(LocaleIdentifier) uint32
+	_CFMachPortCreate func(AllocatorRef, MachPortCallBack, unsafe.Pointer, unsafe.Pointer) MachPortRef
+	_CFMachPortCreateRunLoopSource func(AllocatorRef, MachPortRef, Index) RunLoopSourceRef
+	_CFMachPortCreateWithPort func(AllocatorRef, unsafe.Pointer, MachPortCallBack, unsafe.Pointer, unsafe.Pointer) MachPortRef
+	_CFMachPortGetContext func(MachPortRef, unsafe.Pointer)
+	_CFMachPortGetInvalidationCallBack func(MachPortRef) MachPortInvalidationCallBack
+	_CFMachPortGetPort func(MachPortRef) unsafe.Pointer
+	_CFMachPortGetTypeID func() TypeID
+	_CFMachPortInvalidate func(MachPortRef)
+	_CFMachPortIsValid func(MachPortRef) unsafe.Pointer
+	_CFMachPortSetInvalidationCallBack func(MachPortRef, MachPortInvalidationCallBack)
+	_CFMakeCollectable func(TypeRef) TypeRef
+	_CFMessagePortCreateLocal func(AllocatorRef, StringRef, MessagePortCallBack, unsafe.Pointer, unsafe.Pointer) MessagePortRef
+	_CFMessagePortCreateRemote func(AllocatorRef, StringRef) MessagePortRef
+	_CFMessagePortCreateRunLoopSource func(AllocatorRef, MessagePortRef, Index) RunLoopSourceRef
+	_CFMessagePortGetContext func(MessagePortRef, unsafe.Pointer)
+	_CFMessagePortGetInvalidationCallBack func(MessagePortRef) MessagePortInvalidationCallBack
+	_CFMessagePortGetName func(MessagePortRef) StringRef
+	_CFMessagePortGetTypeID func() TypeID
+	_CFMessagePortInvalidate func(MessagePortRef)
+	_CFMessagePortIsRemote func(MessagePortRef) unsafe.Pointer
+	_CFMessagePortIsValid func(MessagePortRef) unsafe.Pointer
+	_CFMessagePortSendRequest func(MessagePortRef, unsafe.Pointer, DataRef, TimeInterval, TimeInterval, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFMessagePortSetDispatchQueue func(MessagePortRef, unsafe.Pointer)
+	_CFMessagePortSetInvalidationCallBack func(MessagePortRef, MessagePortInvalidationCallBack)
+	_CFMessagePortSetName func(MessagePortRef, StringRef) unsafe.Pointer
+	_CFNotificationCenterAddObserver func(NotificationCenterRef, unsafe.Pointer, NotificationCallback, StringRef, unsafe.Pointer, unsafe.Pointer)
+	_CFNotificationCenterGetDarwinNotifyCenter func() NotificationCenterRef
+	_CFNotificationCenterGetDistributedCenter func() NotificationCenterRef
+	_CFNotificationCenterGetLocalCenter func() NotificationCenterRef
+	_CFNotificationCenterGetTypeID func() TypeID
+	_CFNotificationCenterPostNotification func(NotificationCenterRef, NotificationName, unsafe.Pointer, DictionaryRef, unsafe.Pointer)
+	_CFNotificationCenterPostNotificationWithOptions func(NotificationCenterRef, NotificationName, unsafe.Pointer, DictionaryRef, OptionFlags)
+	_CFNotificationCenterRemoveEveryObserver func(NotificationCenterRef, unsafe.Pointer)
+	_CFNotificationCenterRemoveObserver func(NotificationCenterRef, unsafe.Pointer, NotificationName, unsafe.Pointer)
+	_CFNullGetTypeID func() TypeID
+	_CFNumberCompare func(NumberRef, NumberRef, unsafe.Pointer) unsafe.Pointer
+	_CFNumberCreate func(AllocatorRef, unsafe.Pointer, unsafe.Pointer) NumberRef
+	_CFNumberFormatterCopyProperty func(NumberFormatterRef, NumberFormatterKey) TypeRef
+	_CFNumberFormatterCreate func(AllocatorRef, LocaleRef, unsafe.Pointer) NumberFormatterRef
+	_CFNumberFormatterCreateNumberFromString func(AllocatorRef, NumberFormatterRef, StringRef, unsafe.Pointer, OptionFlags) NumberRef
+	_CFNumberFormatterCreateStringWithNumber func(AllocatorRef, NumberFormatterRef, NumberRef) StringRef
+	_CFNumberFormatterCreateStringWithValue func(AllocatorRef, NumberFormatterRef, unsafe.Pointer, unsafe.Pointer) StringRef
+	_CFNumberFormatterGetDecimalInfoForCurrencyCode func(StringRef, unsafe.Pointer, []float64) unsafe.Pointer
+	_CFNumberFormatterGetFormat func(NumberFormatterRef) StringRef
+	_CFNumberFormatterGetLocale func(NumberFormatterRef) LocaleRef
+	_CFNumberFormatterGetStyle func(NumberFormatterRef) unsafe.Pointer
+	_CFNumberFormatterGetTypeID func() TypeID
+	_CFNumberFormatterGetValueFromString func(NumberFormatterRef, StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFNumberFormatterSetFormat func(NumberFormatterRef, StringRef)
+	_CFNumberFormatterSetProperty func(NumberFormatterRef, NumberFormatterKey, TypeRef)
+	_CFNumberGetByteSize func(NumberRef) Index
+	_CFNumberGetType func(NumberRef) unsafe.Pointer
+	_CFNumberGetTypeID func() TypeID
+	_CFNumberGetValue func(NumberRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFNumberIsFloatType func(NumberRef) unsafe.Pointer
+	_CFPlugInAddInstanceForFactory func(UUIDRef)
+	_CFPlugInCreate func(AllocatorRef, URLRef) PlugInRef
+	_CFPlugInFindFactoriesForPlugInType func(UUIDRef) ArrayRef
+	_CFPlugInFindFactoriesForPlugInTypeInPlugIn func(UUIDRef, PlugInRef) ArrayRef
+	_CFPlugInGetBundle func(PlugInRef) BundleRef
+	_CFPlugInGetTypeID func() TypeID
+	_CFPlugInInstanceCreate func(AllocatorRef, UUIDRef, UUIDRef) unsafe.Pointer
+	_CFPlugInInstanceCreateWithInstanceDataSize func(AllocatorRef, Index, PlugInInstanceDeallocateInstanceDataFunction, StringRef, PlugInInstanceGetInterfaceFunction) PlugInInstanceRef
+	_CFPlugInInstanceGetFactoryName func(PlugInInstanceRef) StringRef
+	_CFPlugInInstanceGetInstanceData func(PlugInInstanceRef) unsafe.Pointer
+	_CFPlugInInstanceGetInterfaceFunctionTable func(PlugInInstanceRef, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFPlugInInstanceGetTypeID func() TypeID
+	_CFPlugInIsLoadOnDemand func(PlugInRef) unsafe.Pointer
+	_CFPlugInRegisterFactoryFunction func(UUIDRef, PlugInFactoryFunction) unsafe.Pointer
+	_CFPlugInRegisterFactoryFunctionByName func(UUIDRef, PlugInRef, StringRef) unsafe.Pointer
+	_CFPlugInRegisterPlugInType func(UUIDRef, UUIDRef) unsafe.Pointer
+	_CFPlugInRemoveInstanceForFactory func(UUIDRef)
+	_CFPlugInSetLoadOnDemand func(PlugInRef, unsafe.Pointer)
+	_CFPlugInUnregisterFactory func(UUIDRef) unsafe.Pointer
+	_CFPlugInUnregisterPlugInType func(UUIDRef, UUIDRef) unsafe.Pointer
+	_CFPreferencesAddSuitePreferencesToApp func(StringRef, StringRef)
+	_CFPreferencesAppSynchronize func(StringRef) unsafe.Pointer
+	_CFPreferencesAppValueIsForced func(StringRef, StringRef) unsafe.Pointer
+	_CFPreferencesCopyAppValue func(StringRef, StringRef) PropertyListRef
+	_CFPreferencesCopyApplicationList func(StringRef, StringRef) ArrayRef
+	_CFPreferencesCopyKeyList func(StringRef, StringRef, StringRef) ArrayRef
+	_CFPreferencesCopyMultiple func(ArrayRef, StringRef, StringRef, StringRef) DictionaryRef
+	_CFPreferencesCopyValue func(StringRef, StringRef, StringRef, StringRef) PropertyListRef
+	_CFPreferencesGetAppBooleanValue func(StringRef, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFPreferencesGetAppIntegerValue func(StringRef, StringRef, unsafe.Pointer) Index
+	_CFPreferencesRemoveSuitePreferencesFromApp func(StringRef, StringRef)
+	_CFPreferencesSetAppValue func(StringRef, PropertyListRef, StringRef)
+	_CFPreferencesSetMultiple func(DictionaryRef, ArrayRef, StringRef, StringRef, StringRef)
+	_CFPreferencesSetValue func(StringRef, PropertyListRef, StringRef, StringRef, StringRef)
+	_CFPreferencesSynchronize func(StringRef, StringRef, StringRef) unsafe.Pointer
+	_CFPropertyListCreateData func(AllocatorRef, PropertyListRef, unsafe.Pointer, OptionFlags, unsafe.Pointer) DataRef
+	_CFPropertyListCreateDeepCopy func(AllocatorRef, PropertyListRef, OptionFlags) PropertyListRef
+	_CFPropertyListCreateFromStream func(AllocatorRef, ReadStreamRef, Index, OptionFlags, unsafe.Pointer, unsafe.Pointer) PropertyListRef
+	_CFPropertyListCreateFromXMLData func(AllocatorRef, DataRef, OptionFlags, unsafe.Pointer) PropertyListRef
+	_CFPropertyListCreateWithData func(AllocatorRef, DataRef, OptionFlags, unsafe.Pointer, unsafe.Pointer) PropertyListRef
+	_CFPropertyListCreateWithStream func(AllocatorRef, ReadStreamRef, Index, OptionFlags, unsafe.Pointer, unsafe.Pointer) PropertyListRef
+	_CFPropertyListCreateXMLData func(AllocatorRef, PropertyListRef) DataRef
+	_CFPropertyListIsValid func(PropertyListRef, unsafe.Pointer) unsafe.Pointer
+	_CFPropertyListWrite func(PropertyListRef, WriteStreamRef, unsafe.Pointer, OptionFlags, unsafe.Pointer) Index
+	_CFPropertyListWriteToStream func(PropertyListRef, WriteStreamRef, unsafe.Pointer, unsafe.Pointer) Index
+	_CFReadStreamClose func(ReadStreamRef)
+	_CFReadStreamCopyDispatchQueue func(ReadStreamRef) unsafe.Pointer
+	_CFReadStreamCopyError func(ReadStreamRef) ErrorRef
+	_CFReadStreamCopyProperty func(ReadStreamRef, StreamPropertyKey) TypeRef
+	_CFReadStreamCreateWithBytesNoCopy func(AllocatorRef, unsafe.Pointer, Index, AllocatorRef) ReadStreamRef
+	_CFReadStreamCreateWithFile func(AllocatorRef, URLRef) ReadStreamRef
+	_CFReadStreamGetBuffer func(ReadStreamRef, Index, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamGetError func(ReadStreamRef) unsafe.Pointer
+	_CFReadStreamGetStatus func(ReadStreamRef) unsafe.Pointer
+	_CFReadStreamGetTypeID func() TypeID
+	_CFReadStreamHasBytesAvailable func(ReadStreamRef) unsafe.Pointer
+	_CFReadStreamOpen func(ReadStreamRef) unsafe.Pointer
+	_CFReadStreamRead func(ReadStreamRef, unsafe.Pointer, Index) Index
+	_CFReadStreamScheduleWithRunLoop func(ReadStreamRef, RunLoopRef, RunLoopMode)
+	_CFReadStreamSetClient func(ReadStreamRef, OptionFlags, ReadStreamClientCallBack, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamSetDispatchQueue func(ReadStreamRef, unsafe.Pointer)
+	_CFReadStreamSetProperty func(ReadStreamRef, StreamPropertyKey, TypeRef) unsafe.Pointer
+	_CFReadStreamUnscheduleFromRunLoop func(ReadStreamRef, RunLoopRef, RunLoopMode)
+	_CFRelease func(TypeRef)
+	_CFRetain func(TypeRef) TypeRef
+	_CFRunLoopAddCommonMode func(RunLoopRef, RunLoopMode)
+	_CFRunLoopAddObserver func(RunLoopRef, RunLoopObserverRef, RunLoopMode)
+	_CFRunLoopAddSource func(RunLoopRef, RunLoopSourceRef, RunLoopMode)
+	_CFRunLoopAddTimer func(RunLoopRef, RunLoopTimerRef, RunLoopMode)
+	_CFRunLoopContainsObserver func(RunLoopRef, RunLoopObserverRef, RunLoopMode) unsafe.Pointer
+	_CFRunLoopContainsSource func(RunLoopRef, RunLoopSourceRef, RunLoopMode) unsafe.Pointer
+	_CFRunLoopContainsTimer func(RunLoopRef, RunLoopTimerRef, RunLoopMode) unsafe.Pointer
+	_CFRunLoopCopyAllModes func(RunLoopRef) ArrayRef
+	_CFRunLoopCopyCurrentMode func(RunLoopRef) RunLoopMode
+	_CFRunLoopGetCurrent func() RunLoopRef
+	_CFRunLoopGetMain func() RunLoopRef
+	_CFRunLoopGetNextTimerFireDate func(RunLoopRef, RunLoopMode) AbsoluteTime
+	_CFRunLoopGetTypeID func() TypeID
+	_CFRunLoopIsWaiting func(RunLoopRef) unsafe.Pointer
+	_CFRunLoopObserverCreate func(AllocatorRef, OptionFlags, unsafe.Pointer, Index, RunLoopObserverCallBack, unsafe.Pointer) RunLoopObserverRef
+	_CFRunLoopObserverCreateWithHandler func(AllocatorRef, OptionFlags, unsafe.Pointer, Index) RunLoopObserverRef
+	_CFRunLoopObserverDoesRepeat func(RunLoopObserverRef) unsafe.Pointer
+	_CFRunLoopObserverGetActivities func(RunLoopObserverRef) OptionFlags
+	_CFRunLoopObserverGetContext func(RunLoopObserverRef, unsafe.Pointer)
+	_CFRunLoopObserverGetOrder func(RunLoopObserverRef) Index
+	_CFRunLoopObserverGetTypeID func() TypeID
+	_CFRunLoopObserverInvalidate func(RunLoopObserverRef)
+	_CFRunLoopObserverIsValid func(RunLoopObserverRef) unsafe.Pointer
+	_CFRunLoopPerformBlock func(RunLoopRef, TypeRef)
+	_CFRunLoopRemoveObserver func(RunLoopRef, RunLoopObserverRef, RunLoopMode)
+	_CFRunLoopRemoveSource func(RunLoopRef, RunLoopSourceRef, RunLoopMode)
+	_CFRunLoopRemoveTimer func(RunLoopRef, RunLoopTimerRef, RunLoopMode)
 	_CFRunLoopRun func()
-	_CFRunLoopRunInMode func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopSourceCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopSourceGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopSourceGetOrder func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopSourceGetTypeID func() unsafe.Pointer
-	_CFRunLoopSourceInvalidate func(unsafe.Pointer)
-	_CFRunLoopSourceIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopSourceSignal func(unsafe.Pointer)
-	_CFRunLoopStop func(unsafe.Pointer)
-	_CFRunLoopTimerCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerCreateWithHandler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerDoesRepeat func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopTimerGetInterval func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerGetNextFireDate func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerGetOrder func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerGetTolerance func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerGetTypeID func() unsafe.Pointer
-	_CFRunLoopTimerInvalidate func(unsafe.Pointer)
-	_CFRunLoopTimerIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFRunLoopTimerSetNextFireDate func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopTimerSetTolerance func(unsafe.Pointer, unsafe.Pointer)
-	_CFRunLoopWakeUp func(unsafe.Pointer)
-	_CFSetAddValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFSetApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFSetContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetGetCount func(unsafe.Pointer) unsafe.Pointer
-	_CFSetGetCountOfValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetGetTypeID func() unsafe.Pointer
-	_CFSetGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetGetValueIfPresent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSetGetValues func(unsafe.Pointer, unsafe.Pointer)
-	_CFSetRemoveAllValues func(unsafe.Pointer)
-	_CFSetRemoveValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFSetReplaceValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFSetSetValue func(unsafe.Pointer, unsafe.Pointer)
-	_CFShow func(unsafe.Pointer)
-	_CFShowStr func(unsafe.Pointer)
-	_CFSocketConnectToAddress func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCopyAddress func(unsafe.Pointer) unsafe.Pointer
-	_CFSocketCopyPeerAddress func(unsafe.Pointer) unsafe.Pointer
-	_CFSocketCopyRegisteredSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCopyRegisteredValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCreateConnectedToSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCreateRunLoopSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCreateWithNative func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketCreateWithSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketDisableCallBacks func(unsafe.Pointer, unsafe.Pointer)
-	_CFSocketEnableCallBacks func(unsafe.Pointer, unsafe.Pointer)
-	_CFSocketGetContext func(unsafe.Pointer, unsafe.Pointer)
+	_CFRunLoopRunInMode func(RunLoopMode, TimeInterval, unsafe.Pointer) unsafe.Pointer
+	_CFRunLoopSourceCreate func(AllocatorRef, Index, unsafe.Pointer) RunLoopSourceRef
+	_CFRunLoopSourceGetContext func(RunLoopSourceRef, unsafe.Pointer)
+	_CFRunLoopSourceGetOrder func(RunLoopSourceRef) Index
+	_CFRunLoopSourceGetTypeID func() TypeID
+	_CFRunLoopSourceInvalidate func(RunLoopSourceRef)
+	_CFRunLoopSourceIsValid func(RunLoopSourceRef) unsafe.Pointer
+	_CFRunLoopSourceSignal func(RunLoopSourceRef)
+	_CFRunLoopStop func(RunLoopRef)
+	_CFRunLoopTimerCreate func(AllocatorRef, AbsoluteTime, TimeInterval, OptionFlags, Index, RunLoopTimerCallBack, unsafe.Pointer) RunLoopTimerRef
+	_CFRunLoopTimerCreateWithHandler func(AllocatorRef, AbsoluteTime, TimeInterval, OptionFlags, Index) RunLoopTimerRef
+	_CFRunLoopTimerDoesRepeat func(RunLoopTimerRef) unsafe.Pointer
+	_CFRunLoopTimerGetContext func(RunLoopTimerRef, unsafe.Pointer)
+	_CFRunLoopTimerGetInterval func(RunLoopTimerRef) TimeInterval
+	_CFRunLoopTimerGetNextFireDate func(RunLoopTimerRef) AbsoluteTime
+	_CFRunLoopTimerGetOrder func(RunLoopTimerRef) Index
+	_CFRunLoopTimerGetTolerance func(RunLoopTimerRef) TimeInterval
+	_CFRunLoopTimerGetTypeID func() TypeID
+	_CFRunLoopTimerInvalidate func(RunLoopTimerRef)
+	_CFRunLoopTimerIsValid func(RunLoopTimerRef) unsafe.Pointer
+	_CFRunLoopTimerSetNextFireDate func(RunLoopTimerRef, AbsoluteTime)
+	_CFRunLoopTimerSetTolerance func(RunLoopTimerRef, TimeInterval)
+	_CFRunLoopWakeUp func(RunLoopRef)
+	_CFSetAddValue func(MutableSetRef, unsafe.Pointer)
+	_CFSetApplyFunction func(SetRef, SetApplierFunction, unsafe.Pointer)
+	_CFSetContainsValue func(SetRef, unsafe.Pointer) unsafe.Pointer
+	_CFSetCreate func(AllocatorRef, unsafe.Pointer, Index, unsafe.Pointer) SetRef
+	_CFSetCreateCopy func(AllocatorRef, SetRef) SetRef
+	_CFSetCreateMutable func(AllocatorRef, Index, unsafe.Pointer) MutableSetRef
+	_CFSetCreateMutableCopy func(AllocatorRef, Index, SetRef) MutableSetRef
+	_CFSetGetCount func(SetRef) Index
+	_CFSetGetCountOfValue func(SetRef, unsafe.Pointer) Index
+	_CFSetGetTypeID func() TypeID
+	_CFSetGetValue func(SetRef, unsafe.Pointer) unsafe.Pointer
+	_CFSetGetValueIfPresent func(SetRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSetGetValues func(SetRef, unsafe.Pointer)
+	_CFSetRemoveAllValues func(MutableSetRef)
+	_CFSetRemoveValue func(MutableSetRef, unsafe.Pointer)
+	_CFSetReplaceValue func(MutableSetRef, unsafe.Pointer)
+	_CFSetSetValue func(MutableSetRef, unsafe.Pointer)
+	_CFShow func(TypeRef)
+	_CFShowStr func(StringRef)
+	_CFSocketConnectToAddress func(SocketRef, DataRef, TimeInterval) unsafe.Pointer
+	_CFSocketCopyAddress func(SocketRef) DataRef
+	_CFSocketCopyPeerAddress func(SocketRef) DataRef
+	_CFSocketCopyRegisteredSocketSignature func(unsafe.Pointer, TimeInterval, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCopyRegisteredValue func(unsafe.Pointer, TimeInterval, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCreate func(AllocatorRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, OptionFlags, SocketCallBack, unsafe.Pointer) SocketRef
+	_CFSocketCreateConnectedToSocketSignature func(AllocatorRef, unsafe.Pointer, OptionFlags, SocketCallBack, unsafe.Pointer, TimeInterval) SocketRef
+	_CFSocketCreateRunLoopSource func(AllocatorRef, SocketRef, Index) RunLoopSourceRef
+	_CFSocketCreateWithNative func(AllocatorRef, SocketNativeHandle, OptionFlags, SocketCallBack, unsafe.Pointer) SocketRef
+	_CFSocketCreateWithSocketSignature func(AllocatorRef, unsafe.Pointer, OptionFlags, SocketCallBack, unsafe.Pointer) SocketRef
+	_CFSocketDisableCallBacks func(SocketRef, OptionFlags)
+	_CFSocketEnableCallBacks func(SocketRef, OptionFlags)
+	_CFSocketGetContext func(SocketRef, unsafe.Pointer)
 	_CFSocketGetDefaultNameRegistryPortNumber func() unsafe.Pointer
-	_CFSocketGetNative func(unsafe.Pointer) unsafe.Pointer
-	_CFSocketGetSocketFlags func(unsafe.Pointer) unsafe.Pointer
-	_CFSocketGetTypeID func() unsafe.Pointer
-	_CFSocketInvalidate func(unsafe.Pointer)
-	_CFSocketIsValid func(unsafe.Pointer) unsafe.Pointer
-	_CFSocketRegisterSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketRegisterValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketSendData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFSocketSetAddress func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketGetNative func(SocketRef) SocketNativeHandle
+	_CFSocketGetSocketFlags func(SocketRef) OptionFlags
+	_CFSocketGetTypeID func() TypeID
+	_CFSocketInvalidate func(SocketRef)
+	_CFSocketIsValid func(SocketRef) unsafe.Pointer
+	_CFSocketRegisterSocketSignature func(unsafe.Pointer, TimeInterval, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFSocketRegisterValue func(unsafe.Pointer, TimeInterval, StringRef, PropertyListRef) unsafe.Pointer
+	_CFSocketSendData func(SocketRef, DataRef, DataRef, TimeInterval) unsafe.Pointer
+	_CFSocketSetAddress func(SocketRef, DataRef) unsafe.Pointer
 	_CFSocketSetDefaultNameRegistryPortNumber func(unsafe.Pointer)
-	_CFSocketSetSocketFlags func(unsafe.Pointer, unsafe.Pointer)
-	_CFSocketUnregister func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStreamCreateBoundPair func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStreamCreatePairWithPeerSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStreamCreatePairWithSocket func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStreamCreatePairWithSocketToHost func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringAppend func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringAppendCString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringAppendCharacters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringAppendFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringAppendFormatAndArguments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringAppendPascalString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringCapitalize func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringCompare func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCompareWithOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCompareWithOptionsAndLocale func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringConvertEncodingToIANACharSetName func(unsafe.Pointer) unsafe.Pointer
-	_CFStringConvertEncodingToNSStringEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringConvertEncodingToWindowsCodepage func(unsafe.Pointer) unsafe.Pointer
-	_CFStringConvertIANACharSetNameToEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringConvertNSStringEncodingToEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringConvertWindowsCodepageToEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateArrayBySeparatingStrings func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateArrayWithFindResults func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateByCombiningStrings func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateExternalRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateFromExternalRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateMutable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateMutableWithExternalCharactersNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateStringWithValidatedFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateStringWithValidatedFormatAndArguments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithCString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithCStringNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithCharacters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithCharactersNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithFileSystemRepresentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithFormatAndArguments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithPascalString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithPascalStringNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringCreateWithSubstring func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringDelete func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringFind func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringFindAndReplace func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringFindCharacterFromSet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringFindWithOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringFindWithOptionsAndLocale func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringFold func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringGetBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetCString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetCStringPtr func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetCharacterAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetCharacters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringGetCharactersPtr func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetDoubleValue func(unsafe.Pointer) float64
-	_CFStringGetFastestEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetFileSystemRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetHyphenationLocationBeforeIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetIntValue func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetLength func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetLineBounds func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFSocketSetSocketFlags func(SocketRef, OptionFlags)
+	_CFSocketUnregister func(unsafe.Pointer, TimeInterval, StringRef) unsafe.Pointer
+	_CFStreamCreateBoundPair func(AllocatorRef, unsafe.Pointer, unsafe.Pointer, Index)
+	_CFStreamCreatePairWithPeerSocketSignature func(AllocatorRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStreamCreatePairWithSocket func(AllocatorRef, SocketNativeHandle, unsafe.Pointer, unsafe.Pointer)
+	_CFStreamCreatePairWithSocketToHost func(AllocatorRef, StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringAppend func(MutableStringRef, StringRef)
+	_CFStringAppendCString func(MutableStringRef, unsafe.Pointer, StringEncoding)
+	_CFStringAppendCharacters func(MutableStringRef, unsafe.Pointer, Index)
+	_CFStringAppendFormat func(MutableStringRef, DictionaryRef, StringRef)
+	_CFStringAppendFormatAndArguments func(MutableStringRef, DictionaryRef, StringRef, unsafe.Pointer)
+	_CFStringAppendPascalString func(MutableStringRef, unsafe.Pointer, StringEncoding)
+	_CFStringCapitalize func(MutableStringRef, LocaleRef)
+	_CFStringCompare func(StringRef, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFStringCompareWithOptions func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringCompareWithOptionsAndLocale func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer, LocaleRef) unsafe.Pointer
+	_CFStringConvertEncodingToIANACharSetName func(StringEncoding) StringRef
+	_CFStringConvertEncodingToNSStringEncoding func(StringEncoding) unsafe.Pointer
+	_CFStringConvertEncodingToWindowsCodepage func(StringEncoding) unsafe.Pointer
+	_CFStringConvertIANACharSetNameToEncoding func(StringRef) StringEncoding
+	_CFStringConvertNSStringEncodingToEncoding func(unsafe.Pointer) StringEncoding
+	_CFStringConvertWindowsCodepageToEncoding func(unsafe.Pointer) StringEncoding
+	_CFStringCreateArrayBySeparatingStrings func(AllocatorRef, StringRef, StringRef) ArrayRef
+	_CFStringCreateArrayWithFindResults func(AllocatorRef, StringRef, StringRef, unsafe.Pointer, unsafe.Pointer) ArrayRef
+	_CFStringCreateByCombiningStrings func(AllocatorRef, ArrayRef, StringRef) StringRef
+	_CFStringCreateCopy func(AllocatorRef, StringRef) StringRef
+	_CFStringCreateExternalRepresentation func(AllocatorRef, StringRef, StringEncoding, unsafe.Pointer) DataRef
+	_CFStringCreateFromExternalRepresentation func(AllocatorRef, DataRef, StringEncoding) StringRef
+	_CFStringCreateMutable func(AllocatorRef, Index) MutableStringRef
+	_CFStringCreateMutableCopy func(AllocatorRef, Index, StringRef) MutableStringRef
+	_CFStringCreateMutableWithExternalCharactersNoCopy func(AllocatorRef, unsafe.Pointer, Index, Index, AllocatorRef) MutableStringRef
+	_CFStringCreateStringWithValidatedFormat func(AllocatorRef, DictionaryRef, StringRef, StringRef, unsafe.Pointer) StringRef
+	_CFStringCreateStringWithValidatedFormatAndArguments func(AllocatorRef, DictionaryRef, StringRef, StringRef, unsafe.Pointer, unsafe.Pointer) StringRef
+	_CFStringCreateWithBytes func(AllocatorRef, unsafe.Pointer, Index, StringEncoding, unsafe.Pointer) StringRef
+	_CFStringCreateWithBytesNoCopy func(AllocatorRef, unsafe.Pointer, Index, StringEncoding, unsafe.Pointer, AllocatorRef) StringRef
+	_CFStringCreateWithCString func(AllocatorRef, unsafe.Pointer, StringEncoding) StringRef
+	_CFStringCreateWithCStringNoCopy func(AllocatorRef, unsafe.Pointer, StringEncoding, AllocatorRef) StringRef
+	_CFStringCreateWithCharacters func(AllocatorRef, unsafe.Pointer, Index) StringRef
+	_CFStringCreateWithCharactersNoCopy func(AllocatorRef, unsafe.Pointer, Index, AllocatorRef) StringRef
+	_CFStringCreateWithFileSystemRepresentation func(AllocatorRef, unsafe.Pointer) StringRef
+	_CFStringCreateWithFormat func(AllocatorRef, DictionaryRef, StringRef) StringRef
+	_CFStringCreateWithFormatAndArguments func(AllocatorRef, DictionaryRef, StringRef, unsafe.Pointer) StringRef
+	_CFStringCreateWithPascalString func(AllocatorRef, unsafe.Pointer, StringEncoding) StringRef
+	_CFStringCreateWithPascalStringNoCopy func(AllocatorRef, unsafe.Pointer, StringEncoding, AllocatorRef) StringRef
+	_CFStringCreateWithSubstring func(AllocatorRef, StringRef, unsafe.Pointer) StringRef
+	_CFStringDelete func(MutableStringRef, unsafe.Pointer)
+	_CFStringFind func(StringRef, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFStringFindAndReplace func(MutableStringRef, StringRef, StringRef, unsafe.Pointer, unsafe.Pointer) Index
+	_CFStringFindCharacterFromSet func(StringRef, CharacterSetRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringFindWithOptions func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringFindWithOptionsAndLocale func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer, LocaleRef, unsafe.Pointer) unsafe.Pointer
+	_CFStringFold func(MutableStringRef, unsafe.Pointer, LocaleRef)
+	_CFStringGetBytes func(StringRef, unsafe.Pointer, StringEncoding, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Index, unsafe.Pointer) Index
+	_CFStringGetCString func(StringRef, unsafe.Pointer, Index, StringEncoding) unsafe.Pointer
+	_CFStringGetCStringPtr func(StringRef, StringEncoding) unsafe.Pointer
+	_CFStringGetCharacterAtIndex func(StringRef, Index) unsafe.Pointer
+	_CFStringGetCharacters func(StringRef, unsafe.Pointer, unsafe.Pointer)
+	_CFStringGetCharactersPtr func(StringRef) unsafe.Pointer
+	_CFStringGetDoubleValue func(StringRef) float64
+	_CFStringGetFastestEncoding func(StringRef) StringEncoding
+	_CFStringGetFileSystemRepresentation func(StringRef, unsafe.Pointer, Index) unsafe.Pointer
+	_CFStringGetHyphenationLocationBeforeIndex func(StringRef, Index, unsafe.Pointer, OptionFlags, LocaleRef, unsafe.Pointer) Index
+	_CFStringGetIntValue func(StringRef) unsafe.Pointer
+	_CFStringGetLength func(StringRef) Index
+	_CFStringGetLineBounds func(StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFStringGetListOfAvailableEncodings func() unsafe.Pointer
-	_CFStringGetMaximumSizeForEncoding func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetMaximumSizeOfFileSystemRepresentation func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetMostCompatibleMacStringEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetNameOfEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetParagraphBounds func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringGetPascalString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetPascalStringPtr func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetRangeOfComposedCharactersAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringGetSmallestEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CFStringGetSystemEncoding func() unsafe.Pointer
-	_CFStringGetTypeID func() unsafe.Pointer
-	_CFStringHasPrefix func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringHasSuffix func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringInsert func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringIsEncodingAvailable func(unsafe.Pointer) unsafe.Pointer
-	_CFStringIsHyphenationAvailableForLocale func(unsafe.Pointer) unsafe.Pointer
-	_CFStringLowercase func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringNormalize func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringPad func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringReplace func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringReplaceAll func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringSetExternalCharactersNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringTokenizerAdvanceToNextToken func(unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerCopyBestStringLanguage func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerCopyCurrentTokenAttribute func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerGetCurrentSubTokens func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerGetCurrentTokenRange func(unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerGetTypeID func() unsafe.Pointer
-	_CFStringTokenizerGoToTokenAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringTokenizerSetString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFStringTransform func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFStringTrim func(unsafe.Pointer, unsafe.Pointer)
-	_CFStringTrimWhitespace func(unsafe.Pointer)
-	_CFStringUppercase func(unsafe.Pointer, unsafe.Pointer)
-	_CFTimeZoneCopyAbbreviation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneCopyAbbreviationDictionary func() unsafe.Pointer
-	_CFTimeZoneCopyDefault func() unsafe.Pointer
-	_CFTimeZoneCopyKnownNames func() unsafe.Pointer
-	_CFTimeZoneCopyLocalizedName func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneCopySystem func() unsafe.Pointer
-	_CFTimeZoneCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneCreateWithName func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneCreateWithTimeIntervalFromGMT func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneGetData func(unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneGetDaylightSavingTimeOffset func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneGetName func(unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneGetNextDaylightSavingTimeTransition func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneGetSecondsFromGMT func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTimeZoneGetTypeID func() unsafe.Pointer
-	_CFTimeZoneIsDaylightSavingTime func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringGetMaximumSizeForEncoding func(Index, StringEncoding) Index
+	_CFStringGetMaximumSizeOfFileSystemRepresentation func(StringRef) Index
+	_CFStringGetMostCompatibleMacStringEncoding func(StringEncoding) StringEncoding
+	_CFStringGetNameOfEncoding func(StringEncoding) StringRef
+	_CFStringGetParagraphBounds func(StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringGetPascalString func(StringRef, unsafe.Pointer, Index, StringEncoding) unsafe.Pointer
+	_CFStringGetPascalStringPtr func(StringRef, StringEncoding) unsafe.Pointer
+	_CFStringGetRangeOfComposedCharactersAtIndex func(StringRef, Index) unsafe.Pointer
+	_CFStringGetSmallestEncoding func(StringRef) StringEncoding
+	_CFStringGetSystemEncoding func() StringEncoding
+	_CFStringGetTypeID func() TypeID
+	_CFStringHasPrefix func(StringRef, StringRef) unsafe.Pointer
+	_CFStringHasSuffix func(StringRef, StringRef) unsafe.Pointer
+	_CFStringInsert func(MutableStringRef, Index, StringRef)
+	_CFStringIsEncodingAvailable func(StringEncoding) unsafe.Pointer
+	_CFStringIsHyphenationAvailableForLocale func(LocaleRef) unsafe.Pointer
+	_CFStringLowercase func(MutableStringRef, LocaleRef)
+	_CFStringNormalize func(MutableStringRef, unsafe.Pointer)
+	_CFStringPad func(MutableStringRef, StringRef, Index, Index)
+	_CFStringReplace func(MutableStringRef, unsafe.Pointer, StringRef)
+	_CFStringReplaceAll func(MutableStringRef, StringRef)
+	_CFStringSetExternalCharactersNoCopy func(MutableStringRef, unsafe.Pointer, Index, Index)
+	_CFStringTokenizerAdvanceToNextToken func(StringTokenizerRef) unsafe.Pointer
+	_CFStringTokenizerCopyBestStringLanguage func(StringRef, unsafe.Pointer) StringRef
+	_CFStringTokenizerCopyCurrentTokenAttribute func(StringTokenizerRef, OptionFlags) TypeRef
+	_CFStringTokenizerCreate func(AllocatorRef, StringRef, unsafe.Pointer, OptionFlags, LocaleRef) StringTokenizerRef
+	_CFStringTokenizerGetCurrentSubTokens func(StringTokenizerRef, unsafe.Pointer, Index, MutableArrayRef) Index
+	_CFStringTokenizerGetCurrentTokenRange func(StringTokenizerRef) unsafe.Pointer
+	_CFStringTokenizerGetTypeID func() TypeID
+	_CFStringTokenizerGoToTokenAtIndex func(StringTokenizerRef, Index) unsafe.Pointer
+	_CFStringTokenizerSetString func(StringTokenizerRef, StringRef, unsafe.Pointer)
+	_CFStringTransform func(MutableStringRef, unsafe.Pointer, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFStringTrim func(MutableStringRef, StringRef)
+	_CFStringTrimWhitespace func(MutableStringRef)
+	_CFStringUppercase func(MutableStringRef, LocaleRef)
+	_CFTimeZoneCopyAbbreviation func(TimeZoneRef, AbsoluteTime) StringRef
+	_CFTimeZoneCopyAbbreviationDictionary func() DictionaryRef
+	_CFTimeZoneCopyDefault func() TimeZoneRef
+	_CFTimeZoneCopyKnownNames func() ArrayRef
+	_CFTimeZoneCopyLocalizedName func(TimeZoneRef, unsafe.Pointer, LocaleRef) StringRef
+	_CFTimeZoneCopySystem func() TimeZoneRef
+	_CFTimeZoneCreate func(AllocatorRef, StringRef, DataRef) TimeZoneRef
+	_CFTimeZoneCreateWithName func(AllocatorRef, StringRef, unsafe.Pointer) TimeZoneRef
+	_CFTimeZoneCreateWithTimeIntervalFromGMT func(AllocatorRef, TimeInterval) TimeZoneRef
+	_CFTimeZoneGetData func(TimeZoneRef) DataRef
+	_CFTimeZoneGetDaylightSavingTimeOffset func(TimeZoneRef, AbsoluteTime) TimeInterval
+	_CFTimeZoneGetName func(TimeZoneRef) StringRef
+	_CFTimeZoneGetNextDaylightSavingTimeTransition func(TimeZoneRef, AbsoluteTime) AbsoluteTime
+	_CFTimeZoneGetSecondsFromGMT func(TimeZoneRef, AbsoluteTime) TimeInterval
+	_CFTimeZoneGetTypeID func() TypeID
+	_CFTimeZoneIsDaylightSavingTime func(TimeZoneRef, AbsoluteTime) unsafe.Pointer
 	_CFTimeZoneResetSystem func()
-	_CFTimeZoneSetAbbreviationDictionary func(unsafe.Pointer)
-	_CFTimeZoneSetDefault func(unsafe.Pointer)
-	_CFTreeAppendChild func(unsafe.Pointer, unsafe.Pointer)
-	_CFTreeApplyFunctionToChildren func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFTreeCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTreeFindRoot func(unsafe.Pointer) unsafe.Pointer
-	_CFTreeGetChildAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFTreeGetChildCount func(unsafe.Pointer) unsafe.Pointer
-	_CFTreeGetChildren func(unsafe.Pointer, unsafe.Pointer)
-	_CFTreeGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFTreeGetFirstChild func(unsafe.Pointer) unsafe.Pointer
-	_CFTreeGetNextSibling func(unsafe.Pointer) unsafe.Pointer
-	_CFTreeGetParent func(unsafe.Pointer) unsafe.Pointer
-	_CFTreeGetTypeID func() unsafe.Pointer
-	_CFTreeInsertSibling func(unsafe.Pointer, unsafe.Pointer)
-	_CFTreePrependChild func(unsafe.Pointer, unsafe.Pointer)
-	_CFTreeRemove func(unsafe.Pointer)
-	_CFTreeRemoveAllChildren func(unsafe.Pointer)
-	_CFTreeSetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFTreeSortChildren func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFURLCanBeDecomposed func(unsafe.Pointer) unsafe.Pointer
-	_CFURLClearResourcePropertyCache func(unsafe.Pointer)
-	_CFURLClearResourcePropertyCacheForKey func(unsafe.Pointer, unsafe.Pointer)
-	_CFURLCopyAbsoluteURL func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyFileSystemPath func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyFragment func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyHostName func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyLastPathComponent func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyNetLocation func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyParameterString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyPassword func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyPath func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyPathExtension func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyQueryString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyResourcePropertiesForKeys func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyResourcePropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyResourceSpecifier func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyScheme func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyStrictPath func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCopyUserName func(unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateAbsoluteURLWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateBookmarkData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateBookmarkDataFromAliasRecord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateBookmarkDataFromFile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateByResolvingBookmarkData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateCopyAppendingPathComponent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateCopyAppendingPathExtension func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateCopyDeletingLastPathComponent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateCopyDeletingPathExtension func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateDataAndPropertiesFromResource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateFilePathURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateFileReferenceURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateFromFSRef func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateFromFileSystemRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateFromFileSystemRepresentationRelativeToBase func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreatePropertyFromResource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateResourcePropertiesForKeysFromBookmarkData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateResourcePropertyForKeyFromBookmarkData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateStringByAddingPercentEscapes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateStringByReplacingPercentEscapes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateStringByReplacingPercentEscapesUsingEncoding func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateWithFileSystemPath func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateWithFileSystemPathRelativeToBase func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLCreateWithString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLDestroyResource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLEnumeratorCreateForDirectoryURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLEnumeratorCreateForMountedVolumes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLEnumeratorGetDescendentLevel func(unsafe.Pointer) unsafe.Pointer
-	_CFURLEnumeratorGetNextURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLEnumeratorGetSourceDidChange func(unsafe.Pointer) unsafe.Pointer
-	_CFURLEnumeratorGetTypeID func() unsafe.Pointer
-	_CFURLEnumeratorSkipDescendents func(unsafe.Pointer)
-	_CFURLGetBaseURL func(unsafe.Pointer) unsafe.Pointer
-	_CFURLGetByteRangeForComponent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLGetBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLGetFSRef func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLGetFileSystemRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLGetPortNumber func(unsafe.Pointer) unsafe.Pointer
-	_CFURLGetString func(unsafe.Pointer) unsafe.Pointer
-	_CFURLGetTypeID func() unsafe.Pointer
-	_CFURLHasDirectoryPath func(unsafe.Pointer) unsafe.Pointer
-	_CFURLIsFileReferenceURL func(unsafe.Pointer) unsafe.Pointer
-	_CFURLResourceIsReachable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLSetResourcePropertiesForKeys func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLSetResourcePropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLSetTemporaryResourcePropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFURLStartAccessingSecurityScopedResource func(unsafe.Pointer) unsafe.Pointer
-	_CFURLStopAccessingSecurityScopedResource func(unsafe.Pointer)
-	_CFURLWriteBookmarkDataToFile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFURLWriteDataAndPropertiesToResource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUUIDCreate func(unsafe.Pointer) unsafe.Pointer
-	_CFUUIDCreateFromString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUUIDCreateFromUUIDBytes func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUUIDCreateString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUUIDCreateWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUUIDGetConstantUUIDWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUUIDGetTypeID func() unsafe.Pointer
-	_CFUUIDGetUUIDBytes func(unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationCancel func(unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationCreateRunLoopSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationDisplayAlert func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationDisplayNotice func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationGetResponseDictionary func(unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationGetResponseValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationGetTypeID func() unsafe.Pointer
-	_CFUserNotificationReceiveResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFUserNotificationUpdate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamCanAcceptBytes func(unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamClose func(unsafe.Pointer)
-	_CFWriteStreamCopyDispatchQueue func(unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamCopyError func(unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamCopyProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamCreateWithAllocatedBuffers func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamCreateWithBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamCreateWithFile func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamGetError func(unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamGetStatus func(unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamGetTypeID func() unsafe.Pointer
-	_CFWriteStreamOpen func(unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamScheduleWithRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFWriteStreamSetClient func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamSetDispatchQueue func(unsafe.Pointer, unsafe.Pointer)
-	_CFWriteStreamSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFWriteStreamUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFWriteStreamWrite func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLCreateStringByEscapingEntities func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLCreateStringByUnescapingEntities func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLNodeCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLNodeCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLNodeGetInfoPtr func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLNodeGetString func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLNodeGetTypeCode func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLNodeGetTypeID func() unsafe.Pointer
-	_CFXMLNodeGetVersion func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserAbort func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CFXMLParserCopyErrorDescription func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserCreateWithDataFromURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserGetCallBacks func(unsafe.Pointer, unsafe.Pointer)
-	_CFXMLParserGetContext func(unsafe.Pointer, unsafe.Pointer)
-	_CFXMLParserGetDocument func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserGetLineNumber func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserGetLocation func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserGetSourceURL func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserGetStatusCode func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLParserGetTypeID func() unsafe.Pointer
-	_CFXMLParserParse func(unsafe.Pointer) unsafe.Pointer
-	_CFXMLTreeCreateFromData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLTreeCreateFromDataWithError func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLTreeCreateWithDataFromURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLTreeCreateWithNode func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLTreeCreateXMLData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CFXMLTreeGetNode func(unsafe.Pointer) unsafe.Pointer
+	_CFTimeZoneSetAbbreviationDictionary func(DictionaryRef)
+	_CFTimeZoneSetDefault func(TimeZoneRef)
+	_CFTreeAppendChild func(TreeRef, TreeRef)
+	_CFTreeApplyFunctionToChildren func(TreeRef, TreeApplierFunction, unsafe.Pointer)
+	_CFTreeCreate func(AllocatorRef, unsafe.Pointer) TreeRef
+	_CFTreeFindRoot func(TreeRef) TreeRef
+	_CFTreeGetChildAtIndex func(TreeRef, Index) TreeRef
+	_CFTreeGetChildCount func(TreeRef) Index
+	_CFTreeGetChildren func(TreeRef, unsafe.Pointer)
+	_CFTreeGetContext func(TreeRef, unsafe.Pointer)
+	_CFTreeGetFirstChild func(TreeRef) TreeRef
+	_CFTreeGetNextSibling func(TreeRef) TreeRef
+	_CFTreeGetParent func(TreeRef) TreeRef
+	_CFTreeGetTypeID func() TypeID
+	_CFTreeInsertSibling func(TreeRef, TreeRef)
+	_CFTreePrependChild func(TreeRef, TreeRef)
+	_CFTreeRemove func(TreeRef)
+	_CFTreeRemoveAllChildren func(TreeRef)
+	_CFTreeSetContext func(TreeRef, unsafe.Pointer)
+	_CFTreeSortChildren func(TreeRef, ComparatorFunction, unsafe.Pointer)
+	_CFURLCanBeDecomposed func(URLRef) unsafe.Pointer
+	_CFURLClearResourcePropertyCache func(URLRef)
+	_CFURLClearResourcePropertyCacheForKey func(URLRef, StringRef)
+	_CFURLCopyAbsoluteURL func(URLRef) URLRef
+	_CFURLCopyFileSystemPath func(URLRef, unsafe.Pointer) StringRef
+	_CFURLCopyFragment func(URLRef, StringRef) StringRef
+	_CFURLCopyHostName func(URLRef) StringRef
+	_CFURLCopyLastPathComponent func(URLRef) StringRef
+	_CFURLCopyNetLocation func(URLRef) StringRef
+	_CFURLCopyParameterString func(URLRef, StringRef) StringRef
+	_CFURLCopyPassword func(URLRef) StringRef
+	_CFURLCopyPath func(URLRef) StringRef
+	_CFURLCopyPathExtension func(URLRef) StringRef
+	_CFURLCopyQueryString func(URLRef, StringRef) StringRef
+	_CFURLCopyResourcePropertiesForKeys func(URLRef, ArrayRef, unsafe.Pointer) DictionaryRef
+	_CFURLCopyResourcePropertyForKey func(URLRef, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFURLCopyResourceSpecifier func(URLRef) StringRef
+	_CFURLCopyScheme func(URLRef) StringRef
+	_CFURLCopyStrictPath func(URLRef, unsafe.Pointer) StringRef
+	_CFURLCopyUserName func(URLRef) StringRef
+	_CFURLCreateAbsoluteURLWithBytes func(AllocatorRef, unsafe.Pointer, Index, StringEncoding, URLRef, unsafe.Pointer) URLRef
+	_CFURLCreateBookmarkData func(AllocatorRef, URLRef, unsafe.Pointer, ArrayRef, URLRef, unsafe.Pointer) DataRef
+	_CFURLCreateBookmarkDataFromAliasRecord func(AllocatorRef, DataRef) DataRef
+	_CFURLCreateBookmarkDataFromFile func(AllocatorRef, URLRef, unsafe.Pointer) DataRef
+	_CFURLCreateByResolvingBookmarkData func(AllocatorRef, DataRef, unsafe.Pointer, URLRef, ArrayRef, unsafe.Pointer, unsafe.Pointer) URLRef
+	_CFURLCreateCopyAppendingPathComponent func(AllocatorRef, URLRef, StringRef, unsafe.Pointer) URLRef
+	_CFURLCreateCopyAppendingPathExtension func(AllocatorRef, URLRef, StringRef) URLRef
+	_CFURLCreateCopyDeletingLastPathComponent func(AllocatorRef, URLRef) URLRef
+	_CFURLCreateCopyDeletingPathExtension func(AllocatorRef, URLRef) URLRef
+	_CFURLCreateData func(AllocatorRef, URLRef, StringEncoding, unsafe.Pointer) DataRef
+	_CFURLCreateDataAndPropertiesFromResource func(AllocatorRef, URLRef, unsafe.Pointer, unsafe.Pointer, ArrayRef, unsafe.Pointer) unsafe.Pointer
+	_CFURLCreateFilePathURL func(AllocatorRef, URLRef, unsafe.Pointer) URLRef
+	_CFURLCreateFileReferenceURL func(AllocatorRef, URLRef, unsafe.Pointer) URLRef
+	_CFURLCreateFromFSRef func(AllocatorRef, unsafe.Pointer) URLRef
+	_CFURLCreateFromFileSystemRepresentation func(AllocatorRef, unsafe.Pointer, Index, unsafe.Pointer) URLRef
+	_CFURLCreateFromFileSystemRepresentationRelativeToBase func(AllocatorRef, unsafe.Pointer, Index, unsafe.Pointer, URLRef) URLRef
+	_CFURLCreatePropertyFromResource func(AllocatorRef, URLRef, StringRef, unsafe.Pointer) TypeRef
+	_CFURLCreateResourcePropertiesForKeysFromBookmarkData func(AllocatorRef, ArrayRef, DataRef) DictionaryRef
+	_CFURLCreateResourcePropertyForKeyFromBookmarkData func(AllocatorRef, StringRef, DataRef) TypeRef
+	_CFURLCreateStringByAddingPercentEscapes func(AllocatorRef, StringRef, StringRef, StringRef, StringEncoding) StringRef
+	_CFURLCreateStringByReplacingPercentEscapes func(AllocatorRef, StringRef, StringRef) StringRef
+	_CFURLCreateStringByReplacingPercentEscapesUsingEncoding func(AllocatorRef, StringRef, StringRef, StringEncoding) StringRef
+	_CFURLCreateWithBytes func(AllocatorRef, unsafe.Pointer, Index, StringEncoding, URLRef) URLRef
+	_CFURLCreateWithFileSystemPath func(AllocatorRef, StringRef, unsafe.Pointer, unsafe.Pointer) URLRef
+	_CFURLCreateWithFileSystemPathRelativeToBase func(AllocatorRef, StringRef, unsafe.Pointer, unsafe.Pointer, URLRef) URLRef
+	_CFURLCreateWithString func(AllocatorRef, StringRef, URLRef) URLRef
+	_CFURLDestroyResource func(URLRef, unsafe.Pointer) unsafe.Pointer
+	_CFURLEnumeratorCreateForDirectoryURL func(AllocatorRef, URLRef, unsafe.Pointer, ArrayRef) URLEnumeratorRef
+	_CFURLEnumeratorCreateForMountedVolumes func(AllocatorRef, unsafe.Pointer, ArrayRef) URLEnumeratorRef
+	_CFURLEnumeratorGetDescendentLevel func(URLEnumeratorRef) Index
+	_CFURLEnumeratorGetNextURL func(URLEnumeratorRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFURLEnumeratorGetSourceDidChange func(URLEnumeratorRef) unsafe.Pointer
+	_CFURLEnumeratorGetTypeID func() TypeID
+	_CFURLEnumeratorSkipDescendents func(URLEnumeratorRef)
+	_CFURLGetBaseURL func(URLRef) URLRef
+	_CFURLGetByteRangeForComponent func(URLRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFURLGetBytes func(URLRef, unsafe.Pointer, Index) Index
+	_CFURLGetFSRef func(URLRef, unsafe.Pointer) unsafe.Pointer
+	_CFURLGetFileSystemRepresentation func(URLRef, unsafe.Pointer, unsafe.Pointer, Index) unsafe.Pointer
+	_CFURLGetPortNumber func(URLRef) unsafe.Pointer
+	_CFURLGetString func(URLRef) StringRef
+	_CFURLGetTypeID func() TypeID
+	_CFURLHasDirectoryPath func(URLRef) unsafe.Pointer
+	_CFURLIsFileReferenceURL func(URLRef) unsafe.Pointer
+	_CFURLResourceIsReachable func(URLRef, unsafe.Pointer) unsafe.Pointer
+	_CFURLSetResourcePropertiesForKeys func(URLRef, DictionaryRef, unsafe.Pointer) unsafe.Pointer
+	_CFURLSetResourcePropertyForKey func(URLRef, StringRef, TypeRef, unsafe.Pointer) unsafe.Pointer
+	_CFURLSetTemporaryResourcePropertyForKey func(URLRef, StringRef, TypeRef)
+	_CFURLStartAccessingSecurityScopedResource func(URLRef) unsafe.Pointer
+	_CFURLStopAccessingSecurityScopedResource func(URLRef)
+	_CFURLWriteBookmarkDataToFile func(DataRef, URLRef, URLBookmarkFileCreationOptions, unsafe.Pointer) unsafe.Pointer
+	_CFURLWriteDataAndPropertiesToResource func(URLRef, DataRef, DictionaryRef, unsafe.Pointer) unsafe.Pointer
+	_CFUUIDCreate func(AllocatorRef) UUIDRef
+	_CFUUIDCreateFromString func(AllocatorRef, StringRef) UUIDRef
+	_CFUUIDCreateFromUUIDBytes func(AllocatorRef, unsafe.Pointer) UUIDRef
+	_CFUUIDCreateString func(AllocatorRef, UUIDRef) StringRef
+	_CFUUIDCreateWithBytes func(AllocatorRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) UUIDRef
+	_CFUUIDGetConstantUUIDWithBytes func(AllocatorRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) UUIDRef
+	_CFUUIDGetTypeID func() TypeID
+	_CFUUIDGetUUIDBytes func(UUIDRef) unsafe.Pointer
+	_CFUserNotificationCancel func(UserNotificationRef) unsafe.Pointer
+	_CFUserNotificationCreate func(AllocatorRef, TimeInterval, OptionFlags, unsafe.Pointer, DictionaryRef) UserNotificationRef
+	_CFUserNotificationCreateRunLoopSource func(AllocatorRef, UserNotificationRef, UserNotificationCallBack, Index) RunLoopSourceRef
+	_CFUserNotificationDisplayAlert func(TimeInterval, OptionFlags, URLRef, URLRef, URLRef, StringRef, StringRef, StringRef, StringRef, StringRef, unsafe.Pointer) unsafe.Pointer
+	_CFUserNotificationDisplayNotice func(TimeInterval, OptionFlags, URLRef, URLRef, URLRef, StringRef, StringRef, StringRef) unsafe.Pointer
+	_CFUserNotificationGetResponseDictionary func(UserNotificationRef) DictionaryRef
+	_CFUserNotificationGetResponseValue func(UserNotificationRef, StringRef, Index) StringRef
+	_CFUserNotificationGetTypeID func() TypeID
+	_CFUserNotificationReceiveResponse func(UserNotificationRef, TimeInterval, unsafe.Pointer) unsafe.Pointer
+	_CFUserNotificationUpdate func(UserNotificationRef, TimeInterval, OptionFlags, DictionaryRef) unsafe.Pointer
+	_CFWriteStreamCanAcceptBytes func(WriteStreamRef) unsafe.Pointer
+	_CFWriteStreamClose func(WriteStreamRef)
+	_CFWriteStreamCopyDispatchQueue func(WriteStreamRef) unsafe.Pointer
+	_CFWriteStreamCopyError func(WriteStreamRef) ErrorRef
+	_CFWriteStreamCopyProperty func(WriteStreamRef, StreamPropertyKey) TypeRef
+	_CFWriteStreamCreateWithAllocatedBuffers func(AllocatorRef, AllocatorRef) WriteStreamRef
+	_CFWriteStreamCreateWithBuffer func(AllocatorRef, unsafe.Pointer, Index) WriteStreamRef
+	_CFWriteStreamCreateWithFile func(AllocatorRef, URLRef) WriteStreamRef
+	_CFWriteStreamGetError func(WriteStreamRef) unsafe.Pointer
+	_CFWriteStreamGetStatus func(WriteStreamRef) unsafe.Pointer
+	_CFWriteStreamGetTypeID func() TypeID
+	_CFWriteStreamOpen func(WriteStreamRef) unsafe.Pointer
+	_CFWriteStreamScheduleWithRunLoop func(WriteStreamRef, RunLoopRef, RunLoopMode)
+	_CFWriteStreamSetClient func(WriteStreamRef, OptionFlags, WriteStreamClientCallBack, unsafe.Pointer) unsafe.Pointer
+	_CFWriteStreamSetDispatchQueue func(WriteStreamRef, unsafe.Pointer)
+	_CFWriteStreamSetProperty func(WriteStreamRef, StreamPropertyKey, TypeRef) unsafe.Pointer
+	_CFWriteStreamUnscheduleFromRunLoop func(WriteStreamRef, RunLoopRef, RunLoopMode)
+	_CFWriteStreamWrite func(WriteStreamRef, unsafe.Pointer, Index) Index
+	_CFXMLCreateStringByEscapingEntities func(AllocatorRef, StringRef, DictionaryRef) StringRef
+	_CFXMLCreateStringByUnescapingEntities func(AllocatorRef, StringRef, DictionaryRef) StringRef
+	_CFXMLNodeCreate func(AllocatorRef, unsafe.Pointer, StringRef, unsafe.Pointer, Index) XMLNodeRef
+	_CFXMLNodeCreateCopy func(AllocatorRef, XMLNodeRef) XMLNodeRef
+	_CFXMLNodeGetInfoPtr func(XMLNodeRef) unsafe.Pointer
+	_CFXMLNodeGetString func(XMLNodeRef) StringRef
+	_CFXMLNodeGetTypeCode func(XMLNodeRef) unsafe.Pointer
+	_CFXMLNodeGetTypeID func() TypeID
+	_CFXMLNodeGetVersion func(XMLNodeRef) Index
+	_CFXMLParserAbort func(XMLParserRef, unsafe.Pointer, StringRef)
+	_CFXMLParserCopyErrorDescription func(XMLParserRef) StringRef
+	_CFXMLParserCreate func(AllocatorRef, DataRef, URLRef, OptionFlags, Index, unsafe.Pointer, unsafe.Pointer) XMLParserRef
+	_CFXMLParserCreateWithDataFromURL func(AllocatorRef, URLRef, OptionFlags, Index, unsafe.Pointer, unsafe.Pointer) XMLParserRef
+	_CFXMLParserGetCallBacks func(XMLParserRef, unsafe.Pointer)
+	_CFXMLParserGetContext func(XMLParserRef, unsafe.Pointer)
+	_CFXMLParserGetDocument func(XMLParserRef) unsafe.Pointer
+	_CFXMLParserGetLineNumber func(XMLParserRef) Index
+	_CFXMLParserGetLocation func(XMLParserRef) Index
+	_CFXMLParserGetSourceURL func(XMLParserRef) URLRef
+	_CFXMLParserGetStatusCode func(XMLParserRef) unsafe.Pointer
+	_CFXMLParserGetTypeID func() TypeID
+	_CFXMLParserParse func(XMLParserRef) unsafe.Pointer
+	_CFXMLTreeCreateFromData func(AllocatorRef, DataRef, URLRef, OptionFlags, Index) XMLTreeRef
+	_CFXMLTreeCreateFromDataWithError func(AllocatorRef, DataRef, URLRef, OptionFlags, Index, unsafe.Pointer) XMLTreeRef
+	_CFXMLTreeCreateWithDataFromURL func(AllocatorRef, URLRef, OptionFlags, Index) XMLTreeRef
+	_CFXMLTreeCreateWithNode func(AllocatorRef, XMLNodeRef) XMLTreeRef
+	_CFXMLTreeCreateXMLData func(AllocatorRef, XMLTreeRef) DataRef
+	_CFXMLTreeGetNode func(XMLTreeRef) XMLNodeRef
 	_inset func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
 
@@ -847,8 +847,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_CFRelease, lib, "CFRelease")
-	tryRegister(&_CFRetain, lib, "CFRetain")
 	tryRegister(&_CFAbsoluteTimeAddGregorianUnits, lib, "CFAbsoluteTimeAddGregorianUnits")
 	tryRegister(&_CFAbsoluteTimeGetCurrent, lib, "CFAbsoluteTimeGetCurrent")
 	tryRegister(&_CFAbsoluteTimeGetDayOfWeek, lib, "CFAbsoluteTimeGetDayOfWeek")
@@ -1303,6 +1301,8 @@ func init() {
 	tryRegister(&_CFReadStreamSetDispatchQueue, lib, "CFReadStreamSetDispatchQueue")
 	tryRegister(&_CFReadStreamSetProperty, lib, "CFReadStreamSetProperty")
 	tryRegister(&_CFReadStreamUnscheduleFromRunLoop, lib, "CFReadStreamUnscheduleFromRunLoop")
+	tryRegister(&_CFRelease, lib, "CFRelease")
+	tryRegister(&_CFRetain, lib, "CFRetain")
 	tryRegister(&_CFRunLoopAddCommonMode, lib, "CFRunLoopAddCommonMode")
 	tryRegister(&_CFRunLoopAddObserver, lib, "CFRunLoopAddObserver")
 	tryRegister(&_CFRunLoopAddSource, lib, "CFRunLoopAddSource")
@@ -1688,28 +1688,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Releases a Core Foundation object.
-//
-// Added in macOS 10.0.
-// Releases a Core Foundation object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/corefoundation/1521153-cfrelease
-func CFRelease(p0 unsafe.Pointer) {
-	_CFRelease(p0)
-}
-
-// Retains a Core Foundation object.
-//
-// Added in macOS 10.0.
-// Retains a Core Foundation object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/corefoundation/1521269-cfretain
-func CFRetain(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CFRetain(p0)
-}
-
 // Adds a time interval, expressed as Gregorian units, to a given absolute time.
 //
 // Deprecated: This function was deprecated in macOS 10.10.
@@ -1719,7 +1697,7 @@ func CFRetain(p0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeAddGregorianUnits(_:_:_:)
-func CFAbsoluteTimeAddGregorianUnits(at unsafe.Pointer, tz unsafe.Pointer, units unsafe.Pointer) unsafe.Pointer {
+func CFAbsoluteTimeAddGregorianUnits(at AbsoluteTime, tz TimeZoneRef, units unsafe.Pointer) AbsoluteTime {
 	return _CFAbsoluteTimeAddGregorianUnits(at, tz, units)
 }
 
@@ -1729,7 +1707,7 @@ func CFAbsoluteTimeAddGregorianUnits(at unsafe.Pointer, tz unsafe.Pointer, units
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetCurrent()
-func CFAbsoluteTimeGetCurrent() unsafe.Pointer {
+func CFAbsoluteTimeGetCurrent() AbsoluteTime {
 	return _CFAbsoluteTimeGetCurrent()
 }
 
@@ -1742,7 +1720,7 @@ func CFAbsoluteTimeGetCurrent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDayOfWeek(_:_:)
-func CFAbsoluteTimeGetDayOfWeek(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+func CFAbsoluteTimeGetDayOfWeek(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetDayOfWeek(at, tz)
 }
 
@@ -1755,7 +1733,7 @@ func CFAbsoluteTimeGetDayOfWeek(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDayOfYear(_:_:)
-func CFAbsoluteTimeGetDayOfYear(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+func CFAbsoluteTimeGetDayOfYear(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetDayOfYear(at, tz)
 }
 
@@ -1768,7 +1746,7 @@ func CFAbsoluteTimeGetDayOfYear(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDifferenceAsGregorianUnits(_:_:_:_:)
-func CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1 unsafe.Pointer, at2 unsafe.Pointer, tz unsafe.Pointer, unitFlags unsafe.Pointer) unsafe.Pointer {
+func CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1 AbsoluteTime, at2 AbsoluteTime, tz TimeZoneRef, unitFlags OptionFlags) unsafe.Pointer {
 	return _CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1, at2, tz, unitFlags)
 }
 
@@ -1781,7 +1759,7 @@ func CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1 unsafe.Pointer, at2 unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetGregorianDate(_:_:)
-func CFAbsoluteTimeGetGregorianDate(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+func CFAbsoluteTimeGetGregorianDate(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetGregorianDate(at, tz)
 }
 
@@ -1794,7 +1772,7 @@ func CFAbsoluteTimeGetGregorianDate(at unsafe.Pointer, tz unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetWeekOfYear(_:_:)
-func CFAbsoluteTimeGetWeekOfYear(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+func CFAbsoluteTimeGetWeekOfYear(at AbsoluteTime, tz TimeZoneRef) unsafe.Pointer {
 	return _CFAbsoluteTimeGetWeekOfYear(at, tz)
 }
 
@@ -1804,7 +1782,7 @@ func CFAbsoluteTimeGetWeekOfYear(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocate(_:_:_:)
-func CFAllocatorAllocate(allocator unsafe.Pointer, size unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorAllocate(allocator AllocatorRef, size Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorAllocate(allocator, size, hint)
 }
 
@@ -1813,7 +1791,7 @@ func CFAllocatorAllocate(allocator unsafe.Pointer, size unsafe.Pointer, hint uns
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocateBytes(_:_:_:)
-func CFAllocatorAllocateBytes(allocator unsafe.Pointer, size unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorAllocateBytes(allocator AllocatorRef, size Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorAllocateBytes(allocator, size, hint)
 }
 
@@ -1822,7 +1800,7 @@ func CFAllocatorAllocateBytes(allocator unsafe.Pointer, size unsafe.Pointer, hin
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocateTyped(_:_:_:_:)
-func CFAllocatorAllocateTyped(allocator unsafe.Pointer, size unsafe.Pointer, descriptor unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorAllocateTyped(allocator AllocatorRef, size Index, descriptor AllocatorTypeID, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorAllocateTyped(allocator, size, descriptor, hint)
 }
 
@@ -1832,7 +1810,7 @@ func CFAllocatorAllocateTyped(allocator unsafe.Pointer, size unsafe.Pointer, des
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorCreate(_:_:)
-func CFAllocatorCreate(allocator unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorCreate(allocator AllocatorRef, context unsafe.Pointer) AllocatorRef {
 	return _CFAllocatorCreate(allocator, context)
 }
 
@@ -1840,7 +1818,7 @@ func CFAllocatorCreate(allocator unsafe.Pointer, context unsafe.Pointer) unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorCreateWithZone
-func CFAllocatorCreateWithZone(allocator unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorCreateWithZone(allocator AllocatorRef, zone unsafe.Pointer) AllocatorRef {
 	return _CFAllocatorCreateWithZone(allocator, zone)
 }
 
@@ -1850,7 +1828,7 @@ func CFAllocatorCreateWithZone(allocator unsafe.Pointer, zone unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorDeallocate(_:_:)
-func CFAllocatorDeallocate(allocator unsafe.Pointer, ptr unsafe.Pointer) {
+func CFAllocatorDeallocate(allocator AllocatorRef, ptr unsafe.Pointer) {
 	_CFAllocatorDeallocate(allocator, ptr)
 }
 
@@ -1860,7 +1838,7 @@ func CFAllocatorDeallocate(allocator unsafe.Pointer, ptr unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetContext(_:_:)
-func CFAllocatorGetContext(allocator unsafe.Pointer, context unsafe.Pointer) {
+func CFAllocatorGetContext(allocator AllocatorRef, context unsafe.Pointer) {
 	_CFAllocatorGetContext(allocator, context)
 }
 
@@ -1870,7 +1848,7 @@ func CFAllocatorGetContext(allocator unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetDefault()
-func CFAllocatorGetDefault() unsafe.Pointer {
+func CFAllocatorGetDefault() AllocatorRef {
 	return _CFAllocatorGetDefault()
 }
 
@@ -1880,7 +1858,7 @@ func CFAllocatorGetDefault() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetPreferredSizeForSize(_:_:_:)
-func CFAllocatorGetPreferredSizeForSize(allocator unsafe.Pointer, size unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorGetPreferredSizeForSize(allocator AllocatorRef, size Index, hint OptionFlags) Index {
 	return _CFAllocatorGetPreferredSizeForSize(allocator, size, hint)
 }
 
@@ -1890,7 +1868,7 @@ func CFAllocatorGetPreferredSizeForSize(allocator unsafe.Pointer, size unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorGetTypeID()
-func CFAllocatorGetTypeID() unsafe.Pointer {
+func CFAllocatorGetTypeID() TypeID {
 	return _CFAllocatorGetTypeID()
 }
 
@@ -1900,7 +1878,7 @@ func CFAllocatorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocate(_:_:_:_:)
-func CFAllocatorReallocate(allocator unsafe.Pointer, ptr unsafe.Pointer, newsize unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorReallocate(allocator AllocatorRef, ptr unsafe.Pointer, newsize Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorReallocate(allocator, ptr, newsize, hint)
 }
 
@@ -1909,7 +1887,7 @@ func CFAllocatorReallocate(allocator unsafe.Pointer, ptr unsafe.Pointer, newsize
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocateBytes(_:_:_:_:)
-func CFAllocatorReallocateBytes(allocator unsafe.Pointer, ptr unsafe.Pointer, newsize unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorReallocateBytes(allocator AllocatorRef, ptr unsafe.Pointer, newsize Index, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorReallocateBytes(allocator, ptr, newsize, hint)
 }
 
@@ -1918,7 +1896,7 @@ func CFAllocatorReallocateBytes(allocator unsafe.Pointer, ptr unsafe.Pointer, ne
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocateTyped(_:_:_:_:_:)
-func CFAllocatorReallocateTyped(allocator unsafe.Pointer, ptr unsafe.Pointer, newsize unsafe.Pointer, descriptor unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer {
+func CFAllocatorReallocateTyped(allocator AllocatorRef, ptr unsafe.Pointer, newsize Index, descriptor AllocatorTypeID, hint OptionFlags) unsafe.Pointer {
 	return _CFAllocatorReallocateTyped(allocator, ptr, newsize, descriptor, hint)
 }
 
@@ -1928,7 +1906,7 @@ func CFAllocatorReallocateTyped(allocator unsafe.Pointer, ptr unsafe.Pointer, ne
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorSetDefault(_:)
-func CFAllocatorSetDefault(allocator unsafe.Pointer) {
+func CFAllocatorSetDefault(allocator AllocatorRef) {
 	_CFAllocatorSetDefault(allocator)
 }
 
@@ -1938,7 +1916,7 @@ func CFAllocatorSetDefault(allocator unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayAppendArray(_:_:_:)
-func CFArrayAppendArray(theArray unsafe.Pointer, otherArray unsafe.Pointer, otherRange unsafe.Pointer) {
+func CFArrayAppendArray(theArray MutableArrayRef, otherArray ArrayRef, otherRange unsafe.Pointer) {
 	_CFArrayAppendArray(theArray, otherArray, otherRange)
 }
 
@@ -1948,7 +1926,7 @@ func CFArrayAppendArray(theArray unsafe.Pointer, otherArray unsafe.Pointer, othe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayAppendValue(_:_:)
-func CFArrayAppendValue(theArray unsafe.Pointer, value unsafe.Pointer) {
+func CFArrayAppendValue(theArray MutableArrayRef, value unsafe.Pointer) {
 	_CFArrayAppendValue(theArray, value)
 }
 
@@ -1958,7 +1936,7 @@ func CFArrayAppendValue(theArray unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayApplyFunction(_:_:_:_:)
-func CFArrayApplyFunction(theArray unsafe.Pointer, range_ unsafe.Pointer, applier unsafe.Pointer, context unsafe.Pointer) {
+func CFArrayApplyFunction(theArray ArrayRef, range_ unsafe.Pointer, applier ArrayApplierFunction, context unsafe.Pointer) {
 	_CFArrayApplyFunction(theArray, range_, applier, context)
 }
 
@@ -1968,7 +1946,7 @@ func CFArrayApplyFunction(theArray unsafe.Pointer, range_ unsafe.Pointer, applie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayBSearchValues(_:_:_:_:_:)
-func CFArrayBSearchValues(theArray unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer, comparator unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFArrayBSearchValues(theArray ArrayRef, range_ unsafe.Pointer, value unsafe.Pointer, comparator ComparatorFunction, context unsafe.Pointer) Index {
 	return _CFArrayBSearchValues(theArray, range_, value, comparator, context)
 }
 
@@ -1978,7 +1956,7 @@ func CFArrayBSearchValues(theArray unsafe.Pointer, range_ unsafe.Pointer, value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayContainsValue(_:_:_:)
-func CFArrayContainsValue(theArray unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFArrayContainsValue(theArray ArrayRef, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFArrayContainsValue(theArray, range_, value)
 }
 
@@ -1988,7 +1966,7 @@ func CFArrayContainsValue(theArray unsafe.Pointer, range_ unsafe.Pointer, value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreate(_:_:_:_:)
-func CFArrayCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+func CFArrayCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index, callBacks unsafe.Pointer) ArrayRef {
 	return _CFArrayCreate(allocator, values, numValues, callBacks)
 }
 
@@ -1998,7 +1976,7 @@ func CFArrayCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateCopy(_:_:)
-func CFArrayCreateCopy(allocator unsafe.Pointer, theArray unsafe.Pointer) unsafe.Pointer {
+func CFArrayCreateCopy(allocator AllocatorRef, theArray ArrayRef) ArrayRef {
 	return _CFArrayCreateCopy(allocator, theArray)
 }
 
@@ -2008,7 +1986,7 @@ func CFArrayCreateCopy(allocator unsafe.Pointer, theArray unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateMutable(_:_:_:)
-func CFArrayCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+func CFArrayCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer) MutableArrayRef {
 	return _CFArrayCreateMutable(allocator, capacity, callBacks)
 }
 
@@ -2018,7 +1996,7 @@ func CFArrayCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, cal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateMutableCopy(_:_:_:)
-func CFArrayCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theArray unsafe.Pointer) unsafe.Pointer {
+func CFArrayCreateMutableCopy(allocator AllocatorRef, capacity Index, theArray ArrayRef) MutableArrayRef {
 	return _CFArrayCreateMutableCopy(allocator, capacity, theArray)
 }
 
@@ -2028,7 +2006,7 @@ func CFArrayCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayExchangeValuesAtIndices(_:_:_:)
-func CFArrayExchangeValuesAtIndices(theArray unsafe.Pointer, idx1 unsafe.Pointer, idx2 unsafe.Pointer) {
+func CFArrayExchangeValuesAtIndices(theArray MutableArrayRef, idx1 Index, idx2 Index) {
 	_CFArrayExchangeValuesAtIndices(theArray, idx1, idx2)
 }
 
@@ -2038,7 +2016,7 @@ func CFArrayExchangeValuesAtIndices(theArray unsafe.Pointer, idx1 unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetCount(_:)
-func CFArrayGetCount(theArray unsafe.Pointer) unsafe.Pointer {
+func CFArrayGetCount(theArray ArrayRef) Index {
 	return _CFArrayGetCount(theArray)
 }
 
@@ -2048,7 +2026,7 @@ func CFArrayGetCount(theArray unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetCountOfValue(_:_:_:)
-func CFArrayGetCountOfValue(theArray unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFArrayGetCountOfValue(theArray ArrayRef, range_ unsafe.Pointer, value unsafe.Pointer) Index {
 	return _CFArrayGetCountOfValue(theArray, range_, value)
 }
 
@@ -2058,7 +2036,7 @@ func CFArrayGetCountOfValue(theArray unsafe.Pointer, range_ unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetFirstIndexOfValue(_:_:_:)
-func CFArrayGetFirstIndexOfValue(theArray unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFArrayGetFirstIndexOfValue(theArray ArrayRef, range_ unsafe.Pointer, value unsafe.Pointer) Index {
 	return _CFArrayGetFirstIndexOfValue(theArray, range_, value)
 }
 
@@ -2068,7 +2046,7 @@ func CFArrayGetFirstIndexOfValue(theArray unsafe.Pointer, range_ unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetLastIndexOfValue(_:_:_:)
-func CFArrayGetLastIndexOfValue(theArray unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFArrayGetLastIndexOfValue(theArray ArrayRef, range_ unsafe.Pointer, value unsafe.Pointer) Index {
 	return _CFArrayGetLastIndexOfValue(theArray, range_, value)
 }
 
@@ -2078,7 +2056,7 @@ func CFArrayGetLastIndexOfValue(theArray unsafe.Pointer, range_ unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetTypeID()
-func CFArrayGetTypeID() unsafe.Pointer {
+func CFArrayGetTypeID() TypeID {
 	return _CFArrayGetTypeID()
 }
 
@@ -2088,7 +2066,7 @@ func CFArrayGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetValueAtIndex(_:_:)
-func CFArrayGetValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer) unsafe.Pointer {
+func CFArrayGetValueAtIndex(theArray ArrayRef, idx Index) unsafe.Pointer {
 	return _CFArrayGetValueAtIndex(theArray, idx)
 }
 
@@ -2098,7 +2076,7 @@ func CFArrayGetValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetValues(_:_:_:)
-func CFArrayGetValues(theArray unsafe.Pointer, range_ unsafe.Pointer, values unsafe.Pointer) {
+func CFArrayGetValues(theArray ArrayRef, range_ unsafe.Pointer, values unsafe.Pointer) {
 	_CFArrayGetValues(theArray, range_, values)
 }
 
@@ -2108,7 +2086,7 @@ func CFArrayGetValues(theArray unsafe.Pointer, range_ unsafe.Pointer, values uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayInsertValueAtIndex(_:_:_:)
-func CFArrayInsertValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer, value unsafe.Pointer) {
+func CFArrayInsertValueAtIndex(theArray MutableArrayRef, idx Index, value unsafe.Pointer) {
 	_CFArrayInsertValueAtIndex(theArray, idx, value)
 }
 
@@ -2118,7 +2096,7 @@ func CFArrayInsertValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRemoveAllValues(_:)
-func CFArrayRemoveAllValues(theArray unsafe.Pointer) {
+func CFArrayRemoveAllValues(theArray MutableArrayRef) {
 	_CFArrayRemoveAllValues(theArray)
 }
 
@@ -2128,7 +2106,7 @@ func CFArrayRemoveAllValues(theArray unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRemoveValueAtIndex(_:_:)
-func CFArrayRemoveValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer) {
+func CFArrayRemoveValueAtIndex(theArray MutableArrayRef, idx Index) {
 	_CFArrayRemoveValueAtIndex(theArray, idx)
 }
 
@@ -2138,7 +2116,7 @@ func CFArrayRemoveValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayReplaceValues(_:_:_:_:)
-func CFArrayReplaceValues(theArray unsafe.Pointer, range_ unsafe.Pointer, newValues unsafe.Pointer, newCount unsafe.Pointer) {
+func CFArrayReplaceValues(theArray MutableArrayRef, range_ unsafe.Pointer, newValues unsafe.Pointer, newCount Index) {
 	_CFArrayReplaceValues(theArray, range_, newValues, newCount)
 }
 
@@ -2148,7 +2126,7 @@ func CFArrayReplaceValues(theArray unsafe.Pointer, range_ unsafe.Pointer, newVal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArraySetValueAtIndex(_:_:_:)
-func CFArraySetValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer, value unsafe.Pointer) {
+func CFArraySetValueAtIndex(theArray MutableArrayRef, idx Index, value unsafe.Pointer) {
 	_CFArraySetValueAtIndex(theArray, idx, value)
 }
 
@@ -2158,7 +2136,7 @@ func CFArraySetValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer, value u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArraySortValues(_:_:_:_:)
-func CFArraySortValues(theArray unsafe.Pointer, range_ unsafe.Pointer, comparator unsafe.Pointer, context unsafe.Pointer) {
+func CFArraySortValues(theArray MutableArrayRef, range_ unsafe.Pointer, comparator ComparatorFunction, context unsafe.Pointer) {
 	_CFArraySortValues(theArray, range_, comparator, context)
 }
 
@@ -2168,7 +2146,7 @@ func CFArraySortValues(theArray unsafe.Pointer, range_ unsafe.Pointer, comparato
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringBeginEditing(_:)
-func CFAttributedStringBeginEditing(aStr unsafe.Pointer) {
+func CFAttributedStringBeginEditing(aStr MutableAttributedStringRef) {
 	_CFAttributedStringBeginEditing(aStr)
 }
 
@@ -2178,7 +2156,7 @@ func CFAttributedStringBeginEditing(aStr unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreate(_:_:_:)
-func CFAttributedStringCreate(alloc unsafe.Pointer, str unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringCreate(alloc AllocatorRef, str StringRef, attributes DictionaryRef) AttributedStringRef {
 	return _CFAttributedStringCreate(alloc, str, attributes)
 }
 
@@ -2188,7 +2166,7 @@ func CFAttributedStringCreate(alloc unsafe.Pointer, str unsafe.Pointer, attribut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateCopy(_:_:)
-func CFAttributedStringCreateCopy(alloc unsafe.Pointer, aStr unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringCreateCopy(alloc AllocatorRef, aStr AttributedStringRef) AttributedStringRef {
 	return _CFAttributedStringCreateCopy(alloc, aStr)
 }
 
@@ -2198,7 +2176,7 @@ func CFAttributedStringCreateCopy(alloc unsafe.Pointer, aStr unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateMutable(_:_:)
-func CFAttributedStringCreateMutable(alloc unsafe.Pointer, maxLength unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringCreateMutable(alloc AllocatorRef, maxLength Index) MutableAttributedStringRef {
 	return _CFAttributedStringCreateMutable(alloc, maxLength)
 }
 
@@ -2208,7 +2186,7 @@ func CFAttributedStringCreateMutable(alloc unsafe.Pointer, maxLength unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateMutableCopy(_:_:_:)
-func CFAttributedStringCreateMutableCopy(alloc unsafe.Pointer, maxLength unsafe.Pointer, aStr unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringCreateMutableCopy(alloc AllocatorRef, maxLength Index, aStr AttributedStringRef) MutableAttributedStringRef {
 	return _CFAttributedStringCreateMutableCopy(alloc, maxLength, aStr)
 }
 
@@ -2218,7 +2196,7 @@ func CFAttributedStringCreateMutableCopy(alloc unsafe.Pointer, maxLength unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringCreateWithSubstring(_:_:_:)
-func CFAttributedStringCreateWithSubstring(alloc unsafe.Pointer, aStr unsafe.Pointer, range_ unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringCreateWithSubstring(alloc AllocatorRef, aStr AttributedStringRef, range_ unsafe.Pointer) AttributedStringRef {
 	return _CFAttributedStringCreateWithSubstring(alloc, aStr, range_)
 }
 
@@ -2228,7 +2206,7 @@ func CFAttributedStringCreateWithSubstring(alloc unsafe.Pointer, aStr unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringEndEditing(_:)
-func CFAttributedStringEndEditing(aStr unsafe.Pointer) {
+func CFAttributedStringEndEditing(aStr MutableAttributedStringRef) {
 	_CFAttributedStringEndEditing(aStr)
 }
 
@@ -2238,7 +2216,7 @@ func CFAttributedStringEndEditing(aStr unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttribute(_:_:_:_:)
-func CFAttributedStringGetAttribute(aStr unsafe.Pointer, loc unsafe.Pointer, attrName unsafe.Pointer, effectiveRange unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetAttribute(aStr AttributedStringRef, loc Index, attrName StringRef, effectiveRange unsafe.Pointer) TypeRef {
 	return _CFAttributedStringGetAttribute(aStr, loc, attrName, effectiveRange)
 }
 
@@ -2248,7 +2226,7 @@ func CFAttributedStringGetAttribute(aStr unsafe.Pointer, loc unsafe.Pointer, att
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttributeAndLongestEffectiveRange(_:_:_:_:_:)
-func CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr unsafe.Pointer, loc unsafe.Pointer, attrName unsafe.Pointer, inRange unsafe.Pointer, longestEffectiveRange unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr AttributedStringRef, loc Index, attrName StringRef, inRange unsafe.Pointer, longestEffectiveRange unsafe.Pointer) TypeRef {
 	return _CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr, loc, attrName, inRange, longestEffectiveRange)
 }
 
@@ -2258,7 +2236,7 @@ func CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttributes(_:_:_:)
-func CFAttributedStringGetAttributes(aStr unsafe.Pointer, loc unsafe.Pointer, effectiveRange unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetAttributes(aStr AttributedStringRef, loc Index, effectiveRange unsafe.Pointer) DictionaryRef {
 	return _CFAttributedStringGetAttributes(aStr, loc, effectiveRange)
 }
 
@@ -2268,7 +2246,7 @@ func CFAttributedStringGetAttributes(aStr unsafe.Pointer, loc unsafe.Pointer, ef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetAttributesAndLongestEffectiveRange(_:_:_:_:)
-func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr unsafe.Pointer, loc unsafe.Pointer, inRange unsafe.Pointer, longestEffectiveRange unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr AttributedStringRef, loc Index, inRange unsafe.Pointer, longestEffectiveRange unsafe.Pointer) DictionaryRef {
 	return _CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr, loc, inRange, longestEffectiveRange)
 }
 
@@ -2276,7 +2254,7 @@ func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetBidiLevelsAndResolvedDirections(_:_:_:_:_:)
-func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
+func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString AttributedStringRef, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
 }
 
@@ -2286,7 +2264,7 @@ func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetLength(_:)
-func CFAttributedStringGetLength(aStr unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetLength(aStr AttributedStringRef) Index {
 	return _CFAttributedStringGetLength(aStr)
 }
 
@@ -2296,7 +2274,7 @@ func CFAttributedStringGetLength(aStr unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetMutableString(_:)
-func CFAttributedStringGetMutableString(aStr unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetMutableString(aStr MutableAttributedStringRef) MutableStringRef {
 	return _CFAttributedStringGetMutableString(aStr)
 }
 
@@ -2305,7 +2283,7 @@ func CFAttributedStringGetMutableString(aStr unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 26.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetStatisticalWritingDirections(_:_:_:_:_:)
-func CFAttributedStringGetStatisticalWritingDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
+func CFAttributedStringGetStatisticalWritingDirections(attributedString AttributedStringRef, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetStatisticalWritingDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
 }
 
@@ -2315,7 +2293,7 @@ func CFAttributedStringGetStatisticalWritingDirections(attributedString unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetString(_:)
-func CFAttributedStringGetString(aStr unsafe.Pointer) unsafe.Pointer {
+func CFAttributedStringGetString(aStr AttributedStringRef) StringRef {
 	return _CFAttributedStringGetString(aStr)
 }
 
@@ -2325,7 +2303,7 @@ func CFAttributedStringGetString(aStr unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetTypeID()
-func CFAttributedStringGetTypeID() unsafe.Pointer {
+func CFAttributedStringGetTypeID() TypeID {
 	return _CFAttributedStringGetTypeID()
 }
 
@@ -2335,7 +2313,7 @@ func CFAttributedStringGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringRemoveAttribute(_:_:_:)
-func CFAttributedStringRemoveAttribute(aStr unsafe.Pointer, range_ unsafe.Pointer, attrName unsafe.Pointer) {
+func CFAttributedStringRemoveAttribute(aStr MutableAttributedStringRef, range_ unsafe.Pointer, attrName StringRef) {
 	_CFAttributedStringRemoveAttribute(aStr, range_, attrName)
 }
 
@@ -2345,7 +2323,7 @@ func CFAttributedStringRemoveAttribute(aStr unsafe.Pointer, range_ unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringReplaceAttributedString(_:_:_:)
-func CFAttributedStringReplaceAttributedString(aStr unsafe.Pointer, range_ unsafe.Pointer, replacement unsafe.Pointer) {
+func CFAttributedStringReplaceAttributedString(aStr MutableAttributedStringRef, range_ unsafe.Pointer, replacement AttributedStringRef) {
 	_CFAttributedStringReplaceAttributedString(aStr, range_, replacement)
 }
 
@@ -2355,7 +2333,7 @@ func CFAttributedStringReplaceAttributedString(aStr unsafe.Pointer, range_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringReplaceString(_:_:_:)
-func CFAttributedStringReplaceString(aStr unsafe.Pointer, range_ unsafe.Pointer, replacement unsafe.Pointer) {
+func CFAttributedStringReplaceString(aStr MutableAttributedStringRef, range_ unsafe.Pointer, replacement StringRef) {
 	_CFAttributedStringReplaceString(aStr, range_, replacement)
 }
 
@@ -2365,7 +2343,7 @@ func CFAttributedStringReplaceString(aStr unsafe.Pointer, range_ unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringSetAttribute(_:_:_:_:)
-func CFAttributedStringSetAttribute(aStr unsafe.Pointer, range_ unsafe.Pointer, attrName unsafe.Pointer, value unsafe.Pointer) {
+func CFAttributedStringSetAttribute(aStr MutableAttributedStringRef, range_ unsafe.Pointer, attrName StringRef, value TypeRef) {
 	_CFAttributedStringSetAttribute(aStr, range_, attrName, value)
 }
 
@@ -2375,7 +2353,7 @@ func CFAttributedStringSetAttribute(aStr unsafe.Pointer, range_ unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringSetAttributes(_:_:_:_:)
-func CFAttributedStringSetAttributes(aStr unsafe.Pointer, range_ unsafe.Pointer, replacement unsafe.Pointer, clearOtherAttributes unsafe.Pointer) {
+func CFAttributedStringSetAttributes(aStr MutableAttributedStringRef, range_ unsafe.Pointer, replacement DictionaryRef, clearOtherAttributes unsafe.Pointer) {
 	_CFAttributedStringSetAttributes(aStr, range_, replacement, clearOtherAttributes)
 }
 
@@ -2384,7 +2362,7 @@ func CFAttributedStringSetAttributes(aStr unsafe.Pointer, range_ unsafe.Pointer,
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAutorelease
-func CFAutorelease(arg unsafe.Pointer) unsafe.Pointer {
+func CFAutorelease(arg TypeRef) TypeRef {
 	return _CFAutorelease(arg)
 }
 
@@ -2394,7 +2372,7 @@ func CFAutorelease(arg unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagAddValue(_:_:)
-func CFBagAddValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+func CFBagAddValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagAddValue(theBag, value)
 }
 
@@ -2404,7 +2382,7 @@ func CFBagAddValue(theBag unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagApplyFunction(_:_:_:)
-func CFBagApplyFunction(theBag unsafe.Pointer, applier unsafe.Pointer, context unsafe.Pointer) {
+func CFBagApplyFunction(theBag BagRef, applier BagApplierFunction, context unsafe.Pointer) {
 	_CFBagApplyFunction(theBag, applier, context)
 }
 
@@ -2414,7 +2392,7 @@ func CFBagApplyFunction(theBag unsafe.Pointer, applier unsafe.Pointer, context u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagContainsValue(_:_:)
-func CFBagContainsValue(theBag unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBagContainsValue(theBag BagRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBagContainsValue(theBag, value)
 }
 
@@ -2424,7 +2402,7 @@ func CFBagContainsValue(theBag unsafe.Pointer, value unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreate(_:_:_:_:)
-func CFBagCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+func CFBagCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index, callBacks unsafe.Pointer) BagRef {
 	return _CFBagCreate(allocator, values, numValues, callBacks)
 }
 
@@ -2434,7 +2412,7 @@ func CFBagCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateCopy(_:_:)
-func CFBagCreateCopy(allocator unsafe.Pointer, theBag unsafe.Pointer) unsafe.Pointer {
+func CFBagCreateCopy(allocator AllocatorRef, theBag BagRef) BagRef {
 	return _CFBagCreateCopy(allocator, theBag)
 }
 
@@ -2444,7 +2422,7 @@ func CFBagCreateCopy(allocator unsafe.Pointer, theBag unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateMutable(_:_:_:)
-func CFBagCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+func CFBagCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer) MutableBagRef {
 	return _CFBagCreateMutable(allocator, capacity, callBacks)
 }
 
@@ -2454,7 +2432,7 @@ func CFBagCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateMutableCopy(_:_:_:)
-func CFBagCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theBag unsafe.Pointer) unsafe.Pointer {
+func CFBagCreateMutableCopy(allocator AllocatorRef, capacity Index, theBag BagRef) MutableBagRef {
 	return _CFBagCreateMutableCopy(allocator, capacity, theBag)
 }
 
@@ -2464,7 +2442,7 @@ func CFBagCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetCount(_:)
-func CFBagGetCount(theBag unsafe.Pointer) unsafe.Pointer {
+func CFBagGetCount(theBag BagRef) Index {
 	return _CFBagGetCount(theBag)
 }
 
@@ -2474,7 +2452,7 @@ func CFBagGetCount(theBag unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetCountOfValue(_:_:)
-func CFBagGetCountOfValue(theBag unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBagGetCountOfValue(theBag BagRef, value unsafe.Pointer) Index {
 	return _CFBagGetCountOfValue(theBag, value)
 }
 
@@ -2484,7 +2462,7 @@ func CFBagGetCountOfValue(theBag unsafe.Pointer, value unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetTypeID()
-func CFBagGetTypeID() unsafe.Pointer {
+func CFBagGetTypeID() TypeID {
 	return _CFBagGetTypeID()
 }
 
@@ -2494,7 +2472,7 @@ func CFBagGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValue(_:_:)
-func CFBagGetValue(theBag unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBagGetValue(theBag BagRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBagGetValue(theBag, value)
 }
 
@@ -2504,7 +2482,7 @@ func CFBagGetValue(theBag unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValueIfPresent(_:_:_:)
-func CFBagGetValueIfPresent(theBag unsafe.Pointer, candidate unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBagGetValueIfPresent(theBag BagRef, candidate unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBagGetValueIfPresent(theBag, candidate, value)
 }
 
@@ -2514,7 +2492,7 @@ func CFBagGetValueIfPresent(theBag unsafe.Pointer, candidate unsafe.Pointer, val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValues(_:_:)
-func CFBagGetValues(theBag unsafe.Pointer, values unsafe.Pointer) {
+func CFBagGetValues(theBag BagRef, values unsafe.Pointer) {
 	_CFBagGetValues(theBag, values)
 }
 
@@ -2524,7 +2502,7 @@ func CFBagGetValues(theBag unsafe.Pointer, values unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRemoveAllValues(_:)
-func CFBagRemoveAllValues(theBag unsafe.Pointer) {
+func CFBagRemoveAllValues(theBag MutableBagRef) {
 	_CFBagRemoveAllValues(theBag)
 }
 
@@ -2534,7 +2512,7 @@ func CFBagRemoveAllValues(theBag unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRemoveValue(_:_:)
-func CFBagRemoveValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+func CFBagRemoveValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagRemoveValue(theBag, value)
 }
 
@@ -2544,7 +2522,7 @@ func CFBagRemoveValue(theBag unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagReplaceValue(_:_:)
-func CFBagReplaceValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+func CFBagReplaceValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagReplaceValue(theBag, value)
 }
 
@@ -2554,7 +2532,7 @@ func CFBagReplaceValue(theBag unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagSetValue(_:_:)
-func CFBagSetValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+func CFBagSetValue(theBag MutableBagRef, value unsafe.Pointer) {
 	_CFBagSetValue(theBag, value)
 }
 
@@ -2564,7 +2542,7 @@ func CFBagSetValue(theBag unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapAddValue(_:_:)
-func CFBinaryHeapAddValue(heap unsafe.Pointer, value unsafe.Pointer) {
+func CFBinaryHeapAddValue(heap BinaryHeapRef, value unsafe.Pointer) {
 	_CFBinaryHeapAddValue(heap, value)
 }
 
@@ -2574,7 +2552,7 @@ func CFBinaryHeapAddValue(heap unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapApplyFunction(_:_:_:)
-func CFBinaryHeapApplyFunction(heap unsafe.Pointer, applier unsafe.Pointer, context unsafe.Pointer) {
+func CFBinaryHeapApplyFunction(heap BinaryHeapRef, applier BinaryHeapApplierFunction, context unsafe.Pointer) {
 	_CFBinaryHeapApplyFunction(heap, applier, context)
 }
 
@@ -2584,7 +2562,7 @@ func CFBinaryHeapApplyFunction(heap unsafe.Pointer, applier unsafe.Pointer, cont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapContainsValue(_:_:)
-func CFBinaryHeapContainsValue(heap unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapContainsValue(heap BinaryHeapRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBinaryHeapContainsValue(heap, value)
 }
 
@@ -2594,7 +2572,7 @@ func CFBinaryHeapContainsValue(heap unsafe.Pointer, value unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapCreate(_:_:_:_:)
-func CFBinaryHeapCreate(allocator unsafe.Pointer, capacity unsafe.Pointer, callBacks unsafe.Pointer, compareContext unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapCreate(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer, compareContext unsafe.Pointer) BinaryHeapRef {
 	return _CFBinaryHeapCreate(allocator, capacity, callBacks, compareContext)
 }
 
@@ -2604,7 +2582,7 @@ func CFBinaryHeapCreate(allocator unsafe.Pointer, capacity unsafe.Pointer, callB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapCreateCopy(_:_:_:)
-func CFBinaryHeapCreateCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, heap unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapCreateCopy(allocator AllocatorRef, capacity Index, heap BinaryHeapRef) BinaryHeapRef {
 	return _CFBinaryHeapCreateCopy(allocator, capacity, heap)
 }
 
@@ -2614,7 +2592,7 @@ func CFBinaryHeapCreateCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, h
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetCount(_:)
-func CFBinaryHeapGetCount(heap unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapGetCount(heap BinaryHeapRef) Index {
 	return _CFBinaryHeapGetCount(heap)
 }
 
@@ -2624,7 +2602,7 @@ func CFBinaryHeapGetCount(heap unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetCountOfValue(_:_:)
-func CFBinaryHeapGetCountOfValue(heap unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapGetCountOfValue(heap BinaryHeapRef, value unsafe.Pointer) Index {
 	return _CFBinaryHeapGetCountOfValue(heap, value)
 }
 
@@ -2634,7 +2612,7 @@ func CFBinaryHeapGetCountOfValue(heap unsafe.Pointer, value unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetMinimum(_:)
-func CFBinaryHeapGetMinimum(heap unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapGetMinimum(heap BinaryHeapRef) unsafe.Pointer {
 	return _CFBinaryHeapGetMinimum(heap)
 }
 
@@ -2644,7 +2622,7 @@ func CFBinaryHeapGetMinimum(heap unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetMinimumIfPresent(_:_:)
-func CFBinaryHeapGetMinimumIfPresent(heap unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBinaryHeapGetMinimumIfPresent(heap BinaryHeapRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFBinaryHeapGetMinimumIfPresent(heap, value)
 }
 
@@ -2654,7 +2632,7 @@ func CFBinaryHeapGetMinimumIfPresent(heap unsafe.Pointer, value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetTypeID()
-func CFBinaryHeapGetTypeID() unsafe.Pointer {
+func CFBinaryHeapGetTypeID() TypeID {
 	return _CFBinaryHeapGetTypeID()
 }
 
@@ -2664,7 +2642,7 @@ func CFBinaryHeapGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapGetValues(_:_:)
-func CFBinaryHeapGetValues(heap unsafe.Pointer, values unsafe.Pointer) {
+func CFBinaryHeapGetValues(heap BinaryHeapRef, values unsafe.Pointer) {
 	_CFBinaryHeapGetValues(heap, values)
 }
 
@@ -2674,7 +2652,7 @@ func CFBinaryHeapGetValues(heap unsafe.Pointer, values unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapRemoveAllValues(_:)
-func CFBinaryHeapRemoveAllValues(heap unsafe.Pointer) {
+func CFBinaryHeapRemoveAllValues(heap BinaryHeapRef) {
 	_CFBinaryHeapRemoveAllValues(heap)
 }
 
@@ -2684,7 +2662,7 @@ func CFBinaryHeapRemoveAllValues(heap unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapRemoveMinimumValue(_:)
-func CFBinaryHeapRemoveMinimumValue(heap unsafe.Pointer) {
+func CFBinaryHeapRemoveMinimumValue(heap BinaryHeapRef) {
 	_CFBinaryHeapRemoveMinimumValue(heap)
 }
 
@@ -2694,7 +2672,7 @@ func CFBinaryHeapRemoveMinimumValue(heap unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorContainsBit(_:_:_:)
-func CFBitVectorContainsBit(bv unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorContainsBit(bv BitVectorRef, range_ unsafe.Pointer, value Bit) unsafe.Pointer {
 	return _CFBitVectorContainsBit(bv, range_, value)
 }
 
@@ -2704,7 +2682,7 @@ func CFBitVectorContainsBit(bv unsafe.Pointer, range_ unsafe.Pointer, value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreate(_:_:_:)
-func CFBitVectorCreate(allocator unsafe.Pointer, bytes unsafe.Pointer, numBits unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorCreate(allocator AllocatorRef, bytes unsafe.Pointer, numBits Index) BitVectorRef {
 	return _CFBitVectorCreate(allocator, bytes, numBits)
 }
 
@@ -2714,7 +2692,7 @@ func CFBitVectorCreate(allocator unsafe.Pointer, bytes unsafe.Pointer, numBits u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreateCopy(_:_:)
-func CFBitVectorCreateCopy(allocator unsafe.Pointer, bv unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorCreateCopy(allocator AllocatorRef, bv BitVectorRef) BitVectorRef {
 	return _CFBitVectorCreateCopy(allocator, bv)
 }
 
@@ -2724,7 +2702,7 @@ func CFBitVectorCreateCopy(allocator unsafe.Pointer, bv unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreateMutable(_:_:)
-func CFBitVectorCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorCreateMutable(allocator AllocatorRef, capacity Index) MutableBitVectorRef {
 	return _CFBitVectorCreateMutable(allocator, capacity)
 }
 
@@ -2734,7 +2712,7 @@ func CFBitVectorCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorCreateMutableCopy(_:_:_:)
-func CFBitVectorCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, bv unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorCreateMutableCopy(allocator AllocatorRef, capacity Index, bv BitVectorRef) MutableBitVectorRef {
 	return _CFBitVectorCreateMutableCopy(allocator, capacity, bv)
 }
 
@@ -2744,7 +2722,7 @@ func CFBitVectorCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorFlipBitAtIndex(_:_:)
-func CFBitVectorFlipBitAtIndex(bv unsafe.Pointer, idx unsafe.Pointer) {
+func CFBitVectorFlipBitAtIndex(bv MutableBitVectorRef, idx Index) {
 	_CFBitVectorFlipBitAtIndex(bv, idx)
 }
 
@@ -2754,7 +2732,7 @@ func CFBitVectorFlipBitAtIndex(bv unsafe.Pointer, idx unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorFlipBits(_:_:)
-func CFBitVectorFlipBits(bv unsafe.Pointer, range_ unsafe.Pointer) {
+func CFBitVectorFlipBits(bv MutableBitVectorRef, range_ unsafe.Pointer) {
 	_CFBitVectorFlipBits(bv, range_)
 }
 
@@ -2764,7 +2742,7 @@ func CFBitVectorFlipBits(bv unsafe.Pointer, range_ unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetBitAtIndex(_:_:)
-func CFBitVectorGetBitAtIndex(bv unsafe.Pointer, idx unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorGetBitAtIndex(bv BitVectorRef, idx Index) Bit {
 	return _CFBitVectorGetBitAtIndex(bv, idx)
 }
 
@@ -2774,7 +2752,7 @@ func CFBitVectorGetBitAtIndex(bv unsafe.Pointer, idx unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetBits(_:_:_:)
-func CFBitVectorGetBits(bv unsafe.Pointer, range_ unsafe.Pointer, bytes unsafe.Pointer) {
+func CFBitVectorGetBits(bv BitVectorRef, range_ unsafe.Pointer, bytes unsafe.Pointer) {
 	_CFBitVectorGetBits(bv, range_, bytes)
 }
 
@@ -2784,7 +2762,7 @@ func CFBitVectorGetBits(bv unsafe.Pointer, range_ unsafe.Pointer, bytes unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetCount(_:)
-func CFBitVectorGetCount(bv unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorGetCount(bv BitVectorRef) Index {
 	return _CFBitVectorGetCount(bv)
 }
 
@@ -2794,7 +2772,7 @@ func CFBitVectorGetCount(bv unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetCountOfBit(_:_:_:)
-func CFBitVectorGetCountOfBit(bv unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorGetCountOfBit(bv BitVectorRef, range_ unsafe.Pointer, value Bit) Index {
 	return _CFBitVectorGetCountOfBit(bv, range_, value)
 }
 
@@ -2804,7 +2782,7 @@ func CFBitVectorGetCountOfBit(bv unsafe.Pointer, range_ unsafe.Pointer, value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetFirstIndexOfBit(_:_:_:)
-func CFBitVectorGetFirstIndexOfBit(bv unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorGetFirstIndexOfBit(bv BitVectorRef, range_ unsafe.Pointer, value Bit) Index {
 	return _CFBitVectorGetFirstIndexOfBit(bv, range_, value)
 }
 
@@ -2814,7 +2792,7 @@ func CFBitVectorGetFirstIndexOfBit(bv unsafe.Pointer, range_ unsafe.Pointer, val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetLastIndexOfBit(_:_:_:)
-func CFBitVectorGetLastIndexOfBit(bv unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFBitVectorGetLastIndexOfBit(bv BitVectorRef, range_ unsafe.Pointer, value Bit) Index {
 	return _CFBitVectorGetLastIndexOfBit(bv, range_, value)
 }
 
@@ -2824,7 +2802,7 @@ func CFBitVectorGetLastIndexOfBit(bv unsafe.Pointer, range_ unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorGetTypeID()
-func CFBitVectorGetTypeID() unsafe.Pointer {
+func CFBitVectorGetTypeID() TypeID {
 	return _CFBitVectorGetTypeID()
 }
 
@@ -2834,7 +2812,7 @@ func CFBitVectorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetAllBits(_:_:)
-func CFBitVectorSetAllBits(bv unsafe.Pointer, value unsafe.Pointer) {
+func CFBitVectorSetAllBits(bv MutableBitVectorRef, value Bit) {
 	_CFBitVectorSetAllBits(bv, value)
 }
 
@@ -2844,7 +2822,7 @@ func CFBitVectorSetAllBits(bv unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetBitAtIndex(_:_:_:)
-func CFBitVectorSetBitAtIndex(bv unsafe.Pointer, idx unsafe.Pointer, value unsafe.Pointer) {
+func CFBitVectorSetBitAtIndex(bv MutableBitVectorRef, idx Index, value Bit) {
 	_CFBitVectorSetBitAtIndex(bv, idx, value)
 }
 
@@ -2854,7 +2832,7 @@ func CFBitVectorSetBitAtIndex(bv unsafe.Pointer, idx unsafe.Pointer, value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetBits(_:_:_:)
-func CFBitVectorSetBits(bv unsafe.Pointer, range_ unsafe.Pointer, value unsafe.Pointer) {
+func CFBitVectorSetBits(bv MutableBitVectorRef, range_ unsafe.Pointer, value Bit) {
 	_CFBitVectorSetBits(bv, range_, value)
 }
 
@@ -2864,7 +2842,7 @@ func CFBitVectorSetBits(bv unsafe.Pointer, range_ unsafe.Pointer, value unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVectorSetCount(_:_:)
-func CFBitVectorSetCount(bv unsafe.Pointer, count unsafe.Pointer) {
+func CFBitVectorSetCount(bv MutableBitVectorRef, count Index) {
 	_CFBitVectorSetCount(bv, count)
 }
 
@@ -2874,7 +2852,7 @@ func CFBitVectorSetCount(bv unsafe.Pointer, count unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBooleanGetTypeID()
-func CFBooleanGetTypeID() unsafe.Pointer {
+func CFBooleanGetTypeID() TypeID {
 	return _CFBooleanGetTypeID()
 }
 
@@ -2884,7 +2862,7 @@ func CFBooleanGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBooleanGetValue(_:)
-func CFBooleanGetValue(boolean unsafe.Pointer) unsafe.Pointer {
+func CFBooleanGetValue(boolean BooleanRef) unsafe.Pointer {
 	return _CFBooleanGetValue(boolean)
 }
 
@@ -2897,7 +2875,7 @@ func CFBooleanGetValue(boolean unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCloseBundleResourceMap(_:_:)
-func CFBundleCloseBundleResourceMap(bundle unsafe.Pointer, refNum unsafe.Pointer) {
+func CFBundleCloseBundleResourceMap(bundle BundleRef, refNum BundleRefNum) {
 	_CFBundleCloseBundleResourceMap(bundle, refNum)
 }
 
@@ -2907,7 +2885,7 @@ func CFBundleCloseBundleResourceMap(bundle unsafe.Pointer, refNum unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyAuxiliaryExecutableURL(_:_:)
-func CFBundleCopyAuxiliaryExecutableURL(bundle unsafe.Pointer, executableName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyAuxiliaryExecutableURL(bundle BundleRef, executableName StringRef) URLRef {
 	return _CFBundleCopyAuxiliaryExecutableURL(bundle, executableName)
 }
 
@@ -2917,7 +2895,7 @@ func CFBundleCopyAuxiliaryExecutableURL(bundle unsafe.Pointer, executableName un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyBuiltInPlugInsURL(_:)
-func CFBundleCopyBuiltInPlugInsURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyBuiltInPlugInsURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyBuiltInPlugInsURL(bundle)
 }
 
@@ -2927,7 +2905,7 @@ func CFBundleCopyBuiltInPlugInsURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyBundleLocalizations(_:)
-func CFBundleCopyBundleLocalizations(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyBundleLocalizations(bundle BundleRef) ArrayRef {
 	return _CFBundleCopyBundleLocalizations(bundle)
 }
 
@@ -2937,7 +2915,7 @@ func CFBundleCopyBundleLocalizations(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyBundleURL(_:)
-func CFBundleCopyBundleURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyBundleURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyBundleURL(bundle)
 }
 
@@ -2948,7 +2926,7 @@ func CFBundleCopyBundleURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyExecutableArchitectures(_:)
-func CFBundleCopyExecutableArchitectures(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyExecutableArchitectures(bundle BundleRef) ArrayRef {
 	return _CFBundleCopyExecutableArchitectures(bundle)
 }
 
@@ -2959,7 +2937,7 @@ func CFBundleCopyExecutableArchitectures(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyExecutableArchitecturesForURL(_:)
-func CFBundleCopyExecutableArchitecturesForURL(url unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyExecutableArchitecturesForURL(url URLRef) ArrayRef {
 	return _CFBundleCopyExecutableArchitecturesForURL(url)
 }
 
@@ -2969,7 +2947,7 @@ func CFBundleCopyExecutableArchitecturesForURL(url unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyExecutableURL(_:)
-func CFBundleCopyExecutableURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyExecutableURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyExecutableURL(bundle)
 }
 
@@ -2979,7 +2957,7 @@ func CFBundleCopyExecutableURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyInfoDictionaryForURL(_:)
-func CFBundleCopyInfoDictionaryForURL(url unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyInfoDictionaryForURL(url URLRef) DictionaryRef {
 	return _CFBundleCopyInfoDictionaryForURL(url)
 }
 
@@ -2989,7 +2967,7 @@ func CFBundleCopyInfoDictionaryForURL(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyInfoDictionaryInDirectory(_:)
-func CFBundleCopyInfoDictionaryInDirectory(bundleURL unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyInfoDictionaryInDirectory(bundleURL URLRef) DictionaryRef {
 	return _CFBundleCopyInfoDictionaryInDirectory(bundleURL)
 }
 
@@ -2999,7 +2977,7 @@ func CFBundleCopyInfoDictionaryInDirectory(bundleURL unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizationsForPreferences(_:_:)
-func CFBundleCopyLocalizationsForPreferences(locArray unsafe.Pointer, prefArray unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyLocalizationsForPreferences(locArray ArrayRef, prefArray ArrayRef) ArrayRef {
 	return _CFBundleCopyLocalizationsForPreferences(locArray, prefArray)
 }
 
@@ -3009,7 +2987,7 @@ func CFBundleCopyLocalizationsForPreferences(locArray unsafe.Pointer, prefArray 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizationsForURL(_:)
-func CFBundleCopyLocalizationsForURL(url unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyLocalizationsForURL(url URLRef) ArrayRef {
 	return _CFBundleCopyLocalizationsForURL(url)
 }
 
@@ -3019,7 +2997,7 @@ func CFBundleCopyLocalizationsForURL(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizedString(_:_:_:_:)
-func CFBundleCopyLocalizedString(bundle unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, tableName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyLocalizedString(bundle BundleRef, key StringRef, value StringRef, tableName StringRef) StringRef {
 	return _CFBundleCopyLocalizedString(bundle, key, value, tableName)
 }
 
@@ -3030,7 +3008,7 @@ func CFBundleCopyLocalizedString(bundle unsafe.Pointer, key unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizedStringForLocalizations(_:_:_:_:_:)
-func CFBundleCopyLocalizedStringForLocalizations(bundle unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, tableName unsafe.Pointer, localizations unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyLocalizedStringForLocalizations(bundle BundleRef, key StringRef, value StringRef, tableName StringRef, localizations ArrayRef) StringRef {
 	return _CFBundleCopyLocalizedStringForLocalizations(bundle, key, value, tableName, localizations)
 }
 
@@ -3040,7 +3018,7 @@ func CFBundleCopyLocalizedStringForLocalizations(bundle unsafe.Pointer, key unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyPreferredLocalizationsFromArray(_:)
-func CFBundleCopyPreferredLocalizationsFromArray(locArray unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyPreferredLocalizationsFromArray(locArray ArrayRef) ArrayRef {
 	return _CFBundleCopyPreferredLocalizationsFromArray(locArray)
 }
 
@@ -3050,7 +3028,7 @@ func CFBundleCopyPreferredLocalizationsFromArray(locArray unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyPrivateFrameworksURL(_:)
-func CFBundleCopyPrivateFrameworksURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyPrivateFrameworksURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyPrivateFrameworksURL(bundle)
 }
 
@@ -3060,7 +3038,7 @@ func CFBundleCopyPrivateFrameworksURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURL(_:_:_:_:)
-func CFBundleCopyResourceURL(bundle unsafe.Pointer, resourceName unsafe.Pointer, resourceType unsafe.Pointer, subDirName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourceURL(bundle BundleRef, resourceName StringRef, resourceType StringRef, subDirName StringRef) URLRef {
 	return _CFBundleCopyResourceURL(bundle, resourceName, resourceType, subDirName)
 }
 
@@ -3070,7 +3048,7 @@ func CFBundleCopyResourceURL(bundle unsafe.Pointer, resourceName unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLForLocalization(_:_:_:_:_:)
-func CFBundleCopyResourceURLForLocalization(bundle unsafe.Pointer, resourceName unsafe.Pointer, resourceType unsafe.Pointer, subDirName unsafe.Pointer, localizationName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourceURLForLocalization(bundle BundleRef, resourceName StringRef, resourceType StringRef, subDirName StringRef, localizationName StringRef) URLRef {
 	return _CFBundleCopyResourceURLForLocalization(bundle, resourceName, resourceType, subDirName, localizationName)
 }
 
@@ -3080,7 +3058,7 @@ func CFBundleCopyResourceURLForLocalization(bundle unsafe.Pointer, resourceName 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLInDirectory(_:_:_:_:)
-func CFBundleCopyResourceURLInDirectory(bundleURL unsafe.Pointer, resourceName unsafe.Pointer, resourceType unsafe.Pointer, subDirName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourceURLInDirectory(bundleURL URLRef, resourceName StringRef, resourceType StringRef, subDirName StringRef) URLRef {
 	return _CFBundleCopyResourceURLInDirectory(bundleURL, resourceName, resourceType, subDirName)
 }
 
@@ -3090,7 +3068,7 @@ func CFBundleCopyResourceURLInDirectory(bundleURL unsafe.Pointer, resourceName u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLsOfType(_:_:_:)
-func CFBundleCopyResourceURLsOfType(bundle unsafe.Pointer, resourceType unsafe.Pointer, subDirName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourceURLsOfType(bundle BundleRef, resourceType StringRef, subDirName StringRef) ArrayRef {
 	return _CFBundleCopyResourceURLsOfType(bundle, resourceType, subDirName)
 }
 
@@ -3100,7 +3078,7 @@ func CFBundleCopyResourceURLsOfType(bundle unsafe.Pointer, resourceType unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLsOfTypeForLocalization(_:_:_:_:)
-func CFBundleCopyResourceURLsOfTypeForLocalization(bundle unsafe.Pointer, resourceType unsafe.Pointer, subDirName unsafe.Pointer, localizationName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourceURLsOfTypeForLocalization(bundle BundleRef, resourceType StringRef, subDirName StringRef, localizationName StringRef) ArrayRef {
 	return _CFBundleCopyResourceURLsOfTypeForLocalization(bundle, resourceType, subDirName, localizationName)
 }
 
@@ -3110,7 +3088,7 @@ func CFBundleCopyResourceURLsOfTypeForLocalization(bundle unsafe.Pointer, resour
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourceURLsOfTypeInDirectory(_:_:_:)
-func CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL unsafe.Pointer, resourceType unsafe.Pointer, subDirName unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL URLRef, resourceType StringRef, subDirName StringRef) ArrayRef {
 	return _CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL, resourceType, subDirName)
 }
 
@@ -3120,7 +3098,7 @@ func CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL unsafe.Pointer, resourc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyResourcesDirectoryURL(_:)
-func CFBundleCopyResourcesDirectoryURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopyResourcesDirectoryURL(bundle BundleRef) URLRef {
 	return _CFBundleCopyResourcesDirectoryURL(bundle)
 }
 
@@ -3130,7 +3108,7 @@ func CFBundleCopyResourcesDirectoryURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopySharedFrameworksURL(_:)
-func CFBundleCopySharedFrameworksURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopySharedFrameworksURL(bundle BundleRef) URLRef {
 	return _CFBundleCopySharedFrameworksURL(bundle)
 }
 
@@ -3140,7 +3118,7 @@ func CFBundleCopySharedFrameworksURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopySharedSupportURL(_:)
-func CFBundleCopySharedSupportURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopySharedSupportURL(bundle BundleRef) URLRef {
 	return _CFBundleCopySharedSupportURL(bundle)
 }
 
@@ -3150,7 +3128,7 @@ func CFBundleCopySharedSupportURL(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopySupportFilesDirectoryURL(_:)
-func CFBundleCopySupportFilesDirectoryURL(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleCopySupportFilesDirectoryURL(bundle BundleRef) URLRef {
 	return _CFBundleCopySupportFilesDirectoryURL(bundle)
 }
 
@@ -3160,7 +3138,7 @@ func CFBundleCopySupportFilesDirectoryURL(bundle unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCreate(_:_:)
-func CFBundleCreate(allocator unsafe.Pointer, bundleURL unsafe.Pointer) unsafe.Pointer {
+func CFBundleCreate(allocator AllocatorRef, bundleURL URLRef) BundleRef {
 	return _CFBundleCreate(allocator, bundleURL)
 }
 
@@ -3170,7 +3148,7 @@ func CFBundleCreate(allocator unsafe.Pointer, bundleURL unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCreateBundlesFromDirectory(_:_:_:)
-func CFBundleCreateBundlesFromDirectory(allocator unsafe.Pointer, directoryURL unsafe.Pointer, bundleType unsafe.Pointer) unsafe.Pointer {
+func CFBundleCreateBundlesFromDirectory(allocator AllocatorRef, directoryURL URLRef, bundleType StringRef) ArrayRef {
 	return _CFBundleCreateBundlesFromDirectory(allocator, directoryURL, bundleType)
 }
 
@@ -3180,7 +3158,7 @@ func CFBundleCreateBundlesFromDirectory(allocator unsafe.Pointer, directoryURL u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetAllBundles()
-func CFBundleGetAllBundles() unsafe.Pointer {
+func CFBundleGetAllBundles() ArrayRef {
 	return _CFBundleGetAllBundles()
 }
 
@@ -3190,7 +3168,7 @@ func CFBundleGetAllBundles() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetBundleWithIdentifier(_:)
-func CFBundleGetBundleWithIdentifier(bundleID unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetBundleWithIdentifier(bundleID StringRef) BundleRef {
 	return _CFBundleGetBundleWithIdentifier(bundleID)
 }
 
@@ -3200,7 +3178,7 @@ func CFBundleGetBundleWithIdentifier(bundleID unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetDataPointerForName(_:_:)
-func CFBundleGetDataPointerForName(bundle unsafe.Pointer, symbolName unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetDataPointerForName(bundle BundleRef, symbolName StringRef) unsafe.Pointer {
 	return _CFBundleGetDataPointerForName(bundle, symbolName)
 }
 
@@ -3210,7 +3188,7 @@ func CFBundleGetDataPointerForName(bundle unsafe.Pointer, symbolName unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetDataPointersForNames(_:_:_:)
-func CFBundleGetDataPointersForNames(bundle unsafe.Pointer, symbolNames unsafe.Pointer, stbl unsafe.Pointer) {
+func CFBundleGetDataPointersForNames(bundle BundleRef, symbolNames ArrayRef, stbl unsafe.Pointer) {
 	_CFBundleGetDataPointersForNames(bundle, symbolNames, stbl)
 }
 
@@ -3220,7 +3198,7 @@ func CFBundleGetDataPointersForNames(bundle unsafe.Pointer, symbolNames unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetDevelopmentRegion(_:)
-func CFBundleGetDevelopmentRegion(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetDevelopmentRegion(bundle BundleRef) StringRef {
 	return _CFBundleGetDevelopmentRegion(bundle)
 }
 
@@ -3230,7 +3208,7 @@ func CFBundleGetDevelopmentRegion(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetFunctionPointerForName(_:_:)
-func CFBundleGetFunctionPointerForName(bundle unsafe.Pointer, functionName unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetFunctionPointerForName(bundle BundleRef, functionName StringRef) unsafe.Pointer {
 	return _CFBundleGetFunctionPointerForName(bundle, functionName)
 }
 
@@ -3240,7 +3218,7 @@ func CFBundleGetFunctionPointerForName(bundle unsafe.Pointer, functionName unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetFunctionPointersForNames(_:_:_:)
-func CFBundleGetFunctionPointersForNames(bundle unsafe.Pointer, functionNames unsafe.Pointer, ftbl unsafe.Pointer) {
+func CFBundleGetFunctionPointersForNames(bundle BundleRef, functionNames ArrayRef, ftbl unsafe.Pointer) {
 	_CFBundleGetFunctionPointersForNames(bundle, functionNames, ftbl)
 }
 
@@ -3250,7 +3228,7 @@ func CFBundleGetFunctionPointersForNames(bundle unsafe.Pointer, functionNames un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetIdentifier(_:)
-func CFBundleGetIdentifier(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetIdentifier(bundle BundleRef) StringRef {
 	return _CFBundleGetIdentifier(bundle)
 }
 
@@ -3260,7 +3238,7 @@ func CFBundleGetIdentifier(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetInfoDictionary(_:)
-func CFBundleGetInfoDictionary(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetInfoDictionary(bundle BundleRef) DictionaryRef {
 	return _CFBundleGetInfoDictionary(bundle)
 }
 
@@ -3270,7 +3248,7 @@ func CFBundleGetInfoDictionary(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetLocalInfoDictionary(_:)
-func CFBundleGetLocalInfoDictionary(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetLocalInfoDictionary(bundle BundleRef) DictionaryRef {
 	return _CFBundleGetLocalInfoDictionary(bundle)
 }
 
@@ -3280,7 +3258,7 @@ func CFBundleGetLocalInfoDictionary(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetMainBundle()
-func CFBundleGetMainBundle() unsafe.Pointer {
+func CFBundleGetMainBundle() BundleRef {
 	return _CFBundleGetMainBundle()
 }
 
@@ -3290,7 +3268,7 @@ func CFBundleGetMainBundle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetPackageInfo(_:_:_:)
-func CFBundleGetPackageInfo(bundle unsafe.Pointer, packageType unsafe.Pointer, packageCreator unsafe.Pointer) {
+func CFBundleGetPackageInfo(bundle BundleRef, packageType unsafe.Pointer, packageCreator unsafe.Pointer) {
 	_CFBundleGetPackageInfo(bundle, packageType, packageCreator)
 }
 
@@ -3300,7 +3278,7 @@ func CFBundleGetPackageInfo(bundle unsafe.Pointer, packageType unsafe.Pointer, p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetPackageInfoInDirectory(_:_:_:)
-func CFBundleGetPackageInfoInDirectory(url unsafe.Pointer, packageType unsafe.Pointer, packageCreator unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetPackageInfoInDirectory(url URLRef, packageType unsafe.Pointer, packageCreator unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleGetPackageInfoInDirectory(url, packageType, packageCreator)
 }
 
@@ -3310,7 +3288,7 @@ func CFBundleGetPackageInfoInDirectory(url unsafe.Pointer, packageType unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetPlugIn(_:)
-func CFBundleGetPlugIn(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetPlugIn(bundle BundleRef) PlugInRef {
 	return _CFBundleGetPlugIn(bundle)
 }
 
@@ -3320,7 +3298,7 @@ func CFBundleGetPlugIn(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetTypeID()
-func CFBundleGetTypeID() unsafe.Pointer {
+func CFBundleGetTypeID() TypeID {
 	return _CFBundleGetTypeID()
 }
 
@@ -3330,7 +3308,7 @@ func CFBundleGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetValueForInfoDictionaryKey(_:_:)
-func CFBundleGetValueForInfoDictionaryKey(bundle unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetValueForInfoDictionaryKey(bundle BundleRef, key StringRef) TypeRef {
 	return _CFBundleGetValueForInfoDictionaryKey(bundle, key)
 }
 
@@ -3340,7 +3318,7 @@ func CFBundleGetValueForInfoDictionaryKey(bundle unsafe.Pointer, key unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleGetVersionNumber(_:)
-func CFBundleGetVersionNumber(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleGetVersionNumber(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleGetVersionNumber(bundle)
 }
 
@@ -3358,7 +3336,7 @@ func CFBundleIsArchitectureLoadable(arch unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 11.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsExecutableLoadable(_:)
-func CFBundleIsExecutableLoadable(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleIsExecutableLoadable(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleIsExecutableLoadable(bundle)
 }
 
@@ -3367,7 +3345,7 @@ func CFBundleIsExecutableLoadable(bundle unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 11.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsExecutableLoadableForURL(_:)
-func CFBundleIsExecutableLoadableForURL(url unsafe.Pointer) unsafe.Pointer {
+func CFBundleIsExecutableLoadableForURL(url URLRef) unsafe.Pointer {
 	return _CFBundleIsExecutableLoadableForURL(url)
 }
 
@@ -3377,7 +3355,7 @@ func CFBundleIsExecutableLoadableForURL(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleIsExecutableLoaded(_:)
-func CFBundleIsExecutableLoaded(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleIsExecutableLoaded(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleIsExecutableLoaded(bundle)
 }
 
@@ -3387,7 +3365,7 @@ func CFBundleIsExecutableLoaded(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleLoadExecutable(_:)
-func CFBundleLoadExecutable(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleLoadExecutable(bundle BundleRef) unsafe.Pointer {
 	return _CFBundleLoadExecutable(bundle)
 }
 
@@ -3398,7 +3376,7 @@ func CFBundleLoadExecutable(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleLoadExecutableAndReturnError(_:_:)
-func CFBundleLoadExecutableAndReturnError(bundle unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFBundleLoadExecutableAndReturnError(bundle BundleRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleLoadExecutableAndReturnError(bundle, error_)
 }
 
@@ -3411,7 +3389,7 @@ func CFBundleLoadExecutableAndReturnError(bundle unsafe.Pointer, error_ unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleOpenBundleResourceFiles(_:_:_:)
-func CFBundleOpenBundleResourceFiles(bundle unsafe.Pointer, refNum unsafe.Pointer, localizedRefNum unsafe.Pointer) unsafe.Pointer {
+func CFBundleOpenBundleResourceFiles(bundle BundleRef, refNum unsafe.Pointer, localizedRefNum unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleOpenBundleResourceFiles(bundle, refNum, localizedRefNum)
 }
 
@@ -3424,7 +3402,7 @@ func CFBundleOpenBundleResourceFiles(bundle unsafe.Pointer, refNum unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleOpenBundleResourceMap(_:)
-func CFBundleOpenBundleResourceMap(bundle unsafe.Pointer) unsafe.Pointer {
+func CFBundleOpenBundleResourceMap(bundle BundleRef) BundleRefNum {
 	return _CFBundleOpenBundleResourceMap(bundle)
 }
 
@@ -3435,7 +3413,7 @@ func CFBundleOpenBundleResourceMap(bundle unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundlePreflightExecutable(_:_:)
-func CFBundlePreflightExecutable(bundle unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFBundlePreflightExecutable(bundle BundleRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFBundlePreflightExecutable(bundle, error_)
 }
 
@@ -3445,7 +3423,7 @@ func CFBundlePreflightExecutable(bundle unsafe.Pointer, error_ unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleUnloadExecutable(_:)
-func CFBundleUnloadExecutable(bundle unsafe.Pointer) {
+func CFBundleUnloadExecutable(bundle BundleRef) {
 	_CFBundleUnloadExecutable(bundle)
 }
 
@@ -3455,7 +3433,7 @@ func CFBundleUnloadExecutable(bundle unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarAddComponents
-func CFCalendarAddComponents(calendar unsafe.Pointer, at unsafe.Pointer, options unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
+func CFCalendarAddComponents(calendar CalendarRef, at unsafe.Pointer, options OptionFlags, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarAddComponents(calendar, at, options, componentDesc)
 }
 
@@ -3465,7 +3443,7 @@ func CFCalendarAddComponents(calendar unsafe.Pointer, at unsafe.Pointer, options
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarComposeAbsoluteTime
-func CFCalendarComposeAbsoluteTime(calendar unsafe.Pointer, at unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
+func CFCalendarComposeAbsoluteTime(calendar CalendarRef, at unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarComposeAbsoluteTime(calendar, at, componentDesc)
 }
 
@@ -3475,7 +3453,7 @@ func CFCalendarComposeAbsoluteTime(calendar unsafe.Pointer, at unsafe.Pointer, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCopyCurrent()
-func CFCalendarCopyCurrent() unsafe.Pointer {
+func CFCalendarCopyCurrent() CalendarRef {
 	return _CFCalendarCopyCurrent()
 }
 
@@ -3485,7 +3463,7 @@ func CFCalendarCopyCurrent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCopyLocale(_:)
-func CFCalendarCopyLocale(calendar unsafe.Pointer) unsafe.Pointer {
+func CFCalendarCopyLocale(calendar CalendarRef) LocaleRef {
 	return _CFCalendarCopyLocale(calendar)
 }
 
@@ -3495,7 +3473,7 @@ func CFCalendarCopyLocale(calendar unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCopyTimeZone(_:)
-func CFCalendarCopyTimeZone(calendar unsafe.Pointer) unsafe.Pointer {
+func CFCalendarCopyTimeZone(calendar CalendarRef) TimeZoneRef {
 	return _CFCalendarCopyTimeZone(calendar)
 }
 
@@ -3505,7 +3483,7 @@ func CFCalendarCopyTimeZone(calendar unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarCreateWithIdentifier(_:_:)
-func CFCalendarCreateWithIdentifier(allocator unsafe.Pointer, identifier unsafe.Pointer) unsafe.Pointer {
+func CFCalendarCreateWithIdentifier(allocator AllocatorRef, identifier CalendarIdentifier) CalendarRef {
 	return _CFCalendarCreateWithIdentifier(allocator, identifier)
 }
 
@@ -3515,7 +3493,7 @@ func CFCalendarCreateWithIdentifier(allocator unsafe.Pointer, identifier unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarDecomposeAbsoluteTime
-func CFCalendarDecomposeAbsoluteTime(calendar unsafe.Pointer, at unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
+func CFCalendarDecomposeAbsoluteTime(calendar CalendarRef, at AbsoluteTime, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarDecomposeAbsoluteTime(calendar, at, componentDesc)
 }
 
@@ -3525,7 +3503,7 @@ func CFCalendarDecomposeAbsoluteTime(calendar unsafe.Pointer, at unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetComponentDifference
-func CFCalendarGetComponentDifference(calendar unsafe.Pointer, startingAT unsafe.Pointer, resultAT unsafe.Pointer, options unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetComponentDifference(calendar CalendarRef, startingAT AbsoluteTime, resultAT AbsoluteTime, options OptionFlags, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarGetComponentDifference(calendar, startingAT, resultAT, options, componentDesc)
 }
 
@@ -3535,7 +3513,7 @@ func CFCalendarGetComponentDifference(calendar unsafe.Pointer, startingAT unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetFirstWeekday(_:)
-func CFCalendarGetFirstWeekday(calendar unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetFirstWeekday(calendar CalendarRef) Index {
 	return _CFCalendarGetFirstWeekday(calendar)
 }
 
@@ -3545,7 +3523,7 @@ func CFCalendarGetFirstWeekday(calendar unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetIdentifier(_:)
-func CFCalendarGetIdentifier(calendar unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetIdentifier(calendar CalendarRef) CalendarIdentifier {
 	return _CFCalendarGetIdentifier(calendar)
 }
 
@@ -3555,7 +3533,7 @@ func CFCalendarGetIdentifier(calendar unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetMaximumRangeOfUnit(_:_:)
-func CFCalendarGetMaximumRangeOfUnit(calendar unsafe.Pointer, unit unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetMaximumRangeOfUnit(calendar CalendarRef, unit unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarGetMaximumRangeOfUnit(calendar, unit)
 }
 
@@ -3565,7 +3543,7 @@ func CFCalendarGetMaximumRangeOfUnit(calendar unsafe.Pointer, unit unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetMinimumDaysInFirstWeek(_:)
-func CFCalendarGetMinimumDaysInFirstWeek(calendar unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetMinimumDaysInFirstWeek(calendar CalendarRef) Index {
 	return _CFCalendarGetMinimumDaysInFirstWeek(calendar)
 }
 
@@ -3575,7 +3553,7 @@ func CFCalendarGetMinimumDaysInFirstWeek(calendar unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetMinimumRangeOfUnit(_:_:)
-func CFCalendarGetMinimumRangeOfUnit(calendar unsafe.Pointer, unit unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetMinimumRangeOfUnit(calendar CalendarRef, unit unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarGetMinimumRangeOfUnit(calendar, unit)
 }
 
@@ -3585,7 +3563,7 @@ func CFCalendarGetMinimumRangeOfUnit(calendar unsafe.Pointer, unit unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetOrdinalityOfUnit(_:_:_:_:)
-func CFCalendarGetOrdinalityOfUnit(calendar unsafe.Pointer, smallerUnit unsafe.Pointer, biggerUnit unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetOrdinalityOfUnit(calendar CalendarRef, smallerUnit unsafe.Pointer, biggerUnit unsafe.Pointer, at AbsoluteTime) Index {
 	return _CFCalendarGetOrdinalityOfUnit(calendar, smallerUnit, biggerUnit, at)
 }
 
@@ -3595,7 +3573,7 @@ func CFCalendarGetOrdinalityOfUnit(calendar unsafe.Pointer, smallerUnit unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetRangeOfUnit(_:_:_:_:)
-func CFCalendarGetRangeOfUnit(calendar unsafe.Pointer, smallerUnit unsafe.Pointer, biggerUnit unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetRangeOfUnit(calendar CalendarRef, smallerUnit unsafe.Pointer, biggerUnit unsafe.Pointer, at AbsoluteTime) unsafe.Pointer {
 	return _CFCalendarGetRangeOfUnit(calendar, smallerUnit, biggerUnit, at)
 }
 
@@ -3606,7 +3584,7 @@ func CFCalendarGetRangeOfUnit(calendar unsafe.Pointer, smallerUnit unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetTimeRangeOfUnit(_:_:_:_:_:)
-func CFCalendarGetTimeRangeOfUnit(calendar unsafe.Pointer, unit unsafe.Pointer, at unsafe.Pointer, startp unsafe.Pointer, tip unsafe.Pointer) unsafe.Pointer {
+func CFCalendarGetTimeRangeOfUnit(calendar CalendarRef, unit unsafe.Pointer, at AbsoluteTime, startp unsafe.Pointer, tip unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarGetTimeRangeOfUnit(calendar, unit, at, startp, tip)
 }
 
@@ -3616,7 +3594,7 @@ func CFCalendarGetTimeRangeOfUnit(calendar unsafe.Pointer, unit unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetTypeID()
-func CFCalendarGetTypeID() unsafe.Pointer {
+func CFCalendarGetTypeID() TypeID {
 	return _CFCalendarGetTypeID()
 }
 
@@ -3626,7 +3604,7 @@ func CFCalendarGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetFirstWeekday(_:_:)
-func CFCalendarSetFirstWeekday(calendar unsafe.Pointer, wkdy unsafe.Pointer) {
+func CFCalendarSetFirstWeekday(calendar CalendarRef, wkdy Index) {
 	_CFCalendarSetFirstWeekday(calendar, wkdy)
 }
 
@@ -3636,7 +3614,7 @@ func CFCalendarSetFirstWeekday(calendar unsafe.Pointer, wkdy unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetLocale(_:_:)
-func CFCalendarSetLocale(calendar unsafe.Pointer, locale unsafe.Pointer) {
+func CFCalendarSetLocale(calendar CalendarRef, locale LocaleRef) {
 	_CFCalendarSetLocale(calendar, locale)
 }
 
@@ -3646,7 +3624,7 @@ func CFCalendarSetLocale(calendar unsafe.Pointer, locale unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetMinimumDaysInFirstWeek(_:_:)
-func CFCalendarSetMinimumDaysInFirstWeek(calendar unsafe.Pointer, mwd unsafe.Pointer) {
+func CFCalendarSetMinimumDaysInFirstWeek(calendar CalendarRef, mwd Index) {
 	_CFCalendarSetMinimumDaysInFirstWeek(calendar, mwd)
 }
 
@@ -3656,7 +3634,7 @@ func CFCalendarSetMinimumDaysInFirstWeek(calendar unsafe.Pointer, mwd unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarSetTimeZone(_:_:)
-func CFCalendarSetTimeZone(calendar unsafe.Pointer, tz unsafe.Pointer) {
+func CFCalendarSetTimeZone(calendar CalendarRef, tz TimeZoneRef) {
 	_CFCalendarSetTimeZone(calendar, tz)
 }
 
@@ -3666,7 +3644,7 @@ func CFCalendarSetTimeZone(calendar unsafe.Pointer, tz unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetAddCharactersInRange(_:_:)
-func CFCharacterSetAddCharactersInRange(theSet unsafe.Pointer, theRange unsafe.Pointer) {
+func CFCharacterSetAddCharactersInRange(theSet MutableCharacterSetRef, theRange unsafe.Pointer) {
 	_CFCharacterSetAddCharactersInRange(theSet, theRange)
 }
 
@@ -3676,7 +3654,7 @@ func CFCharacterSetAddCharactersInRange(theSet unsafe.Pointer, theRange unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetAddCharactersInString(_:_:)
-func CFCharacterSetAddCharactersInString(theSet unsafe.Pointer, theString unsafe.Pointer) {
+func CFCharacterSetAddCharactersInString(theSet MutableCharacterSetRef, theString StringRef) {
 	_CFCharacterSetAddCharactersInString(theSet, theString)
 }
 
@@ -3686,7 +3664,7 @@ func CFCharacterSetAddCharactersInString(theSet unsafe.Pointer, theString unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateBitmapRepresentation(_:_:)
-func CFCharacterSetCreateBitmapRepresentation(alloc unsafe.Pointer, theSet unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateBitmapRepresentation(alloc AllocatorRef, theSet CharacterSetRef) DataRef {
 	return _CFCharacterSetCreateBitmapRepresentation(alloc, theSet)
 }
 
@@ -3696,7 +3674,7 @@ func CFCharacterSetCreateBitmapRepresentation(alloc unsafe.Pointer, theSet unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateCopy(_:_:)
-func CFCharacterSetCreateCopy(alloc unsafe.Pointer, theSet unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateCopy(alloc AllocatorRef, theSet CharacterSetRef) CharacterSetRef {
 	return _CFCharacterSetCreateCopy(alloc, theSet)
 }
 
@@ -3706,7 +3684,7 @@ func CFCharacterSetCreateCopy(alloc unsafe.Pointer, theSet unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateInvertedSet(_:_:)
-func CFCharacterSetCreateInvertedSet(alloc unsafe.Pointer, theSet unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateInvertedSet(alloc AllocatorRef, theSet CharacterSetRef) CharacterSetRef {
 	return _CFCharacterSetCreateInvertedSet(alloc, theSet)
 }
 
@@ -3716,7 +3694,7 @@ func CFCharacterSetCreateInvertedSet(alloc unsafe.Pointer, theSet unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateMutable(_:)
-func CFCharacterSetCreateMutable(alloc unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateMutable(alloc AllocatorRef) MutableCharacterSetRef {
 	return _CFCharacterSetCreateMutable(alloc)
 }
 
@@ -3726,7 +3704,7 @@ func CFCharacterSetCreateMutable(alloc unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateMutableCopy(_:_:)
-func CFCharacterSetCreateMutableCopy(alloc unsafe.Pointer, theSet unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateMutableCopy(alloc AllocatorRef, theSet CharacterSetRef) MutableCharacterSetRef {
 	return _CFCharacterSetCreateMutableCopy(alloc, theSet)
 }
 
@@ -3736,7 +3714,7 @@ func CFCharacterSetCreateMutableCopy(alloc unsafe.Pointer, theSet unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateWithBitmapRepresentation(_:_:)
-func CFCharacterSetCreateWithBitmapRepresentation(alloc unsafe.Pointer, theData unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateWithBitmapRepresentation(alloc AllocatorRef, theData DataRef) CharacterSetRef {
 	return _CFCharacterSetCreateWithBitmapRepresentation(alloc, theData)
 }
 
@@ -3746,7 +3724,7 @@ func CFCharacterSetCreateWithBitmapRepresentation(alloc unsafe.Pointer, theData 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateWithCharactersInRange(_:_:)
-func CFCharacterSetCreateWithCharactersInRange(alloc unsafe.Pointer, theRange unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateWithCharactersInRange(alloc AllocatorRef, theRange unsafe.Pointer) CharacterSetRef {
 	return _CFCharacterSetCreateWithCharactersInRange(alloc, theRange)
 }
 
@@ -3756,7 +3734,7 @@ func CFCharacterSetCreateWithCharactersInRange(alloc unsafe.Pointer, theRange un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetCreateWithCharactersInString(_:_:)
-func CFCharacterSetCreateWithCharactersInString(alloc unsafe.Pointer, theString unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetCreateWithCharactersInString(alloc AllocatorRef, theString StringRef) CharacterSetRef {
 	return _CFCharacterSetCreateWithCharactersInString(alloc, theString)
 }
 
@@ -3766,7 +3744,7 @@ func CFCharacterSetCreateWithCharactersInString(alloc unsafe.Pointer, theString 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetGetPredefined(_:)
-func CFCharacterSetGetPredefined(theSetIdentifier unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetGetPredefined(theSetIdentifier unsafe.Pointer) CharacterSetRef {
 	return _CFCharacterSetGetPredefined(theSetIdentifier)
 }
 
@@ -3776,7 +3754,7 @@ func CFCharacterSetGetPredefined(theSetIdentifier unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetGetTypeID()
-func CFCharacterSetGetTypeID() unsafe.Pointer {
+func CFCharacterSetGetTypeID() TypeID {
 	return _CFCharacterSetGetTypeID()
 }
 
@@ -3786,7 +3764,7 @@ func CFCharacterSetGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetHasMemberInPlane(_:_:)
-func CFCharacterSetHasMemberInPlane(theSet unsafe.Pointer, thePlane unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetHasMemberInPlane(theSet CharacterSetRef, thePlane Index) unsafe.Pointer {
 	return _CFCharacterSetHasMemberInPlane(theSet, thePlane)
 }
 
@@ -3796,7 +3774,7 @@ func CFCharacterSetHasMemberInPlane(theSet unsafe.Pointer, thePlane unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIntersect(_:_:)
-func CFCharacterSetIntersect(theSet unsafe.Pointer, theOtherSet unsafe.Pointer) {
+func CFCharacterSetIntersect(theSet MutableCharacterSetRef, theOtherSet CharacterSetRef) {
 	_CFCharacterSetIntersect(theSet, theOtherSet)
 }
 
@@ -3806,7 +3784,7 @@ func CFCharacterSetIntersect(theSet unsafe.Pointer, theOtherSet unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetInvert(_:)
-func CFCharacterSetInvert(theSet unsafe.Pointer) {
+func CFCharacterSetInvert(theSet MutableCharacterSetRef) {
 	_CFCharacterSetInvert(theSet)
 }
 
@@ -3816,7 +3794,7 @@ func CFCharacterSetInvert(theSet unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIsCharacterMember(_:_:)
-func CFCharacterSetIsCharacterMember(theSet unsafe.Pointer, theChar unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetIsCharacterMember(theSet CharacterSetRef, theChar unsafe.Pointer) unsafe.Pointer {
 	return _CFCharacterSetIsCharacterMember(theSet, theChar)
 }
 
@@ -3826,7 +3804,7 @@ func CFCharacterSetIsCharacterMember(theSet unsafe.Pointer, theChar unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIsLongCharacterMember(_:_:)
-func CFCharacterSetIsLongCharacterMember(theSet unsafe.Pointer, theChar unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetIsLongCharacterMember(theSet CharacterSetRef, theChar unsafe.Pointer) unsafe.Pointer {
 	return _CFCharacterSetIsLongCharacterMember(theSet, theChar)
 }
 
@@ -3836,7 +3814,7 @@ func CFCharacterSetIsLongCharacterMember(theSet unsafe.Pointer, theChar unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetIsSupersetOfSet(_:_:)
-func CFCharacterSetIsSupersetOfSet(theSet unsafe.Pointer, theOtherset unsafe.Pointer) unsafe.Pointer {
+func CFCharacterSetIsSupersetOfSet(theSet CharacterSetRef, theOtherset CharacterSetRef) unsafe.Pointer {
 	return _CFCharacterSetIsSupersetOfSet(theSet, theOtherset)
 }
 
@@ -3846,7 +3824,7 @@ func CFCharacterSetIsSupersetOfSet(theSet unsafe.Pointer, theOtherset unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetRemoveCharactersInRange(_:_:)
-func CFCharacterSetRemoveCharactersInRange(theSet unsafe.Pointer, theRange unsafe.Pointer) {
+func CFCharacterSetRemoveCharactersInRange(theSet MutableCharacterSetRef, theRange unsafe.Pointer) {
 	_CFCharacterSetRemoveCharactersInRange(theSet, theRange)
 }
 
@@ -3856,7 +3834,7 @@ func CFCharacterSetRemoveCharactersInRange(theSet unsafe.Pointer, theRange unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetRemoveCharactersInString(_:_:)
-func CFCharacterSetRemoveCharactersInString(theSet unsafe.Pointer, theString unsafe.Pointer) {
+func CFCharacterSetRemoveCharactersInString(theSet MutableCharacterSetRef, theString StringRef) {
 	_CFCharacterSetRemoveCharactersInString(theSet, theString)
 }
 
@@ -3866,7 +3844,7 @@ func CFCharacterSetRemoveCharactersInString(theSet unsafe.Pointer, theString uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetUnion(_:_:)
-func CFCharacterSetUnion(theSet unsafe.Pointer, theOtherSet unsafe.Pointer) {
+func CFCharacterSetUnion(theSet MutableCharacterSetRef, theOtherSet CharacterSetRef) {
 	_CFCharacterSetUnion(theSet, theOtherSet)
 }
 
@@ -3876,7 +3854,7 @@ func CFCharacterSetUnion(theSet unsafe.Pointer, theOtherSet unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyDescription(_:)
-func CFCopyDescription(cf unsafe.Pointer) unsafe.Pointer {
+func CFCopyDescription(cf TypeRef) StringRef {
 	return _CFCopyDescription(cf)
 }
 
@@ -3884,7 +3862,7 @@ func CFCopyDescription(cf unsafe.Pointer) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyHomeDirectoryURL()
-func CFCopyHomeDirectoryURL() unsafe.Pointer {
+func CFCopyHomeDirectoryURL() URLRef {
 	return _CFCopyHomeDirectoryURL()
 }
 
@@ -3894,7 +3872,7 @@ func CFCopyHomeDirectoryURL() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyTypeIDDescription(_:)
-func CFCopyTypeIDDescription(type_id unsafe.Pointer) unsafe.Pointer {
+func CFCopyTypeIDDescription(type_id TypeID) StringRef {
 	return _CFCopyTypeIDDescription(type_id)
 }
 
@@ -3904,7 +3882,7 @@ func CFCopyTypeIDDescription(type_id unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataAppendBytes(_:_:_:)
-func CFDataAppendBytes(theData unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer) {
+func CFDataAppendBytes(theData MutableDataRef, bytes unsafe.Pointer, length Index) {
 	_CFDataAppendBytes(theData, bytes, length)
 }
 
@@ -3914,7 +3892,7 @@ func CFDataAppendBytes(theData unsafe.Pointer, bytes unsafe.Pointer, length unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreate(_:_:_:)
-func CFDataCreate(allocator unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
+func CFDataCreate(allocator AllocatorRef, bytes unsafe.Pointer, length Index) DataRef {
 	return _CFDataCreate(allocator, bytes, length)
 }
 
@@ -3924,7 +3902,7 @@ func CFDataCreate(allocator unsafe.Pointer, bytes unsafe.Pointer, length unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateCopy(_:_:)
-func CFDataCreateCopy(allocator unsafe.Pointer, theData unsafe.Pointer) unsafe.Pointer {
+func CFDataCreateCopy(allocator AllocatorRef, theData DataRef) DataRef {
 	return _CFDataCreateCopy(allocator, theData)
 }
 
@@ -3934,7 +3912,7 @@ func CFDataCreateCopy(allocator unsafe.Pointer, theData unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateMutable(_:_:)
-func CFDataCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer) unsafe.Pointer {
+func CFDataCreateMutable(allocator AllocatorRef, capacity Index) MutableDataRef {
 	return _CFDataCreateMutable(allocator, capacity)
 }
 
@@ -3944,7 +3922,7 @@ func CFDataCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateMutableCopy(_:_:_:)
-func CFDataCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theData unsafe.Pointer) unsafe.Pointer {
+func CFDataCreateMutableCopy(allocator AllocatorRef, capacity Index, theData DataRef) MutableDataRef {
 	return _CFDataCreateMutableCopy(allocator, capacity, theData)
 }
 
@@ -3954,7 +3932,7 @@ func CFDataCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataCreateWithBytesNoCopy(_:_:_:_:)
-func CFDataCreateWithBytesNoCopy(allocator unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer, bytesDeallocator unsafe.Pointer) unsafe.Pointer {
+func CFDataCreateWithBytesNoCopy(allocator AllocatorRef, bytes unsafe.Pointer, length Index, bytesDeallocator AllocatorRef) DataRef {
 	return _CFDataCreateWithBytesNoCopy(allocator, bytes, length, bytesDeallocator)
 }
 
@@ -3964,7 +3942,7 @@ func CFDataCreateWithBytesNoCopy(allocator unsafe.Pointer, bytes unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataDeleteBytes(_:_:)
-func CFDataDeleteBytes(theData unsafe.Pointer, range_ unsafe.Pointer) {
+func CFDataDeleteBytes(theData MutableDataRef, range_ unsafe.Pointer) {
 	_CFDataDeleteBytes(theData, range_)
 }
 
@@ -3975,7 +3953,7 @@ func CFDataDeleteBytes(theData unsafe.Pointer, range_ unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataFind(_:_:_:_:)
-func CFDataFind(theData unsafe.Pointer, dataToFind unsafe.Pointer, searchRange unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
+func CFDataFind(theData DataRef, dataToFind DataRef, searchRange unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
 	return _CFDataFind(theData, dataToFind, searchRange, compareOptions)
 }
 
@@ -3985,7 +3963,7 @@ func CFDataFind(theData unsafe.Pointer, dataToFind unsafe.Pointer, searchRange u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetBytePtr(_:)
-func CFDataGetBytePtr(theData unsafe.Pointer) unsafe.Pointer {
+func CFDataGetBytePtr(theData DataRef) unsafe.Pointer {
 	return _CFDataGetBytePtr(theData)
 }
 
@@ -3995,7 +3973,7 @@ func CFDataGetBytePtr(theData unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetBytes(_:_:_:)
-func CFDataGetBytes(theData unsafe.Pointer, range_ unsafe.Pointer, buffer unsafe.Pointer) {
+func CFDataGetBytes(theData DataRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
 	_CFDataGetBytes(theData, range_, buffer)
 }
 
@@ -4005,7 +3983,7 @@ func CFDataGetBytes(theData unsafe.Pointer, range_ unsafe.Pointer, buffer unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetLength(_:)
-func CFDataGetLength(theData unsafe.Pointer) unsafe.Pointer {
+func CFDataGetLength(theData DataRef) Index {
 	return _CFDataGetLength(theData)
 }
 
@@ -4015,7 +3993,7 @@ func CFDataGetLength(theData unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetMutableBytePtr(_:)
-func CFDataGetMutableBytePtr(theData unsafe.Pointer) unsafe.Pointer {
+func CFDataGetMutableBytePtr(theData MutableDataRef) unsafe.Pointer {
 	return _CFDataGetMutableBytePtr(theData)
 }
 
@@ -4025,7 +4003,7 @@ func CFDataGetMutableBytePtr(theData unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataGetTypeID()
-func CFDataGetTypeID() unsafe.Pointer {
+func CFDataGetTypeID() TypeID {
 	return _CFDataGetTypeID()
 }
 
@@ -4035,7 +4013,7 @@ func CFDataGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataIncreaseLength(_:_:)
-func CFDataIncreaseLength(theData unsafe.Pointer, extraLength unsafe.Pointer) {
+func CFDataIncreaseLength(theData MutableDataRef, extraLength Index) {
 	_CFDataIncreaseLength(theData, extraLength)
 }
 
@@ -4045,7 +4023,7 @@ func CFDataIncreaseLength(theData unsafe.Pointer, extraLength unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataReplaceBytes(_:_:_:_:)
-func CFDataReplaceBytes(theData unsafe.Pointer, range_ unsafe.Pointer, newBytes unsafe.Pointer, newLength unsafe.Pointer) {
+func CFDataReplaceBytes(theData MutableDataRef, range_ unsafe.Pointer, newBytes unsafe.Pointer, newLength Index) {
 	_CFDataReplaceBytes(theData, range_, newBytes, newLength)
 }
 
@@ -4055,7 +4033,7 @@ func CFDataReplaceBytes(theData unsafe.Pointer, range_ unsafe.Pointer, newBytes 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataSetLength(_:_:)
-func CFDataSetLength(theData unsafe.Pointer, length unsafe.Pointer) {
+func CFDataSetLength(theData MutableDataRef, length Index) {
 	_CFDataSetLength(theData, length)
 }
 
@@ -4065,7 +4043,7 @@ func CFDataSetLength(theData unsafe.Pointer, length unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateCompare(_:_:_:)
-func CFDateCompare(theDate unsafe.Pointer, otherDate unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFDateCompare(theDate DateRef, otherDate DateRef, context unsafe.Pointer) unsafe.Pointer {
 	return _CFDateCompare(theDate, otherDate, context)
 }
 
@@ -4075,7 +4053,7 @@ func CFDateCompare(theDate unsafe.Pointer, otherDate unsafe.Pointer, context uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateCreate(_:_:)
-func CFDateCreate(allocator unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFDateCreate(allocator AllocatorRef, at AbsoluteTime) DateRef {
 	return _CFDateCreate(allocator, at)
 }
 
@@ -4085,7 +4063,7 @@ func CFDateCreate(allocator unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCopyProperty(_:_:)
-func CFDateFormatterCopyProperty(formatter unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCopyProperty(formatter DateFormatterRef, key DateFormatterKey) TypeRef {
 	return _CFDateFormatterCopyProperty(formatter, key)
 }
 
@@ -4095,7 +4073,7 @@ func CFDateFormatterCopyProperty(formatter unsafe.Pointer, key unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreate(_:_:_:_:)
-func CFDateFormatterCreate(allocator unsafe.Pointer, locale unsafe.Pointer, dateStyle unsafe.Pointer, timeStyle unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCreate(allocator AllocatorRef, locale LocaleRef, dateStyle unsafe.Pointer, timeStyle unsafe.Pointer) DateFormatterRef {
 	return _CFDateFormatterCreate(allocator, locale, dateStyle, timeStyle)
 }
 
@@ -4106,7 +4084,7 @@ func CFDateFormatterCreate(allocator unsafe.Pointer, locale unsafe.Pointer, date
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateDateFormatFromTemplate(_:_:_:_:)
-func CFDateFormatterCreateDateFormatFromTemplate(allocator unsafe.Pointer, tmplate unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCreateDateFormatFromTemplate(allocator AllocatorRef, tmplate StringRef, options OptionFlags, locale LocaleRef) StringRef {
 	return _CFDateFormatterCreateDateFormatFromTemplate(allocator, tmplate, options, locale)
 }
 
@@ -4116,7 +4094,7 @@ func CFDateFormatterCreateDateFormatFromTemplate(allocator unsafe.Pointer, tmpla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateDateFromString(_:_:_:_:)
-func CFDateFormatterCreateDateFromString(allocator unsafe.Pointer, formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCreateDateFromString(allocator AllocatorRef, formatter DateFormatterRef, string_ StringRef, rangep unsafe.Pointer) DateRef {
 	return _CFDateFormatterCreateDateFromString(allocator, formatter, string_, rangep)
 }
 
@@ -4125,7 +4103,7 @@ func CFDateFormatterCreateDateFromString(allocator unsafe.Pointer, formatter uns
 // Added in macOS 10.12.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateISO8601Formatter(_:_:)
-func CFDateFormatterCreateISO8601Formatter(allocator unsafe.Pointer, formatOptions unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCreateISO8601Formatter(allocator AllocatorRef, formatOptions unsafe.Pointer) DateFormatterRef {
 	return _CFDateFormatterCreateISO8601Formatter(allocator, formatOptions)
 }
 
@@ -4135,7 +4113,7 @@ func CFDateFormatterCreateISO8601Formatter(allocator unsafe.Pointer, formatOptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateStringWithAbsoluteTime(_:_:_:)
-func CFDateFormatterCreateStringWithAbsoluteTime(allocator unsafe.Pointer, formatter unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCreateStringWithAbsoluteTime(allocator AllocatorRef, formatter DateFormatterRef, at AbsoluteTime) StringRef {
 	return _CFDateFormatterCreateStringWithAbsoluteTime(allocator, formatter, at)
 }
 
@@ -4145,7 +4123,7 @@ func CFDateFormatterCreateStringWithAbsoluteTime(allocator unsafe.Pointer, forma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterCreateStringWithDate(_:_:_:)
-func CFDateFormatterCreateStringWithDate(allocator unsafe.Pointer, formatter unsafe.Pointer, date unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterCreateStringWithDate(allocator AllocatorRef, formatter DateFormatterRef, date DateRef) StringRef {
 	return _CFDateFormatterCreateStringWithDate(allocator, formatter, date)
 }
 
@@ -4155,7 +4133,7 @@ func CFDateFormatterCreateStringWithDate(allocator unsafe.Pointer, formatter uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetAbsoluteTimeFromString(_:_:_:_:)
-func CFDateFormatterGetAbsoluteTimeFromString(formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer, atp unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterGetAbsoluteTimeFromString(formatter DateFormatterRef, string_ StringRef, rangep unsafe.Pointer, atp unsafe.Pointer) unsafe.Pointer {
 	return _CFDateFormatterGetAbsoluteTimeFromString(formatter, string_, rangep, atp)
 }
 
@@ -4165,7 +4143,7 @@ func CFDateFormatterGetAbsoluteTimeFromString(formatter unsafe.Pointer, string_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetDateStyle(_:)
-func CFDateFormatterGetDateStyle(formatter unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterGetDateStyle(formatter DateFormatterRef) unsafe.Pointer {
 	return _CFDateFormatterGetDateStyle(formatter)
 }
 
@@ -4175,7 +4153,7 @@ func CFDateFormatterGetDateStyle(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetFormat(_:)
-func CFDateFormatterGetFormat(formatter unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterGetFormat(formatter DateFormatterRef) StringRef {
 	return _CFDateFormatterGetFormat(formatter)
 }
 
@@ -4185,7 +4163,7 @@ func CFDateFormatterGetFormat(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetLocale(_:)
-func CFDateFormatterGetLocale(formatter unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterGetLocale(formatter DateFormatterRef) LocaleRef {
 	return _CFDateFormatterGetLocale(formatter)
 }
 
@@ -4195,7 +4173,7 @@ func CFDateFormatterGetLocale(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetTimeStyle(_:)
-func CFDateFormatterGetTimeStyle(formatter unsafe.Pointer) unsafe.Pointer {
+func CFDateFormatterGetTimeStyle(formatter DateFormatterRef) unsafe.Pointer {
 	return _CFDateFormatterGetTimeStyle(formatter)
 }
 
@@ -4205,7 +4183,7 @@ func CFDateFormatterGetTimeStyle(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterGetTypeID()
-func CFDateFormatterGetTypeID() unsafe.Pointer {
+func CFDateFormatterGetTypeID() TypeID {
 	return _CFDateFormatterGetTypeID()
 }
 
@@ -4215,7 +4193,7 @@ func CFDateFormatterGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterSetFormat(_:_:)
-func CFDateFormatterSetFormat(formatter unsafe.Pointer, formatString unsafe.Pointer) {
+func CFDateFormatterSetFormat(formatter DateFormatterRef, formatString StringRef) {
 	_CFDateFormatterSetFormat(formatter, formatString)
 }
 
@@ -4225,7 +4203,7 @@ func CFDateFormatterSetFormat(formatter unsafe.Pointer, formatString unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterSetProperty(_:_:_:)
-func CFDateFormatterSetProperty(formatter unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+func CFDateFormatterSetProperty(formatter DateFormatterRef, key StringRef, value TypeRef) {
 	_CFDateFormatterSetProperty(formatter, key, value)
 }
 
@@ -4235,7 +4213,7 @@ func CFDateFormatterSetProperty(formatter unsafe.Pointer, key unsafe.Pointer, va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateGetAbsoluteTime(_:)
-func CFDateGetAbsoluteTime(theDate unsafe.Pointer) unsafe.Pointer {
+func CFDateGetAbsoluteTime(theDate DateRef) AbsoluteTime {
 	return _CFDateGetAbsoluteTime(theDate)
 }
 
@@ -4245,7 +4223,7 @@ func CFDateGetAbsoluteTime(theDate unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateGetTimeIntervalSinceDate(_:_:)
-func CFDateGetTimeIntervalSinceDate(theDate unsafe.Pointer, otherDate unsafe.Pointer) unsafe.Pointer {
+func CFDateGetTimeIntervalSinceDate(theDate DateRef, otherDate DateRef) TimeInterval {
 	return _CFDateGetTimeIntervalSinceDate(theDate, otherDate)
 }
 
@@ -4255,7 +4233,7 @@ func CFDateGetTimeIntervalSinceDate(theDate unsafe.Pointer, otherDate unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateGetTypeID()
-func CFDateGetTypeID() unsafe.Pointer {
+func CFDateGetTypeID() TypeID {
 	return _CFDateGetTypeID()
 }
 
@@ -4265,7 +4243,7 @@ func CFDateGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryAddValue(_:_:_:)
-func CFDictionaryAddValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+func CFDictionaryAddValue(theDict MutableDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_CFDictionaryAddValue(theDict, key, value)
 }
 
@@ -4275,7 +4253,7 @@ func CFDictionaryAddValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryApplyFunction(_:_:_:)
-func CFDictionaryApplyFunction(theDict unsafe.Pointer, applier unsafe.Pointer, context unsafe.Pointer) {
+func CFDictionaryApplyFunction(theDict DictionaryRef, applier DictionaryApplierFunction, context unsafe.Pointer) {
 	_CFDictionaryApplyFunction(theDict, applier, context)
 }
 
@@ -4285,7 +4263,7 @@ func CFDictionaryApplyFunction(theDict unsafe.Pointer, applier unsafe.Pointer, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryContainsKey(_:_:)
-func CFDictionaryContainsKey(theDict unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryContainsKey(theDict DictionaryRef, key unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryContainsKey(theDict, key)
 }
 
@@ -4295,7 +4273,7 @@ func CFDictionaryContainsKey(theDict unsafe.Pointer, key unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryContainsValue(_:_:)
-func CFDictionaryContainsValue(theDict unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryContainsValue(theDict DictionaryRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryContainsValue(theDict, value)
 }
 
@@ -4305,7 +4283,7 @@ func CFDictionaryContainsValue(theDict unsafe.Pointer, value unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreate(_:_:_:_:_:_:)
-func CFDictionaryCreate(allocator unsafe.Pointer, keys unsafe.Pointer, values unsafe.Pointer, numValues unsafe.Pointer, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryCreate(allocator AllocatorRef, keys unsafe.Pointer, values unsafe.Pointer, numValues Index, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) DictionaryRef {
 	return _CFDictionaryCreate(allocator, keys, values, numValues, keyCallBacks, valueCallBacks)
 }
 
@@ -4315,7 +4293,7 @@ func CFDictionaryCreate(allocator unsafe.Pointer, keys unsafe.Pointer, values un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateCopy(_:_:)
-func CFDictionaryCreateCopy(allocator unsafe.Pointer, theDict unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryCreateCopy(allocator AllocatorRef, theDict DictionaryRef) DictionaryRef {
 	return _CFDictionaryCreateCopy(allocator, theDict)
 }
 
@@ -4325,7 +4303,7 @@ func CFDictionaryCreateCopy(allocator unsafe.Pointer, theDict unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateMutable(_:_:_:_:)
-func CFDictionaryCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryCreateMutable(allocator AllocatorRef, capacity Index, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) MutableDictionaryRef {
 	return _CFDictionaryCreateMutable(allocator, capacity, keyCallBacks, valueCallBacks)
 }
 
@@ -4335,7 +4313,7 @@ func CFDictionaryCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateMutableCopy(_:_:_:)
-func CFDictionaryCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theDict unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryCreateMutableCopy(allocator AllocatorRef, capacity Index, theDict DictionaryRef) MutableDictionaryRef {
 	return _CFDictionaryCreateMutableCopy(allocator, capacity, theDict)
 }
 
@@ -4345,7 +4323,7 @@ func CFDictionaryCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetCount(_:)
-func CFDictionaryGetCount(theDict unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryGetCount(theDict DictionaryRef) Index {
 	return _CFDictionaryGetCount(theDict)
 }
 
@@ -4355,7 +4333,7 @@ func CFDictionaryGetCount(theDict unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetCountOfKey(_:_:)
-func CFDictionaryGetCountOfKey(theDict unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryGetCountOfKey(theDict DictionaryRef, key unsafe.Pointer) Index {
 	return _CFDictionaryGetCountOfKey(theDict, key)
 }
 
@@ -4365,7 +4343,7 @@ func CFDictionaryGetCountOfKey(theDict unsafe.Pointer, key unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetCountOfValue(_:_:)
-func CFDictionaryGetCountOfValue(theDict unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryGetCountOfValue(theDict DictionaryRef, value unsafe.Pointer) Index {
 	return _CFDictionaryGetCountOfValue(theDict, value)
 }
 
@@ -4375,7 +4353,7 @@ func CFDictionaryGetCountOfValue(theDict unsafe.Pointer, value unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetKeysAndValues(_:_:_:)
-func CFDictionaryGetKeysAndValues(theDict unsafe.Pointer, keys unsafe.Pointer, values unsafe.Pointer) {
+func CFDictionaryGetKeysAndValues(theDict DictionaryRef, keys unsafe.Pointer, values unsafe.Pointer) {
 	_CFDictionaryGetKeysAndValues(theDict, keys, values)
 }
 
@@ -4385,7 +4363,7 @@ func CFDictionaryGetKeysAndValues(theDict unsafe.Pointer, keys unsafe.Pointer, v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetTypeID()
-func CFDictionaryGetTypeID() unsafe.Pointer {
+func CFDictionaryGetTypeID() TypeID {
 	return _CFDictionaryGetTypeID()
 }
 
@@ -4395,7 +4373,7 @@ func CFDictionaryGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetValue(_:_:)
-func CFDictionaryGetValue(theDict unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryGetValue(theDict DictionaryRef, key unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryGetValue(theDict, key)
 }
 
@@ -4405,7 +4383,7 @@ func CFDictionaryGetValue(theDict unsafe.Pointer, key unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryGetValueIfPresent(_:_:_:)
-func CFDictionaryGetValueIfPresent(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFDictionaryGetValueIfPresent(theDict DictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryGetValueIfPresent(theDict, key, value)
 }
 
@@ -4415,7 +4393,7 @@ func CFDictionaryGetValueIfPresent(theDict unsafe.Pointer, key unsafe.Pointer, v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRemoveAllValues(_:)
-func CFDictionaryRemoveAllValues(theDict unsafe.Pointer) {
+func CFDictionaryRemoveAllValues(theDict MutableDictionaryRef) {
 	_CFDictionaryRemoveAllValues(theDict)
 }
 
@@ -4425,7 +4403,7 @@ func CFDictionaryRemoveAllValues(theDict unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRemoveValue(_:_:)
-func CFDictionaryRemoveValue(theDict unsafe.Pointer, key unsafe.Pointer) {
+func CFDictionaryRemoveValue(theDict MutableDictionaryRef, key unsafe.Pointer) {
 	_CFDictionaryRemoveValue(theDict, key)
 }
 
@@ -4435,7 +4413,7 @@ func CFDictionaryRemoveValue(theDict unsafe.Pointer, key unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryReplaceValue(_:_:_:)
-func CFDictionaryReplaceValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+func CFDictionaryReplaceValue(theDict MutableDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_CFDictionaryReplaceValue(theDict, key, value)
 }
 
@@ -4445,7 +4423,7 @@ func CFDictionaryReplaceValue(theDict unsafe.Pointer, key unsafe.Pointer, value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionarySetValue(_:_:_:)
-func CFDictionarySetValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+func CFDictionarySetValue(theDict MutableDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_CFDictionarySetValue(theDict, key, value)
 }
 
@@ -4455,7 +4433,7 @@ func CFDictionarySetValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFEqual(_:_:)
-func CFEqual(cf1 unsafe.Pointer, cf2 unsafe.Pointer) unsafe.Pointer {
+func CFEqual(cf1 TypeRef, cf2 TypeRef) unsafe.Pointer {
 	return _CFEqual(cf1, cf2)
 }
 
@@ -4466,7 +4444,7 @@ func CFEqual(cf1 unsafe.Pointer, cf2 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyDescription(_:)
-func CFErrorCopyDescription(err unsafe.Pointer) unsafe.Pointer {
+func CFErrorCopyDescription(err ErrorRef) StringRef {
 	return _CFErrorCopyDescription(err)
 }
 
@@ -4477,7 +4455,7 @@ func CFErrorCopyDescription(err unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyFailureReason(_:)
-func CFErrorCopyFailureReason(err unsafe.Pointer) unsafe.Pointer {
+func CFErrorCopyFailureReason(err ErrorRef) StringRef {
 	return _CFErrorCopyFailureReason(err)
 }
 
@@ -4488,7 +4466,7 @@ func CFErrorCopyFailureReason(err unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyRecoverySuggestion(_:)
-func CFErrorCopyRecoverySuggestion(err unsafe.Pointer) unsafe.Pointer {
+func CFErrorCopyRecoverySuggestion(err ErrorRef) StringRef {
 	return _CFErrorCopyRecoverySuggestion(err)
 }
 
@@ -4499,7 +4477,7 @@ func CFErrorCopyRecoverySuggestion(err unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCopyUserInfo(_:)
-func CFErrorCopyUserInfo(err unsafe.Pointer) unsafe.Pointer {
+func CFErrorCopyUserInfo(err ErrorRef) DictionaryRef {
 	return _CFErrorCopyUserInfo(err)
 }
 
@@ -4510,7 +4488,7 @@ func CFErrorCopyUserInfo(err unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCreate(_:_:_:_:)
-func CFErrorCreate(allocator unsafe.Pointer, domain unsafe.Pointer, code unsafe.Pointer, userInfo unsafe.Pointer) unsafe.Pointer {
+func CFErrorCreate(allocator AllocatorRef, domain ErrorDomain, code Index, userInfo DictionaryRef) ErrorRef {
 	return _CFErrorCreate(allocator, domain, code, userInfo)
 }
 
@@ -4521,7 +4499,7 @@ func CFErrorCreate(allocator unsafe.Pointer, domain unsafe.Pointer, code unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorCreateWithUserInfoKeysAndValues(_:_:_:_:_:_:)
-func CFErrorCreateWithUserInfoKeysAndValues(allocator unsafe.Pointer, domain unsafe.Pointer, code unsafe.Pointer, userInfoKeys unsafe.Pointer, userInfoValues unsafe.Pointer, numUserInfoValues unsafe.Pointer) unsafe.Pointer {
+func CFErrorCreateWithUserInfoKeysAndValues(allocator AllocatorRef, domain ErrorDomain, code Index, userInfoKeys unsafe.Pointer, userInfoValues unsafe.Pointer, numUserInfoValues Index) ErrorRef {
 	return _CFErrorCreateWithUserInfoKeysAndValues(allocator, domain, code, userInfoKeys, userInfoValues, numUserInfoValues)
 }
 
@@ -4532,7 +4510,7 @@ func CFErrorCreateWithUserInfoKeysAndValues(allocator unsafe.Pointer, domain uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorGetCode(_:)
-func CFErrorGetCode(err unsafe.Pointer) unsafe.Pointer {
+func CFErrorGetCode(err ErrorRef) Index {
 	return _CFErrorGetCode(err)
 }
 
@@ -4543,7 +4521,7 @@ func CFErrorGetCode(err unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorGetDomain(_:)
-func CFErrorGetDomain(err unsafe.Pointer) unsafe.Pointer {
+func CFErrorGetDomain(err ErrorRef) ErrorDomain {
 	return _CFErrorGetDomain(err)
 }
 
@@ -4554,7 +4532,7 @@ func CFErrorGetDomain(err unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFErrorGetTypeID()
-func CFErrorGetTypeID() unsafe.Pointer {
+func CFErrorGetTypeID() TypeID {
 	return _CFErrorGetTypeID()
 }
 
@@ -4565,7 +4543,7 @@ func CFErrorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorCreate(_:_:_:_:_:)
-func CFFileDescriptorCreate(allocator unsafe.Pointer, fd unsafe.Pointer, closeOnInvalidate unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFFileDescriptorCreate(allocator AllocatorRef, fd FileDescriptorNativeDescriptor, closeOnInvalidate unsafe.Pointer, callout FileDescriptorCallBack, context unsafe.Pointer) FileDescriptorRef {
 	return _CFFileDescriptorCreate(allocator, fd, closeOnInvalidate, callout, context)
 }
 
@@ -4576,7 +4554,7 @@ func CFFileDescriptorCreate(allocator unsafe.Pointer, fd unsafe.Pointer, closeOn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorCreateRunLoopSource(_:_:_:)
-func CFFileDescriptorCreateRunLoopSource(allocator unsafe.Pointer, f unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFFileDescriptorCreateRunLoopSource(allocator AllocatorRef, f FileDescriptorRef, order Index) RunLoopSourceRef {
 	return _CFFileDescriptorCreateRunLoopSource(allocator, f, order)
 }
 
@@ -4587,7 +4565,7 @@ func CFFileDescriptorCreateRunLoopSource(allocator unsafe.Pointer, f unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorDisableCallBacks(_:_:)
-func CFFileDescriptorDisableCallBacks(f unsafe.Pointer, callBackTypes unsafe.Pointer) {
+func CFFileDescriptorDisableCallBacks(f FileDescriptorRef, callBackTypes OptionFlags) {
 	_CFFileDescriptorDisableCallBacks(f, callBackTypes)
 }
 
@@ -4598,7 +4576,7 @@ func CFFileDescriptorDisableCallBacks(f unsafe.Pointer, callBackTypes unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorEnableCallBacks(_:_:)
-func CFFileDescriptorEnableCallBacks(f unsafe.Pointer, callBackTypes unsafe.Pointer) {
+func CFFileDescriptorEnableCallBacks(f FileDescriptorRef, callBackTypes OptionFlags) {
 	_CFFileDescriptorEnableCallBacks(f, callBackTypes)
 }
 
@@ -4609,7 +4587,7 @@ func CFFileDescriptorEnableCallBacks(f unsafe.Pointer, callBackTypes unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorGetContext(_:_:)
-func CFFileDescriptorGetContext(f unsafe.Pointer, context unsafe.Pointer) {
+func CFFileDescriptorGetContext(f FileDescriptorRef, context unsafe.Pointer) {
 	_CFFileDescriptorGetContext(f, context)
 }
 
@@ -4620,7 +4598,7 @@ func CFFileDescriptorGetContext(f unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorGetNativeDescriptor(_:)
-func CFFileDescriptorGetNativeDescriptor(f unsafe.Pointer) unsafe.Pointer {
+func CFFileDescriptorGetNativeDescriptor(f FileDescriptorRef) FileDescriptorNativeDescriptor {
 	return _CFFileDescriptorGetNativeDescriptor(f)
 }
 
@@ -4631,7 +4609,7 @@ func CFFileDescriptorGetNativeDescriptor(f unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorGetTypeID()
-func CFFileDescriptorGetTypeID() unsafe.Pointer {
+func CFFileDescriptorGetTypeID() TypeID {
 	return _CFFileDescriptorGetTypeID()
 }
 
@@ -4642,7 +4620,7 @@ func CFFileDescriptorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorInvalidate(_:)
-func CFFileDescriptorInvalidate(f unsafe.Pointer) {
+func CFFileDescriptorInvalidate(f FileDescriptorRef) {
 	_CFFileDescriptorInvalidate(f)
 }
 
@@ -4653,7 +4631,7 @@ func CFFileDescriptorInvalidate(f unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorIsValid(_:)
-func CFFileDescriptorIsValid(f unsafe.Pointer) unsafe.Pointer {
+func CFFileDescriptorIsValid(f FileDescriptorRef) unsafe.Pointer {
 	return _CFFileDescriptorIsValid(f)
 }
 
@@ -4664,7 +4642,7 @@ func CFFileDescriptorIsValid(f unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityClearProperties(_:_:)
-func CFFileSecurityClearProperties(fileSec unsafe.Pointer, clearPropertyMask unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityClearProperties(fileSec FileSecurityRef, clearPropertyMask unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityClearProperties(fileSec, clearPropertyMask)
 }
 
@@ -4675,7 +4653,7 @@ func CFFileSecurityClearProperties(fileSec unsafe.Pointer, clearPropertyMask uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCopyAccessControlList(_:_:)
-func CFFileSecurityCopyAccessControlList(fileSec unsafe.Pointer, accessControlList unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityCopyAccessControlList(fileSec FileSecurityRef, accessControlList unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityCopyAccessControlList(fileSec, accessControlList)
 }
 
@@ -4686,7 +4664,7 @@ func CFFileSecurityCopyAccessControlList(fileSec unsafe.Pointer, accessControlLi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCopyGroupUUID(_:_:)
-func CFFileSecurityCopyGroupUUID(fileSec unsafe.Pointer, groupUUID unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityCopyGroupUUID(fileSec FileSecurityRef, groupUUID unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityCopyGroupUUID(fileSec, groupUUID)
 }
 
@@ -4697,7 +4675,7 @@ func CFFileSecurityCopyGroupUUID(fileSec unsafe.Pointer, groupUUID unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCopyOwnerUUID(_:_:)
-func CFFileSecurityCopyOwnerUUID(fileSec unsafe.Pointer, ownerUUID unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityCopyOwnerUUID(fileSec FileSecurityRef, ownerUUID unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityCopyOwnerUUID(fileSec, ownerUUID)
 }
 
@@ -4708,7 +4686,7 @@ func CFFileSecurityCopyOwnerUUID(fileSec unsafe.Pointer, ownerUUID unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCreate(_:)
-func CFFileSecurityCreate(allocator unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityCreate(allocator AllocatorRef) FileSecurityRef {
 	return _CFFileSecurityCreate(allocator)
 }
 
@@ -4719,7 +4697,7 @@ func CFFileSecurityCreate(allocator unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityCreateCopy(_:_:)
-func CFFileSecurityCreateCopy(allocator unsafe.Pointer, fileSec unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityCreateCopy(allocator AllocatorRef, fileSec FileSecurityRef) FileSecurityRef {
 	return _CFFileSecurityCreateCopy(allocator, fileSec)
 }
 
@@ -4730,7 +4708,7 @@ func CFFileSecurityCreateCopy(allocator unsafe.Pointer, fileSec unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetGroup(_:_:)
-func CFFileSecurityGetGroup(fileSec unsafe.Pointer, group unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityGetGroup(fileSec FileSecurityRef, group unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityGetGroup(fileSec, group)
 }
 
@@ -4741,7 +4719,7 @@ func CFFileSecurityGetGroup(fileSec unsafe.Pointer, group unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetMode(_:_:)
-func CFFileSecurityGetMode(fileSec unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityGetMode(fileSec FileSecurityRef, mode unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityGetMode(fileSec, mode)
 }
 
@@ -4752,7 +4730,7 @@ func CFFileSecurityGetMode(fileSec unsafe.Pointer, mode unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetOwner(_:_:)
-func CFFileSecurityGetOwner(fileSec unsafe.Pointer, owner unsafe.Pointer) unsafe.Pointer {
+func CFFileSecurityGetOwner(fileSec FileSecurityRef, owner unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecurityGetOwner(fileSec, owner)
 }
 
@@ -4763,7 +4741,7 @@ func CFFileSecurityGetOwner(fileSec unsafe.Pointer, owner unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityGetTypeID()
-func CFFileSecurityGetTypeID() unsafe.Pointer {
+func CFFileSecurityGetTypeID() TypeID {
 	return _CFFileSecurityGetTypeID()
 }
 
@@ -4774,7 +4752,7 @@ func CFFileSecurityGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetAccessControlList(_:_:)
-func CFFileSecuritySetAccessControlList(fileSec unsafe.Pointer, accessControlList unsafe.Pointer) unsafe.Pointer {
+func CFFileSecuritySetAccessControlList(fileSec FileSecurityRef, accessControlList unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetAccessControlList(fileSec, accessControlList)
 }
 
@@ -4785,7 +4763,7 @@ func CFFileSecuritySetAccessControlList(fileSec unsafe.Pointer, accessControlLis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetGroup(_:_:)
-func CFFileSecuritySetGroup(fileSec unsafe.Pointer, group unsafe.Pointer) unsafe.Pointer {
+func CFFileSecuritySetGroup(fileSec FileSecurityRef, group unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetGroup(fileSec, group)
 }
 
@@ -4796,7 +4774,7 @@ func CFFileSecuritySetGroup(fileSec unsafe.Pointer, group unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetGroupUUID(_:_:)
-func CFFileSecuritySetGroupUUID(fileSec unsafe.Pointer, groupUUID unsafe.Pointer) unsafe.Pointer {
+func CFFileSecuritySetGroupUUID(fileSec FileSecurityRef, groupUUID UUIDRef) unsafe.Pointer {
 	return _CFFileSecuritySetGroupUUID(fileSec, groupUUID)
 }
 
@@ -4807,7 +4785,7 @@ func CFFileSecuritySetGroupUUID(fileSec unsafe.Pointer, groupUUID unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetMode(_:_:)
-func CFFileSecuritySetMode(fileSec unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CFFileSecuritySetMode(fileSec FileSecurityRef, mode unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetMode(fileSec, mode)
 }
 
@@ -4818,7 +4796,7 @@ func CFFileSecuritySetMode(fileSec unsafe.Pointer, mode unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetOwner(_:_:)
-func CFFileSecuritySetOwner(fileSec unsafe.Pointer, owner unsafe.Pointer) unsafe.Pointer {
+func CFFileSecuritySetOwner(fileSec FileSecurityRef, owner unsafe.Pointer) unsafe.Pointer {
 	return _CFFileSecuritySetOwner(fileSec, owner)
 }
 
@@ -4829,7 +4807,7 @@ func CFFileSecuritySetOwner(fileSec unsafe.Pointer, owner unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecuritySetOwnerUUID(_:_:)
-func CFFileSecuritySetOwnerUUID(fileSec unsafe.Pointer, ownerUUID unsafe.Pointer) unsafe.Pointer {
+func CFFileSecuritySetOwnerUUID(fileSec FileSecurityRef, ownerUUID UUIDRef) unsafe.Pointer {
 	return _CFFileSecuritySetOwnerUUID(fileSec, ownerUUID)
 }
 
@@ -4839,7 +4817,7 @@ func CFFileSecuritySetOwnerUUID(fileSec unsafe.Pointer, ownerUUID unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetAllocator(_:)
-func CFGetAllocator(cf unsafe.Pointer) unsafe.Pointer {
+func CFGetAllocator(cf TypeRef) AllocatorRef {
 	return _CFGetAllocator(cf)
 }
 
@@ -4849,7 +4827,7 @@ func CFGetAllocator(cf unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetRetainCount(_:)
-func CFGetRetainCount(cf unsafe.Pointer) unsafe.Pointer {
+func CFGetRetainCount(cf TypeRef) Index {
 	return _CFGetRetainCount(cf)
 }
 
@@ -4859,7 +4837,7 @@ func CFGetRetainCount(cf unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetTypeID(_:)
-func CFGetTypeID(cf unsafe.Pointer) unsafe.Pointer {
+func CFGetTypeID(cf TypeRef) TypeID {
 	return _CFGetTypeID(cf)
 }
 
@@ -4872,7 +4850,7 @@ func CFGetTypeID(cf unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGregorianDateGetAbsoluteTime(_:_:)
-func CFGregorianDateGetAbsoluteTime(gdate unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+func CFGregorianDateGetAbsoluteTime(gdate unsafe.Pointer, tz TimeZoneRef) AbsoluteTime {
 	return _CFGregorianDateGetAbsoluteTime(gdate, tz)
 }
 
@@ -4885,7 +4863,7 @@ func CFGregorianDateGetAbsoluteTime(gdate unsafe.Pointer, tz unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGregorianDateIsValid(_:_:)
-func CFGregorianDateIsValid(gdate unsafe.Pointer, unitFlags unsafe.Pointer) unsafe.Pointer {
+func CFGregorianDateIsValid(gdate unsafe.Pointer, unitFlags OptionFlags) unsafe.Pointer {
 	return _CFGregorianDateIsValid(gdate, unitFlags)
 }
 
@@ -4895,7 +4873,7 @@ func CFGregorianDateIsValid(gdate unsafe.Pointer, unitFlags unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFHash(_:)
-func CFHash(cf unsafe.Pointer) unsafe.Pointer {
+func CFHash(cf TypeRef) HashCode {
 	return _CFHash(cf)
 }
 
@@ -4905,7 +4883,7 @@ func CFHash(cf unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyAvailableLocaleIdentifiers()
-func CFLocaleCopyAvailableLocaleIdentifiers() unsafe.Pointer {
+func CFLocaleCopyAvailableLocaleIdentifiers() ArrayRef {
 	return _CFLocaleCopyAvailableLocaleIdentifiers()
 }
 
@@ -4916,7 +4894,7 @@ func CFLocaleCopyAvailableLocaleIdentifiers() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyCommonISOCurrencyCodes()
-func CFLocaleCopyCommonISOCurrencyCodes() unsafe.Pointer {
+func CFLocaleCopyCommonISOCurrencyCodes() ArrayRef {
 	return _CFLocaleCopyCommonISOCurrencyCodes()
 }
 
@@ -4926,7 +4904,7 @@ func CFLocaleCopyCommonISOCurrencyCodes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyCurrent()
-func CFLocaleCopyCurrent() unsafe.Pointer {
+func CFLocaleCopyCurrent() LocaleRef {
 	return _CFLocaleCopyCurrent()
 }
 
@@ -4936,7 +4914,7 @@ func CFLocaleCopyCurrent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyDisplayNameForPropertyValue(_:_:_:)
-func CFLocaleCopyDisplayNameForPropertyValue(displayLocale unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCopyDisplayNameForPropertyValue(displayLocale LocaleRef, key LocaleKey, value StringRef) StringRef {
 	return _CFLocaleCopyDisplayNameForPropertyValue(displayLocale, key, value)
 }
 
@@ -4946,7 +4924,7 @@ func CFLocaleCopyDisplayNameForPropertyValue(displayLocale unsafe.Pointer, key u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyISOCountryCodes()
-func CFLocaleCopyISOCountryCodes() unsafe.Pointer {
+func CFLocaleCopyISOCountryCodes() ArrayRef {
 	return _CFLocaleCopyISOCountryCodes()
 }
 
@@ -4956,7 +4934,7 @@ func CFLocaleCopyISOCountryCodes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyISOCurrencyCodes()
-func CFLocaleCopyISOCurrencyCodes() unsafe.Pointer {
+func CFLocaleCopyISOCurrencyCodes() ArrayRef {
 	return _CFLocaleCopyISOCurrencyCodes()
 }
 
@@ -4966,7 +4944,7 @@ func CFLocaleCopyISOCurrencyCodes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyISOLanguageCodes()
-func CFLocaleCopyISOLanguageCodes() unsafe.Pointer {
+func CFLocaleCopyISOLanguageCodes() ArrayRef {
 	return _CFLocaleCopyISOLanguageCodes()
 }
 
@@ -4977,7 +4955,7 @@ func CFLocaleCopyISOLanguageCodes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCopyPreferredLanguages()
-func CFLocaleCopyPreferredLanguages() unsafe.Pointer {
+func CFLocaleCopyPreferredLanguages() ArrayRef {
 	return _CFLocaleCopyPreferredLanguages()
 }
 
@@ -4987,7 +4965,7 @@ func CFLocaleCopyPreferredLanguages() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreate(_:_:)
-func CFLocaleCreate(allocator unsafe.Pointer, localeIdentifier unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreate(allocator AllocatorRef, localeIdentifier LocaleIdentifier) LocaleRef {
 	return _CFLocaleCreate(allocator, localeIdentifier)
 }
 
@@ -4997,7 +4975,7 @@ func CFLocaleCreate(allocator unsafe.Pointer, localeIdentifier unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCanonicalLanguageIdentifierFromString(_:_:)
-func CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator unsafe.Pointer, localeIdentifier unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator AllocatorRef, localeIdentifier StringRef) LocaleIdentifier {
 	return _CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator, localeIdentifier)
 }
 
@@ -5007,7 +4985,7 @@ func CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(_:_:_:)
-func CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator unsafe.Pointer, lcode unsafe.Pointer, rcode unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator AllocatorRef, lcode unsafe.Pointer, rcode unsafe.Pointer) LocaleIdentifier {
 	return _CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator, lcode, rcode)
 }
 
@@ -5017,7 +4995,7 @@ func CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCanonicalLocaleIdentifierFromString(_:_:)
-func CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator unsafe.Pointer, localeIdentifier unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator AllocatorRef, localeIdentifier StringRef) LocaleIdentifier {
 	return _CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator, localeIdentifier)
 }
 
@@ -5027,7 +5005,7 @@ func CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateComponentsFromLocaleIdentifier(_:_:)
-func CFLocaleCreateComponentsFromLocaleIdentifier(allocator unsafe.Pointer, localeID unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreateComponentsFromLocaleIdentifier(allocator AllocatorRef, localeID LocaleIdentifier) DictionaryRef {
 	return _CFLocaleCreateComponentsFromLocaleIdentifier(allocator, localeID)
 }
 
@@ -5037,7 +5015,7 @@ func CFLocaleCreateComponentsFromLocaleIdentifier(allocator unsafe.Pointer, loca
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateCopy(_:_:)
-func CFLocaleCreateCopy(allocator unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreateCopy(allocator AllocatorRef, locale LocaleRef) LocaleRef {
 	return _CFLocaleCreateCopy(allocator, locale)
 }
 
@@ -5047,7 +5025,7 @@ func CFLocaleCreateCopy(allocator unsafe.Pointer, locale unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateLocaleIdentifierFromComponents(_:_:)
-func CFLocaleCreateLocaleIdentifierFromComponents(allocator unsafe.Pointer, dictionary unsafe.Pointer) unsafe.Pointer {
+func CFLocaleCreateLocaleIdentifierFromComponents(allocator AllocatorRef, dictionary DictionaryRef) LocaleIdentifier {
 	return _CFLocaleCreateLocaleIdentifierFromComponents(allocator, dictionary)
 }
 
@@ -5058,7 +5036,7 @@ func CFLocaleCreateLocaleIdentifierFromComponents(allocator unsafe.Pointer, dict
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(_:_:)
-func CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator unsafe.Pointer, lcid uint32) unsafe.Pointer {
+func CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator AllocatorRef, lcid uint32) LocaleIdentifier {
 	return _CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator, lcid)
 }
 
@@ -5068,7 +5046,7 @@ func CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetIdentifier(_:)
-func CFLocaleGetIdentifier(locale unsafe.Pointer) unsafe.Pointer {
+func CFLocaleGetIdentifier(locale LocaleRef) LocaleIdentifier {
 	return _CFLocaleGetIdentifier(locale)
 }
 
@@ -5079,7 +5057,7 @@ func CFLocaleGetIdentifier(locale unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetLanguageCharacterDirection(_:)
-func CFLocaleGetLanguageCharacterDirection(isoLangCode unsafe.Pointer) unsafe.Pointer {
+func CFLocaleGetLanguageCharacterDirection(isoLangCode StringRef) unsafe.Pointer {
 	return _CFLocaleGetLanguageCharacterDirection(isoLangCode)
 }
 
@@ -5090,7 +5068,7 @@ func CFLocaleGetLanguageCharacterDirection(isoLangCode unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetLanguageLineDirection(_:)
-func CFLocaleGetLanguageLineDirection(isoLangCode unsafe.Pointer) unsafe.Pointer {
+func CFLocaleGetLanguageLineDirection(isoLangCode StringRef) unsafe.Pointer {
 	return _CFLocaleGetLanguageLineDirection(isoLangCode)
 }
 
@@ -5100,7 +5078,7 @@ func CFLocaleGetLanguageLineDirection(isoLangCode unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetSystem()
-func CFLocaleGetSystem() unsafe.Pointer {
+func CFLocaleGetSystem() LocaleRef {
 	return _CFLocaleGetSystem()
 }
 
@@ -5110,7 +5088,7 @@ func CFLocaleGetSystem() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetTypeID()
-func CFLocaleGetTypeID() unsafe.Pointer {
+func CFLocaleGetTypeID() TypeID {
 	return _CFLocaleGetTypeID()
 }
 
@@ -5120,7 +5098,7 @@ func CFLocaleGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetValue(_:_:)
-func CFLocaleGetValue(locale unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFLocaleGetValue(locale LocaleRef, key LocaleKey) TypeRef {
 	return _CFLocaleGetValue(locale, key)
 }
 
@@ -5131,7 +5109,7 @@ func CFLocaleGetValue(locale unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(_:)
-func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier unsafe.Pointer) uint32 {
+func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier LocaleIdentifier) uint32 {
 	return _CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier)
 }
 
@@ -5141,7 +5119,7 @@ func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCreate(_:_:_:_:)
-func CFMachPortCreate(allocator unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) unsafe.Pointer {
+func CFMachPortCreate(allocator AllocatorRef, callout MachPortCallBack, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) MachPortRef {
 	return _CFMachPortCreate(allocator, callout, context, shouldFreeInfo)
 }
 
@@ -5151,7 +5129,7 @@ func CFMachPortCreate(allocator unsafe.Pointer, callout unsafe.Pointer, context 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCreateRunLoopSource(_:_:_:)
-func CFMachPortCreateRunLoopSource(allocator unsafe.Pointer, port unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFMachPortCreateRunLoopSource(allocator AllocatorRef, port MachPortRef, order Index) RunLoopSourceRef {
 	return _CFMachPortCreateRunLoopSource(allocator, port, order)
 }
 
@@ -5161,7 +5139,7 @@ func CFMachPortCreateRunLoopSource(allocator unsafe.Pointer, port unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCreateWithPort(_:_:_:_:_:)
-func CFMachPortCreateWithPort(allocator unsafe.Pointer, portNum unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) unsafe.Pointer {
+func CFMachPortCreateWithPort(allocator AllocatorRef, portNum unsafe.Pointer, callout MachPortCallBack, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) MachPortRef {
 	return _CFMachPortCreateWithPort(allocator, portNum, callout, context, shouldFreeInfo)
 }
 
@@ -5171,7 +5149,7 @@ func CFMachPortCreateWithPort(allocator unsafe.Pointer, portNum unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetContext(_:_:)
-func CFMachPortGetContext(port unsafe.Pointer, context unsafe.Pointer) {
+func CFMachPortGetContext(port MachPortRef, context unsafe.Pointer) {
 	_CFMachPortGetContext(port, context)
 }
 
@@ -5181,7 +5159,7 @@ func CFMachPortGetContext(port unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetInvalidationCallBack(_:)
-func CFMachPortGetInvalidationCallBack(port unsafe.Pointer) unsafe.Pointer {
+func CFMachPortGetInvalidationCallBack(port MachPortRef) MachPortInvalidationCallBack {
 	return _CFMachPortGetInvalidationCallBack(port)
 }
 
@@ -5191,7 +5169,7 @@ func CFMachPortGetInvalidationCallBack(port unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetPort(_:)
-func CFMachPortGetPort(port unsafe.Pointer) unsafe.Pointer {
+func CFMachPortGetPort(port MachPortRef) unsafe.Pointer {
 	return _CFMachPortGetPort(port)
 }
 
@@ -5201,7 +5179,7 @@ func CFMachPortGetPort(port unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortGetTypeID()
-func CFMachPortGetTypeID() unsafe.Pointer {
+func CFMachPortGetTypeID() TypeID {
 	return _CFMachPortGetTypeID()
 }
 
@@ -5211,7 +5189,7 @@ func CFMachPortGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortInvalidate(_:)
-func CFMachPortInvalidate(port unsafe.Pointer) {
+func CFMachPortInvalidate(port MachPortRef) {
 	_CFMachPortInvalidate(port)
 }
 
@@ -5221,7 +5199,7 @@ func CFMachPortInvalidate(port unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortIsValid(_:)
-func CFMachPortIsValid(port unsafe.Pointer) unsafe.Pointer {
+func CFMachPortIsValid(port MachPortRef) unsafe.Pointer {
 	return _CFMachPortIsValid(port)
 }
 
@@ -5231,7 +5209,7 @@ func CFMachPortIsValid(port unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortSetInvalidationCallBack(_:_:)
-func CFMachPortSetInvalidationCallBack(port unsafe.Pointer, callout unsafe.Pointer) {
+func CFMachPortSetInvalidationCallBack(port MachPortRef, callout MachPortInvalidationCallBack) {
 	_CFMachPortSetInvalidationCallBack(port, callout)
 }
 
@@ -5241,7 +5219,7 @@ func CFMachPortSetInvalidationCallBack(port unsafe.Pointer, callout unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMakeCollectable
-func CFMakeCollectable(cf unsafe.Pointer) unsafe.Pointer {
+func CFMakeCollectable(cf TypeRef) TypeRef {
 	return _CFMakeCollectable(cf)
 }
 
@@ -5251,7 +5229,7 @@ func CFMakeCollectable(cf unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCreateLocal(_:_:_:_:_:)
-func CFMessagePortCreateLocal(allocator unsafe.Pointer, name unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortCreateLocal(allocator AllocatorRef, name StringRef, callout MessagePortCallBack, context unsafe.Pointer, shouldFreeInfo unsafe.Pointer) MessagePortRef {
 	return _CFMessagePortCreateLocal(allocator, name, callout, context, shouldFreeInfo)
 }
 
@@ -5261,7 +5239,7 @@ func CFMessagePortCreateLocal(allocator unsafe.Pointer, name unsafe.Pointer, cal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCreateRemote(_:_:)
-func CFMessagePortCreateRemote(allocator unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortCreateRemote(allocator AllocatorRef, name StringRef) MessagePortRef {
 	return _CFMessagePortCreateRemote(allocator, name)
 }
 
@@ -5271,7 +5249,7 @@ func CFMessagePortCreateRemote(allocator unsafe.Pointer, name unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCreateRunLoopSource(_:_:_:)
-func CFMessagePortCreateRunLoopSource(allocator unsafe.Pointer, local unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortCreateRunLoopSource(allocator AllocatorRef, local MessagePortRef, order Index) RunLoopSourceRef {
 	return _CFMessagePortCreateRunLoopSource(allocator, local, order)
 }
 
@@ -5281,7 +5259,7 @@ func CFMessagePortCreateRunLoopSource(allocator unsafe.Pointer, local unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetContext(_:_:)
-func CFMessagePortGetContext(ms unsafe.Pointer, context unsafe.Pointer) {
+func CFMessagePortGetContext(ms MessagePortRef, context unsafe.Pointer) {
 	_CFMessagePortGetContext(ms, context)
 }
 
@@ -5291,7 +5269,7 @@ func CFMessagePortGetContext(ms unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetInvalidationCallBack(_:)
-func CFMessagePortGetInvalidationCallBack(ms unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortGetInvalidationCallBack(ms MessagePortRef) MessagePortInvalidationCallBack {
 	return _CFMessagePortGetInvalidationCallBack(ms)
 }
 
@@ -5301,7 +5279,7 @@ func CFMessagePortGetInvalidationCallBack(ms unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetName(_:)
-func CFMessagePortGetName(ms unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortGetName(ms MessagePortRef) StringRef {
 	return _CFMessagePortGetName(ms)
 }
 
@@ -5311,7 +5289,7 @@ func CFMessagePortGetName(ms unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortGetTypeID()
-func CFMessagePortGetTypeID() unsafe.Pointer {
+func CFMessagePortGetTypeID() TypeID {
 	return _CFMessagePortGetTypeID()
 }
 
@@ -5321,7 +5299,7 @@ func CFMessagePortGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortInvalidate(_:)
-func CFMessagePortInvalidate(ms unsafe.Pointer) {
+func CFMessagePortInvalidate(ms MessagePortRef) {
 	_CFMessagePortInvalidate(ms)
 }
 
@@ -5331,7 +5309,7 @@ func CFMessagePortInvalidate(ms unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortIsRemote(_:)
-func CFMessagePortIsRemote(ms unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortIsRemote(ms MessagePortRef) unsafe.Pointer {
 	return _CFMessagePortIsRemote(ms)
 }
 
@@ -5341,7 +5319,7 @@ func CFMessagePortIsRemote(ms unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortIsValid(_:)
-func CFMessagePortIsValid(ms unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortIsValid(ms MessagePortRef) unsafe.Pointer {
 	return _CFMessagePortIsValid(ms)
 }
 
@@ -5351,7 +5329,7 @@ func CFMessagePortIsValid(ms unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSendRequest(_:_:_:_:_:_:_:)
-func CFMessagePortSendRequest(remote unsafe.Pointer, msgid unsafe.Pointer, data unsafe.Pointer, sendTimeout unsafe.Pointer, rcvTimeout unsafe.Pointer, replyMode unsafe.Pointer, returnData unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortSendRequest(remote MessagePortRef, msgid unsafe.Pointer, data DataRef, sendTimeout TimeInterval, rcvTimeout TimeInterval, replyMode StringRef, returnData unsafe.Pointer) unsafe.Pointer {
 	return _CFMessagePortSendRequest(remote, msgid, data, sendTimeout, rcvTimeout, replyMode, returnData)
 }
 
@@ -5362,7 +5340,7 @@ func CFMessagePortSendRequest(remote unsafe.Pointer, msgid unsafe.Pointer, data 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSetDispatchQueue(_:_:)
-func CFMessagePortSetDispatchQueue(ms unsafe.Pointer, queue unsafe.Pointer) {
+func CFMessagePortSetDispatchQueue(ms MessagePortRef, queue unsafe.Pointer) {
 	_CFMessagePortSetDispatchQueue(ms, queue)
 }
 
@@ -5372,7 +5350,7 @@ func CFMessagePortSetDispatchQueue(ms unsafe.Pointer, queue unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSetInvalidationCallBack(_:_:)
-func CFMessagePortSetInvalidationCallBack(ms unsafe.Pointer, callout unsafe.Pointer) {
+func CFMessagePortSetInvalidationCallBack(ms MessagePortRef, callout MessagePortInvalidationCallBack) {
 	_CFMessagePortSetInvalidationCallBack(ms, callout)
 }
 
@@ -5382,7 +5360,7 @@ func CFMessagePortSetInvalidationCallBack(ms unsafe.Pointer, callout unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortSetName(_:_:)
-func CFMessagePortSetName(ms unsafe.Pointer, newName unsafe.Pointer) unsafe.Pointer {
+func CFMessagePortSetName(ms MessagePortRef, newName StringRef) unsafe.Pointer {
 	return _CFMessagePortSetName(ms, newName)
 }
 
@@ -5392,7 +5370,7 @@ func CFMessagePortSetName(ms unsafe.Pointer, newName unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterAddObserver(_:_:_:_:_:_:)
-func CFNotificationCenterAddObserver(center unsafe.Pointer, observer unsafe.Pointer, callBack unsafe.Pointer, name unsafe.Pointer, object unsafe.Pointer, suspensionBehavior unsafe.Pointer) {
+func CFNotificationCenterAddObserver(center NotificationCenterRef, observer unsafe.Pointer, callBack NotificationCallback, name StringRef, object unsafe.Pointer, suspensionBehavior unsafe.Pointer) {
 	_CFNotificationCenterAddObserver(center, observer, callBack, name, object, suspensionBehavior)
 }
 
@@ -5402,7 +5380,7 @@ func CFNotificationCenterAddObserver(center unsafe.Pointer, observer unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetDarwinNotifyCenter()
-func CFNotificationCenterGetDarwinNotifyCenter() unsafe.Pointer {
+func CFNotificationCenterGetDarwinNotifyCenter() NotificationCenterRef {
 	return _CFNotificationCenterGetDarwinNotifyCenter()
 }
 
@@ -5412,7 +5390,7 @@ func CFNotificationCenterGetDarwinNotifyCenter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetDistributedCenter()
-func CFNotificationCenterGetDistributedCenter() unsafe.Pointer {
+func CFNotificationCenterGetDistributedCenter() NotificationCenterRef {
 	return _CFNotificationCenterGetDistributedCenter()
 }
 
@@ -5422,7 +5400,7 @@ func CFNotificationCenterGetDistributedCenter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetLocalCenter()
-func CFNotificationCenterGetLocalCenter() unsafe.Pointer {
+func CFNotificationCenterGetLocalCenter() NotificationCenterRef {
 	return _CFNotificationCenterGetLocalCenter()
 }
 
@@ -5432,7 +5410,7 @@ func CFNotificationCenterGetLocalCenter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterGetTypeID()
-func CFNotificationCenterGetTypeID() unsafe.Pointer {
+func CFNotificationCenterGetTypeID() TypeID {
 	return _CFNotificationCenterGetTypeID()
 }
 
@@ -5442,7 +5420,7 @@ func CFNotificationCenterGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterPostNotification(_:_:_:_:_:)
-func CFNotificationCenterPostNotification(center unsafe.Pointer, name unsafe.Pointer, object unsafe.Pointer, userInfo unsafe.Pointer, deliverImmediately unsafe.Pointer) {
+func CFNotificationCenterPostNotification(center NotificationCenterRef, name NotificationName, object unsafe.Pointer, userInfo DictionaryRef, deliverImmediately unsafe.Pointer) {
 	_CFNotificationCenterPostNotification(center, name, object, userInfo, deliverImmediately)
 }
 
@@ -5452,7 +5430,7 @@ func CFNotificationCenterPostNotification(center unsafe.Pointer, name unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterPostNotificationWithOptions(_:_:_:_:_:)
-func CFNotificationCenterPostNotificationWithOptions(center unsafe.Pointer, name unsafe.Pointer, object unsafe.Pointer, userInfo unsafe.Pointer, options unsafe.Pointer) {
+func CFNotificationCenterPostNotificationWithOptions(center NotificationCenterRef, name NotificationName, object unsafe.Pointer, userInfo DictionaryRef, options OptionFlags) {
 	_CFNotificationCenterPostNotificationWithOptions(center, name, object, userInfo, options)
 }
 
@@ -5462,7 +5440,7 @@ func CFNotificationCenterPostNotificationWithOptions(center unsafe.Pointer, name
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterRemoveEveryObserver(_:_:)
-func CFNotificationCenterRemoveEveryObserver(center unsafe.Pointer, observer unsafe.Pointer) {
+func CFNotificationCenterRemoveEveryObserver(center NotificationCenterRef, observer unsafe.Pointer) {
 	_CFNotificationCenterRemoveEveryObserver(center, observer)
 }
 
@@ -5472,7 +5450,7 @@ func CFNotificationCenterRemoveEveryObserver(center unsafe.Pointer, observer uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenterRemoveObserver(_:_:_:_:)
-func CFNotificationCenterRemoveObserver(center unsafe.Pointer, observer unsafe.Pointer, name unsafe.Pointer, object unsafe.Pointer) {
+func CFNotificationCenterRemoveObserver(center NotificationCenterRef, observer unsafe.Pointer, name NotificationName, object unsafe.Pointer) {
 	_CFNotificationCenterRemoveObserver(center, observer, name, object)
 }
 
@@ -5482,7 +5460,7 @@ func CFNotificationCenterRemoveObserver(center unsafe.Pointer, observer unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNullGetTypeID()
-func CFNullGetTypeID() unsafe.Pointer {
+func CFNullGetTypeID() TypeID {
 	return _CFNullGetTypeID()
 }
 
@@ -5492,7 +5470,7 @@ func CFNullGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberCompare(_:_:_:)
-func CFNumberCompare(number unsafe.Pointer, otherNumber unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFNumberCompare(number NumberRef, otherNumber NumberRef, context unsafe.Pointer) unsafe.Pointer {
 	return _CFNumberCompare(number, otherNumber, context)
 }
 
@@ -5502,7 +5480,7 @@ func CFNumberCompare(number unsafe.Pointer, otherNumber unsafe.Pointer, context 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberCreate(_:_:_:)
-func CFNumberCreate(allocator unsafe.Pointer, theType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
+func CFNumberCreate(allocator AllocatorRef, theType unsafe.Pointer, valuePtr unsafe.Pointer) NumberRef {
 	return _CFNumberCreate(allocator, theType, valuePtr)
 }
 
@@ -5512,7 +5490,7 @@ func CFNumberCreate(allocator unsafe.Pointer, theType unsafe.Pointer, valuePtr u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCopyProperty(_:_:)
-func CFNumberFormatterCopyProperty(formatter unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterCopyProperty(formatter NumberFormatterRef, key NumberFormatterKey) TypeRef {
 	return _CFNumberFormatterCopyProperty(formatter, key)
 }
 
@@ -5522,7 +5500,7 @@ func CFNumberFormatterCopyProperty(formatter unsafe.Pointer, key unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreate(_:_:_:)
-func CFNumberFormatterCreate(allocator unsafe.Pointer, locale unsafe.Pointer, style unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterCreate(allocator AllocatorRef, locale LocaleRef, style unsafe.Pointer) NumberFormatterRef {
 	return _CFNumberFormatterCreate(allocator, locale, style)
 }
 
@@ -5532,7 +5510,7 @@ func CFNumberFormatterCreate(allocator unsafe.Pointer, locale unsafe.Pointer, st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateNumberFromString(_:_:_:_:_:)
-func CFNumberFormatterCreateNumberFromString(allocator unsafe.Pointer, formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterCreateNumberFromString(allocator AllocatorRef, formatter NumberFormatterRef, string_ StringRef, rangep unsafe.Pointer, options OptionFlags) NumberRef {
 	return _CFNumberFormatterCreateNumberFromString(allocator, formatter, string_, rangep, options)
 }
 
@@ -5542,7 +5520,7 @@ func CFNumberFormatterCreateNumberFromString(allocator unsafe.Pointer, formatter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateStringWithNumber(_:_:_:)
-func CFNumberFormatterCreateStringWithNumber(allocator unsafe.Pointer, formatter unsafe.Pointer, number unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterCreateStringWithNumber(allocator AllocatorRef, formatter NumberFormatterRef, number NumberRef) StringRef {
 	return _CFNumberFormatterCreateStringWithNumber(allocator, formatter, number)
 }
 
@@ -5552,7 +5530,7 @@ func CFNumberFormatterCreateStringWithNumber(allocator unsafe.Pointer, formatter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterCreateStringWithValue(_:_:_:_:)
-func CFNumberFormatterCreateStringWithValue(allocator unsafe.Pointer, formatter unsafe.Pointer, numberType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterCreateStringWithValue(allocator AllocatorRef, formatter NumberFormatterRef, numberType unsafe.Pointer, valuePtr unsafe.Pointer) StringRef {
 	return _CFNumberFormatterCreateStringWithValue(allocator, formatter, numberType, valuePtr)
 }
 
@@ -5562,7 +5540,7 @@ func CFNumberFormatterCreateStringWithValue(allocator unsafe.Pointer, formatter 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetDecimalInfoForCurrencyCode(_:_:_:)
-func CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode unsafe.Pointer, defaultFractionDigits unsafe.Pointer, roundingIncrement []float64) unsafe.Pointer {
+func CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode StringRef, defaultFractionDigits unsafe.Pointer, roundingIncrement []float64) unsafe.Pointer {
 	return _CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode, defaultFractionDigits, roundingIncrement)
 }
 
@@ -5572,7 +5550,7 @@ func CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetFormat(_:)
-func CFNumberFormatterGetFormat(formatter unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterGetFormat(formatter NumberFormatterRef) StringRef {
 	return _CFNumberFormatterGetFormat(formatter)
 }
 
@@ -5582,7 +5560,7 @@ func CFNumberFormatterGetFormat(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetLocale(_:)
-func CFNumberFormatterGetLocale(formatter unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterGetLocale(formatter NumberFormatterRef) LocaleRef {
 	return _CFNumberFormatterGetLocale(formatter)
 }
 
@@ -5592,7 +5570,7 @@ func CFNumberFormatterGetLocale(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetStyle(_:)
-func CFNumberFormatterGetStyle(formatter unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterGetStyle(formatter NumberFormatterRef) unsafe.Pointer {
 	return _CFNumberFormatterGetStyle(formatter)
 }
 
@@ -5602,7 +5580,7 @@ func CFNumberFormatterGetStyle(formatter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetTypeID()
-func CFNumberFormatterGetTypeID() unsafe.Pointer {
+func CFNumberFormatterGetTypeID() TypeID {
 	return _CFNumberFormatterGetTypeID()
 }
 
@@ -5612,7 +5590,7 @@ func CFNumberFormatterGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterGetValueFromString(_:_:_:_:_:)
-func CFNumberFormatterGetValueFromString(formatter unsafe.Pointer, string_ unsafe.Pointer, rangep unsafe.Pointer, numberType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
+func CFNumberFormatterGetValueFromString(formatter NumberFormatterRef, string_ StringRef, rangep unsafe.Pointer, numberType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
 	return _CFNumberFormatterGetValueFromString(formatter, string_, rangep, numberType, valuePtr)
 }
 
@@ -5622,7 +5600,7 @@ func CFNumberFormatterGetValueFromString(formatter unsafe.Pointer, string_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterSetFormat(_:_:)
-func CFNumberFormatterSetFormat(formatter unsafe.Pointer, formatString unsafe.Pointer) {
+func CFNumberFormatterSetFormat(formatter NumberFormatterRef, formatString StringRef) {
 	_CFNumberFormatterSetFormat(formatter, formatString)
 }
 
@@ -5632,7 +5610,7 @@ func CFNumberFormatterSetFormat(formatter unsafe.Pointer, formatString unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterSetProperty(_:_:_:)
-func CFNumberFormatterSetProperty(formatter unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+func CFNumberFormatterSetProperty(formatter NumberFormatterRef, key NumberFormatterKey, value TypeRef) {
 	_CFNumberFormatterSetProperty(formatter, key, value)
 }
 
@@ -5642,7 +5620,7 @@ func CFNumberFormatterSetProperty(formatter unsafe.Pointer, key unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetByteSize(_:)
-func CFNumberGetByteSize(number unsafe.Pointer) unsafe.Pointer {
+func CFNumberGetByteSize(number NumberRef) Index {
 	return _CFNumberGetByteSize(number)
 }
 
@@ -5652,7 +5630,7 @@ func CFNumberGetByteSize(number unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetType(_:)
-func CFNumberGetType(number unsafe.Pointer) unsafe.Pointer {
+func CFNumberGetType(number NumberRef) unsafe.Pointer {
 	return _CFNumberGetType(number)
 }
 
@@ -5662,7 +5640,7 @@ func CFNumberGetType(number unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetTypeID()
-func CFNumberGetTypeID() unsafe.Pointer {
+func CFNumberGetTypeID() TypeID {
 	return _CFNumberGetTypeID()
 }
 
@@ -5672,7 +5650,7 @@ func CFNumberGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberGetValue(_:_:_:)
-func CFNumberGetValue(number unsafe.Pointer, theType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
+func CFNumberGetValue(number NumberRef, theType unsafe.Pointer, valuePtr unsafe.Pointer) unsafe.Pointer {
 	return _CFNumberGetValue(number, theType, valuePtr)
 }
 
@@ -5682,7 +5660,7 @@ func CFNumberGetValue(number unsafe.Pointer, theType unsafe.Pointer, valuePtr un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberIsFloatType(_:)
-func CFNumberIsFloatType(number unsafe.Pointer) unsafe.Pointer {
+func CFNumberIsFloatType(number NumberRef) unsafe.Pointer {
 	return _CFNumberIsFloatType(number)
 }
 
@@ -5692,7 +5670,7 @@ func CFNumberIsFloatType(number unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInAddInstanceForFactory(_:)
-func CFPlugInAddInstanceForFactory(factoryID unsafe.Pointer) {
+func CFPlugInAddInstanceForFactory(factoryID UUIDRef) {
 	_CFPlugInAddInstanceForFactory(factoryID)
 }
 
@@ -5702,7 +5680,7 @@ func CFPlugInAddInstanceForFactory(factoryID unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInCreate(_:_:)
-func CFPlugInCreate(allocator unsafe.Pointer, plugInURL unsafe.Pointer) unsafe.Pointer {
+func CFPlugInCreate(allocator AllocatorRef, plugInURL URLRef) PlugInRef {
 	return _CFPlugInCreate(allocator, plugInURL)
 }
 
@@ -5712,7 +5690,7 @@ func CFPlugInCreate(allocator unsafe.Pointer, plugInURL unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInFindFactoriesForPlugInType(_:)
-func CFPlugInFindFactoriesForPlugInType(typeUUID unsafe.Pointer) unsafe.Pointer {
+func CFPlugInFindFactoriesForPlugInType(typeUUID UUIDRef) ArrayRef {
 	return _CFPlugInFindFactoriesForPlugInType(typeUUID)
 }
 
@@ -5722,7 +5700,7 @@ func CFPlugInFindFactoriesForPlugInType(typeUUID unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInFindFactoriesForPlugInTypeInPlugIn(_:_:)
-func CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID unsafe.Pointer, plugIn unsafe.Pointer) unsafe.Pointer {
+func CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID UUIDRef, plugIn PlugInRef) ArrayRef {
 	return _CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID, plugIn)
 }
 
@@ -5732,7 +5710,7 @@ func CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID unsafe.Pointer, plugIn 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInGetBundle(_:)
-func CFPlugInGetBundle(plugIn unsafe.Pointer) unsafe.Pointer {
+func CFPlugInGetBundle(plugIn PlugInRef) BundleRef {
 	return _CFPlugInGetBundle(plugIn)
 }
 
@@ -5742,7 +5720,7 @@ func CFPlugInGetBundle(plugIn unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInGetTypeID()
-func CFPlugInGetTypeID() unsafe.Pointer {
+func CFPlugInGetTypeID() TypeID {
 	return _CFPlugInGetTypeID()
 }
 
@@ -5752,7 +5730,7 @@ func CFPlugInGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceCreate(_:_:_:)
-func CFPlugInInstanceCreate(allocator unsafe.Pointer, factoryUUID unsafe.Pointer, typeUUID unsafe.Pointer) unsafe.Pointer {
+func CFPlugInInstanceCreate(allocator AllocatorRef, factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInInstanceCreate(allocator, factoryUUID, typeUUID)
 }
 
@@ -5762,7 +5740,7 @@ func CFPlugInInstanceCreate(allocator unsafe.Pointer, factoryUUID unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceCreateWithInstanceDataSize(_:_:_:_:_:)
-func CFPlugInInstanceCreateWithInstanceDataSize(allocator unsafe.Pointer, instanceDataSize unsafe.Pointer, deallocateInstanceFunction unsafe.Pointer, factoryName unsafe.Pointer, getInterfaceFunction unsafe.Pointer) unsafe.Pointer {
+func CFPlugInInstanceCreateWithInstanceDataSize(allocator AllocatorRef, instanceDataSize Index, deallocateInstanceFunction PlugInInstanceDeallocateInstanceDataFunction, factoryName StringRef, getInterfaceFunction PlugInInstanceGetInterfaceFunction) PlugInInstanceRef {
 	return _CFPlugInInstanceCreateWithInstanceDataSize(allocator, instanceDataSize, deallocateInstanceFunction, factoryName, getInterfaceFunction)
 }
 
@@ -5772,7 +5750,7 @@ func CFPlugInInstanceCreateWithInstanceDataSize(allocator unsafe.Pointer, instan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetFactoryName(_:)
-func CFPlugInInstanceGetFactoryName(instance unsafe.Pointer) unsafe.Pointer {
+func CFPlugInInstanceGetFactoryName(instance PlugInInstanceRef) StringRef {
 	return _CFPlugInInstanceGetFactoryName(instance)
 }
 
@@ -5782,7 +5760,7 @@ func CFPlugInInstanceGetFactoryName(instance unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetInstanceData(_:)
-func CFPlugInInstanceGetInstanceData(instance unsafe.Pointer) unsafe.Pointer {
+func CFPlugInInstanceGetInstanceData(instance PlugInInstanceRef) unsafe.Pointer {
 	return _CFPlugInInstanceGetInstanceData(instance)
 }
 
@@ -5792,7 +5770,7 @@ func CFPlugInInstanceGetInstanceData(instance unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetInterfaceFunctionTable(_:_:_:)
-func CFPlugInInstanceGetInterfaceFunctionTable(instance unsafe.Pointer, interfaceName unsafe.Pointer, ftbl unsafe.Pointer) unsafe.Pointer {
+func CFPlugInInstanceGetInterfaceFunctionTable(instance PlugInInstanceRef, interfaceName StringRef, ftbl unsafe.Pointer) unsafe.Pointer {
 	return _CFPlugInInstanceGetInterfaceFunctionTable(instance, interfaceName, ftbl)
 }
 
@@ -5802,7 +5780,7 @@ func CFPlugInInstanceGetInterfaceFunctionTable(instance unsafe.Pointer, interfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetTypeID()
-func CFPlugInInstanceGetTypeID() unsafe.Pointer {
+func CFPlugInInstanceGetTypeID() TypeID {
 	return _CFPlugInInstanceGetTypeID()
 }
 
@@ -5812,7 +5790,7 @@ func CFPlugInInstanceGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInIsLoadOnDemand(_:)
-func CFPlugInIsLoadOnDemand(plugIn unsafe.Pointer) unsafe.Pointer {
+func CFPlugInIsLoadOnDemand(plugIn PlugInRef) unsafe.Pointer {
 	return _CFPlugInIsLoadOnDemand(plugIn)
 }
 
@@ -5822,7 +5800,7 @@ func CFPlugInIsLoadOnDemand(plugIn unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRegisterFactoryFunction(_:_:)
-func CFPlugInRegisterFactoryFunction(factoryUUID unsafe.Pointer, func_ unsafe.Pointer) unsafe.Pointer {
+func CFPlugInRegisterFactoryFunction(factoryUUID UUIDRef, func_ PlugInFactoryFunction) unsafe.Pointer {
 	return _CFPlugInRegisterFactoryFunction(factoryUUID, func_)
 }
 
@@ -5832,7 +5810,7 @@ func CFPlugInRegisterFactoryFunction(factoryUUID unsafe.Pointer, func_ unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRegisterFactoryFunctionByName(_:_:_:)
-func CFPlugInRegisterFactoryFunctionByName(factoryUUID unsafe.Pointer, plugIn unsafe.Pointer, functionName unsafe.Pointer) unsafe.Pointer {
+func CFPlugInRegisterFactoryFunctionByName(factoryUUID UUIDRef, plugIn PlugInRef, functionName StringRef) unsafe.Pointer {
 	return _CFPlugInRegisterFactoryFunctionByName(factoryUUID, plugIn, functionName)
 }
 
@@ -5842,7 +5820,7 @@ func CFPlugInRegisterFactoryFunctionByName(factoryUUID unsafe.Pointer, plugIn un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRegisterPlugInType(_:_:)
-func CFPlugInRegisterPlugInType(factoryUUID unsafe.Pointer, typeUUID unsafe.Pointer) unsafe.Pointer {
+func CFPlugInRegisterPlugInType(factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInRegisterPlugInType(factoryUUID, typeUUID)
 }
 
@@ -5852,7 +5830,7 @@ func CFPlugInRegisterPlugInType(factoryUUID unsafe.Pointer, typeUUID unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInRemoveInstanceForFactory(_:)
-func CFPlugInRemoveInstanceForFactory(factoryID unsafe.Pointer) {
+func CFPlugInRemoveInstanceForFactory(factoryID UUIDRef) {
 	_CFPlugInRemoveInstanceForFactory(factoryID)
 }
 
@@ -5862,7 +5840,7 @@ func CFPlugInRemoveInstanceForFactory(factoryID unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInSetLoadOnDemand(_:_:)
-func CFPlugInSetLoadOnDemand(plugIn unsafe.Pointer, flag unsafe.Pointer) {
+func CFPlugInSetLoadOnDemand(plugIn PlugInRef, flag unsafe.Pointer) {
 	_CFPlugInSetLoadOnDemand(plugIn, flag)
 }
 
@@ -5872,7 +5850,7 @@ func CFPlugInSetLoadOnDemand(plugIn unsafe.Pointer, flag unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInUnregisterFactory(_:)
-func CFPlugInUnregisterFactory(factoryUUID unsafe.Pointer) unsafe.Pointer {
+func CFPlugInUnregisterFactory(factoryUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInUnregisterFactory(factoryUUID)
 }
 
@@ -5882,7 +5860,7 @@ func CFPlugInUnregisterFactory(factoryUUID unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInUnregisterPlugInType(_:_:)
-func CFPlugInUnregisterPlugInType(factoryUUID unsafe.Pointer, typeUUID unsafe.Pointer) unsafe.Pointer {
+func CFPlugInUnregisterPlugInType(factoryUUID UUIDRef, typeUUID UUIDRef) unsafe.Pointer {
 	return _CFPlugInUnregisterPlugInType(factoryUUID, typeUUID)
 }
 
@@ -5892,7 +5870,7 @@ func CFPlugInUnregisterPlugInType(factoryUUID unsafe.Pointer, typeUUID unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesAddSuitePreferencesToApp(_:_:)
-func CFPreferencesAddSuitePreferencesToApp(applicationID unsafe.Pointer, suiteID unsafe.Pointer) {
+func CFPreferencesAddSuitePreferencesToApp(applicationID StringRef, suiteID StringRef) {
 	_CFPreferencesAddSuitePreferencesToApp(applicationID, suiteID)
 }
 
@@ -5902,7 +5880,7 @@ func CFPreferencesAddSuitePreferencesToApp(applicationID unsafe.Pointer, suiteID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesAppSynchronize(_:)
-func CFPreferencesAppSynchronize(applicationID unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesAppSynchronize(applicationID StringRef) unsafe.Pointer {
 	return _CFPreferencesAppSynchronize(applicationID)
 }
 
@@ -5912,7 +5890,7 @@ func CFPreferencesAppSynchronize(applicationID unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesAppValueIsForced(_:_:)
-func CFPreferencesAppValueIsForced(key unsafe.Pointer, applicationID unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesAppValueIsForced(key StringRef, applicationID StringRef) unsafe.Pointer {
 	return _CFPreferencesAppValueIsForced(key, applicationID)
 }
 
@@ -5922,7 +5900,7 @@ func CFPreferencesAppValueIsForced(key unsafe.Pointer, applicationID unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyAppValue(_:_:)
-func CFPreferencesCopyAppValue(key unsafe.Pointer, applicationID unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesCopyAppValue(key StringRef, applicationID StringRef) PropertyListRef {
 	return _CFPreferencesCopyAppValue(key, applicationID)
 }
 
@@ -5932,7 +5910,7 @@ func CFPreferencesCopyAppValue(key unsafe.Pointer, applicationID unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyApplicationList(_:_:)
-func CFPreferencesCopyApplicationList(userName unsafe.Pointer, hostName unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesCopyApplicationList(userName StringRef, hostName StringRef) ArrayRef {
 	return _CFPreferencesCopyApplicationList(userName, hostName)
 }
 
@@ -5942,7 +5920,7 @@ func CFPreferencesCopyApplicationList(userName unsafe.Pointer, hostName unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyKeyList(_:_:_:)
-func CFPreferencesCopyKeyList(applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesCopyKeyList(applicationID StringRef, userName StringRef, hostName StringRef) ArrayRef {
 	return _CFPreferencesCopyKeyList(applicationID, userName, hostName)
 }
 
@@ -5952,7 +5930,7 @@ func CFPreferencesCopyKeyList(applicationID unsafe.Pointer, userName unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyMultiple(_:_:_:_:)
-func CFPreferencesCopyMultiple(keysToFetch unsafe.Pointer, applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesCopyMultiple(keysToFetch ArrayRef, applicationID StringRef, userName StringRef, hostName StringRef) DictionaryRef {
 	return _CFPreferencesCopyMultiple(keysToFetch, applicationID, userName, hostName)
 }
 
@@ -5962,7 +5940,7 @@ func CFPreferencesCopyMultiple(keysToFetch unsafe.Pointer, applicationID unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyValue(_:_:_:_:)
-func CFPreferencesCopyValue(key unsafe.Pointer, applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesCopyValue(key StringRef, applicationID StringRef, userName StringRef, hostName StringRef) PropertyListRef {
 	return _CFPreferencesCopyValue(key, applicationID, userName, hostName)
 }
 
@@ -5972,7 +5950,7 @@ func CFPreferencesCopyValue(key unsafe.Pointer, applicationID unsafe.Pointer, us
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesGetAppBooleanValue(_:_:_:)
-func CFPreferencesGetAppBooleanValue(key unsafe.Pointer, applicationID unsafe.Pointer, keyExistsAndHasValidFormat unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesGetAppBooleanValue(key StringRef, applicationID StringRef, keyExistsAndHasValidFormat unsafe.Pointer) unsafe.Pointer {
 	return _CFPreferencesGetAppBooleanValue(key, applicationID, keyExistsAndHasValidFormat)
 }
 
@@ -5982,7 +5960,7 @@ func CFPreferencesGetAppBooleanValue(key unsafe.Pointer, applicationID unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesGetAppIntegerValue(_:_:_:)
-func CFPreferencesGetAppIntegerValue(key unsafe.Pointer, applicationID unsafe.Pointer, keyExistsAndHasValidFormat unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesGetAppIntegerValue(key StringRef, applicationID StringRef, keyExistsAndHasValidFormat unsafe.Pointer) Index {
 	return _CFPreferencesGetAppIntegerValue(key, applicationID, keyExistsAndHasValidFormat)
 }
 
@@ -5992,7 +5970,7 @@ func CFPreferencesGetAppIntegerValue(key unsafe.Pointer, applicationID unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesRemoveSuitePreferencesFromApp(_:_:)
-func CFPreferencesRemoveSuitePreferencesFromApp(applicationID unsafe.Pointer, suiteID unsafe.Pointer) {
+func CFPreferencesRemoveSuitePreferencesFromApp(applicationID StringRef, suiteID StringRef) {
 	_CFPreferencesRemoveSuitePreferencesFromApp(applicationID, suiteID)
 }
 
@@ -6002,7 +5980,7 @@ func CFPreferencesRemoveSuitePreferencesFromApp(applicationID unsafe.Pointer, su
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSetAppValue(_:_:_:)
-func CFPreferencesSetAppValue(key unsafe.Pointer, value unsafe.Pointer, applicationID unsafe.Pointer) {
+func CFPreferencesSetAppValue(key StringRef, value PropertyListRef, applicationID StringRef) {
 	_CFPreferencesSetAppValue(key, value, applicationID)
 }
 
@@ -6012,7 +5990,7 @@ func CFPreferencesSetAppValue(key unsafe.Pointer, value unsafe.Pointer, applicat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSetMultiple(_:_:_:_:_:)
-func CFPreferencesSetMultiple(keysToSet unsafe.Pointer, keysToRemove unsafe.Pointer, applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) {
+func CFPreferencesSetMultiple(keysToSet DictionaryRef, keysToRemove ArrayRef, applicationID StringRef, userName StringRef, hostName StringRef) {
 	_CFPreferencesSetMultiple(keysToSet, keysToRemove, applicationID, userName, hostName)
 }
 
@@ -6022,7 +6000,7 @@ func CFPreferencesSetMultiple(keysToSet unsafe.Pointer, keysToRemove unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSetValue(_:_:_:_:_:)
-func CFPreferencesSetValue(key unsafe.Pointer, value unsafe.Pointer, applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) {
+func CFPreferencesSetValue(key StringRef, value PropertyListRef, applicationID StringRef, userName StringRef, hostName StringRef) {
 	_CFPreferencesSetValue(key, value, applicationID, userName, hostName)
 }
 
@@ -6032,7 +6010,7 @@ func CFPreferencesSetValue(key unsafe.Pointer, value unsafe.Pointer, application
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesSynchronize(_:_:_:)
-func CFPreferencesSynchronize(applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) unsafe.Pointer {
+func CFPreferencesSynchronize(applicationID StringRef, userName StringRef, hostName StringRef) unsafe.Pointer {
 	return _CFPreferencesSynchronize(applicationID, userName, hostName)
 }
 
@@ -6043,7 +6021,7 @@ func CFPreferencesSynchronize(applicationID unsafe.Pointer, userName unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateData(_:_:_:_:_:)
-func CFPropertyListCreateData(allocator unsafe.Pointer, propertyList unsafe.Pointer, format unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateData(allocator AllocatorRef, propertyList PropertyListRef, format unsafe.Pointer, options OptionFlags, error_ unsafe.Pointer) DataRef {
 	return _CFPropertyListCreateData(allocator, propertyList, format, options, error_)
 }
 
@@ -6053,7 +6031,7 @@ func CFPropertyListCreateData(allocator unsafe.Pointer, propertyList unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateDeepCopy(_:_:_:)
-func CFPropertyListCreateDeepCopy(allocator unsafe.Pointer, propertyList unsafe.Pointer, mutabilityOption unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateDeepCopy(allocator AllocatorRef, propertyList PropertyListRef, mutabilityOption OptionFlags) PropertyListRef {
 	return _CFPropertyListCreateDeepCopy(allocator, propertyList, mutabilityOption)
 }
 
@@ -6066,7 +6044,7 @@ func CFPropertyListCreateDeepCopy(allocator unsafe.Pointer, propertyList unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateFromStream(_:_:_:_:_:_:)
-func CFPropertyListCreateFromStream(allocator unsafe.Pointer, stream unsafe.Pointer, streamLength unsafe.Pointer, mutabilityOption unsafe.Pointer, format unsafe.Pointer, errorString unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateFromStream(allocator AllocatorRef, stream ReadStreamRef, streamLength Index, mutabilityOption OptionFlags, format unsafe.Pointer, errorString unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateFromStream(allocator, stream, streamLength, mutabilityOption, format, errorString)
 }
 
@@ -6079,7 +6057,7 @@ func CFPropertyListCreateFromStream(allocator unsafe.Pointer, stream unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateFromXMLData(_:_:_:_:)
-func CFPropertyListCreateFromXMLData(allocator unsafe.Pointer, xmlData unsafe.Pointer, mutabilityOption unsafe.Pointer, errorString unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateFromXMLData(allocator AllocatorRef, xmlData DataRef, mutabilityOption OptionFlags, errorString unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateFromXMLData(allocator, xmlData, mutabilityOption, errorString)
 }
 
@@ -6090,7 +6068,7 @@ func CFPropertyListCreateFromXMLData(allocator unsafe.Pointer, xmlData unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateWithData(_:_:_:_:_:)
-func CFPropertyListCreateWithData(allocator unsafe.Pointer, data unsafe.Pointer, options unsafe.Pointer, format unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateWithData(allocator AllocatorRef, data DataRef, options OptionFlags, format unsafe.Pointer, error_ unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateWithData(allocator, data, options, format, error_)
 }
 
@@ -6101,7 +6079,7 @@ func CFPropertyListCreateWithData(allocator unsafe.Pointer, data unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateWithStream(_:_:_:_:_:_:)
-func CFPropertyListCreateWithStream(allocator unsafe.Pointer, stream unsafe.Pointer, streamLength unsafe.Pointer, options unsafe.Pointer, format unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateWithStream(allocator AllocatorRef, stream ReadStreamRef, streamLength Index, options OptionFlags, format unsafe.Pointer, error_ unsafe.Pointer) PropertyListRef {
 	return _CFPropertyListCreateWithStream(allocator, stream, streamLength, options, format, error_)
 }
 
@@ -6114,7 +6092,7 @@ func CFPropertyListCreateWithStream(allocator unsafe.Pointer, stream unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListCreateXMLData(_:_:)
-func CFPropertyListCreateXMLData(allocator unsafe.Pointer, propertyList unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListCreateXMLData(allocator AllocatorRef, propertyList PropertyListRef) DataRef {
 	return _CFPropertyListCreateXMLData(allocator, propertyList)
 }
 
@@ -6124,7 +6102,7 @@ func CFPropertyListCreateXMLData(allocator unsafe.Pointer, propertyList unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListIsValid(_:_:)
-func CFPropertyListIsValid(plist unsafe.Pointer, format unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListIsValid(plist PropertyListRef, format unsafe.Pointer) unsafe.Pointer {
 	return _CFPropertyListIsValid(plist, format)
 }
 
@@ -6135,7 +6113,7 @@ func CFPropertyListIsValid(plist unsafe.Pointer, format unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListWrite(_:_:_:_:_:)
-func CFPropertyListWrite(propertyList unsafe.Pointer, stream unsafe.Pointer, format unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListWrite(propertyList PropertyListRef, stream WriteStreamRef, format unsafe.Pointer, options OptionFlags, error_ unsafe.Pointer) Index {
 	return _CFPropertyListWrite(propertyList, stream, format, options, error_)
 }
 
@@ -6148,7 +6126,7 @@ func CFPropertyListWrite(propertyList unsafe.Pointer, stream unsafe.Pointer, for
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListWriteToStream(_:_:_:_:)
-func CFPropertyListWriteToStream(propertyList unsafe.Pointer, stream unsafe.Pointer, format unsafe.Pointer, errorString unsafe.Pointer) unsafe.Pointer {
+func CFPropertyListWriteToStream(propertyList PropertyListRef, stream WriteStreamRef, format unsafe.Pointer, errorString unsafe.Pointer) Index {
 	return _CFPropertyListWriteToStream(propertyList, stream, format, errorString)
 }
 
@@ -6158,7 +6136,7 @@ func CFPropertyListWriteToStream(propertyList unsafe.Pointer, stream unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamClose(_:)
-func CFReadStreamClose(stream unsafe.Pointer) {
+func CFReadStreamClose(stream ReadStreamRef) {
 	_CFReadStreamClose(stream)
 }
 
@@ -6167,7 +6145,7 @@ func CFReadStreamClose(stream unsafe.Pointer) {
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyDispatchQueue(_:)
-func CFReadStreamCopyDispatchQueue(stream unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamCopyDispatchQueue(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamCopyDispatchQueue(stream)
 }
 
@@ -6178,7 +6156,7 @@ func CFReadStreamCopyDispatchQueue(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyError(_:)
-func CFReadStreamCopyError(stream unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamCopyError(stream ReadStreamRef) ErrorRef {
 	return _CFReadStreamCopyError(stream)
 }
 
@@ -6188,7 +6166,7 @@ func CFReadStreamCopyError(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyProperty(_:_:)
-func CFReadStreamCopyProperty(stream unsafe.Pointer, propertyName unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamCopyProperty(stream ReadStreamRef, propertyName StreamPropertyKey) TypeRef {
 	return _CFReadStreamCopyProperty(stream, propertyName)
 }
 
@@ -6198,7 +6176,7 @@ func CFReadStreamCopyProperty(stream unsafe.Pointer, propertyName unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCreateWithBytesNoCopy(_:_:_:_:)
-func CFReadStreamCreateWithBytesNoCopy(alloc unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer, bytesDeallocator unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamCreateWithBytesNoCopy(alloc AllocatorRef, bytes unsafe.Pointer, length Index, bytesDeallocator AllocatorRef) ReadStreamRef {
 	return _CFReadStreamCreateWithBytesNoCopy(alloc, bytes, length, bytesDeallocator)
 }
 
@@ -6208,7 +6186,7 @@ func CFReadStreamCreateWithBytesNoCopy(alloc unsafe.Pointer, bytes unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCreateWithFile(_:_:)
-func CFReadStreamCreateWithFile(alloc unsafe.Pointer, fileURL unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamCreateWithFile(alloc AllocatorRef, fileURL URLRef) ReadStreamRef {
 	return _CFReadStreamCreateWithFile(alloc, fileURL)
 }
 
@@ -6218,7 +6196,7 @@ func CFReadStreamCreateWithFile(alloc unsafe.Pointer, fileURL unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetBuffer(_:_:_:)
-func CFReadStreamGetBuffer(stream unsafe.Pointer, maxBytesToRead unsafe.Pointer, numBytesRead unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamGetBuffer(stream ReadStreamRef, maxBytesToRead Index, numBytesRead unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamGetBuffer(stream, maxBytesToRead, numBytesRead)
 }
 
@@ -6228,7 +6206,7 @@ func CFReadStreamGetBuffer(stream unsafe.Pointer, maxBytesToRead unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetError(_:)
-func CFReadStreamGetError(stream unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamGetError(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamGetError(stream)
 }
 
@@ -6238,7 +6216,7 @@ func CFReadStreamGetError(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetStatus(_:)
-func CFReadStreamGetStatus(stream unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamGetStatus(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamGetStatus(stream)
 }
 
@@ -6248,7 +6226,7 @@ func CFReadStreamGetStatus(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetTypeID()
-func CFReadStreamGetTypeID() unsafe.Pointer {
+func CFReadStreamGetTypeID() TypeID {
 	return _CFReadStreamGetTypeID()
 }
 
@@ -6258,7 +6236,7 @@ func CFReadStreamGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamHasBytesAvailable(_:)
-func CFReadStreamHasBytesAvailable(stream unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamHasBytesAvailable(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamHasBytesAvailable(stream)
 }
 
@@ -6268,7 +6246,7 @@ func CFReadStreamHasBytesAvailable(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamOpen(_:)
-func CFReadStreamOpen(stream unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamOpen(stream ReadStreamRef) unsafe.Pointer {
 	return _CFReadStreamOpen(stream)
 }
 
@@ -6278,7 +6256,7 @@ func CFReadStreamOpen(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamRead(_:_:_:)
-func CFReadStreamRead(stream unsafe.Pointer, buffer unsafe.Pointer, bufferLength unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamRead(stream ReadStreamRef, buffer unsafe.Pointer, bufferLength Index) Index {
 	return _CFReadStreamRead(stream, buffer, bufferLength)
 }
 
@@ -6288,7 +6266,7 @@ func CFReadStreamRead(stream unsafe.Pointer, buffer unsafe.Pointer, bufferLength
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamScheduleWithRunLoop(_:_:_:)
-func CFReadStreamScheduleWithRunLoop(stream unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+func CFReadStreamScheduleWithRunLoop(stream ReadStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFReadStreamScheduleWithRunLoop(stream, runLoop, runLoopMode)
 }
 
@@ -6298,7 +6276,7 @@ func CFReadStreamScheduleWithRunLoop(stream unsafe.Pointer, runLoop unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetClient(_:_:_:_:)
-func CFReadStreamSetClient(stream unsafe.Pointer, streamEvents unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamSetClient(stream ReadStreamRef, streamEvents OptionFlags, clientCB ReadStreamClientCallBack, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFReadStreamSetClient(stream, streamEvents, clientCB, clientContext)
 }
 
@@ -6307,7 +6285,7 @@ func CFReadStreamSetClient(stream unsafe.Pointer, streamEvents unsafe.Pointer, c
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetDispatchQueue(_:_:)
-func CFReadStreamSetDispatchQueue(stream unsafe.Pointer, q unsafe.Pointer) {
+func CFReadStreamSetDispatchQueue(stream ReadStreamRef, q unsafe.Pointer) {
 	_CFReadStreamSetDispatchQueue(stream, q)
 }
 
@@ -6317,7 +6295,7 @@ func CFReadStreamSetDispatchQueue(stream unsafe.Pointer, q unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetProperty(_:_:_:)
-func CFReadStreamSetProperty(stream unsafe.Pointer, propertyName unsafe.Pointer, propertyValue unsafe.Pointer) unsafe.Pointer {
+func CFReadStreamSetProperty(stream ReadStreamRef, propertyName StreamPropertyKey, propertyValue TypeRef) unsafe.Pointer {
 	return _CFReadStreamSetProperty(stream, propertyName, propertyValue)
 }
 
@@ -6327,8 +6305,28 @@ func CFReadStreamSetProperty(stream unsafe.Pointer, propertyName unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamUnscheduleFromRunLoop(_:_:_:)
-func CFReadStreamUnscheduleFromRunLoop(stream unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+func CFReadStreamUnscheduleFromRunLoop(stream ReadStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFReadStreamUnscheduleFromRunLoop(stream, runLoop, runLoopMode)
+}
+
+// Releases a Core Foundation object.
+
+// Releases a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRelease
+func CFRelease(cf TypeRef) {
+	_CFRelease(cf)
+}
+
+// Retains a Core Foundation object.
+
+// Retains a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRetain
+func CFRetain(cf TypeRef) TypeRef {
+	return _CFRetain(cf)
 }
 
 // Adds a mode to the set of run loop common modes.
@@ -6337,7 +6335,7 @@ func CFReadStreamUnscheduleFromRunLoop(stream unsafe.Pointer, runLoop unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddCommonMode(_:_:)
-func CFRunLoopAddCommonMode(rl unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopAddCommonMode(rl RunLoopRef, mode RunLoopMode) {
 	_CFRunLoopAddCommonMode(rl, mode)
 }
 
@@ -6347,7 +6345,7 @@ func CFRunLoopAddCommonMode(rl unsafe.Pointer, mode unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddObserver(_:_:_:)
-func CFRunLoopAddObserver(rl unsafe.Pointer, observer unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopAddObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLoopMode) {
 	_CFRunLoopAddObserver(rl, observer, mode)
 }
 
@@ -6357,7 +6355,7 @@ func CFRunLoopAddObserver(rl unsafe.Pointer, observer unsafe.Pointer, mode unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddSource(_:_:_:)
-func CFRunLoopAddSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopAddSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode) {
 	_CFRunLoopAddSource(rl, source, mode)
 }
 
@@ -6367,7 +6365,7 @@ func CFRunLoopAddSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddTimer(_:_:_:)
-func CFRunLoopAddTimer(rl unsafe.Pointer, timer unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopAddTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) {
 	_CFRunLoopAddTimer(rl, timer, mode)
 }
 
@@ -6377,7 +6375,7 @@ func CFRunLoopAddTimer(rl unsafe.Pointer, timer unsafe.Pointer, mode unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopContainsObserver(_:_:_:)
-func CFRunLoopContainsObserver(rl unsafe.Pointer, observer unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopContainsObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLoopMode) unsafe.Pointer {
 	return _CFRunLoopContainsObserver(rl, observer, mode)
 }
 
@@ -6387,7 +6385,7 @@ func CFRunLoopContainsObserver(rl unsafe.Pointer, observer unsafe.Pointer, mode 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopContainsSource(_:_:_:)
-func CFRunLoopContainsSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopContainsSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode) unsafe.Pointer {
 	return _CFRunLoopContainsSource(rl, source, mode)
 }
 
@@ -6397,7 +6395,7 @@ func CFRunLoopContainsSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopContainsTimer(_:_:_:)
-func CFRunLoopContainsTimer(rl unsafe.Pointer, timer unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopContainsTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) unsafe.Pointer {
 	return _CFRunLoopContainsTimer(rl, timer, mode)
 }
 
@@ -6407,7 +6405,7 @@ func CFRunLoopContainsTimer(rl unsafe.Pointer, timer unsafe.Pointer, mode unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopCopyAllModes(_:)
-func CFRunLoopCopyAllModes(rl unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopCopyAllModes(rl RunLoopRef) ArrayRef {
 	return _CFRunLoopCopyAllModes(rl)
 }
 
@@ -6417,7 +6415,7 @@ func CFRunLoopCopyAllModes(rl unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopCopyCurrentMode(_:)
-func CFRunLoopCopyCurrentMode(rl unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopCopyCurrentMode(rl RunLoopRef) RunLoopMode {
 	return _CFRunLoopCopyCurrentMode(rl)
 }
 
@@ -6427,7 +6425,7 @@ func CFRunLoopCopyCurrentMode(rl unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetCurrent()
-func CFRunLoopGetCurrent() unsafe.Pointer {
+func CFRunLoopGetCurrent() RunLoopRef {
 	return _CFRunLoopGetCurrent()
 }
 
@@ -6437,7 +6435,7 @@ func CFRunLoopGetCurrent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetMain()
-func CFRunLoopGetMain() unsafe.Pointer {
+func CFRunLoopGetMain() RunLoopRef {
 	return _CFRunLoopGetMain()
 }
 
@@ -6447,7 +6445,7 @@ func CFRunLoopGetMain() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetNextTimerFireDate(_:_:)
-func CFRunLoopGetNextTimerFireDate(rl unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopGetNextTimerFireDate(rl RunLoopRef, mode RunLoopMode) AbsoluteTime {
 	return _CFRunLoopGetNextTimerFireDate(rl, mode)
 }
 
@@ -6457,7 +6455,7 @@ func CFRunLoopGetNextTimerFireDate(rl unsafe.Pointer, mode unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopGetTypeID()
-func CFRunLoopGetTypeID() unsafe.Pointer {
+func CFRunLoopGetTypeID() TypeID {
 	return _CFRunLoopGetTypeID()
 }
 
@@ -6467,7 +6465,7 @@ func CFRunLoopGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopIsWaiting(_:)
-func CFRunLoopIsWaiting(rl unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopIsWaiting(rl RunLoopRef) unsafe.Pointer {
 	return _CFRunLoopIsWaiting(rl)
 }
 
@@ -6477,7 +6475,7 @@ func CFRunLoopIsWaiting(rl unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverCreate(_:_:_:_:_:_:)
-func CFRunLoopObserverCreate(allocator unsafe.Pointer, activities unsafe.Pointer, repeats unsafe.Pointer, order unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopObserverCreate(allocator AllocatorRef, activities OptionFlags, repeats unsafe.Pointer, order Index, callout RunLoopObserverCallBack, context unsafe.Pointer) RunLoopObserverRef {
 	return _CFRunLoopObserverCreate(allocator, activities, repeats, order, callout, context)
 }
 
@@ -6488,7 +6486,7 @@ func CFRunLoopObserverCreate(allocator unsafe.Pointer, activities unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverCreateWithHandler(_:_:_:_:_:)
-func CFRunLoopObserverCreateWithHandler(allocator unsafe.Pointer, activities unsafe.Pointer, repeats unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopObserverCreateWithHandler(allocator AllocatorRef, activities OptionFlags, repeats unsafe.Pointer, order Index) RunLoopObserverRef {
 	return _CFRunLoopObserverCreateWithHandler(allocator, activities, repeats, order)
 }
 
@@ -6498,7 +6496,7 @@ func CFRunLoopObserverCreateWithHandler(allocator unsafe.Pointer, activities uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverDoesRepeat(_:)
-func CFRunLoopObserverDoesRepeat(observer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopObserverDoesRepeat(observer RunLoopObserverRef) unsafe.Pointer {
 	return _CFRunLoopObserverDoesRepeat(observer)
 }
 
@@ -6508,7 +6506,7 @@ func CFRunLoopObserverDoesRepeat(observer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetActivities(_:)
-func CFRunLoopObserverGetActivities(observer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopObserverGetActivities(observer RunLoopObserverRef) OptionFlags {
 	return _CFRunLoopObserverGetActivities(observer)
 }
 
@@ -6518,7 +6516,7 @@ func CFRunLoopObserverGetActivities(observer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetContext(_:_:)
-func CFRunLoopObserverGetContext(observer unsafe.Pointer, context unsafe.Pointer) {
+func CFRunLoopObserverGetContext(observer RunLoopObserverRef, context unsafe.Pointer) {
 	_CFRunLoopObserverGetContext(observer, context)
 }
 
@@ -6528,7 +6526,7 @@ func CFRunLoopObserverGetContext(observer unsafe.Pointer, context unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetOrder(_:)
-func CFRunLoopObserverGetOrder(observer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopObserverGetOrder(observer RunLoopObserverRef) Index {
 	return _CFRunLoopObserverGetOrder(observer)
 }
 
@@ -6538,7 +6536,7 @@ func CFRunLoopObserverGetOrder(observer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverGetTypeID()
-func CFRunLoopObserverGetTypeID() unsafe.Pointer {
+func CFRunLoopObserverGetTypeID() TypeID {
 	return _CFRunLoopObserverGetTypeID()
 }
 
@@ -6548,7 +6546,7 @@ func CFRunLoopObserverGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverInvalidate(_:)
-func CFRunLoopObserverInvalidate(observer unsafe.Pointer) {
+func CFRunLoopObserverInvalidate(observer RunLoopObserverRef) {
 	_CFRunLoopObserverInvalidate(observer)
 }
 
@@ -6558,7 +6556,7 @@ func CFRunLoopObserverInvalidate(observer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverIsValid(_:)
-func CFRunLoopObserverIsValid(observer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopObserverIsValid(observer RunLoopObserverRef) unsafe.Pointer {
 	return _CFRunLoopObserverIsValid(observer)
 }
 
@@ -6569,7 +6567,7 @@ func CFRunLoopObserverIsValid(observer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopPerformBlock(_:_:_:)
-func CFRunLoopPerformBlock(rl unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopPerformBlock(rl RunLoopRef, mode TypeRef) {
 	_CFRunLoopPerformBlock(rl, mode)
 }
 
@@ -6579,7 +6577,7 @@ func CFRunLoopPerformBlock(rl unsafe.Pointer, mode unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRemoveObserver(_:_:_:)
-func CFRunLoopRemoveObserver(rl unsafe.Pointer, observer unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopRemoveObserver(rl RunLoopRef, observer RunLoopObserverRef, mode RunLoopMode) {
 	_CFRunLoopRemoveObserver(rl, observer, mode)
 }
 
@@ -6589,7 +6587,7 @@ func CFRunLoopRemoveObserver(rl unsafe.Pointer, observer unsafe.Pointer, mode un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRemoveSource(_:_:_:)
-func CFRunLoopRemoveSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopRemoveSource(rl RunLoopRef, source RunLoopSourceRef, mode RunLoopMode) {
 	_CFRunLoopRemoveSource(rl, source, mode)
 }
 
@@ -6599,7 +6597,7 @@ func CFRunLoopRemoveSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRemoveTimer(_:_:_:)
-func CFRunLoopRemoveTimer(rl unsafe.Pointer, timer unsafe.Pointer, mode unsafe.Pointer) {
+func CFRunLoopRemoveTimer(rl RunLoopRef, timer RunLoopTimerRef, mode RunLoopMode) {
 	_CFRunLoopRemoveTimer(rl, timer, mode)
 }
 
@@ -6619,7 +6617,7 @@ func CFRunLoopRun() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunInMode(_:_:_:)
-func CFRunLoopRunInMode(mode unsafe.Pointer, seconds unsafe.Pointer, returnAfterSourceHandled unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopRunInMode(mode RunLoopMode, seconds TimeInterval, returnAfterSourceHandled unsafe.Pointer) unsafe.Pointer {
 	return _CFRunLoopRunInMode(mode, seconds, returnAfterSourceHandled)
 }
 
@@ -6629,7 +6627,7 @@ func CFRunLoopRunInMode(mode unsafe.Pointer, seconds unsafe.Pointer, returnAfter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceCreate(_:_:_:)
-func CFRunLoopSourceCreate(allocator unsafe.Pointer, order unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopSourceCreate(allocator AllocatorRef, order Index, context unsafe.Pointer) RunLoopSourceRef {
 	return _CFRunLoopSourceCreate(allocator, order, context)
 }
 
@@ -6639,7 +6637,7 @@ func CFRunLoopSourceCreate(allocator unsafe.Pointer, order unsafe.Pointer, conte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceGetContext(_:_:)
-func CFRunLoopSourceGetContext(source unsafe.Pointer, context unsafe.Pointer) {
+func CFRunLoopSourceGetContext(source RunLoopSourceRef, context unsafe.Pointer) {
 	_CFRunLoopSourceGetContext(source, context)
 }
 
@@ -6649,7 +6647,7 @@ func CFRunLoopSourceGetContext(source unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceGetOrder(_:)
-func CFRunLoopSourceGetOrder(source unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopSourceGetOrder(source RunLoopSourceRef) Index {
 	return _CFRunLoopSourceGetOrder(source)
 }
 
@@ -6659,7 +6657,7 @@ func CFRunLoopSourceGetOrder(source unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceGetTypeID()
-func CFRunLoopSourceGetTypeID() unsafe.Pointer {
+func CFRunLoopSourceGetTypeID() TypeID {
 	return _CFRunLoopSourceGetTypeID()
 }
 
@@ -6669,7 +6667,7 @@ func CFRunLoopSourceGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceInvalidate(_:)
-func CFRunLoopSourceInvalidate(source unsafe.Pointer) {
+func CFRunLoopSourceInvalidate(source RunLoopSourceRef) {
 	_CFRunLoopSourceInvalidate(source)
 }
 
@@ -6679,7 +6677,7 @@ func CFRunLoopSourceInvalidate(source unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceIsValid(_:)
-func CFRunLoopSourceIsValid(source unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopSourceIsValid(source RunLoopSourceRef) unsafe.Pointer {
 	return _CFRunLoopSourceIsValid(source)
 }
 
@@ -6689,7 +6687,7 @@ func CFRunLoopSourceIsValid(source unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSourceSignal(_:)
-func CFRunLoopSourceSignal(source unsafe.Pointer) {
+func CFRunLoopSourceSignal(source RunLoopSourceRef) {
 	_CFRunLoopSourceSignal(source)
 }
 
@@ -6699,7 +6697,7 @@ func CFRunLoopSourceSignal(source unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopStop(_:)
-func CFRunLoopStop(rl unsafe.Pointer) {
+func CFRunLoopStop(rl RunLoopRef) {
 	_CFRunLoopStop(rl)
 }
 
@@ -6709,7 +6707,7 @@ func CFRunLoopStop(rl unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerCreate(_:_:_:_:_:_:_:)
-func CFRunLoopTimerCreate(allocator unsafe.Pointer, fireDate unsafe.Pointer, interval unsafe.Pointer, flags unsafe.Pointer, order unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerCreate(allocator AllocatorRef, fireDate AbsoluteTime, interval TimeInterval, flags OptionFlags, order Index, callout RunLoopTimerCallBack, context unsafe.Pointer) RunLoopTimerRef {
 	return _CFRunLoopTimerCreate(allocator, fireDate, interval, flags, order, callout, context)
 }
 
@@ -6720,7 +6718,7 @@ func CFRunLoopTimerCreate(allocator unsafe.Pointer, fireDate unsafe.Pointer, int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerCreateWithHandler(_:_:_:_:_:_:)
-func CFRunLoopTimerCreateWithHandler(allocator unsafe.Pointer, fireDate unsafe.Pointer, interval unsafe.Pointer, flags unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerCreateWithHandler(allocator AllocatorRef, fireDate AbsoluteTime, interval TimeInterval, flags OptionFlags, order Index) RunLoopTimerRef {
 	return _CFRunLoopTimerCreateWithHandler(allocator, fireDate, interval, flags, order)
 }
 
@@ -6730,7 +6728,7 @@ func CFRunLoopTimerCreateWithHandler(allocator unsafe.Pointer, fireDate unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerDoesRepeat(_:)
-func CFRunLoopTimerDoesRepeat(timer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerDoesRepeat(timer RunLoopTimerRef) unsafe.Pointer {
 	return _CFRunLoopTimerDoesRepeat(timer)
 }
 
@@ -6740,7 +6738,7 @@ func CFRunLoopTimerDoesRepeat(timer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetContext(_:_:)
-func CFRunLoopTimerGetContext(timer unsafe.Pointer, context unsafe.Pointer) {
+func CFRunLoopTimerGetContext(timer RunLoopTimerRef, context unsafe.Pointer) {
 	_CFRunLoopTimerGetContext(timer, context)
 }
 
@@ -6750,7 +6748,7 @@ func CFRunLoopTimerGetContext(timer unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetInterval(_:)
-func CFRunLoopTimerGetInterval(timer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerGetInterval(timer RunLoopTimerRef) TimeInterval {
 	return _CFRunLoopTimerGetInterval(timer)
 }
 
@@ -6760,7 +6758,7 @@ func CFRunLoopTimerGetInterval(timer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetNextFireDate(_:)
-func CFRunLoopTimerGetNextFireDate(timer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerGetNextFireDate(timer RunLoopTimerRef) AbsoluteTime {
 	return _CFRunLoopTimerGetNextFireDate(timer)
 }
 
@@ -6770,7 +6768,7 @@ func CFRunLoopTimerGetNextFireDate(timer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetOrder(_:)
-func CFRunLoopTimerGetOrder(timer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerGetOrder(timer RunLoopTimerRef) Index {
 	return _CFRunLoopTimerGetOrder(timer)
 }
 
@@ -6779,7 +6777,7 @@ func CFRunLoopTimerGetOrder(timer unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetTolerance(_:)
-func CFRunLoopTimerGetTolerance(timer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerGetTolerance(timer RunLoopTimerRef) TimeInterval {
 	return _CFRunLoopTimerGetTolerance(timer)
 }
 
@@ -6789,7 +6787,7 @@ func CFRunLoopTimerGetTolerance(timer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerGetTypeID()
-func CFRunLoopTimerGetTypeID() unsafe.Pointer {
+func CFRunLoopTimerGetTypeID() TypeID {
 	return _CFRunLoopTimerGetTypeID()
 }
 
@@ -6799,7 +6797,7 @@ func CFRunLoopTimerGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerInvalidate(_:)
-func CFRunLoopTimerInvalidate(timer unsafe.Pointer) {
+func CFRunLoopTimerInvalidate(timer RunLoopTimerRef) {
 	_CFRunLoopTimerInvalidate(timer)
 }
 
@@ -6809,7 +6807,7 @@ func CFRunLoopTimerInvalidate(timer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerIsValid(_:)
-func CFRunLoopTimerIsValid(timer unsafe.Pointer) unsafe.Pointer {
+func CFRunLoopTimerIsValid(timer RunLoopTimerRef) unsafe.Pointer {
 	return _CFRunLoopTimerIsValid(timer)
 }
 
@@ -6819,7 +6817,7 @@ func CFRunLoopTimerIsValid(timer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerSetNextFireDate(_:_:)
-func CFRunLoopTimerSetNextFireDate(timer unsafe.Pointer, fireDate unsafe.Pointer) {
+func CFRunLoopTimerSetNextFireDate(timer RunLoopTimerRef, fireDate AbsoluteTime) {
 	_CFRunLoopTimerSetNextFireDate(timer, fireDate)
 }
 
@@ -6828,7 +6826,7 @@ func CFRunLoopTimerSetNextFireDate(timer unsafe.Pointer, fireDate unsafe.Pointer
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerSetTolerance(_:_:)
-func CFRunLoopTimerSetTolerance(timer unsafe.Pointer, tolerance unsafe.Pointer) {
+func CFRunLoopTimerSetTolerance(timer RunLoopTimerRef, tolerance TimeInterval) {
 	_CFRunLoopTimerSetTolerance(timer, tolerance)
 }
 
@@ -6838,7 +6836,7 @@ func CFRunLoopTimerSetTolerance(timer unsafe.Pointer, tolerance unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopWakeUp(_:)
-func CFRunLoopWakeUp(rl unsafe.Pointer) {
+func CFRunLoopWakeUp(rl RunLoopRef) {
 	_CFRunLoopWakeUp(rl)
 }
 
@@ -6848,7 +6846,7 @@ func CFRunLoopWakeUp(rl unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetAddValue(_:_:)
-func CFSetAddValue(theSet unsafe.Pointer, value unsafe.Pointer) {
+func CFSetAddValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetAddValue(theSet, value)
 }
 
@@ -6858,7 +6856,7 @@ func CFSetAddValue(theSet unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetApplyFunction(_:_:_:)
-func CFSetApplyFunction(theSet unsafe.Pointer, applier unsafe.Pointer, context unsafe.Pointer) {
+func CFSetApplyFunction(theSet SetRef, applier SetApplierFunction, context unsafe.Pointer) {
 	_CFSetApplyFunction(theSet, applier, context)
 }
 
@@ -6868,7 +6866,7 @@ func CFSetApplyFunction(theSet unsafe.Pointer, applier unsafe.Pointer, context u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetContainsValue(_:_:)
-func CFSetContainsValue(theSet unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFSetContainsValue(theSet SetRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFSetContainsValue(theSet, value)
 }
 
@@ -6878,7 +6876,7 @@ func CFSetContainsValue(theSet unsafe.Pointer, value unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreate(_:_:_:_:)
-func CFSetCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+func CFSetCreate(allocator AllocatorRef, values unsafe.Pointer, numValues Index, callBacks unsafe.Pointer) SetRef {
 	return _CFSetCreate(allocator, values, numValues, callBacks)
 }
 
@@ -6888,7 +6886,7 @@ func CFSetCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreateCopy(_:_:)
-func CFSetCreateCopy(allocator unsafe.Pointer, theSet unsafe.Pointer) unsafe.Pointer {
+func CFSetCreateCopy(allocator AllocatorRef, theSet SetRef) SetRef {
 	return _CFSetCreateCopy(allocator, theSet)
 }
 
@@ -6898,7 +6896,7 @@ func CFSetCreateCopy(allocator unsafe.Pointer, theSet unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreateMutable(_:_:_:)
-func CFSetCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+func CFSetCreateMutable(allocator AllocatorRef, capacity Index, callBacks unsafe.Pointer) MutableSetRef {
 	return _CFSetCreateMutable(allocator, capacity, callBacks)
 }
 
@@ -6908,7 +6906,7 @@ func CFSetCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCreateMutableCopy(_:_:_:)
-func CFSetCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theSet unsafe.Pointer) unsafe.Pointer {
+func CFSetCreateMutableCopy(allocator AllocatorRef, capacity Index, theSet SetRef) MutableSetRef {
 	return _CFSetCreateMutableCopy(allocator, capacity, theSet)
 }
 
@@ -6918,7 +6916,7 @@ func CFSetCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetCount(_:)
-func CFSetGetCount(theSet unsafe.Pointer) unsafe.Pointer {
+func CFSetGetCount(theSet SetRef) Index {
 	return _CFSetGetCount(theSet)
 }
 
@@ -6928,7 +6926,7 @@ func CFSetGetCount(theSet unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetCountOfValue(_:_:)
-func CFSetGetCountOfValue(theSet unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFSetGetCountOfValue(theSet SetRef, value unsafe.Pointer) Index {
 	return _CFSetGetCountOfValue(theSet, value)
 }
 
@@ -6938,7 +6936,7 @@ func CFSetGetCountOfValue(theSet unsafe.Pointer, value unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetTypeID()
-func CFSetGetTypeID() unsafe.Pointer {
+func CFSetGetTypeID() TypeID {
 	return _CFSetGetTypeID()
 }
 
@@ -6948,7 +6946,7 @@ func CFSetGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetValue(_:_:)
-func CFSetGetValue(theSet unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFSetGetValue(theSet SetRef, value unsafe.Pointer) unsafe.Pointer {
 	return _CFSetGetValue(theSet, value)
 }
 
@@ -6958,7 +6956,7 @@ func CFSetGetValue(theSet unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetValueIfPresent(_:_:_:)
-func CFSetGetValueIfPresent(theSet unsafe.Pointer, candidate unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFSetGetValueIfPresent(theSet SetRef, candidate unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _CFSetGetValueIfPresent(theSet, candidate, value)
 }
 
@@ -6968,7 +6966,7 @@ func CFSetGetValueIfPresent(theSet unsafe.Pointer, candidate unsafe.Pointer, val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetGetValues(_:_:)
-func CFSetGetValues(theSet unsafe.Pointer, values unsafe.Pointer) {
+func CFSetGetValues(theSet SetRef, values unsafe.Pointer) {
 	_CFSetGetValues(theSet, values)
 }
 
@@ -6978,7 +6976,7 @@ func CFSetGetValues(theSet unsafe.Pointer, values unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetRemoveAllValues(_:)
-func CFSetRemoveAllValues(theSet unsafe.Pointer) {
+func CFSetRemoveAllValues(theSet MutableSetRef) {
 	_CFSetRemoveAllValues(theSet)
 }
 
@@ -6988,7 +6986,7 @@ func CFSetRemoveAllValues(theSet unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetRemoveValue(_:_:)
-func CFSetRemoveValue(theSet unsafe.Pointer, value unsafe.Pointer) {
+func CFSetRemoveValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetRemoveValue(theSet, value)
 }
 
@@ -6998,7 +6996,7 @@ func CFSetRemoveValue(theSet unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetReplaceValue(_:_:)
-func CFSetReplaceValue(theSet unsafe.Pointer, value unsafe.Pointer) {
+func CFSetReplaceValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetReplaceValue(theSet, value)
 }
 
@@ -7008,7 +7006,7 @@ func CFSetReplaceValue(theSet unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetSetValue(_:_:)
-func CFSetSetValue(theSet unsafe.Pointer, value unsafe.Pointer) {
+func CFSetSetValue(theSet MutableSetRef, value unsafe.Pointer) {
 	_CFSetSetValue(theSet, value)
 }
 
@@ -7018,7 +7016,7 @@ func CFSetSetValue(theSet unsafe.Pointer, value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFShow(_:)
-func CFShow(obj unsafe.Pointer) {
+func CFShow(obj TypeRef) {
 	_CFShow(obj)
 }
 
@@ -7028,7 +7026,7 @@ func CFShow(obj unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFShowStr(_:)
-func CFShowStr(str unsafe.Pointer) {
+func CFShowStr(str StringRef) {
 	_CFShowStr(str)
 }
 
@@ -7038,7 +7036,7 @@ func CFShowStr(str unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketConnectToAddress(_:_:_:)
-func CFSocketConnectToAddress(s unsafe.Pointer, address unsafe.Pointer, timeout unsafe.Pointer) unsafe.Pointer {
+func CFSocketConnectToAddress(s SocketRef, address DataRef, timeout TimeInterval) unsafe.Pointer {
 	return _CFSocketConnectToAddress(s, address, timeout)
 }
 
@@ -7048,7 +7046,7 @@ func CFSocketConnectToAddress(s unsafe.Pointer, address unsafe.Pointer, timeout 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyAddress(_:)
-func CFSocketCopyAddress(s unsafe.Pointer) unsafe.Pointer {
+func CFSocketCopyAddress(s SocketRef) DataRef {
 	return _CFSocketCopyAddress(s)
 }
 
@@ -7058,7 +7056,7 @@ func CFSocketCopyAddress(s unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyPeerAddress(_:)
-func CFSocketCopyPeerAddress(s unsafe.Pointer) unsafe.Pointer {
+func CFSocketCopyPeerAddress(s SocketRef) DataRef {
 	return _CFSocketCopyPeerAddress(s)
 }
 
@@ -7068,7 +7066,7 @@ func CFSocketCopyPeerAddress(s unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyRegisteredSocketSignature(_:_:_:_:_:)
-func CFSocketCopyRegisteredSocketSignature(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer, signature unsafe.Pointer, nameServerAddress unsafe.Pointer) unsafe.Pointer {
+func CFSocketCopyRegisteredSocketSignature(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, signature unsafe.Pointer, nameServerAddress unsafe.Pointer) unsafe.Pointer {
 	return _CFSocketCopyRegisteredSocketSignature(nameServerSignature, timeout, name, signature, nameServerAddress)
 }
 
@@ -7078,7 +7076,7 @@ func CFSocketCopyRegisteredSocketSignature(nameServerSignature unsafe.Pointer, t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyRegisteredValue(_:_:_:_:_:)
-func CFSocketCopyRegisteredValue(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer, value unsafe.Pointer, nameServerAddress unsafe.Pointer) unsafe.Pointer {
+func CFSocketCopyRegisteredValue(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, value unsafe.Pointer, nameServerAddress unsafe.Pointer) unsafe.Pointer {
 	return _CFSocketCopyRegisteredValue(nameServerSignature, timeout, name, value, nameServerAddress)
 }
 
@@ -7088,7 +7086,7 @@ func CFSocketCopyRegisteredValue(nameServerSignature unsafe.Pointer, timeout uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreate(_:_:_:_:_:_:_:)
-func CFSocketCreate(allocator unsafe.Pointer, protocolFamily unsafe.Pointer, socketType unsafe.Pointer, protocol_ unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFSocketCreate(allocator AllocatorRef, protocolFamily unsafe.Pointer, socketType unsafe.Pointer, protocol_ unsafe.Pointer, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer) SocketRef {
 	return _CFSocketCreate(allocator, protocolFamily, socketType, protocol_, callBackTypes, callout, context)
 }
 
@@ -7098,7 +7096,7 @@ func CFSocketCreate(allocator unsafe.Pointer, protocolFamily unsafe.Pointer, soc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateConnectedToSocketSignature(_:_:_:_:_:_:)
-func CFSocketCreateConnectedToSocketSignature(allocator unsafe.Pointer, signature unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer, timeout unsafe.Pointer) unsafe.Pointer {
+func CFSocketCreateConnectedToSocketSignature(allocator AllocatorRef, signature unsafe.Pointer, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer, timeout TimeInterval) SocketRef {
 	return _CFSocketCreateConnectedToSocketSignature(allocator, signature, callBackTypes, callout, context, timeout)
 }
 
@@ -7108,7 +7106,7 @@ func CFSocketCreateConnectedToSocketSignature(allocator unsafe.Pointer, signatur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateRunLoopSource(_:_:_:)
-func CFSocketCreateRunLoopSource(allocator unsafe.Pointer, s unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFSocketCreateRunLoopSource(allocator AllocatorRef, s SocketRef, order Index) RunLoopSourceRef {
 	return _CFSocketCreateRunLoopSource(allocator, s, order)
 }
 
@@ -7118,7 +7116,7 @@ func CFSocketCreateRunLoopSource(allocator unsafe.Pointer, s unsafe.Pointer, ord
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateWithNative(_:_:_:_:_:)
-func CFSocketCreateWithNative(allocator unsafe.Pointer, sock unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFSocketCreateWithNative(allocator AllocatorRef, sock SocketNativeHandle, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer) SocketRef {
 	return _CFSocketCreateWithNative(allocator, sock, callBackTypes, callout, context)
 }
 
@@ -7128,7 +7126,7 @@ func CFSocketCreateWithNative(allocator unsafe.Pointer, sock unsafe.Pointer, cal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateWithSocketSignature(_:_:_:_:_:)
-func CFSocketCreateWithSocketSignature(allocator unsafe.Pointer, signature unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFSocketCreateWithSocketSignature(allocator AllocatorRef, signature unsafe.Pointer, callBackTypes OptionFlags, callout SocketCallBack, context unsafe.Pointer) SocketRef {
 	return _CFSocketCreateWithSocketSignature(allocator, signature, callBackTypes, callout, context)
 }
 
@@ -7138,7 +7136,7 @@ func CFSocketCreateWithSocketSignature(allocator unsafe.Pointer, signature unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketDisableCallBacks(_:_:)
-func CFSocketDisableCallBacks(s unsafe.Pointer, callBackTypes unsafe.Pointer) {
+func CFSocketDisableCallBacks(s SocketRef, callBackTypes OptionFlags) {
 	_CFSocketDisableCallBacks(s, callBackTypes)
 }
 
@@ -7148,7 +7146,7 @@ func CFSocketDisableCallBacks(s unsafe.Pointer, callBackTypes unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketEnableCallBacks(_:_:)
-func CFSocketEnableCallBacks(s unsafe.Pointer, callBackTypes unsafe.Pointer) {
+func CFSocketEnableCallBacks(s SocketRef, callBackTypes OptionFlags) {
 	_CFSocketEnableCallBacks(s, callBackTypes)
 }
 
@@ -7158,7 +7156,7 @@ func CFSocketEnableCallBacks(s unsafe.Pointer, callBackTypes unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetContext(_:_:)
-func CFSocketGetContext(s unsafe.Pointer, context unsafe.Pointer) {
+func CFSocketGetContext(s SocketRef, context unsafe.Pointer) {
 	_CFSocketGetContext(s, context)
 }
 
@@ -7178,7 +7176,7 @@ func CFSocketGetDefaultNameRegistryPortNumber() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetNative(_:)
-func CFSocketGetNative(s unsafe.Pointer) unsafe.Pointer {
+func CFSocketGetNative(s SocketRef) SocketNativeHandle {
 	return _CFSocketGetNative(s)
 }
 
@@ -7188,7 +7186,7 @@ func CFSocketGetNative(s unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetSocketFlags(_:)
-func CFSocketGetSocketFlags(s unsafe.Pointer) unsafe.Pointer {
+func CFSocketGetSocketFlags(s SocketRef) OptionFlags {
 	return _CFSocketGetSocketFlags(s)
 }
 
@@ -7198,7 +7196,7 @@ func CFSocketGetSocketFlags(s unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetTypeID()
-func CFSocketGetTypeID() unsafe.Pointer {
+func CFSocketGetTypeID() TypeID {
 	return _CFSocketGetTypeID()
 }
 
@@ -7208,7 +7206,7 @@ func CFSocketGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketInvalidate(_:)
-func CFSocketInvalidate(s unsafe.Pointer) {
+func CFSocketInvalidate(s SocketRef) {
 	_CFSocketInvalidate(s)
 }
 
@@ -7218,7 +7216,7 @@ func CFSocketInvalidate(s unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketIsValid(_:)
-func CFSocketIsValid(s unsafe.Pointer) unsafe.Pointer {
+func CFSocketIsValid(s SocketRef) unsafe.Pointer {
 	return _CFSocketIsValid(s)
 }
 
@@ -7228,7 +7226,7 @@ func CFSocketIsValid(s unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketRegisterSocketSignature(_:_:_:_:)
-func CFSocketRegisterSocketSignature(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer, signature unsafe.Pointer) unsafe.Pointer {
+func CFSocketRegisterSocketSignature(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, signature unsafe.Pointer) unsafe.Pointer {
 	return _CFSocketRegisterSocketSignature(nameServerSignature, timeout, name, signature)
 }
 
@@ -7238,7 +7236,7 @@ func CFSocketRegisterSocketSignature(nameServerSignature unsafe.Pointer, timeout
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketRegisterValue(_:_:_:_:)
-func CFSocketRegisterValue(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CFSocketRegisterValue(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef, value PropertyListRef) unsafe.Pointer {
 	return _CFSocketRegisterValue(nameServerSignature, timeout, name, value)
 }
 
@@ -7248,7 +7246,7 @@ func CFSocketRegisterValue(nameServerSignature unsafe.Pointer, timeout unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSendData(_:_:_:_:)
-func CFSocketSendData(s unsafe.Pointer, address unsafe.Pointer, data unsafe.Pointer, timeout unsafe.Pointer) unsafe.Pointer {
+func CFSocketSendData(s SocketRef, address DataRef, data DataRef, timeout TimeInterval) unsafe.Pointer {
 	return _CFSocketSendData(s, address, data, timeout)
 }
 
@@ -7258,7 +7256,7 @@ func CFSocketSendData(s unsafe.Pointer, address unsafe.Pointer, data unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetAddress(_:_:)
-func CFSocketSetAddress(s unsafe.Pointer, address unsafe.Pointer) unsafe.Pointer {
+func CFSocketSetAddress(s SocketRef, address DataRef) unsafe.Pointer {
 	return _CFSocketSetAddress(s, address)
 }
 
@@ -7278,7 +7276,7 @@ func CFSocketSetDefaultNameRegistryPortNumber(port unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetSocketFlags(_:_:)
-func CFSocketSetSocketFlags(s unsafe.Pointer, flags unsafe.Pointer) {
+func CFSocketSetSocketFlags(s SocketRef, flags OptionFlags) {
 	_CFSocketSetSocketFlags(s, flags)
 }
 
@@ -7288,7 +7286,7 @@ func CFSocketSetSocketFlags(s unsafe.Pointer, flags unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketUnregister(_:_:_:)
-func CFSocketUnregister(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
+func CFSocketUnregister(nameServerSignature unsafe.Pointer, timeout TimeInterval, name StringRef) unsafe.Pointer {
 	return _CFSocketUnregister(nameServerSignature, timeout, name)
 }
 
@@ -7298,7 +7296,7 @@ func CFSocketUnregister(nameServerSignature unsafe.Pointer, timeout unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreateBoundPair(_:_:_:_:)
-func CFStreamCreateBoundPair(alloc unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer, transferBufferSize unsafe.Pointer) {
+func CFStreamCreateBoundPair(alloc AllocatorRef, readStream unsafe.Pointer, writeStream unsafe.Pointer, transferBufferSize Index) {
 	_CFStreamCreateBoundPair(alloc, readStream, writeStream, transferBufferSize)
 }
 
@@ -7311,7 +7309,7 @@ func CFStreamCreateBoundPair(alloc unsafe.Pointer, readStream unsafe.Pointer, wr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithPeerSocketSignature(_:_:_:_:)
-func CFStreamCreatePairWithPeerSocketSignature(alloc unsafe.Pointer, signature unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
+func CFStreamCreatePairWithPeerSocketSignature(alloc AllocatorRef, signature unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithPeerSocketSignature(alloc, signature, readStream, writeStream)
 }
 
@@ -7324,7 +7322,7 @@ func CFStreamCreatePairWithPeerSocketSignature(alloc unsafe.Pointer, signature u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithSocket(_:_:_:_:)
-func CFStreamCreatePairWithSocket(alloc unsafe.Pointer, sock unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
+func CFStreamCreatePairWithSocket(alloc AllocatorRef, sock SocketNativeHandle, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocket(alloc, sock, readStream, writeStream)
 }
 
@@ -7337,7 +7335,7 @@ func CFStreamCreatePairWithSocket(alloc unsafe.Pointer, sock unsafe.Pointer, rea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithSocketToHost(_:_:_:_:_:)
-func CFStreamCreatePairWithSocketToHost(alloc unsafe.Pointer, host unsafe.Pointer, port unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
+func CFStreamCreatePairWithSocketToHost(alloc AllocatorRef, host StringRef, port unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToHost(alloc, host, port, readStream, writeStream)
 }
 
@@ -7347,7 +7345,7 @@ func CFStreamCreatePairWithSocketToHost(alloc unsafe.Pointer, host unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppend(_:_:)
-func CFStringAppend(theString unsafe.Pointer, appendedString unsafe.Pointer) {
+func CFStringAppend(theString MutableStringRef, appendedString StringRef) {
 	_CFStringAppend(theString, appendedString)
 }
 
@@ -7357,7 +7355,7 @@ func CFStringAppend(theString unsafe.Pointer, appendedString unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendCString(_:_:_:)
-func CFStringAppendCString(theString unsafe.Pointer, cStr unsafe.Pointer, encoding unsafe.Pointer) {
+func CFStringAppendCString(theString MutableStringRef, cStr unsafe.Pointer, encoding StringEncoding) {
 	_CFStringAppendCString(theString, cStr, encoding)
 }
 
@@ -7367,7 +7365,7 @@ func CFStringAppendCString(theString unsafe.Pointer, cStr unsafe.Pointer, encodi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendCharacters(_:_:_:)
-func CFStringAppendCharacters(theString unsafe.Pointer, chars unsafe.Pointer, numChars unsafe.Pointer) {
+func CFStringAppendCharacters(theString MutableStringRef, chars unsafe.Pointer, numChars Index) {
 	_CFStringAppendCharacters(theString, chars, numChars)
 }
 
@@ -7377,7 +7375,7 @@ func CFStringAppendCharacters(theString unsafe.Pointer, chars unsafe.Pointer, nu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendFormat
-func CFStringAppendFormat(theString unsafe.Pointer, formatOptions unsafe.Pointer, format unsafe.Pointer) {
+func CFStringAppendFormat(theString MutableStringRef, formatOptions DictionaryRef, format StringRef) {
 	_CFStringAppendFormat(theString, formatOptions, format)
 }
 
@@ -7387,7 +7385,7 @@ func CFStringAppendFormat(theString unsafe.Pointer, formatOptions unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendFormatAndArguments(_:_:_:_:)
-func CFStringAppendFormatAndArguments(theString unsafe.Pointer, formatOptions unsafe.Pointer, format unsafe.Pointer, arguments unsafe.Pointer) {
+func CFStringAppendFormatAndArguments(theString MutableStringRef, formatOptions DictionaryRef, format StringRef, arguments unsafe.Pointer) {
 	_CFStringAppendFormatAndArguments(theString, formatOptions, format, arguments)
 }
 
@@ -7397,7 +7395,7 @@ func CFStringAppendFormatAndArguments(theString unsafe.Pointer, formatOptions un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendPascalString(_:_:_:)
-func CFStringAppendPascalString(theString unsafe.Pointer, pStr unsafe.Pointer, encoding unsafe.Pointer) {
+func CFStringAppendPascalString(theString MutableStringRef, pStr unsafe.Pointer, encoding StringEncoding) {
 	_CFStringAppendPascalString(theString, pStr, encoding)
 }
 
@@ -7407,7 +7405,7 @@ func CFStringAppendPascalString(theString unsafe.Pointer, pStr unsafe.Pointer, e
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCapitalize(_:_:)
-func CFStringCapitalize(theString unsafe.Pointer, locale unsafe.Pointer) {
+func CFStringCapitalize(theString MutableStringRef, locale LocaleRef) {
 	_CFStringCapitalize(theString, locale)
 }
 
@@ -7417,7 +7415,7 @@ func CFStringCapitalize(theString unsafe.Pointer, locale unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompare(_:_:_:)
-func CFStringCompare(theString1 unsafe.Pointer, theString2 unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
+func CFStringCompare(theString1 StringRef, theString2 StringRef, compareOptions unsafe.Pointer) unsafe.Pointer {
 	return _CFStringCompare(theString1, theString2, compareOptions)
 }
 
@@ -7427,7 +7425,7 @@ func CFStringCompare(theString1 unsafe.Pointer, theString2 unsafe.Pointer, compa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompareWithOptions(_:_:_:_:)
-func CFStringCompareWithOptions(theString1 unsafe.Pointer, theString2 unsafe.Pointer, rangeToCompare unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
+func CFStringCompareWithOptions(theString1 StringRef, theString2 StringRef, rangeToCompare unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
 	return _CFStringCompareWithOptions(theString1, theString2, rangeToCompare, compareOptions)
 }
 
@@ -7438,7 +7436,7 @@ func CFStringCompareWithOptions(theString1 unsafe.Pointer, theString2 unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompareWithOptionsAndLocale(_:_:_:_:_:)
-func CFStringCompareWithOptionsAndLocale(theString1 unsafe.Pointer, theString2 unsafe.Pointer, rangeToCompare unsafe.Pointer, compareOptions unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+func CFStringCompareWithOptionsAndLocale(theString1 StringRef, theString2 StringRef, rangeToCompare unsafe.Pointer, compareOptions unsafe.Pointer, locale LocaleRef) unsafe.Pointer {
 	return _CFStringCompareWithOptionsAndLocale(theString1, theString2, rangeToCompare, compareOptions, locale)
 }
 
@@ -7448,7 +7446,7 @@ func CFStringCompareWithOptionsAndLocale(theString1 unsafe.Pointer, theString2 u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertEncodingToIANACharSetName(_:)
-func CFStringConvertEncodingToIANACharSetName(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringConvertEncodingToIANACharSetName(encoding StringEncoding) StringRef {
 	return _CFStringConvertEncodingToIANACharSetName(encoding)
 }
 
@@ -7458,7 +7456,7 @@ func CFStringConvertEncodingToIANACharSetName(encoding unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertEncodingToNSStringEncoding(_:)
-func CFStringConvertEncodingToNSStringEncoding(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringConvertEncodingToNSStringEncoding(encoding StringEncoding) unsafe.Pointer {
 	return _CFStringConvertEncodingToNSStringEncoding(encoding)
 }
 
@@ -7468,7 +7466,7 @@ func CFStringConvertEncodingToNSStringEncoding(encoding unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertEncodingToWindowsCodepage(_:)
-func CFStringConvertEncodingToWindowsCodepage(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringConvertEncodingToWindowsCodepage(encoding StringEncoding) unsafe.Pointer {
 	return _CFStringConvertEncodingToWindowsCodepage(encoding)
 }
 
@@ -7478,7 +7476,7 @@ func CFStringConvertEncodingToWindowsCodepage(encoding unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertIANACharSetNameToEncoding(_:)
-func CFStringConvertIANACharSetNameToEncoding(theString unsafe.Pointer) unsafe.Pointer {
+func CFStringConvertIANACharSetNameToEncoding(theString StringRef) StringEncoding {
 	return _CFStringConvertIANACharSetNameToEncoding(theString)
 }
 
@@ -7488,7 +7486,7 @@ func CFStringConvertIANACharSetNameToEncoding(theString unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertNSStringEncodingToEncoding(_:)
-func CFStringConvertNSStringEncodingToEncoding(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringConvertNSStringEncodingToEncoding(encoding unsafe.Pointer) StringEncoding {
 	return _CFStringConvertNSStringEncodingToEncoding(encoding)
 }
 
@@ -7498,7 +7496,7 @@ func CFStringConvertNSStringEncodingToEncoding(encoding unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringConvertWindowsCodepageToEncoding(_:)
-func CFStringConvertWindowsCodepageToEncoding(codepage unsafe.Pointer) unsafe.Pointer {
+func CFStringConvertWindowsCodepageToEncoding(codepage unsafe.Pointer) StringEncoding {
 	return _CFStringConvertWindowsCodepageToEncoding(codepage)
 }
 
@@ -7508,7 +7506,7 @@ func CFStringConvertWindowsCodepageToEncoding(codepage unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateArrayBySeparatingStrings(_:_:_:)
-func CFStringCreateArrayBySeparatingStrings(alloc unsafe.Pointer, theString unsafe.Pointer, separatorString unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateArrayBySeparatingStrings(alloc AllocatorRef, theString StringRef, separatorString StringRef) ArrayRef {
 	return _CFStringCreateArrayBySeparatingStrings(alloc, theString, separatorString)
 }
 
@@ -7518,7 +7516,7 @@ func CFStringCreateArrayBySeparatingStrings(alloc unsafe.Pointer, theString unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateArrayWithFindResults(_:_:_:_:_:)
-func CFStringCreateArrayWithFindResults(alloc unsafe.Pointer, theString unsafe.Pointer, stringToFind unsafe.Pointer, rangeToSearch unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateArrayWithFindResults(alloc AllocatorRef, theString StringRef, stringToFind StringRef, rangeToSearch unsafe.Pointer, compareOptions unsafe.Pointer) ArrayRef {
 	return _CFStringCreateArrayWithFindResults(alloc, theString, stringToFind, rangeToSearch, compareOptions)
 }
 
@@ -7528,7 +7526,7 @@ func CFStringCreateArrayWithFindResults(alloc unsafe.Pointer, theString unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateByCombiningStrings(_:_:_:)
-func CFStringCreateByCombiningStrings(alloc unsafe.Pointer, theArray unsafe.Pointer, separatorString unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateByCombiningStrings(alloc AllocatorRef, theArray ArrayRef, separatorString StringRef) StringRef {
 	return _CFStringCreateByCombiningStrings(alloc, theArray, separatorString)
 }
 
@@ -7538,7 +7536,7 @@ func CFStringCreateByCombiningStrings(alloc unsafe.Pointer, theArray unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateCopy(_:_:)
-func CFStringCreateCopy(alloc unsafe.Pointer, theString unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateCopy(alloc AllocatorRef, theString StringRef) StringRef {
 	return _CFStringCreateCopy(alloc, theString)
 }
 
@@ -7548,7 +7546,7 @@ func CFStringCreateCopy(alloc unsafe.Pointer, theString unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateExternalRepresentation(_:_:_:_:)
-func CFStringCreateExternalRepresentation(alloc unsafe.Pointer, theString unsafe.Pointer, encoding unsafe.Pointer, lossByte unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateExternalRepresentation(alloc AllocatorRef, theString StringRef, encoding StringEncoding, lossByte unsafe.Pointer) DataRef {
 	return _CFStringCreateExternalRepresentation(alloc, theString, encoding, lossByte)
 }
 
@@ -7558,7 +7556,7 @@ func CFStringCreateExternalRepresentation(alloc unsafe.Pointer, theString unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateFromExternalRepresentation(_:_:_:)
-func CFStringCreateFromExternalRepresentation(alloc unsafe.Pointer, data unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateFromExternalRepresentation(alloc AllocatorRef, data DataRef, encoding StringEncoding) StringRef {
 	return _CFStringCreateFromExternalRepresentation(alloc, data, encoding)
 }
 
@@ -7568,7 +7566,7 @@ func CFStringCreateFromExternalRepresentation(alloc unsafe.Pointer, data unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutable(_:_:)
-func CFStringCreateMutable(alloc unsafe.Pointer, maxLength unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateMutable(alloc AllocatorRef, maxLength Index) MutableStringRef {
 	return _CFStringCreateMutable(alloc, maxLength)
 }
 
@@ -7578,7 +7576,7 @@ func CFStringCreateMutable(alloc unsafe.Pointer, maxLength unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutableCopy(_:_:_:)
-func CFStringCreateMutableCopy(alloc unsafe.Pointer, maxLength unsafe.Pointer, theString unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateMutableCopy(alloc AllocatorRef, maxLength Index, theString StringRef) MutableStringRef {
 	return _CFStringCreateMutableCopy(alloc, maxLength, theString)
 }
 
@@ -7588,7 +7586,7 @@ func CFStringCreateMutableCopy(alloc unsafe.Pointer, maxLength unsafe.Pointer, t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutableWithExternalCharactersNoCopy(_:_:_:_:_:)
-func CFStringCreateMutableWithExternalCharactersNoCopy(alloc unsafe.Pointer, chars unsafe.Pointer, numChars unsafe.Pointer, capacity unsafe.Pointer, externalCharactersAllocator unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateMutableWithExternalCharactersNoCopy(alloc AllocatorRef, chars unsafe.Pointer, numChars Index, capacity Index, externalCharactersAllocator AllocatorRef) MutableStringRef {
 	return _CFStringCreateMutableWithExternalCharactersNoCopy(alloc, chars, numChars, capacity, externalCharactersAllocator)
 }
 
@@ -7597,7 +7595,7 @@ func CFStringCreateMutableWithExternalCharactersNoCopy(alloc unsafe.Pointer, cha
 // Added in macOS 13.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateStringWithValidatedFormat
-func CFStringCreateStringWithValidatedFormat(alloc unsafe.Pointer, formatOptions unsafe.Pointer, validFormatSpecifiers unsafe.Pointer, format unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateStringWithValidatedFormat(alloc AllocatorRef, formatOptions DictionaryRef, validFormatSpecifiers StringRef, format StringRef, errorPtr unsafe.Pointer) StringRef {
 	return _CFStringCreateStringWithValidatedFormat(alloc, formatOptions, validFormatSpecifiers, format, errorPtr)
 }
 
@@ -7606,7 +7604,7 @@ func CFStringCreateStringWithValidatedFormat(alloc unsafe.Pointer, formatOptions
 // Added in macOS 13.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateStringWithValidatedFormatAndArguments
-func CFStringCreateStringWithValidatedFormatAndArguments(alloc unsafe.Pointer, formatOptions unsafe.Pointer, validFormatSpecifiers unsafe.Pointer, format unsafe.Pointer, arguments unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateStringWithValidatedFormatAndArguments(alloc AllocatorRef, formatOptions DictionaryRef, validFormatSpecifiers StringRef, format StringRef, arguments unsafe.Pointer, errorPtr unsafe.Pointer) StringRef {
 	return _CFStringCreateStringWithValidatedFormatAndArguments(alloc, formatOptions, validFormatSpecifiers, format, arguments, errorPtr)
 }
 
@@ -7616,7 +7614,7 @@ func CFStringCreateStringWithValidatedFormatAndArguments(alloc unsafe.Pointer, f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithBytes(_:_:_:_:_:)
-func CFStringCreateWithBytes(alloc unsafe.Pointer, bytes unsafe.Pointer, numBytes unsafe.Pointer, encoding unsafe.Pointer, isExternalRepresentation unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithBytes(alloc AllocatorRef, bytes unsafe.Pointer, numBytes Index, encoding StringEncoding, isExternalRepresentation unsafe.Pointer) StringRef {
 	return _CFStringCreateWithBytes(alloc, bytes, numBytes, encoding, isExternalRepresentation)
 }
 
@@ -7626,7 +7624,7 @@ func CFStringCreateWithBytes(alloc unsafe.Pointer, bytes unsafe.Pointer, numByte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithBytesNoCopy(_:_:_:_:_:_:)
-func CFStringCreateWithBytesNoCopy(alloc unsafe.Pointer, bytes unsafe.Pointer, numBytes unsafe.Pointer, encoding unsafe.Pointer, isExternalRepresentation unsafe.Pointer, contentsDeallocator unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithBytesNoCopy(alloc AllocatorRef, bytes unsafe.Pointer, numBytes Index, encoding StringEncoding, isExternalRepresentation unsafe.Pointer, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithBytesNoCopy(alloc, bytes, numBytes, encoding, isExternalRepresentation, contentsDeallocator)
 }
 
@@ -7636,7 +7634,7 @@ func CFStringCreateWithBytesNoCopy(alloc unsafe.Pointer, bytes unsafe.Pointer, n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCString(_:_:_:)
-func CFStringCreateWithCString(alloc unsafe.Pointer, cStr unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithCString(alloc AllocatorRef, cStr unsafe.Pointer, encoding StringEncoding) StringRef {
 	return _CFStringCreateWithCString(alloc, cStr, encoding)
 }
 
@@ -7646,7 +7644,7 @@ func CFStringCreateWithCString(alloc unsafe.Pointer, cStr unsafe.Pointer, encodi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCStringNoCopy(_:_:_:_:)
-func CFStringCreateWithCStringNoCopy(alloc unsafe.Pointer, cStr unsafe.Pointer, encoding unsafe.Pointer, contentsDeallocator unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithCStringNoCopy(alloc AllocatorRef, cStr unsafe.Pointer, encoding StringEncoding, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithCStringNoCopy(alloc, cStr, encoding, contentsDeallocator)
 }
 
@@ -7656,7 +7654,7 @@ func CFStringCreateWithCStringNoCopy(alloc unsafe.Pointer, cStr unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCharacters(_:_:_:)
-func CFStringCreateWithCharacters(alloc unsafe.Pointer, chars unsafe.Pointer, numChars unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithCharacters(alloc AllocatorRef, chars unsafe.Pointer, numChars Index) StringRef {
 	return _CFStringCreateWithCharacters(alloc, chars, numChars)
 }
 
@@ -7666,7 +7664,7 @@ func CFStringCreateWithCharacters(alloc unsafe.Pointer, chars unsafe.Pointer, nu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithCharactersNoCopy(_:_:_:_:)
-func CFStringCreateWithCharactersNoCopy(alloc unsafe.Pointer, chars unsafe.Pointer, numChars unsafe.Pointer, contentsDeallocator unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithCharactersNoCopy(alloc AllocatorRef, chars unsafe.Pointer, numChars Index, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithCharactersNoCopy(alloc, chars, numChars, contentsDeallocator)
 }
 
@@ -7676,7 +7674,7 @@ func CFStringCreateWithCharactersNoCopy(alloc unsafe.Pointer, chars unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithFileSystemRepresentation(_:_:)
-func CFStringCreateWithFileSystemRepresentation(alloc unsafe.Pointer, buffer unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithFileSystemRepresentation(alloc AllocatorRef, buffer unsafe.Pointer) StringRef {
 	return _CFStringCreateWithFileSystemRepresentation(alloc, buffer)
 }
 
@@ -7686,7 +7684,7 @@ func CFStringCreateWithFileSystemRepresentation(alloc unsafe.Pointer, buffer uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithFormat
-func CFStringCreateWithFormat(alloc unsafe.Pointer, formatOptions unsafe.Pointer, format unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithFormat(alloc AllocatorRef, formatOptions DictionaryRef, format StringRef) StringRef {
 	return _CFStringCreateWithFormat(alloc, formatOptions, format)
 }
 
@@ -7696,7 +7694,7 @@ func CFStringCreateWithFormat(alloc unsafe.Pointer, formatOptions unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithFormatAndArguments(_:_:_:_:)
-func CFStringCreateWithFormatAndArguments(alloc unsafe.Pointer, formatOptions unsafe.Pointer, format unsafe.Pointer, arguments unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithFormatAndArguments(alloc AllocatorRef, formatOptions DictionaryRef, format StringRef, arguments unsafe.Pointer) StringRef {
 	return _CFStringCreateWithFormatAndArguments(alloc, formatOptions, format, arguments)
 }
 
@@ -7706,7 +7704,7 @@ func CFStringCreateWithFormatAndArguments(alloc unsafe.Pointer, formatOptions un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithPascalString(_:_:_:)
-func CFStringCreateWithPascalString(alloc unsafe.Pointer, pStr unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithPascalString(alloc AllocatorRef, pStr unsafe.Pointer, encoding StringEncoding) StringRef {
 	return _CFStringCreateWithPascalString(alloc, pStr, encoding)
 }
 
@@ -7716,7 +7714,7 @@ func CFStringCreateWithPascalString(alloc unsafe.Pointer, pStr unsafe.Pointer, e
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithPascalStringNoCopy(_:_:_:_:)
-func CFStringCreateWithPascalStringNoCopy(alloc unsafe.Pointer, pStr unsafe.Pointer, encoding unsafe.Pointer, contentsDeallocator unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithPascalStringNoCopy(alloc AllocatorRef, pStr unsafe.Pointer, encoding StringEncoding, contentsDeallocator AllocatorRef) StringRef {
 	return _CFStringCreateWithPascalStringNoCopy(alloc, pStr, encoding, contentsDeallocator)
 }
 
@@ -7726,7 +7724,7 @@ func CFStringCreateWithPascalStringNoCopy(alloc unsafe.Pointer, pStr unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateWithSubstring(_:_:_:)
-func CFStringCreateWithSubstring(alloc unsafe.Pointer, str unsafe.Pointer, range_ unsafe.Pointer) unsafe.Pointer {
+func CFStringCreateWithSubstring(alloc AllocatorRef, str StringRef, range_ unsafe.Pointer) StringRef {
 	return _CFStringCreateWithSubstring(alloc, str, range_)
 }
 
@@ -7736,7 +7734,7 @@ func CFStringCreateWithSubstring(alloc unsafe.Pointer, str unsafe.Pointer, range
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringDelete(_:_:)
-func CFStringDelete(theString unsafe.Pointer, range_ unsafe.Pointer) {
+func CFStringDelete(theString MutableStringRef, range_ unsafe.Pointer) {
 	_CFStringDelete(theString, range_)
 }
 
@@ -7746,7 +7744,7 @@ func CFStringDelete(theString unsafe.Pointer, range_ unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFind(_:_:_:)
-func CFStringFind(theString unsafe.Pointer, stringToFind unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
+func CFStringFind(theString StringRef, stringToFind StringRef, compareOptions unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFind(theString, stringToFind, compareOptions)
 }
 
@@ -7756,7 +7754,7 @@ func CFStringFind(theString unsafe.Pointer, stringToFind unsafe.Pointer, compare
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindAndReplace(_:_:_:_:_:)
-func CFStringFindAndReplace(theString unsafe.Pointer, stringToFind unsafe.Pointer, replacementString unsafe.Pointer, rangeToSearch unsafe.Pointer, compareOptions unsafe.Pointer) unsafe.Pointer {
+func CFStringFindAndReplace(theString MutableStringRef, stringToFind StringRef, replacementString StringRef, rangeToSearch unsafe.Pointer, compareOptions unsafe.Pointer) Index {
 	return _CFStringFindAndReplace(theString, stringToFind, replacementString, rangeToSearch, compareOptions)
 }
 
@@ -7766,7 +7764,7 @@ func CFStringFindAndReplace(theString unsafe.Pointer, stringToFind unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindCharacterFromSet(_:_:_:_:_:)
-func CFStringFindCharacterFromSet(theString unsafe.Pointer, theSet unsafe.Pointer, rangeToSearch unsafe.Pointer, searchOptions unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
+func CFStringFindCharacterFromSet(theString StringRef, theSet CharacterSetRef, rangeToSearch unsafe.Pointer, searchOptions unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFindCharacterFromSet(theString, theSet, rangeToSearch, searchOptions, result)
 }
 
@@ -7776,7 +7774,7 @@ func CFStringFindCharacterFromSet(theString unsafe.Pointer, theSet unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindWithOptions(_:_:_:_:_:)
-func CFStringFindWithOptions(theString unsafe.Pointer, stringToFind unsafe.Pointer, rangeToSearch unsafe.Pointer, searchOptions unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
+func CFStringFindWithOptions(theString StringRef, stringToFind StringRef, rangeToSearch unsafe.Pointer, searchOptions unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFindWithOptions(theString, stringToFind, rangeToSearch, searchOptions, result)
 }
 
@@ -7787,7 +7785,7 @@ func CFStringFindWithOptions(theString unsafe.Pointer, stringToFind unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFindWithOptionsAndLocale(_:_:_:_:_:_:)
-func CFStringFindWithOptionsAndLocale(theString unsafe.Pointer, stringToFind unsafe.Pointer, rangeToSearch unsafe.Pointer, searchOptions unsafe.Pointer, locale unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
+func CFStringFindWithOptionsAndLocale(theString StringRef, stringToFind StringRef, rangeToSearch unsafe.Pointer, searchOptions unsafe.Pointer, locale LocaleRef, result unsafe.Pointer) unsafe.Pointer {
 	return _CFStringFindWithOptionsAndLocale(theString, stringToFind, rangeToSearch, searchOptions, locale, result)
 }
 
@@ -7798,7 +7796,7 @@ func CFStringFindWithOptionsAndLocale(theString unsafe.Pointer, stringToFind uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringFold(_:_:_:)
-func CFStringFold(theString unsafe.Pointer, theFlags unsafe.Pointer, theLocale unsafe.Pointer) {
+func CFStringFold(theString MutableStringRef, theFlags unsafe.Pointer, theLocale LocaleRef) {
 	_CFStringFold(theString, theFlags, theLocale)
 }
 
@@ -7808,7 +7806,7 @@ func CFStringFold(theString unsafe.Pointer, theFlags unsafe.Pointer, theLocale u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetBytes(_:_:_:_:_:_:_:_:)
-func CFStringGetBytes(theString unsafe.Pointer, range_ unsafe.Pointer, encoding unsafe.Pointer, lossByte unsafe.Pointer, isExternalRepresentation unsafe.Pointer, buffer unsafe.Pointer, maxBufLen unsafe.Pointer, usedBufLen unsafe.Pointer) unsafe.Pointer {
+func CFStringGetBytes(theString StringRef, range_ unsafe.Pointer, encoding StringEncoding, lossByte unsafe.Pointer, isExternalRepresentation unsafe.Pointer, buffer unsafe.Pointer, maxBufLen Index, usedBufLen unsafe.Pointer) Index {
 	return _CFStringGetBytes(theString, range_, encoding, lossByte, isExternalRepresentation, buffer, maxBufLen, usedBufLen)
 }
 
@@ -7818,7 +7816,7 @@ func CFStringGetBytes(theString unsafe.Pointer, range_ unsafe.Pointer, encoding 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCString(_:_:_:_:)
-func CFStringGetCString(theString unsafe.Pointer, buffer unsafe.Pointer, bufferSize unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetCString(theString StringRef, buffer unsafe.Pointer, bufferSize Index, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetCString(theString, buffer, bufferSize, encoding)
 }
 
@@ -7828,7 +7826,7 @@ func CFStringGetCString(theString unsafe.Pointer, buffer unsafe.Pointer, bufferS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCStringPtr(_:_:)
-func CFStringGetCStringPtr(theString unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetCStringPtr(theString StringRef, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetCStringPtr(theString, encoding)
 }
 
@@ -7838,7 +7836,7 @@ func CFStringGetCStringPtr(theString unsafe.Pointer, encoding unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCharacterAtIndex(_:_:)
-func CFStringGetCharacterAtIndex(theString unsafe.Pointer, idx unsafe.Pointer) unsafe.Pointer {
+func CFStringGetCharacterAtIndex(theString StringRef, idx Index) unsafe.Pointer {
 	return _CFStringGetCharacterAtIndex(theString, idx)
 }
 
@@ -7848,7 +7846,7 @@ func CFStringGetCharacterAtIndex(theString unsafe.Pointer, idx unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCharacters(_:_:_:)
-func CFStringGetCharacters(theString unsafe.Pointer, range_ unsafe.Pointer, buffer unsafe.Pointer) {
+func CFStringGetCharacters(theString StringRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
 	_CFStringGetCharacters(theString, range_, buffer)
 }
 
@@ -7858,7 +7856,7 @@ func CFStringGetCharacters(theString unsafe.Pointer, range_ unsafe.Pointer, buff
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetCharactersPtr(_:)
-func CFStringGetCharactersPtr(theString unsafe.Pointer) unsafe.Pointer {
+func CFStringGetCharactersPtr(theString StringRef) unsafe.Pointer {
 	return _CFStringGetCharactersPtr(theString)
 }
 
@@ -7868,7 +7866,7 @@ func CFStringGetCharactersPtr(theString unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetDoubleValue(_:)
-func CFStringGetDoubleValue(str unsafe.Pointer) float64 {
+func CFStringGetDoubleValue(str StringRef) float64 {
 	return _CFStringGetDoubleValue(str)
 }
 
@@ -7878,7 +7876,7 @@ func CFStringGetDoubleValue(str unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetFastestEncoding(_:)
-func CFStringGetFastestEncoding(theString unsafe.Pointer) unsafe.Pointer {
+func CFStringGetFastestEncoding(theString StringRef) StringEncoding {
 	return _CFStringGetFastestEncoding(theString)
 }
 
@@ -7888,7 +7886,7 @@ func CFStringGetFastestEncoding(theString unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetFileSystemRepresentation(_:_:_:)
-func CFStringGetFileSystemRepresentation(string_ unsafe.Pointer, buffer unsafe.Pointer, maxBufLen unsafe.Pointer) unsafe.Pointer {
+func CFStringGetFileSystemRepresentation(string_ StringRef, buffer unsafe.Pointer, maxBufLen Index) unsafe.Pointer {
 	return _CFStringGetFileSystemRepresentation(string_, buffer, maxBufLen)
 }
 
@@ -7899,7 +7897,7 @@ func CFStringGetFileSystemRepresentation(string_ unsafe.Pointer, buffer unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetHyphenationLocationBeforeIndex(_:_:_:_:_:_:)
-func CFStringGetHyphenationLocationBeforeIndex(string_ unsafe.Pointer, location unsafe.Pointer, limitRange unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer, character unsafe.Pointer) unsafe.Pointer {
+func CFStringGetHyphenationLocationBeforeIndex(string_ StringRef, location Index, limitRange unsafe.Pointer, options OptionFlags, locale LocaleRef, character unsafe.Pointer) Index {
 	return _CFStringGetHyphenationLocationBeforeIndex(string_, location, limitRange, options, locale, character)
 }
 
@@ -7909,7 +7907,7 @@ func CFStringGetHyphenationLocationBeforeIndex(string_ unsafe.Pointer, location 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetIntValue(_:)
-func CFStringGetIntValue(str unsafe.Pointer) unsafe.Pointer {
+func CFStringGetIntValue(str StringRef) unsafe.Pointer {
 	return _CFStringGetIntValue(str)
 }
 
@@ -7919,7 +7917,7 @@ func CFStringGetIntValue(str unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetLength(_:)
-func CFStringGetLength(theString unsafe.Pointer) unsafe.Pointer {
+func CFStringGetLength(theString StringRef) Index {
 	return _CFStringGetLength(theString)
 }
 
@@ -7929,7 +7927,7 @@ func CFStringGetLength(theString unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetLineBounds(_:_:_:_:_:)
-func CFStringGetLineBounds(theString unsafe.Pointer, range_ unsafe.Pointer, lineBeginIndex unsafe.Pointer, lineEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
+func CFStringGetLineBounds(theString StringRef, range_ unsafe.Pointer, lineBeginIndex unsafe.Pointer, lineEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
 	_CFStringGetLineBounds(theString, range_, lineBeginIndex, lineEndIndex, contentsEndIndex)
 }
 
@@ -7949,7 +7947,7 @@ func CFStringGetListOfAvailableEncodings() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMaximumSizeForEncoding(_:_:)
-func CFStringGetMaximumSizeForEncoding(length unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetMaximumSizeForEncoding(length Index, encoding StringEncoding) Index {
 	return _CFStringGetMaximumSizeForEncoding(length, encoding)
 }
 
@@ -7959,7 +7957,7 @@ func CFStringGetMaximumSizeForEncoding(length unsafe.Pointer, encoding unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMaximumSizeOfFileSystemRepresentation(_:)
-func CFStringGetMaximumSizeOfFileSystemRepresentation(string_ unsafe.Pointer) unsafe.Pointer {
+func CFStringGetMaximumSizeOfFileSystemRepresentation(string_ StringRef) Index {
 	return _CFStringGetMaximumSizeOfFileSystemRepresentation(string_)
 }
 
@@ -7969,7 +7967,7 @@ func CFStringGetMaximumSizeOfFileSystemRepresentation(string_ unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetMostCompatibleMacStringEncoding(_:)
-func CFStringGetMostCompatibleMacStringEncoding(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetMostCompatibleMacStringEncoding(encoding StringEncoding) StringEncoding {
 	return _CFStringGetMostCompatibleMacStringEncoding(encoding)
 }
 
@@ -7979,7 +7977,7 @@ func CFStringGetMostCompatibleMacStringEncoding(encoding unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetNameOfEncoding(_:)
-func CFStringGetNameOfEncoding(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetNameOfEncoding(encoding StringEncoding) StringRef {
 	return _CFStringGetNameOfEncoding(encoding)
 }
 
@@ -7990,7 +7988,7 @@ func CFStringGetNameOfEncoding(encoding unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetParagraphBounds(_:_:_:_:_:)
-func CFStringGetParagraphBounds(string_ unsafe.Pointer, range_ unsafe.Pointer, parBeginIndex unsafe.Pointer, parEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
+func CFStringGetParagraphBounds(string_ StringRef, range_ unsafe.Pointer, parBeginIndex unsafe.Pointer, parEndIndex unsafe.Pointer, contentsEndIndex unsafe.Pointer) {
 	_CFStringGetParagraphBounds(string_, range_, parBeginIndex, parEndIndex, contentsEndIndex)
 }
 
@@ -8000,7 +7998,7 @@ func CFStringGetParagraphBounds(string_ unsafe.Pointer, range_ unsafe.Pointer, p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetPascalString(_:_:_:_:)
-func CFStringGetPascalString(theString unsafe.Pointer, buffer unsafe.Pointer, bufferSize unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetPascalString(theString StringRef, buffer unsafe.Pointer, bufferSize Index, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetPascalString(theString, buffer, bufferSize, encoding)
 }
 
@@ -8010,7 +8008,7 @@ func CFStringGetPascalString(theString unsafe.Pointer, buffer unsafe.Pointer, bu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetPascalStringPtr(_:_:)
-func CFStringGetPascalStringPtr(theString unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringGetPascalStringPtr(theString StringRef, encoding StringEncoding) unsafe.Pointer {
 	return _CFStringGetPascalStringPtr(theString, encoding)
 }
 
@@ -8020,7 +8018,7 @@ func CFStringGetPascalStringPtr(theString unsafe.Pointer, encoding unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetRangeOfComposedCharactersAtIndex(_:_:)
-func CFStringGetRangeOfComposedCharactersAtIndex(theString unsafe.Pointer, theIndex unsafe.Pointer) unsafe.Pointer {
+func CFStringGetRangeOfComposedCharactersAtIndex(theString StringRef, theIndex Index) unsafe.Pointer {
 	return _CFStringGetRangeOfComposedCharactersAtIndex(theString, theIndex)
 }
 
@@ -8030,7 +8028,7 @@ func CFStringGetRangeOfComposedCharactersAtIndex(theString unsafe.Pointer, theIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetSmallestEncoding(_:)
-func CFStringGetSmallestEncoding(theString unsafe.Pointer) unsafe.Pointer {
+func CFStringGetSmallestEncoding(theString StringRef) StringEncoding {
 	return _CFStringGetSmallestEncoding(theString)
 }
 
@@ -8040,7 +8038,7 @@ func CFStringGetSmallestEncoding(theString unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetSystemEncoding()
-func CFStringGetSystemEncoding() unsafe.Pointer {
+func CFStringGetSystemEncoding() StringEncoding {
 	return _CFStringGetSystemEncoding()
 }
 
@@ -8050,7 +8048,7 @@ func CFStringGetSystemEncoding() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringGetTypeID()
-func CFStringGetTypeID() unsafe.Pointer {
+func CFStringGetTypeID() TypeID {
 	return _CFStringGetTypeID()
 }
 
@@ -8060,7 +8058,7 @@ func CFStringGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringHasPrefix(_:_:)
-func CFStringHasPrefix(theString unsafe.Pointer, prefix unsafe.Pointer) unsafe.Pointer {
+func CFStringHasPrefix(theString StringRef, prefix StringRef) unsafe.Pointer {
 	return _CFStringHasPrefix(theString, prefix)
 }
 
@@ -8070,7 +8068,7 @@ func CFStringHasPrefix(theString unsafe.Pointer, prefix unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringHasSuffix(_:_:)
-func CFStringHasSuffix(theString unsafe.Pointer, suffix unsafe.Pointer) unsafe.Pointer {
+func CFStringHasSuffix(theString StringRef, suffix StringRef) unsafe.Pointer {
 	return _CFStringHasSuffix(theString, suffix)
 }
 
@@ -8080,7 +8078,7 @@ func CFStringHasSuffix(theString unsafe.Pointer, suffix unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringInsert(_:_:_:)
-func CFStringInsert(str unsafe.Pointer, idx unsafe.Pointer, insertedStr unsafe.Pointer) {
+func CFStringInsert(str MutableStringRef, idx Index, insertedStr StringRef) {
 	_CFStringInsert(str, idx, insertedStr)
 }
 
@@ -8090,7 +8088,7 @@ func CFStringInsert(str unsafe.Pointer, idx unsafe.Pointer, insertedStr unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringIsEncodingAvailable(_:)
-func CFStringIsEncodingAvailable(encoding unsafe.Pointer) unsafe.Pointer {
+func CFStringIsEncodingAvailable(encoding StringEncoding) unsafe.Pointer {
 	return _CFStringIsEncodingAvailable(encoding)
 }
 
@@ -8101,7 +8099,7 @@ func CFStringIsEncodingAvailable(encoding unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringIsHyphenationAvailableForLocale(_:)
-func CFStringIsHyphenationAvailableForLocale(locale unsafe.Pointer) unsafe.Pointer {
+func CFStringIsHyphenationAvailableForLocale(locale LocaleRef) unsafe.Pointer {
 	return _CFStringIsHyphenationAvailableForLocale(locale)
 }
 
@@ -8111,7 +8109,7 @@ func CFStringIsHyphenationAvailableForLocale(locale unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringLowercase(_:_:)
-func CFStringLowercase(theString unsafe.Pointer, locale unsafe.Pointer) {
+func CFStringLowercase(theString MutableStringRef, locale LocaleRef) {
 	_CFStringLowercase(theString, locale)
 }
 
@@ -8121,7 +8119,7 @@ func CFStringLowercase(theString unsafe.Pointer, locale unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringNormalize(_:_:)
-func CFStringNormalize(theString unsafe.Pointer, theForm unsafe.Pointer) {
+func CFStringNormalize(theString MutableStringRef, theForm unsafe.Pointer) {
 	_CFStringNormalize(theString, theForm)
 }
 
@@ -8131,7 +8129,7 @@ func CFStringNormalize(theString unsafe.Pointer, theForm unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringPad(_:_:_:_:)
-func CFStringPad(theString unsafe.Pointer, padString unsafe.Pointer, length unsafe.Pointer, indexIntoPad unsafe.Pointer) {
+func CFStringPad(theString MutableStringRef, padString StringRef, length Index, indexIntoPad Index) {
 	_CFStringPad(theString, padString, length, indexIntoPad)
 }
 
@@ -8141,7 +8139,7 @@ func CFStringPad(theString unsafe.Pointer, padString unsafe.Pointer, length unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringReplace(_:_:_:)
-func CFStringReplace(theString unsafe.Pointer, range_ unsafe.Pointer, replacement unsafe.Pointer) {
+func CFStringReplace(theString MutableStringRef, range_ unsafe.Pointer, replacement StringRef) {
 	_CFStringReplace(theString, range_, replacement)
 }
 
@@ -8151,7 +8149,7 @@ func CFStringReplace(theString unsafe.Pointer, range_ unsafe.Pointer, replacemen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringReplaceAll(_:_:)
-func CFStringReplaceAll(theString unsafe.Pointer, replacement unsafe.Pointer) {
+func CFStringReplaceAll(theString MutableStringRef, replacement StringRef) {
 	_CFStringReplaceAll(theString, replacement)
 }
 
@@ -8161,7 +8159,7 @@ func CFStringReplaceAll(theString unsafe.Pointer, replacement unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringSetExternalCharactersNoCopy(_:_:_:_:)
-func CFStringSetExternalCharactersNoCopy(theString unsafe.Pointer, chars unsafe.Pointer, length unsafe.Pointer, capacity unsafe.Pointer) {
+func CFStringSetExternalCharactersNoCopy(theString MutableStringRef, chars unsafe.Pointer, length Index, capacity Index) {
 	_CFStringSetExternalCharactersNoCopy(theString, chars, length, capacity)
 }
 
@@ -8172,7 +8170,7 @@ func CFStringSetExternalCharactersNoCopy(theString unsafe.Pointer, chars unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerAdvanceToNextToken(_:)
-func CFStringTokenizerAdvanceToNextToken(tokenizer unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerAdvanceToNextToken(tokenizer StringTokenizerRef) unsafe.Pointer {
 	return _CFStringTokenizerAdvanceToNextToken(tokenizer)
 }
 
@@ -8183,7 +8181,7 @@ func CFStringTokenizerAdvanceToNextToken(tokenizer unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCopyBestStringLanguage(_:_:)
-func CFStringTokenizerCopyBestStringLanguage(string_ unsafe.Pointer, range_ unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerCopyBestStringLanguage(string_ StringRef, range_ unsafe.Pointer) StringRef {
 	return _CFStringTokenizerCopyBestStringLanguage(string_, range_)
 }
 
@@ -8194,7 +8192,7 @@ func CFStringTokenizerCopyBestStringLanguage(string_ unsafe.Pointer, range_ unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCopyCurrentTokenAttribute(_:_:)
-func CFStringTokenizerCopyCurrentTokenAttribute(tokenizer unsafe.Pointer, attribute unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerCopyCurrentTokenAttribute(tokenizer StringTokenizerRef, attribute OptionFlags) TypeRef {
 	return _CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, attribute)
 }
 
@@ -8205,7 +8203,7 @@ func CFStringTokenizerCopyCurrentTokenAttribute(tokenizer unsafe.Pointer, attrib
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerCreate(_:_:_:_:_:)
-func CFStringTokenizerCreate(alloc unsafe.Pointer, string_ unsafe.Pointer, range_ unsafe.Pointer, options unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerCreate(alloc AllocatorRef, string_ StringRef, range_ unsafe.Pointer, options OptionFlags, locale LocaleRef) StringTokenizerRef {
 	return _CFStringTokenizerCreate(alloc, string_, range_, options, locale)
 }
 
@@ -8216,7 +8214,7 @@ func CFStringTokenizerCreate(alloc unsafe.Pointer, string_ unsafe.Pointer, range
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGetCurrentSubTokens(_:_:_:_:)
-func CFStringTokenizerGetCurrentSubTokens(tokenizer unsafe.Pointer, ranges unsafe.Pointer, maxRangeLength unsafe.Pointer, derivedSubTokens unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerGetCurrentSubTokens(tokenizer StringTokenizerRef, ranges unsafe.Pointer, maxRangeLength Index, derivedSubTokens MutableArrayRef) Index {
 	return _CFStringTokenizerGetCurrentSubTokens(tokenizer, ranges, maxRangeLength, derivedSubTokens)
 }
 
@@ -8227,7 +8225,7 @@ func CFStringTokenizerGetCurrentSubTokens(tokenizer unsafe.Pointer, ranges unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGetCurrentTokenRange(_:)
-func CFStringTokenizerGetCurrentTokenRange(tokenizer unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerGetCurrentTokenRange(tokenizer StringTokenizerRef) unsafe.Pointer {
 	return _CFStringTokenizerGetCurrentTokenRange(tokenizer)
 }
 
@@ -8238,7 +8236,7 @@ func CFStringTokenizerGetCurrentTokenRange(tokenizer unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGetTypeID()
-func CFStringTokenizerGetTypeID() unsafe.Pointer {
+func CFStringTokenizerGetTypeID() TypeID {
 	return _CFStringTokenizerGetTypeID()
 }
 
@@ -8249,7 +8247,7 @@ func CFStringTokenizerGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerGoToTokenAtIndex(_:_:)
-func CFStringTokenizerGoToTokenAtIndex(tokenizer unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func CFStringTokenizerGoToTokenAtIndex(tokenizer StringTokenizerRef, index Index) unsafe.Pointer {
 	return _CFStringTokenizerGoToTokenAtIndex(tokenizer, index)
 }
 
@@ -8260,7 +8258,7 @@ func CFStringTokenizerGoToTokenAtIndex(tokenizer unsafe.Pointer, index unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerSetString(_:_:_:)
-func CFStringTokenizerSetString(tokenizer unsafe.Pointer, string_ unsafe.Pointer, range_ unsafe.Pointer) {
+func CFStringTokenizerSetString(tokenizer StringTokenizerRef, string_ StringRef, range_ unsafe.Pointer) {
 	_CFStringTokenizerSetString(tokenizer, string_, range_)
 }
 
@@ -8270,7 +8268,7 @@ func CFStringTokenizerSetString(tokenizer unsafe.Pointer, string_ unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTransform(_:_:_:_:)
-func CFStringTransform(string_ unsafe.Pointer, range_ unsafe.Pointer, transform unsafe.Pointer, reverse unsafe.Pointer) unsafe.Pointer {
+func CFStringTransform(string_ MutableStringRef, range_ unsafe.Pointer, transform StringRef, reverse unsafe.Pointer) unsafe.Pointer {
 	return _CFStringTransform(string_, range_, transform, reverse)
 }
 
@@ -8280,7 +8278,7 @@ func CFStringTransform(string_ unsafe.Pointer, range_ unsafe.Pointer, transform 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTrim(_:_:)
-func CFStringTrim(theString unsafe.Pointer, trimString unsafe.Pointer) {
+func CFStringTrim(theString MutableStringRef, trimString StringRef) {
 	_CFStringTrim(theString, trimString)
 }
 
@@ -8290,7 +8288,7 @@ func CFStringTrim(theString unsafe.Pointer, trimString unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTrimWhitespace(_:)
-func CFStringTrimWhitespace(theString unsafe.Pointer) {
+func CFStringTrimWhitespace(theString MutableStringRef) {
 	_CFStringTrimWhitespace(theString)
 }
 
@@ -8300,7 +8298,7 @@ func CFStringTrimWhitespace(theString unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringUppercase(_:_:)
-func CFStringUppercase(theString unsafe.Pointer, locale unsafe.Pointer) {
+func CFStringUppercase(theString MutableStringRef, locale LocaleRef) {
 	_CFStringUppercase(theString, locale)
 }
 
@@ -8310,7 +8308,7 @@ func CFStringUppercase(theString unsafe.Pointer, locale unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyAbbreviation(_:_:)
-func CFTimeZoneCopyAbbreviation(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneCopyAbbreviation(tz TimeZoneRef, at AbsoluteTime) StringRef {
 	return _CFTimeZoneCopyAbbreviation(tz, at)
 }
 
@@ -8320,7 +8318,7 @@ func CFTimeZoneCopyAbbreviation(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyAbbreviationDictionary()
-func CFTimeZoneCopyAbbreviationDictionary() unsafe.Pointer {
+func CFTimeZoneCopyAbbreviationDictionary() DictionaryRef {
 	return _CFTimeZoneCopyAbbreviationDictionary()
 }
 
@@ -8330,7 +8328,7 @@ func CFTimeZoneCopyAbbreviationDictionary() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyDefault()
-func CFTimeZoneCopyDefault() unsafe.Pointer {
+func CFTimeZoneCopyDefault() TimeZoneRef {
 	return _CFTimeZoneCopyDefault()
 }
 
@@ -8340,7 +8338,7 @@ func CFTimeZoneCopyDefault() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyKnownNames()
-func CFTimeZoneCopyKnownNames() unsafe.Pointer {
+func CFTimeZoneCopyKnownNames() ArrayRef {
 	return _CFTimeZoneCopyKnownNames()
 }
 
@@ -8351,7 +8349,7 @@ func CFTimeZoneCopyKnownNames() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopyLocalizedName(_:_:_:)
-func CFTimeZoneCopyLocalizedName(tz unsafe.Pointer, style unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneCopyLocalizedName(tz TimeZoneRef, style unsafe.Pointer, locale LocaleRef) StringRef {
 	return _CFTimeZoneCopyLocalizedName(tz, style, locale)
 }
 
@@ -8361,7 +8359,7 @@ func CFTimeZoneCopyLocalizedName(tz unsafe.Pointer, style unsafe.Pointer, locale
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCopySystem()
-func CFTimeZoneCopySystem() unsafe.Pointer {
+func CFTimeZoneCopySystem() TimeZoneRef {
 	return _CFTimeZoneCopySystem()
 }
 
@@ -8371,7 +8369,7 @@ func CFTimeZoneCopySystem() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCreate(_:_:_:)
-func CFTimeZoneCreate(allocator unsafe.Pointer, name unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneCreate(allocator AllocatorRef, name StringRef, data DataRef) TimeZoneRef {
 	return _CFTimeZoneCreate(allocator, name, data)
 }
 
@@ -8381,7 +8379,7 @@ func CFTimeZoneCreate(allocator unsafe.Pointer, name unsafe.Pointer, data unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCreateWithName(_:_:_:)
-func CFTimeZoneCreateWithName(allocator unsafe.Pointer, name unsafe.Pointer, tryAbbrev unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneCreateWithName(allocator AllocatorRef, name StringRef, tryAbbrev unsafe.Pointer) TimeZoneRef {
 	return _CFTimeZoneCreateWithName(allocator, name, tryAbbrev)
 }
 
@@ -8391,7 +8389,7 @@ func CFTimeZoneCreateWithName(allocator unsafe.Pointer, name unsafe.Pointer, try
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneCreateWithTimeIntervalFromGMT(_:_:)
-func CFTimeZoneCreateWithTimeIntervalFromGMT(allocator unsafe.Pointer, ti unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneCreateWithTimeIntervalFromGMT(allocator AllocatorRef, ti TimeInterval) TimeZoneRef {
 	return _CFTimeZoneCreateWithTimeIntervalFromGMT(allocator, ti)
 }
 
@@ -8401,7 +8399,7 @@ func CFTimeZoneCreateWithTimeIntervalFromGMT(allocator unsafe.Pointer, ti unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetData(_:)
-func CFTimeZoneGetData(tz unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneGetData(tz TimeZoneRef) DataRef {
 	return _CFTimeZoneGetData(tz)
 }
 
@@ -8412,7 +8410,7 @@ func CFTimeZoneGetData(tz unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetDaylightSavingTimeOffset(_:_:)
-func CFTimeZoneGetDaylightSavingTimeOffset(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneGetDaylightSavingTimeOffset(tz TimeZoneRef, at AbsoluteTime) TimeInterval {
 	return _CFTimeZoneGetDaylightSavingTimeOffset(tz, at)
 }
 
@@ -8422,7 +8420,7 @@ func CFTimeZoneGetDaylightSavingTimeOffset(tz unsafe.Pointer, at unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetName(_:)
-func CFTimeZoneGetName(tz unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneGetName(tz TimeZoneRef) StringRef {
 	return _CFTimeZoneGetName(tz)
 }
 
@@ -8433,7 +8431,7 @@ func CFTimeZoneGetName(tz unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetNextDaylightSavingTimeTransition(_:_:)
-func CFTimeZoneGetNextDaylightSavingTimeTransition(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneGetNextDaylightSavingTimeTransition(tz TimeZoneRef, at AbsoluteTime) AbsoluteTime {
 	return _CFTimeZoneGetNextDaylightSavingTimeTransition(tz, at)
 }
 
@@ -8443,7 +8441,7 @@ func CFTimeZoneGetNextDaylightSavingTimeTransition(tz unsafe.Pointer, at unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetSecondsFromGMT(_:_:)
-func CFTimeZoneGetSecondsFromGMT(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneGetSecondsFromGMT(tz TimeZoneRef, at AbsoluteTime) TimeInterval {
 	return _CFTimeZoneGetSecondsFromGMT(tz, at)
 }
 
@@ -8453,7 +8451,7 @@ func CFTimeZoneGetSecondsFromGMT(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneGetTypeID()
-func CFTimeZoneGetTypeID() unsafe.Pointer {
+func CFTimeZoneGetTypeID() TypeID {
 	return _CFTimeZoneGetTypeID()
 }
 
@@ -8463,7 +8461,7 @@ func CFTimeZoneGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneIsDaylightSavingTime(_:_:)
-func CFTimeZoneIsDaylightSavingTime(tz unsafe.Pointer, at unsafe.Pointer) unsafe.Pointer {
+func CFTimeZoneIsDaylightSavingTime(tz TimeZoneRef, at AbsoluteTime) unsafe.Pointer {
 	return _CFTimeZoneIsDaylightSavingTime(tz, at)
 }
 
@@ -8483,7 +8481,7 @@ func CFTimeZoneResetSystem() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneSetAbbreviationDictionary(_:)
-func CFTimeZoneSetAbbreviationDictionary(dict unsafe.Pointer) {
+func CFTimeZoneSetAbbreviationDictionary(dict DictionaryRef) {
 	_CFTimeZoneSetAbbreviationDictionary(dict)
 }
 
@@ -8493,7 +8491,7 @@ func CFTimeZoneSetAbbreviationDictionary(dict unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneSetDefault(_:)
-func CFTimeZoneSetDefault(tz unsafe.Pointer) {
+func CFTimeZoneSetDefault(tz TimeZoneRef) {
 	_CFTimeZoneSetDefault(tz)
 }
 
@@ -8503,7 +8501,7 @@ func CFTimeZoneSetDefault(tz unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeAppendChild(_:_:)
-func CFTreeAppendChild(tree unsafe.Pointer, newChild unsafe.Pointer) {
+func CFTreeAppendChild(tree TreeRef, newChild TreeRef) {
 	_CFTreeAppendChild(tree, newChild)
 }
 
@@ -8513,7 +8511,7 @@ func CFTreeAppendChild(tree unsafe.Pointer, newChild unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeApplyFunctionToChildren(_:_:_:)
-func CFTreeApplyFunctionToChildren(tree unsafe.Pointer, applier unsafe.Pointer, context unsafe.Pointer) {
+func CFTreeApplyFunctionToChildren(tree TreeRef, applier TreeApplierFunction, context unsafe.Pointer) {
 	_CFTreeApplyFunctionToChildren(tree, applier, context)
 }
 
@@ -8523,7 +8521,7 @@ func CFTreeApplyFunctionToChildren(tree unsafe.Pointer, applier unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeCreate(_:_:)
-func CFTreeCreate(allocator unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFTreeCreate(allocator AllocatorRef, context unsafe.Pointer) TreeRef {
 	return _CFTreeCreate(allocator, context)
 }
 
@@ -8533,7 +8531,7 @@ func CFTreeCreate(allocator unsafe.Pointer, context unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeFindRoot(_:)
-func CFTreeFindRoot(tree unsafe.Pointer) unsafe.Pointer {
+func CFTreeFindRoot(tree TreeRef) TreeRef {
 	return _CFTreeFindRoot(tree)
 }
 
@@ -8543,7 +8541,7 @@ func CFTreeFindRoot(tree unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetChildAtIndex(_:_:)
-func CFTreeGetChildAtIndex(tree unsafe.Pointer, idx unsafe.Pointer) unsafe.Pointer {
+func CFTreeGetChildAtIndex(tree TreeRef, idx Index) TreeRef {
 	return _CFTreeGetChildAtIndex(tree, idx)
 }
 
@@ -8553,7 +8551,7 @@ func CFTreeGetChildAtIndex(tree unsafe.Pointer, idx unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetChildCount(_:)
-func CFTreeGetChildCount(tree unsafe.Pointer) unsafe.Pointer {
+func CFTreeGetChildCount(tree TreeRef) Index {
 	return _CFTreeGetChildCount(tree)
 }
 
@@ -8563,7 +8561,7 @@ func CFTreeGetChildCount(tree unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetChildren(_:_:)
-func CFTreeGetChildren(tree unsafe.Pointer, children unsafe.Pointer) {
+func CFTreeGetChildren(tree TreeRef, children unsafe.Pointer) {
 	_CFTreeGetChildren(tree, children)
 }
 
@@ -8573,7 +8571,7 @@ func CFTreeGetChildren(tree unsafe.Pointer, children unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetContext(_:_:)
-func CFTreeGetContext(tree unsafe.Pointer, context unsafe.Pointer) {
+func CFTreeGetContext(tree TreeRef, context unsafe.Pointer) {
 	_CFTreeGetContext(tree, context)
 }
 
@@ -8583,7 +8581,7 @@ func CFTreeGetContext(tree unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetFirstChild(_:)
-func CFTreeGetFirstChild(tree unsafe.Pointer) unsafe.Pointer {
+func CFTreeGetFirstChild(tree TreeRef) TreeRef {
 	return _CFTreeGetFirstChild(tree)
 }
 
@@ -8593,7 +8591,7 @@ func CFTreeGetFirstChild(tree unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetNextSibling(_:)
-func CFTreeGetNextSibling(tree unsafe.Pointer) unsafe.Pointer {
+func CFTreeGetNextSibling(tree TreeRef) TreeRef {
 	return _CFTreeGetNextSibling(tree)
 }
 
@@ -8603,7 +8601,7 @@ func CFTreeGetNextSibling(tree unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetParent(_:)
-func CFTreeGetParent(tree unsafe.Pointer) unsafe.Pointer {
+func CFTreeGetParent(tree TreeRef) TreeRef {
 	return _CFTreeGetParent(tree)
 }
 
@@ -8613,7 +8611,7 @@ func CFTreeGetParent(tree unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeGetTypeID()
-func CFTreeGetTypeID() unsafe.Pointer {
+func CFTreeGetTypeID() TypeID {
 	return _CFTreeGetTypeID()
 }
 
@@ -8623,7 +8621,7 @@ func CFTreeGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeInsertSibling(_:_:)
-func CFTreeInsertSibling(tree unsafe.Pointer, newSibling unsafe.Pointer) {
+func CFTreeInsertSibling(tree TreeRef, newSibling TreeRef) {
 	_CFTreeInsertSibling(tree, newSibling)
 }
 
@@ -8633,7 +8631,7 @@ func CFTreeInsertSibling(tree unsafe.Pointer, newSibling unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreePrependChild(_:_:)
-func CFTreePrependChild(tree unsafe.Pointer, newChild unsafe.Pointer) {
+func CFTreePrependChild(tree TreeRef, newChild TreeRef) {
 	_CFTreePrependChild(tree, newChild)
 }
 
@@ -8643,7 +8641,7 @@ func CFTreePrependChild(tree unsafe.Pointer, newChild unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeRemove(_:)
-func CFTreeRemove(tree unsafe.Pointer) {
+func CFTreeRemove(tree TreeRef) {
 	_CFTreeRemove(tree)
 }
 
@@ -8653,7 +8651,7 @@ func CFTreeRemove(tree unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeRemoveAllChildren(_:)
-func CFTreeRemoveAllChildren(tree unsafe.Pointer) {
+func CFTreeRemoveAllChildren(tree TreeRef) {
 	_CFTreeRemoveAllChildren(tree)
 }
 
@@ -8663,7 +8661,7 @@ func CFTreeRemoveAllChildren(tree unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeSetContext(_:_:)
-func CFTreeSetContext(tree unsafe.Pointer, context unsafe.Pointer) {
+func CFTreeSetContext(tree TreeRef, context unsafe.Pointer) {
 	_CFTreeSetContext(tree, context)
 }
 
@@ -8673,7 +8671,7 @@ func CFTreeSetContext(tree unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeSortChildren(_:_:_:)
-func CFTreeSortChildren(tree unsafe.Pointer, comparator unsafe.Pointer, context unsafe.Pointer) {
+func CFTreeSortChildren(tree TreeRef, comparator ComparatorFunction, context unsafe.Pointer) {
 	_CFTreeSortChildren(tree, comparator, context)
 }
 
@@ -8683,7 +8681,7 @@ func CFTreeSortChildren(tree unsafe.Pointer, comparator unsafe.Pointer, context 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCanBeDecomposed(_:)
-func CFURLCanBeDecomposed(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCanBeDecomposed(anURL URLRef) unsafe.Pointer {
 	return _CFURLCanBeDecomposed(anURL)
 }
 
@@ -8694,7 +8692,7 @@ func CFURLCanBeDecomposed(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLClearResourcePropertyCache(_:)
-func CFURLClearResourcePropertyCache(url unsafe.Pointer) {
+func CFURLClearResourcePropertyCache(url URLRef) {
 	_CFURLClearResourcePropertyCache(url)
 }
 
@@ -8705,7 +8703,7 @@ func CFURLClearResourcePropertyCache(url unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLClearResourcePropertyCacheForKey(_:_:)
-func CFURLClearResourcePropertyCacheForKey(url unsafe.Pointer, key unsafe.Pointer) {
+func CFURLClearResourcePropertyCacheForKey(url URLRef, key StringRef) {
 	_CFURLClearResourcePropertyCacheForKey(url, key)
 }
 
@@ -8715,7 +8713,7 @@ func CFURLClearResourcePropertyCacheForKey(url unsafe.Pointer, key unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyAbsoluteURL(_:)
-func CFURLCopyAbsoluteURL(relativeURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyAbsoluteURL(relativeURL URLRef) URLRef {
 	return _CFURLCopyAbsoluteURL(relativeURL)
 }
 
@@ -8725,7 +8723,7 @@ func CFURLCopyAbsoluteURL(relativeURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyFileSystemPath(_:_:)
-func CFURLCopyFileSystemPath(anURL unsafe.Pointer, pathStyle unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyFileSystemPath(anURL URLRef, pathStyle unsafe.Pointer) StringRef {
 	return _CFURLCopyFileSystemPath(anURL, pathStyle)
 }
 
@@ -8735,7 +8733,7 @@ func CFURLCopyFileSystemPath(anURL unsafe.Pointer, pathStyle unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyFragment(_:_:)
-func CFURLCopyFragment(anURL unsafe.Pointer, charactersToLeaveEscaped unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyFragment(anURL URLRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCopyFragment(anURL, charactersToLeaveEscaped)
 }
 
@@ -8745,7 +8743,7 @@ func CFURLCopyFragment(anURL unsafe.Pointer, charactersToLeaveEscaped unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyHostName(_:)
-func CFURLCopyHostName(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyHostName(anURL URLRef) StringRef {
 	return _CFURLCopyHostName(anURL)
 }
 
@@ -8755,7 +8753,7 @@ func CFURLCopyHostName(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyLastPathComponent(_:)
-func CFURLCopyLastPathComponent(url unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyLastPathComponent(url URLRef) StringRef {
 	return _CFURLCopyLastPathComponent(url)
 }
 
@@ -8765,7 +8763,7 @@ func CFURLCopyLastPathComponent(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyNetLocation(_:)
-func CFURLCopyNetLocation(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyNetLocation(anURL URLRef) StringRef {
 	return _CFURLCopyNetLocation(anURL)
 }
 
@@ -8778,7 +8776,7 @@ func CFURLCopyNetLocation(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyParameterString(_:_:)
-func CFURLCopyParameterString(anURL unsafe.Pointer, charactersToLeaveEscaped unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyParameterString(anURL URLRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCopyParameterString(anURL, charactersToLeaveEscaped)
 }
 
@@ -8788,7 +8786,7 @@ func CFURLCopyParameterString(anURL unsafe.Pointer, charactersToLeaveEscaped uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyPassword(_:)
-func CFURLCopyPassword(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyPassword(anURL URLRef) StringRef {
 	return _CFURLCopyPassword(anURL)
 }
 
@@ -8798,7 +8796,7 @@ func CFURLCopyPassword(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyPath(_:)
-func CFURLCopyPath(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyPath(anURL URLRef) StringRef {
 	return _CFURLCopyPath(anURL)
 }
 
@@ -8808,7 +8806,7 @@ func CFURLCopyPath(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyPathExtension(_:)
-func CFURLCopyPathExtension(url unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyPathExtension(url URLRef) StringRef {
 	return _CFURLCopyPathExtension(url)
 }
 
@@ -8818,7 +8816,7 @@ func CFURLCopyPathExtension(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyQueryString(_:_:)
-func CFURLCopyQueryString(anURL unsafe.Pointer, charactersToLeaveEscaped unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyQueryString(anURL URLRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCopyQueryString(anURL, charactersToLeaveEscaped)
 }
 
@@ -8829,7 +8827,7 @@ func CFURLCopyQueryString(anURL unsafe.Pointer, charactersToLeaveEscaped unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourcePropertiesForKeys(_:_:_:)
-func CFURLCopyResourcePropertiesForKeys(url unsafe.Pointer, keys unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyResourcePropertiesForKeys(url URLRef, keys ArrayRef, error_ unsafe.Pointer) DictionaryRef {
 	return _CFURLCopyResourcePropertiesForKeys(url, keys, error_)
 }
 
@@ -8840,7 +8838,7 @@ func CFURLCopyResourcePropertiesForKeys(url unsafe.Pointer, keys unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourcePropertyForKey(_:_:_:_:)
-func CFURLCopyResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValueTypeRefPtr unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyResourcePropertyForKey(url URLRef, key StringRef, propertyValueTypeRefPtr unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLCopyResourcePropertyForKey(url, key, propertyValueTypeRefPtr, error_)
 }
 
@@ -8850,7 +8848,7 @@ func CFURLCopyResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, pro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyResourceSpecifier(_:)
-func CFURLCopyResourceSpecifier(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyResourceSpecifier(anURL URLRef) StringRef {
 	return _CFURLCopyResourceSpecifier(anURL)
 }
 
@@ -8860,7 +8858,7 @@ func CFURLCopyResourceSpecifier(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyScheme(_:)
-func CFURLCopyScheme(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyScheme(anURL URLRef) StringRef {
 	return _CFURLCopyScheme(anURL)
 }
 
@@ -8870,7 +8868,7 @@ func CFURLCopyScheme(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyStrictPath(_:_:)
-func CFURLCopyStrictPath(anURL unsafe.Pointer, isAbsolute unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyStrictPath(anURL URLRef, isAbsolute unsafe.Pointer) StringRef {
 	return _CFURLCopyStrictPath(anURL, isAbsolute)
 }
 
@@ -8880,7 +8878,7 @@ func CFURLCopyStrictPath(anURL unsafe.Pointer, isAbsolute unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCopyUserName(_:)
-func CFURLCopyUserName(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCopyUserName(anURL URLRef) StringRef {
 	return _CFURLCopyUserName(anURL)
 }
 
@@ -8890,7 +8888,7 @@ func CFURLCopyUserName(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateAbsoluteURLWithBytes(_:_:_:_:_:_:)
-func CFURLCreateAbsoluteURLWithBytes(alloc unsafe.Pointer, relativeURLBytes unsafe.Pointer, length unsafe.Pointer, encoding unsafe.Pointer, baseURL unsafe.Pointer, useCompatibilityMode unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateAbsoluteURLWithBytes(alloc AllocatorRef, relativeURLBytes unsafe.Pointer, length Index, encoding StringEncoding, baseURL URLRef, useCompatibilityMode unsafe.Pointer) URLRef {
 	return _CFURLCreateAbsoluteURLWithBytes(alloc, relativeURLBytes, length, encoding, baseURL, useCompatibilityMode)
 }
 
@@ -8901,7 +8899,7 @@ func CFURLCreateAbsoluteURLWithBytes(alloc unsafe.Pointer, relativeURLBytes unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkData(_:_:_:_:_:_:)
-func CFURLCreateBookmarkData(allocator unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, resourcePropertiesToInclude unsafe.Pointer, relativeToURL unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateBookmarkData(allocator AllocatorRef, url URLRef, options unsafe.Pointer, resourcePropertiesToInclude ArrayRef, relativeToURL URLRef, error_ unsafe.Pointer) DataRef {
 	return _CFURLCreateBookmarkData(allocator, url, options, resourcePropertiesToInclude, relativeToURL, error_)
 }
 
@@ -8914,7 +8912,7 @@ func CFURLCreateBookmarkData(allocator unsafe.Pointer, url unsafe.Pointer, optio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkDataFromAliasRecord(_:_:)
-func CFURLCreateBookmarkDataFromAliasRecord(allocatorRef unsafe.Pointer, aliasRecordDataRef unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateBookmarkDataFromAliasRecord(allocatorRef AllocatorRef, aliasRecordDataRef DataRef) DataRef {
 	return _CFURLCreateBookmarkDataFromAliasRecord(allocatorRef, aliasRecordDataRef)
 }
 
@@ -8925,7 +8923,7 @@ func CFURLCreateBookmarkDataFromAliasRecord(allocatorRef unsafe.Pointer, aliasRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateBookmarkDataFromFile(_:_:_:)
-func CFURLCreateBookmarkDataFromFile(allocator unsafe.Pointer, fileURL unsafe.Pointer, errorRef unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateBookmarkDataFromFile(allocator AllocatorRef, fileURL URLRef, errorRef unsafe.Pointer) DataRef {
 	return _CFURLCreateBookmarkDataFromFile(allocator, fileURL, errorRef)
 }
 
@@ -8936,7 +8934,7 @@ func CFURLCreateBookmarkDataFromFile(allocator unsafe.Pointer, fileURL unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateByResolvingBookmarkData(_:_:_:_:_:_:_:)
-func CFURLCreateByResolvingBookmarkData(allocator unsafe.Pointer, bookmark unsafe.Pointer, options unsafe.Pointer, relativeToURL unsafe.Pointer, resourcePropertiesToInclude unsafe.Pointer, isStale unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateByResolvingBookmarkData(allocator AllocatorRef, bookmark DataRef, options unsafe.Pointer, relativeToURL URLRef, resourcePropertiesToInclude ArrayRef, isStale unsafe.Pointer, error_ unsafe.Pointer) URLRef {
 	return _CFURLCreateByResolvingBookmarkData(allocator, bookmark, options, relativeToURL, resourcePropertiesToInclude, isStale, error_)
 }
 
@@ -8946,7 +8944,7 @@ func CFURLCreateByResolvingBookmarkData(allocator unsafe.Pointer, bookmark unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyAppendingPathComponent(_:_:_:_:)
-func CFURLCreateCopyAppendingPathComponent(allocator unsafe.Pointer, url unsafe.Pointer, pathComponent unsafe.Pointer, isDirectory unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateCopyAppendingPathComponent(allocator AllocatorRef, url URLRef, pathComponent StringRef, isDirectory unsafe.Pointer) URLRef {
 	return _CFURLCreateCopyAppendingPathComponent(allocator, url, pathComponent, isDirectory)
 }
 
@@ -8956,7 +8954,7 @@ func CFURLCreateCopyAppendingPathComponent(allocator unsafe.Pointer, url unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyAppendingPathExtension(_:_:_:)
-func CFURLCreateCopyAppendingPathExtension(allocator unsafe.Pointer, url unsafe.Pointer, extension unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateCopyAppendingPathExtension(allocator AllocatorRef, url URLRef, extension StringRef) URLRef {
 	return _CFURLCreateCopyAppendingPathExtension(allocator, url, extension)
 }
 
@@ -8966,7 +8964,7 @@ func CFURLCreateCopyAppendingPathExtension(allocator unsafe.Pointer, url unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyDeletingLastPathComponent(_:_:)
-func CFURLCreateCopyDeletingLastPathComponent(allocator unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateCopyDeletingLastPathComponent(allocator AllocatorRef, url URLRef) URLRef {
 	return _CFURLCreateCopyDeletingLastPathComponent(allocator, url)
 }
 
@@ -8976,7 +8974,7 @@ func CFURLCreateCopyDeletingLastPathComponent(allocator unsafe.Pointer, url unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateCopyDeletingPathExtension(_:_:)
-func CFURLCreateCopyDeletingPathExtension(allocator unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateCopyDeletingPathExtension(allocator AllocatorRef, url URLRef) URLRef {
 	return _CFURLCreateCopyDeletingPathExtension(allocator, url)
 }
 
@@ -8986,7 +8984,7 @@ func CFURLCreateCopyDeletingPathExtension(allocator unsafe.Pointer, url unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateData(_:_:_:_:)
-func CFURLCreateData(allocator unsafe.Pointer, url unsafe.Pointer, encoding unsafe.Pointer, escapeWhitespace unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateData(allocator AllocatorRef, url URLRef, encoding StringEncoding, escapeWhitespace unsafe.Pointer) DataRef {
 	return _CFURLCreateData(allocator, url, encoding, escapeWhitespace)
 }
 
@@ -8996,7 +8994,7 @@ func CFURLCreateData(allocator unsafe.Pointer, url unsafe.Pointer, encoding unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateDataAndPropertiesFromResource(_:_:_:_:_:_:)
-func CFURLCreateDataAndPropertiesFromResource(alloc unsafe.Pointer, url unsafe.Pointer, resourceData unsafe.Pointer, properties unsafe.Pointer, desiredProperties unsafe.Pointer, errorCode unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateDataAndPropertiesFromResource(alloc AllocatorRef, url URLRef, resourceData unsafe.Pointer, properties unsafe.Pointer, desiredProperties ArrayRef, errorCode unsafe.Pointer) unsafe.Pointer {
 	return _CFURLCreateDataAndPropertiesFromResource(alloc, url, resourceData, properties, desiredProperties, errorCode)
 }
 
@@ -9007,7 +9005,7 @@ func CFURLCreateDataAndPropertiesFromResource(alloc unsafe.Pointer, url unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFilePathURL(_:_:_:)
-func CFURLCreateFilePathURL(allocator unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateFilePathURL(allocator AllocatorRef, url URLRef, error_ unsafe.Pointer) URLRef {
 	return _CFURLCreateFilePathURL(allocator, url, error_)
 }
 
@@ -9018,7 +9016,7 @@ func CFURLCreateFilePathURL(allocator unsafe.Pointer, url unsafe.Pointer, error_
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFileReferenceURL(_:_:_:)
-func CFURLCreateFileReferenceURL(allocator unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateFileReferenceURL(allocator AllocatorRef, url URLRef, error_ unsafe.Pointer) URLRef {
 	return _CFURLCreateFileReferenceURL(allocator, url, error_)
 }
 
@@ -9028,7 +9026,7 @@ func CFURLCreateFileReferenceURL(allocator unsafe.Pointer, url unsafe.Pointer, e
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFromFSRef(_:_:)
-func CFURLCreateFromFSRef(allocator unsafe.Pointer, fsRef unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateFromFSRef(allocator AllocatorRef, fsRef unsafe.Pointer) URLRef {
 	return _CFURLCreateFromFSRef(allocator, fsRef)
 }
 
@@ -9038,7 +9036,7 @@ func CFURLCreateFromFSRef(allocator unsafe.Pointer, fsRef unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFromFileSystemRepresentation(_:_:_:_:)
-func CFURLCreateFromFileSystemRepresentation(allocator unsafe.Pointer, buffer unsafe.Pointer, bufLen unsafe.Pointer, isDirectory unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateFromFileSystemRepresentation(allocator AllocatorRef, buffer unsafe.Pointer, bufLen Index, isDirectory unsafe.Pointer) URLRef {
 	return _CFURLCreateFromFileSystemRepresentation(allocator, buffer, bufLen, isDirectory)
 }
 
@@ -9048,7 +9046,7 @@ func CFURLCreateFromFileSystemRepresentation(allocator unsafe.Pointer, buffer un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateFromFileSystemRepresentationRelativeToBase(_:_:_:_:_:)
-func CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator unsafe.Pointer, buffer unsafe.Pointer, bufLen unsafe.Pointer, isDirectory unsafe.Pointer, baseURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator AllocatorRef, buffer unsafe.Pointer, bufLen Index, isDirectory unsafe.Pointer, baseURL URLRef) URLRef {
 	return _CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator, buffer, bufLen, isDirectory, baseURL)
 }
 
@@ -9058,7 +9056,7 @@ func CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreatePropertyFromResource(_:_:_:_:)
-func CFURLCreatePropertyFromResource(alloc unsafe.Pointer, url unsafe.Pointer, property unsafe.Pointer, errorCode unsafe.Pointer) unsafe.Pointer {
+func CFURLCreatePropertyFromResource(alloc AllocatorRef, url URLRef, property StringRef, errorCode unsafe.Pointer) TypeRef {
 	return _CFURLCreatePropertyFromResource(alloc, url, property, errorCode)
 }
 
@@ -9069,7 +9067,7 @@ func CFURLCreatePropertyFromResource(alloc unsafe.Pointer, url unsafe.Pointer, p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateResourcePropertiesForKeysFromBookmarkData(_:_:_:)
-func CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator unsafe.Pointer, resourcePropertiesToReturn unsafe.Pointer, bookmark unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator AllocatorRef, resourcePropertiesToReturn ArrayRef, bookmark DataRef) DictionaryRef {
 	return _CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator, resourcePropertiesToReturn, bookmark)
 }
 
@@ -9080,7 +9078,7 @@ func CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateResourcePropertyForKeyFromBookmarkData(_:_:_:)
-func CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator unsafe.Pointer, resourcePropertyKey unsafe.Pointer, bookmark unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator AllocatorRef, resourcePropertyKey StringRef, bookmark DataRef) TypeRef {
 	return _CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator, resourcePropertyKey, bookmark)
 }
 
@@ -9093,7 +9091,7 @@ func CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateStringByAddingPercentEscapes(_:_:_:_:_:)
-func CFURLCreateStringByAddingPercentEscapes(allocator unsafe.Pointer, originalString unsafe.Pointer, charactersToLeaveUnescaped unsafe.Pointer, legalURLCharactersToBeEscaped unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateStringByAddingPercentEscapes(allocator AllocatorRef, originalString StringRef, charactersToLeaveUnescaped StringRef, legalURLCharactersToBeEscaped StringRef, encoding StringEncoding) StringRef {
 	return _CFURLCreateStringByAddingPercentEscapes(allocator, originalString, charactersToLeaveUnescaped, legalURLCharactersToBeEscaped, encoding)
 }
 
@@ -9103,7 +9101,7 @@ func CFURLCreateStringByAddingPercentEscapes(allocator unsafe.Pointer, originalS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateStringByReplacingPercentEscapes(_:_:_:)
-func CFURLCreateStringByReplacingPercentEscapes(allocator unsafe.Pointer, originalString unsafe.Pointer, charactersToLeaveEscaped unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateStringByReplacingPercentEscapes(allocator AllocatorRef, originalString StringRef, charactersToLeaveEscaped StringRef) StringRef {
 	return _CFURLCreateStringByReplacingPercentEscapes(allocator, originalString, charactersToLeaveEscaped)
 }
 
@@ -9116,7 +9114,7 @@ func CFURLCreateStringByReplacingPercentEscapes(allocator unsafe.Pointer, origin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_:_:_:_:)
-func CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator unsafe.Pointer, origString unsafe.Pointer, charsToLeaveEscaped unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator AllocatorRef, origString StringRef, charsToLeaveEscaped StringRef, encoding StringEncoding) StringRef {
 	return _CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator, origString, charsToLeaveEscaped, encoding)
 }
 
@@ -9126,7 +9124,7 @@ func CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithBytes(_:_:_:_:_:)
-func CFURLCreateWithBytes(allocator unsafe.Pointer, URLBytes unsafe.Pointer, length unsafe.Pointer, encoding unsafe.Pointer, baseURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateWithBytes(allocator AllocatorRef, URLBytes unsafe.Pointer, length Index, encoding StringEncoding, baseURL URLRef) URLRef {
 	return _CFURLCreateWithBytes(allocator, URLBytes, length, encoding, baseURL)
 }
 
@@ -9136,7 +9134,7 @@ func CFURLCreateWithBytes(allocator unsafe.Pointer, URLBytes unsafe.Pointer, len
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithFileSystemPath(_:_:_:_:)
-func CFURLCreateWithFileSystemPath(allocator unsafe.Pointer, filePath unsafe.Pointer, pathStyle unsafe.Pointer, isDirectory unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateWithFileSystemPath(allocator AllocatorRef, filePath StringRef, pathStyle unsafe.Pointer, isDirectory unsafe.Pointer) URLRef {
 	return _CFURLCreateWithFileSystemPath(allocator, filePath, pathStyle, isDirectory)
 }
 
@@ -9146,7 +9144,7 @@ func CFURLCreateWithFileSystemPath(allocator unsafe.Pointer, filePath unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithFileSystemPathRelativeToBase(_:_:_:_:_:)
-func CFURLCreateWithFileSystemPathRelativeToBase(allocator unsafe.Pointer, filePath unsafe.Pointer, pathStyle unsafe.Pointer, isDirectory unsafe.Pointer, baseURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateWithFileSystemPathRelativeToBase(allocator AllocatorRef, filePath StringRef, pathStyle unsafe.Pointer, isDirectory unsafe.Pointer, baseURL URLRef) URLRef {
 	return _CFURLCreateWithFileSystemPathRelativeToBase(allocator, filePath, pathStyle, isDirectory, baseURL)
 }
 
@@ -9156,7 +9154,7 @@ func CFURLCreateWithFileSystemPathRelativeToBase(allocator unsafe.Pointer, fileP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLCreateWithString(_:_:_:)
-func CFURLCreateWithString(allocator unsafe.Pointer, URLString unsafe.Pointer, baseURL unsafe.Pointer) unsafe.Pointer {
+func CFURLCreateWithString(allocator AllocatorRef, URLString StringRef, baseURL URLRef) URLRef {
 	return _CFURLCreateWithString(allocator, URLString, baseURL)
 }
 
@@ -9166,7 +9164,7 @@ func CFURLCreateWithString(allocator unsafe.Pointer, URLString unsafe.Pointer, b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLDestroyResource(_:_:)
-func CFURLDestroyResource(url unsafe.Pointer, errorCode unsafe.Pointer) unsafe.Pointer {
+func CFURLDestroyResource(url URLRef, errorCode unsafe.Pointer) unsafe.Pointer {
 	return _CFURLDestroyResource(url, errorCode)
 }
 
@@ -9177,7 +9175,7 @@ func CFURLDestroyResource(url unsafe.Pointer, errorCode unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorCreateForDirectoryURL(_:_:_:_:)
-func CFURLEnumeratorCreateForDirectoryURL(alloc unsafe.Pointer, directoryURL unsafe.Pointer, option unsafe.Pointer, propertyKeys unsafe.Pointer) unsafe.Pointer {
+func CFURLEnumeratorCreateForDirectoryURL(alloc AllocatorRef, directoryURL URLRef, option unsafe.Pointer, propertyKeys ArrayRef) URLEnumeratorRef {
 	return _CFURLEnumeratorCreateForDirectoryURL(alloc, directoryURL, option, propertyKeys)
 }
 
@@ -9188,7 +9186,7 @@ func CFURLEnumeratorCreateForDirectoryURL(alloc unsafe.Pointer, directoryURL uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorCreateForMountedVolumes(_:_:_:)
-func CFURLEnumeratorCreateForMountedVolumes(alloc unsafe.Pointer, option unsafe.Pointer, propertyKeys unsafe.Pointer) unsafe.Pointer {
+func CFURLEnumeratorCreateForMountedVolumes(alloc AllocatorRef, option unsafe.Pointer, propertyKeys ArrayRef) URLEnumeratorRef {
 	return _CFURLEnumeratorCreateForMountedVolumes(alloc, option, propertyKeys)
 }
 
@@ -9199,7 +9197,7 @@ func CFURLEnumeratorCreateForMountedVolumes(alloc unsafe.Pointer, option unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetDescendentLevel(_:)
-func CFURLEnumeratorGetDescendentLevel(enumerator unsafe.Pointer) unsafe.Pointer {
+func CFURLEnumeratorGetDescendentLevel(enumerator URLEnumeratorRef) Index {
 	return _CFURLEnumeratorGetDescendentLevel(enumerator)
 }
 
@@ -9210,7 +9208,7 @@ func CFURLEnumeratorGetDescendentLevel(enumerator unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetNextURL(_:_:_:)
-func CFURLEnumeratorGetNextURL(enumerator unsafe.Pointer, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLEnumeratorGetNextURL(enumerator URLEnumeratorRef, url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLEnumeratorGetNextURL(enumerator, url, error_)
 }
 
@@ -9220,7 +9218,7 @@ func CFURLEnumeratorGetNextURL(enumerator unsafe.Pointer, url unsafe.Pointer, er
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetSourceDidChange(_:)
-func CFURLEnumeratorGetSourceDidChange(enumerator unsafe.Pointer) unsafe.Pointer {
+func CFURLEnumeratorGetSourceDidChange(enumerator URLEnumeratorRef) unsafe.Pointer {
 	return _CFURLEnumeratorGetSourceDidChange(enumerator)
 }
 
@@ -9231,7 +9229,7 @@ func CFURLEnumeratorGetSourceDidChange(enumerator unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorGetTypeID()
-func CFURLEnumeratorGetTypeID() unsafe.Pointer {
+func CFURLEnumeratorGetTypeID() TypeID {
 	return _CFURLEnumeratorGetTypeID()
 }
 
@@ -9242,7 +9240,7 @@ func CFURLEnumeratorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorSkipDescendents(_:)
-func CFURLEnumeratorSkipDescendents(enumerator unsafe.Pointer) {
+func CFURLEnumeratorSkipDescendents(enumerator URLEnumeratorRef) {
 	_CFURLEnumeratorSkipDescendents(enumerator)
 }
 
@@ -9252,7 +9250,7 @@ func CFURLEnumeratorSkipDescendents(enumerator unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetBaseURL(_:)
-func CFURLGetBaseURL(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLGetBaseURL(anURL URLRef) URLRef {
 	return _CFURLGetBaseURL(anURL)
 }
 
@@ -9262,7 +9260,7 @@ func CFURLGetBaseURL(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetByteRangeForComponent(_:_:_:)
-func CFURLGetByteRangeForComponent(url unsafe.Pointer, component unsafe.Pointer, rangeIncludingSeparators unsafe.Pointer) unsafe.Pointer {
+func CFURLGetByteRangeForComponent(url URLRef, component unsafe.Pointer, rangeIncludingSeparators unsafe.Pointer) unsafe.Pointer {
 	return _CFURLGetByteRangeForComponent(url, component, rangeIncludingSeparators)
 }
 
@@ -9272,7 +9270,7 @@ func CFURLGetByteRangeForComponent(url unsafe.Pointer, component unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetBytes(_:_:_:)
-func CFURLGetBytes(url unsafe.Pointer, buffer unsafe.Pointer, bufferLength unsafe.Pointer) unsafe.Pointer {
+func CFURLGetBytes(url URLRef, buffer unsafe.Pointer, bufferLength Index) Index {
 	return _CFURLGetBytes(url, buffer, bufferLength)
 }
 
@@ -9282,7 +9280,7 @@ func CFURLGetBytes(url unsafe.Pointer, buffer unsafe.Pointer, bufferLength unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetFSRef(_:_:)
-func CFURLGetFSRef(url unsafe.Pointer, fsRef unsafe.Pointer) unsafe.Pointer {
+func CFURLGetFSRef(url URLRef, fsRef unsafe.Pointer) unsafe.Pointer {
 	return _CFURLGetFSRef(url, fsRef)
 }
 
@@ -9292,7 +9290,7 @@ func CFURLGetFSRef(url unsafe.Pointer, fsRef unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetFileSystemRepresentation(_:_:_:_:)
-func CFURLGetFileSystemRepresentation(url unsafe.Pointer, resolveAgainstBase unsafe.Pointer, buffer unsafe.Pointer, maxBufLen unsafe.Pointer) unsafe.Pointer {
+func CFURLGetFileSystemRepresentation(url URLRef, resolveAgainstBase unsafe.Pointer, buffer unsafe.Pointer, maxBufLen Index) unsafe.Pointer {
 	return _CFURLGetFileSystemRepresentation(url, resolveAgainstBase, buffer, maxBufLen)
 }
 
@@ -9302,7 +9300,7 @@ func CFURLGetFileSystemRepresentation(url unsafe.Pointer, resolveAgainstBase uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetPortNumber(_:)
-func CFURLGetPortNumber(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLGetPortNumber(anURL URLRef) unsafe.Pointer {
 	return _CFURLGetPortNumber(anURL)
 }
 
@@ -9312,7 +9310,7 @@ func CFURLGetPortNumber(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetString(_:)
-func CFURLGetString(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLGetString(anURL URLRef) StringRef {
 	return _CFURLGetString(anURL)
 }
 
@@ -9322,7 +9320,7 @@ func CFURLGetString(anURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLGetTypeID()
-func CFURLGetTypeID() unsafe.Pointer {
+func CFURLGetTypeID() TypeID {
 	return _CFURLGetTypeID()
 }
 
@@ -9332,7 +9330,7 @@ func CFURLGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLHasDirectoryPath(_:)
-func CFURLHasDirectoryPath(anURL unsafe.Pointer) unsafe.Pointer {
+func CFURLHasDirectoryPath(anURL URLRef) unsafe.Pointer {
 	return _CFURLHasDirectoryPath(anURL)
 }
 
@@ -9341,7 +9339,7 @@ func CFURLHasDirectoryPath(anURL unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLIsFileReferenceURL(_:)
-func CFURLIsFileReferenceURL(url unsafe.Pointer) unsafe.Pointer {
+func CFURLIsFileReferenceURL(url URLRef) unsafe.Pointer {
 	return _CFURLIsFileReferenceURL(url)
 }
 
@@ -9352,7 +9350,7 @@ func CFURLIsFileReferenceURL(url unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLResourceIsReachable(_:_:)
-func CFURLResourceIsReachable(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLResourceIsReachable(url URLRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLResourceIsReachable(url, error_)
 }
 
@@ -9363,7 +9361,7 @@ func CFURLResourceIsReachable(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetResourcePropertiesForKeys(_:_:_:)
-func CFURLSetResourcePropertiesForKeys(url unsafe.Pointer, keyedPropertyValues unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLSetResourcePropertiesForKeys(url URLRef, keyedPropertyValues DictionaryRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLSetResourcePropertiesForKeys(url, keyedPropertyValues, error_)
 }
 
@@ -9374,7 +9372,7 @@ func CFURLSetResourcePropertiesForKeys(url unsafe.Pointer, keyedPropertyValues u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetResourcePropertyForKey(_:_:_:_:)
-func CFURLSetResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValue unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CFURLSetResourcePropertyForKey(url URLRef, key StringRef, propertyValue TypeRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _CFURLSetResourcePropertyForKey(url, key, propertyValue, error_)
 }
 
@@ -9385,7 +9383,7 @@ func CFURLSetResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, prop
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLSetTemporaryResourcePropertyForKey(_:_:_:)
-func CFURLSetTemporaryResourcePropertyForKey(url unsafe.Pointer, key unsafe.Pointer, propertyValue unsafe.Pointer) {
+func CFURLSetTemporaryResourcePropertyForKey(url URLRef, key StringRef, propertyValue TypeRef) {
 	_CFURLSetTemporaryResourcePropertyForKey(url, key, propertyValue)
 }
 
@@ -9396,7 +9394,7 @@ func CFURLSetTemporaryResourcePropertyForKey(url unsafe.Pointer, key unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLStartAccessingSecurityScopedResource(_:)
-func CFURLStartAccessingSecurityScopedResource(url unsafe.Pointer) unsafe.Pointer {
+func CFURLStartAccessingSecurityScopedResource(url URLRef) unsafe.Pointer {
 	return _CFURLStartAccessingSecurityScopedResource(url)
 }
 
@@ -9407,7 +9405,7 @@ func CFURLStartAccessingSecurityScopedResource(url unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLStopAccessingSecurityScopedResource(_:)
-func CFURLStopAccessingSecurityScopedResource(url unsafe.Pointer) {
+func CFURLStopAccessingSecurityScopedResource(url URLRef) {
 	_CFURLStopAccessingSecurityScopedResource(url)
 }
 
@@ -9418,7 +9416,7 @@ func CFURLStopAccessingSecurityScopedResource(url unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLWriteBookmarkDataToFile(_:_:_:_:)
-func CFURLWriteBookmarkDataToFile(bookmarkRef unsafe.Pointer, fileURL unsafe.Pointer, options unsafe.Pointer, errorRef unsafe.Pointer) unsafe.Pointer {
+func CFURLWriteBookmarkDataToFile(bookmarkRef DataRef, fileURL URLRef, options URLBookmarkFileCreationOptions, errorRef unsafe.Pointer) unsafe.Pointer {
 	return _CFURLWriteBookmarkDataToFile(bookmarkRef, fileURL, options, errorRef)
 }
 
@@ -9428,7 +9426,7 @@ func CFURLWriteBookmarkDataToFile(bookmarkRef unsafe.Pointer, fileURL unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLWriteDataAndPropertiesToResource(_:_:_:_:)
-func CFURLWriteDataAndPropertiesToResource(url unsafe.Pointer, dataToWrite unsafe.Pointer, propertiesToWrite unsafe.Pointer, errorCode unsafe.Pointer) unsafe.Pointer {
+func CFURLWriteDataAndPropertiesToResource(url URLRef, dataToWrite DataRef, propertiesToWrite DictionaryRef, errorCode unsafe.Pointer) unsafe.Pointer {
 	return _CFURLWriteDataAndPropertiesToResource(url, dataToWrite, propertiesToWrite, errorCode)
 }
 
@@ -9438,7 +9436,7 @@ func CFURLWriteDataAndPropertiesToResource(url unsafe.Pointer, dataToWrite unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreate(_:)
-func CFUUIDCreate(alloc unsafe.Pointer) unsafe.Pointer {
+func CFUUIDCreate(alloc AllocatorRef) UUIDRef {
 	return _CFUUIDCreate(alloc)
 }
 
@@ -9448,7 +9446,7 @@ func CFUUIDCreate(alloc unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateFromString(_:_:)
-func CFUUIDCreateFromString(alloc unsafe.Pointer, uuidStr unsafe.Pointer) unsafe.Pointer {
+func CFUUIDCreateFromString(alloc AllocatorRef, uuidStr StringRef) UUIDRef {
 	return _CFUUIDCreateFromString(alloc, uuidStr)
 }
 
@@ -9458,7 +9456,7 @@ func CFUUIDCreateFromString(alloc unsafe.Pointer, uuidStr unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateFromUUIDBytes(_:_:)
-func CFUUIDCreateFromUUIDBytes(alloc unsafe.Pointer, bytes unsafe.Pointer) unsafe.Pointer {
+func CFUUIDCreateFromUUIDBytes(alloc AllocatorRef, bytes unsafe.Pointer) UUIDRef {
 	return _CFUUIDCreateFromUUIDBytes(alloc, bytes)
 }
 
@@ -9468,7 +9466,7 @@ func CFUUIDCreateFromUUIDBytes(alloc unsafe.Pointer, bytes unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateString(_:_:)
-func CFUUIDCreateString(alloc unsafe.Pointer, uuid unsafe.Pointer) unsafe.Pointer {
+func CFUUIDCreateString(alloc AllocatorRef, uuid UUIDRef) StringRef {
 	return _CFUUIDCreateString(alloc, uuid)
 }
 
@@ -9478,7 +9476,7 @@ func CFUUIDCreateString(alloc unsafe.Pointer, uuid unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDCreateWithBytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
-func CFUUIDCreateWithBytes(alloc unsafe.Pointer, byte0 unsafe.Pointer, byte1 unsafe.Pointer, byte2 unsafe.Pointer, byte3 unsafe.Pointer, byte4 unsafe.Pointer, byte5 unsafe.Pointer, byte6 unsafe.Pointer, byte7 unsafe.Pointer, byte8 unsafe.Pointer, byte9 unsafe.Pointer, byte10 unsafe.Pointer, byte11 unsafe.Pointer, byte12 unsafe.Pointer, byte13 unsafe.Pointer, byte14 unsafe.Pointer, byte15 unsafe.Pointer) unsafe.Pointer {
+func CFUUIDCreateWithBytes(alloc AllocatorRef, byte0 unsafe.Pointer, byte1 unsafe.Pointer, byte2 unsafe.Pointer, byte3 unsafe.Pointer, byte4 unsafe.Pointer, byte5 unsafe.Pointer, byte6 unsafe.Pointer, byte7 unsafe.Pointer, byte8 unsafe.Pointer, byte9 unsafe.Pointer, byte10 unsafe.Pointer, byte11 unsafe.Pointer, byte12 unsafe.Pointer, byte13 unsafe.Pointer, byte14 unsafe.Pointer, byte15 unsafe.Pointer) UUIDRef {
 	return _CFUUIDCreateWithBytes(alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15)
 }
 
@@ -9488,7 +9486,7 @@ func CFUUIDCreateWithBytes(alloc unsafe.Pointer, byte0 unsafe.Pointer, byte1 uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDGetConstantUUIDWithBytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)
-func CFUUIDGetConstantUUIDWithBytes(alloc unsafe.Pointer, byte0 unsafe.Pointer, byte1 unsafe.Pointer, byte2 unsafe.Pointer, byte3 unsafe.Pointer, byte4 unsafe.Pointer, byte5 unsafe.Pointer, byte6 unsafe.Pointer, byte7 unsafe.Pointer, byte8 unsafe.Pointer, byte9 unsafe.Pointer, byte10 unsafe.Pointer, byte11 unsafe.Pointer, byte12 unsafe.Pointer, byte13 unsafe.Pointer, byte14 unsafe.Pointer, byte15 unsafe.Pointer) unsafe.Pointer {
+func CFUUIDGetConstantUUIDWithBytes(alloc AllocatorRef, byte0 unsafe.Pointer, byte1 unsafe.Pointer, byte2 unsafe.Pointer, byte3 unsafe.Pointer, byte4 unsafe.Pointer, byte5 unsafe.Pointer, byte6 unsafe.Pointer, byte7 unsafe.Pointer, byte8 unsafe.Pointer, byte9 unsafe.Pointer, byte10 unsafe.Pointer, byte11 unsafe.Pointer, byte12 unsafe.Pointer, byte13 unsafe.Pointer, byte14 unsafe.Pointer, byte15 unsafe.Pointer) UUIDRef {
 	return _CFUUIDGetConstantUUIDWithBytes(alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15)
 }
 
@@ -9498,7 +9496,7 @@ func CFUUIDGetConstantUUIDWithBytes(alloc unsafe.Pointer, byte0 unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDGetTypeID()
-func CFUUIDGetTypeID() unsafe.Pointer {
+func CFUUIDGetTypeID() TypeID {
 	return _CFUUIDGetTypeID()
 }
 
@@ -9508,7 +9506,7 @@ func CFUUIDGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUIDGetUUIDBytes(_:)
-func CFUUIDGetUUIDBytes(uuid unsafe.Pointer) unsafe.Pointer {
+func CFUUIDGetUUIDBytes(uuid UUIDRef) unsafe.Pointer {
 	return _CFUUIDGetUUIDBytes(uuid)
 }
 
@@ -9519,7 +9517,7 @@ func CFUUIDGetUUIDBytes(uuid unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCancel(_:)
-func CFUserNotificationCancel(userNotification unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationCancel(userNotification UserNotificationRef) unsafe.Pointer {
 	return _CFUserNotificationCancel(userNotification)
 }
 
@@ -9530,7 +9528,7 @@ func CFUserNotificationCancel(userNotification unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCreate(_:_:_:_:_:)
-func CFUserNotificationCreate(allocator unsafe.Pointer, timeout unsafe.Pointer, flags unsafe.Pointer, error_ unsafe.Pointer, dictionary unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationCreate(allocator AllocatorRef, timeout TimeInterval, flags OptionFlags, error_ unsafe.Pointer, dictionary DictionaryRef) UserNotificationRef {
 	return _CFUserNotificationCreate(allocator, timeout, flags, error_, dictionary)
 }
 
@@ -9541,7 +9539,7 @@ func CFUserNotificationCreate(allocator unsafe.Pointer, timeout unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCreateRunLoopSource(_:_:_:_:)
-func CFUserNotificationCreateRunLoopSource(allocator unsafe.Pointer, userNotification unsafe.Pointer, callout unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationCreateRunLoopSource(allocator AllocatorRef, userNotification UserNotificationRef, callout UserNotificationCallBack, order Index) RunLoopSourceRef {
 	return _CFUserNotificationCreateRunLoopSource(allocator, userNotification, callout, order)
 }
 
@@ -9552,7 +9550,7 @@ func CFUserNotificationCreateRunLoopSource(allocator unsafe.Pointer, userNotific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationDisplayAlert(_:_:_:_:_:_:_:_:_:_:_:)
-func CFUserNotificationDisplayAlert(timeout unsafe.Pointer, flags unsafe.Pointer, iconURL unsafe.Pointer, soundURL unsafe.Pointer, localizationURL unsafe.Pointer, alertHeader unsafe.Pointer, alertMessage unsafe.Pointer, defaultButtonTitle unsafe.Pointer, alternateButtonTitle unsafe.Pointer, otherButtonTitle unsafe.Pointer, responseFlags unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationDisplayAlert(timeout TimeInterval, flags OptionFlags, iconURL URLRef, soundURL URLRef, localizationURL URLRef, alertHeader StringRef, alertMessage StringRef, defaultButtonTitle StringRef, alternateButtonTitle StringRef, otherButtonTitle StringRef, responseFlags unsafe.Pointer) unsafe.Pointer {
 	return _CFUserNotificationDisplayAlert(timeout, flags, iconURL, soundURL, localizationURL, alertHeader, alertMessage, defaultButtonTitle, alternateButtonTitle, otherButtonTitle, responseFlags)
 }
 
@@ -9563,7 +9561,7 @@ func CFUserNotificationDisplayAlert(timeout unsafe.Pointer, flags unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationDisplayNotice(_:_:_:_:_:_:_:_:)
-func CFUserNotificationDisplayNotice(timeout unsafe.Pointer, flags unsafe.Pointer, iconURL unsafe.Pointer, soundURL unsafe.Pointer, localizationURL unsafe.Pointer, alertHeader unsafe.Pointer, alertMessage unsafe.Pointer, defaultButtonTitle unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationDisplayNotice(timeout TimeInterval, flags OptionFlags, iconURL URLRef, soundURL URLRef, localizationURL URLRef, alertHeader StringRef, alertMessage StringRef, defaultButtonTitle StringRef) unsafe.Pointer {
 	return _CFUserNotificationDisplayNotice(timeout, flags, iconURL, soundURL, localizationURL, alertHeader, alertMessage, defaultButtonTitle)
 }
 
@@ -9574,7 +9572,7 @@ func CFUserNotificationDisplayNotice(timeout unsafe.Pointer, flags unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationGetResponseDictionary(_:)
-func CFUserNotificationGetResponseDictionary(userNotification unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationGetResponseDictionary(userNotification UserNotificationRef) DictionaryRef {
 	return _CFUserNotificationGetResponseDictionary(userNotification)
 }
 
@@ -9585,7 +9583,7 @@ func CFUserNotificationGetResponseDictionary(userNotification unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationGetResponseValue(_:_:_:)
-func CFUserNotificationGetResponseValue(userNotification unsafe.Pointer, key unsafe.Pointer, idx unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationGetResponseValue(userNotification UserNotificationRef, key StringRef, idx Index) StringRef {
 	return _CFUserNotificationGetResponseValue(userNotification, key, idx)
 }
 
@@ -9596,7 +9594,7 @@ func CFUserNotificationGetResponseValue(userNotification unsafe.Pointer, key uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationGetTypeID()
-func CFUserNotificationGetTypeID() unsafe.Pointer {
+func CFUserNotificationGetTypeID() TypeID {
 	return _CFUserNotificationGetTypeID()
 }
 
@@ -9607,7 +9605,7 @@ func CFUserNotificationGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationReceiveResponse(_:_:_:)
-func CFUserNotificationReceiveResponse(userNotification unsafe.Pointer, timeout unsafe.Pointer, responseFlags unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationReceiveResponse(userNotification UserNotificationRef, timeout TimeInterval, responseFlags unsafe.Pointer) unsafe.Pointer {
 	return _CFUserNotificationReceiveResponse(userNotification, timeout, responseFlags)
 }
 
@@ -9618,7 +9616,7 @@ func CFUserNotificationReceiveResponse(userNotification unsafe.Pointer, timeout 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationUpdate(_:_:_:_:)
-func CFUserNotificationUpdate(userNotification unsafe.Pointer, timeout unsafe.Pointer, flags unsafe.Pointer, dictionary unsafe.Pointer) unsafe.Pointer {
+func CFUserNotificationUpdate(userNotification UserNotificationRef, timeout TimeInterval, flags OptionFlags, dictionary DictionaryRef) unsafe.Pointer {
 	return _CFUserNotificationUpdate(userNotification, timeout, flags, dictionary)
 }
 
@@ -9628,7 +9626,7 @@ func CFUserNotificationUpdate(userNotification unsafe.Pointer, timeout unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCanAcceptBytes(_:)
-func CFWriteStreamCanAcceptBytes(stream unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCanAcceptBytes(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamCanAcceptBytes(stream)
 }
 
@@ -9638,7 +9636,7 @@ func CFWriteStreamCanAcceptBytes(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamClose(_:)
-func CFWriteStreamClose(stream unsafe.Pointer) {
+func CFWriteStreamClose(stream WriteStreamRef) {
 	_CFWriteStreamClose(stream)
 }
 
@@ -9647,7 +9645,7 @@ func CFWriteStreamClose(stream unsafe.Pointer) {
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCopyDispatchQueue(_:)
-func CFWriteStreamCopyDispatchQueue(stream unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCopyDispatchQueue(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamCopyDispatchQueue(stream)
 }
 
@@ -9658,7 +9656,7 @@ func CFWriteStreamCopyDispatchQueue(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCopyError(_:)
-func CFWriteStreamCopyError(stream unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCopyError(stream WriteStreamRef) ErrorRef {
 	return _CFWriteStreamCopyError(stream)
 }
 
@@ -9668,7 +9666,7 @@ func CFWriteStreamCopyError(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCopyProperty(_:_:)
-func CFWriteStreamCopyProperty(stream unsafe.Pointer, propertyName unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCopyProperty(stream WriteStreamRef, propertyName StreamPropertyKey) TypeRef {
 	return _CFWriteStreamCopyProperty(stream, propertyName)
 }
 
@@ -9678,7 +9676,7 @@ func CFWriteStreamCopyProperty(stream unsafe.Pointer, propertyName unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCreateWithAllocatedBuffers(_:_:)
-func CFWriteStreamCreateWithAllocatedBuffers(alloc unsafe.Pointer, bufferAllocator unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCreateWithAllocatedBuffers(alloc AllocatorRef, bufferAllocator AllocatorRef) WriteStreamRef {
 	return _CFWriteStreamCreateWithAllocatedBuffers(alloc, bufferAllocator)
 }
 
@@ -9688,7 +9686,7 @@ func CFWriteStreamCreateWithAllocatedBuffers(alloc unsafe.Pointer, bufferAllocat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCreateWithBuffer(_:_:_:)
-func CFWriteStreamCreateWithBuffer(alloc unsafe.Pointer, buffer unsafe.Pointer, bufferCapacity unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCreateWithBuffer(alloc AllocatorRef, buffer unsafe.Pointer, bufferCapacity Index) WriteStreamRef {
 	return _CFWriteStreamCreateWithBuffer(alloc, buffer, bufferCapacity)
 }
 
@@ -9698,7 +9696,7 @@ func CFWriteStreamCreateWithBuffer(alloc unsafe.Pointer, buffer unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamCreateWithFile(_:_:)
-func CFWriteStreamCreateWithFile(alloc unsafe.Pointer, fileURL unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamCreateWithFile(alloc AllocatorRef, fileURL URLRef) WriteStreamRef {
 	return _CFWriteStreamCreateWithFile(alloc, fileURL)
 }
 
@@ -9708,7 +9706,7 @@ func CFWriteStreamCreateWithFile(alloc unsafe.Pointer, fileURL unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamGetError(_:)
-func CFWriteStreamGetError(stream unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamGetError(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamGetError(stream)
 }
 
@@ -9718,7 +9716,7 @@ func CFWriteStreamGetError(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamGetStatus(_:)
-func CFWriteStreamGetStatus(stream unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamGetStatus(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamGetStatus(stream)
 }
 
@@ -9728,7 +9726,7 @@ func CFWriteStreamGetStatus(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamGetTypeID()
-func CFWriteStreamGetTypeID() unsafe.Pointer {
+func CFWriteStreamGetTypeID() TypeID {
 	return _CFWriteStreamGetTypeID()
 }
 
@@ -9738,7 +9736,7 @@ func CFWriteStreamGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamOpen(_:)
-func CFWriteStreamOpen(stream unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamOpen(stream WriteStreamRef) unsafe.Pointer {
 	return _CFWriteStreamOpen(stream)
 }
 
@@ -9748,7 +9746,7 @@ func CFWriteStreamOpen(stream unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamScheduleWithRunLoop(_:_:_:)
-func CFWriteStreamScheduleWithRunLoop(stream unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+func CFWriteStreamScheduleWithRunLoop(stream WriteStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFWriteStreamScheduleWithRunLoop(stream, runLoop, runLoopMode)
 }
 
@@ -9758,7 +9756,7 @@ func CFWriteStreamScheduleWithRunLoop(stream unsafe.Pointer, runLoop unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamSetClient(_:_:_:_:)
-func CFWriteStreamSetClient(stream unsafe.Pointer, streamEvents unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamSetClient(stream WriteStreamRef, streamEvents OptionFlags, clientCB WriteStreamClientCallBack, clientContext unsafe.Pointer) unsafe.Pointer {
 	return _CFWriteStreamSetClient(stream, streamEvents, clientCB, clientContext)
 }
 
@@ -9767,7 +9765,7 @@ func CFWriteStreamSetClient(stream unsafe.Pointer, streamEvents unsafe.Pointer, 
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamSetDispatchQueue(_:_:)
-func CFWriteStreamSetDispatchQueue(stream unsafe.Pointer, q unsafe.Pointer) {
+func CFWriteStreamSetDispatchQueue(stream WriteStreamRef, q unsafe.Pointer) {
 	_CFWriteStreamSetDispatchQueue(stream, q)
 }
 
@@ -9777,7 +9775,7 @@ func CFWriteStreamSetDispatchQueue(stream unsafe.Pointer, q unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamSetProperty(_:_:_:)
-func CFWriteStreamSetProperty(stream unsafe.Pointer, propertyName unsafe.Pointer, propertyValue unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamSetProperty(stream WriteStreamRef, propertyName StreamPropertyKey, propertyValue TypeRef) unsafe.Pointer {
 	return _CFWriteStreamSetProperty(stream, propertyName, propertyValue)
 }
 
@@ -9787,7 +9785,7 @@ func CFWriteStreamSetProperty(stream unsafe.Pointer, propertyName unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamUnscheduleFromRunLoop(_:_:_:)
-func CFWriteStreamUnscheduleFromRunLoop(stream unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+func CFWriteStreamUnscheduleFromRunLoop(stream WriteStreamRef, runLoop RunLoopRef, runLoopMode RunLoopMode) {
 	_CFWriteStreamUnscheduleFromRunLoop(stream, runLoop, runLoopMode)
 }
 
@@ -9797,7 +9795,7 @@ func CFWriteStreamUnscheduleFromRunLoop(stream unsafe.Pointer, runLoop unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamWrite(_:_:_:)
-func CFWriteStreamWrite(stream unsafe.Pointer, buffer unsafe.Pointer, bufferLength unsafe.Pointer) unsafe.Pointer {
+func CFWriteStreamWrite(stream WriteStreamRef, buffer unsafe.Pointer, bufferLength Index) Index {
 	return _CFWriteStreamWrite(stream, buffer, bufferLength)
 }
 
@@ -9807,7 +9805,7 @@ func CFWriteStreamWrite(stream unsafe.Pointer, buffer unsafe.Pointer, bufferLeng
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLCreateStringByEscapingEntities(_:_:_:)
-func CFXMLCreateStringByEscapingEntities(allocator unsafe.Pointer, string_ unsafe.Pointer, entitiesDictionary unsafe.Pointer) unsafe.Pointer {
+func CFXMLCreateStringByEscapingEntities(allocator AllocatorRef, string_ StringRef, entitiesDictionary DictionaryRef) StringRef {
 	return _CFXMLCreateStringByEscapingEntities(allocator, string_, entitiesDictionary)
 }
 
@@ -9817,7 +9815,7 @@ func CFXMLCreateStringByEscapingEntities(allocator unsafe.Pointer, string_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLCreateStringByUnescapingEntities(_:_:_:)
-func CFXMLCreateStringByUnescapingEntities(allocator unsafe.Pointer, string_ unsafe.Pointer, entitiesDictionary unsafe.Pointer) unsafe.Pointer {
+func CFXMLCreateStringByUnescapingEntities(allocator AllocatorRef, string_ StringRef, entitiesDictionary DictionaryRef) StringRef {
 	return _CFXMLCreateStringByUnescapingEntities(allocator, string_, entitiesDictionary)
 }
 
@@ -9830,7 +9828,7 @@ func CFXMLCreateStringByUnescapingEntities(allocator unsafe.Pointer, string_ uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeCreate
-func CFXMLNodeCreate(alloc unsafe.Pointer, xmlType unsafe.Pointer, dataString unsafe.Pointer, additionalInfoPtr unsafe.Pointer, version unsafe.Pointer) unsafe.Pointer {
+func CFXMLNodeCreate(alloc AllocatorRef, xmlType unsafe.Pointer, dataString StringRef, additionalInfoPtr unsafe.Pointer, version Index) XMLNodeRef {
 	return _CFXMLNodeCreate(alloc, xmlType, dataString, additionalInfoPtr, version)
 }
 
@@ -9843,7 +9841,7 @@ func CFXMLNodeCreate(alloc unsafe.Pointer, xmlType unsafe.Pointer, dataString un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeCreateCopy
-func CFXMLNodeCreateCopy(alloc unsafe.Pointer, origNode unsafe.Pointer) unsafe.Pointer {
+func CFXMLNodeCreateCopy(alloc AllocatorRef, origNode XMLNodeRef) XMLNodeRef {
 	return _CFXMLNodeCreateCopy(alloc, origNode)
 }
 
@@ -9856,7 +9854,7 @@ func CFXMLNodeCreateCopy(alloc unsafe.Pointer, origNode unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetInfoPtr
-func CFXMLNodeGetInfoPtr(node unsafe.Pointer) unsafe.Pointer {
+func CFXMLNodeGetInfoPtr(node XMLNodeRef) unsafe.Pointer {
 	return _CFXMLNodeGetInfoPtr(node)
 }
 
@@ -9869,7 +9867,7 @@ func CFXMLNodeGetInfoPtr(node unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetString
-func CFXMLNodeGetString(node unsafe.Pointer) unsafe.Pointer {
+func CFXMLNodeGetString(node XMLNodeRef) StringRef {
 	return _CFXMLNodeGetString(node)
 }
 
@@ -9882,7 +9880,7 @@ func CFXMLNodeGetString(node unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetTypeCode
-func CFXMLNodeGetTypeCode(node unsafe.Pointer) unsafe.Pointer {
+func CFXMLNodeGetTypeCode(node XMLNodeRef) unsafe.Pointer {
 	return _CFXMLNodeGetTypeCode(node)
 }
 
@@ -9895,7 +9893,7 @@ func CFXMLNodeGetTypeCode(node unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetTypeID
-func CFXMLNodeGetTypeID() unsafe.Pointer {
+func CFXMLNodeGetTypeID() TypeID {
 	return _CFXMLNodeGetTypeID()
 }
 
@@ -9908,7 +9906,7 @@ func CFXMLNodeGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeGetVersion
-func CFXMLNodeGetVersion(node unsafe.Pointer) unsafe.Pointer {
+func CFXMLNodeGetVersion(node XMLNodeRef) Index {
 	return _CFXMLNodeGetVersion(node)
 }
 
@@ -9921,7 +9919,7 @@ func CFXMLNodeGetVersion(node unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserAbort
-func CFXMLParserAbort(parser unsafe.Pointer, errorCode unsafe.Pointer, errorDescription unsafe.Pointer) {
+func CFXMLParserAbort(parser XMLParserRef, errorCode unsafe.Pointer, errorDescription StringRef) {
 	_CFXMLParserAbort(parser, errorCode, errorDescription)
 }
 
@@ -9934,7 +9932,7 @@ func CFXMLParserAbort(parser unsafe.Pointer, errorCode unsafe.Pointer, errorDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCopyErrorDescription
-func CFXMLParserCopyErrorDescription(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserCopyErrorDescription(parser XMLParserRef) StringRef {
 	return _CFXMLParserCopyErrorDescription(parser)
 }
 
@@ -9947,7 +9945,7 @@ func CFXMLParserCopyErrorDescription(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCreate
-func CFXMLParserCreate(allocator unsafe.Pointer, xmlData unsafe.Pointer, dataSource unsafe.Pointer, parseOptions unsafe.Pointer, versionOfNodes unsafe.Pointer, callBacks unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserCreate(allocator AllocatorRef, xmlData DataRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index, callBacks unsafe.Pointer, context unsafe.Pointer) XMLParserRef {
 	return _CFXMLParserCreate(allocator, xmlData, dataSource, parseOptions, versionOfNodes, callBacks, context)
 }
 
@@ -9960,7 +9958,7 @@ func CFXMLParserCreate(allocator unsafe.Pointer, xmlData unsafe.Pointer, dataSou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCreateWithDataFromURL
-func CFXMLParserCreateWithDataFromURL(allocator unsafe.Pointer, dataSource unsafe.Pointer, parseOptions unsafe.Pointer, versionOfNodes unsafe.Pointer, callBacks unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserCreateWithDataFromURL(allocator AllocatorRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index, callBacks unsafe.Pointer, context unsafe.Pointer) XMLParserRef {
 	return _CFXMLParserCreateWithDataFromURL(allocator, dataSource, parseOptions, versionOfNodes, callBacks, context)
 }
 
@@ -9973,7 +9971,7 @@ func CFXMLParserCreateWithDataFromURL(allocator unsafe.Pointer, dataSource unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetCallBacks
-func CFXMLParserGetCallBacks(parser unsafe.Pointer, callBacks unsafe.Pointer) {
+func CFXMLParserGetCallBacks(parser XMLParserRef, callBacks unsafe.Pointer) {
 	_CFXMLParserGetCallBacks(parser, callBacks)
 }
 
@@ -9986,7 +9984,7 @@ func CFXMLParserGetCallBacks(parser unsafe.Pointer, callBacks unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetContext
-func CFXMLParserGetContext(parser unsafe.Pointer, context unsafe.Pointer) {
+func CFXMLParserGetContext(parser XMLParserRef, context unsafe.Pointer) {
 	_CFXMLParserGetContext(parser, context)
 }
 
@@ -9999,7 +9997,7 @@ func CFXMLParserGetContext(parser unsafe.Pointer, context unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetDocument
-func CFXMLParserGetDocument(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserGetDocument(parser XMLParserRef) unsafe.Pointer {
 	return _CFXMLParserGetDocument(parser)
 }
 
@@ -10012,7 +10010,7 @@ func CFXMLParserGetDocument(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetLineNumber
-func CFXMLParserGetLineNumber(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserGetLineNumber(parser XMLParserRef) Index {
 	return _CFXMLParserGetLineNumber(parser)
 }
 
@@ -10025,7 +10023,7 @@ func CFXMLParserGetLineNumber(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetLocation
-func CFXMLParserGetLocation(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserGetLocation(parser XMLParserRef) Index {
 	return _CFXMLParserGetLocation(parser)
 }
 
@@ -10038,7 +10036,7 @@ func CFXMLParserGetLocation(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetSourceURL
-func CFXMLParserGetSourceURL(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserGetSourceURL(parser XMLParserRef) URLRef {
 	return _CFXMLParserGetSourceURL(parser)
 }
 
@@ -10051,7 +10049,7 @@ func CFXMLParserGetSourceURL(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetStatusCode
-func CFXMLParserGetStatusCode(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserGetStatusCode(parser XMLParserRef) unsafe.Pointer {
 	return _CFXMLParserGetStatusCode(parser)
 }
 
@@ -10064,7 +10062,7 @@ func CFXMLParserGetStatusCode(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserGetTypeID
-func CFXMLParserGetTypeID() unsafe.Pointer {
+func CFXMLParserGetTypeID() TypeID {
 	return _CFXMLParserGetTypeID()
 }
 
@@ -10077,7 +10075,7 @@ func CFXMLParserGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserParse
-func CFXMLParserParse(parser unsafe.Pointer) unsafe.Pointer {
+func CFXMLParserParse(parser XMLParserRef) unsafe.Pointer {
 	return _CFXMLParserParse(parser)
 }
 
@@ -10090,7 +10088,7 @@ func CFXMLParserParse(parser unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateFromData
-func CFXMLTreeCreateFromData(allocator unsafe.Pointer, xmlData unsafe.Pointer, dataSource unsafe.Pointer, parseOptions unsafe.Pointer, versionOfNodes unsafe.Pointer) unsafe.Pointer {
+func CFXMLTreeCreateFromData(allocator AllocatorRef, xmlData DataRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index) XMLTreeRef {
 	return _CFXMLTreeCreateFromData(allocator, xmlData, dataSource, parseOptions, versionOfNodes)
 }
 
@@ -10103,7 +10101,7 @@ func CFXMLTreeCreateFromData(allocator unsafe.Pointer, xmlData unsafe.Pointer, d
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateFromDataWithError
-func CFXMLTreeCreateFromDataWithError(allocator unsafe.Pointer, xmlData unsafe.Pointer, dataSource unsafe.Pointer, parseOptions unsafe.Pointer, versionOfNodes unsafe.Pointer, errorDict unsafe.Pointer) unsafe.Pointer {
+func CFXMLTreeCreateFromDataWithError(allocator AllocatorRef, xmlData DataRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index, errorDict unsafe.Pointer) XMLTreeRef {
 	return _CFXMLTreeCreateFromDataWithError(allocator, xmlData, dataSource, parseOptions, versionOfNodes, errorDict)
 }
 
@@ -10116,7 +10114,7 @@ func CFXMLTreeCreateFromDataWithError(allocator unsafe.Pointer, xmlData unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateWithDataFromURL
-func CFXMLTreeCreateWithDataFromURL(allocator unsafe.Pointer, dataSource unsafe.Pointer, parseOptions unsafe.Pointer, versionOfNodes unsafe.Pointer) unsafe.Pointer {
+func CFXMLTreeCreateWithDataFromURL(allocator AllocatorRef, dataSource URLRef, parseOptions OptionFlags, versionOfNodes Index) XMLTreeRef {
 	return _CFXMLTreeCreateWithDataFromURL(allocator, dataSource, parseOptions, versionOfNodes)
 }
 
@@ -10129,7 +10127,7 @@ func CFXMLTreeCreateWithDataFromURL(allocator unsafe.Pointer, dataSource unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateWithNode
-func CFXMLTreeCreateWithNode(allocator unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
+func CFXMLTreeCreateWithNode(allocator AllocatorRef, node XMLNodeRef) XMLTreeRef {
 	return _CFXMLTreeCreateWithNode(allocator, node)
 }
 
@@ -10142,7 +10140,7 @@ func CFXMLTreeCreateWithNode(allocator unsafe.Pointer, node unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeCreateXMLData
-func CFXMLTreeCreateXMLData(allocator unsafe.Pointer, xmlTree unsafe.Pointer) unsafe.Pointer {
+func CFXMLTreeCreateXMLData(allocator AllocatorRef, xmlTree XMLTreeRef) DataRef {
 	return _CFXMLTreeCreateXMLData(allocator, xmlTree)
 }
 
@@ -10155,7 +10153,7 @@ func CFXMLTreeCreateXMLData(allocator unsafe.Pointer, xmlTree unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTreeGetNode
-func CFXMLTreeGetNode(xmlTree unsafe.Pointer) unsafe.Pointer {
+func CFXMLTreeGetNode(xmlTree XMLTreeRef) XMLNodeRef {
 	return _CFXMLTreeGetNode(xmlTree)
 }
 

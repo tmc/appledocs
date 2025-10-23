@@ -1535,6 +1535,9 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkResolutionOptions/cfurlBookmarkResolutionWithoutMountingMask
 	kCFURLBookmarkResolutionWithoutMountingMask URLBookmarkResolutionOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkResolutionOptions/cfurlBookmarkResolutionWithoutUIMask
+	kCFURLBookmarkResolutionWithoutUIMask URLBookmarkResolutionOptions = 0
 )
 
 // URLComponentType - The types of components in a URL.
