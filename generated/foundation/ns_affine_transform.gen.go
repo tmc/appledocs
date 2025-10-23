@@ -45,6 +45,7 @@ type IAffineTransform interface {
 	Set()
 	TransformPoint(aPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
 	TransformSize(aSize objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */
+	TransformBezierPath(path objc.IObject /* cross-framework BezierPath */) objc.IObject /* cross-framework: BezierPath */
 	TranslateXByYBy(deltaX float64 /* primitive/slice/pointer. */, deltaY float64 /* primitive/slice/pointer. */)
 }
 
@@ -221,6 +222,16 @@ func (a_ AffineTransform) TransformPoint(aPoint objc.IObject /* cross-framework 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-5r6ol
 func (a_ AffineTransform) TransformSize(aSize objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[Size](a_.ID, objc.Sel("transformSize:"), aSize)
+	return rv
+}
+
+
+// Creates and returns a new Bézier path object with each point in the given path transformed by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-6z1xo
+func (a_ AffineTransform) TransformBezierPath(path objc.IObject /* cross-framework BezierPath */) objc.IObject /* cross-framework: BezierPath */ {
+	rv := objc.Send[BezierPath](a_.ID, objc.Sel("transformBezierPath:"), path)
 	return rv
 }
 

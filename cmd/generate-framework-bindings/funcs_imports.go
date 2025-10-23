@@ -242,6 +242,27 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 			goType := mapObjCTypeToGo(method.ReturnType, framework)
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
+					// Check for framework hierarchy violations before adding import
+					// If the target framework is at a higher level than current, skip the import
+					// since the template will use objectivec.IObject instead
+					if strings.Contains(goType, ".") {
+						parts := strings.Split(goType, ".")
+						if len(parts) >= 2 {
+							targetFramework := parts[0]
+							currentLevel := getFrameworkLevel(strings.ToLower(framework))
+							targetLevel := getFrameworkLevel(targetFramework)
+							if currentLevel >= 0 && targetLevel > currentLevel {
+								// Skip import for hierarchy violation
+								Debug.Imports("skipping return type import due to hierarchy violation", method.Name, goType,
+									"class", class.Name,
+									"method", method.Name,
+									"currentLevel", currentLevel,
+									"targetLevel", targetLevel)
+								continue
+							}
+						}
+					}
+
 					if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
 						fmt.Fprintf(os.Stderr, ">>> CKQueryCursor method %s return type %q -> go type %q -> import %q\n",
 							method.Name, method.ReturnType, goType, importPath)
@@ -323,6 +344,27 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 		goType := mapObjCTypeToGo(objcType, framework)
 		if importPath := GetImportPathFromType(goType); importPath != "" {
 			if importPath != currentFrameworkImportPath {
+				// Check for framework hierarchy violations before adding import
+				// If the target framework is at a higher level than current, skip the import
+				// since the template will use objectivec.IObject instead
+				if strings.Contains(goType, ".") {
+					parts := strings.Split(goType, ".")
+					if len(parts) >= 2 {
+						targetFramework := parts[0]
+						currentLevel := getFrameworkLevel(strings.ToLower(framework))
+						targetLevel := getFrameworkLevel(targetFramework)
+						if currentLevel >= 0 && targetLevel > currentLevel {
+							// Skip import for hierarchy violation
+							Debug.Imports("skipping property import due to hierarchy violation", prop.Name, goType,
+								"class", class.Name,
+								"property", prop.Name,
+								"currentLevel", currentLevel,
+								"targetLevel", targetLevel)
+							continue
+						}
+					}
+				}
+
 				if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
 					fmt.Fprintf(os.Stderr, ">>> CKQueryCursor property %q objcType %q -> go type %q -> import %q\n",
 						prop.Name, objcType, goType, importPath)

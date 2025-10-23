@@ -246,9 +246,20 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		frameworkPrefix := parts[0]
 		typeName := parts[len(parts)-1]
 
-		// If it's from a different framework, keep it fully qualified
-		// For example, in Foundation: "coregraphics.CGRect" stays as "coregraphics.CGRect"
+		// If it's from a different framework, check if it would cause a hierarchy violation
+		// For hierarchy violations, the interface type will be objc.IObject, so we should
+		// use objc.ID for the Send call to avoid importing the higher-level framework
 		if frameworkPrefix != strings.ToLower(gf.Framework) {
+			// Check framework hierarchy
+			currentLevel := getFrameworkLevel(strings.ToLower(gf.Framework))
+			targetLevel := getFrameworkLevel(frameworkPrefix)
+
+			// If this is a hierarchy violation (lower framework referencing higher),
+			// use objc.ID instead of the qualified type to avoid import cycle
+			if currentLevel >= 0 && targetLevel > currentLevel {
+				return "objc.ID"
+			}
+
 			// Cross-framework reference - keep qualified
 			return goType
 		}

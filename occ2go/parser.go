@@ -731,6 +731,9 @@ func ParseStructField(doc *appledocs.Document) (*ParsedStructField, error) {
 		return nil, fmt.Errorf("could not extract field name from %s", externalID)
 	}
 
+	// Capitalize field name for Go export (location → Location)
+	fieldName = strings.Title(fieldName)
+
 	field.Name = fieldName
 	field.Type = fieldType
 	field.Comment = abstract

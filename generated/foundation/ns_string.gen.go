@@ -96,28 +96,28 @@ type IString interface {
 	Uppercased() IString
 	SetUppercased(value IString)
 	// methods:
-	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters CharacterSet /* not a class type */) IString
+	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString
 	StringByAppendingString(aString IString) IString
 	StringByAppendingPathComponent(str IString) IString
 	StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject /* cross-framework UTType */) IString
 	StringByAppendingPathExtension(str IString) IString
 	StringByAppendingPathExtensionForType(contentType objc.IObject /* cross-framework UTType */) IString
-	StringByApplyingTransformReverse(transform StringTransform /* not a class type */, reverse bool /* primitive/slice/pointer. */) IString
+	StringByApplyingTransformReverse(transform objc.IObject /* cross-framework StringTransform */, reverse bool /* primitive/slice/pointer. */) IString
 	BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */) objc.IObject /* cross-framework: Rect */
 	BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) objc.IObject /* cross-framework: Rect */
 	CStringUsingEncoding(encoding StringEncoding /* not a class type */) unsafe.Pointer
 	CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */
-	CapitalizedStringWithLocale(locale Locale /* not a class type */) IString
-	CaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */
-	CharacterAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer
+	CapitalizedStringWithLocale(locale ILocale) IString
+	CaseInsensitiveCompare(string_ IString) ComparisonResult
+	CharacterAtIndex(index uint /* primitive/slice/pointer. */) unichar /* typedef */
 	CommonPrefixWithStringOptions(str IString, mask StringCompareOptions) IString
-	Compare(string_ IString) ComparisonResult /* not a class type */
-	CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult /* not a class type */
-	CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */) ComparisonResult /* not a class type */
-	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */, locale objectivec.IObject) ComparisonResult /* not a class type */
+	Compare(string_ IString) ComparisonResult
+	CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult
+	CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */) ComparisonResult
+	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */, locale objectivec.IObject) ComparisonResult
 	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
 	ComponentsSeparatedByString(separator IString) []string /* primitive/slice/pointer. */
-	ComponentsSeparatedByCharactersInSet(separator CharacterSet /* not a class type */) []string /* primitive/slice/pointer. */
+	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string /* primitive/slice/pointer. */
 	ContainsString(str IString) bool /* primitive/slice/pointer. */
 	DataUsingEncoding(encoding StringEncoding /* not a class type */) IData
 	DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool /* primitive/slice/pointer. */) IData
@@ -126,56 +126,56 @@ type IString interface {
 	DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */)
 	DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */)
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
-	EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts StringEnumerationOptions, block unsafe.Pointer)
-	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale Locale /* not a class type */) IString
-	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ Range /* not a class type */, leftover RangePointer /* not a class type */) bool /* primitive/slice/pointer. */
+	EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework Range */, opts StringEnumerationOptions, block unsafe.Pointer)
+	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) IString
+	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework Range */, leftover objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */
 	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */
-	GetCharacters(buffer unsafe.Pointer)
-	GetCharactersRange(buffer unsafe.Pointer, range_ Range /* not a class type */)
+	GetCharacters(buffer unichar /* typedef */)
+	GetCharactersRange(buffer unichar /* typedef */, range_ objc.IObject /* cross-framework Range */)
 	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */)
-	GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */)
+	GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */)
+	GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */)
 	HasPrefix(str IString) bool /* primitive/slice/pointer. */
 	HasSuffix(str IString) bool /* primitive/slice/pointer. */
 	IsEqualToString(aString IString) bool /* primitive/slice/pointer. */
 	LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */
-	LineRangeForRange(range_ Range /* not a class type */) Range /* not a class type */
-	LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */
+	LineRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
+	LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult
 	LocalizedCaseInsensitiveContainsString(str IString) bool /* primitive/slice/pointer. */
-	LocalizedCompare(string_ IString) ComparisonResult /* not a class type */
-	LocalizedStandardCompare(string_ IString) ComparisonResult /* not a class type */
+	LocalizedCompare(string_ IString) ComparisonResult
+	LocalizedStandardCompare(string_ IString) ComparisonResult
 	LocalizedStandardContainsString(str IString) bool /* primitive/slice/pointer. */
-	LocalizedStandardRangeOfString(str IString) Range /* not a class type */
-	LowercaseStringWithLocale(locale Locale /* not a class type */) IString
+	LocalizedStandardRangeOfString(str IString) objc.IObject /* cross-framework: Range */
+	LowercaseStringWithLocale(locale ILocale) IString
 	MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */
 	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint /* primitive/slice/pointer. */, padString IString, padIndex uint /* primitive/slice/pointer. */) IString
-	ParagraphRangeForRange(range_ Range /* not a class type */) Range /* not a class type */
+	ParagraphRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
 	PropertyList() objc.ID
 	PropertyListFromStringsFileFormat() IDictionary
-	RangeOfString(searchString IString) Range /* not a class type */
-	RangeOfStringOptions(searchString IString, mask StringCompareOptions) Range /* not a class type */
-	RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */
-	RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */, locale Locale /* not a class type */) Range /* not a class type */
-	RangeOfCharacterFromSet(searchSet CharacterSet /* not a class type */) Range /* not a class type */
-	RangeOfCharacterFromSetOptions(searchSet CharacterSet /* not a class type */, mask StringCompareOptions) Range /* not a class type */
-	RangeOfCharacterFromSetOptionsRange(searchSet CharacterSet /* not a class type */, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */
-	RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) Range /* not a class type */
-	RangeOfComposedCharacterSequencesForRange(range_ Range /* not a class type */) Range /* not a class type */
-	StringByReplacingCharactersInRangeWithString(range_ Range /* not a class type */, replacement IString) IString
+	RangeOfString(searchString IString) objc.IObject /* cross-framework: Range */
+	RangeOfStringOptions(searchString IString, mask StringCompareOptions) objc.IObject /* cross-framework: Range */
+	RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
+	RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */, locale ILocale) objc.IObject /* cross-framework: Range */
+	RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /* cross-framework: Range */
+	RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask StringCompareOptions) objc.IObject /* cross-framework: Range */
+	RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
+	RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Range */
+	RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
+	StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework Range */, replacement IString) IString
 	StringByReplacingOccurrencesOfStringWithString(target IString, replacement IString) IString
-	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange Range /* not a class type */) IString
+	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework Range */) IString
 	SizeWithAttributes(attrs IDictionary /* already interface */) objc.IObject /* cross-framework: Size */
 	Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer
 	StringByAppendingFormat(format IString) IString
 	StringsByAppendingPaths(paths []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */
 	SubstringFromIndex(from uint /* primitive/slice/pointer. */) IString
 	SubstringToIndex(to uint /* primitive/slice/pointer. */) IString
-	SubstringWithRange(range_ Range /* not a class type */) IString
-	StringByTrimmingCharactersInSet(set CharacterSet /* not a class type */) IString
-	UppercaseStringWithLocale(locale Locale /* not a class type */) IString
+	SubstringWithRange(range_ objc.IObject /* cross-framework Range */) IString
+	StringByTrimmingCharactersInSet(set ICharacterSet) IString
+	UppercaseStringWithLocale(locale ILocale) IString
 	VariantFittingPresentationWidth(width int /* primitive/slice/pointer. */) IString
-	WriteToURLAtomicallyEncodingError(url objc.IObject /* cross-framework NSURL */, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */
+	WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */
 }
 
 // A static, plain-text Unicode string object.
@@ -317,7 +317,7 @@ func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
-func NewStringWithCharactersLength(characters unsafe.Pointer, length uint /* primitive/slice/pointer. */) String {
+func NewStringWithCharactersLength(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
 	rv.Autorelease()
@@ -327,7 +327,7 @@ func NewStringWithCharactersLength(characters unsafe.Pointer, length uint /* pri
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
-func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, deallocator unsafe.Pointer) String {
+func NewStringWithCharactersNoCopyLengthDeallocator(chars unichar /* typedef */, len_ uint /* primitive/slice/pointer. */, deallocator unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len_, deallocator)
 	rv.Autorelease()
@@ -339,7 +339,7 @@ func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len_ u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:freeWhenDone:)
-func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unsafe.Pointer, length uint /* primitive/slice/pointer. */, freeBuffer bool /* primitive/slice/pointer. */) String {
+func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */, freeBuffer bool /* primitive/slice/pointer. */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:freeWhenDone:"), characters, length, freeBuffer)
 	rv.Autorelease()
@@ -373,7 +373,7 @@ func NewStringWithContentsOfFile(path IString) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:encoding:)
-func NewStringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
+func NewStringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), path, enc, error_)
 	rv.Autorelease()
@@ -385,7 +385,7 @@ func NewStringWithContentsOfFileEncodingError(path IString, enc StringEncoding /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
-func NewStringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
+func NewStringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), path, enc, error_)
 	rv.Autorelease()
@@ -397,7 +397,7 @@ func NewStringWithContentsOfFileUsedEncodingError(path IString, enc StringEncodi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:)
-func NewStringWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) String {
+func NewStringWithContentsOfURL(url IURL) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -409,7 +409,7 @@ func NewStringWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) St
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-715fw
-func NewStringWithContentsOfURLEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
+func NewStringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:encoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -421,7 +421,7 @@ func NewStringWithContentsOfURLEncodingError(url objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-2c72d
-func NewStringWithContentsOfURLUsedEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
+func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -515,7 +515,7 @@ func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format IString, validFormatSpecifiers IString, argList unsafe.Pointer, error_ unsafe.Pointer) String {
+func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format IString, validFormatSpecifiers IString, argList unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), format, validFormatSpecifiers, argList, error_)
 	rv.Autorelease()
@@ -525,7 +525,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format IStr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ unsafe.Pointer) String {
+func NewStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	rv.Autorelease()
@@ -535,7 +535,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersError(format IString, vali
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, argList unsafe.Pointer, error_ unsafe.Pointer) String {
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, argList unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error_)
 	rv.Autorelease()
@@ -545,7 +545,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(forma
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, error_ unsafe.Pointer) String {
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error_)
 	rv.Autorelease()
@@ -602,7 +602,7 @@ func (sc _StringClass) StringWithUTF8String(nullTerminatedCString unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-x6cv
-func (sc _StringClass) StringWithContentsOfURLEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:encoding:error:"), url, enc, error_)
 	return rv
 }
@@ -612,7 +612,7 @@ func (sc _StringClass) StringWithContentsOfURLEncodingError(url objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-9jrum
-func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	return rv
 }
@@ -640,7 +640,7 @@ func (sc _StringClass) LocalizedStringWithFormat(format IString) unsafe.Pointer 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStringWithValidatedFormat:validFormatSpecifiers:error:
-func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	return rv
 }
@@ -690,7 +690,7 @@ func (sc _StringClass) StringWithCStringLength(bytes unsafe.Pointer, length uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string(withContentsOf:)
-func (sc _StringClass) StringWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) objc.ID {
+func (sc _StringClass) StringWithContentsOfURL(url IURL) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:"), url)
 	return rv
 }
@@ -730,7 +730,7 @@ func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithCharacters:length:
-func (sc _StringClass) StringWithCharactersLength(characters unsafe.Pointer, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (sc _StringClass) StringWithCharactersLength(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithCharacters:length:"), characters, length)
 	return rv
 }
@@ -740,7 +740,7 @@ func (sc _StringClass) StringWithCharactersLength(characters unsafe.Pointer, len
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:encoding:error:
-func (sc _StringClass) StringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), path, enc, error_)
 	return rv
 }
@@ -750,7 +750,7 @@ func (sc _StringClass) StringWithContentsOfFileEncodingError(path IString, enc S
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:usedEncoding:error:
-func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), path, enc, error_)
 	return rv
 }
@@ -778,7 +778,7 @@ func (sc _StringClass) StringWithString(string_ IString) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithValidatedFormat:validFormatSpecifiers:error:
-func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ unsafe.Pointer) unsafe.Pointer {
+func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	return rv
 }
@@ -806,7 +806,7 @@ func (sc _StringClass) DefaultCStringEncoding() StringEncoding /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/addingPercentEncoding(withAllowedCharacters:)
-func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters CharacterSet /* not a class type */) IString {
+func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAddingPercentEncodingWithAllowedCharacters:"), allowedCharacters)
 	return rv
 }
@@ -862,7 +862,7 @@ func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/applyingTransform(_:reverse:)
-func (s_ String) StringByApplyingTransformReverse(transform StringTransform /* not a class type */, reverse bool /* primitive/slice/pointer. */) IString {
+func (s_ String) StringByApplyingTransformReverse(transform objc.IObject /* cross-framework StringTransform */, reverse bool /* primitive/slice/pointer. */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByApplyingTransform:reverse:"), transform, reverse)
 	return rv
 }
@@ -912,7 +912,7 @@ func (s_ String) CanBeConvertedToEncoding(encoding StringEncoding /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/capitalized(with:)
-func (s_ String) CapitalizedStringWithLocale(locale Locale /* not a class type */) IString {
+func (s_ String) CapitalizedStringWithLocale(locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("capitalizedStringWithLocale:"), locale)
 	return rv
 }
@@ -922,7 +922,7 @@ func (s_ String) CapitalizedStringWithLocale(locale Locale /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/caseInsensitiveCompare(_:)
-func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */ {
+func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("caseInsensitiveCompare:"), string_)
 	return rv
 }
@@ -932,8 +932,8 @@ func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/character(at:)
-func (s_ String) CharacterAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("characterAtIndex:"), index)
+func (s_ String) CharacterAtIndex(index uint /* primitive/slice/pointer. */) unichar /* typedef */ {
+	rv := objc.Send[unichar](s_.ID, objc.Sel("characterAtIndex:"), index)
 	return rv
 }
 
@@ -952,7 +952,7 @@ func (s_ String) CommonPrefixWithStringOptions(str IString, mask StringCompareOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:)
-func (s_ String) Compare(string_ IString) ComparisonResult /* not a class type */ {
+func (s_ String) Compare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:"), string_)
 	return rv
 }
@@ -962,7 +962,7 @@ func (s_ String) Compare(string_ IString) ComparisonResult /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:)
-func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult /* not a class type */ {
+func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:"), string_, mask)
 	return rv
 }
@@ -972,7 +972,7 @@ func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) Comp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:)
-func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */) ComparisonResult /* not a class type */ {
+func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:"), string_, mask, rangeOfReceiverToCompare)
 	return rv
 }
@@ -982,7 +982,7 @@ func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:locale:)
-func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */, locale objectivec.IObject) ComparisonResult /* not a class type */ {
+func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */, locale objectivec.IObject) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), string_, mask, rangeOfReceiverToCompare, locale)
 	return rv
 }
@@ -1012,7 +1012,7 @@ func (s_ String) ComponentsSeparatedByString(separator IString) []string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/components(separatedBy:)-27x9g
-func (s_ String) ComponentsSeparatedByCharactersInSet(separator CharacterSet /* not a class type */) []string /* primitive/slice/pointer. */ {
+func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByCharactersInSet:"), separator)
 	return rv
 }
@@ -1097,7 +1097,7 @@ func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateSubstrings(in:options:using:)
-func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts StringEnumerationOptions, block unsafe.Pointer) {
+func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework Range */, opts StringEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateSubstringsInRange:options:usingBlock:"), range_, opts, block)
 }
 
@@ -1106,7 +1106,7 @@ func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/folding(options:locale:)
-func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, locale Locale /* not a class type */) IString {
+func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByFoldingWithOptions:locale:"), options, locale)
 	return rv
 }
@@ -1116,7 +1116,7 @@ func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)
-func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ Range /* not a class type */, leftover RangePointer /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework Range */, leftover objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
 }
@@ -1136,7 +1136,7 @@ func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:)
-func (s_ String) GetCharacters(buffer unsafe.Pointer) {
+func (s_ String) GetCharacters(buffer unichar /* typedef */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:"), buffer)
 }
 
@@ -1145,7 +1145,7 @@ func (s_ String) GetCharacters(buffer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:range:)
-func (s_ String) GetCharactersRange(buffer unsafe.Pointer, range_ Range /* not a class type */) {
+func (s_ String) GetCharactersRange(buffer unichar /* typedef */, range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:range:"), buffer, range_)
 }
 
@@ -1164,7 +1164,7 @@ func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getLineStart(_:end:contentsEnd:for:)
-func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */) {
+func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getLineStart:end:contentsEnd:forRange:"), startPtr, lineEndPtr, contentsEndPtr, range_)
 }
 
@@ -1173,7 +1173,7 @@ func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getParagraphStart(_:end:contentsEnd:for:)
-func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */) {
+func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getParagraphStart:end:contentsEnd:forRange:"), startPtr, parEndPtr, contentsEndPtr, range_)
 }
 
@@ -1222,7 +1222,7 @@ func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lineRange(for:)
-func (s_ String) LineRangeForRange(range_ Range /* not a class type */) Range /* not a class type */ {
+func (s_ String) LineRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("lineRangeForRange:"), range_)
 	return rv
 }
@@ -1232,7 +1232,7 @@ func (s_ String) LineRangeForRange(range_ Range /* not a class type */) Range /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCaseInsensitiveCompare(_:)
-func (s_ String) LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */ {
+func (s_ String) LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCaseInsensitiveCompare:"), string_)
 	return rv
 }
@@ -1252,7 +1252,7 @@ func (s_ String) LocalizedCaseInsensitiveContainsString(str IString) bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCompare(_:)
-func (s_ String) LocalizedCompare(string_ IString) ComparisonResult /* not a class type */ {
+func (s_ String) LocalizedCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCompare:"), string_)
 	return rv
 }
@@ -1262,7 +1262,7 @@ func (s_ String) LocalizedCompare(string_ IString) ComparisonResult /* not a cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardCompare(_:)
-func (s_ String) LocalizedStandardCompare(string_ IString) ComparisonResult /* not a class type */ {
+func (s_ String) LocalizedStandardCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedStandardCompare:"), string_)
 	return rv
 }
@@ -1282,7 +1282,7 @@ func (s_ String) LocalizedStandardContainsString(str IString) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardRange(of:)
-func (s_ String) LocalizedStandardRangeOfString(str IString) Range /* not a class type */ {
+func (s_ String) LocalizedStandardRangeOfString(str IString) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("localizedStandardRangeOfString:"), str)
 	return rv
 }
@@ -1292,7 +1292,7 @@ func (s_ String) LocalizedStandardRangeOfString(str IString) Range /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lowercased(with:)
-func (s_ String) LowercaseStringWithLocale(locale Locale /* not a class type */) IString {
+func (s_ String) LowercaseStringWithLocale(locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("lowercaseStringWithLocale:"), locale)
 	return rv
 }
@@ -1322,7 +1322,7 @@ func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/paragraphRange(for:)
-func (s_ String) ParagraphRangeForRange(range_ Range /* not a class type */) Range /* not a class type */ {
+func (s_ String) ParagraphRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("paragraphRangeForRange:"), range_)
 	return rv
 }
@@ -1352,7 +1352,7 @@ func (s_ String) PropertyListFromStringsFileFormat() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:)
-func (s_ String) RangeOfString(searchString IString) Range /* not a class type */ {
+func (s_ String) RangeOfString(searchString IString) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:"), searchString)
 	return rv
 }
@@ -1362,7 +1362,7 @@ func (s_ String) RangeOfString(searchString IString) Range /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:)
-func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOptions) Range /* not a class type */ {
+func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOptions) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:"), searchString, mask)
 	return rv
 }
@@ -1372,7 +1372,7 @@ func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:)
-func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */ {
+func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:"), searchString, mask, rangeOfReceiverToSearch)
 	return rv
 }
@@ -1382,7 +1382,7 @@ func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringComp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:locale:)
-func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */, locale Locale /* not a class type */) Range /* not a class type */ {
+func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */, locale ILocale) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), searchString, mask, rangeOfReceiverToSearch, locale)
 	return rv
 }
@@ -1392,7 +1392,7 @@ func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:)
-func (s_ String) RangeOfCharacterFromSet(searchSet CharacterSet /* not a class type */) Range /* not a class type */ {
+func (s_ String) RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:"), searchSet)
 	return rv
 }
@@ -1402,7 +1402,7 @@ func (s_ String) RangeOfCharacterFromSet(searchSet CharacterSet /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:)
-func (s_ String) RangeOfCharacterFromSetOptions(searchSet CharacterSet /* not a class type */, mask StringCompareOptions) Range /* not a class type */ {
+func (s_ String) RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask StringCompareOptions) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:"), searchSet, mask)
 	return rv
 }
@@ -1412,7 +1412,7 @@ func (s_ String) RangeOfCharacterFromSetOptions(searchSet CharacterSet /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:range:)
-func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet CharacterSet /* not a class type */, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */ {
+func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:range:"), searchSet, mask, rangeOfReceiverToSearch)
 	return rv
 }
@@ -1422,7 +1422,7 @@ func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet CharacterSet /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequence(at:)
-func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) Range /* not a class type */ {
+func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequenceAtIndex:"), index)
 	return rv
 }
@@ -1432,7 +1432,7 @@ func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequences(for:)
-func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ Range /* not a class type */) Range /* not a class type */ {
+func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequencesForRange:"), range_)
 	return rv
 }
@@ -1442,7 +1442,7 @@ func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ Range /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingCharacters(in:with:)
-func (s_ String) StringByReplacingCharactersInRangeWithString(range_ Range /* not a class type */, replacement IString) IString {
+func (s_ String) StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework Range */, replacement IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, replacement)
 	return rv
 }
@@ -1462,7 +1462,7 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithString(target IString, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:options:range:)
-func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange Range /* not a class type */) IString {
+func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework Range */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
 	return rv
 }
@@ -1530,7 +1530,7 @@ func (s_ String) SubstringToIndex(to uint /* primitive/slice/pointer. */) IStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/substring(with:)
-func (s_ String) SubstringWithRange(range_ Range /* not a class type */) IString {
+func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework Range */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringWithRange:"), range_)
 	return rv
 }
@@ -1540,7 +1540,7 @@ func (s_ String) SubstringWithRange(range_ Range /* not a class type */) IString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/trimmingCharacters(in:)
-func (s_ String) StringByTrimmingCharactersInSet(set CharacterSet /* not a class type */) IString {
+func (s_ String) StringByTrimmingCharactersInSet(set ICharacterSet) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByTrimmingCharactersInSet:"), set)
 	return rv
 }
@@ -1550,7 +1550,7 @@ func (s_ String) StringByTrimmingCharactersInSet(set CharacterSet /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/uppercased(with:)
-func (s_ String) UppercaseStringWithLocale(locale Locale /* not a class type */) IString {
+func (s_ String) UppercaseStringWithLocale(locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("uppercaseStringWithLocale:"), locale)
 	return rv
 }
@@ -1570,7 +1570,7 @@ func (s_ String) VariantFittingPresentationWidth(width int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:encoding:)
-func (s_ String) WriteToURLAtomicallyEncodingError(url objc.IObject /* cross-framework NSURL */, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -1580,7 +1580,7 @@ func (s_ String) WriteToURLAtomicallyEncodingError(url objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:encoding:)
-func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), path, useAuxiliaryFile, enc, error_)
 	return rv
 }

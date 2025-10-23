@@ -35,7 +35,7 @@ type IDateInterval interface {
 	EndDate() IDate
 	StartDate() IDate
 	// methods:
-	Compare(dateInterval IDateInterval) ComparisonResult /* not a class type */
+	Compare(dateInterval IDateInterval) ComparisonResult
 	ContainsDate(date IDate) bool /* primitive/slice/pointer. */
 	IntersectionWithDateInterval(dateInterval IDateInterval) IDateInterval
 	IntersectsDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */
@@ -136,7 +136,7 @@ func NewDateIntervalWithStartDateEndDate(startDate IDate, endDate IDate) DateInt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/compare(_:)
-func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult /* not a class type */ {
+func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), dateInterval)
 	return rv
 }

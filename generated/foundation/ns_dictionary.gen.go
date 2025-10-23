@@ -38,11 +38,11 @@ type IDictionary interface {
 	DescriptionInStringsFileFormat() IString
 	// methods:
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID /* already interface */
-	CountByEnumeratingWithStateObjectsCount(state FastEnumerationState /* not a class type */, buffer []unsafe.Pointer /* not a class type */, len_ uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
+	CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework FastEnumerationState */, buffer []unsafe.Pointer /* not a class type */, len_ uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
 	DescriptionWithLocale(locale objectivec.IObject) IString
 	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer. */) IString
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
-	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions /* not a class type */, block unsafe.Pointer)
+	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	FileCreationDate() IDate
 	FileExtensionHidden() bool /* primitive/slice/pointer. */
 	FileGroupOwnerAccountID() INumber
@@ -62,16 +62,16 @@ type IDictionary interface {
 	GetObjectsAndKeysCount(objects []unsafe.Pointer /* not a class type */, keys []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer. */)
 	IsEqualToDictionary(otherDictionary IDictionary /* already interface */) bool /* primitive/slice/pointer. */
 	KeyEnumerator() unsafe.Pointer
-	KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions /* not a class type */, predicate unsafe.Pointer) unsafe.Pointer
+	KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.Pointer
 	KeysSortedByValueUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */
-	KeysSortedByValueWithOptionsUsingComparator(opts SortOptions /* not a class type */, cmptr Comparator /* not a class type */) []objc.ID /* already interface */
+	KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */
 	KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID /* already interface */
 	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
 	ObjectsForKeysNotFoundMarker(keys []objc.ID /* already interface */, marker unsafe.Pointer) []objc.ID /* already interface */
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
-	WriteToURLError(url objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	WriteToURLError(url IURL, error_ IError) bool /* primitive/slice/pointer. */
 }
 
 // A static collection of objects associated with unique keys.
@@ -155,7 +155,7 @@ func NewDictionaryWithContentsOfFile(path IString) Dictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
-func NewDictionaryWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) Dictionary {
+func NewDictionaryWithContentsOfURL(url IURL) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -167,7 +167,7 @@ func NewDictionaryWithContentsOfURL(url objc.IObject /* cross-framework NSURL */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
-func NewDictionaryWithContentsOfURLError(url objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) Dictionary {
+func NewDictionaryWithContentsOfURLError(url IURL, error_ IError) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
@@ -270,7 +270,7 @@ func (dc _DictionaryClass) DictionaryWithContentsOfFile(path IString) IDictionar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfURL:error:
-func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) IDictionary /* already interface */ {
+func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url IURL, error_ IError) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -320,7 +320,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-98pl3
-func (dc _DictionaryClass) DictionaryWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) IDictionary /* already interface */ {
+func (dc _DictionaryClass) DictionaryWithContentsOfURL(url IURL) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
@@ -360,7 +360,7 @@ func (d_ Dictionary) AllKeysForObject(anObject unsafe.Pointer) []objc.ID /* alre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/countByEnumeratingWithState:objects:count:
-func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state FastEnumerationState /* not a class type */, buffer []unsafe.Pointer /* not a class type */, len_ uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
+func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework FastEnumerationState */, buffer []unsafe.Pointer /* not a class type */, len_ uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](d_.ID, objc.Sel("countByEnumeratingWithState:objects:count:"), state, buffer, len_)
 	return rv
 }
@@ -399,7 +399,7 @@ func (d_ Dictionary) EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/enumerateKeysAndObjects(options:using:)
-func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions /* not a class type */, block unsafe.Pointer) {
+func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("enumerateKeysAndObjectsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -597,7 +597,7 @@ func (d_ Dictionary) KeyEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysOfEntries(options:passingTest:)
-func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions /* not a class type */, predicate unsafe.Pointer) unsafe.Pointer {
+func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keysOfEntriesWithOptions:passingTest:"), opts, predicate)
 	return rv
 }
@@ -627,7 +627,7 @@ func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr Comparator /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysSortedByValue(options:usingComparator:)
-func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOptions /* not a class type */, cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
+func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }
@@ -697,7 +697,7 @@ func (d_ Dictionary) ValueForKey(key IString) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:)
-func (d_ Dictionary) WriteToURLError(url objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
 }

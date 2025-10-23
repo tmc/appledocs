@@ -288,6 +288,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		// Keep track of structs and their fields
 		structFieldsMap := make(map[string][]*occ2go.ParsedStructField)
 
+		// Keep track of seen struct external IDs to avoid duplicates
+		// (e.g., NSRange and NSRange-c.struct both have c:@S@_NSRange)
+		seenStructIDs := make(map[string]bool)
+
 		// Process regular symbols
 		phaseStart = time.Now()
 		for _, doc := range appledocs.Symbols(fsys, framework) {
@@ -386,8 +390,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				if typedefErr == nil && typedef != nil {
 					typedefs = append(typedefs, typedef)
 				}
-			} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@SA@") && !strings.Contains(doc.Metadata.ExternalID, "@FI@") {
-				// This is a C struct declaration (e.g., struct NSAffineTransformStruct)
+			} else if (strings.HasPrefix(doc.Metadata.ExternalID, "c:@SA@") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@S@")) && !strings.Contains(doc.Metadata.ExternalID, "@FI@") {
+				// This is a C struct declaration
+				// Anonymous struct: c:@SA@NSAffineTransformStruct
+				// Named struct:     c:@S@_NSRange
 				// Note: struct fields have @FI@ and are handled separately below
 				tokens := []appledocs.Token{}
 				for _, section := range doc.PrimaryContentSections {
@@ -398,20 +404,57 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				}
 				s := occ2go.ParseStructDeclaration(tokens)
 				if s != nil {
+					// Skip if we've already seen this struct external ID
+					if seenStructIDs[doc.Metadata.ExternalID] {
+						if verbose {
+							fmt.Fprintf(os.Stderr, "Skipping duplicate struct %s (external ID: %s)\n", s.Name, doc.Metadata.ExternalID)
+						}
+						continue
+					}
+					seenStructIDs[doc.Metadata.ExternalID] = true
+					if verbose {
+						fmt.Fprintf(os.Stderr, "Adding struct %s (external ID: %s)\n", s.Name, doc.Metadata.ExternalID)
+					}
+
+					// For typedef struct _Name { ... } Name; pattern, use the typedef name (without underscore)
+					originalName := s.Name
+					if strings.HasPrefix(s.Name, "_") {
+						s.Name = strings.TrimPrefix(s.Name, "_")
+					}
+					// Strip NS prefix from struct names (NSRange → Range)
+					if strings.HasPrefix(s.Name, "NS") && len(s.Name) > 2 && s.Name[2] >= 'A' && s.Name[2] <= 'Z' {
+						s.Name = s.Name[2:]
+					}
+					if verbose && originalName != s.Name {
+						fmt.Fprintf(os.Stderr, "Renamed struct: %s → %s\n", originalName, s.Name)
+					}
 					s.DocURL = doc.Identifier.URL
 					if len(doc.Abstract) > 0 {
 						s.Abstract = doc.Abstract[0].Text
 					}
 					structs = append(structs, s)
 				}
-			} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@SA@") && strings.Contains(doc.Metadata.ExternalID, "@FI@") {
-				// This is a C struct field (e.g., c:@SA@NSAffineTransformStruct@FI@m11)
+			} else if (strings.HasPrefix(doc.Metadata.ExternalID, "c:@SA@") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@S@")) && strings.Contains(doc.Metadata.ExternalID, "@FI@") {
+				// This is a C struct field
+				// Anonymous struct: c:@SA@NSAffineTransformStruct@FI@m11
+				// Named struct:     c:@S@_NSRange@FI@location
 				field, fieldErr := occ2go.ParseStructField(doc)
 				if fieldErr == nil && field != nil {
-					// Extract struct name from external ID: c:@SA@NSAffineTransformStruct@FI@m11
+					// Extract struct name from external ID
 					parts := strings.Split(doc.Metadata.ExternalID, "@")
 					if len(parts) >= 4 {
 						structName := parts[2]
+						// For named structs with underscore prefix, also map without underscore
+						// _NSRange -> NSRange (the typedef name)
+						if strings.HasPrefix(structName, "_") {
+							typedefName := strings.TrimPrefix(structName, "_")
+							structFieldsMap[typedefName] = append(structFieldsMap[typedefName], field)
+							// Also strip NS prefix for idiomatic Go names: NSRange -> Range
+							if strings.HasPrefix(typedefName, "NS") && len(typedefName) > 2 && typedefName[2] >= 'A' && typedefName[2] <= 'Z' {
+								strippedName := typedefName[2:]
+								structFieldsMap[strippedName] = append(structFieldsMap[strippedName], field)
+							}
+						}
 						structFieldsMap[structName] = append(structFieldsMap[structName], field)
 					}
 				}

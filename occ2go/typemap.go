@@ -51,6 +51,10 @@ func MapCTypeToGo(cType, framework string) string {
 		return ""
 	case cType == "int":
 		return "int"
+	case cType == "NSInteger":
+		return "int64"
+	case cType == "NSUInteger":
+		return "uint64"
 	case cType == "size_t":
 		return "uintptr"
 	case cType == "uint32_t":

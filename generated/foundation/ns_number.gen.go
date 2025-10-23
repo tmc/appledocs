@@ -32,7 +32,7 @@ type INumber interface {
 	IValue
 	// properties:
 	BoolValue() bool /* primitive/slice/pointer. */
-	DecimalValue() Decimal /* not a class type */
+	DecimalValue() objc.IObject /* cross-framework: Decimal */
 	DoubleValue() float64 /* primitive/slice/pointer. */
 	FloatValue() float32 /* primitive/slice/pointer. */
 	ShortValue() unsafe.Pointer
@@ -69,7 +69,7 @@ type INumber interface {
 	ObjCType() unsafe.Pointer
 	SetObjCType(value unsafe.Pointer)
 	// methods:
-	Compare(otherNumber INumber) ComparisonResult /* not a class type */
+	Compare(otherNumber INumber) ComparisonResult
 	DescriptionWithLocale(locale objectivec.IObject) IString
 	IsEqualToNumber(number INumber) bool /* primitive/slice/pointer. */
 }
@@ -474,7 +474,7 @@ func (nc _NumberClass) NumberWithUnsignedShort(value unsafe.Pointer) INumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/compare(_:)
-func (n_ Number) Compare(otherNumber INumber) ComparisonResult /* not a class type */ {
+func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
 	rv := objc.Send[ComparisonResult](n_.ID, objc.Sel("compare:"), otherNumber)
 	return rv
 }
@@ -514,7 +514,7 @@ func (n_ Number) BoolValue() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/decimalValue
-func (n_ Number) DecimalValue() Decimal /* not a class type */ {
+func (n_ Number) DecimalValue() objc.IObject /* cross-framework: Decimal */ {
 	rv := objc.Send[Decimal](n_.ID, objc.Sel("decimalValue"))
 	return rv
 }

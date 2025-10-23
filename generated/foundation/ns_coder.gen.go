@@ -34,7 +34,7 @@ type ICoder interface {
 	AllowedClasses() unsafe.Pointer
 	AllowsKeyedCoding() bool /* primitive/slice/pointer. */
 	DecodingFailurePolicy() DecodingFailurePolicy
-	Error() Error /* not a class type */
+	Error() IError
 	RequiresSecureCoding() bool /* primitive/slice/pointer. */
 	SystemVersion() unsafe.Pointer
 	NSCoderErrorMaximum() int /* primitive/slice/pointer. */
@@ -87,11 +87,11 @@ type ICoder interface {
 	DecodeCMTimeForKey(key IString) Time /* not a class type */
 	DecodeCMTimeMappingForKey(key IString) TimeMapping /* not a class type */
 	DecodeCMTimeRangeForKey(key IString) TimeRange /* not a class type */
-	DecodeTopLevelObjectAndReturnError(error_ unsafe.Pointer) objc.ID
-	DecodeTopLevelObjectForKeyError(key IString, error_ unsafe.Pointer) objc.ID
-	DecodeTopLevelObjectOfClassForKeyError(aClass objc.Class, key IString, error_ unsafe.Pointer) objc.ID
-	DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer, key IString, error_ unsafe.Pointer) objc.ID
-	DecodeUIEdgeInsetsForKey(key IString) EdgeInsets /* not a class type */
+	DecodeTopLevelObjectAndReturnError(error_ IError) objc.ID
+	DecodeTopLevelObjectForKeyError(key IString, error_ IError) objc.ID
+	DecodeTopLevelObjectOfClassForKeyError(aClass objc.Class, key IString, error_ IError) objc.ID
+	DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer, key IString, error_ IError) objc.ID
+	DecodeUIEdgeInsetsForKey(key IString) objc.IObject /* cross-framework: EdgeInsets */
 	DecodeUIOffsetForKey(key IString) Offset /* not a class type */
 	DecodeValueOfObjCTypeAtSize(type_ unsafe.Pointer, data unsafe.Pointer, size uint /* primitive/slice/pointer. */)
 	DecodeValuesOfObjCTypes(types unsafe.Pointer)
@@ -107,7 +107,7 @@ type ICoder interface {
 	EncodeCGAffineTransformForKey(transform IAffineTransform, key IString)
 	EncodeIntegerForKey(value int /* primitive/slice/pointer. */, key IString)
 	EncodeRectForKey(rect objc.IObject /* cross-framework Rect */, key IString)
-	EncodeUIEdgeInsetsForKey(insets EdgeInsets /* not a class type */, key IString)
+	EncodeUIEdgeInsetsForKey(insets objc.IObject /* cross-framework EdgeInsets */, key IString)
 	EncodeCMTimeRangeForKey(timeRange TimeRange /* not a class type */, key IString)
 	EncodeInt32ForKey(value unsafe.Pointer, key IString)
 	EncodeCMTimeForKey(time Time /* not a class type */, key IString)
@@ -133,7 +133,7 @@ type ICoder interface {
 	EncodeRootObject(rootObject objectivec.IObject)
 	EncodeValueOfObjCTypeAt(type_ unsafe.Pointer, addr unsafe.Pointer)
 	EncodeValuesOfObjCTypes(types unsafe.Pointer)
-	FailWithError(error_ Error /* not a class type */)
+	FailWithError(error_ IError)
 	ObjectZone() Zone /* not a class type */
 	SetObjectZone(zone Zone /* not a class type */)
 	VersionForClassName(className IString) int /* primitive/slice/pointer. */
@@ -575,7 +575,7 @@ func (c_ Coder) DecodeCMTimeRangeForKey(key IString) TimeRange /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeTopLevelObjectAndReturnError:
-func (c_ Coder) DecodeTopLevelObjectAndReturnError(error_ unsafe.Pointer) objc.ID {
+func (c_ Coder) DecodeTopLevelObjectAndReturnError(error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeTopLevelObjectAndReturnError:"), error_)
 	return rv
 }
@@ -585,7 +585,7 @@ func (c_ Coder) DecodeTopLevelObjectAndReturnError(error_ unsafe.Pointer) objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeTopLevelObjectForKey:error:
-func (c_ Coder) DecodeTopLevelObjectForKeyError(key IString, error_ unsafe.Pointer) objc.ID {
+func (c_ Coder) DecodeTopLevelObjectForKeyError(key IString, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeTopLevelObjectForKey:error:"), key, error_)
 	return rv
 }
@@ -595,7 +595,7 @@ func (c_ Coder) DecodeTopLevelObjectForKeyError(key IString, error_ unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeTopLevelObjectOfClass:forKey:error:
-func (c_ Coder) DecodeTopLevelObjectOfClassForKeyError(aClass objc.Class, key IString, error_ unsafe.Pointer) objc.ID {
+func (c_ Coder) DecodeTopLevelObjectOfClassForKeyError(aClass objc.Class, key IString, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeTopLevelObjectOfClass:forKey:error:"), aClass, key, error_)
 	return rv
 }
@@ -605,7 +605,7 @@ func (c_ Coder) DecodeTopLevelObjectOfClassForKeyError(aClass objc.Class, key IS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeTopLevelObjectOfClasses:forKey:error:
-func (c_ Coder) DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer, key IString, error_ unsafe.Pointer) objc.ID {
+func (c_ Coder) DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer, key IString, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeTopLevelObjectOfClasses:forKey:error:"), classes, key, error_)
 	return rv
 }
@@ -615,7 +615,7 @@ func (c_ Coder) DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeUIEdgeInsets(forKey:)
-func (c_ Coder) DecodeUIEdgeInsetsForKey(key IString) EdgeInsets /* not a class type */ {
+func (c_ Coder) DecodeUIEdgeInsetsForKey(key IString) objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](c_.ID, objc.Sel("decodeUIEdgeInsetsForKey:"), key)
 	return rv
 }
@@ -761,7 +761,7 @@ func (c_ Coder) EncodeRectForKey(rect objc.IObject /* cross-framework Rect */, k
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-44zsc
-func (c_ Coder) EncodeUIEdgeInsetsForKey(insets EdgeInsets /* not a class type */, key IString) {
+func (c_ Coder) EncodeUIEdgeInsetsForKey(insets objc.IObject /* cross-framework EdgeInsets */, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeUIEdgeInsets:forKey:"), insets, key)
 }
 
@@ -995,7 +995,7 @@ func (c_ Coder) EncodeValuesOfObjCTypes(types unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/failWithError(_:)
-func (c_ Coder) FailWithError(error_ Error /* not a class type */) {
+func (c_ Coder) FailWithError(error_ IError) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("failWithError:"), error_)
 }
 
@@ -1063,7 +1063,7 @@ func (c_ Coder) DecodingFailurePolicy() DecodingFailurePolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/error
-func (c_ Coder) Error() Error /* not a class type */ {
+func (c_ Coder) Error() IError {
 	rv := objc.Send[Error](c_.ID, objc.Sel("error"))
 	return rv
 }

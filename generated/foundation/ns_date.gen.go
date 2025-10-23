@@ -42,7 +42,7 @@ type IDate interface {
 	SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer. */)
 	// methods:
 	DateByAddingTimeInterval(ti objc.IObject /* cross-framework TimeInterval */) unsafe.Pointer
-	Compare(other IDate) ComparisonResult /* not a class type */
+	Compare(other IDate) ComparisonResult
 	DescriptionWithLocale(locale objectivec.IObject) IString
 	EarlierDate(anotherDate IDate) IDate
 	IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer. */
@@ -315,7 +315,7 @@ func (d_ Date) DateByAddingTimeInterval(ti objc.IObject /* cross-framework TimeI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/compare(_:)
-func (d_ Date) Compare(other IDate) ComparisonResult /* not a class type */ {
+func (d_ Date) Compare(other IDate) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), other)
 	return rv
 }
