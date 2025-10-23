@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -8,7 +9,9 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"text/template"
 
@@ -651,45 +654,115 @@ func generateObjcRuntimePackage(outputDir string) error {
 	return nil
 }
 
+// EnumValue represents a single enum case with its integer value
+type EnumValue struct {
+	Name  string
+	Value int
+}
+
+// EnumResult represents an enum with all its cases
+type EnumResult struct {
+	Name   string
+	Values []EnumValue
+}
+
+// parseEnumFromPreprocessed extracts enum values from clang-preprocessed source
+func parseEnumFromPreprocessed(preprocessedSource, enumName string) (*EnumResult, error) {
+	scanner := bufio.NewScanner(strings.NewReader(preprocessedSource))
+	inEnum := false
+	// Match both Swift-style (enum Name : Type {) and C-style (typedef ... Name {)
+	enumPattern := regexp.MustCompile(`(?:enum\s+` + regexp.QuoteMeta(enumName) + `\s*:\s*\w+|typedef.*?` + regexp.QuoteMeta(enumName) + `)\s*\{`)
+	// Match explicit values including negative numbers and suffixes like L, UL
+	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(-?\d+[UL]*)`)
+	// Match implicit values (no = assignment) - allow __attribute__, comma, or nothing (last enum case)
+	namePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__|,|$)`)
+
+	result := &EnumResult{
+		Name:   enumName,
+		Values: []EnumValue{},
+	}
+	currentValue := 0
+
+	for scanner.Scan() {
+		line := scanner.Text()
+
+		if enumPattern.MatchString(line) {
+			inEnum = true
+			continue
+		}
+
+		if inEnum {
+			// Check for closing brace (may have attributes between } and ;)
+			if strings.Contains(line, "}") {
+				break
+			}
+
+			// Try explicit value first
+			matches := valuePattern.FindStringSubmatch(line)
+			if len(matches) >= 3 {
+				// Strip L, UL suffixes from the value string
+				valueStr := strings.TrimSuffix(strings.TrimSuffix(matches[2], "UL"), "L")
+				val, _ := strconv.Atoi(valueStr)
+				result.Values = append(result.Values, EnumValue{
+					Name:  matches[1],
+					Value: val,
+				})
+				currentValue = val + 1
+				continue
+			}
+
+			// Try implicit value (no = assignment)
+			matches = namePattern.FindStringSubmatch(line)
+			if len(matches) >= 2 {
+				result.Values = append(result.Values, EnumValue{
+					Name:  matches[1],
+					Value: currentValue,
+				})
+				currentValue++
+			}
+		}
+	}
+
+	if len(result.Values) == 0 {
+		return nil, fmt.Errorf("enum %s not found", enumName)
+	}
+
+	return result, nil
+}
+
 // enrichEnumValues calls the extract-enum-values tool to get actual enum values from macOS SDK headers.
 // It populates the IntValue field of each ParsedEnumCase with the resolved integer value.
 func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool) error {
-	// Use the appledocs extract-enums subcommand
-	extractTool := "appledocs"
-
+	// Batch extract all enums with a single clang invocation for performance
 	enrichedCount := 0
 	failedCount := 0
 
-	// Process each enum
+	// Run clang preprocessor once for all enums
+	cmd := exec.Command("clang", "-x", "objective-c", "-E", "-")
+	cmd.Stdin = strings.NewReader(fmt.Sprintf("#import <%s/%s.h>", framework, framework))
+	cmd.Stderr = os.Stderr
+	output, err := cmd.Output()
+	if err != nil {
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Warning: clang preprocessing failed for %s: %v\n", framework, err)
+		}
+		return err
+	}
+	preprocessedSource := string(output)
+
+	// Process each enum by parsing the preprocessed output
 	for _, enum := range enums {
-		// Call extract-enum-values to get actual values from SDK headers
-		// This works even for enums with no cases from documentation
 		// Try with NS prefix if enum name doesn't already have it
 		enumNameForSDK := enum.Name
 		if !strings.HasPrefix(enumNameForSDK, "NS") {
 			enumNameForSDK = "NS" + enumNameForSDK
 		}
-		cmd := exec.Command(extractTool, "extract-enums", framework, enumNameForSDK)
-		output, err := cmd.Output()
+
+		// Extract enum values from preprocessed source
+		result, err := parseEnumFromPreprocessed(preprocessedSource, enumNameForSDK)
 		if err != nil {
 			failedCount++
 			// Enum not found in SDK - this is expected for many enums
-			continue
-		}
-
-		// Parse JSON output
-		var result struct {
-			Name   string `json:"name"`
-			Values []struct {
-				Name  string `json:"name"`
-				Value int    `json:"value"`
-			} `json:"values"`
-		}
-		if err := json.Unmarshal(output, &result); err != nil {
-			failedCount++
-			if verbose {
-				fmt.Fprintf(os.Stderr, "Warning: failed to parse JSON for enum %s: %v\n", enum.Name, err)
-			}
 			continue
 		}
 

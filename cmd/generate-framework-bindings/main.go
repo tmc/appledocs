@@ -426,7 +426,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		}
 
 		// Enrich enum values from macOS SDK headers using extract-enum-values tool
+		enrichStart := time.Now()
 		_ = enrichEnumValues(framework, enums, verbose)
+		if verbose {
+			fmt.Fprintf(os.Stderr, "[%s] Enriched enums in %.2fs\n", framework, time.Since(enrichStart).Seconds())
+		}
 	}
 
 	// Build type registry from parsed data (source of truth)
