@@ -40,28 +40,28 @@ type IAttributedString interface {
 	AttributedSubstringFromRange(range_ Range /* foo */) IAttributedString
 	AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) IDictionary /* already interface */
 	AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) IDictionary /* already interface */
-	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context objectivec.IObject) coregraphics.CGRect
+	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* foo */) coregraphics.CGRect
 	ContainsAttachmentsInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
 	DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ IError) IData
 	DocFormatFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* foo */
 	DrawAtPoint(point coregraphics.CGPoint)
 	DrawInRect(rect coregraphics.CGRect)
-	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context objectivec.IObject)
+	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* foo */)
 	EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* foo */, enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
 	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */)
 	FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ IError) IFileWrapper
 	FontAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */
 	AttributedStringByInflectingString() IAttributedString
 	IsEqualToAttributedString(other IAttributedString) bool /* primitive/slice/pointer */
-	ItemNumberInTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
+	ItemNumberInTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
 	LineBreakBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */
 	LineBreakByHyphenatingBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */
 	NextWordFromIndexForward(location uint /* primitive/slice/pointer */, isForward bool /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	PrefersRTFDInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
-	RangeOfTextBlockAtIndex(block objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */
-	RangeOfTextTableAtIndex(table objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */
-	RangeOfTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */
+	RangeOfTextBlockAtIndex(block TextBlock /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
+	RangeOfTextTableAtIndex(table TextTable /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
+	RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
 	RTFFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	RTFDFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IFileWrapper
@@ -217,7 +217,7 @@ func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(locatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:context:)
-func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context objectivec.IObject) coregraphics.CGRect {
+func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* foo */) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("boundingRectWithSize:options:context:"), size, options, context)
 	return rv
 }
@@ -285,7 +285,7 @@ func (a_ AttributedString) DrawInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:context:)
-func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context objectivec.IObject) {
+func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:context:"), rect, options, context)
 }
 
@@ -350,7 +350,7 @@ func (a_ AttributedString) IsEqualToAttributedString(other IAttributedString) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/itemNumber(in:at:)
-func (a_ AttributedString) ItemNumberInTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
+func (a_ AttributedString) ItemNumberInTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("itemNumberInTextList:atIndex:"), list, location)
 	return rv
 }
@@ -400,7 +400,7 @@ func (a_ AttributedString) PrefersRTFDInRange(range_ Range /* foo */) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-1wrcp
-func (a_ AttributedString) RangeOfTextBlockAtIndex(block objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextBlockAtIndex(block TextBlock /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextBlock:atIndex:"), block, location)
 	return rv
 }
@@ -410,7 +410,7 @@ func (a_ AttributedString) RangeOfTextBlockAtIndex(block objectivec.IObject, loc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-3fevu
-func (a_ AttributedString) RangeOfTextTableAtIndex(table objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextTableAtIndex(table TextTable /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextTable:atIndex:"), table, location)
 	return rv
 }
@@ -420,7 +420,7 @@ func (a_ AttributedString) RangeOfTextTableAtIndex(table objectivec.IObject, loc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-6um0x
-func (a_ AttributedString) RangeOfTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextList:atIndex:"), list, location)
 	return rv
 }

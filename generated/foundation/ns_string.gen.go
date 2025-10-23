@@ -105,7 +105,7 @@ type IString interface {
 	StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString
 	StringByApplyingTransformReverse(transform StringTransform /* foo */, reverse bool /* primitive/slice/pointer */) IString
 	BoundingRectWithSizeOptionsAttributes(size Size /* foo */, options StringDrawingOptions, attributes IDictionary /* already interface */) Rect /* foo */
-	BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options StringDrawingOptions, attributes IDictionary /* already interface */, context objectivec.IObject) coregraphics.CGRect
+	BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options StringDrawingOptions, attributes IDictionary /* already interface */, context StringDrawingContext /* foo */) coregraphics.CGRect
 	CStringUsingEncoding(encoding StringEncoding /* foo */) unsafe.Pointer
 	CanBeConvertedToEncoding(encoding StringEncoding /* foo */) bool /* primitive/slice/pointer */
 	CapitalizedStringWithLocale(locale ILocale) IString
@@ -125,7 +125,7 @@ type IString interface {
 	DrawAtPointWithAttributes(point coregraphics.CGPoint, attrs IDictionary /* already interface */)
 	DrawInRectWithAttributes(rect coregraphics.CGRect, attrs IDictionary /* already interface */)
 	DrawWithRectOptionsAttributes(rect Rect /* foo */, options StringDrawingOptions, attributes IDictionary /* already interface */)
-	DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options StringDrawingOptions, attributes IDictionary /* already interface */, context objectivec.IObject)
+	DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options StringDrawingOptions, attributes IDictionary /* already interface */, context StringDrawingContext /* foo */)
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
 	EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range /* foo */, opts StringEnumerationOptions, block unsafe.Pointer)
 	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) IString
@@ -883,7 +883,7 @@ func (s_ String) BoundingRectWithSizeOptionsAttributes(size Size /* foo */, opti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:context:)
-func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options StringDrawingOptions, attributes IDictionary /* already interface */, context objectivec.IObject) coregraphics.CGRect {
+func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options StringDrawingOptions, attributes IDictionary /* already interface */, context StringDrawingContext /* foo */) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:context:"), size, options, attributes, context)
 	return rv
 }
@@ -1080,7 +1080,7 @@ func (s_ String) DrawWithRectOptionsAttributes(rect Rect /* foo */, options Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:context:)
-func (s_ String) DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options StringDrawingOptions, attributes IDictionary /* already interface */, context objectivec.IObject) {
+func (s_ String) DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options StringDrawingOptions, attributes IDictionary /* already interface */, context StringDrawingContext /* foo */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:context:"), rect, options, attributes, context)
 }
 

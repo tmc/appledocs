@@ -76,7 +76,7 @@ type IArray interface {
 	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objectivec.IObject, indexes IIndexSet, keyPath string /* primitive/slice/pointer */, context unsafe.Pointer)
 	ReverseObjectEnumerator() unsafe.Pointer
 	ShuffledArray() []objc.ID /* already interface */
-	ShuffledArrayWithRandomSource(randomSource objectivec.IObject) []objc.ID /* already interface */
+	ShuffledArrayWithRandomSource(randomSource RandomSource /* foo */) []objc.ID /* already interface */
 	SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID /* already interface */
 	SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID /* already interface */
 	SortedArrayUsingComparator(cmptr Comparator /* foo */) []objc.ID /* already interface */
@@ -743,7 +743,7 @@ func (a_ Array) ShuffledArray() []objc.ID /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/shuffled(using:)
-func (a_ Array) ShuffledArrayWithRandomSource(randomSource objectivec.IObject) []objc.ID /* already interface */ {
+func (a_ Array) ShuffledArrayWithRandomSource(randomSource RandomSource /* foo */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArrayWithRandomSource:"), randomSource)
 	return rv
 }

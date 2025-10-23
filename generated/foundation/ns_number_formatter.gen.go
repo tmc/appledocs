@@ -35,12 +35,12 @@ type INumberFormatter interface {
 	SetAllowsFloats(value bool /* primitive/slice/pointer */)
 	AlwaysShowsDecimalSeparator() bool /* primitive/slice/pointer */
 	SetAlwaysShowsDecimalSeparator(value bool /* primitive/slice/pointer */)
-	AttributedStringForNil() IAttributedString
-	SetAttributedStringForNil(value IAttributedString)
-	AttributedStringForNotANumber() IAttributedString
-	SetAttributedStringForNotANumber(value IAttributedString)
-	AttributedStringForZero() IAttributedString
-	SetAttributedStringForZero(value IAttributedString)
+	AttributedStringForNil() AttributedString /* foo */
+	SetAttributedStringForNil(value AttributedString /* foo */)
+	AttributedStringForNotANumber() AttributedString /* foo */
+	SetAttributedStringForNotANumber(value AttributedString /* foo */)
+	AttributedStringForZero() AttributedString /* foo */
+	SetAttributedStringForZero(value AttributedString /* foo */)
 	CurrencyCode() string /* primitive/slice/pointer */
 	SetCurrencyCode(value string /* primitive/slice/pointer */)
 	CurrencyDecimalSeparator() string /* primitive/slice/pointer */
@@ -55,12 +55,12 @@ type INumberFormatter interface {
 	SetExponentSymbol(value string /* primitive/slice/pointer */)
 	Format() string /* primitive/slice/pointer */
 	SetFormat(value string /* primitive/slice/pointer */)
-	FormatWidth() uint /* primitive/slice/pointer */
-	SetFormatWidth(value uint /* primitive/slice/pointer */)
 	FormatterBehavior() NumberFormatterBehavior
 	SetFormatterBehavior(value NumberFormatterBehavior)
 	FormattingContext() int /* primitive/slice/pointer */
 	SetFormattingContext(value int /* primitive/slice/pointer */)
+	FormatWidth() uint /* primitive/slice/pointer */
+	SetFormatWidth(value uint /* primitive/slice/pointer */)
 	GeneratesDecimalNumbers() bool /* primitive/slice/pointer */
 	SetGeneratesDecimalNumbers(value bool /* primitive/slice/pointer */)
 	GroupingSeparator() string /* primitive/slice/pointer */
@@ -75,20 +75,20 @@ type INumberFormatter interface {
 	SetLenient(value bool /* primitive/slice/pointer */)
 	PartialStringValidationEnabled() bool /* primitive/slice/pointer */
 	SetPartialStringValidationEnabled(value bool /* primitive/slice/pointer */)
-	Locale() ILocale
-	SetLocale(value ILocale)
+	Locale() Locale /* foo */
+	SetLocale(value Locale /* foo */)
 	LocalizesFormat() bool /* primitive/slice/pointer */
 	SetLocalizesFormat(value bool /* primitive/slice/pointer */)
-	Maximum() INumber
-	SetMaximum(value INumber)
+	Maximum() Number /* foo */
+	SetMaximum(value Number /* foo */)
 	MaximumFractionDigits() uint /* primitive/slice/pointer */
 	SetMaximumFractionDigits(value uint /* primitive/slice/pointer */)
 	MaximumIntegerDigits() uint /* primitive/slice/pointer */
 	SetMaximumIntegerDigits(value uint /* primitive/slice/pointer */)
 	MaximumSignificantDigits() uint /* primitive/slice/pointer */
 	SetMaximumSignificantDigits(value uint /* primitive/slice/pointer */)
-	Minimum() INumber
-	SetMinimum(value INumber)
+	Minimum() Number /* foo */
+	SetMinimum(value Number /* foo */)
 	MinimumFractionDigits() uint /* primitive/slice/pointer */
 	SetMinimumFractionDigits(value uint /* primitive/slice/pointer */)
 	MinimumGroupingDigits() int /* primitive/slice/pointer */
@@ -99,8 +99,8 @@ type INumberFormatter interface {
 	SetMinimumSignificantDigits(value uint /* primitive/slice/pointer */)
 	MinusSign() string /* primitive/slice/pointer */
 	SetMinusSign(value string /* primitive/slice/pointer */)
-	Multiplier() INumber
-	SetMultiplier(value INumber)
+	Multiplier() Number /* foo */
+	SetMultiplier(value Number /* foo */)
 	NegativeFormat() string /* primitive/slice/pointer */
 	SetNegativeFormat(value string /* primitive/slice/pointer */)
 	NegativeInfinitySymbol() string /* primitive/slice/pointer */
@@ -119,10 +119,10 @@ type INumberFormatter interface {
 	SetPaddingCharacter(value string /* primitive/slice/pointer */)
 	PaddingPosition() NumberFormatterPadPosition
 	SetPaddingPosition(value NumberFormatterPadPosition)
-	PerMillSymbol() string /* primitive/slice/pointer */
-	SetPerMillSymbol(value string /* primitive/slice/pointer */)
 	PercentSymbol() string /* primitive/slice/pointer */
 	SetPercentSymbol(value string /* primitive/slice/pointer */)
+	PerMillSymbol() string /* primitive/slice/pointer */
+	SetPerMillSymbol(value string /* primitive/slice/pointer */)
 	PlusSign() string /* primitive/slice/pointer */
 	SetPlusSign(value string /* primitive/slice/pointer */)
 	PositiveFormat() string /* primitive/slice/pointer */
@@ -135,8 +135,8 @@ type INumberFormatter interface {
 	SetPositiveSuffix(value string /* primitive/slice/pointer */)
 	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() INumber
-	SetRoundingIncrement(value INumber)
+	RoundingIncrement() Number /* foo */
+	SetRoundingIncrement(value Number /* foo */)
 	RoundingMode() NumberFormatterRoundingMode
 	SetRoundingMode(value NumberFormatterRoundingMode)
 	SecondaryGroupingSize() uint /* primitive/slice/pointer */
@@ -168,9 +168,9 @@ type INumberFormatter interface {
 	IsPartialStringValidationEnabled() bool /* primitive/slice/pointer */
 	SetIsPartialStringValidationEnabled(value bool /* primitive/slice/pointer */)
 	// methods:
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ IError) bool /* primitive/slice/pointer */
-	NumberFromString(string_ string /* primitive/slice/pointer */) INumber
-	StringFromNumber(number INumber) IString
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	NumberFromString(string_ string /* primitive/slice/pointer */) Number /* foo */
+	StringFromNumber(number Number /* foo */) String /* foo */
 }
 
 // A formatter that converts between numeric values and their textual representations.
@@ -242,7 +242,7 @@ func (nc _NumberFormatterClass) DefaultFormatterBehavior() NumberFormatterBehavi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizedString(from:number:)
-func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num INumber, nstyle NumberFormatterStyle) IString {
+func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num Number /* foo */, nstyle NumberFormatterStyle) String /* foo */ {
 	rv := objc.Send[String](objc.ID(nc.class), objc.Sel("localizedStringFromNumber:numberStyle:"), num, nstyle)
 	return rv
 }
@@ -261,7 +261,7 @@ func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior NumberForma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/getObjectValue(_:for:range:)
-func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ IError) bool /* primitive/slice/pointer */ {
+func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
@@ -271,7 +271,7 @@ func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/number(from:)
-func (n_ NumberFormatter) NumberFromString(string_ string /* primitive/slice/pointer */) INumber {
+func (n_ NumberFormatter) NumberFromString(string_ string /* primitive/slice/pointer */) Number /* foo */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
 	return rv
 }
@@ -281,7 +281,7 @@ func (n_ NumberFormatter) NumberFromString(string_ string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/string(from:)
-func (n_ NumberFormatter) StringFromNumber(number INumber) IString {
+func (n_ NumberFormatter) StringFromNumber(number Number /* foo */) String /* foo */ {
 	rv := objc.Send[String](n_.ID, objc.Sel("stringFromNumber:"), number)
 	return rv
 }
@@ -329,7 +329,7 @@ func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
-func (n_ NumberFormatter) AttributedStringForNil() IAttributedString {
+func (n_ NumberFormatter) AttributedStringForNil() AttributedString /* foo */ {
 	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForNil"))
 	return rv
 }
@@ -339,7 +339,7 @@ func (n_ NumberFormatter) AttributedStringForNil() IAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
-func (n_ NumberFormatter) SetAttributedStringForNil(value IAttributedString) {
+func (n_ NumberFormatter) SetAttributedStringForNil(value AttributedString /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForNil:"), value)
 }
 
@@ -348,7 +348,7 @@ func (n_ NumberFormatter) SetAttributedStringForNil(value IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
-func (n_ NumberFormatter) AttributedStringForNotANumber() IAttributedString {
+func (n_ NumberFormatter) AttributedStringForNotANumber() AttributedString /* foo */ {
 	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForNotANumber"))
 	return rv
 }
@@ -358,7 +358,7 @@ func (n_ NumberFormatter) AttributedStringForNotANumber() IAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
-func (n_ NumberFormatter) SetAttributedStringForNotANumber(value IAttributedString) {
+func (n_ NumberFormatter) SetAttributedStringForNotANumber(value AttributedString /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForNotANumber:"), value)
 }
 
@@ -367,7 +367,7 @@ func (n_ NumberFormatter) SetAttributedStringForNotANumber(value IAttributedStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
-func (n_ NumberFormatter) AttributedStringForZero() IAttributedString {
+func (n_ NumberFormatter) AttributedStringForZero() AttributedString /* foo */ {
 	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForZero"))
 	return rv
 }
@@ -377,7 +377,7 @@ func (n_ NumberFormatter) AttributedStringForZero() IAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
-func (n_ NumberFormatter) SetAttributedStringForZero(value IAttributedString) {
+func (n_ NumberFormatter) SetAttributedStringForZero(value AttributedString /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForZero:"), value)
 }
 
@@ -515,25 +515,6 @@ func (n_ NumberFormatter) SetFormat(value string /* primitive/slice/pointer */) 
 }
 
 
-// The format width used by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
-func (n_ NumberFormatter) FormatWidth() uint /* primitive/slice/pointer */ {
-	rv := objc.Send[uint](n_.ID, objc.Sel("formatWidth"))
-	return rv
-}
-
-
-// The format width used by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
-func (n_ NumberFormatter) SetFormatWidth(value uint /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatWidth:"), value)
-}
-
-
 // The formatter behavior of the receiver.
 //
 // [Full Topic]
@@ -569,6 +550,25 @@ func (n_ NumberFormatter) FormattingContext() int /* primitive/slice/pointer */ 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formattingContext
 func (n_ NumberFormatter) SetFormattingContext(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormattingContext:"), value)
+}
+
+
+// The format width used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
+func (n_ NumberFormatter) FormatWidth() uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](n_.ID, objc.Sel("formatWidth"))
+	return rv
+}
+
+
+// The format width used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
+func (n_ NumberFormatter) SetFormatWidth(value uint /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatWidth:"), value)
 }
 
 
@@ -709,7 +709,7 @@ func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
-func (n_ NumberFormatter) Locale() ILocale {
+func (n_ NumberFormatter) Locale() Locale /* foo */ {
 	rv := objc.Send[Locale](n_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -719,7 +719,7 @@ func (n_ NumberFormatter) Locale() ILocale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
-func (n_ NumberFormatter) SetLocale(value ILocale) {
+func (n_ NumberFormatter) SetLocale(value Locale /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -747,7 +747,7 @@ func (n_ NumberFormatter) SetLocalizesFormat(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) Maximum() INumber {
+func (n_ NumberFormatter) Maximum() Number /* foo */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("maximum"))
 	return rv
 }
@@ -757,7 +757,7 @@ func (n_ NumberFormatter) Maximum() INumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) SetMaximum(value INumber) {
+func (n_ NumberFormatter) SetMaximum(value Number /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximum:"), value)
 }
 
@@ -823,7 +823,7 @@ func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) Minimum() INumber {
+func (n_ NumberFormatter) Minimum() Number /* foo */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("minimum"))
 	return rv
 }
@@ -833,7 +833,7 @@ func (n_ NumberFormatter) Minimum() INumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) SetMinimum(value INumber) {
+func (n_ NumberFormatter) SetMinimum(value Number /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimum:"), value)
 }
 
@@ -933,7 +933,7 @@ func (n_ NumberFormatter) SetMinusSign(value string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) Multiplier() INumber {
+func (n_ NumberFormatter) Multiplier() Number /* foo */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("multiplier"))
 	return rv
 }
@@ -943,7 +943,7 @@ func (n_ NumberFormatter) Multiplier() INumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) SetMultiplier(value INumber) {
+func (n_ NumberFormatter) SetMultiplier(value Number /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMultiplier:"), value)
 }
 
@@ -1119,25 +1119,6 @@ func (n_ NumberFormatter) SetPaddingPosition(value NumberFormatterPadPosition) {
 }
 
 
-// The string used to represent a per-mill (per-thousand) symbol.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/perMillSymbol
-func (n_ NumberFormatter) PerMillSymbol() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](n_.ID, objc.Sel("perMillSymbol"))
-	return rv
-}
-
-
-// The string used to represent a per-mill (per-thousand) symbol.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/perMillSymbol
-func (n_ NumberFormatter) SetPerMillSymbol(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPerMillSymbol:"), objc.String(value))
-}
-
-
 // The string used to represent a percent symbol.
 //
 // [Full Topic]
@@ -1154,6 +1135,25 @@ func (n_ NumberFormatter) PercentSymbol() string /* primitive/slice/pointer */ {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/percentSymbol
 func (n_ NumberFormatter) SetPercentSymbol(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPercentSymbol:"), objc.String(value))
+}
+
+
+// The string used to represent a per-mill (per-thousand) symbol.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/perMillSymbol
+func (n_ NumberFormatter) PerMillSymbol() string /* primitive/slice/pointer */ {
+	rv := objc.Send[string](n_.ID, objc.Sel("perMillSymbol"))
+	return rv
+}
+
+
+// The string used to represent a per-mill (per-thousand) symbol.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/perMillSymbol
+func (n_ NumberFormatter) SetPerMillSymbol(value string /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPerMillSymbol:"), objc.String(value))
 }
 
 
@@ -1275,7 +1275,7 @@ func (n_ NumberFormatter) SetRoundingBehavior(value IDecimalNumberHandler) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) RoundingIncrement() INumber {
+func (n_ NumberFormatter) RoundingIncrement() Number /* foo */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
@@ -1285,7 +1285,7 @@ func (n_ NumberFormatter) RoundingIncrement() INumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) SetRoundingIncrement(value INumber) {
+func (n_ NumberFormatter) SetRoundingIncrement(value Number /* foo */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 
@@ -1573,6 +1573,7 @@ func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool /* primitive/s
 func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
 }
+
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [DecimalNumber] class.
@@ -30,13 +31,25 @@ type _DecimalNumberClass struct {
 type IDecimalNumber interface {
 	INumber
 	// properties:
-	DecimalValue() unsafe.Pointer
-	SetDecimalValue(value unsafe.Pointer)
+	DecimalValue() Decimal /* foo */
 	DoubleValue() float64 /* primitive/slice/pointer */
-	SetDoubleValue(value float64 /* primitive/slice/pointer */)
 	ObjCType() unsafe.Pointer
-	SetObjCType(value unsafe.Pointer)
 	// methods:
+	DecimalNumberByAdding(decimalNumber IDecimalNumber) IDecimalNumber
+	DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	Compare(decimalNumber Number /* foo */) ComparisonResult /* foo */
+	DescriptionWithLocale(locale objectivec.IObject) String /* foo */
+	DecimalNumberByDividingBy(decimalNumber IDecimalNumber) IDecimalNumber
+	DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumber) IDecimalNumber
+	DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByMultiplyingByPowerOf10(power unsafe.Pointer) IDecimalNumber
+	DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByRaisingToPower(power uint /* primitive/slice/pointer */) IDecimalNumber
+	DecimalNumberByRaisingToPowerWithBehavior(power uint /* primitive/slice/pointer */, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByRoundingAccordingToBehavior(behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberBySubtracting(decimalNumber IDecimalNumber) IDecimalNumber
+	DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
 }
 
 // An object for representing and performing arithmetic on base-10 numbers.
@@ -94,50 +107,324 @@ func NewDecimalNumber() DecimalNumber {
 
 
 
-// The decimal number’s value, expressed as an
+// Initializes a decimal number to represent a given decimal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/decimalvalue
-func (d_ DecimalNumber) DecimalValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("decimalValue"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
+func NewDecimalNumberWithDecimal(dcm Decimal /* foo */) DecimalNumber {
+	instance := getDecimalNumberClass().Alloc()
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
+	rv.Autorelease()
 	return rv
 }
 
 
-// The decimal number’s value, expressed as an
+// Initializes a decimal number using the given mantissa, exponent, and sign.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/decimalvalue
-func (d_ DecimalNumber) SetDecimalValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDecimalValue:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(mantissa:exponent:isNegative:)
+func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive/slice/pointer */, exponent unsafe.Pointer, flag bool /* primitive/slice/pointer */) DecimalNumber {
+	instance := getDecimalNumberClass().Alloc()
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithMantissa:exponent:isNegative:"), mantissa, exponent, flag)
+	rv.Autorelease()
+	return rv
 }
 
 
-// The decimal number’s closest approximate
+// Initializes a decimal number so that its value is equivalent to that in a given numeric string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/doublevalue
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:)
+func NewDecimalNumberWithString(numberValue string /* primitive/slice/pointer */) DecimalNumber {
+	instance := getDecimalNumberClass().Alloc()
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:"), objc.String(numberValue))
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a decimal number so that its value is equivalent to that in a given numeric string, interpreted using a given locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:locale:)
+func NewDecimalNumberWithStringLocale(numberValue string /* primitive/slice/pointer */, locale objectivec.IObject) DecimalNumber {
+	instance := getDecimalNumberClass().Alloc()
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), objc.String(numberValue), locale)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The way arithmetic methods round off and handle error conditions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/defaultBehavior
+func (dc _DecimalNumberClass) DefaultBehavior() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("defaultBehavior"))
+	return rv
+}
+
+// Returns the largest possible value of a decimal number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/maximum
+func (dc _DecimalNumberClass) MaximumDecimalNumber() DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("maximumDecimalNumber"))
+	return rv
+}
+
+// Returns the smallest possible value of a decimal number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/minimum
+func (dc _DecimalNumberClass) MinimumDecimalNumber() DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("minimumDecimalNumber"))
+	return rv
+}
+
+// A decimal number that specifies no number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/notANumber
+func (dc _DecimalNumberClass) NotANumber() DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("notANumber"))
+	return rv
+}
+
+// A decimal number equivalent to the number 1.0.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/one
+func (dc _DecimalNumberClass) One() DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("one"))
+	return rv
+}
+
+// A decimal number equivalent to the number 0.0.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/zero
+func (dc _DecimalNumberClass) Zero() DecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("zero"))
+	return rv
+}
+
+// Adds this number to another given number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/adding(_:)
+func (d_ DecimalNumber) DecimalNumberByAdding(decimalNumber IDecimalNumber) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByAdding:"), decimalNumber)
+	return rv
+}
+
+
+// Adds this number to another given number using the specified behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/adding(_:withBehavior:)
+func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByAdding:withBehavior:"), decimalNumber, behavior)
+	return rv
+}
+
+
+// Compares this decimal number and another.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/compare(_:)
+func (d_ DecimalNumber) Compare(decimalNumber Number /* foo */) ComparisonResult /* foo */ {
+	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), decimalNumber)
+	return rv
+}
+
+
+// Returns a string representation of the decimal number appropriate for the specified locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/description(withLocale:)
+func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) String /* foo */ {
+	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
+	return rv
+}
+
+
+// Divides the number by another given number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/dividing(by:)
+func (d_ DecimalNumber) DecimalNumberByDividingBy(decimalNumber IDecimalNumber) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByDividingBy:"), decimalNumber)
+	return rv
+}
+
+
+// Divides this number by another given number using the specified behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/dividing(by:withBehavior:)
+func (d_ DecimalNumber) DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByDividingBy:withBehavior:"), decimalNumber, behavior)
+	return rv
+}
+
+
+// Multiplies the number by another given number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/multiplying(by:)
+func (d_ DecimalNumber) DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumber) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingBy:"), decimalNumber)
+	return rv
+}
+
+
+// Multiplies this number by another given number using the specified behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/multiplying(by:withBehavior:)
+func (d_ DecimalNumber) DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingBy:withBehavior:"), decimalNumber, behavior)
+	return rv
+}
+
+
+// Multiplies the number by 10 raised to the given power.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/multiplying(byPowerOf10:)
+func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10(power unsafe.Pointer) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingByPowerOf10:"), power)
+	return rv
+}
+
+
+// Multiplies the number by 10 raised to the given power using the specified behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/multiplying(byPowerOf10:withBehavior:)
+func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingByPowerOf10:withBehavior:"), power, behavior)
+	return rv
+}
+
+
+// Raises the number to a given power.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/raising(toPower:)
+func (d_ DecimalNumber) DecimalNumberByRaisingToPower(power uint /* primitive/slice/pointer */) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRaisingToPower:"), power)
+	return rv
+}
+
+
+// Raises the number to a given power using the specified behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/raising(toPower:withBehavior:)
+func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint /* primitive/slice/pointer */, behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRaisingToPower:withBehavior:"), power, behavior)
+	return rv
+}
+
+
+// Returns a rounded version of the decimal number using the specified rounding behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/rounding(accordingToBehavior:)
+func (d_ DecimalNumber) DecimalNumberByRoundingAccordingToBehavior(behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRoundingAccordingToBehavior:"), behavior)
+	return rv
+}
+
+
+// Subtracts another given number from this one.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/subtracting(_:)
+func (d_ DecimalNumber) DecimalNumberBySubtracting(decimalNumber IDecimalNumber) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberBySubtracting:"), decimalNumber)
+	return rv
+}
+
+
+// Subtracts this a given number from this one using the specified behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/subtracting(_:withBehavior:)
+func (d_ DecimalNumber) DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberBySubtracting:withBehavior:"), decimalNumber, behavior)
+	return rv
+}
+
+
+// The decimal number’s value, expressed as an structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalValue
+func (d_ DecimalNumber) DecimalValue() Decimal /* foo */ {
+	rv := objc.Send[Decimal](d_.ID, objc.Sel("decimalValue"))
+	return rv
+}
+
+
+// The way arithmetic methods round off and handle error conditions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/defaultBehavior
+func (d_ DecimalNumber) DefaultBehavior() objc.ID {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("defaultBehavior"))
+	return rv
+}
+
+
+// The way arithmetic methods round off and handle error conditions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/defaultBehavior
+func (d_ DecimalNumber) SetDefaultBehavior(value objc.ID) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultBehavior:"), value)
+}
+
+
+// The decimal number’s closest approximate value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/doubleValue
 func (d_ DecimalNumber) DoubleValue() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
 
-// The decimal number’s closest approximate
+// Returns the largest possible value of a decimal number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/doublevalue
-func (d_ DecimalNumber) SetDoubleValue(value float64 /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDoubleValue:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/maximum
+func (d_ DecimalNumber) MaximumDecimalNumber() IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("maximumDecimalNumber"))
+	return rv
 }
 
 
-// A C string containing the Objective-C type for the data contained in the decimal number object.
+// Returns the smallest possible value of a decimal number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
-func (d_ DecimalNumber) ObjCType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objCType"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/minimum
+func (d_ DecimalNumber) MinimumDecimalNumber() IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("minimumDecimalNumber"))
+	return rv
+}
+
+
+// A decimal number that specifies no number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/notANumber
+func (d_ DecimalNumber) NotANumber() IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("notANumber"))
 	return rv
 }
 
@@ -145,10 +432,30 @@ func (d_ DecimalNumber) ObjCType() unsafe.Pointer {
 // A C string containing the Objective-C type for the data contained in the decimal number object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/objctype
-func (d_ DecimalNumber) SetObjCType(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setObjCType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/objCType
+func (d_ DecimalNumber) ObjCType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objCType"))
+	return rv
 }
 
+
+// A decimal number equivalent to the number 1.0.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/one
+func (d_ DecimalNumber) One() IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("one"))
+	return rv
+}
+
+
+// A decimal number equivalent to the number 0.0.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/zero
+func (d_ DecimalNumber) Zero() IDecimalNumber {
+	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("zero"))
+	return rv
+}
 
 

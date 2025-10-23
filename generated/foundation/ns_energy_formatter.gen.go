@@ -43,7 +43,7 @@ type IEnergyFormatter interface {
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	StringFromJoules(numberInJoules float64 /* primitive/slice/pointer */) IString
 	StringFromValueUnit(value float64 /* primitive/slice/pointer */, unit EnergyFormatterUnit) IString
-	UnitStringFromJoulesUsedUnit(numberInJoules float64 /* primitive/slice/pointer */, unitp NSEnergyFormatterUnit) IString
+	UnitStringFromJoulesUsedUnit(numberInJoules float64 /* primitive/slice/pointer */, unitp EnergyFormatterUnit) IString
 	UnitStringFromValueUnit(value float64 /* primitive/slice/pointer */, unit EnergyFormatterUnit) IString
 }
 
@@ -134,7 +134,7 @@ func (e_ EnergyFormatter) StringFromValueUnit(value float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromJoules:usedUnit:)
-func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64 /* primitive/slice/pointer */, unitp NSEnergyFormatterUnit) IString {
+func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64 /* primitive/slice/pointer */, unitp EnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromJoules:usedUnit:"), numberInJoules, unitp)
 	return rv
 }

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewFileManager
 
+// ExampleNewFileManagerWithAuthorization demonstrates how to create a FileManager instance using NewFileManagerWithAuthorization.
+// Initializes a file manager object that is authorized to perform privileged file system operations.
+func ExampleNewFileManagerWithAuthorization() {
+	_ = foundation.NewFileManagerWithAuthorization(
+		foundation.WorkspaceAuthorization{}, // authorization WorkspaceAuthorization
+	)
+	// Output:
+}

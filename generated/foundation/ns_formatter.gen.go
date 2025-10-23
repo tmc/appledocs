@@ -32,30 +32,19 @@ type IFormatter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary /* already interface */) IAttributedString
-	EditingStringForObjectValue(obj objectivec.IObject) IString
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string /* primitive/slice/pointer */, proposedSelRangePtr RangePointer /* foo */, origString string /* primitive/slice/pointer */, origSelRange Range /* foo */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	StringForObjectValue(obj objectivec.IObject) IString
 }
 
-// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
-//
-// The Foundation framework provides several concrete subclasses of , including , , , , , , and .
+// A parent class referenced by other Foundation classes.
 
 
-// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
+// A parent class referenced by other Foundation classes. [Full Topic]
 type Formatter struct {
 	objectivec.Object
 }
 
 // FormatterFrom constructs a [Formatter] from an unsafe.Pointer.
 //
-// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
+// A parent class referenced by other Foundation classes.
 func FormatterFrom(ptr unsafe.Pointer) Formatter {
 	return Formatter{objectivec.Object{objc.ID(ptr)}}
 }
@@ -91,66 +80,6 @@ func NewFormatter() Formatter {
 	return getFormatterClass().New()
 }
 
-
-
-// The default implementation returns to indicate that the formatter object does not provide an attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/attributedString(for:withDefaultAttributes:)
-func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary /* already interface */) IAttributedString {
-	rv := objc.Send[AttributedString](f_.ID, objc.Sel("attributedStringForObjectValue:withDefaultAttributes:"), obj, attrs)
-	return rv
-}
-
-
-// The default implementation of this method invokes .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/editingString(for:)
-func (f_ Formatter) EditingStringForObjectValue(obj objectivec.IObject) IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("editingStringForObjectValue:"), obj)
-	return rv
-}
-
-
-// The default implementation of this method raises an exception.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/getObjectValue(_:for:errorDescription:)
-func (f_ Formatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, objc.String(string_), objc.String(error_))
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether a partial string is valid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:newEditingString:errorDescription:)
-func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:newEditingString:errorDescription:"), objc.String(partialString), objc.String(newString), objc.String(error_))
-	return rv
-}
-
-
-// This method should be implemented in subclasses that want to validate user changes to a string in a field, where the user changes are not necessarily at the end of the string, and preserve the selection (or set a different one, such as selecting the erroneous part of the string the user has typed).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)
-func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string /* primitive/slice/pointer */, proposedSelRangePtr RangePointer /* foo */, origString string /* primitive/slice/pointer */, origSelRange Range /* foo */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:"), objc.String(partialStringPtr), proposedSelRangePtr, objc.String(origString), origSelRange, objc.String(error_))
-	return rv
-}
-
-
-// The default implementation of this method raises an exception.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
-func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("stringForObjectValue:"), obj)
-	return rv
-}
 
 
 

@@ -33,10 +33,10 @@ type IDecimalNumberHandler interface {
 	// properties:
 	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() INumber
-	SetRoundingIncrement(value INumber)
-	RoundingMode() unsafe.Pointer
-	SetRoundingMode(value unsafe.Pointer)
+	RoundingIncrement() Number /* foo */
+	SetRoundingIncrement(value Number /* foo */)
+	RoundingMode() RoundingMode
+	SetRoundingMode(value RoundingMode)
 	// methods:
 }
 
@@ -93,6 +93,38 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 
 
 
+// Returns an object initialized so it behaves as specified by the method’s arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/init(roundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)
+func NewDecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool /* primitive/slice/pointer */, overflow bool /* primitive/slice/pointer */, underflow bool /* primitive/slice/pointer */, divideByZero bool /* primitive/slice/pointer */) DecimalNumberHandler {
+	instance := getDecimalNumberHandlerClass().Alloc()
+	rv := objc.Send[DecimalNumberHandler](instance.ID, objc.Sel("initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:"), roundingMode, scale, exact, overflow, underflow, divideByZero)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns the default instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/default
+func (dc _DecimalNumberHandlerClass) DefaultDecimalNumberHandler() DecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](objc.ID(dc.class), objc.Sel("defaultDecimalNumberHandler"))
+	return rv
+}
+
+// Returns the default instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/default
+func (d_ DecimalNumberHandler) DefaultDecimalNumberHandler() IDecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](d_.ID, objc.Sel("defaultDecimalNumberHandler"))
+	return rv
+}
+
+
 // The rounding behavior used by the receiver.
 //
 // [Full Topic]
@@ -116,7 +148,7 @@ func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) RoundingIncrement() INumber {
+func (d_ DecimalNumberHandler) RoundingIncrement() Number /* foo */ {
 	rv := objc.Send[Number](d_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
@@ -126,7 +158,7 @@ func (d_ DecimalNumberHandler) RoundingIncrement() INumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) SetRoundingIncrement(value INumber) {
+func (d_ DecimalNumberHandler) SetRoundingIncrement(value Number /* foo */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 
@@ -135,8 +167,8 @@ func (d_ DecimalNumberHandler) SetRoundingIncrement(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property
-func (d_ DecimalNumberHandler) RoundingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("roundingMode"))
+func (d_ DecimalNumberHandler) RoundingMode() RoundingMode {
+	rv := objc.Send[RoundingMode](d_.ID, objc.Sel("roundingMode"))
 	return rv
 }
 
@@ -145,9 +177,8 @@ func (d_ DecimalNumberHandler) RoundingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property
-func (d_ DecimalNumberHandler) SetRoundingMode(value unsafe.Pointer) {
+func (d_ DecimalNumberHandler) SetRoundingMode(value RoundingMode) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingMode:"), value)
 }
-
 
 

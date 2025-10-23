@@ -10,48 +10,50 @@ import (
 )
 
 
-// Foundation Functions (36 total)
+// Foundation Functions (38 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_NSAllocateObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSClassFromString func(unsafe.Pointer) unsafe.Pointer
-	_NSCopyObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSCountFrames func() unsafe.Pointer
-	_NSDeallocateObject func(unsafe.Pointer)
+	_NSContainsRect func(coregraphics.CGRect, coregraphics.CGRect) bool
+	_NSDecimalAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalCompact func(unsafe.Pointer)
+	_NSDecimalCompare func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalCopy func(unsafe.Pointer, unsafe.Pointer)
+	_NSDecimalDivide func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSDecimalMultiply func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSDecrementExtraRefCountWasZero func(unsafe.Pointer) bool
-	_NSExtraRefCount func(unsafe.Pointer) unsafe.Pointer
-	_NSFileTypeForHFSTypeCode func(unsafe.Pointer) unsafe.Pointer
-	_NSFrameAddress func(unsafe.Pointer) unsafe.Pointer
-	_NSFullUserName func() unsafe.Pointer
-	_NSGetSizeAndAlignment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSGetUncaughtExceptionHandler func() unsafe.Pointer
-	_NSHFSTypeCodeFromFileType func(unsafe.Pointer) unsafe.Pointer
-	_NSHFSTypeOfFile func(unsafe.Pointer) unsafe.Pointer
-	_NSHomeDirectory func() unsafe.Pointer
-	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
-	_NSIncrementExtraRefCount func(unsafe.Pointer)
+	_NSDecimalMultiplyByPowerOf10 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalNormalize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalPower func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalRound func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSDecimalString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalSubtract func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDivideRect func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer)
+	_NSEdgeInsetsEqual func(unsafe.Pointer, unsafe.Pointer) bool
+	_NSEqualPoints func(coregraphics.CGPoint, coregraphics.CGPoint) bool
+	_NSEqualRects func(coregraphics.CGRect, coregraphics.CGRect) bool
+	_NSEqualSizes func(coregraphics.CGSize, coregraphics.CGSize) bool
+	_NSInsetRect func(coregraphics.CGRect, float64, float64) coregraphics.CGRect
+	_NSIntegralRect func(coregraphics.CGRect) coregraphics.CGRect
 	_NSIntegralRectWithOptions func(coregraphics.CGRect, unsafe.Pointer) coregraphics.CGRect
-	_NSIsFreedObject func(unsafe.Pointer) bool
-	_NSLog func(unsafe.Pointer)
-	_NSLogv func(unsafe.Pointer, unsafe.Pointer)
-	_NSOpenStepRootDirectory func() unsafe.Pointer
-	_NSProtocolFromString func(unsafe.Pointer) unsafe.Pointer
-	_NSRecordAllocationEvent func(int, unsafe.Pointer)
-	_NSReturnAddress func(unsafe.Pointer) unsafe.Pointer
-	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
-	_NSSelectorFromString func(unsafe.Pointer) unsafe.Pointer
-	_NSSetUncaughtExceptionHandler func()
-	_NSShouldRetainWithZone func(unsafe.Pointer, unsafe.Pointer) bool
-	_NSStringFromClass func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromProtocol func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromSelector func(unsafe.Pointer) unsafe.Pointer
-	_NSTemporaryDirectory func() unsafe.Pointer
-	_NSUserName func() unsafe.Pointer
-	_NXReadNSObjectFromCoder func(unsafe.Pointer) unsafe.Pointer
+	_NSIntersectionRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSIntersectionRect func(coregraphics.CGRect, coregraphics.CGRect) coregraphics.CGRect
+	_NSIntersectsRect func(coregraphics.CGRect, coregraphics.CGRect) bool
+	_NSIsEmptyRect func(coregraphics.CGRect) bool
+	_NSMouseInRect func(coregraphics.CGPoint, coregraphics.CGRect, bool) bool
+	_NSOffsetRect func(coregraphics.CGRect, float64, float64) coregraphics.CGRect
+	_NSPointFromString func(unsafe.Pointer) coregraphics.CGPoint
+	_NSPointInRect func(coregraphics.CGPoint, coregraphics.CGRect) bool
+	_NSRangeFromString func(unsafe.Pointer) unsafe.Pointer
+	_NSRectFromString func(unsafe.Pointer) coregraphics.CGRect
+	_NSSizeFromString func(unsafe.Pointer) coregraphics.CGSize
+	_NSStringFromPoint func(coregraphics.CGPoint) unsafe.Pointer
+	_NSStringFromRange func(unsafe.Pointer) unsafe.Pointer
+	_NSStringFromRect func(coregraphics.CGRect) unsafe.Pointer
+	_NSStringFromSize func(coregraphics.CGSize) unsafe.Pointer
+	_NSUnionRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSUnionRect func(coregraphics.CGRect, coregraphics.CGRect) coregraphics.CGRect
 )
 
 func init() {
@@ -59,42 +61,44 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_NSAllocateObject, lib, "NSAllocateObject")
-	tryRegister(&_NSClassFromString, lib, "NSClassFromString")
-	tryRegister(&_NSCopyObject, lib, "NSCopyObject")
-	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
-	tryRegister(&_NSDeallocateObject, lib, "NSDeallocateObject")
+	tryRegister(&_NSContainsRect, lib, "NSContainsRect")
+	tryRegister(&_NSDecimalAdd, lib, "NSDecimalAdd")
+	tryRegister(&_NSDecimalCompact, lib, "NSDecimalCompact")
+	tryRegister(&_NSDecimalCompare, lib, "NSDecimalCompare")
+	tryRegister(&_NSDecimalCopy, lib, "NSDecimalCopy")
+	tryRegister(&_NSDecimalDivide, lib, "NSDecimalDivide")
 	tryRegister(&_NSDecimalMultiply, lib, "NSDecimalMultiply")
-	tryRegister(&_NSDecrementExtraRefCountWasZero, lib, "NSDecrementExtraRefCountWasZero")
-	tryRegister(&_NSExtraRefCount, lib, "NSExtraRefCount")
-	tryRegister(&_NSFileTypeForHFSTypeCode, lib, "NSFileTypeForHFSTypeCode")
-	tryRegister(&_NSFrameAddress, lib, "NSFrameAddress")
-	tryRegister(&_NSFullUserName, lib, "NSFullUserName")
-	tryRegister(&_NSGetSizeAndAlignment, lib, "NSGetSizeAndAlignment")
-	tryRegister(&_NSGetUncaughtExceptionHandler, lib, "NSGetUncaughtExceptionHandler")
-	tryRegister(&_NSHFSTypeCodeFromFileType, lib, "NSHFSTypeCodeFromFileType")
-	tryRegister(&_NSHFSTypeOfFile, lib, "NSHFSTypeOfFile")
-	tryRegister(&_NSHomeDirectory, lib, "NSHomeDirectory")
-	tryRegister(&_NSHomeDirectoryForUser, lib, "NSHomeDirectoryForUser")
-	tryRegister(&_NSIncrementExtraRefCount, lib, "NSIncrementExtraRefCount")
+	tryRegister(&_NSDecimalMultiplyByPowerOf10, lib, "NSDecimalMultiplyByPowerOf10")
+	tryRegister(&_NSDecimalNormalize, lib, "NSDecimalNormalize")
+	tryRegister(&_NSDecimalPower, lib, "NSDecimalPower")
+	tryRegister(&_NSDecimalRound, lib, "NSDecimalRound")
+	tryRegister(&_NSDecimalString, lib, "NSDecimalString")
+	tryRegister(&_NSDecimalSubtract, lib, "NSDecimalSubtract")
+	tryRegister(&_NSDivideRect, lib, "NSDivideRect")
+	tryRegister(&_NSEdgeInsetsEqual, lib, "NSEdgeInsetsEqual")
+	tryRegister(&_NSEqualPoints, lib, "NSEqualPoints")
+	tryRegister(&_NSEqualRects, lib, "NSEqualRects")
+	tryRegister(&_NSEqualSizes, lib, "NSEqualSizes")
+	tryRegister(&_NSInsetRect, lib, "NSInsetRect")
+	tryRegister(&_NSIntegralRect, lib, "NSIntegralRect")
 	tryRegister(&_NSIntegralRectWithOptions, lib, "NSIntegralRectWithOptions")
-	tryRegister(&_NSIsFreedObject, lib, "NSIsFreedObject")
-	tryRegister(&_NSLog, lib, "NSLog")
-	tryRegister(&_NSLogv, lib, "NSLogv")
-	tryRegister(&_NSOpenStepRootDirectory, lib, "NSOpenStepRootDirectory")
-	tryRegister(&_NSProtocolFromString, lib, "NSProtocolFromString")
-	tryRegister(&_NSRecordAllocationEvent, lib, "NSRecordAllocationEvent")
-	tryRegister(&_NSReturnAddress, lib, "NSReturnAddress")
-	tryRegister(&_NSSearchPathForDirectoriesInDomains, lib, "NSSearchPathForDirectoriesInDomains")
-	tryRegister(&_NSSelectorFromString, lib, "NSSelectorFromString")
-	tryRegister(&_NSSetUncaughtExceptionHandler, lib, "NSSetUncaughtExceptionHandler")
-	tryRegister(&_NSShouldRetainWithZone, lib, "NSShouldRetainWithZone")
-	tryRegister(&_NSStringFromClass, lib, "NSStringFromClass")
-	tryRegister(&_NSStringFromProtocol, lib, "NSStringFromProtocol")
-	tryRegister(&_NSStringFromSelector, lib, "NSStringFromSelector")
-	tryRegister(&_NSTemporaryDirectory, lib, "NSTemporaryDirectory")
-	tryRegister(&_NSUserName, lib, "NSUserName")
-	tryRegister(&_NXReadNSObjectFromCoder, lib, "NXReadNSObjectFromCoder")
+	tryRegister(&_NSIntersectionRange, lib, "NSIntersectionRange")
+	tryRegister(&_NSIntersectionRect, lib, "NSIntersectionRect")
+	tryRegister(&_NSIntersectsRect, lib, "NSIntersectsRect")
+	tryRegister(&_NSIsEmptyRect, lib, "NSIsEmptyRect")
+	tryRegister(&_NSMouseInRect, lib, "NSMouseInRect")
+	tryRegister(&_NSOffsetRect, lib, "NSOffsetRect")
+	tryRegister(&_NSPointFromString, lib, "NSPointFromString")
+	tryRegister(&_NSPointInRect, lib, "NSPointInRect")
+	tryRegister(&_NSRangeFromString, lib, "NSRangeFromString")
+	tryRegister(&_NSRectFromString, lib, "NSRectFromString")
+	tryRegister(&_NSSizeFromString, lib, "NSSizeFromString")
+	tryRegister(&_NSStringFromPoint, lib, "NSStringFromPoint")
+	tryRegister(&_NSStringFromRange, lib, "NSStringFromRange")
+	tryRegister(&_NSStringFromRect, lib, "NSStringFromRect")
+	tryRegister(&_NSStringFromSize, lib, "NSStringFromSize")
+	tryRegister(&_NSUnionRange, lib, "NSUnionRange")
+	tryRegister(&_NSUnionRect, lib, "NSUnionRect")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -111,61 +115,70 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Creates and returns a new instance of a given class.
+// Returns a Boolean value that indicates whether one rectangle completely encloses another.
 //
 // Added in macOS 10.0.
-// Creates and returns a new instance of a given class.
+// Returns a Boolean value that indicates whether one rectangle completely encloses another.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateObject
-func NSAllocateObject(aClass unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
-	return _NSAllocateObject(aClass, extraBytes, zone)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSContainsRect(_:_:)
+func NSContainsRect(aRect coregraphics.CGRect, bRect coregraphics.CGRect) bool {
+	return _NSContainsRect(aRect, bRect)
 }
 
-// Obtains a class by name.
+// Adds two decimal values.
 //
 // Added in macOS 10.0.
-// Obtains a class by name.
+// Adds two decimal values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassFromString(_:)
-func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
-	return _NSClassFromString(aClassName)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalAdd(_:_:_:_:)
+func NSDecimalAdd(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalAdd(result, leftOperand, rightOperand, roundingMode)
 }
 
-// Creates an exact copy of an object.
-//
-// Deprecated: This function was deprecated in macOS 10.8.
+// Compacts the decimal structure for efficiency.
 //
 // Added in macOS 10.0.
-// Creates an exact copy of an object.
+// Compacts the decimal structure for efficiency.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyObject
-func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
-	return _NSCopyObject(object, extraBytes, zone)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompact(_:)
+func NSDecimalCompact(number unsafe.Pointer) {
+	_NSDecimalCompact(number)
 }
 
-// Returns the number of call frames on the stack.
+// Compares two decimal values.
 //
 // Added in macOS 10.0.
-// Returns the number of call frames on the stack.
+// Compares two decimal values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
-func NSCountFrames() unsafe.Pointer {
-	return _NSCountFrames()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompare(_:_:)
+func NSDecimalCompare(leftOperand unsafe.Pointer, rightOperand unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalCompare(leftOperand, rightOperand)
 }
 
-// Destroys an existing object.
+// Copies the value of a decimal number.
 //
 // Added in macOS 10.0.
-// Destroys an existing object.
+// Copies the value of a decimal number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeallocateObject
-func NSDeallocateObject(object unsafe.Pointer) {
-	_NSDeallocateObject(object)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCopy(_:_:)
+func NSDecimalCopy(destination unsafe.Pointer, source unsafe.Pointer) {
+	_NSDecimalCopy(destination, source)
+}
+
+// Divides one decimal value by another.
+//
+// Added in macOS 10.0.
+// Divides one decimal value by another.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalDivide(_:_:_:_:)
+func NSDecimalDivide(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalDivide(result, leftOperand, rightOperand, roundingMode)
 }
 
 // Multiplies two decimal numbers together.
@@ -179,136 +192,147 @@ func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightO
 	return _NSDecimalMultiply(result, leftOperand, rightOperand, roundingMode)
 }
 
-// Decrements the specified object’s reference count.
+// Multiplies a decimal by the specified power of 10.
 //
 // Added in macOS 10.0.
-// Decrements the specified object’s reference count.
+// Multiplies a decimal by the specified power of 10.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecrementExtraRefCountWasZero
-func NSDecrementExtraRefCountWasZero(object unsafe.Pointer) bool {
-	return _NSDecrementExtraRefCountWasZero(object)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalMultiplyByPowerOf10(_:_:_:_:)
+func NSDecimalMultiplyByPowerOf10(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalMultiplyByPowerOf10(result, number, power, roundingMode)
 }
 
-// Returns the specified object’s reference count.
+// Normalizes the internal format of two decimal numbers to simplify later operations.
 //
 // Added in macOS 10.0.
-// Returns the specified object’s reference count.
+// Normalizes the internal format of two decimal numbers to simplify later operations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtraRefCount
-func NSExtraRefCount(object unsafe.Pointer) unsafe.Pointer {
-	return _NSExtraRefCount(object)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNormalize(_:_:_:)
+func NSDecimalNormalize(number1 unsafe.Pointer, number2 unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalNormalize(number1, number2, roundingMode)
 }
 
-// Returns a string encoding a file type code.
+// Raises the decimal value to the specified power.
 //
 // Added in macOS 10.0.
-// Returns a string encoding a file type code.
+// Raises the decimal value to the specified power.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileTypeForHFSTypeCode(_:)
-func NSFileTypeForHFSTypeCode(hfsFileTypeCode unsafe.Pointer) unsafe.Pointer {
-	return _NSFileTypeForHFSTypeCode(hfsFileTypeCode)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalPower(_:_:_:_:)
+func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalPower(result, number, power, roundingMode)
 }
 
-// Returns the value of the frame pointer of the specified frame.
+// Rounds off the decimal value.
 //
 // Added in macOS 10.0.
-// Returns the value of the frame pointer of the specified frame.
+// Rounds off the decimal value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFrameAddress
-func NSFrameAddress(frame unsafe.Pointer) unsafe.Pointer {
-	return _NSFrameAddress(frame)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalRound(_:_:_:_:)
+func NSDecimalRound(result unsafe.Pointer, number unsafe.Pointer, scale unsafe.Pointer, roundingMode unsafe.Pointer) {
+	_NSDecimalRound(result, number, scale, roundingMode)
 }
 
-// Returns a string containing the full name of the current user.
+// Returns a string representation of the decimal value appropriate for the specified locale.
 //
 // Added in macOS 10.0.
-// Returns a string containing the full name of the current user.
+// Returns a string representation of the decimal value appropriate for the specified locale.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFullUserName()
-func NSFullUserName() unsafe.Pointer {
-	return _NSFullUserName()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalString(_:_:)
+func NSDecimalString(dcm unsafe.Pointer, locale unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalString(dcm, locale)
 }
 
-// Obtains the actual size and the aligned size of an encoded type.
+// Subtracts one decimal value from another.
 //
 // Added in macOS 10.0.
-// Obtains the actual size and the aligned size of an encoded type.
+// Subtracts one decimal value from another.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetSizeAndAlignment(_:_:_:)
-func NSGetSizeAndAlignment(typePtr unsafe.Pointer, sizep unsafe.Pointer, alignp unsafe.Pointer) unsafe.Pointer {
-	return _NSGetSizeAndAlignment(typePtr, sizep, alignp)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalSubtract(_:_:_:_:)
+func NSDecimalSubtract(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalSubtract(result, leftOperand, rightOperand, roundingMode)
 }
 
-// Returns the top-level error handler.
+// Divides a rectangle into two new rectangles.
 //
 // Added in macOS 10.0.
-// Returns the top-level error handler.
+// Divides a rectangle into two new rectangles.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetUncaughtExceptionHandler()
-func NSGetUncaughtExceptionHandler() unsafe.Pointer {
-	return _NSGetUncaughtExceptionHandler()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDivideRect(_:_:_:_:_:)
+func NSDivideRect(inRect coregraphics.CGRect, slice unsafe.Pointer, rem unsafe.Pointer, amount float64, edge unsafe.Pointer) {
+	_NSDivideRect(inRect, slice, rem, amount, edge)
 }
 
-// Returns a file type code.
+// Returns a Boolean value that indicates whether two edge insets structures are equal.
 //
-// Added in macOS 10.0.
-// Returns a file type code.
+// Added in macOS 10.10.
+// Returns a Boolean value that indicates whether two edge insets structures are equal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHFSTypeCodeFromFileType(_:)
-func NSHFSTypeCodeFromFileType(fileTypeString unsafe.Pointer) unsafe.Pointer {
-	return _NSHFSTypeCodeFromFileType(fileTypeString)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEdgeInsetsEqual(_:_:)
+func NSEdgeInsetsEqual(aInsets unsafe.Pointer, bInsets unsafe.Pointer) bool {
+	return _NSEdgeInsetsEqual(aInsets, bInsets)
 }
 
-// Returns a string encoding a file type.
+// Returns a Boolean value that indicates whether two points are equal.
 //
 // Added in macOS 10.0.
-// Returns a string encoding a file type.
+// Returns a Boolean value that indicates whether two points are equal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHFSTypeOfFile(_:)
-func NSHFSTypeOfFile(fullFilePath unsafe.Pointer) unsafe.Pointer {
-	return _NSHFSTypeOfFile(fullFilePath)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEqualPoints(_:_:)
+func NSEqualPoints(aPoint coregraphics.CGPoint, bPoint coregraphics.CGPoint) bool {
+	return _NSEqualPoints(aPoint, bPoint)
 }
 
-// Returns the path to either the user’s or application’s home directory, depending on the platform.
+// Returns a Boolean value that indicates whether the two rectangles are equal.
 //
 // Added in macOS 10.0.
-// Returns the path to either the user’s or application’s home directory, depending on the platform.
+// Returns a Boolean value that indicates whether the two rectangles are equal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectory()
-func NSHomeDirectory() unsafe.Pointer {
-	return _NSHomeDirectory()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEqualRects(_:_:)
+func NSEqualRects(aRect coregraphics.CGRect, bRect coregraphics.CGRect) bool {
+	return _NSEqualRects(aRect, bRect)
 }
 
-// Returns the path to a given user’s home directory.
+// Returns a Boolean that indicates whether two size values are equal.
 //
 // Added in macOS 10.0.
-// Returns the path to a given user’s home directory.
+// Returns a Boolean that indicates whether two size values are equal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectoryForUser(_:)
-func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
-	return _NSHomeDirectoryForUser(userName)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEqualSizes(_:_:)
+func NSEqualSizes(aSize coregraphics.CGSize, bSize coregraphics.CGSize) bool {
+	return _NSEqualSizes(aSize, bSize)
 }
 
-// Increments the specified object’s reference count.
+// Insets a rectangle by a specified amount.
 //
 // Added in macOS 10.0.
-// Increments the specified object’s reference count.
+// Insets a rectangle by a specified amount.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIncrementExtraRefCount
-func NSIncrementExtraRefCount(object unsafe.Pointer) {
-	_NSIncrementExtraRefCount(object)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInsetRect(_:_:_:)
+func NSInsetRect(aRect coregraphics.CGRect, dX float64, dY float64) coregraphics.CGRect {
+	return _NSInsetRect(aRect, dX, dY)
+}
+
+// Adjusts the sides of a rectangle to integer values.
+//
+// Added in macOS 10.0.
+// Adjusts the sides of a rectangle to integer values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRect(_:)
+func NSIntegralRect(aRect coregraphics.CGRect) coregraphics.CGRect {
+	return _NSIntegralRect(aRect)
 }
 
 // Adjusts the sides of a rectangle to integral values using the specified options.
@@ -322,193 +346,191 @@ func NSIntegralRectWithOptions(aRect coregraphics.CGRect, opts unsafe.Pointer) c
 	return _NSIntegralRectWithOptions(aRect, opts)
 }
 
-// Returns a Boolean indicating whether the specified object has been freed.
+// Returns the intersection of the specified ranges.
 //
 // Added in macOS 10.0.
-// Returns a Boolean indicating whether the specified object has been freed.
+// Returns the intersection of the specified ranges.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsFreedObject
-func NSIsFreedObject(anObject unsafe.Pointer) bool {
-	return _NSIsFreedObject(anObject)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectionRange(_:_:)
+func NSIntersectionRange(range1 unsafe.Pointer, range2 unsafe.Pointer) unsafe.Pointer {
+	return _NSIntersectionRange(range1, range2)
 }
 
-// Logs an error message to the Apple System Log facility.
+// Calculates the intersection of two rectangles.
 //
 // Added in macOS 10.0.
-// Logs an error message to the Apple System Log facility.
+// Calculates the intersection of two rectangles.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLog
-func NSLog(format unsafe.Pointer) {
-	_NSLog(format)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectionRect(_:_:)
+func NSIntersectionRect(aRect coregraphics.CGRect, bRect coregraphics.CGRect) coregraphics.CGRect {
+	return _NSIntersectionRect(aRect, bRect)
 }
 
-// Logs an error message to the Apple System Log facility.
+// Returns a Boolean value that indicates whether two rectangles intersect.
 //
 // Added in macOS 10.0.
-// Logs an error message to the Apple System Log facility.
+// Returns a Boolean value that indicates whether two rectangles intersect.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogv(_:_:)
-func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
-	_NSLogv(format, args)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectsRect(_:_:)
+func NSIntersectsRect(aRect coregraphics.CGRect, bRect coregraphics.CGRect) bool {
+	return _NSIntersectsRect(aRect, bRect)
 }
 
-// Returns the root directory of the user’s system.
+// Returns a Boolean value that indicates whether a given rectangle is empty.
 //
 // Added in macOS 10.0.
-// Returns the root directory of the user’s system.
+// Returns a Boolean value that indicates whether a given rectangle is empty.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOpenStepRootDirectory()
-func NSOpenStepRootDirectory() unsafe.Pointer {
-	return _NSOpenStepRootDirectory()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsEmptyRect(_:)
+func NSIsEmptyRect(aRect coregraphics.CGRect) bool {
+	return _NSIsEmptyRect(aRect)
 }
 
-// Returns a the protocol with a given name.
-//
-// Added in macOS 10.5.
-// Returns a the protocol with a given name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolFromString(_:)
-func NSProtocolFromString(namestr unsafe.Pointer) unsafe.Pointer {
-	return _NSProtocolFromString(namestr)
-}
-
-// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
+// Returns a Boolean value that indicates whether the point is in the specified rectangle.
 //
 // Added in macOS 10.0.
-// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
+// Returns a Boolean value that indicates whether the point is in the specified rectangle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecordAllocationEvent
-func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
-	_NSRecordAllocationEvent(eventType, object)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMouseInRect(_:_:_:)
+func NSMouseInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect, flipped bool) bool {
+	return _NSMouseInRect(aPoint, aRect, flipped)
 }
 
-// Returns the value of the return address of the specified frame.
+// Offsets the rectangle by the specified amount.
 //
 // Added in macOS 10.0.
-// Returns the value of the return address of the specified frame.
+// Offsets the rectangle by the specified amount.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReturnAddress
-func NSReturnAddress(frame unsafe.Pointer) unsafe.Pointer {
-	return _NSReturnAddress(frame)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOffsetRect(_:_:_:)
+func NSOffsetRect(aRect coregraphics.CGRect, dX float64, dY float64) coregraphics.CGRect {
+	return _NSOffsetRect(aRect, dX, dY)
 }
 
-// Creates a list of directory search paths.
+// Returns a point from a text-based representation.
 //
 // Added in macOS 10.0.
-// Creates a list of directory search paths.
+// Returns a point from a text-based representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
-func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) unsafe.Pointer {
-	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointFromString(_:)
+func NSPointFromString(aString unsafe.Pointer) coregraphics.CGPoint {
+	return _NSPointFromString(aString)
 }
 
-// Returns the selector with a given name.
+// Returns a Boolean value that indicates whether a given point is in a given rectangle.
 //
 // Added in macOS 10.0.
-// Returns the selector with a given name.
+// Returns a Boolean value that indicates whether a given point is in a given rectangle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSelectorFromString(_:)
-func NSSelectorFromString(aSelectorName unsafe.Pointer) unsafe.Pointer {
-	return _NSSelectorFromString(aSelectorName)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointInRect(_:_:)
+func NSPointInRect(aPoint coregraphics.CGPoint, aRect coregraphics.CGRect) bool {
+	return _NSPointInRect(aPoint, aRect)
 }
 
-// Changes the top-level error handler.
+// Returns a range from a textual representation.
 //
 // Added in macOS 10.0.
-// Changes the top-level error handler.
+// Returns a range from a textual representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetUncaughtExceptionHandler(_:)
-func NSSetUncaughtExceptionHandler() {
-	_NSSetUncaughtExceptionHandler()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeFromString(_:)
+func NSRangeFromString(aString unsafe.Pointer) unsafe.Pointer {
+	return _NSRangeFromString(aString)
 }
 
-// Indicates whether an object should be retained.
+// Returns a rectangle from a text-based representation.
 //
 // Added in macOS 10.0.
-// Indicates whether an object should be retained.
+// Returns a rectangle from a text-based representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSShouldRetainWithZone
-func NSShouldRetainWithZone(anObject unsafe.Pointer, requestedZone unsafe.Pointer) bool {
-	return _NSShouldRetainWithZone(anObject, requestedZone)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRectFromString(_:)
+func NSRectFromString(aString unsafe.Pointer) coregraphics.CGRect {
+	return _NSRectFromString(aString)
 }
 
-// Returns the name of a class as a string.
+// Returns an from a text-based representation.
 //
 // Added in macOS 10.0.
-// Returns the name of a class as a string.
+// Returns an from a text-based representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromClass(_:)
-func NSStringFromClass(aClass unsafe.Pointer) unsafe.Pointer {
-	return _NSStringFromClass(aClass)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSizeFromString(_:)
+func NSSizeFromString(aString unsafe.Pointer) coregraphics.CGSize {
+	return _NSSizeFromString(aString)
 }
 
-// Returns the name of a protocol as a string.
-//
-// Added in macOS 10.5.
-// Returns the name of a protocol as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromProtocol(_:)
-func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
-	return _NSStringFromProtocol(proto)
-}
-
-// Returns a string representation of a given selector.
+// Returns a string representation of a point.
 //
 // Added in macOS 10.0.
-// Returns a string representation of a given selector.
+// Returns a string representation of a point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromSelector(_:)
-func NSStringFromSelector(aSelector unsafe.Pointer) unsafe.Pointer {
-	return _NSStringFromSelector(aSelector)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromPoint(_:)
+func NSStringFromPoint(aPoint coregraphics.CGPoint) unsafe.Pointer {
+	return _NSStringFromPoint(aPoint)
 }
 
-// Returns the path of the temporary directory for the current user.
+// Returns a string representation of a range.
 //
 // Added in macOS 10.0.
-// Returns the path of the temporary directory for the current user.
+// Returns a string representation of a range.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTemporaryDirectory()
-func NSTemporaryDirectory() unsafe.Pointer {
-	return _NSTemporaryDirectory()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromRange(_:)
+func NSStringFromRange(range_ unsafe.Pointer) unsafe.Pointer {
+	return _NSStringFromRange(range_)
 }
 
-// Returns the logon name of the current user.
+// Returns a string representation of a rectangle.
 //
 // Added in macOS 10.0.
-// Returns the logon name of the current user.
+// Returns a string representation of a rectangle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserName()
-func NSUserName() unsafe.Pointer {
-	return _NSUserName()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromRect(_:)
+func NSStringFromRect(aRect coregraphics.CGRect) unsafe.Pointer {
+	return _NSStringFromRect(aRect)
 }
 
-// Returns the next object from the coder.
-//
-// Deprecated: This function was deprecated in macOS 10.5.
+// Returns a string representation of a size.
 //
 // Added in macOS 10.0.
-// Returns the next object from the coder.
+// Returns a string representation of a size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NXReadNSObjectFromCoder
-func NXReadNSObjectFromCoder(decoder unsafe.Pointer) unsafe.Pointer {
-	return _NXReadNSObjectFromCoder(decoder)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromSize(_:)
+func NSStringFromSize(aSize coregraphics.CGSize) unsafe.Pointer {
+	return _NSStringFromSize(aSize)
+}
+
+// Returns the union of the specified ranges.
+//
+// Added in macOS 10.0.
+// Returns the union of the specified ranges.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnionRange(_:_:)
+func NSUnionRange(range1 unsafe.Pointer, range2 unsafe.Pointer) unsafe.Pointer {
+	return _NSUnionRange(range1, range2)
+}
+
+// Calculates the union of two rectangles.
+//
+// Added in macOS 10.0.
+// Calculates the union of two rectangles.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnionRect(_:_:)
+func NSUnionRect(aRect coregraphics.CGRect, bRect coregraphics.CGRect) coregraphics.CGRect {
+	return _NSUnionRect(aRect, bRect)
 }
 
 

@@ -34,6 +34,19 @@ type IAffineTransform interface {
 	TransformStruct() AffineTransformStruct /* foo */
 	SetTransformStruct(value AffineTransformStruct /* foo */)
 	// methods:
+	AppendTransform(transform IAffineTransform)
+	Concat()
+	Invert()
+	PrependTransform(transform IAffineTransform)
+	RotateByDegrees(angle float64 /* primitive/slice/pointer */)
+	RotateByRadians(angle float64 /* primitive/slice/pointer */)
+	ScaleBy(scale float64 /* primitive/slice/pointer */)
+	ScaleXByYBy(scaleX float64 /* primitive/slice/pointer */, scaleY float64 /* primitive/slice/pointer */)
+	Set()
+	TransformPoint(aPoint Point /* foo */) Point /* foo */
+	TransformSize(aSize Size /* foo */) Size /* foo */
+	TransformBezierPath(path BezierPath /* foo */) BezierPath /* foo */
+	TranslateXByYBy(deltaX float64 /* primitive/slice/pointer */, deltaY float64 /* primitive/slice/pointer */)
 }
 
 // A graphics coordinate transformation.
@@ -89,10 +102,143 @@ func NewAffineTransform() AffineTransform {
 
 
 
+// Initializes the receiver’s matrix using another transform object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/init(transform:)
+func NewAffineTransformWithTransform(transform IAffineTransform) AffineTransform {
+	instance := getAffineTransformClass().Alloc()
+	rv := objc.Send[AffineTransform](instance.ID, objc.Sel("initWithTransform:"), transform)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Appends the specified matrix to the receiver’s matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/append(_:)
+func (a_ AffineTransform) AppendTransform(transform IAffineTransform) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("appendTransform:"), transform)
+}
+
+
+// Appends the receiver’s matrix to the current transformation matrix stored in the current graphics context, replacing the current transformation matrix with the result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/concat()
+func (a_ AffineTransform) Concat() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("concat"))
+}
+
+
+// Replaces the receiver’s matrix with its inverse matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/invert()
+func (a_ AffineTransform) Invert() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("invert"))
+}
+
+
+// Prepends the specified matrix to the receiver’s matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/prepend(_:)
+func (a_ AffineTransform) PrependTransform(transform IAffineTransform) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("prependTransform:"), transform)
+}
+
+
+// Applies a rotation factor (measured in degrees) to the receiver’s transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/rotate(byDegrees:)
+func (a_ AffineTransform) RotateByDegrees(angle float64 /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("rotateByDegrees:"), angle)
+}
+
+
+// Applies a rotation factor (measured in radians) to the receiver’s transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/rotate(byRadians:)
+func (a_ AffineTransform) RotateByRadians(angle float64 /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("rotateByRadians:"), angle)
+}
+
+
+// Applies the specified scaling factor along both x and y axes to the receiver’s transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/scale(by:)
+func (a_ AffineTransform) ScaleBy(scale float64 /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("scaleBy:"), scale)
+}
+
+
+// Applies scaling factors to each axis of the receiver’s transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/scaleX(by:yBy:)
+func (a_ AffineTransform) ScaleXByYBy(scaleX float64 /* primitive/slice/pointer */, scaleY float64 /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("scaleXBy:yBy:"), scaleX, scaleY)
+}
+
+
+// Sets the current transformation matrix to the receiver’s transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/set()
+func (a_ AffineTransform) Set() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("set"))
+}
+
+
+// Applies the receiver’s transform to the specified point and returns the result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
+func (a_ AffineTransform) TransformPoint(aPoint Point /* foo */) Point /* foo */ {
+	rv := objc.Send[Point](a_.ID, objc.Sel("transformPoint:"), aPoint)
+	return rv
+}
+
+
+// Applies the receiver’s transform to the specified size and returns the results.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-5r6ol
+func (a_ AffineTransform) TransformSize(aSize Size /* foo */) Size /* foo */ {
+	rv := objc.Send[Size](a_.ID, objc.Sel("transformSize:"), aSize)
+	return rv
+}
+
+
+// Creates and returns a new Bézier path object with each point in the given path transformed by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-6z1xo
+func (a_ AffineTransform) TransformBezierPath(path BezierPath /* foo */) BezierPath /* foo */ {
+	rv := objc.Send[BezierPath](a_.ID, objc.Sel("transformBezierPath:"), path)
+	return rv
+}
+
+
+// Applies the specified translation factors to the receiver’s transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/translateX(by:yBy:)
+func (a_ AffineTransform) TranslateXByYBy(deltaX float64 /* primitive/slice/pointer */, deltaY float64 /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("translateXBy:yBy:"), deltaX, deltaY)
+}
+
+
 // The matrix coefficients stored as the transformation matrix.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transformStruct
 func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
 	rv := objc.Send[AffineTransformStruct](a_.ID, objc.Sel("transformStruct"))
 	return rv
@@ -102,10 +248,9 @@ func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
 // The matrix coefficients stored as the transformation matrix.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transformStruct
 func (a_ AffineTransform) SetTransformStruct(value AffineTransformStruct /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
 }
-
 
 

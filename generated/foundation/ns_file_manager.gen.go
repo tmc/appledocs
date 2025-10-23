@@ -66,8 +66,8 @@ type IFileManager interface {
 	FileExistsAtPathIsDirectory(path string /* primitive/slice/pointer */, isDirectory unsafe.Pointer) bool /* primitive/slice/pointer */
 	FileSystemRepresentationWithPath(path string /* primitive/slice/pointer */) unsafe.Pointer
 	GetFileProviderServicesForItemAtURLCompletionHandler(url IURL, completionHandler IDictionary /* already interface */)
-	GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship NSURLRelationship, directory SearchPathDirectory, domainMask SearchPathDomainMask, url IURL, error_ IError) bool /* primitive/slice/pointer */
-	GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship NSURLRelationship, directoryURL IURL, otherURL IURL, error_ IError) bool /* primitive/slice/pointer */
+	GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship URLRelationship, directory SearchPathDirectory, domainMask SearchPathDomainMask, url IURL, error_ IError) bool /* primitive/slice/pointer */
+	GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship URLRelationship, directoryURL IURL, otherURL IURL, error_ IError) bool /* primitive/slice/pointer */
 	HomeDirectoryForUser(userName string /* primitive/slice/pointer */) IURL
 	IsDeletableFileAtPath(path string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	IsExecutableFileAtPath(path string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
@@ -157,7 +157,7 @@ func NewFileManager() FileManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/init(authorization:)
-func NewFileManagerWithAuthorization(authorization objectivec.IObject) FileManager {
+func NewFileManagerWithAuthorization(authorization WorkspaceAuthorization /* foo */) FileManager {
 	rv := objc.Send[FileManager](objc.ID(getFileManagerClass().class), objc.Sel("fileManagerWithAuthorization:"), authorization)
 	return rv
 }
@@ -168,7 +168,7 @@ func NewFileManagerWithAuthorization(authorization objectivec.IObject) FileManag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/init(authorization:)
-func (fc _FileManagerClass) FileManagerWithAuthorization(authorization objectivec.IObject) unsafe.Pointer {
+func (fc _FileManagerClass) FileManagerWithAuthorization(authorization WorkspaceAuthorization /* foo */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileManagerWithAuthorization:"), authorization)
 	return rv
 }
@@ -435,7 +435,7 @@ func (f_ FileManager) GetFileProviderServicesForItemAtURLCompletionHandler(url I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/getRelationship(_:of:in:toItemAt:)
-func (f_ FileManager) GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship NSURLRelationship, directory SearchPathDirectory, domainMask SearchPathDomainMask, url IURL, error_ IError) bool /* primitive/slice/pointer */ {
+func (f_ FileManager) GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship URLRelationship, directory SearchPathDirectory, domainMask SearchPathDomainMask, url IURL, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("getRelationship:ofDirectory:inDomain:toItemAtURL:error:"), outRelationship, directory, domainMask, url, error_)
 	return rv
 }
@@ -445,7 +445,7 @@ func (f_ FileManager) GetRelationshipOfDirectoryInDomainToItemAtURLError(outRela
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/getRelationship(_:ofDirectoryAt:toItemAt:)
-func (f_ FileManager) GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship NSURLRelationship, directoryURL IURL, otherURL IURL, error_ IError) bool /* primitive/slice/pointer */ {
+func (f_ FileManager) GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship URLRelationship, directoryURL IURL, otherURL IURL, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("getRelationship:ofDirectoryAtURL:toItemAtURL:error:"), outRelationship, directoryURL, otherURL, error_)
 	return rv
 }

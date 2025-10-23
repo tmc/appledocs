@@ -4,7 +4,7 @@ package foundation
 
 import "github.com/ebitengine/purego/objc"
 
-// isContentDiscardedProtocol is the isContentDiscarded protocol.
+// CacheDelegateProtocol is the NSCacheDelegate protocol.
 //
 // Availability:
 //   - Mac Catalyst 13.0+
@@ -15,9 +15,9 @@ import "github.com/ebitengine/purego/objc"
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 //
-// Use this protocol when registering custom classes that conform to isContentDiscarded.
-var isContentDiscardedProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to NSCacheDelegate.
+var CacheDelegateProtocol *objc.Protocol
 
 func init() {
-	isContentDiscardedProtocol = objc.GetProtocol("isContentDiscarded")
+	CacheDelegateProtocol = objc.GetProtocol("NSCacheDelegate")
 }

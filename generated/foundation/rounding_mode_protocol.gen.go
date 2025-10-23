@@ -4,7 +4,7 @@ package foundation
 
 import "github.com/ebitengine/purego/objc"
 
-// unarchiverDidFinishProtocol is the unarchiverDidFinish: protocol.
+// roundingModeProtocol is the roundingMode protocol.
 //
 // Availability:
 //   - Mac Catalyst 13.0+
@@ -15,9 +15,9 @@ import "github.com/ebitengine/purego/objc"
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 //
-// Use this protocol when registering custom classes that conform to unarchiverDidFinish:.
-var unarchiverDidFinishProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to roundingMode.
+var roundingModeProtocol *objc.Protocol
 
 func init() {
-	unarchiverDidFinishProtocol = objc.GetProtocol("unarchiverDidFinish:")
+	roundingModeProtocol = objc.GetProtocol("roundingMode")
 }

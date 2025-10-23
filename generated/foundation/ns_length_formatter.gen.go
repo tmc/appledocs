@@ -43,7 +43,7 @@ type ILengthFormatter interface {
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	StringFromMeters(numberInMeters float64 /* primitive/slice/pointer */) IString
 	StringFromValueUnit(value float64 /* primitive/slice/pointer */, unit LengthFormatterUnit) IString
-	UnitStringFromMetersUsedUnit(numberInMeters float64 /* primitive/slice/pointer */, unitp NSLengthFormatterUnit) IString
+	UnitStringFromMetersUsedUnit(numberInMeters float64 /* primitive/slice/pointer */, unitp LengthFormatterUnit) IString
 	UnitStringFromValueUnit(value float64 /* primitive/slice/pointer */, unit LengthFormatterUnit) IString
 }
 
@@ -134,7 +134,7 @@ func (l_ LengthFormatter) StringFromValueUnit(value float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromMeters:usedUnit:)
-func (l_ LengthFormatter) UnitStringFromMetersUsedUnit(numberInMeters float64 /* primitive/slice/pointer */, unitp NSLengthFormatterUnit) IString {
+func (l_ LengthFormatter) UnitStringFromMetersUsedUnit(numberInMeters float64 /* primitive/slice/pointer */, unitp LengthFormatterUnit) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("unitStringFromMeters:usedUnit:"), numberInMeters, unitp)
 	return rv
 }

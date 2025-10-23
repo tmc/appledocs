@@ -43,16 +43,6 @@ func ExampleNewDataWithContentsOfFile() {
 	)
 	// Output:
 }
-// ExampleNewDataWithContentsOfFileOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfFileOptionsError.
-// Initializes a data object with the content of the file at a given path.
-func ExampleNewDataWithContentsOfFileOptionsError() {
-	_ = foundation.NewDataWithContentsOfFileOptionsError(
-		"/tmp/test", // path string
-		foundation.DataReadingOptions{}, // readOptionsMask DataReadingOptions
-		foundation.NSError{}, // errorPtr NSError
-	)
-	// Output:
-}
 // ExampleNewDataWithContentsOfMappedFile demonstrates how to create a Data instance using NewDataWithContentsOfMappedFile.
 // Initializes a data object with the contents of the mapped file specified by a given path.
 func ExampleNewDataWithContentsOfMappedFile() {
@@ -66,16 +56,6 @@ func ExampleNewDataWithContentsOfMappedFile() {
 func ExampleNewDataWithContentsOfURL() {
 	_ = foundation.NewDataWithContentsOfURL(
 		foundation.URL{}, // url URL
-	)
-	// Output:
-}
-// ExampleNewDataWithContentsOfURLOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfURLOptionsError.
-// Creates a data object from the data at the provided file URL using specific reading options.
-func ExampleNewDataWithContentsOfURLOptionsError() {
-	_ = foundation.NewDataWithContentsOfURLOptionsError(
-		foundation.URL{}, // url URL
-		foundation.DataReadingOptions{}, // readOptionsMask DataReadingOptions
-		foundation.NSError{}, // errorPtr NSError
 	)
 	// Output:
 }

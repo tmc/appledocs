@@ -15,3 +15,11 @@ func ExampleNewUUID() {
 	_ = foundation.NewUUID()
 	// Output:
 }
+// ExampleNewUUIDWithUUIDString demonstrates how to create a UUID instance using NewUUIDWithUUIDString.
+// Initializes a new UUID with the formatted string.
+func ExampleNewUUIDWithUUIDString() {
+	_ = foundation.NewUUIDWithUUIDString(
+		"string", // string string
+	)
+	// Output:
+}

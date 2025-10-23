@@ -4,7 +4,7 @@ package foundation
 
 import "github.com/ebitengine/purego/objc"
 
-// beginContentAccessProtocol is the beginContentAccess protocol.
+// scaleProtocol is the scale protocol.
 //
 // Availability:
 //   - Mac Catalyst 13.0+
@@ -15,9 +15,9 @@ import "github.com/ebitengine/purego/objc"
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 //
-// Use this protocol when registering custom classes that conform to beginContentAccess.
-var beginContentAccessProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to scale.
+var scaleProtocol *objc.Protocol
 
 func init() {
-	beginContentAccessProtocol = objc.GetProtocol("beginContentAccess")
+	scaleProtocol = objc.GetProtocol("scale")
 }

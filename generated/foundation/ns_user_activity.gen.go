@@ -36,6 +36,7 @@ type IUserActivity interface {
 	ContextIdentifierPath() []string /* primitive/slice/pointer */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	DetectedBarcodeDescriptor() BarcodeDescriptor /* foo */
 	ExpirationDate() IDate
 	SetExpirationDate(value IDate)
 	ExternalMediaContentIdentifier() string /* primitive/slice/pointer */
@@ -283,6 +284,16 @@ func (u_ UserActivity) Delegate() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/delegate
 func (u_ UserActivity) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// The barcode that the system scanner passes in.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/detectedBarcodeDescriptor
+func (u_ UserActivity) DetectedBarcodeDescriptor() BarcodeDescriptor /* foo */ {
+	rv := objc.Send[BarcodeDescriptor](u_.ID, objc.Sel("detectedBarcodeDescriptor"))
+	return rv
 }
 
 

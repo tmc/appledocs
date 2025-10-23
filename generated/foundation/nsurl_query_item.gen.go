@@ -31,12 +31,10 @@ type _URLQueryItemClass struct {
 type IURLQueryItem interface {
 	objectivec.IObject
 	// properties:
+	Name() string /* primitive/slice/pointer */
+	Value() string /* primitive/slice/pointer */
 	QueryItems() IURLQueryItem
 	SetQueryItems(value IURLQueryItem)
-	Name() string /* primitive/slice/pointer */
-	SetName(value string /* primitive/slice/pointer */)
-	Value() string /* primitive/slice/pointer */
-	SetValue(value string /* primitive/slice/pointer */)
 	// methods:
 }
 
@@ -93,12 +91,35 @@ func NewURLQueryItem() URLQueryItem {
 
 
 
-// Creates a new query item with the specified name and value.
+// Initializes a newly allocated query item with the specified name and value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/queryItemWithName:value:
-func (uc _URLQueryItemClass) QueryItemWithNameValue(name string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("queryItemWithName:value:"), objc.String(name), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/init(name:value:)
+func NewURLQueryItemWithNameValue(name string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */) URLQueryItem {
+	instance := getURLQueryItemClass().Alloc()
+	rv := objc.Send[URLQueryItem](instance.ID, objc.Sel("initWithName:value:"), objc.String(name), objc.String(value))
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The name of the query item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/name
+func (u_ URLQueryItem) Name() string /* primitive/slice/pointer */ {
+	rv := objc.Send[string](u_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The value for the query item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
+func (u_ URLQueryItem) Value() string /* primitive/slice/pointer */ {
+	rv := objc.Send[string](u_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -120,44 +141,5 @@ func (u_ URLQueryItem) QueryItems() IURLQueryItem {
 func (u_ URLQueryItem) SetQueryItems(value IURLQueryItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
 }
-
-
-// The name of the query item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-func (u_ URLQueryItem) Name() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](u_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The name of the query item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-func (u_ URLQueryItem) SetName(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-
-// The value for the query item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/value
-func (u_ URLQueryItem) Value() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](u_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// The value for the query item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/value
-func (u_ URLQueryItem) SetValue(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setValue:"), objc.String(value))
-}
-
 
 
