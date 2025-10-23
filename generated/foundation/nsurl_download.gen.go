@@ -33,7 +33,7 @@ type IURLDownload interface {
 	// properties:
 	DeletesFileUponFailure() bool /* primitive/slice/pointer */
 	SetDeletesFileUponFailure(value bool /* primitive/slice/pointer */)
-	Request() URLRequest /* foo */
+	Request() URLRequest /* not a class type */
 	ResumeData() IData
 	// methods:
 	Cancel()
@@ -97,7 +97,7 @@ func NewURLDownload() URLDownload {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
-func NewURLDownloadWithRequestDelegate(request URLRequest /* foo */, delegate objectivec.IObject) URLDownload {
+func NewURLDownloadWithRequestDelegate(request URLRequest /* not a class type */, delegate objectivec.IObject) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -169,7 +169,7 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
-func (u_ URLDownload) Request() URLRequest /* foo */ {
+func (u_ URLDownload) Request() URLRequest /* not a class type */ {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }

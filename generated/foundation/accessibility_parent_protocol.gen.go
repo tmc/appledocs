@@ -6,9 +6,6 @@ import "github.com/ebitengine/purego/objc"
 
 // accessibilityParentProtocol is the accessibilityParent protocol.
 //
-// Availability:
-//   - macOS 10.10+
-//
 // Use this protocol when registering custom classes that conform to accessibilityParent.
 var accessibilityParentProtocol *objc.Protocol
 

@@ -35,14 +35,14 @@ type ICaptureSmartFramingMonitor interface {
 	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
 	VideoZoomFactor() float64 /* primitive/slice/pointer */
 	SetVideoZoomFactor(value float64 /* primitive/slice/pointer */)
-	EnabledFramings() AVCaptureFraming /* foo */
-	SetEnabledFramings(value AVCaptureFraming /* foo */)
+	EnabledFramings() CaptureFraming /* not a class type */
+	SetEnabledFramings(value CaptureFraming /* not a class type */)
 	IsMonitoring() bool /* primitive/slice/pointer */
 	SetIsMonitoring(value bool /* primitive/slice/pointer */)
-	RecommendedFraming() AVCaptureFraming /* foo */
-	SetRecommendedFraming(value AVCaptureFraming /* foo */)
-	SupportedFramings() AVCaptureFraming /* foo */
-	SetSupportedFramings(value AVCaptureFraming /* foo */)
+	RecommendedFraming() CaptureFraming /* not a class type */
+	SetRecommendedFraming(value CaptureFraming /* not a class type */)
+	SupportedFramings() CaptureFraming /* not a class type */
+	SetSupportedFramings(value CaptureFraming /* not a class type */)
 	// methods:
 }
 
@@ -141,7 +141,7 @@ func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64 /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) EnabledFramings() AVCaptureFraming /* foo */ {
+func (c_ CaptureSmartFramingMonitor) EnabledFramings() CaptureFraming /* not a class type */ {
 	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("enabledFramings"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (c_ CaptureSmartFramingMonitor) EnabledFramings() AVCaptureFraming /* foo *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value AVCaptureFraming /* foo */) {
+func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value CaptureFraming /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledFramings:"), value)
 }
 
@@ -179,7 +179,7 @@ func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/recommendedframing
-func (c_ CaptureSmartFramingMonitor) RecommendedFraming() AVCaptureFraming /* foo */ {
+func (c_ CaptureSmartFramingMonitor) RecommendedFraming() CaptureFraming /* not a class type */ {
 	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("recommendedFraming"))
 	return rv
 }
@@ -189,7 +189,7 @@ func (c_ CaptureSmartFramingMonitor) RecommendedFraming() AVCaptureFraming /* fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/recommendedframing
-func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value AVCaptureFraming /* foo */) {
+func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value CaptureFraming /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecommendedFraming:"), value)
 }
 
@@ -198,7 +198,7 @@ func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value AVCaptureFramin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SupportedFramings() AVCaptureFraming /* foo */ {
+func (c_ CaptureSmartFramingMonitor) SupportedFramings() CaptureFraming /* not a class type */ {
 	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("supportedFramings"))
 	return rv
 }
@@ -208,7 +208,7 @@ func (c_ CaptureSmartFramingMonitor) SupportedFramings() AVCaptureFraming /* foo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value AVCaptureFraming /* foo */) {
+func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value CaptureFraming /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFramings:"), value)
 }
 

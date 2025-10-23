@@ -128,7 +128,7 @@ func (lc _LinguisticTaggerClass) AvailableTagSchemesForLanguage(language string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/dominantLanguage(for:)
-func (lc _LinguisticTaggerClass) DominantLanguageForString(string_ string /* primitive/slice/pointer */) String /* foo */ {
+func (lc _LinguisticTaggerClass) DominantLanguageForString(string_ string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("dominantLanguageForString:"), objc.String(string_))
 	return rv
 }
@@ -138,7 +138,7 @@ func (lc _LinguisticTaggerClass) DominantLanguageForString(string_ string /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(for:range:unit:scheme:options:orthography:using:)
-func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrthographyUsingBlock(string_ string /* primitive/slice/pointer */, range_ Range /* foo */, unit LinguisticTaggerUnit, scheme LinguisticTagScheme /* foo */, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
+func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrthographyUsingBlock(string_ string /* primitive/slice/pointer */, range_ Range /* not a class type */, unit LinguisticTaggerUnit, scheme LinguisticTagScheme /* not a class type */, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:"), objc.String(string_), range_, unit, scheme, options, orthography, block)
 }
 
@@ -147,7 +147,7 @@ func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tag(for:at:unit:scheme:orthography:tokenRange:)
-func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRange(string_ string /* primitive/slice/pointer */, charIndex uint /* primitive/slice/pointer */, unit LinguisticTaggerUnit, scheme LinguisticTagScheme /* foo */, orthography IOrthography, tokenRange RangePointer /* foo */) LinguisticTag /* foo */ {
+func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRange(string_ string /* primitive/slice/pointer */, charIndex uint /* primitive/slice/pointer */, unit LinguisticTaggerUnit, scheme LinguisticTagScheme /* not a class type */, orthography IOrthography, tokenRange RangePointer /* not a class type */) LinguisticTag /* not a class type */ {
 	rv := objc.Send[LinguisticTag](objc.ID(lc.class), objc.Sel("tagForString:atIndex:unit:scheme:orthography:tokenRange:"), objc.String(string_), charIndex, unit, scheme, orthography, tokenRange)
 	return rv
 }
@@ -157,7 +157,7 @@ func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tags(for:range:unit:scheme:options:orthography:tokenRanges:)
-func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ string /* primitive/slice/pointer */, range_ Range /* foo */, unit LinguisticTaggerUnit, scheme LinguisticTagScheme /* foo */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value /* primitive/slice/pointer */) []string /* primitive/slice/pointer */ {
+func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ string /* primitive/slice/pointer */, range_ Range /* not a class type */, unit LinguisticTaggerUnit, scheme LinguisticTagScheme /* not a class type */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value /* primitive/slice/pointer */) []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), objc.String(string_), range_, unit, scheme, options, orthography, tokenRanges)
 	return rv
 }

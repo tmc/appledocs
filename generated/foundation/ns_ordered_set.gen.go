@@ -42,8 +42,8 @@ type IOrderedSet interface {
 	SetReversed(value IOrderedSet)
 	// methods:
 	ContainsObject(object unsafe.Pointer) bool /* primitive/slice/pointer */
-	DescriptionWithLocale(locale objectivec.IObject) String /* foo */
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer */) String /* foo */
+	DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer */) String /* not a class type */
 	DifferenceFromOrderedSetWithOptionsUsingEquivalenceTest(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer */) unsafe.Pointer
 	EnumerateObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts EnumerationOptions, block unsafe.Pointer)
@@ -51,7 +51,7 @@ type IOrderedSet interface {
 	FilteredOrderedSetUsingPredicate(p IPredicate) unsafe.Pointer
 	IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexOfObject(object unsafe.Pointer) uint /* primitive/slice/pointer */
-	IndexOfObjectInSortedRangeOptionsUsingComparator(object unsafe.Pointer, range_ Range /* foo */, opts BinarySearchingOptions, cmp Comparator /* foo */) uint /* primitive/slice/pointer */
+	IndexOfObjectInSortedRangeOptionsUsingComparator(object unsafe.Pointer, range_ Range /* not a class type */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer */
 	IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
@@ -67,8 +67,8 @@ type IOrderedSet interface {
 	ObjectsAtIndexes(indexes IIndexSet) []objc.ID /* already interface */
 	OrderedSetByApplyingDifference(difference unsafe.Pointer) unsafe.Pointer
 	ReverseObjectEnumerator() unsafe.Pointer
-	SortedArrayUsingComparator(cmptr Comparator /* foo */) []objc.ID /* already interface */
-	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */) []objc.ID /* already interface */
+	SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */
+	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */
 	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */) []objc.ID /* already interface */
 	ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer */) unsafe.Pointer
 }
@@ -154,7 +154,7 @@ func NewOrderedSetWithArrayCopyItems(set []objc.ID /* already interface */, flag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(array:range:copyItems:)
-func NewOrderedSetWithArrayRangeCopyItems(set []objc.ID /* already interface */, range_ Range /* foo */, flag bool /* primitive/slice/pointer */) OrderedSet {
+func NewOrderedSetWithArrayRangeCopyItems(set []objc.ID /* already interface */, range_ Range /* not a class type */, flag bool /* primitive/slice/pointer */) OrderedSet {
 	instance := getOrderedSetClass().Alloc()
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithArray:range:copyItems:"), set, range_, flag)
 	rv.Autorelease()
@@ -164,7 +164,7 @@ func NewOrderedSetWithArrayRangeCopyItems(set []objc.ID /* already interface */,
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(coder:)
-func NewOrderedSetWithCoder(coder Coder /* foo */) OrderedSet {
+func NewOrderedSetWithCoder(coder Coder /* not a class type */) OrderedSet {
 	instance := getOrderedSetClass().Alloc()
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -200,7 +200,7 @@ func NewOrderedSetWithObjects(firstObj unsafe.Pointer) OrderedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(objects:count:)-2ai32
-func NewOrderedSetWithObjectsCount(objects []unsafe.Pointer /* foo */, cnt uint /* primitive/slice/pointer */) OrderedSet {
+func NewOrderedSetWithObjectsCount(objects []unsafe.Pointer /* not a class type */, cnt uint /* primitive/slice/pointer */) OrderedSet {
 	instance := getOrderedSetClass().Alloc()
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
@@ -236,7 +236,7 @@ func NewOrderedSetWithOrderedSetCopyItems(set unsafe.Pointer, flag bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(orderedSet:range:copyItems:)
-func NewOrderedSetWithOrderedSetRangeCopyItems(set unsafe.Pointer, range_ Range /* foo */, flag bool /* primitive/slice/pointer */) OrderedSet {
+func NewOrderedSetWithOrderedSetRangeCopyItems(set unsafe.Pointer, range_ Range /* not a class type */, flag bool /* primitive/slice/pointer */) OrderedSet {
 	instance := getOrderedSetClass().Alloc()
 	rv := objc.Send[OrderedSet](instance.ID, objc.Sel("initWithOrderedSet:range:copyItems:"), set, range_, flag)
 	rv.Autorelease()
@@ -273,7 +273,7 @@ func NewOrderedSetWithSetCopyItems(set unsafe.Pointer, flag bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/init(objects:count:)-3ny0m
-func (oc _OrderedSetClass) OrderedSetWithObjectsCount(objects []unsafe.Pointer /* foo */, cnt uint /* primitive/slice/pointer */) unsafe.Pointer {
+func (oc _OrderedSetClass) OrderedSetWithObjectsCount(objects []unsafe.Pointer /* not a class type */, cnt uint /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("orderedSetWithObjects:count:"), objects, cnt)
 	return rv
 }
@@ -303,7 +303,7 @@ func (oc _OrderedSetClass) OrderedSetWithArray(array []objc.ID /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/orderedSetWithArray:range:copyItems:
-func (oc _OrderedSetClass) OrderedSetWithArrayRangeCopyItems(array []objc.ID /* already interface */, range_ Range /* foo */, flag bool /* primitive/slice/pointer */) unsafe.Pointer {
+func (oc _OrderedSetClass) OrderedSetWithArrayRangeCopyItems(array []objc.ID /* already interface */, range_ Range /* not a class type */, flag bool /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("orderedSetWithArray:range:copyItems:"), array, range_, flag)
 	return rv
 }
@@ -343,7 +343,7 @@ func (oc _OrderedSetClass) OrderedSetWithSetCopyItems(set unsafe.Pointer, flag b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/addObserver(_:forKeyPath:options:context:)
-func (o_ OrderedSet) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer */, options KeyValueObservingOptions /* foo */, context unsafe.Pointer) {
+func (o_ OrderedSet) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer */, options KeyValueObservingOptions /* not a class type */, context unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
@@ -362,7 +362,7 @@ func (o_ OrderedSet) ContainsObject(object unsafe.Pointer) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:)
-func (o_ OrderedSet) DescriptionWithLocale(locale objectivec.IObject) String /* foo */ {
+func (o_ OrderedSet) DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */ {
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -372,7 +372,7 @@ func (o_ OrderedSet) DescriptionWithLocale(locale objectivec.IObject) String /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
-func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer */) String /* foo */ {
+func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -449,7 +449,7 @@ func (o_ OrderedSet) IndexOfObject(object unsafe.Pointer) uint /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/index(of:inSortedRange:options:usingComparator:)
-func (o_ OrderedSet) IndexOfObjectInSortedRangeOptionsUsingComparator(object unsafe.Pointer, range_ Range /* foo */, opts BinarySearchingOptions, cmp Comparator /* foo */) uint /* primitive/slice/pointer */ {
+func (o_ OrderedSet) IndexOfObjectInSortedRangeOptionsUsingComparator(object unsafe.Pointer, range_ Range /* not a class type */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), object, range_, opts, cmp)
 	return rv
 }
@@ -636,7 +636,7 @@ func (o_ OrderedSet) SetValueForKey(value objectivec.IObject, key string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/sortedArray(comparator:)
-func (o_ OrderedSet) SortedArrayUsingComparator(cmptr Comparator /* foo */) []objc.ID /* already interface */ {
+func (o_ OrderedSet) SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("sortedArrayUsingComparator:"), cmptr)
 	return rv
 }
@@ -646,7 +646,7 @@ func (o_ OrderedSet) SortedArrayUsingComparator(cmptr Comparator /* foo */) []ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/sortedArray(options:usingComparator:)
-func (o_ OrderedSet) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */) []objc.ID /* already interface */ {
+func (o_ OrderedSet) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("sortedArrayWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }

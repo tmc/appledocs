@@ -33,21 +33,21 @@ type IDate interface {
 	// properties:
 	Description() string /* primitive/slice/pointer */
 	SrAbsoluteTime() unsafe.Pointer
-	TimeIntervalSince1970() TimeInterval /* foo */
-	TimeIntervalSinceNow() TimeInterval /* foo */
-	TimeIntervalSinceReferenceDate() TimeInterval /* foo */
+	TimeIntervalSince1970() TimeInterval /* not a class type */
+	TimeIntervalSinceNow() TimeInterval /* not a class type */
+	TimeIntervalSinceReferenceDate() TimeInterval /* not a class type */
 	CustomPlaygroundQuickLook() unsafe.Pointer
 	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
 	NSTimeIntervalSince1970() float64 /* primitive/slice/pointer */
 	SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer */)
 	// methods:
-	DateByAddingTimeInterval(ti TimeInterval /* foo */) unsafe.Pointer
-	Compare(other IDate) ComparisonResult /* foo */
-	DescriptionWithLocale(locale objectivec.IObject) String /* foo */
+	DateByAddingTimeInterval(ti TimeInterval /* not a class type */) unsafe.Pointer
+	Compare(other IDate) ComparisonResult
+	DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */
 	EarlierDate(anotherDate IDate) IDate
 	IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer */
 	LaterDate(anotherDate IDate) IDate
-	TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* foo */
+	TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* not a class type */
 }
 
 // A representation of a specific point in time, independent of any calendar or time zone.
@@ -107,7 +107,7 @@ func NewDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(coder:)
-func NewDateWithCoder(coder Coder /* foo */) Date {
+func NewDateWithCoder(coder Coder /* not a class type */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -141,7 +141,7 @@ func NewDateWithString(description string /* primitive/slice/pointer */) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeIntervalSince1970:)
-func NewDateWithTimeIntervalSince1970(secs TimeInterval /* foo */) Date {
+func NewDateWithTimeIntervalSince1970(secs TimeInterval /* not a class type */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSince1970:"), secs)
 	rv.Autorelease()
@@ -153,7 +153,7 @@ func NewDateWithTimeIntervalSince1970(secs TimeInterval /* foo */) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeInterval:sinceDate:)-71m1f
-func NewDateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* foo */, date IDate) Date {
+func NewDateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* not a class type */, date IDate) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeInterval:sinceDate:"), secsToBeAdded, date)
 	rv.Autorelease()
@@ -165,7 +165,7 @@ func NewDateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* foo */, date
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeIntervalSinceNow:)
-func NewDateWithTimeIntervalSinceNow(secs TimeInterval /* foo */) Date {
+func NewDateWithTimeIntervalSinceNow(secs TimeInterval /* not a class type */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSinceNow:"), secs)
 	rv.Autorelease()
@@ -177,7 +177,7 @@ func NewDateWithTimeIntervalSinceNow(secs TimeInterval /* foo */) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeIntervalSinceReferenceDate:)
-func NewDateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* foo */) Date {
+func NewDateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* not a class type */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSinceReferenceDate:"), ti)
 	rv.Autorelease()
@@ -230,7 +230,7 @@ func (dc _DateClass) Date() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSince1970:
-func (dc _DateClass) DateWithTimeIntervalSince1970(secs TimeInterval /* foo */) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSince1970(secs TimeInterval /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSince1970:"), secs)
 	return rv
 }
@@ -240,7 +240,7 @@ func (dc _DateClass) DateWithTimeIntervalSince1970(secs TimeInterval /* foo */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceNow:
-func (dc _DateClass) DateWithTimeIntervalSinceNow(secs TimeInterval /* foo */) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSinceNow(secs TimeInterval /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceNow:"), secs)
 	return rv
 }
@@ -250,7 +250,7 @@ func (dc _DateClass) DateWithTimeIntervalSinceNow(secs TimeInterval /* foo */) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceReferenceDate:
-func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* foo */) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceReferenceDate:"), ti)
 	return rv
 }
@@ -268,7 +268,7 @@ func (dc _DateClass) DateWithSRAbsoluteTime(time unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeInterval:sinceDate:)-49cea
-func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* foo */, date IDate) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* not a class type */, date IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeInterval:sinceDate:"), secsToBeAdded, date)
 	return rv
 }
@@ -305,7 +305,7 @@ func (dc _DateClass) Now() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/addingTimeInterval(_:)
-func (d_ Date) DateByAddingTimeInterval(ti TimeInterval /* foo */) unsafe.Pointer {
+func (d_ Date) DateByAddingTimeInterval(ti TimeInterval /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateByAddingTimeInterval:"), ti)
 	return rv
 }
@@ -315,7 +315,7 @@ func (d_ Date) DateByAddingTimeInterval(ti TimeInterval /* foo */) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/compare(_:)
-func (d_ Date) Compare(other IDate) ComparisonResult /* foo */ {
+func (d_ Date) Compare(other IDate) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), other)
 	return rv
 }
@@ -325,7 +325,7 @@ func (d_ Date) Compare(other IDate) ComparisonResult /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/description(with:)
-func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) String /* foo */ {
+func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -365,7 +365,7 @@ func (d_ Date) LaterDate(anotherDate IDate) IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSince(_:)
-func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* foo */ {
+func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceDate:"), anotherDate)
 	return rv
 }
@@ -423,7 +423,7 @@ func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSince1970
-func (d_ Date) TimeIntervalSince1970() TimeInterval /* foo */ {
+func (d_ Date) TimeIntervalSince1970() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
 }
@@ -433,7 +433,7 @@ func (d_ Date) TimeIntervalSince1970() TimeInterval /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceNow
-func (d_ Date) TimeIntervalSinceNow() TimeInterval /* foo */ {
+func (d_ Date) TimeIntervalSinceNow() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
 }
@@ -443,7 +443,7 @@ func (d_ Date) TimeIntervalSinceNow() TimeInterval /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.property
-func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval /* foo */ {
+func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }

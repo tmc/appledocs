@@ -37,26 +37,26 @@ type IIndexSet interface {
 	// methods:
 	ContainsIndexes(indexSet IIndexSet) bool /* primitive/slice/pointer */
 	ContainsIndex(value uint /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	ContainsIndexesInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
-	CountOfIndexesInRange(range_ Range /* foo */) uint /* primitive/slice/pointer */
+	ContainsIndexesInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */
+	CountOfIndexesInRange(range_ Range /* not a class type */) uint /* primitive/slice/pointer */
 	EnumerateIndexesUsingBlock(block unsafe.Pointer)
-	EnumerateIndexesInRangeOptionsUsingBlock(range_ Range /* foo */, opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateIndexesInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateRangesUsingBlock(block unsafe.Pointer)
-	EnumerateRangesInRangeOptionsUsingBlock(range_ Range /* foo */, opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateRangesInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
-	GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */
-	IndexInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
+	GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* not a class type */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */) uint /* primitive/slice/pointer */
+	IndexInRangeOptionsPassingTest(range_ Range /* not a class type */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer */
-	IndexesInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
+	IndexesInRangeOptionsPassingTest(range_ Range /* not a class type */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
 	IndexesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
 	IndexesPassingTest(predicate unsafe.Pointer) IIndexSet
 	IndexGreaterThanIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexGreaterThanOrEqualToIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexLessThanIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexLessThanOrEqualToIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
-	IntersectsIndexesInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
+	IntersectsIndexesInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */
 	IsEqualToIndexSet(indexSet IIndexSet) bool /* primitive/slice/pointer */
 }
 
@@ -141,7 +141,7 @@ func NewIndexSetWithIndexSet(indexSet IIndexSet) IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/init(indexesIn:)
-func NewIndexSetWithIndexesInRange(range_ Range /* foo */) IndexSet {
+func NewIndexSetWithIndexesInRange(range_ Range /* not a class type */) IndexSet {
 	instance := getIndexSetClass().Alloc()
 	rv := objc.Send[IndexSet](instance.ID, objc.Sel("initWithIndexesInRange:"), range_)
 	rv.Autorelease()
@@ -174,7 +174,7 @@ func (ic _IndexSetClass) IndexSetWithIndex(value uint /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndexesInRange:
-func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ Range /* foo */) unsafe.Pointer {
+func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ Range /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndexesInRange:"), range_)
 	return rv
 }
@@ -204,7 +204,7 @@ func (i_ IndexSet) ContainsIndex(value uint /* primitive/slice/pointer */) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/contains(in:)
-func (i_ IndexSet) ContainsIndexesInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */ {
+func (i_ IndexSet) ContainsIndexesInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("containsIndexesInRange:"), range_)
 	return rv
 }
@@ -214,7 +214,7 @@ func (i_ IndexSet) ContainsIndexesInRange(range_ Range /* foo */) bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/countOfIndexes(in:)
-func (i_ IndexSet) CountOfIndexesInRange(range_ Range /* foo */) uint /* primitive/slice/pointer */ {
+func (i_ IndexSet) CountOfIndexesInRange(range_ Range /* not a class type */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("countOfIndexesInRange:"), range_)
 	return rv
 }
@@ -233,7 +233,7 @@ func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(in:options:using:)
-func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range /* foo */, opts EnumerationOptions, block unsafe.Pointer) {
+func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesInRange:options:usingBlock:"), range_, opts, block)
 }
 
@@ -260,7 +260,7 @@ func (i_ IndexSet) EnumerateRangesUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerateRanges(in:options:using:)
-func (i_ IndexSet) EnumerateRangesInRangeOptionsUsingBlock(range_ Range /* foo */, opts EnumerationOptions, block unsafe.Pointer) {
+func (i_ IndexSet) EnumerateRangesInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateRangesInRange:options:usingBlock:"), range_, opts, block)
 }
 
@@ -278,7 +278,7 @@ func (i_ IndexSet) EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/getIndexes(_:maxCount:inIndexRange:)
-func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */ {
+func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* not a class type */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("getIndexes:maxCount:inIndexRange:"), indexBuffer, bufferSize, range_)
 	return rv
 }
@@ -288,7 +288,7 @@ func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/index(in:options:passingTest:)
-func (i_ IndexSet) IndexInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */ {
+func (i_ IndexSet) IndexInRangeOptionsPassingTest(range_ Range /* not a class type */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexInRange:options:passingTest:"), range_, opts, predicate)
 	return rv
 }
@@ -318,7 +318,7 @@ func (i_ IndexSet) IndexPassingTest(predicate unsafe.Pointer) uint /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(in:options:passingTest:)
-func (i_ IndexSet) IndexesInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
+func (i_ IndexSet) IndexesInRangeOptionsPassingTest(range_ Range /* not a class type */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesInRange:options:passingTest:"), range_, opts, predicate)
 	return rv
 }
@@ -388,7 +388,7 @@ func (i_ IndexSet) IndexLessThanOrEqualToIndex(value uint /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/intersects(in:)
-func (i_ IndexSet) IntersectsIndexesInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */ {
+func (i_ IndexSet) IntersectsIndexesInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("intersectsIndexesInRange:"), range_)
 	return rv
 }

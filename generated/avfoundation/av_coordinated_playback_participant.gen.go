@@ -32,8 +32,8 @@ type _CoordinatedPlaybackParticipantClass struct {
 type ICoordinatedPlaybackParticipant interface {
 	objectivec.IObject
 	// properties:
-	Identifier() foundation.UUID /* foo */
-	SetIdentifier(value foundation.UUID /* foo */)
+	Identifier() foundation.UUID /* not a class type */
+	SetIdentifier(value foundation.UUID /* not a class type */)
 	IsReadyToPlay() bool /* primitive/slice/pointer */
 	SetIsReadyToPlay(value bool /* primitive/slice/pointer */)
 	SuspensionReasons() unsafe.Pointer
@@ -100,7 +100,7 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID /* foo */ {
+func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID /* not a class type */ {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID /* foo */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID /* foo */) {
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 

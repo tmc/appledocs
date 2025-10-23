@@ -34,12 +34,12 @@ type IComposition interface {
 	// properties:
 	AllMediaSelections() IAVMediaSelection
 	SetAllMediaSelections(value IAVMediaSelection)
-	AvailableChapterLocales() foundation.Locale /* foo */
-	SetAvailableChapterLocales(value foundation.Locale /* foo */)
-	AvailableMediaCharacteristicsWithMediaSelectionOptions() AVMediaCharacteristic /* foo */
-	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value AVMediaCharacteristic /* foo */)
-	AvailableMetadataFormats() AVMetadataFormat /* foo */
-	SetAvailableMetadataFormats(value AVMetadataFormat /* foo */)
+	AvailableChapterLocales() foundation.Locale /* not a class type */
+	SetAvailableChapterLocales(value foundation.Locale /* not a class type */)
+	AvailableMediaCharacteristicsWithMediaSelectionOptions() MediaCharacteristic /* not a class type */
+	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */)
+	AvailableMetadataFormats() MetadataFormat /* not a class type */
+	SetAvailableMetadataFormats(value MetadataFormat /* not a class type */)
 	CanContainFragments() bool /* primitive/slice/pointer */
 	SetCanContainFragments(value bool /* primitive/slice/pointer */)
 	CommonMetadata() IAVMetadataItem
@@ -48,8 +48,8 @@ type IComposition interface {
 	SetContainsFragments(value bool /* primitive/slice/pointer */)
 	CreationDate() IAVMetadataItem
 	SetCreationDate(value IAVMetadataItem)
-	Duration() CMTime /* foo */
-	SetDuration(value CMTime /* foo */)
+	Duration() Time /* not a class type */
+	SetDuration(value Time /* not a class type */)
 	HasProtectedContent() bool /* primitive/slice/pointer */
 	SetHasProtectedContent(value bool /* primitive/slice/pointer */)
 	IsCompatibleWithAirPlayVideo() bool /* primitive/slice/pointer */
@@ -68,14 +68,14 @@ type IComposition interface {
 	SetLyrics(value string /* primitive/slice/pointer */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	MinimumTimeOffsetFromLive() CMTime /* foo */
-	SetMinimumTimeOffsetFromLive(value CMTime /* foo */)
+	MinimumTimeOffsetFromLive() Time /* not a class type */
+	SetMinimumTimeOffsetFromLive(value Time /* not a class type */)
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	OverallDurationHint() CMTime /* foo */
-	SetOverallDurationHint(value CMTime /* foo */)
-	PreferredDisplayCriteria() AVDisplayCriteria /* foo */
-	SetPreferredDisplayCriteria(value AVDisplayCriteria /* foo */)
+	OverallDurationHint() Time /* not a class type */
+	SetOverallDurationHint(value Time /* not a class type */)
+	PreferredDisplayCriteria() DisplayCriteria /* not a class type */
+	SetPreferredDisplayCriteria(value DisplayCriteria /* not a class type */)
 	PreferredMediaSelection() IAVMediaSelection
 	SetPreferredMediaSelection(value IAVMediaSelection)
 	PreferredRate() float32 /* primitive/slice/pointer */
@@ -88,8 +88,8 @@ type IComposition interface {
 	SetProvidesPreciseDurationAndTiming(value bool /* primitive/slice/pointer */)
 	TrackGroups() IAVAssetTrackGroup
 	SetTrackGroups(value IAVAssetTrackGroup)
-	Tracks() AVCompositionTrack /* foo */
-	SetTracks(value AVCompositionTrack /* foo */)
+	Tracks() CompositionTrack /* not a class type */
+	SetTracks(value CompositionTrack /* not a class type */)
 	UrlAssetInitializationOptions() string /* primitive/slice/pointer */
 	SetUrlAssetInitializationOptions(value string /* primitive/slice/pointer */)
 	// methods:
@@ -173,7 +173,7 @@ func (c_ Composition) SetAllMediaSelections(value IAVMediaSelection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablechapterlocales
-func (c_ Composition) AvailableChapterLocales() foundation.Locale /* foo */ {
+func (c_ Composition) AvailableChapterLocales() foundation.Locale /* not a class type */ {
 	rv := objc.Send[foundation.Locale](c_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
@@ -183,7 +183,7 @@ func (c_ Composition) AvailableChapterLocales() foundation.Locale /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablechapterlocales
-func (c_ Composition) SetAvailableChapterLocales(value foundation.Locale /* foo */) {
+func (c_ Composition) SetAvailableChapterLocales(value foundation.Locale /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableChapterLocales:"), value)
 }
 
@@ -192,7 +192,7 @@ func (c_ Composition) SetAvailableChapterLocales(value foundation.Locale /* foo 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablemediacharacteristicswithmediaselectionoptions
-func (c_ Composition) AvailableMediaCharacteristicsWithMediaSelectionOptions() AVMediaCharacteristic /* foo */ {
+func (c_ Composition) AvailableMediaCharacteristicsWithMediaSelectionOptions() MediaCharacteristic /* not a class type */ {
 	rv := objc.Send[MediaCharacteristic](c_.ID, objc.Sel("availableMediaCharacteristicsWithMediaSelectionOptions"))
 	return rv
 }
@@ -202,7 +202,7 @@ func (c_ Composition) AvailableMediaCharacteristicsWithMediaSelectionOptions() A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablemediacharacteristicswithmediaselectionoptions
-func (c_ Composition) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value AVMediaCharacteristic /* foo */) {
+func (c_ Composition) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableMediaCharacteristicsWithMediaSelectionOptions:"), value)
 }
 
@@ -211,7 +211,7 @@ func (c_ Composition) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablemetadataformats
-func (c_ Composition) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
+func (c_ Composition) AvailableMetadataFormats() MetadataFormat /* not a class type */ {
 	rv := objc.Send[MetadataFormat](c_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (c_ Composition) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablemetadataformats
-func (c_ Composition) SetAvailableMetadataFormats(value AVMetadataFormat /* foo */) {
+func (c_ Composition) SetAvailableMetadataFormats(value MetadataFormat /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
@@ -306,7 +306,7 @@ func (c_ Composition) SetCreationDate(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/duration
-func (c_ Composition) Duration() CMTime /* foo */ {
+func (c_ Composition) Duration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -316,7 +316,7 @@ func (c_ Composition) Duration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/duration
-func (c_ Composition) SetDuration(value CMTime /* foo */) {
+func (c_ Composition) SetDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -496,7 +496,7 @@ func (c_ Composition) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/minimumtimeoffsetfromlive
-func (c_ Composition) MinimumTimeOffsetFromLive() CMTime /* foo */ {
+func (c_ Composition) MinimumTimeOffsetFromLive() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("minimumTimeOffsetFromLive"))
 	return rv
 }
@@ -506,7 +506,7 @@ func (c_ Composition) MinimumTimeOffsetFromLive() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/minimumtimeoffsetfromlive
-func (c_ Composition) SetMinimumTimeOffsetFromLive(value CMTime /* foo */) {
+func (c_ Composition) SetMinimumTimeOffsetFromLive(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumTimeOffsetFromLive:"), value)
 }
 
@@ -534,7 +534,7 @@ func (c_ Composition) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/overalldurationhint
-func (c_ Composition) OverallDurationHint() CMTime /* foo */ {
+func (c_ Composition) OverallDurationHint() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("overallDurationHint"))
 	return rv
 }
@@ -544,7 +544,7 @@ func (c_ Composition) OverallDurationHint() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/overalldurationhint
-func (c_ Composition) SetOverallDurationHint(value CMTime /* foo */) {
+func (c_ Composition) SetOverallDurationHint(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOverallDurationHint:"), value)
 }
 
@@ -553,7 +553,7 @@ func (c_ Composition) SetOverallDurationHint(value CMTime /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferreddisplaycriteria
-func (c_ Composition) PreferredDisplayCriteria() AVDisplayCriteria /* foo */ {
+func (c_ Composition) PreferredDisplayCriteria() DisplayCriteria /* not a class type */ {
 	rv := objc.Send[DisplayCriteria](c_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
@@ -563,7 +563,7 @@ func (c_ Composition) PreferredDisplayCriteria() AVDisplayCriteria /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferreddisplaycriteria
-func (c_ Composition) SetPreferredDisplayCriteria(value AVDisplayCriteria /* foo */) {
+func (c_ Composition) SetPreferredDisplayCriteria(value DisplayCriteria /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 
@@ -686,7 +686,7 @@ func (c_ Composition) SetTrackGroups(value IAVAssetTrackGroup) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/tracks
-func (c_ Composition) Tracks() AVCompositionTrack /* foo */ {
+func (c_ Composition) Tracks() CompositionTrack /* not a class type */ {
 	rv := objc.Send[CompositionTrack](c_.ID, objc.Sel("tracks"))
 	return rv
 }
@@ -696,7 +696,7 @@ func (c_ Composition) Tracks() AVCompositionTrack /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/tracks
-func (c_ Composition) SetTracks(value AVCompositionTrack /* foo */) {
+func (c_ Composition) SetTracks(value CompositionTrack /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTracks:"), value)
 }
 

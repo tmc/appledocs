@@ -42,8 +42,8 @@ type IExternalStorageDevice interface {
 	SetIsNotRecommendedForCaptureUse(value bool /* primitive/slice/pointer */)
 	TotalSize() int /* primitive/slice/pointer */
 	SetTotalSize(value int /* primitive/slice/pointer */)
-	Uuid() foundation.UUID /* foo */
-	SetUuid(value foundation.UUID /* foo */)
+	Uuid() foundation.UUID /* not a class type */
+	SetUuid(value foundation.UUID /* not a class type */)
 	ExternalStorageDevices() IAVExternalStorageDevice
 	SetExternalStorageDevices(value IAVExternalStorageDevice)
 	// methods:
@@ -201,7 +201,7 @@ func (e_ ExternalStorageDevice) SetTotalSize(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/uuid
-func (e_ ExternalStorageDevice) Uuid() foundation.UUID /* foo */ {
+func (e_ ExternalStorageDevice) Uuid() foundation.UUID /* not a class type */ {
 	rv := objc.Send[foundation.UUID](e_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (e_ ExternalStorageDevice) Uuid() foundation.UUID /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/uuid
-func (e_ ExternalStorageDevice) SetUuid(value foundation.UUID /* foo */) {
+func (e_ ExternalStorageDevice) SetUuid(value foundation.UUID /* not a class type */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUuid:"), value)
 }
 

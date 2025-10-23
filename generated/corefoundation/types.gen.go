@@ -10,57 +10,55 @@ import (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
-type CFAllocatorContext = int
+type AllocatorContext = int
 
-type CFArrayCallBacks = int
+type ArrayCallBacks = int
 
-type CFBagCallBacks = int
+type BagCallBacks = int
 
-type CFBinaryHeapCallBacks = int
+type BinaryHeapCallBacks = int
 
-type CFBinaryHeapCompareContext = int
+type BinaryHeapCompareContext = int
 
-type CFDictionaryKeyCallBacks = int
+type DictionaryKeyCallBacks = int
 
-type CFDictionaryValueCallBacks = int
+type DictionaryValueCallBacks = int
 
-type CFFileDescriptorContext = int
+type FileDescriptorContext = int
 
-type CFGregorianDate = int
+type GregorianDate = int
 
-type CFGregorianUnits = int
+type GregorianUnits = int
 
-type CFMachPortContext = int
+type MachPortContext = int
 
-type CFMessagePortContext = int
+type MessagePortContext = int
 
-type CFRange = int
+type RunLoopObserverContext = int
 
-type CFRunLoopObserverContext = int
+type RunLoopSourceContext = int
 
-type CFRunLoopSourceContext = int
+type RunLoopTimerContext = int
 
-type CFRunLoopTimerContext = int
+type SetCallBacks = int
 
-type CFSetCallBacks = int
+type SocketContext = int
 
-type CFSocketContext = int
+type SocketSignature = int
 
-type CFSocketSignature = int
+type StreamClientContext = int
 
-type CFStreamClientContext = int
+type StreamError = int
 
-type CFStreamError = int
-
-type CFTreeContext = int
-
-type CFUUIDBytes = int
-
-type CFXMLParserCallBacks = int
-
-type CFXMLParserContext = int
+type TreeContext = int
 
 type UIEdgeInsets = int
+
+type UUIDBytes = int
+
+type XMLParserCallBacks = int
+
+type XMLParserContext = int
 
 
 

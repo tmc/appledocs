@@ -33,14 +33,14 @@ type IAssetReader interface {
 	// properties:
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
-	Error() AVError /* enum */
-	SetError(value AVError /* enum */)
-	Outputs() AVAssetReaderOutput /* foo */
-	SetOutputs(value AVAssetReaderOutput /* foo */)
+	Error() Error
+	SetError(value Error)
+	Outputs() AssetReaderOutput /* not a class type */
+	SetOutputs(value AssetReaderOutput /* not a class type */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
-	TimeRange() CMTimeRange /* foo */
-	SetTimeRange(value CMTimeRange /* foo */)
+	TimeRange() TimeRange /* not a class type */
+	SetTimeRange(value TimeRange /* not a class type */)
 	// methods:
 }
 
@@ -120,7 +120,7 @@ func (a_ AssetReader) SetAsset(value IAVAsset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) Error() AVError /* enum */ {
+func (a_ AssetReader) Error() Error {
 	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (a_ AssetReader) Error() AVError /* enum */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) SetError(value AVError /* enum */) {
+func (a_ AssetReader) SetError(value Error) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
@@ -139,7 +139,7 @@ func (a_ AssetReader) SetError(value AVError /* enum */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) Outputs() AVAssetReaderOutput /* foo */ {
+func (a_ AssetReader) Outputs() AssetReaderOutput /* not a class type */ {
 	rv := objc.Send[AssetReaderOutput](a_.ID, objc.Sel("outputs"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (a_ AssetReader) Outputs() AVAssetReaderOutput /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) SetOutputs(value AVAssetReaderOutput /* foo */) {
+func (a_ AssetReader) SetOutputs(value AssetReaderOutput /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-func (a_ AssetReader) TimeRange() CMTimeRange /* foo */ {
+func (a_ AssetReader) TimeRange() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (a_ AssetReader) TimeRange() CMTimeRange /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-func (a_ AssetReader) SetTimeRange(value CMTimeRange /* foo */) {
+func (a_ AssetReader) SetTimeRange(value TimeRange /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }
 

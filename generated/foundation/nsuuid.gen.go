@@ -33,7 +33,7 @@ type IUUID interface {
 	// properties:
 	UUIDString() string /* primitive/slice/pointer */
 	// methods:
-	Compare(otherUUID IUUID) ComparisonResult /* foo */
+	Compare(otherUUID IUUID) ComparisonResult
 	GetUUIDBytes(uuid unsafe.Pointer)
 }
 
@@ -127,7 +127,7 @@ func (uc _UUIDClass) UUID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
-func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult /* foo */ {
+func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
 	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
 	return rv
 }

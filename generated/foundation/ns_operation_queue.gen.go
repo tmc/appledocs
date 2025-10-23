@@ -44,8 +44,8 @@ type IOperationQueue interface {
 	SetName(value string /* primitive/slice/pointer */)
 	OperationCount() int /* primitive/slice/pointer */
 	SetOperationCount(value int /* primitive/slice/pointer */)
-	Progress() Progress /* foo */
-	SetProgress(value Progress /* foo */)
+	Progress() Progress /* not a class type */
+	SetProgress(value Progress /* not a class type */)
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
 	UnderlyingQueue() unsafe.Pointer
@@ -234,7 +234,7 @@ func (o_ OperationQueue) SetOperationCount(value int /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) Progress() Progress /* foo */ {
+func (o_ OperationQueue) Progress() Progress /* not a class type */ {
 	rv := objc.Send[Progress](o_.ID, objc.Sel("progress"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (o_ OperationQueue) Progress() Progress /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) SetProgress(value Progress /* foo */) {
+func (o_ OperationQueue) SetProgress(value Progress /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
 }
 

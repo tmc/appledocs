@@ -10,7 +10,7 @@ import (
 )
 
 
-// Foundation Functions (592 total)
+// Foundation Functions (747 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -19,12 +19,16 @@ var (
 	_NSAllocateObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSClassFromString func(unsafe.Pointer) unsafe.Pointer
 	_NSCountFrames func() unsafe.Pointer
+	_NSFileTypeForHFSTypeCode func(unsafe.Pointer) unsafe.Pointer
 	_NSFrameAddress func(unsafe.Pointer) unsafe.Pointer
+	_NSFullUserName func() unsafe.Pointer
 	_NSGetSizeAndAlignment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSHomeDirectory func() unsafe.Pointer
 	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
 	_NSOpenStepRootDirectory func() unsafe.Pointer
 	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_NSTemporaryDirectory func() unsafe.Pointer
+	_NSUserName func() unsafe.Pointer
 	_NSAllHashTableObjects func(unsafe.Pointer) unsafe.Pointer
 	_NSAllMapTableKeys func(unsafe.Pointer) unsafe.Pointer
 	_NSAllMapTableValues func(unsafe.Pointer) unsafe.Pointer
@@ -100,6 +104,7 @@ var (
 	_NSUnionRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSUnionRect func(coregraphics.CGRect, coregraphics.CGRect) coregraphics.CGRect
 	_AXAnimatedImagesEnabled func() bool
+	_AXMFiHearingDeviceStreamingEar func() unsafe.Pointer
 	_AXNameFromColor func(coregraphics.ColorRef) unsafe.Pointer
 	_AXOpenSettingsFeature func(unsafe.Pointer)
 	_AXPrefersActionSliderAlternative func() bool
@@ -108,13 +113,23 @@ var (
 	_AXPrefersNonBlinkingTextInsertionIndicator func() bool
 	_AXShowBordersEnabled func() bool
 	_AXAssistiveAccessEnabled func() bool
+	_NSAccessibilityRoleDescription func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSAccessibilityPostNotification func(unsafe.Pointer, unsafe.Pointer)
 	_NSAccessibilityPointInView func(unsafe.Pointer, coregraphics.CGPoint) coregraphics.CGPoint
 	_NSAccessibilityFrameInView func(unsafe.Pointer, coregraphics.CGRect) coregraphics.CGRect
+	_NSAccessibilityUnignoredDescendant func(unsafe.Pointer) unsafe.Pointer
 	_NSAvailableWindowDepths func() unsafe.Pointer
+	_NSBeginAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSBeginCriticalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSBeginInformationalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSBestDepth func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
 	_NSNumberOfColorComponents func(unsafe.Pointer) unsafe.Pointer
+	_NSConvertGlyphsToPackedGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSCopyBits func(unsafe.Pointer, coregraphics.CGRect, coregraphics.CGPoint)
+	_NSDisableScreenUpdates func()
+	_NSDottedFrameRect func(coregraphics.CGRect)
 	_NSDrawButton func(coregraphics.CGRect, coregraphics.CGRect)
+	_NSDrawColorTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
 	_NSDrawDarkBezel func(coregraphics.CGRect, coregraphics.CGRect)
 	_NSDrawGrayBezel func(coregraphics.CGRect, coregraphics.CGRect)
 	_NSDrawGroove func(coregraphics.CGRect, coregraphics.CGRect)
@@ -124,15 +139,23 @@ var (
 	_NSDrawTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, []float64, unsafe.Pointer) coregraphics.CGRect
 	_NSDrawWhiteBezel func(coregraphics.CGRect, coregraphics.CGRect)
 	_NSDrawWindowBackground func(coregraphics.CGRect)
+	_NSEnableScreenUpdates func()
 	_NSEraseRect func(coregraphics.CGRect)
 	_NSSetFocusRingStyle func(unsafe.Pointer)
 	_NSFrameRect func(coregraphics.CGRect)
 	_NSFrameRectWithWidth func(coregraphics.CGRect, float64)
 	_NSFrameRectWithWidthUsingOperation func(coregraphics.CGRect, float64, unsafe.Pointer)
+	_NSGetCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSGetInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSGetWindowServerMemory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSHighlightRect func(coregraphics.CGRect)
+	_NSOpenGLGetOption func(unsafe.Pointer, unsafe.Pointer)
+	_NSOpenGLGetVersion func(unsafe.Pointer, unsafe.Pointer)
+	_NSOpenGLSetOption func(unsafe.Pointer, unsafe.Pointer)
 	_NSCreateFileContentsPboardType func(unsafe.Pointer) unsafe.Pointer
 	_NSCreateFilenamePboardType func(unsafe.Pointer) unsafe.Pointer
 	_NSGetFileType func(unsafe.Pointer) unsafe.Pointer
+	_NSReadPixel func(coregraphics.CGPoint) unsafe.Pointer
 	_NSRectClip func(coregraphics.CGRect)
 	_NSRectClipList func(unsafe.Pointer, unsafe.Pointer)
 	_NSRectFill func(coregraphics.CGRect)
@@ -142,10 +165,25 @@ var (
 	_NSRectFillListWithColorsUsingOperation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSRectFillListWithGrays func(unsafe.Pointer, []float64, unsafe.Pointer)
 	_NSRectFillUsingOperation func(coregraphics.CGRect, unsafe.Pointer)
+	_NSReleaseAlertPanel func(unsafe.Pointer)
+	_NSRunCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRunInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) unsafe.Pointer
+	_NSShowsServicesMenuItem func(unsafe.Pointer) bool
 	_NSBitsPerPixelFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSBitsPerSampleFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSColorSpaceFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSPlanarFromDepth func(unsafe.Pointer) bool
+	_NSWindowList func(unsafe.Pointer, unsafe.Pointer)
+	_CTFontManagerUnregisterFontURLs func(unsafe.Pointer, unsafe.Pointer, bool)
+	_es_new_client func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MACaptionAppearanceCopyActiveProfileID func() unsafe.Pointer
+	_MAImageCaptioningCopyMetadataTagPath func() unsafe.Pointer
+	_SecItemCopyMatching func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_WKAccessibilityIsReduceMotionEnabled func() bool
+	_CFAbsoluteTimeGetCurrent func() unsafe.Pointer
+	_CFAbsoluteTimeGetDayOfYear func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFAbsoluteTimeGetDifferenceAsGregorianUnits func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAllocatorAllocate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAllocatorCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAllocatorDeallocate func(unsafe.Pointer, unsafe.Pointer)
@@ -155,11 +193,16 @@ var (
 	_CFAllocatorGetTypeID func() unsafe.Pointer
 	_CFAllocatorReallocate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAllocatorSetDefault func(unsafe.Pointer)
+	_CFArrayAppendArray func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFArrayAppendValue func(unsafe.Pointer, unsafe.Pointer)
 	_CFArrayApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFArrayBSearchValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFArrayContainsValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFArrayCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFArrayCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFArrayCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFArrayCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFArrayExchangeValuesAtIndices func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFArrayGetCount func(unsafe.Pointer) unsafe.Pointer
 	_CFArrayGetCountOfValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFArrayGetFirstIndexOfValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -167,6 +210,12 @@ var (
 	_CFArrayGetTypeID func() unsafe.Pointer
 	_CFArrayGetValueAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFArrayGetValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFArrayInsertValueAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFArrayRemoveAllValues func(unsafe.Pointer)
+	_CFArrayRemoveValueAtIndex func(unsafe.Pointer, unsafe.Pointer)
+	_CFArrayReplaceValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFArraySetValueAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFArraySortValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFAttributedStringBeginEditing func(unsafe.Pointer)
 	_CFAttributedStringCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -178,6 +227,7 @@ var (
 	_CFAttributedStringGetAttributeAndLongestEffectiveRange func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetAttributesAndLongestEffectiveRange func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CFAttributedStringGetLength func(unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetMutableString func(unsafe.Pointer) unsafe.Pointer
 	_CFAttributedStringGetString func(unsafe.Pointer) unsafe.Pointer
@@ -187,16 +237,23 @@ var (
 	_CFAttributedStringReplaceString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFAttributedStringSetAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFAttributedStringSetAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFBagAddValue func(unsafe.Pointer, unsafe.Pointer)
 	_CFBagApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFBagContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBagCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBagCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFBagCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFBagCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBagGetCount func(unsafe.Pointer) unsafe.Pointer
 	_CFBagGetCountOfValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBagGetTypeID func() unsafe.Pointer
 	_CFBagGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBagGetValueIfPresent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBagGetValues func(unsafe.Pointer, unsafe.Pointer)
+	_CFBagRemoveAllValues func(unsafe.Pointer)
+	_CFBagRemoveValue func(unsafe.Pointer, unsafe.Pointer)
+	_CFBagReplaceValue func(unsafe.Pointer, unsafe.Pointer)
+	_CFBagSetValue func(unsafe.Pointer, unsafe.Pointer)
 	_CFBinaryHeapAddValue func(unsafe.Pointer, unsafe.Pointer)
 	_CFBinaryHeapApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFBinaryHeapContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -226,6 +283,7 @@ var (
 	_CFBundleCopyLocalizationsForPreferences func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBundleCopyLocalizationsForURL func(unsafe.Pointer) unsafe.Pointer
 	_CFBundleCopyLocalizedString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFBundleCopyLocalizedStringForLocalizations func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFBundleCopyPreferredLocalizationsFromArray func(unsafe.Pointer) unsafe.Pointer
 	_CFBundleCopyPrivateFrameworksURL func(unsafe.Pointer) unsafe.Pointer
 	_CFBundleCopyResourceURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -306,6 +364,8 @@ var (
 	_CFCharacterSetRemoveCharactersInRange func(unsafe.Pointer, unsafe.Pointer)
 	_CFCharacterSetRemoveCharactersInString func(unsafe.Pointer, unsafe.Pointer)
 	_CFCharacterSetUnion func(unsafe.Pointer, unsafe.Pointer)
+	_CFCopyDescription func(unsafe.Pointer) unsafe.Pointer
+	_CFCopyTypeIDDescription func(unsafe.Pointer) unsafe.Pointer
 	_CFDataAppendBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFDataCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDataCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -341,11 +401,14 @@ var (
 	_CFDateGetAbsoluteTime func(unsafe.Pointer) unsafe.Pointer
 	_CFDateGetTimeIntervalSinceDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDateGetTypeID func() unsafe.Pointer
+	_CFDictionaryAddValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFDictionaryApplyFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFDictionaryContainsKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryContainsValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryCreateMutable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryGetCount func(unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryGetCountOfKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryGetCountOfValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -353,10 +416,18 @@ var (
 	_CFDictionaryGetTypeID func() unsafe.Pointer
 	_CFDictionaryGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFDictionaryGetValueIfPresent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFDictionaryRemoveAllValues func(unsafe.Pointer)
+	_CFDictionaryRemoveValue func(unsafe.Pointer, unsafe.Pointer)
+	_CFDictionaryReplaceValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFDictionarySetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFEqual func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFErrorCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFFileDescriptorGetNativeDescriptor func(unsafe.Pointer) unsafe.Pointer
 	_CFFileDescriptorIsValid func(unsafe.Pointer) unsafe.Pointer
+	_CFGetAllocator func(unsafe.Pointer) unsafe.Pointer
+	_CFGetRetainCount func(unsafe.Pointer) unsafe.Pointer
+	_CFGetTypeID func(unsafe.Pointer) unsafe.Pointer
+	_CFGregorianDateGetAbsoluteTime func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFHash func(unsafe.Pointer) unsafe.Pointer
 	_CFLocaleCopyAvailableLocaleIdentifiers func() unsafe.Pointer
 	_CFLocaleCopyCommonISOCurrencyCodes func() unsafe.Pointer
@@ -381,11 +452,56 @@ var (
 	_CFLocaleGetTypeID func() unsafe.Pointer
 	_CFLocaleGetValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier func(unsafe.Pointer) uint32
+	_CFMakeCollectable func(unsafe.Pointer) unsafe.Pointer
 	_CFNullGetTypeID func() unsafe.Pointer
 	_CFNumberIsFloatType func(unsafe.Pointer) unsafe.Pointer
+	_CFPreferencesCopyMultiple func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamClose func(unsafe.Pointer)
+	_CFReadStreamCopyProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamCreateWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamCreateWithFile func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamGetBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamGetError func(unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamGetStatus func(unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamGetTypeID func() unsafe.Pointer
+	_CFReadStreamHasBytesAvailable func(unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamOpen func(unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamSetClient func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFReadStreamUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFRelease func(unsafe.Pointer)
+	_CFRetain func(unsafe.Pointer) unsafe.Pointer
+	_CFRunLoopAddSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFRunLoopIsWaiting func(unsafe.Pointer) unsafe.Pointer
+	_CFRunLoopRun func()
+	_CFRunLoopRunInMode func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFRunLoopStop func(unsafe.Pointer)
+	_CFRunLoopWakeUp func(unsafe.Pointer)
+	_CFShow func(unsafe.Pointer)
 	_CFShowStr func(unsafe.Pointer)
+	_CFSocketCopyRegisteredSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCreateConnectedToSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCreateRunLoopSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCreateWithNative func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketCreateWithSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketEnableCallBacks func(unsafe.Pointer, unsafe.Pointer)
+	_CFSocketGetContext func(unsafe.Pointer, unsafe.Pointer)
+	_CFSocketGetSocketFlags func(unsafe.Pointer) unsafe.Pointer
+	_CFSocketGetTypeID func() unsafe.Pointer
+	_CFSocketInvalidate func(unsafe.Pointer)
+	_CFSocketRegisterValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketSendData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketSetAddress func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFSocketSetSocketFlags func(unsafe.Pointer, unsafe.Pointer)
+	_CFSocketUnregister func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStreamCreatePairWithPeerSocketSignature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStreamCreatePairWithSocket func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFStreamCreatePairWithSocketToHost func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringAppendFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringAppendFormatAndArguments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringAppendPascalString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringCapitalize func(unsafe.Pointer, unsafe.Pointer)
 	_CFStringCompare func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCompareWithOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCompareWithOptionsAndLocale func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -401,6 +517,9 @@ var (
 	_CFStringCreateCopy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCreateExternalRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCreateFromExternalRepresentation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringCreateMutable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringCreateMutableCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringCreateMutableWithExternalCharactersNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCreateWithBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCreateWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringCreateWithCString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -444,8 +563,17 @@ var (
 	_CFStringGetTypeID func() unsafe.Pointer
 	_CFStringHasPrefix func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFStringHasSuffix func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFStringInsert func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFStringIsEncodingAvailable func(unsafe.Pointer) unsafe.Pointer
 	_CFStringIsHyphenationAvailableForLocale func(unsafe.Pointer) unsafe.Pointer
+	_CFStringLowercase func(unsafe.Pointer, unsafe.Pointer)
+	_CFStringNormalize func(unsafe.Pointer, unsafe.Pointer)
+	_CFStringPad func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringReplaceAll func(unsafe.Pointer, unsafe.Pointer)
+	_CFStringSetExternalCharactersNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CFStringTrim func(unsafe.Pointer, unsafe.Pointer)
+	_CFStringTrimWhitespace func(unsafe.Pointer)
+	_CFStringUppercase func(unsafe.Pointer, unsafe.Pointer)
 	_CFTimeZoneCopyAbbreviation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFTimeZoneCopyAbbreviationDictionary func() unsafe.Pointer
 	_CFTimeZoneCopyDefault func() unsafe.Pointer
@@ -554,27 +682,54 @@ var (
 	_CFWriteStreamUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_CFWriteStreamWrite func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_inset func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGColorCreateCopyByMatchingToColorSpace func(coregraphics.ColorSpaceRef, unsafe.Pointer, coregraphics.ColorRef, unsafe.Pointer) coregraphics.ColorRef
+	_CGImageGetBitsPerComponent func(coregraphics.ImageRef) uintptr
+	_CGImageGetBytesPerRow func(coregraphics.ImageRef) uintptr
+	_CGImageCalculateContentHeadroom func(coregraphics.ImageRef) float32
+	_CGImageGetContentHeadroom func(coregraphics.ImageRef) float32
+	_CGImageGetDecode func(coregraphics.ImageRef) []float64
+	_CGImageGetHeight func(coregraphics.ImageRef) uintptr
+	_CGImageCreateWithJPEGDataProvider func(coregraphics.DataProviderRef, []float64, bool, unsafe.Pointer) coregraphics.ImageRef
+	_CGImageRelease func(coregraphics.ImageRef)
+	_CGImageRetain func(coregraphics.ImageRef) coregraphics.ImageRef
 	_LSCanURLAcceptURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSOpenFromURLSpec func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSCanRefAcceptItem func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSOpenCFURLRef func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSSetDefaultRoleHandlerForContentType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSCopyApplicationURLsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSRegisterURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSCopyKindStringForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSCopyDefaultApplicationURLForContentType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSSetDefaultHandlerForURLScheme func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSCopyAllRoleHandlersForContentType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSCopyDefaultApplicationURLForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSCopyApplicationURLsForBundleIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSCopyDefaultRoleHandlerForContentType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_thread_set_state func(unsafe.Pointer) unsafe.Pointer
+	_log func(unsafe.Pointer)
+	_task_info func(unsafe.Pointer) unsafe.Pointer
+	_cosh func(float64) float64
+	_atan func(float64) float64
+	_modf func(unsafe.Pointer) float64
 	_floorf func(float32) float32
 	_ceill func(unsafe.Pointer) unsafe.Pointer
+	_atanhl func(unsafe.Pointer) unsafe.Pointer
+	_tanl func(unsafe.Pointer) unsafe.Pointer
+	_log2 func(float64) float64
 	_ceilf func(float32) float32
 	_ceil func(float64) float64
+	_logbf func(float32) float32
+	_copysignl func(unsafe.Pointer) unsafe.Pointer
 	_floorl func(unsafe.Pointer) unsafe.Pointer
 	_floor func(float64) float64
+	_round func(float64) float64
+	_atanh func(float64) float64
 	_os_proc_available_memory func() uintptr
 	_CNCopyCurrentNetworkInfo func(unsafe.Pointer) unsafe.Pointer
+	_SCNetworkReachabilitySetCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSStringFromUIEdgeInsets func(unsafe.Pointer) unsafe.Pointer
+	_NSStringFromUIOffset func(unsafe.Pointer) unsafe.Pointer
 	_NSTextAlignmentToCTTextAlignment func(unsafe.Pointer) unsafe.Pointer
 	_UIAccessibilityButtonShapesEnabled func() bool
 	_UIGuidedAccessConfigureAccessibilityFeatures func(unsafe.Pointer, bool)
@@ -618,12 +773,16 @@ func init() {
 	tryRegister(&_NSAllocateObject, lib, "NSAllocateObject")
 	tryRegister(&_NSClassFromString, lib, "NSClassFromString")
 	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
+	tryRegister(&_NSFileTypeForHFSTypeCode, lib, "NSFileTypeForHFSTypeCode")
 	tryRegister(&_NSFrameAddress, lib, "NSFrameAddress")
+	tryRegister(&_NSFullUserName, lib, "NSFullUserName")
 	tryRegister(&_NSGetSizeAndAlignment, lib, "NSGetSizeAndAlignment")
 	tryRegister(&_NSHomeDirectory, lib, "NSHomeDirectory")
 	tryRegister(&_NSHomeDirectoryForUser, lib, "NSHomeDirectoryForUser")
 	tryRegister(&_NSOpenStepRootDirectory, lib, "NSOpenStepRootDirectory")
 	tryRegister(&_NSSearchPathForDirectoriesInDomains, lib, "NSSearchPathForDirectoriesInDomains")
+	tryRegister(&_NSTemporaryDirectory, lib, "NSTemporaryDirectory")
+	tryRegister(&_NSUserName, lib, "NSUserName")
 	tryRegister(&_NSAllHashTableObjects, lib, "NSAllHashTableObjects")
 	tryRegister(&_NSAllMapTableKeys, lib, "NSAllMapTableKeys")
 	tryRegister(&_NSAllMapTableValues, lib, "NSAllMapTableValues")
@@ -699,6 +858,7 @@ func init() {
 	tryRegister(&_NSUnionRange, lib, "NSUnionRange")
 	tryRegister(&_NSUnionRect, lib, "NSUnionRect")
 	tryRegister(&_AXAnimatedImagesEnabled, lib, "AXAnimatedImagesEnabled")
+	tryRegister(&_AXMFiHearingDeviceStreamingEar, lib, "AXMFiHearingDeviceStreamingEar")
 	tryRegister(&_AXNameFromColor, lib, "AXNameFromColor")
 	tryRegister(&_AXOpenSettingsFeature, lib, "AXOpenSettingsFeature")
 	tryRegister(&_AXPrefersActionSliderAlternative, lib, "AXPrefersActionSliderAlternative")
@@ -707,13 +867,23 @@ func init() {
 	tryRegister(&_AXPrefersNonBlinkingTextInsertionIndicator, lib, "AXPrefersNonBlinkingTextInsertionIndicator")
 	tryRegister(&_AXShowBordersEnabled, lib, "AXShowBordersEnabled")
 	tryRegister(&_AXAssistiveAccessEnabled, lib, "AXAssistiveAccessEnabled")
+	tryRegister(&_NSAccessibilityRoleDescription, lib, "NSAccessibilityRoleDescription")
 	tryRegister(&_NSAccessibilityPostNotification, lib, "NSAccessibilityPostNotification")
 	tryRegister(&_NSAccessibilityPointInView, lib, "NSAccessibilityPointInView")
 	tryRegister(&_NSAccessibilityFrameInView, lib, "NSAccessibilityFrameInView")
+	tryRegister(&_NSAccessibilityUnignoredDescendant, lib, "NSAccessibilityUnignoredDescendant")
 	tryRegister(&_NSAvailableWindowDepths, lib, "NSAvailableWindowDepths")
+	tryRegister(&_NSBeginAlertSheet, lib, "NSBeginAlertSheet")
+	tryRegister(&_NSBeginCriticalAlertSheet, lib, "NSBeginCriticalAlertSheet")
+	tryRegister(&_NSBeginInformationalAlertSheet, lib, "NSBeginInformationalAlertSheet")
 	tryRegister(&_NSBestDepth, lib, "NSBestDepth")
 	tryRegister(&_NSNumberOfColorComponents, lib, "NSNumberOfColorComponents")
+	tryRegister(&_NSConvertGlyphsToPackedGlyphs, lib, "NSConvertGlyphsToPackedGlyphs")
+	tryRegister(&_NSCopyBits, lib, "NSCopyBits")
+	tryRegister(&_NSDisableScreenUpdates, lib, "NSDisableScreenUpdates")
+	tryRegister(&_NSDottedFrameRect, lib, "NSDottedFrameRect")
 	tryRegister(&_NSDrawButton, lib, "NSDrawButton")
+	tryRegister(&_NSDrawColorTiledRects, lib, "NSDrawColorTiledRects")
 	tryRegister(&_NSDrawDarkBezel, lib, "NSDrawDarkBezel")
 	tryRegister(&_NSDrawGrayBezel, lib, "NSDrawGrayBezel")
 	tryRegister(&_NSDrawGroove, lib, "NSDrawGroove")
@@ -723,15 +893,23 @@ func init() {
 	tryRegister(&_NSDrawTiledRects, lib, "NSDrawTiledRects")
 	tryRegister(&_NSDrawWhiteBezel, lib, "NSDrawWhiteBezel")
 	tryRegister(&_NSDrawWindowBackground, lib, "NSDrawWindowBackground")
+	tryRegister(&_NSEnableScreenUpdates, lib, "NSEnableScreenUpdates")
 	tryRegister(&_NSEraseRect, lib, "NSEraseRect")
 	tryRegister(&_NSSetFocusRingStyle, lib, "NSSetFocusRingStyle")
 	tryRegister(&_NSFrameRect, lib, "NSFrameRect")
 	tryRegister(&_NSFrameRectWithWidth, lib, "NSFrameRectWithWidth")
 	tryRegister(&_NSFrameRectWithWidthUsingOperation, lib, "NSFrameRectWithWidthUsingOperation")
+	tryRegister(&_NSGetCriticalAlertPanel, lib, "NSGetCriticalAlertPanel")
+	tryRegister(&_NSGetInformationalAlertPanel, lib, "NSGetInformationalAlertPanel")
+	tryRegister(&_NSGetWindowServerMemory, lib, "NSGetWindowServerMemory")
 	tryRegister(&_NSHighlightRect, lib, "NSHighlightRect")
+	tryRegister(&_NSOpenGLGetOption, lib, "NSOpenGLGetOption")
+	tryRegister(&_NSOpenGLGetVersion, lib, "NSOpenGLGetVersion")
+	tryRegister(&_NSOpenGLSetOption, lib, "NSOpenGLSetOption")
 	tryRegister(&_NSCreateFileContentsPboardType, lib, "NSCreateFileContentsPboardType")
 	tryRegister(&_NSCreateFilenamePboardType, lib, "NSCreateFilenamePboardType")
 	tryRegister(&_NSGetFileType, lib, "NSGetFileType")
+	tryRegister(&_NSReadPixel, lib, "NSReadPixel")
 	tryRegister(&_NSRectClip, lib, "NSRectClip")
 	tryRegister(&_NSRectClipList, lib, "NSRectClipList")
 	tryRegister(&_NSRectFill, lib, "NSRectFill")
@@ -741,10 +919,25 @@ func init() {
 	tryRegister(&_NSRectFillListWithColorsUsingOperation, lib, "NSRectFillListWithColorsUsingOperation")
 	tryRegister(&_NSRectFillListWithGrays, lib, "NSRectFillListWithGrays")
 	tryRegister(&_NSRectFillUsingOperation, lib, "NSRectFillUsingOperation")
+	tryRegister(&_NSReleaseAlertPanel, lib, "NSReleaseAlertPanel")
+	tryRegister(&_NSRunCriticalAlertPanel, lib, "NSRunCriticalAlertPanel")
+	tryRegister(&_NSRunInformationalAlertPanel, lib, "NSRunInformationalAlertPanel")
+	tryRegister(&_NSSetShowsServicesMenuItem, lib, "NSSetShowsServicesMenuItem")
+	tryRegister(&_NSShowsServicesMenuItem, lib, "NSShowsServicesMenuItem")
 	tryRegister(&_NSBitsPerPixelFromDepth, lib, "NSBitsPerPixelFromDepth")
 	tryRegister(&_NSBitsPerSampleFromDepth, lib, "NSBitsPerSampleFromDepth")
 	tryRegister(&_NSColorSpaceFromDepth, lib, "NSColorSpaceFromDepth")
 	tryRegister(&_NSPlanarFromDepth, lib, "NSPlanarFromDepth")
+	tryRegister(&_NSWindowList, lib, "NSWindowList")
+	tryRegister(&_CTFontManagerUnregisterFontURLs, lib, "CTFontManagerUnregisterFontURLs")
+	tryRegister(&_es_new_client, lib, "es_new_client")
+	tryRegister(&_MACaptionAppearanceCopyActiveProfileID, lib, "MACaptionAppearanceCopyActiveProfileID")
+	tryRegister(&_MAImageCaptioningCopyMetadataTagPath, lib, "MAImageCaptioningCopyMetadataTagPath")
+	tryRegister(&_SecItemCopyMatching, lib, "SecItemCopyMatching")
+	tryRegister(&_WKAccessibilityIsReduceMotionEnabled, lib, "WKAccessibilityIsReduceMotionEnabled")
+	tryRegister(&_CFAbsoluteTimeGetCurrent, lib, "CFAbsoluteTimeGetCurrent")
+	tryRegister(&_CFAbsoluteTimeGetDayOfYear, lib, "CFAbsoluteTimeGetDayOfYear")
+	tryRegister(&_CFAbsoluteTimeGetDifferenceAsGregorianUnits, lib, "CFAbsoluteTimeGetDifferenceAsGregorianUnits")
 	tryRegister(&_CFAllocatorAllocate, lib, "CFAllocatorAllocate")
 	tryRegister(&_CFAllocatorCreate, lib, "CFAllocatorCreate")
 	tryRegister(&_CFAllocatorDeallocate, lib, "CFAllocatorDeallocate")
@@ -754,11 +947,16 @@ func init() {
 	tryRegister(&_CFAllocatorGetTypeID, lib, "CFAllocatorGetTypeID")
 	tryRegister(&_CFAllocatorReallocate, lib, "CFAllocatorReallocate")
 	tryRegister(&_CFAllocatorSetDefault, lib, "CFAllocatorSetDefault")
+	tryRegister(&_CFArrayAppendArray, lib, "CFArrayAppendArray")
+	tryRegister(&_CFArrayAppendValue, lib, "CFArrayAppendValue")
 	tryRegister(&_CFArrayApplyFunction, lib, "CFArrayApplyFunction")
 	tryRegister(&_CFArrayBSearchValues, lib, "CFArrayBSearchValues")
 	tryRegister(&_CFArrayContainsValue, lib, "CFArrayContainsValue")
 	tryRegister(&_CFArrayCreate, lib, "CFArrayCreate")
 	tryRegister(&_CFArrayCreateCopy, lib, "CFArrayCreateCopy")
+	tryRegister(&_CFArrayCreateMutable, lib, "CFArrayCreateMutable")
+	tryRegister(&_CFArrayCreateMutableCopy, lib, "CFArrayCreateMutableCopy")
+	tryRegister(&_CFArrayExchangeValuesAtIndices, lib, "CFArrayExchangeValuesAtIndices")
 	tryRegister(&_CFArrayGetCount, lib, "CFArrayGetCount")
 	tryRegister(&_CFArrayGetCountOfValue, lib, "CFArrayGetCountOfValue")
 	tryRegister(&_CFArrayGetFirstIndexOfValue, lib, "CFArrayGetFirstIndexOfValue")
@@ -766,6 +964,12 @@ func init() {
 	tryRegister(&_CFArrayGetTypeID, lib, "CFArrayGetTypeID")
 	tryRegister(&_CFArrayGetValueAtIndex, lib, "CFArrayGetValueAtIndex")
 	tryRegister(&_CFArrayGetValues, lib, "CFArrayGetValues")
+	tryRegister(&_CFArrayInsertValueAtIndex, lib, "CFArrayInsertValueAtIndex")
+	tryRegister(&_CFArrayRemoveAllValues, lib, "CFArrayRemoveAllValues")
+	tryRegister(&_CFArrayRemoveValueAtIndex, lib, "CFArrayRemoveValueAtIndex")
+	tryRegister(&_CFArrayReplaceValues, lib, "CFArrayReplaceValues")
+	tryRegister(&_CFArraySetValueAtIndex, lib, "CFArraySetValueAtIndex")
+	tryRegister(&_CFArraySortValues, lib, "CFArraySortValues")
 	tryRegister(&_CFAttributedStringBeginEditing, lib, "CFAttributedStringBeginEditing")
 	tryRegister(&_CFAttributedStringCreate, lib, "CFAttributedStringCreate")
 	tryRegister(&_CFAttributedStringCreateCopy, lib, "CFAttributedStringCreateCopy")
@@ -777,6 +981,7 @@ func init() {
 	tryRegister(&_CFAttributedStringGetAttributeAndLongestEffectiveRange, lib, "CFAttributedStringGetAttributeAndLongestEffectiveRange")
 	tryRegister(&_CFAttributedStringGetAttributes, lib, "CFAttributedStringGetAttributes")
 	tryRegister(&_CFAttributedStringGetAttributesAndLongestEffectiveRange, lib, "CFAttributedStringGetAttributesAndLongestEffectiveRange")
+	tryRegister(&_CFAttributedStringGetBidiLevelsAndResolvedDirections, lib, "CFAttributedStringGetBidiLevelsAndResolvedDirections")
 	tryRegister(&_CFAttributedStringGetLength, lib, "CFAttributedStringGetLength")
 	tryRegister(&_CFAttributedStringGetMutableString, lib, "CFAttributedStringGetMutableString")
 	tryRegister(&_CFAttributedStringGetString, lib, "CFAttributedStringGetString")
@@ -786,16 +991,23 @@ func init() {
 	tryRegister(&_CFAttributedStringReplaceString, lib, "CFAttributedStringReplaceString")
 	tryRegister(&_CFAttributedStringSetAttribute, lib, "CFAttributedStringSetAttribute")
 	tryRegister(&_CFAttributedStringSetAttributes, lib, "CFAttributedStringSetAttributes")
+	tryRegister(&_CFBagAddValue, lib, "CFBagAddValue")
 	tryRegister(&_CFBagApplyFunction, lib, "CFBagApplyFunction")
 	tryRegister(&_CFBagContainsValue, lib, "CFBagContainsValue")
 	tryRegister(&_CFBagCreate, lib, "CFBagCreate")
 	tryRegister(&_CFBagCreateCopy, lib, "CFBagCreateCopy")
+	tryRegister(&_CFBagCreateMutable, lib, "CFBagCreateMutable")
+	tryRegister(&_CFBagCreateMutableCopy, lib, "CFBagCreateMutableCopy")
 	tryRegister(&_CFBagGetCount, lib, "CFBagGetCount")
 	tryRegister(&_CFBagGetCountOfValue, lib, "CFBagGetCountOfValue")
 	tryRegister(&_CFBagGetTypeID, lib, "CFBagGetTypeID")
 	tryRegister(&_CFBagGetValue, lib, "CFBagGetValue")
 	tryRegister(&_CFBagGetValueIfPresent, lib, "CFBagGetValueIfPresent")
 	tryRegister(&_CFBagGetValues, lib, "CFBagGetValues")
+	tryRegister(&_CFBagRemoveAllValues, lib, "CFBagRemoveAllValues")
+	tryRegister(&_CFBagRemoveValue, lib, "CFBagRemoveValue")
+	tryRegister(&_CFBagReplaceValue, lib, "CFBagReplaceValue")
+	tryRegister(&_CFBagSetValue, lib, "CFBagSetValue")
 	tryRegister(&_CFBinaryHeapAddValue, lib, "CFBinaryHeapAddValue")
 	tryRegister(&_CFBinaryHeapApplyFunction, lib, "CFBinaryHeapApplyFunction")
 	tryRegister(&_CFBinaryHeapContainsValue, lib, "CFBinaryHeapContainsValue")
@@ -825,6 +1037,7 @@ func init() {
 	tryRegister(&_CFBundleCopyLocalizationsForPreferences, lib, "CFBundleCopyLocalizationsForPreferences")
 	tryRegister(&_CFBundleCopyLocalizationsForURL, lib, "CFBundleCopyLocalizationsForURL")
 	tryRegister(&_CFBundleCopyLocalizedString, lib, "CFBundleCopyLocalizedString")
+	tryRegister(&_CFBundleCopyLocalizedStringForLocalizations, lib, "CFBundleCopyLocalizedStringForLocalizations")
 	tryRegister(&_CFBundleCopyPreferredLocalizationsFromArray, lib, "CFBundleCopyPreferredLocalizationsFromArray")
 	tryRegister(&_CFBundleCopyPrivateFrameworksURL, lib, "CFBundleCopyPrivateFrameworksURL")
 	tryRegister(&_CFBundleCopyResourceURL, lib, "CFBundleCopyResourceURL")
@@ -905,6 +1118,8 @@ func init() {
 	tryRegister(&_CFCharacterSetRemoveCharactersInRange, lib, "CFCharacterSetRemoveCharactersInRange")
 	tryRegister(&_CFCharacterSetRemoveCharactersInString, lib, "CFCharacterSetRemoveCharactersInString")
 	tryRegister(&_CFCharacterSetUnion, lib, "CFCharacterSetUnion")
+	tryRegister(&_CFCopyDescription, lib, "CFCopyDescription")
+	tryRegister(&_CFCopyTypeIDDescription, lib, "CFCopyTypeIDDescription")
 	tryRegister(&_CFDataAppendBytes, lib, "CFDataAppendBytes")
 	tryRegister(&_CFDataCreate, lib, "CFDataCreate")
 	tryRegister(&_CFDataCreateCopy, lib, "CFDataCreateCopy")
@@ -940,11 +1155,14 @@ func init() {
 	tryRegister(&_CFDateGetAbsoluteTime, lib, "CFDateGetAbsoluteTime")
 	tryRegister(&_CFDateGetTimeIntervalSinceDate, lib, "CFDateGetTimeIntervalSinceDate")
 	tryRegister(&_CFDateGetTypeID, lib, "CFDateGetTypeID")
+	tryRegister(&_CFDictionaryAddValue, lib, "CFDictionaryAddValue")
 	tryRegister(&_CFDictionaryApplyFunction, lib, "CFDictionaryApplyFunction")
 	tryRegister(&_CFDictionaryContainsKey, lib, "CFDictionaryContainsKey")
 	tryRegister(&_CFDictionaryContainsValue, lib, "CFDictionaryContainsValue")
 	tryRegister(&_CFDictionaryCreate, lib, "CFDictionaryCreate")
 	tryRegister(&_CFDictionaryCreateCopy, lib, "CFDictionaryCreateCopy")
+	tryRegister(&_CFDictionaryCreateMutable, lib, "CFDictionaryCreateMutable")
+	tryRegister(&_CFDictionaryCreateMutableCopy, lib, "CFDictionaryCreateMutableCopy")
 	tryRegister(&_CFDictionaryGetCount, lib, "CFDictionaryGetCount")
 	tryRegister(&_CFDictionaryGetCountOfKey, lib, "CFDictionaryGetCountOfKey")
 	tryRegister(&_CFDictionaryGetCountOfValue, lib, "CFDictionaryGetCountOfValue")
@@ -952,10 +1170,18 @@ func init() {
 	tryRegister(&_CFDictionaryGetTypeID, lib, "CFDictionaryGetTypeID")
 	tryRegister(&_CFDictionaryGetValue, lib, "CFDictionaryGetValue")
 	tryRegister(&_CFDictionaryGetValueIfPresent, lib, "CFDictionaryGetValueIfPresent")
+	tryRegister(&_CFDictionaryRemoveAllValues, lib, "CFDictionaryRemoveAllValues")
+	tryRegister(&_CFDictionaryRemoveValue, lib, "CFDictionaryRemoveValue")
+	tryRegister(&_CFDictionaryReplaceValue, lib, "CFDictionaryReplaceValue")
+	tryRegister(&_CFDictionarySetValue, lib, "CFDictionarySetValue")
 	tryRegister(&_CFEqual, lib, "CFEqual")
 	tryRegister(&_CFErrorCreate, lib, "CFErrorCreate")
 	tryRegister(&_CFFileDescriptorGetNativeDescriptor, lib, "CFFileDescriptorGetNativeDescriptor")
 	tryRegister(&_CFFileDescriptorIsValid, lib, "CFFileDescriptorIsValid")
+	tryRegister(&_CFGetAllocator, lib, "CFGetAllocator")
+	tryRegister(&_CFGetRetainCount, lib, "CFGetRetainCount")
+	tryRegister(&_CFGetTypeID, lib, "CFGetTypeID")
+	tryRegister(&_CFGregorianDateGetAbsoluteTime, lib, "CFGregorianDateGetAbsoluteTime")
 	tryRegister(&_CFHash, lib, "CFHash")
 	tryRegister(&_CFLocaleCopyAvailableLocaleIdentifiers, lib, "CFLocaleCopyAvailableLocaleIdentifiers")
 	tryRegister(&_CFLocaleCopyCommonISOCurrencyCodes, lib, "CFLocaleCopyCommonISOCurrencyCodes")
@@ -980,11 +1206,56 @@ func init() {
 	tryRegister(&_CFLocaleGetTypeID, lib, "CFLocaleGetTypeID")
 	tryRegister(&_CFLocaleGetValue, lib, "CFLocaleGetValue")
 	tryRegister(&_CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier, lib, "CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier")
+	tryRegister(&_CFMakeCollectable, lib, "CFMakeCollectable")
 	tryRegister(&_CFNullGetTypeID, lib, "CFNullGetTypeID")
 	tryRegister(&_CFNumberIsFloatType, lib, "CFNumberIsFloatType")
+	tryRegister(&_CFPreferencesCopyMultiple, lib, "CFPreferencesCopyMultiple")
+	tryRegister(&_CFReadStreamClose, lib, "CFReadStreamClose")
+	tryRegister(&_CFReadStreamCopyProperty, lib, "CFReadStreamCopyProperty")
+	tryRegister(&_CFReadStreamCreateWithBytesNoCopy, lib, "CFReadStreamCreateWithBytesNoCopy")
+	tryRegister(&_CFReadStreamCreateWithFile, lib, "CFReadStreamCreateWithFile")
+	tryRegister(&_CFReadStreamGetBuffer, lib, "CFReadStreamGetBuffer")
+	tryRegister(&_CFReadStreamGetError, lib, "CFReadStreamGetError")
+	tryRegister(&_CFReadStreamGetStatus, lib, "CFReadStreamGetStatus")
+	tryRegister(&_CFReadStreamGetTypeID, lib, "CFReadStreamGetTypeID")
+	tryRegister(&_CFReadStreamHasBytesAvailable, lib, "CFReadStreamHasBytesAvailable")
+	tryRegister(&_CFReadStreamOpen, lib, "CFReadStreamOpen")
+	tryRegister(&_CFReadStreamSetClient, lib, "CFReadStreamSetClient")
+	tryRegister(&_CFReadStreamSetProperty, lib, "CFReadStreamSetProperty")
+	tryRegister(&_CFReadStreamUnscheduleFromRunLoop, lib, "CFReadStreamUnscheduleFromRunLoop")
+	tryRegister(&_CFRelease, lib, "CFRelease")
+	tryRegister(&_CFRetain, lib, "CFRetain")
+	tryRegister(&_CFRunLoopAddSource, lib, "CFRunLoopAddSource")
+	tryRegister(&_CFRunLoopIsWaiting, lib, "CFRunLoopIsWaiting")
+	tryRegister(&_CFRunLoopRun, lib, "CFRunLoopRun")
+	tryRegister(&_CFRunLoopRunInMode, lib, "CFRunLoopRunInMode")
 	tryRegister(&_CFRunLoopStop, lib, "CFRunLoopStop")
+	tryRegister(&_CFRunLoopWakeUp, lib, "CFRunLoopWakeUp")
+	tryRegister(&_CFShow, lib, "CFShow")
 	tryRegister(&_CFShowStr, lib, "CFShowStr")
+	tryRegister(&_CFSocketCopyRegisteredSocketSignature, lib, "CFSocketCopyRegisteredSocketSignature")
+	tryRegister(&_CFSocketCreate, lib, "CFSocketCreate")
+	tryRegister(&_CFSocketCreateConnectedToSocketSignature, lib, "CFSocketCreateConnectedToSocketSignature")
+	tryRegister(&_CFSocketCreateRunLoopSource, lib, "CFSocketCreateRunLoopSource")
+	tryRegister(&_CFSocketCreateWithNative, lib, "CFSocketCreateWithNative")
+	tryRegister(&_CFSocketCreateWithSocketSignature, lib, "CFSocketCreateWithSocketSignature")
+	tryRegister(&_CFSocketEnableCallBacks, lib, "CFSocketEnableCallBacks")
+	tryRegister(&_CFSocketGetContext, lib, "CFSocketGetContext")
+	tryRegister(&_CFSocketGetSocketFlags, lib, "CFSocketGetSocketFlags")
+	tryRegister(&_CFSocketGetTypeID, lib, "CFSocketGetTypeID")
+	tryRegister(&_CFSocketInvalidate, lib, "CFSocketInvalidate")
+	tryRegister(&_CFSocketRegisterValue, lib, "CFSocketRegisterValue")
+	tryRegister(&_CFSocketSendData, lib, "CFSocketSendData")
+	tryRegister(&_CFSocketSetAddress, lib, "CFSocketSetAddress")
+	tryRegister(&_CFSocketSetSocketFlags, lib, "CFSocketSetSocketFlags")
+	tryRegister(&_CFSocketUnregister, lib, "CFSocketUnregister")
+	tryRegister(&_CFStreamCreatePairWithPeerSocketSignature, lib, "CFStreamCreatePairWithPeerSocketSignature")
+	tryRegister(&_CFStreamCreatePairWithSocket, lib, "CFStreamCreatePairWithSocket")
 	tryRegister(&_CFStreamCreatePairWithSocketToHost, lib, "CFStreamCreatePairWithSocketToHost")
+	tryRegister(&_CFStringAppendFormat, lib, "CFStringAppendFormat")
+	tryRegister(&_CFStringAppendFormatAndArguments, lib, "CFStringAppendFormatAndArguments")
+	tryRegister(&_CFStringAppendPascalString, lib, "CFStringAppendPascalString")
+	tryRegister(&_CFStringCapitalize, lib, "CFStringCapitalize")
 	tryRegister(&_CFStringCompare, lib, "CFStringCompare")
 	tryRegister(&_CFStringCompareWithOptions, lib, "CFStringCompareWithOptions")
 	tryRegister(&_CFStringCompareWithOptionsAndLocale, lib, "CFStringCompareWithOptionsAndLocale")
@@ -1000,6 +1271,9 @@ func init() {
 	tryRegister(&_CFStringCreateCopy, lib, "CFStringCreateCopy")
 	tryRegister(&_CFStringCreateExternalRepresentation, lib, "CFStringCreateExternalRepresentation")
 	tryRegister(&_CFStringCreateFromExternalRepresentation, lib, "CFStringCreateFromExternalRepresentation")
+	tryRegister(&_CFStringCreateMutable, lib, "CFStringCreateMutable")
+	tryRegister(&_CFStringCreateMutableCopy, lib, "CFStringCreateMutableCopy")
+	tryRegister(&_CFStringCreateMutableWithExternalCharactersNoCopy, lib, "CFStringCreateMutableWithExternalCharactersNoCopy")
 	tryRegister(&_CFStringCreateWithBytes, lib, "CFStringCreateWithBytes")
 	tryRegister(&_CFStringCreateWithBytesNoCopy, lib, "CFStringCreateWithBytesNoCopy")
 	tryRegister(&_CFStringCreateWithCString, lib, "CFStringCreateWithCString")
@@ -1043,8 +1317,17 @@ func init() {
 	tryRegister(&_CFStringGetTypeID, lib, "CFStringGetTypeID")
 	tryRegister(&_CFStringHasPrefix, lib, "CFStringHasPrefix")
 	tryRegister(&_CFStringHasSuffix, lib, "CFStringHasSuffix")
+	tryRegister(&_CFStringInsert, lib, "CFStringInsert")
 	tryRegister(&_CFStringIsEncodingAvailable, lib, "CFStringIsEncodingAvailable")
 	tryRegister(&_CFStringIsHyphenationAvailableForLocale, lib, "CFStringIsHyphenationAvailableForLocale")
+	tryRegister(&_CFStringLowercase, lib, "CFStringLowercase")
+	tryRegister(&_CFStringNormalize, lib, "CFStringNormalize")
+	tryRegister(&_CFStringPad, lib, "CFStringPad")
+	tryRegister(&_CFStringReplaceAll, lib, "CFStringReplaceAll")
+	tryRegister(&_CFStringSetExternalCharactersNoCopy, lib, "CFStringSetExternalCharactersNoCopy")
+	tryRegister(&_CFStringTrim, lib, "CFStringTrim")
+	tryRegister(&_CFStringTrimWhitespace, lib, "CFStringTrimWhitespace")
+	tryRegister(&_CFStringUppercase, lib, "CFStringUppercase")
 	tryRegister(&_CFTimeZoneCopyAbbreviation, lib, "CFTimeZoneCopyAbbreviation")
 	tryRegister(&_CFTimeZoneCopyAbbreviationDictionary, lib, "CFTimeZoneCopyAbbreviationDictionary")
 	tryRegister(&_CFTimeZoneCopyDefault, lib, "CFTimeZoneCopyDefault")
@@ -1153,27 +1436,54 @@ func init() {
 	tryRegister(&_CFWriteStreamUnscheduleFromRunLoop, lib, "CFWriteStreamUnscheduleFromRunLoop")
 	tryRegister(&_CFWriteStreamWrite, lib, "CFWriteStreamWrite")
 	tryRegister(&_inset, lib, "inset")
+	tryRegister(&_CGColorCreateCopyByMatchingToColorSpace, lib, "CGColorCreateCopyByMatchingToColorSpace")
+	tryRegister(&_CGImageGetBitsPerComponent, lib, "CGImageGetBitsPerComponent")
+	tryRegister(&_CGImageGetBytesPerRow, lib, "CGImageGetBytesPerRow")
+	tryRegister(&_CGImageCalculateContentHeadroom, lib, "CGImageCalculateContentHeadroom")
+	tryRegister(&_CGImageGetContentHeadroom, lib, "CGImageGetContentHeadroom")
+	tryRegister(&_CGImageGetDecode, lib, "CGImageGetDecode")
+	tryRegister(&_CGImageGetHeight, lib, "CGImageGetHeight")
+	tryRegister(&_CGImageCreateWithJPEGDataProvider, lib, "CGImageCreateWithJPEGDataProvider")
+	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
+	tryRegister(&_CGImageRetain, lib, "CGImageRetain")
 	tryRegister(&_LSCanURLAcceptURL, lib, "LSCanURLAcceptURL")
 	tryRegister(&_LSOpenFromURLSpec, lib, "LSOpenFromURLSpec")
+	tryRegister(&_LSCanRefAcceptItem, lib, "LSCanRefAcceptItem")
 	tryRegister(&_LSOpenCFURLRef, lib, "LSOpenCFURLRef")
 	tryRegister(&_LSSetDefaultRoleHandlerForContentType, lib, "LSSetDefaultRoleHandlerForContentType")
 	tryRegister(&_LSCopyApplicationURLsForURL, lib, "LSCopyApplicationURLsForURL")
 	tryRegister(&_LSRegisterURL, lib, "LSRegisterURL")
+	tryRegister(&_LSCopyKindStringForURL, lib, "LSCopyKindStringForURL")
 	tryRegister(&_LSCopyDefaultApplicationURLForContentType, lib, "LSCopyDefaultApplicationURLForContentType")
 	tryRegister(&_LSSetDefaultHandlerForURLScheme, lib, "LSSetDefaultHandlerForURLScheme")
 	tryRegister(&_LSCopyAllRoleHandlersForContentType, lib, "LSCopyAllRoleHandlersForContentType")
 	tryRegister(&_LSCopyDefaultApplicationURLForURL, lib, "LSCopyDefaultApplicationURLForURL")
 	tryRegister(&_LSCopyApplicationURLsForBundleIdentifier, lib, "LSCopyApplicationURLsForBundleIdentifier")
 	tryRegister(&_LSCopyDefaultRoleHandlerForContentType, lib, "LSCopyDefaultRoleHandlerForContentType")
+	tryRegister(&_thread_set_state, lib, "thread_set_state")
+	tryRegister(&_log, lib, "log")
+	tryRegister(&_task_info, lib, "task_info")
+	tryRegister(&_cosh, lib, "cosh")
+	tryRegister(&_atan, lib, "atan")
+	tryRegister(&_modf, lib, "modf")
 	tryRegister(&_floorf, lib, "floorf")
 	tryRegister(&_ceill, lib, "ceill")
+	tryRegister(&_atanhl, lib, "atanhl")
+	tryRegister(&_tanl, lib, "tanl")
+	tryRegister(&_log2, lib, "log2")
 	tryRegister(&_ceilf, lib, "ceilf")
 	tryRegister(&_ceil, lib, "ceil")
+	tryRegister(&_logbf, lib, "logbf")
+	tryRegister(&_copysignl, lib, "copysignl")
 	tryRegister(&_floorl, lib, "floorl")
 	tryRegister(&_floor, lib, "floor")
+	tryRegister(&_round, lib, "round")
+	tryRegister(&_atanh, lib, "atanh")
 	tryRegister(&_os_proc_available_memory, lib, "os_proc_available_memory")
 	tryRegister(&_CNCopyCurrentNetworkInfo, lib, "CNCopyCurrentNetworkInfo")
+	tryRegister(&_SCNetworkReachabilitySetCallback, lib, "SCNetworkReachabilitySetCallback")
 	tryRegister(&_NSStringFromUIEdgeInsets, lib, "NSStringFromUIEdgeInsets")
+	tryRegister(&_NSStringFromUIOffset, lib, "NSStringFromUIOffset")
 	tryRegister(&_NSTextAlignmentToCTTextAlignment, lib, "NSTextAlignmentToCTTextAlignment")
 	tryRegister(&_UIAccessibilityButtonShapesEnabled, lib, "UIAccessibilityButtonShapesEnabled")
 	tryRegister(&_UIGuidedAccessConfigureAccessibilityFeatures, lib, "UIGuidedAccessConfigureAccessibilityFeatures")
@@ -1256,6 +1566,17 @@ func NSCountFrames() unsafe.Pointer {
 	return _NSCountFrames()
 }
 
+// Returns a string encoding a file type code.
+//
+// Added in macOS 10.0.
+// Returns a string encoding a file type code.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileTypeForHFSTypeCode(_:)
+func NSFileTypeForHFSTypeCode(hfsFileTypeCode unsafe.Pointer) unsafe.Pointer {
+	return _NSFileTypeForHFSTypeCode(hfsFileTypeCode)
+}
+
 // Returns the value of the frame pointer of the specified frame.
 //
 // Added in macOS 10.0.
@@ -1265,6 +1586,17 @@ func NSCountFrames() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFrameAddress
 func NSFrameAddress(frame unsafe.Pointer) unsafe.Pointer {
 	return _NSFrameAddress(frame)
+}
+
+// Returns a string containing the full name of the current user.
+//
+// Added in macOS 10.0.
+// Returns a string containing the full name of the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFullUserName()
+func NSFullUserName() unsafe.Pointer {
+	return _NSFullUserName()
 }
 
 // Obtains the actual size and the aligned size of an encoded type.
@@ -1320,6 +1652,28 @@ func NSOpenStepRootDirectory() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
 func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) unsafe.Pointer {
 	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
+}
+
+// Returns the path of the temporary directory for the current user.
+//
+// Added in macOS 10.0.
+// Returns the path of the temporary directory for the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTemporaryDirectory()
+func NSTemporaryDirectory() unsafe.Pointer {
+	return _NSTemporaryDirectory()
+}
+
+// Returns the logon name of the current user.
+//
+// Added in macOS 10.0.
+// Returns the logon name of the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserName()
+func NSUserName() unsafe.Pointer {
+	return _NSUserName()
 }
 
 // Returns all of the elements in the specified hash table.
@@ -2145,6 +2499,16 @@ func AXAnimatedImagesEnabled() bool {
 	return _AXAnimatedImagesEnabled()
 }
 
+// Returns which ears enable streaming.
+
+// Returns which ears enable streaming.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMFiHearingDevice/streamingEar()
+func AXMFiHearingDeviceStreamingEar() unsafe.Pointer {
+	return _AXMFiHearingDeviceStreamingEar()
+}
+
 // Returns a localized description of the color to use in accessibility attributes.
 //
 // Added in macOS 11.0.
@@ -2220,6 +2584,16 @@ func AXAssistiveAccessEnabled() bool {
 	return _AXAssistiveAccessEnabled()
 }
 
+// Returns a standard description for a role and subrole.
+
+// Returns a standard description for a role and subrole.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Role/description(with:)
+func NSAccessibilityRoleDescription(role unsafe.Pointer, subrole unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityRoleDescription(role, subrole)
+}
+
 // Sends a notification to any observing assistive apps.
 
 // Sends a notification to any observing assistive apps.
@@ -2252,6 +2626,16 @@ func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame coregraphics.CG
 	return _NSAccessibilityFrameInView(parentView, frame)
 }
 
+// Returns an unignored accessibility object, descending the hierarchy, if necessary.
+
+// Returns an unignored accessibility object, descending the hierarchy, if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredDescendant(of:)
+func NSAccessibilityUnignoredDescendant(element unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityUnignoredDescendant(element)
+}
+
 // Returns the available window depth values.
 
 // Returns the available window depth values.
@@ -2260,6 +2644,45 @@ func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame coregraphics.CG
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAvailableWindowDepths
 func NSAvailableWindowDepths() unsafe.Pointer {
 	return _NSAvailableWindowDepths()
+}
+
+// Creates and runs an alert sheet.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Creates and runs an alert sheet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBeginAlertSheet
+func NSBeginAlertSheet(title unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, didDismissSelector unsafe.Pointer, contextInfo unsafe.Pointer, msgFormat unsafe.Pointer) {
+	_NSBeginAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
+}
+
+// Creates and runs a critical alert sheet.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Creates and runs a critical alert sheet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBeginCriticalAlertSheet
+func NSBeginCriticalAlertSheet(title unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, didDismissSelector unsafe.Pointer, contextInfo unsafe.Pointer, msgFormat unsafe.Pointer) {
+	_NSBeginCriticalAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
+}
+
+// Creates and runs an informational alert sheet.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Creates and runs an informational alert sheet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBeginInformationalAlertSheet
+func NSBeginInformationalAlertSheet(title unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, didDismissSelector unsafe.Pointer, contextInfo unsafe.Pointer, msgFormat unsafe.Pointer) {
+	_NSBeginInformationalAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
 }
 
 // Attempts to return a window depth adequate for the specified parameters.
@@ -2282,6 +2705,55 @@ func NSNumberOfColorComponents(colorSpaceName unsafe.Pointer) unsafe.Pointer {
 	return _NSNumberOfColorComponents(colorSpaceName)
 }
 
+// Prepares a set of glyphs for processing by character-based routines.
+//
+// Deprecated: This function was deprecated in macOS 10.13.
+//
+// Added in macOS 10.0.
+// Prepares a set of glyphs for processing by character-based routines.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSConvertGlyphsToPackedGlyphs(_:_:_:_:)
+func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count unsafe.Pointer, packing unsafe.Pointer, packedGlyphs unsafe.Pointer) unsafe.Pointer {
+	return _NSConvertGlyphsToPackedGlyphs(glBuf, count, packing, packedGlyphs)
+}
+
+// Copies a bitmap image to the location specified by a destination point.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Copies a bitmap image to the location specified by a destination point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCopyBits(_:_:_:)
+func NSCopyBits(srcGState unsafe.Pointer, srcRect coregraphics.CGRect, destPoint coregraphics.CGPoint) {
+	_NSCopyBits(srcGState, srcRect, destPoint)
+}
+
+// Disables screen updates.
+//
+// Deprecated: This function was deprecated in macOS 10.11.
+//
+// Added in macOS 10.0.
+// Disables screen updates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDisableScreenUpdates()
+func NSDisableScreenUpdates() {
+	_NSDisableScreenUpdates()
+}
+
+// Draws a bordered rectangle.
+
+// Draws a bordered rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDottedFrameRect(_:)
+func NSDottedFrameRect(rect coregraphics.CGRect) {
+	_NSDottedFrameRect(rect)
+}
+
 // Draws a gray-filled rectangle representing a user-interface button.
 
 // Draws a gray-filled rectangle representing a user-interface button.
@@ -2290,6 +2762,16 @@ func NSNumberOfColorComponents(colorSpaceName unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawButton(_:_:)
 func NSDrawButton(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 	_NSDrawButton(rect, clipRect)
+}
+
+// Draws a single-color, bordered rectangle.
+
+// Draws a single-color, bordered rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawColorTiledRects(_:_:_:_:_:)
+func NSDrawColorTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics.CGRect, sides unsafe.Pointer, colors unsafe.Pointer, count unsafe.Pointer) coregraphics.CGRect {
+	return _NSDrawColorTiledRects(boundsRect, clipRect, sides, colors, count)
 }
 
 // Draws a dark gray-filled rectangle with a bezel border.
@@ -2384,6 +2866,19 @@ func NSDrawWindowBackground(rect coregraphics.CGRect) {
 	_NSDrawWindowBackground(rect)
 }
 
+// Enables screen updates.
+//
+// Deprecated: This function was deprecated in macOS 10.11.
+//
+// Added in macOS 10.0.
+// Enables screen updates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEnableScreenUpdates()
+func NSEnableScreenUpdates() {
+	_NSEnableScreenUpdates()
+}
+
 // Erases the specified rect by filling it with white.
 
 // Erases the specified rect by filling it with white.
@@ -2434,6 +2929,45 @@ func NSFrameRectWithWidthUsingOperation(rect coregraphics.CGRect, frameWidth flo
 	_NSFrameRectWithWidthUsingOperation(rect, frameWidth, op)
 }
 
+// Returns an alert panel to display a critical message.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Returns an alert panel to display a critical message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGetCriticalAlertPanel
+func NSGetCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSGetCriticalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// Returns an alert panel to display an informational message.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Returns an alert panel to display an informational message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGetInformationalAlertPanel
+func NSGetInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSGetInformationalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// Returns the amount of memory being used by a context.
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+// Returns the amount of memory being used by a context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGetWindowServerMemory(_:_:_:_:)
+func NSGetWindowServerMemory(context unsafe.Pointer, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) unsafe.Pointer {
+	return _NSGetWindowServerMemory(context, virtualMemory, windowBackingMemory, windowDumpString)
+}
+
 // Highlights the specified rect by filling it with white.
 //
 // Deprecated: This function was deprecated in macOS 10.0.
@@ -2445,6 +2979,45 @@ func NSFrameRectWithWidthUsingOperation(rect coregraphics.CGRect, frameWidth flo
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHighlightRect
 func NSHighlightRect(rect coregraphics.CGRect) {
 	_NSHighlightRect(rect)
+}
+
+// Returns global OpenGL options.
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+// Returns global OpenGL options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLGetOption
+func NSOpenGLGetOption(pname unsafe.Pointer, param unsafe.Pointer) {
+	_NSOpenGLGetOption(pname, param)
+}
+
+// Returns the NSOpenGL version numbers.
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+// Returns the NSOpenGL version numbers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLGetVersion
+func NSOpenGLGetVersion(major unsafe.Pointer, minor unsafe.Pointer) {
+	_NSOpenGLGetVersion(major, minor)
+}
+
+// Sets global OpenGL options.
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+// Sets global OpenGL options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLSetOption
+func NSOpenGLSetOption(pname unsafe.Pointer, param unsafe.Pointer) {
+	_NSOpenGLSetOption(pname, param)
 }
 
 // Returns a pasteboard type based on the passed file type.
@@ -2475,6 +3048,19 @@ func NSCreateFilenamePboardType(fileType unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/representedPathExtension
 func NSGetFileType(pboardType unsafe.Pointer) unsafe.Pointer {
 	return _NSGetFileType(pboardType)
+}
+
+// Reads the color of the pixel at the specified location.
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+// Reads the color of the pixel at the specified location.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSReadPixel(_:)
+func NSReadPixel(passedPoint coregraphics.CGPoint) unsafe.Pointer {
+	return _NSReadPixel(passedPoint)
 }
 
 // Modifies the current clipping path by intersecting it with the passed rect.
@@ -2567,6 +3153,65 @@ func NSRectFillUsingOperation(rect coregraphics.CGRect, op unsafe.Pointer) {
 	_NSRectFillUsingOperation(rect, op)
 }
 
+// Disposes of an alert panel.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Disposes of an alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSReleaseAlertPanel(_:)
+func NSReleaseAlertPanel(panel unsafe.Pointer) {
+	_NSReleaseAlertPanel(panel)
+}
+
+// Creates and runs a critical alert panel.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Creates and runs a critical alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunCriticalAlertPanel
+func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSRunCriticalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// Creates and runs an informational alert panel.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Creates and runs an informational alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunInformationalAlertPanel
+func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSRunInformationalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// Specifies whether an item should be included in Services menus.
+
+// Specifies whether an item should be included in Services menus.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSetShowsServicesMenuItem(_:_:)
+func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) unsafe.Pointer {
+	return _NSSetShowsServicesMenuItem(itemName, enabled)
+}
+
+// Specifies whether a Services menu item is currently enabled.
+
+// Specifies whether a Services menu item is currently enabled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShowsServicesMenuItem(_:)
+func NSShowsServicesMenuItem(itemName unsafe.Pointer) bool {
+	return _NSShowsServicesMenuItem(itemName)
+}
+
 // Returns the bits per pixel for the specified window depth.
 
 // Returns the bits per pixel for the specified window depth.
@@ -2605,6 +3250,118 @@ func NSColorSpaceFromDepth(depth unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/isPlanar
 func NSPlanarFromDepth(depth unsafe.Pointer) bool {
 	return _NSPlanarFromDepth(depth)
+}
+
+// Gets information about onscreen windows.
+//
+// Deprecated: This function was deprecated in macOS 10.6.
+//
+// Added in macOS 10.0.
+// Gets information about onscreen windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowList
+func NSWindowList(size unsafe.Pointer, list unsafe.Pointer) {
+	_NSWindowList(size, list)
+}
+
+// Unregisters fonts from the specified font URLs with the font manager.
+//
+// Added in macOS 10.15.
+// Unregisters fonts from the specified font URLs with the font manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)
+func CTFontManagerUnregisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, registrationHandler bool) {
+	_CTFontManagerUnregisterFontURLs(fontURLs, scope, registrationHandler)
+}
+
+// Creates a new client instance and connects it to the Endpoint Security system.
+//
+// Added in macOS 10.15.
+// Creates a new client instance and connects it to the Endpoint Security system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_new_client(_:_:)
+func es_new_client(client unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
+	return _es_new_client(client, handler)
+}
+
+// MACaptionAppearanceCopyActiveProfileID is a Foundation function.
+//
+// Added in macOS 26.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MACaptionAppearanceCopyActiveProfileID()
+func MACaptionAppearanceCopyActiveProfileID() unsafe.Pointer {
+	return _MACaptionAppearanceCopyActiveProfileID()
+}
+
+// Returns the metadata tag path.
+//
+// Added in macOS 10.15.
+// Returns the metadata tag path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAImageCaptioningCopyMetadataTagPath()
+func MAImageCaptioningCopyMetadataTagPath() unsafe.Pointer {
+	return _MAImageCaptioningCopyMetadataTagPath()
+}
+
+// Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.
+//
+// Added in macOS 10.6.
+// Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecItemCopyMatching(_:_:)
+func SecItemCopyMatching(query unsafe.Pointer, result unsafe.Pointer) unsafe.Pointer {
+	return _SecItemCopyMatching(query, result)
+}
+
+// Returns a Boolean value indicating whether reduced motion is enabled.
+
+// Returns a Boolean value indicating whether reduced motion is enabled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()
+func WKAccessibilityIsReduceMotionEnabled() bool {
+	return _WKAccessibilityIsReduceMotionEnabled()
+}
+
+// Returns the current system absolute time.
+
+// Returns the current system absolute time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetCurrent()
+func CFAbsoluteTimeGetCurrent() unsafe.Pointer {
+	return _CFAbsoluteTimeGetCurrent()
+}
+
+// Returns an integer representing the day of the year indicated by the specified absolute time.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.4.
+// Returns an integer representing the day of the year indicated by the specified absolute time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDayOfYear(_:_:)
+func CFAbsoluteTimeGetDayOfYear(at unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+	return _CFAbsoluteTimeGetDayOfYear(at, tz)
+}
+
+// Computes the time difference between two specified absolute times and returns the result as an interval in Gregorian units.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.4.
+// Computes the time difference between two specified absolute times and returns the result as an interval in Gregorian units.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTimeGetDifferenceAsGregorianUnits(_:_:_:_:)
+func CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1 unsafe.Pointer, at2 unsafe.Pointer, tz unsafe.Pointer, unitFlags unsafe.Pointer) unsafe.Pointer {
+	return _CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1, at2, tz, unitFlags)
 }
 
 // Allocates memory using the specified allocator.
@@ -2697,6 +3454,26 @@ func CFAllocatorSetDefault(allocator unsafe.Pointer) {
 	_CFAllocatorSetDefault(allocator)
 }
 
+// Adds the values from one array to another array.
+
+// Adds the values from one array to another array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayAppendArray(_:_:_:)
+func CFArrayAppendArray(theArray unsafe.Pointer, otherArray unsafe.Pointer, otherRange unsafe.Pointer) {
+	_CFArrayAppendArray(theArray, otherArray, otherRange)
+}
+
+// Adds a value to an array giving it the new largest index.
+
+// Adds a value to an array giving it the new largest index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayAppendValue(_:_:)
+func CFArrayAppendValue(theArray unsafe.Pointer, value unsafe.Pointer) {
+	_CFArrayAppendValue(theArray, value)
+}
+
 // Calls a function once for each element in range in an array.
 
 // Calls a function once for each element in range in an array.
@@ -2745,6 +3522,36 @@ func CFArrayCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues un
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateCopy(_:_:)
 func CFArrayCreateCopy(allocator unsafe.Pointer, theArray unsafe.Pointer) unsafe.Pointer {
 	return _CFArrayCreateCopy(allocator, theArray)
+}
+
+// Creates a new empty mutable array.
+
+// Creates a new empty mutable array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateMutable(_:_:_:)
+func CFArrayCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+	return _CFArrayCreateMutable(allocator, capacity, callBacks)
+}
+
+// Creates a new mutable array with the values from another array.
+
+// Creates a new mutable array with the values from another array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCreateMutableCopy(_:_:_:)
+func CFArrayCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theArray unsafe.Pointer) unsafe.Pointer {
+	return _CFArrayCreateMutableCopy(allocator, capacity, theArray)
+}
+
+// Exchanges the values at two indices of an array.
+
+// Exchanges the values at two indices of an array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayExchangeValuesAtIndices(_:_:_:)
+func CFArrayExchangeValuesAtIndices(theArray unsafe.Pointer, idx1 unsafe.Pointer, idx2 unsafe.Pointer) {
+	_CFArrayExchangeValuesAtIndices(theArray, idx1, idx2)
 }
 
 // Returns the number of values currently in an array.
@@ -2815,6 +3622,66 @@ func CFArrayGetValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayGetValues(_:_:_:)
 func CFArrayGetValues(theArray unsafe.Pointer, range_ unsafe.Pointer, values unsafe.Pointer) {
 	_CFArrayGetValues(theArray, range_, values)
+}
+
+// Inserts a value into an array at a given index.
+
+// Inserts a value into an array at a given index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayInsertValueAtIndex(_:_:_:)
+func CFArrayInsertValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer, value unsafe.Pointer) {
+	_CFArrayInsertValueAtIndex(theArray, idx, value)
+}
+
+// Removes all the values from an array, making it empty.
+
+// Removes all the values from an array, making it empty.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRemoveAllValues(_:)
+func CFArrayRemoveAllValues(theArray unsafe.Pointer) {
+	_CFArrayRemoveAllValues(theArray)
+}
+
+// Removes the value at a given index from an array.
+
+// Removes the value at a given index from an array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRemoveValueAtIndex(_:_:)
+func CFArrayRemoveValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer) {
+	_CFArrayRemoveValueAtIndex(theArray, idx)
+}
+
+// Replaces a range of values in an array.
+
+// Replaces a range of values in an array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayReplaceValues(_:_:_:_:)
+func CFArrayReplaceValues(theArray unsafe.Pointer, range_ unsafe.Pointer, newValues unsafe.Pointer, newCount unsafe.Pointer) {
+	_CFArrayReplaceValues(theArray, range_, newValues, newCount)
+}
+
+// Changes the value at a given index in an array.
+
+// Changes the value at a given index in an array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArraySetValueAtIndex(_:_:_:)
+func CFArraySetValueAtIndex(theArray unsafe.Pointer, idx unsafe.Pointer, value unsafe.Pointer) {
+	_CFArraySetValueAtIndex(theArray, idx, value)
+}
+
+// Sorts the values in an array using a given comparison function.
+
+// Sorts the values in an array using a given comparison function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArraySortValues(_:_:_:_:)
+func CFArraySortValues(theArray unsafe.Pointer, range_ unsafe.Pointer, comparator unsafe.Pointer, context unsafe.Pointer) {
+	_CFArraySortValues(theArray, range_, comparator, context)
 }
 
 // Defers internal consistency-checking and coalescing for a mutable attributed string.
@@ -2927,6 +3794,14 @@ func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr unsafe.Pointer
 	return _CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr, loc, inRange, longestEffectiveRange)
 }
 
+// CFAttributedStringGetBidiLevelsAndResolvedDirections is a Foundation function.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetBidiLevelsAndResolvedDirections(_:_:_:_:_:)
+func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString unsafe.Pointer, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
+	return _CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
+}
+
 // Returns the length of the attributed string in characters.
 
 // Returns the length of the attributed string in characters.
@@ -3017,6 +3892,16 @@ func CFAttributedStringSetAttributes(aStr unsafe.Pointer, range_ unsafe.Pointer,
 	_CFAttributedStringSetAttributes(aStr, range_, replacement, clearOtherAttributes)
 }
 
+// Adds a value to a mutable bag.
+
+// Adds a value to a mutable bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagAddValue(_:_:)
+func CFBagAddValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+	_CFBagAddValue(theBag, value)
+}
+
 // Calls a function once for each value in a bag.
 
 // Calls a function once for each value in a bag.
@@ -3055,6 +3940,26 @@ func CFBagCreate(allocator unsafe.Pointer, values unsafe.Pointer, numValues unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateCopy(_:_:)
 func CFBagCreateCopy(allocator unsafe.Pointer, theBag unsafe.Pointer) unsafe.Pointer {
 	return _CFBagCreateCopy(allocator, theBag)
+}
+
+// Creates a new empty mutable bag.
+
+// Creates a new empty mutable bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateMutable(_:_:_:)
+func CFBagCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, callBacks unsafe.Pointer) unsafe.Pointer {
+	return _CFBagCreateMutable(allocator, capacity, callBacks)
+}
+
+// Creates a new mutable bag with the values from another bag.
+
+// Creates a new mutable bag with the values from another bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCreateMutableCopy(_:_:_:)
+func CFBagCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theBag unsafe.Pointer) unsafe.Pointer {
+	return _CFBagCreateMutableCopy(allocator, capacity, theBag)
 }
 
 // Returns the number of values currently in a bag.
@@ -3115,6 +4020,46 @@ func CFBagGetValueIfPresent(theBag unsafe.Pointer, candidate unsafe.Pointer, val
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagGetValues(_:_:)
 func CFBagGetValues(theBag unsafe.Pointer, values unsafe.Pointer) {
 	_CFBagGetValues(theBag, values)
+}
+
+// Removes all values from a mutable bag.
+
+// Removes all values from a mutable bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRemoveAllValues(_:)
+func CFBagRemoveAllValues(theBag unsafe.Pointer) {
+	_CFBagRemoveAllValues(theBag)
+}
+
+// Removes a value from a mutable bag.
+
+// Removes a value from a mutable bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRemoveValue(_:_:)
+func CFBagRemoveValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+	_CFBagRemoveValue(theBag, value)
+}
+
+// Replaces a value in a mutable bag.
+
+// Replaces a value in a mutable bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagReplaceValue(_:_:)
+func CFBagReplaceValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+	_CFBagReplaceValue(theBag, value)
+}
+
+// Sets a value in a mutable bag.
+
+// Sets a value in a mutable bag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagSetValue(_:_:)
+func CFBagSetValue(theBag unsafe.Pointer, value unsafe.Pointer) {
+	_CFBagSetValue(theBag, value)
 }
 
 // Adds a value to a binary heap.
@@ -3410,6 +4355,17 @@ func CFBundleCopyLocalizationsForURL(url unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizedString(_:_:_:_:)
 func CFBundleCopyLocalizedString(bundle unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, tableName unsafe.Pointer) unsafe.Pointer {
 	return _CFBundleCopyLocalizedString(bundle, key, value, tableName)
+}
+
+// Returns a localized string from a bundle’s strings file.
+//
+// Added in macOS 15.4.
+// Returns a localized string from a bundle’s strings file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleCopyLocalizedStringForLocalizations(_:_:_:_:_:)
+func CFBundleCopyLocalizedStringForLocalizations(bundle unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, tableName unsafe.Pointer, localizations unsafe.Pointer) unsafe.Pointer {
+	return _CFBundleCopyLocalizedStringForLocalizations(bundle, key, value, tableName, localizations)
 }
 
 // Given an array of possible localizations, returns the one or more of them that CFBundle would use in the current application context.
@@ -4221,6 +5177,26 @@ func CFCharacterSetUnion(theSet unsafe.Pointer, theOtherSet unsafe.Pointer) {
 	_CFCharacterSetUnion(theSet, theOtherSet)
 }
 
+// Returns a textual description of a Core Foundation object.
+
+// Returns a textual description of a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyDescription(_:)
+func CFCopyDescription(cf unsafe.Pointer) unsafe.Pointer {
+	return _CFCopyDescription(cf)
+}
+
+// Returns a textual description of a Core Foundation type, as identified by its type ID, which can be used when debugging.
+
+// Returns a textual description of a Core Foundation type, as identified by its type ID, which can be used when debugging.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCopyTypeIDDescription(_:)
+func CFCopyTypeIDDescription(type_id unsafe.Pointer) unsafe.Pointer {
+	return _CFCopyTypeIDDescription(type_id)
+}
+
 // Appends the bytes from a byte buffer to the contents of a CFData object.
 
 // Appends the bytes from a byte buffer to the contents of a CFData object.
@@ -4573,6 +5549,16 @@ func CFDateGetTypeID() unsafe.Pointer {
 	return _CFDateGetTypeID()
 }
 
+// Adds a key-value pair to a dictionary if the specified key is not already present.
+
+// Adds a key-value pair to a dictionary if the specified key is not already present.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryAddValue(_:_:_:)
+func CFDictionaryAddValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+	_CFDictionaryAddValue(theDict, key, value)
+}
+
 // Calls a function once for each key-value pair in a dictionary.
 
 // Calls a function once for each key-value pair in a dictionary.
@@ -4621,6 +5607,26 @@ func CFDictionaryCreate(allocator unsafe.Pointer, keys unsafe.Pointer, values un
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateCopy(_:_:)
 func CFDictionaryCreateCopy(allocator unsafe.Pointer, theDict unsafe.Pointer) unsafe.Pointer {
 	return _CFDictionaryCreateCopy(allocator, theDict)
+}
+
+// Creates a new mutable dictionary.
+
+// Creates a new mutable dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateMutable(_:_:_:_:)
+func CFDictionaryCreateMutable(allocator unsafe.Pointer, capacity unsafe.Pointer, keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer) unsafe.Pointer {
+	return _CFDictionaryCreateMutable(allocator, capacity, keyCallBacks, valueCallBacks)
+}
+
+// Creates a new mutable dictionary with the key-value pairs from another dictionary.
+
+// Creates a new mutable dictionary with the key-value pairs from another dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCreateMutableCopy(_:_:_:)
+func CFDictionaryCreateMutableCopy(allocator unsafe.Pointer, capacity unsafe.Pointer, theDict unsafe.Pointer) unsafe.Pointer {
+	return _CFDictionaryCreateMutableCopy(allocator, capacity, theDict)
 }
 
 // Returns the number of key-value pairs in a dictionary.
@@ -4693,6 +5699,46 @@ func CFDictionaryGetValueIfPresent(theDict unsafe.Pointer, key unsafe.Pointer, v
 	return _CFDictionaryGetValueIfPresent(theDict, key, value)
 }
 
+// Removes all the key-value pairs from a dictionary, making it empty.
+
+// Removes all the key-value pairs from a dictionary, making it empty.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRemoveAllValues(_:)
+func CFDictionaryRemoveAllValues(theDict unsafe.Pointer) {
+	_CFDictionaryRemoveAllValues(theDict)
+}
+
+// Removes a key-value pair.
+
+// Removes a key-value pair.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRemoveValue(_:_:)
+func CFDictionaryRemoveValue(theDict unsafe.Pointer, key unsafe.Pointer) {
+	_CFDictionaryRemoveValue(theDict, key)
+}
+
+// Replaces a value corresponding to a given key.
+
+// Replaces a value corresponding to a given key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryReplaceValue(_:_:_:)
+func CFDictionaryReplaceValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+	_CFDictionaryReplaceValue(theDict, key, value)
+}
+
+// Sets the value corresponding to a given key.
+
+// Sets the value corresponding to a given key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionarySetValue(_:_:_:)
+func CFDictionarySetValue(theDict unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+	_CFDictionarySetValue(theDict, key, value)
+}
+
 // Determines whether two Core Foundation objects are considered equal.
 
 // Determines whether two Core Foundation objects are considered equal.
@@ -4734,6 +5780,49 @@ func CFFileDescriptorGetNativeDescriptor(f unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorIsValid(_:)
 func CFFileDescriptorIsValid(f unsafe.Pointer) unsafe.Pointer {
 	return _CFFileDescriptorIsValid(f)
+}
+
+// Returns the allocator used to allocate a Core Foundation object.
+
+// Returns the allocator used to allocate a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetAllocator(_:)
+func CFGetAllocator(cf unsafe.Pointer) unsafe.Pointer {
+	return _CFGetAllocator(cf)
+}
+
+// Returns the reference count of a Core Foundation object.
+
+// Returns the reference count of a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetRetainCount(_:)
+func CFGetRetainCount(cf unsafe.Pointer) unsafe.Pointer {
+	return _CFGetRetainCount(cf)
+}
+
+// Returns the unique identifier of an opaque type to which a Core Foundation object belongs.
+
+// Returns the unique identifier of an opaque type to which a Core Foundation object belongs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGetTypeID(_:)
+func CFGetTypeID(cf unsafe.Pointer) unsafe.Pointer {
+	return _CFGetTypeID(cf)
+}
+
+// Converts a Gregorian date value into an absolute time value.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.4.
+// Converts a Gregorian date value into an absolute time value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGregorianDateGetAbsoluteTime(_:_:)
+func CFGregorianDateGetAbsoluteTime(gdate unsafe.Pointer, tz unsafe.Pointer) unsafe.Pointer {
+	return _CFGregorianDateGetAbsoluteTime(gdate, tz)
 }
 
 // Returns a code that can be used to identify an object in a hashing structure.
@@ -4982,6 +6071,16 @@ func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier unsafe.Po
 	return _CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier)
 }
 
+// Makes a newly-allocated Core Foundation object eligible for garbage collection.
+
+// Makes a newly-allocated Core Foundation object eligible for garbage collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMakeCollectable
+func CFMakeCollectable(cf unsafe.Pointer) unsafe.Pointer {
+	return _CFMakeCollectable(cf)
+}
+
 // Returns the type identifier for the CFNull opaque type.
 
 // Returns the type identifier for the CFNull opaque type.
@@ -5002,6 +6101,206 @@ func CFNumberIsFloatType(number unsafe.Pointer) unsafe.Pointer {
 	return _CFNumberIsFloatType(number)
 }
 
+// Returns a dictionary containing preference values for multiple keys.
+
+// Returns a dictionary containing preference values for multiple keys.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPreferencesCopyMultiple(_:_:_:_:)
+func CFPreferencesCopyMultiple(keysToFetch unsafe.Pointer, applicationID unsafe.Pointer, userName unsafe.Pointer, hostName unsafe.Pointer) unsafe.Pointer {
+	return _CFPreferencesCopyMultiple(keysToFetch, applicationID, userName, hostName)
+}
+
+// Closes a readable stream.
+
+// Closes a readable stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamClose(_:)
+func CFReadStreamClose(stream unsafe.Pointer) {
+	_CFReadStreamClose(stream)
+}
+
+// Returns the value of a property for a stream.
+
+// Returns the value of a property for a stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCopyProperty(_:_:)
+func CFReadStreamCopyProperty(stream unsafe.Pointer, propertyName unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamCopyProperty(stream, propertyName)
+}
+
+// Creates a readable stream for a block of memory.
+
+// Creates a readable stream for a block of memory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCreateWithBytesNoCopy(_:_:_:_:)
+func CFReadStreamCreateWithBytesNoCopy(alloc unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer, bytesDeallocator unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamCreateWithBytesNoCopy(alloc, bytes, length, bytesDeallocator)
+}
+
+// Creates a readable stream for a file.
+
+// Creates a readable stream for a file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamCreateWithFile(_:_:)
+func CFReadStreamCreateWithFile(alloc unsafe.Pointer, fileURL unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamCreateWithFile(alloc, fileURL)
+}
+
+// Returns a pointer to a stream’s internal buffer of unread data, if possible.
+
+// Returns a pointer to a stream’s internal buffer of unread data, if possible.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetBuffer(_:_:_:)
+func CFReadStreamGetBuffer(stream unsafe.Pointer, maxBytesToRead unsafe.Pointer, numBytesRead unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamGetBuffer(stream, maxBytesToRead, numBytesRead)
+}
+
+// Returns the error status of a stream.
+
+// Returns the error status of a stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetError(_:)
+func CFReadStreamGetError(stream unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamGetError(stream)
+}
+
+// Returns the current state of a stream.
+
+// Returns the current state of a stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetStatus(_:)
+func CFReadStreamGetStatus(stream unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamGetStatus(stream)
+}
+
+// Returns the type identifier the opaque type.
+
+// Returns the type identifier the opaque type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamGetTypeID()
+func CFReadStreamGetTypeID() unsafe.Pointer {
+	return _CFReadStreamGetTypeID()
+}
+
+// Returns a Boolean value that indicates whether a readable stream has data that can be read without blocking.
+
+// Returns a Boolean value that indicates whether a readable stream has data that can be read without blocking.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamHasBytesAvailable(_:)
+func CFReadStreamHasBytesAvailable(stream unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamHasBytesAvailable(stream)
+}
+
+// Opens a stream for reading.
+
+// Opens a stream for reading.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamOpen(_:)
+func CFReadStreamOpen(stream unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamOpen(stream)
+}
+
+// Assigns a client to a stream, which receives callbacks when certain events occur.
+
+// Assigns a client to a stream, which receives callbacks when certain events occur.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetClient(_:_:_:_:)
+func CFReadStreamSetClient(stream unsafe.Pointer, streamEvents unsafe.Pointer, clientCB unsafe.Pointer, clientContext unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamSetClient(stream, streamEvents, clientCB, clientContext)
+}
+
+// Sets the value of a property for a stream.
+
+// Sets the value of a property for a stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamSetProperty(_:_:_:)
+func CFReadStreamSetProperty(stream unsafe.Pointer, propertyName unsafe.Pointer, propertyValue unsafe.Pointer) unsafe.Pointer {
+	return _CFReadStreamSetProperty(stream, propertyName, propertyValue)
+}
+
+// Removes a read stream from a given run loop.
+
+// Removes a read stream from a given run loop.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamUnscheduleFromRunLoop(_:_:_:)
+func CFReadStreamUnscheduleFromRunLoop(stream unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+	_CFReadStreamUnscheduleFromRunLoop(stream, runLoop, runLoopMode)
+}
+
+// Releases a Core Foundation object.
+
+// Releases a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRelease
+func CFRelease(cf unsafe.Pointer) {
+	_CFRelease(cf)
+}
+
+// Retains a Core Foundation object.
+
+// Retains a Core Foundation object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRetain
+func CFRetain(cf unsafe.Pointer) unsafe.Pointer {
+	return _CFRetain(cf)
+}
+
+// Adds a CFRunLoopSource object to a run loop mode.
+
+// Adds a CFRunLoopSource object to a run loop mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopAddSource(_:_:_:)
+func CFRunLoopAddSource(rl unsafe.Pointer, source unsafe.Pointer, mode unsafe.Pointer) {
+	_CFRunLoopAddSource(rl, source, mode)
+}
+
+// Returns a Boolean value that indicates whether the run loop is waiting for an event.
+
+// Returns a Boolean value that indicates whether the run loop is waiting for an event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopIsWaiting(_:)
+func CFRunLoopIsWaiting(rl unsafe.Pointer) unsafe.Pointer {
+	return _CFRunLoopIsWaiting(rl)
+}
+
+// Runs the current thread’s CFRunLoop object in its default mode indefinitely.
+
+// Runs the current thread’s CFRunLoop object in its default mode indefinitely.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRun()
+func CFRunLoopRun() {
+	_CFRunLoopRun()
+}
+
+// Runs the current thread’s CFRunLoop object in a particular mode.
+
+// Runs the current thread’s CFRunLoop object in a particular mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunInMode(_:_:_:)
+func CFRunLoopRunInMode(mode unsafe.Pointer, seconds unsafe.Pointer, returnAfterSourceHandled unsafe.Pointer) unsafe.Pointer {
+	return _CFRunLoopRunInMode(mode, seconds, returnAfterSourceHandled)
+}
+
 // Forces a CFRunLoop object to stop running.
 
 // Forces a CFRunLoop object to stop running.
@@ -5012,6 +6311,26 @@ func CFRunLoopStop(rl unsafe.Pointer) {
 	_CFRunLoopStop(rl)
 }
 
+// Wakes a waiting CFRunLoop object.
+
+// Wakes a waiting CFRunLoop object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopWakeUp(_:)
+func CFRunLoopWakeUp(rl unsafe.Pointer) {
+	_CFRunLoopWakeUp(rl)
+}
+
+// Prints a description of a Core Foundation object to stderr.
+
+// Prints a description of a Core Foundation object to stderr.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFShow(_:)
+func CFShow(obj unsafe.Pointer) {
+	_CFShow(obj)
+}
+
 // Prints the attributes of a string during debugging.
 
 // Prints the attributes of a string during debugging.
@@ -5020,6 +6339,192 @@ func CFRunLoopStop(rl unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFShowStr(_:)
 func CFShowStr(str unsafe.Pointer) {
 	_CFShowStr(str)
+}
+
+// Returns a socket signature registered with a CFSocket name server.
+
+// Returns a socket signature registered with a CFSocket name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCopyRegisteredSocketSignature(_:_:_:_:_:)
+func CFSocketCopyRegisteredSocketSignature(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer, signature unsafe.Pointer, nameServerAddress unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCopyRegisteredSocketSignature(nameServerSignature, timeout, name, signature, nameServerAddress)
+}
+
+// Creates a CFSocket object of a specified protocol and type.
+
+// Creates a CFSocket object of a specified protocol and type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreate(_:_:_:_:_:_:_:)
+func CFSocketCreate(allocator unsafe.Pointer, protocolFamily unsafe.Pointer, socketType unsafe.Pointer, protocol_ unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCreate(allocator, protocolFamily, socketType, protocol_, callBackTypes, callout, context)
+}
+
+// Creates a CFSocket object and opens a connection to a remote socket.
+
+// Creates a CFSocket object and opens a connection to a remote socket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateConnectedToSocketSignature(_:_:_:_:_:_:)
+func CFSocketCreateConnectedToSocketSignature(allocator unsafe.Pointer, signature unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer, timeout unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCreateConnectedToSocketSignature(allocator, signature, callBackTypes, callout, context, timeout)
+}
+
+// Creates a CFRunLoopSource object for a CFSocket object.
+
+// Creates a CFRunLoopSource object for a CFSocket object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateRunLoopSource(_:_:_:)
+func CFSocketCreateRunLoopSource(allocator unsafe.Pointer, s unsafe.Pointer, order unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCreateRunLoopSource(allocator, s, order)
+}
+
+// Creates a CFSocket object for a pre-existing native socket.
+
+// Creates a CFSocket object for a pre-existing native socket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateWithNative(_:_:_:_:_:)
+func CFSocketCreateWithNative(allocator unsafe.Pointer, sock unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCreateWithNative(allocator, sock, callBackTypes, callout, context)
+}
+
+// Creates a CFSocket object using information from a CFSocketSignature structure.
+
+// Creates a CFSocket object using information from a CFSocketSignature structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCreateWithSocketSignature(_:_:_:_:_:)
+func CFSocketCreateWithSocketSignature(allocator unsafe.Pointer, signature unsafe.Pointer, callBackTypes unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketCreateWithSocketSignature(allocator, signature, callBackTypes, callout, context)
+}
+
+// Enables the callback function of a CFSocket object for certain types of socket activity.
+
+// Enables the callback function of a CFSocket object for certain types of socket activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketEnableCallBacks(_:_:)
+func CFSocketEnableCallBacks(s unsafe.Pointer, callBackTypes unsafe.Pointer) {
+	_CFSocketEnableCallBacks(s, callBackTypes)
+}
+
+// Returns the context information for a CFSocket object.
+
+// Returns the context information for a CFSocket object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetContext(_:_:)
+func CFSocketGetContext(s unsafe.Pointer, context unsafe.Pointer) {
+	_CFSocketGetContext(s, context)
+}
+
+// Returns flags that control certain behaviors of a CFSocket object.
+
+// Returns flags that control certain behaviors of a CFSocket object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetSocketFlags(_:)
+func CFSocketGetSocketFlags(s unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketGetSocketFlags(s)
+}
+
+// Returns the type identifier for the CFSocket opaque type.
+
+// Returns the type identifier for the CFSocket opaque type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketGetTypeID()
+func CFSocketGetTypeID() unsafe.Pointer {
+	return _CFSocketGetTypeID()
+}
+
+// Invalidates a CFSocket object, stopping it from sending or receiving any more messages.
+
+// Invalidates a CFSocket object, stopping it from sending or receiving any more messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketInvalidate(_:)
+func CFSocketInvalidate(s unsafe.Pointer) {
+	_CFSocketInvalidate(s)
+}
+
+// Registers a property-list value with a CFSocket name server.
+
+// Registers a property-list value with a CFSocket name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketRegisterValue(_:_:_:_:)
+func CFSocketRegisterValue(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketRegisterValue(nameServerSignature, timeout, name, value)
+}
+
+// Sends data over a CFSocket object.
+
+// Sends data over a CFSocket object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSendData(_:_:_:_:)
+func CFSocketSendData(s unsafe.Pointer, address unsafe.Pointer, data unsafe.Pointer, timeout unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketSendData(s, address, data, timeout)
+}
+
+// Binds a local address to a CFSocket object and configures it for listening.
+
+// Binds a local address to a CFSocket object and configures it for listening.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetAddress(_:_:)
+func CFSocketSetAddress(s unsafe.Pointer, address unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketSetAddress(s, address)
+}
+
+// Sets flags that control certain behaviors of a CFSocket object.
+
+// Sets flags that control certain behaviors of a CFSocket object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketSetSocketFlags(_:_:)
+func CFSocketSetSocketFlags(s unsafe.Pointer, flags unsafe.Pointer) {
+	_CFSocketSetSocketFlags(s, flags)
+}
+
+// Unregisters a value or socket signature with a CFSocket name server.
+
+// Unregisters a value or socket signature with a CFSocket name server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketUnregister(_:_:_:)
+func CFSocketUnregister(nameServerSignature unsafe.Pointer, timeout unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
+	return _CFSocketUnregister(nameServerSignature, timeout, name)
+}
+
+// Creates readable and writable streams connected to a socket.
+//
+// Deprecated: This function was deprecated in macOS 26.1.
+//
+// Added in macOS 10.1.
+// Creates readable and writable streams connected to a socket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithPeerSocketSignature(_:_:_:_:)
+func CFStreamCreatePairWithPeerSocketSignature(alloc unsafe.Pointer, signature unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
+	_CFStreamCreatePairWithPeerSocketSignature(alloc, signature, readStream, writeStream)
+}
+
+// Creates readable and writable streams connected to a socket.
+//
+// Deprecated: This function was deprecated in macOS 26.1.
+//
+// Added in macOS 10.1.
+// Creates readable and writable streams connected to a socket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithSocket(_:_:_:_:)
+func CFStreamCreatePairWithSocket(alloc unsafe.Pointer, sock unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
+	_CFStreamCreatePairWithSocket(alloc, sock, readStream, writeStream)
 }
 
 // Creates readable and writable streams connected to a TCP/IP port of a particular host.
@@ -5033,6 +6538,46 @@ func CFShowStr(str unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamCreatePairWithSocketToHost(_:_:_:_:_:)
 func CFStreamCreatePairWithSocketToHost(alloc unsafe.Pointer, host unsafe.Pointer, port unsafe.Pointer, readStream unsafe.Pointer, writeStream unsafe.Pointer) {
 	_CFStreamCreatePairWithSocketToHost(alloc, host, port, readStream, writeStream)
+}
+
+// Appends a formatted string to the character contents of a CFMutableString object.
+
+// Appends a formatted string to the character contents of a CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendFormat
+func CFStringAppendFormat(theString unsafe.Pointer, formatOptions unsafe.Pointer, format unsafe.Pointer) {
+	_CFStringAppendFormat(theString, formatOptions, format)
+}
+
+// Appends a formatted string to the character contents of a CFMutableString object.
+
+// Appends a formatted string to the character contents of a CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendFormatAndArguments(_:_:_:_:)
+func CFStringAppendFormatAndArguments(theString unsafe.Pointer, formatOptions unsafe.Pointer, format unsafe.Pointer, arguments unsafe.Pointer) {
+	_CFStringAppendFormatAndArguments(theString, formatOptions, format, arguments)
+}
+
+// Appends a Pascal string to the character contents of a CFMutableString object.
+
+// Appends a Pascal string to the character contents of a CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringAppendPascalString(_:_:_:)
+func CFStringAppendPascalString(theString unsafe.Pointer, pStr unsafe.Pointer, encoding unsafe.Pointer) {
+	_CFStringAppendPascalString(theString, pStr, encoding)
+}
+
+// Changes the first character in each word of a string to uppercase (if it is a lowercase alphabetical character).
+
+// Changes the first character in each word of a string to uppercase (if it is a lowercase alphabetical character).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCapitalize(_:_:)
+func CFStringCapitalize(theString unsafe.Pointer, locale unsafe.Pointer) {
+	_CFStringCapitalize(theString, locale)
 }
 
 // Compares one string with another string.
@@ -5184,6 +6729,36 @@ func CFStringCreateExternalRepresentation(alloc unsafe.Pointer, theString unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateFromExternalRepresentation(_:_:_:)
 func CFStringCreateFromExternalRepresentation(alloc unsafe.Pointer, data unsafe.Pointer, encoding unsafe.Pointer) unsafe.Pointer {
 	return _CFStringCreateFromExternalRepresentation(alloc, data, encoding)
+}
+
+// Creates an empty CFMutableString object.
+
+// Creates an empty CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutable(_:_:)
+func CFStringCreateMutable(alloc unsafe.Pointer, maxLength unsafe.Pointer) unsafe.Pointer {
+	return _CFStringCreateMutable(alloc, maxLength)
+}
+
+// Creates a mutable copy of a string.
+
+// Creates a mutable copy of a string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutableCopy(_:_:_:)
+func CFStringCreateMutableCopy(alloc unsafe.Pointer, maxLength unsafe.Pointer, theString unsafe.Pointer) unsafe.Pointer {
+	return _CFStringCreateMutableCopy(alloc, maxLength, theString)
+}
+
+// Creates a CFMutableString object whose Unicode character buffer is controlled externally.
+
+// Creates a CFMutableString object whose Unicode character buffer is controlled externally.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCreateMutableWithExternalCharactersNoCopy(_:_:_:_:_:)
+func CFStringCreateMutableWithExternalCharactersNoCopy(alloc unsafe.Pointer, chars unsafe.Pointer, numChars unsafe.Pointer, capacity unsafe.Pointer, externalCharactersAllocator unsafe.Pointer) unsafe.Pointer {
+	return _CFStringCreateMutableWithExternalCharactersNoCopy(alloc, chars, numChars, capacity, externalCharactersAllocator)
 }
 
 // Creates a string from a buffer containing characters in a specified encoding.
@@ -5619,6 +7194,16 @@ func CFStringHasSuffix(theString unsafe.Pointer, suffix unsafe.Pointer) unsafe.P
 	return _CFStringHasSuffix(theString, suffix)
 }
 
+// Inserts a string at a specified location in the character buffer of a CFMutableString object.
+
+// Inserts a string at a specified location in the character buffer of a CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringInsert(_:_:_:)
+func CFStringInsert(str unsafe.Pointer, idx unsafe.Pointer, insertedStr unsafe.Pointer) {
+	_CFStringInsert(str, idx, insertedStr)
+}
+
 // Determines whether a given Core Foundation string encoding is available on the current system.
 
 // Determines whether a given Core Foundation string encoding is available on the current system.
@@ -5638,6 +7223,86 @@ func CFStringIsEncodingAvailable(encoding unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringIsHyphenationAvailableForLocale(_:)
 func CFStringIsHyphenationAvailableForLocale(locale unsafe.Pointer) unsafe.Pointer {
 	return _CFStringIsHyphenationAvailableForLocale(locale)
+}
+
+// Changes all uppercase alphabetical characters in a CFMutableString to lowercase.
+
+// Changes all uppercase alphabetical characters in a CFMutableString to lowercase.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringLowercase(_:_:)
+func CFStringLowercase(theString unsafe.Pointer, locale unsafe.Pointer) {
+	_CFStringLowercase(theString, locale)
+}
+
+// Normalizes the string into the specified form as described in Unicode Technical Report #15.
+
+// Normalizes the string into the specified form as described in Unicode Technical Report #15.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringNormalize(_:_:)
+func CFStringNormalize(theString unsafe.Pointer, theForm unsafe.Pointer) {
+	_CFStringNormalize(theString, theForm)
+}
+
+// Enlarges a string, padding it with specified characters, or truncates the string.
+
+// Enlarges a string, padding it with specified characters, or truncates the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringPad(_:_:_:_:)
+func CFStringPad(theString unsafe.Pointer, padString unsafe.Pointer, length unsafe.Pointer, indexIntoPad unsafe.Pointer) {
+	_CFStringPad(theString, padString, length, indexIntoPad)
+}
+
+// Replaces all characters of a CFMutableString object with other characters.
+
+// Replaces all characters of a CFMutableString object with other characters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringReplaceAll(_:_:)
+func CFStringReplaceAll(theString unsafe.Pointer, replacement unsafe.Pointer) {
+	_CFStringReplaceAll(theString, replacement)
+}
+
+// Notifies a CFMutableString object that its external backing store of Unicode characters has changed.
+
+// Notifies a CFMutableString object that its external backing store of Unicode characters has changed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringSetExternalCharactersNoCopy(_:_:_:_:)
+func CFStringSetExternalCharactersNoCopy(theString unsafe.Pointer, chars unsafe.Pointer, length unsafe.Pointer, capacity unsafe.Pointer) {
+	_CFStringSetExternalCharactersNoCopy(theString, chars, length, capacity)
+}
+
+// Trims a specified substring from the beginning and end of a CFMutableString object.
+
+// Trims a specified substring from the beginning and end of a CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTrim(_:_:)
+func CFStringTrim(theString unsafe.Pointer, trimString unsafe.Pointer) {
+	_CFStringTrim(theString, trimString)
+}
+
+// Trims whitespace from the beginning and end of a CFMutableString object.
+
+// Trims whitespace from the beginning and end of a CFMutableString object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTrimWhitespace(_:)
+func CFStringTrimWhitespace(theString unsafe.Pointer) {
+	_CFStringTrimWhitespace(theString)
+}
+
+// Changes all lowercase alphabetical characters in a CFMutableString object to uppercase.
+
+// Changes all lowercase alphabetical characters in a CFMutableString object to uppercase.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringUppercase(_:_:)
+func CFStringUppercase(theString unsafe.Pointer, locale unsafe.Pointer) {
+	_CFStringUppercase(theString, locale)
 }
 
 // Returns the abbreviation of a time zone at a specified date.
@@ -6752,6 +8417,112 @@ func inset(insets unsafe.Pointer, p1 unsafe.Pointer) unsafe.Pointer {
 	return _inset(insets, p1)
 }
 
+// Creates a new color in a different color space that matches the provided color.
+//
+// Added in macOS 10.11.
+// Creates a new color in a different color space that matches the provided color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/converted(to:intent:options:)
+func CGColorCreateCopyByMatchingToColorSpace(p0 coregraphics.ColorSpaceRef, intent unsafe.Pointer, color coregraphics.ColorRef, options unsafe.Pointer) coregraphics.ColorRef {
+	return _CGColorCreateCopyByMatchingToColorSpace(p0, intent, color, options)
+}
+
+// Returns the number of bits allocated for a single color component of a bitmap image.
+//
+// Added in macOS 10.0.
+// Returns the number of bits allocated for a single color component of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerComponent
+func CGImageGetBitsPerComponent(image coregraphics.ImageRef) uintptr {
+	return _CGImageGetBitsPerComponent(image)
+}
+
+// Returns the number of bytes allocated for a single row of a bitmap image.
+//
+// Added in macOS 10.0.
+// Returns the number of bytes allocated for a single row of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bytesPerRow
+func CGImageGetBytesPerRow(image coregraphics.ImageRef) uintptr {
+	return _CGImageGetBytesPerRow(image)
+}
+
+// CGImageCalculateContentHeadroom is a Foundation function.
+//
+// Added in macOS 26.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentHeadroom
+func CGImageCalculateContentHeadroom(image coregraphics.ImageRef) float32 {
+	return _CGImageCalculateContentHeadroom(image)
+}
+
+// CGImageGetContentHeadroom is a Foundation function.
+//
+// Added in macOS 15.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentHeadroom
+func CGImageGetContentHeadroom(image coregraphics.ImageRef) float32 {
+	return _CGImageGetContentHeadroom(image)
+}
+
+// Returns the decode array for a bitmap image.
+//
+// Added in macOS 10.0.
+// Returns the decode array for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/decode
+func CGImageGetDecode(image coregraphics.ImageRef) []float64 {
+	return _CGImageGetDecode(image)
+}
+
+// Returns the height of a bitmap image.
+//
+// Added in macOS 10.0.
+// Returns the height of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/height
+func CGImageGetHeight(image coregraphics.ImageRef) uintptr {
+	return _CGImageGetHeight(image)
+}
+
+// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
+//
+// Added in macOS 10.1.
+// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(jpegDataProviderSource:decode:shouldInterpolate:intent:)
+func CGImageCreateWithJPEGDataProvider(source coregraphics.DataProviderRef, decode []float64, shouldInterpolate bool, intent unsafe.Pointer) coregraphics.ImageRef {
+	return _CGImageCreateWithJPEGDataProvider(source, decode, shouldInterpolate, intent)
+}
+
+// Decrements the retain count of a bitmap image.
+//
+// Added in macOS 10.0.
+// Decrements the retain count of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRelease
+func CGImageRelease(image coregraphics.ImageRef) {
+	_CGImageRelease(image)
+}
+
+// Increments the retain count of a bitmap image.
+//
+// Added in macOS 10.0.
+// Increments the retain count of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRetain
+func CGImageRetain(image coregraphics.ImageRef) coregraphics.ImageRef {
+	return _CGImageRetain(image)
+}
+
 // Tests whether an app can accept (open) an item for a URL.
 //
 // Added in macOS 10.0.
@@ -6772,6 +8543,19 @@ func LSCanURLAcceptURL(inItemURL unsafe.Pointer, inTargetURL unsafe.Pointer, inR
 // [Full Topic]: https://developer.apple.com/documentation/coreservices/1441986-lsopenfromurlspec
 func LSOpenFromURLSpec(inLaunchSpec unsafe.Pointer, outLaunchedURL unsafe.Pointer, p2 unsafe.Pointer) unsafe.Pointer {
 	return _LSOpenFromURLSpec(inLaunchSpec, outLaunchedURL, p2)
+}
+
+// Tests whether an app can accept (open) an item with a file-system reference.
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+// Tests whether an app can accept (open) an item with a file-system reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/1442183-lscanrefacceptitem
+func LSCanRefAcceptItem(inItemFSRef unsafe.Pointer, inTargetRef unsafe.Pointer, inRoleMask unsafe.Pointer, inFlags unsafe.Pointer, outAcceptsItem unsafe.Pointer, p5 unsafe.Pointer) unsafe.Pointer {
+	return _LSCanRefAcceptItem(inItemFSRef, inTargetRef, inRoleMask, inFlags, outAcceptsItem, p5)
 }
 
 // Opens an item for a URL in the default manner in its preferred app.
@@ -6820,6 +8604,19 @@ func LSCopyApplicationURLsForURL(inURL unsafe.Pointer, inRoleMask unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/coreservices/1446350-lsregisterurl
 func LSRegisterURL(inURL unsafe.Pointer, inUpdate unsafe.Pointer, p2 unsafe.Pointer) unsafe.Pointer {
 	return _LSRegisterURL(inURL, inUpdate, p2)
+}
+
+// Obtains the kind string for an item with a URL.
+//
+// Deprecated: This function was deprecated in macOS 10.11.
+//
+// Added in macOS 10.0.
+// Obtains the kind string for an item with a URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/1447481-lscopykindstringforurl
+func LSCopyKindStringForURL(inURL unsafe.Pointer, outKindString unsafe.Pointer, p2 unsafe.Pointer) unsafe.Pointer {
+	return _LSCopyKindStringForURL(inURL, outKindString, p2)
 }
 
 // Returns the app that opens a content type.
@@ -6900,6 +8697,60 @@ func LSCopyDefaultRoleHandlerForContentType(inContentType unsafe.Pointer, inRole
 	return _LSCopyDefaultRoleHandlerForContentType(inContentType, inRole, p2)
 }
 
+// thread_set_state is a Foundation function.
+//
+// Added in macOS 10.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1418827-thread_set_state
+func thread_set_state(p0 unsafe.Pointer) unsafe.Pointer {
+	return _thread_set_state(p0)
+}
+
+// log is a Foundation function.
+//
+// Added in macOS 10.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1516025-log
+func log(p0 unsafe.Pointer) {
+	_log(p0)
+}
+
+// task_info is a Foundation function.
+//
+// Added in macOS 10.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1537934-task_info
+func task_info(p0 unsafe.Pointer) unsafe.Pointer {
+	return _task_info(p0)
+}
+
+// cosh is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557145-cosh
+func cosh(p0 float64) float64 {
+	return _cosh(p0)
+}
+
+// atan is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557165-atan
+func atan(p0 float64) float64 {
+	return _atan(p0)
+}
+
+// modf is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557173-modf
+func modf(p0 unsafe.Pointer) float64 {
+	return _modf(p0)
+}
+
 // floorf is a Foundation function.
 //
 // Added in macOS 10.10.
@@ -6916,6 +8767,33 @@ func floorf(p0 float32) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/kernel/1557207-ceill
 func ceill(p0 unsafe.Pointer) unsafe.Pointer {
 	return _ceill(p0)
+}
+
+// atanhl is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557230-atanhl
+func atanhl(p0 unsafe.Pointer) unsafe.Pointer {
+	return _atanhl(p0)
+}
+
+// tanl is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557239-tanl
+func tanl(p0 unsafe.Pointer) unsafe.Pointer {
+	return _tanl(p0)
+}
+
+// log2 is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557246-log2
+func log2(p0 float64) float64 {
+	return _log2(p0)
 }
 
 // ceilf is a Foundation function.
@@ -6936,6 +8814,24 @@ func ceil(p0 float64) float64 {
 	return _ceil(p0)
 }
 
+// logbf is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557288-logbf
+func logbf(p0 float32) float32 {
+	return _logbf(p0)
+}
+
+// copysignl is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557294-copysignl
+func copysignl(p0 unsafe.Pointer) unsafe.Pointer {
+	return _copysignl(p0)
+}
+
 // floorl is a Foundation function.
 //
 // Added in macOS 10.10.
@@ -6952,6 +8848,24 @@ func floorl(p0 unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/kernel/1557338-floor
 func floor(p0 float64) float64 {
 	return _floor(p0)
+}
+
+// round is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557369-round
+func round(p0 float64) float64 {
+	return _round(p0)
+}
+
+// atanh is a Foundation function.
+//
+// Added in macOS 10.10.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/kernel/1557372-atanh
+func atanh(p0 float64) float64 {
+	return _atanh(p0)
 }
 
 // Determines the amount of memory available to the current app.
@@ -6974,6 +8888,19 @@ func CNCopyCurrentNetworkInfo(p0 unsafe.Pointer) unsafe.Pointer {
 	return _CNCopyCurrentNetworkInfo(p0)
 }
 
+// Assigns a client to the specified target, which receives callbacks when the reachability of the target changes.
+//
+// Deprecated: This function was deprecated in macOS 14.4.
+//
+// Added in macOS 10.3.
+// Assigns a client to the specified target, which receives callbacks when the reachability of the target changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)
+func SCNetworkReachabilitySetCallback(target unsafe.Pointer, callout unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+	return _SCNetworkReachabilitySetCallback(target, callout, context)
+}
+
 // Returns a string formatted to contain the data from an edge insets structure.
 
 // Returns a string formatted to contain the data from an edge insets structure.
@@ -6982,6 +8909,16 @@ func CNCopyCurrentNetworkInfo(p0 unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringFromUIEdgeInsets
 func NSStringFromUIEdgeInsets(insets unsafe.Pointer) unsafe.Pointer {
 	return _NSStringFromUIEdgeInsets(insets)
+}
+
+// Returns a string formatted to contain the data from an offset structure.
+
+// Returns a string formatted to contain the data from an offset structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringFromUIOffset
+func NSStringFromUIOffset(offset unsafe.Pointer) unsafe.Pointer {
+	return _NSStringFromUIOffset(offset)
 }
 
 // Converts a UIKit text alignment constant value to the matching constant value that Core Text uses.

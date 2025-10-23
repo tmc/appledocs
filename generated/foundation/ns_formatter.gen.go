@@ -33,7 +33,7 @@ type IFormatter interface {
 	// properties:
 	// methods:
 	IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	StringForObjectValue(obj objectivec.IObject) String /* foo */
+	StringForObjectValue(obj objectivec.IObject) String /* not a class type */
 }
 
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
@@ -103,7 +103,7 @@ func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partial
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
-func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) String /* foo */ {
+func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) String /* not a class type */ {
 	rv := objc.Send[String](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

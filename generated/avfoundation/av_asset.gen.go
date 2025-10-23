@@ -33,24 +33,21 @@ type _AssetClass struct {
 type IAsset interface {
 	objectivec.IObject
 	// properties:
+	CanContainFragments() bool /* primitive/slice/pointer */
+	ContainsFragments() bool /* primitive/slice/pointer */
+	Duration() Time /* not a class type */
 	AllMediaSelections() IAVMediaSelection
 	SetAllMediaSelections(value IAVMediaSelection)
-	AvailableChapterLocales() foundation.Locale /* foo */
-	SetAvailableChapterLocales(value foundation.Locale /* foo */)
-	AvailableMediaCharacteristicsWithMediaSelectionOptions() AVMediaCharacteristic /* foo */
-	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value AVMediaCharacteristic /* foo */)
-	AvailableMetadataFormats() AVMetadataFormat /* foo */
-	SetAvailableMetadataFormats(value AVMetadataFormat /* foo */)
-	CanContainFragments() bool /* primitive/slice/pointer */
-	SetCanContainFragments(value bool /* primitive/slice/pointer */)
+	AvailableChapterLocales() foundation.Locale /* not a class type */
+	SetAvailableChapterLocales(value foundation.Locale /* not a class type */)
+	AvailableMediaCharacteristicsWithMediaSelectionOptions() MediaCharacteristic /* not a class type */
+	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */)
+	AvailableMetadataFormats() MetadataFormat /* not a class type */
+	SetAvailableMetadataFormats(value MetadataFormat /* not a class type */)
 	CommonMetadata() IAVMetadataItem
 	SetCommonMetadata(value IAVMetadataItem)
-	ContainsFragments() bool /* primitive/slice/pointer */
-	SetContainsFragments(value bool /* primitive/slice/pointer */)
 	CreationDate() IAVMetadataItem
 	SetCreationDate(value IAVMetadataItem)
-	Duration() CMTime /* foo */
-	SetDuration(value CMTime /* foo */)
 	HasProtectedContent() bool /* primitive/slice/pointer */
 	SetHasProtectedContent(value bool /* primitive/slice/pointer */)
 	IsCompatibleWithAirPlayVideo() bool /* primitive/slice/pointer */
@@ -69,14 +66,14 @@ type IAsset interface {
 	SetLyrics(value string /* primitive/slice/pointer */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	MinimumTimeOffsetFromLive() CMTime /* foo */
-	SetMinimumTimeOffsetFromLive(value CMTime /* foo */)
+	MinimumTimeOffsetFromLive() Time /* not a class type */
+	SetMinimumTimeOffsetFromLive(value Time /* not a class type */)
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	OverallDurationHint() CMTime /* foo */
-	SetOverallDurationHint(value CMTime /* foo */)
-	PreferredDisplayCriteria() AVDisplayCriteria /* foo */
-	SetPreferredDisplayCriteria(value AVDisplayCriteria /* foo */)
+	OverallDurationHint() Time /* not a class type */
+	SetOverallDurationHint(value Time /* not a class type */)
+	PreferredDisplayCriteria() DisplayCriteria /* not a class type */
+	SetPreferredDisplayCriteria(value DisplayCriteria /* not a class type */)
 	PreferredMediaSelection() IAVMediaSelection
 	SetPreferredMediaSelection(value IAVMediaSelection)
 	PreferredRate() float32 /* primitive/slice/pointer */
@@ -87,14 +84,14 @@ type IAsset interface {
 	SetPreferredVolume(value float32 /* primitive/slice/pointer */)
 	ProvidesPreciseDurationAndTiming() bool /* primitive/slice/pointer */
 	SetProvidesPreciseDurationAndTiming(value bool /* primitive/slice/pointer */)
-	ReferenceRestrictions() AVAssetReferenceRestrictions /* foo */
-	SetReferenceRestrictions(value AVAssetReferenceRestrictions /* foo */)
+	ReferenceRestrictions() AssetReferenceRestrictions /* not a class type */
+	SetReferenceRestrictions(value AssetReferenceRestrictions /* not a class type */)
 	TrackGroups() IAVAssetTrackGroup
 	SetTrackGroups(value IAVAssetTrackGroup)
 	Tracks() IAVAssetTrack
 	SetTracks(value IAVAssetTrack)
 	// methods:
-	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic AVMediaCharacteristic /* foo */, completionHandler unsafe.Pointer)
+	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic /* not a class type */, completionHandler unsafe.Pointer)
 }
 
 // An object that models timed audiovisual media.
@@ -154,8 +151,38 @@ func NewAsset() Asset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)
-func (a_ Asset) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic AVMediaCharacteristic /* foo */, completionHandler unsafe.Pointer) {
+func (a_ Asset) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic /* not a class type */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("loadTracksWithMediaCharacteristic:completionHandler:"), mediaCharacteristic, completionHandler)
+}
+
+
+// A Boolean value that indicates whether you can extend the asset by fragments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/canContainFragments
+func (a_ Asset) CanContainFragments() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canContainFragments"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether at least one movie fragment extends the asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/containsFragments
+func (a_ Asset) ContainsFragments() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("containsFragments"))
+	return rv
+}
+
+
+// A time value that indicates the asset’s duration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/duration
+func (a_ Asset) Duration() Time /* not a class type */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("duration"))
+	return rv
 }
 
 
@@ -182,7 +209,7 @@ func (a_ Asset) SetAllMediaSelections(value IAVMediaSelection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablechapterlocales
-func (a_ Asset) AvailableChapterLocales() foundation.Locale /* foo */ {
+func (a_ Asset) AvailableChapterLocales() foundation.Locale /* not a class type */ {
 	rv := objc.Send[foundation.Locale](a_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
@@ -192,7 +219,7 @@ func (a_ Asset) AvailableChapterLocales() foundation.Locale /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablechapterlocales
-func (a_ Asset) SetAvailableChapterLocales(value foundation.Locale /* foo */) {
+func (a_ Asset) SetAvailableChapterLocales(value foundation.Locale /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableChapterLocales:"), value)
 }
 
@@ -201,7 +228,7 @@ func (a_ Asset) SetAvailableChapterLocales(value foundation.Locale /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablemediacharacteristicswithmediaselectionoptions
-func (a_ Asset) AvailableMediaCharacteristicsWithMediaSelectionOptions() AVMediaCharacteristic /* foo */ {
+func (a_ Asset) AvailableMediaCharacteristicsWithMediaSelectionOptions() MediaCharacteristic /* not a class type */ {
 	rv := objc.Send[MediaCharacteristic](a_.ID, objc.Sel("availableMediaCharacteristicsWithMediaSelectionOptions"))
 	return rv
 }
@@ -211,7 +238,7 @@ func (a_ Asset) AvailableMediaCharacteristicsWithMediaSelectionOptions() AVMedia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablemediacharacteristicswithmediaselectionoptions
-func (a_ Asset) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value AVMediaCharacteristic /* foo */) {
+func (a_ Asset) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMediaCharacteristicsWithMediaSelectionOptions:"), value)
 }
 
@@ -220,7 +247,7 @@ func (a_ Asset) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablemetadataformats
-func (a_ Asset) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
+func (a_ Asset) AvailableMetadataFormats() MetadataFormat /* not a class type */ {
 	rv := objc.Send[MetadataFormat](a_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
@@ -230,27 +257,8 @@ func (a_ Asset) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablemetadataformats
-func (a_ Asset) SetAvailableMetadataFormats(value AVMetadataFormat /* foo */) {
+func (a_ Asset) SetAvailableMetadataFormats(value MetadataFormat /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
-}
-
-
-// A Boolean value that indicates whether you can extend the asset by fragments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments
-func (a_ Asset) CanContainFragments() bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("canContainFragments"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether you can extend the asset by fragments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments
-func (a_ Asset) SetCanContainFragments(value bool /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCanContainFragments:"), value)
 }
 
 
@@ -273,25 +281,6 @@ func (a_ Asset) SetCommonMetadata(value IAVMetadataItem) {
 }
 
 
-// A Boolean value that indicates whether at least one movie fragment extends the asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/containsfragments
-func (a_ Asset) ContainsFragments() bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("containsFragments"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether at least one movie fragment extends the asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/containsfragments
-func (a_ Asset) SetContainsFragments(value bool /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContainsFragments:"), value)
-}
-
-
 // A metadata item that indicates the asset’s creation date.
 //
 // [Full Topic]
@@ -308,25 +297,6 @@ func (a_ Asset) CreationDate() IAVMetadataItem {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/creationdate
 func (a_ Asset) SetCreationDate(value IAVMetadataItem) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCreationDate:"), value)
-}
-
-
-// A time value that indicates the asset’s duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/duration
-func (a_ Asset) Duration() CMTime /* foo */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
-// A time value that indicates the asset’s duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/duration
-func (a_ Asset) SetDuration(value CMTime /* foo */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
 }
 
 
@@ -505,7 +475,7 @@ func (a_ Asset) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/minimumtimeoffsetfromlive
-func (a_ Asset) MinimumTimeOffsetFromLive() CMTime /* foo */ {
+func (a_ Asset) MinimumTimeOffsetFromLive() Time /* not a class type */ {
 	rv := objc.Send[Time](a_.ID, objc.Sel("minimumTimeOffsetFromLive"))
 	return rv
 }
@@ -515,7 +485,7 @@ func (a_ Asset) MinimumTimeOffsetFromLive() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/minimumtimeoffsetfromlive
-func (a_ Asset) SetMinimumTimeOffsetFromLive(value CMTime /* foo */) {
+func (a_ Asset) SetMinimumTimeOffsetFromLive(value Time /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMinimumTimeOffsetFromLive:"), value)
 }
 
@@ -543,7 +513,7 @@ func (a_ Asset) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/overalldurationhint
-func (a_ Asset) OverallDurationHint() CMTime /* foo */ {
+func (a_ Asset) OverallDurationHint() Time /* not a class type */ {
 	rv := objc.Send[Time](a_.ID, objc.Sel("overallDurationHint"))
 	return rv
 }
@@ -553,7 +523,7 @@ func (a_ Asset) OverallDurationHint() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/overalldurationhint
-func (a_ Asset) SetOverallDurationHint(value CMTime /* foo */) {
+func (a_ Asset) SetOverallDurationHint(value Time /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallDurationHint:"), value)
 }
 
@@ -562,7 +532,7 @@ func (a_ Asset) SetOverallDurationHint(value CMTime /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/preferreddisplaycriteria
-func (a_ Asset) PreferredDisplayCriteria() AVDisplayCriteria /* foo */ {
+func (a_ Asset) PreferredDisplayCriteria() DisplayCriteria /* not a class type */ {
 	rv := objc.Send[DisplayCriteria](a_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
@@ -572,7 +542,7 @@ func (a_ Asset) PreferredDisplayCriteria() AVDisplayCriteria /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/preferreddisplaycriteria
-func (a_ Asset) SetPreferredDisplayCriteria(value AVDisplayCriteria /* foo */) {
+func (a_ Asset) SetPreferredDisplayCriteria(value DisplayCriteria /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 
@@ -676,7 +646,7 @@ func (a_ Asset) SetProvidesPreciseDurationAndTiming(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/referencerestrictions
-func (a_ Asset) ReferenceRestrictions() AVAssetReferenceRestrictions /* foo */ {
+func (a_ Asset) ReferenceRestrictions() AssetReferenceRestrictions /* not a class type */ {
 	rv := objc.Send[AssetReferenceRestrictions](a_.ID, objc.Sel("referenceRestrictions"))
 	return rv
 }
@@ -686,7 +656,7 @@ func (a_ Asset) ReferenceRestrictions() AVAssetReferenceRestrictions /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/referencerestrictions
-func (a_ Asset) SetReferenceRestrictions(value AVAssetReferenceRestrictions /* foo */) {
+func (a_ Asset) SetReferenceRestrictions(value AssetReferenceRestrictions /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReferenceRestrictions:"), value)
 }
 

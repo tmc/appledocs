@@ -33,8 +33,8 @@ type IAssetResourceLoader interface {
 	// properties:
 	SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer */
 	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer */)
-	Delegate() AVAssetResourceLoaderDelegate /* foo */
-	SetDelegate(value AVAssetResourceLoaderDelegate /* foo */)
+	Delegate() AssetResourceLoaderDelegate /* not a class type */
+	SetDelegate(value AssetResourceLoaderDelegate /* not a class type */)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
 	PreloadsEligibleContentKeys() bool /* primitive/slice/pointer */
@@ -120,7 +120,7 @@ func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
-func (a_ AssetResourceLoader) Delegate() AVAssetResourceLoaderDelegate /* foo */ {
+func (a_ AssetResourceLoader) Delegate() AssetResourceLoaderDelegate /* not a class type */ {
 	rv := objc.Send[AssetResourceLoaderDelegate](a_.ID, objc.Sel("delegate"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (a_ AssetResourceLoader) Delegate() AVAssetResourceLoaderDelegate /* foo */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
-func (a_ AssetResourceLoader) SetDelegate(value AVAssetResourceLoaderDelegate /* foo */) {
+func (a_ AssetResourceLoader) SetDelegate(value AssetResourceLoaderDelegate /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 

@@ -32,17 +32,15 @@ type IMovie interface {
 	IAsset
 	// properties:
 	CanContainMovieFragments() bool /* primitive/slice/pointer */
-	SetCanContainMovieFragments(value bool /* primitive/slice/pointer */)
 	ContainsMovieFragments() bool /* primitive/slice/pointer */
-	SetContainsMovieFragments(value bool /* primitive/slice/pointer */)
-	Data() foundation.Data /* foo */
-	SetData(value foundation.Data /* foo */)
-	DefaultMediaDataStorage() AVMediaDataStorage /* foo */
-	SetDefaultMediaDataStorage(value AVMediaDataStorage /* foo */)
-	Tracks() AVMovieTrack /* foo */
-	SetTracks(value AVMovieTrack /* foo */)
-	Url() foundation.URL /* foo */
-	SetUrl(value foundation.URL /* foo */)
+	Data() foundation.Data /* not a class type */
+	SetData(value foundation.Data /* not a class type */)
+	DefaultMediaDataStorage() MediaDataStorage /* not a class type */
+	SetDefaultMediaDataStorage(value MediaDataStorage /* not a class type */)
+	Tracks() MovieTrack /* not a class type */
+	SetTracks(value MovieTrack /* not a class type */)
+	Url() foundation.URL /* not a class type */
+	SetUrl(value foundation.URL /* not a class type */)
 	// methods:
 }
 
@@ -104,38 +102,20 @@ func NewMovie() Movie {
 // A Boolean value that indicates whether fragments can extend the movie file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/cancontainmoviefragments
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/canContainMovieFragments
 func (m_ Movie) CanContainMovieFragments() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canContainMovieFragments"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether fragments can extend the movie file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/cancontainmoviefragments
-func (m_ Movie) SetCanContainMovieFragments(value bool /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCanContainMovieFragments:"), value)
-}
-
-
 // A Boolean value that indicates whether at least one movie fragment extends the movie file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/containsmoviefragments
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/containsMovieFragments
 func (m_ Movie) ContainsMovieFragments() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("containsMovieFragments"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether at least one movie fragment extends the movie file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/containsmoviefragments
-func (m_ Movie) SetContainsMovieFragments(value bool /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setContainsMovieFragments:"), value)
 }
 
 
@@ -143,7 +123,7 @@ func (m_ Movie) SetContainsMovieFragments(value bool /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/data
-func (m_ Movie) Data() foundation.Data /* foo */ {
+func (m_ Movie) Data() foundation.Data /* not a class type */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
@@ -153,7 +133,7 @@ func (m_ Movie) Data() foundation.Data /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/data
-func (m_ Movie) SetData(value foundation.Data /* foo */) {
+func (m_ Movie) SetData(value foundation.Data /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
@@ -162,7 +142,7 @@ func (m_ Movie) SetData(value foundation.Data /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-func (m_ Movie) DefaultMediaDataStorage() AVMediaDataStorage /* foo */ {
+func (m_ Movie) DefaultMediaDataStorage() MediaDataStorage /* not a class type */ {
 	rv := objc.Send[MediaDataStorage](m_.ID, objc.Sel("defaultMediaDataStorage"))
 	return rv
 }
@@ -172,7 +152,7 @@ func (m_ Movie) DefaultMediaDataStorage() AVMediaDataStorage /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-func (m_ Movie) SetDefaultMediaDataStorage(value AVMediaDataStorage /* foo */) {
+func (m_ Movie) SetDefaultMediaDataStorage(value MediaDataStorage /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultMediaDataStorage:"), value)
 }
 
@@ -181,7 +161,7 @@ func (m_ Movie) SetDefaultMediaDataStorage(value AVMediaDataStorage /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-func (m_ Movie) Tracks() AVMovieTrack /* foo */ {
+func (m_ Movie) Tracks() MovieTrack /* not a class type */ {
 	rv := objc.Send[MovieTrack](m_.ID, objc.Sel("tracks"))
 	return rv
 }
@@ -191,7 +171,7 @@ func (m_ Movie) Tracks() AVMovieTrack /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-func (m_ Movie) SetTracks(value AVMovieTrack /* foo */) {
+func (m_ Movie) SetTracks(value MovieTrack /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
 
@@ -200,7 +180,7 @@ func (m_ Movie) SetTracks(value AVMovieTrack /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-func (m_ Movie) Url() foundation.URL /* foo */ {
+func (m_ Movie) Url() foundation.URL /* not a class type */ {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
 	return rv
 }
@@ -210,7 +190,7 @@ func (m_ Movie) Url() foundation.URL /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-func (m_ Movie) SetUrl(value foundation.URL /* foo */) {
+func (m_ Movie) SetUrl(value foundation.URL /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 

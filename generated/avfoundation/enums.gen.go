@@ -38,6 +38,26 @@ type CaptureMultichannelAudioMode uint
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/DataDroppedReason
 type CaptureOutputDataDroppedReason uint
 
+// CaptureSessionInterruptionReason - Constants identifying the reason a capture session was interrupted, found in an 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason
+type CaptureSessionInterruptionReason uint
+
+const (
+	// CaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient - An interruption caused by the video device temporarily being made unavailable (for example, when used by another capture session).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceInUseByAnotherClient
+	CaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground - An interruption caused by the app being sent to the background while using a camera.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableInBackground
+	CaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground CaptureSessionInterruptionReason = 0
+	// CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps - An interruption caused when your app is running in Slide Over, Split View, or Picture in Picture mode on iPad.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableWithMultipleForegroundApps
+	CaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps CaptureSessionInterruptionReason = 0
+)
+
 // ContentAuthorizationStatus - A value representing the status of a content authorization request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentAuthorizationStatus
@@ -99,6 +119,11 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerAudiovisualBackgroundPlaybackPolicy
 type PlayerAudiovisualBackgroundPlaybackPolicy uint
+
+// PlayerInterstitialEventAssetListResponseStatus - Constants that describe the status of the asset list response for an interstitial event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventAssetListResponseStatus
+type PlayerInterstitialEventAssetListResponseStatus uint
 
 // PlayerItemStatus - The statuses for a player item.
 //

@@ -32,10 +32,10 @@ type IPlayerPlaybackCoordinator interface {
 	// properties:
 	TimeControlStatus() unsafe.Pointer
 	SetTimeControlStatus(value unsafe.Pointer)
-	Delegate() AVPlayerPlaybackCoordinatorDelegate /* foo */
-	SetDelegate(value AVPlayerPlaybackCoordinatorDelegate /* foo */)
-	PlaybackCoordinationMedium() AVPlaybackCoordinationMedium /* foo */
-	SetPlaybackCoordinationMedium(value AVPlaybackCoordinationMedium /* foo */)
+	Delegate() PlayerPlaybackCoordinatorDelegate /* not a class type */
+	SetDelegate(value PlayerPlaybackCoordinatorDelegate /* not a class type */)
+	PlaybackCoordinationMedium() IAVPlaybackCoordinationMedium
+	SetPlaybackCoordinationMedium(value IAVPlaybackCoordinationMedium)
 	Player() IAVPlayer
 	SetPlayer(value IAVPlayer)
 	// methods:
@@ -119,7 +119,7 @@ func (p_ PlayerPlaybackCoordinator) SetTimeControlStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/delegate
-func (p_ PlayerPlaybackCoordinator) Delegate() AVPlayerPlaybackCoordinatorDelegate /* foo */ {
+func (p_ PlayerPlaybackCoordinator) Delegate() PlayerPlaybackCoordinatorDelegate /* not a class type */ {
 	rv := objc.Send[PlayerPlaybackCoordinatorDelegate](p_.ID, objc.Sel("delegate"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (p_ PlayerPlaybackCoordinator) Delegate() AVPlayerPlaybackCoordinatorDelega
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/delegate
-func (p_ PlayerPlaybackCoordinator) SetDelegate(value AVPlayerPlaybackCoordinatorDelegate /* foo */) {
+func (p_ PlayerPlaybackCoordinator) SetDelegate(value PlayerPlaybackCoordinatorDelegate /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -138,7 +138,7 @@ func (p_ PlayerPlaybackCoordinator) SetDelegate(value AVPlayerPlaybackCoordinato
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/playbackcoordinationmedium
-func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() AVPlaybackCoordinationMedium /* foo */ {
+func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() IAVPlaybackCoordinationMedium {
 	rv := objc.Send[PlaybackCoordinationMedium](p_.ID, objc.Sel("playbackCoordinationMedium"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() AVPlaybackCoord
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/playbackcoordinationmedium
-func (p_ PlayerPlaybackCoordinator) SetPlaybackCoordinationMedium(value AVPlaybackCoordinationMedium /* foo */) {
+func (p_ PlayerPlaybackCoordinator) SetPlaybackCoordinationMedium(value IAVPlaybackCoordinationMedium) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackCoordinationMedium:"), value)
 }
 

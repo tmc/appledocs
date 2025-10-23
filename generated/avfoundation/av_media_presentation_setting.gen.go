@@ -31,8 +31,8 @@ type _MediaPresentationSettingClass struct {
 type IMediaPresentationSetting interface {
 	objectivec.IObject
 	// properties:
-	MediaCharacteristic() AVMediaCharacteristic /* foo */
-	SetMediaCharacteristic(value AVMediaCharacteristic /* foo */)
+	MediaCharacteristic() MediaCharacteristic /* not a class type */
+	SetMediaCharacteristic(value MediaCharacteristic /* not a class type */)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewMediaPresentationSetting() MediaPresentationSetting {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
-func (m_ MediaPresentationSetting) MediaCharacteristic() AVMediaCharacteristic /* foo */ {
+func (m_ MediaPresentationSetting) MediaCharacteristic() MediaCharacteristic /* not a class type */ {
 	rv := objc.Send[MediaCharacteristic](m_.ID, objc.Sel("mediaCharacteristic"))
 	return rv
 }
@@ -103,7 +103,7 @@ func (m_ MediaPresentationSetting) MediaCharacteristic() AVMediaCharacteristic /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
-func (m_ MediaPresentationSetting) SetMediaCharacteristic(value AVMediaCharacteristic /* foo */) {
+func (m_ MediaPresentationSetting) SetMediaCharacteristic(value MediaCharacteristic /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaCharacteristic:"), value)
 }
 

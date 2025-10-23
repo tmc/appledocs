@@ -31,11 +31,11 @@ type _SynchronizedLayerClass struct {
 type ISynchronizedLayer interface {
 	quartzcore.ILayer
 	// properties:
-	AVCoreAnimationBeginTimeAtZero() CFTimeInterval /* foo */
+	AVCoreAnimationBeginTimeAtZero() TimeInterval /* not a class type */
 	PlayerItem() IAVPlayerItem
 	SetPlayerItem(value IAVPlayerItem)
-	BeginTime() CFTimeInterval /* foo */
-	SetBeginTime(value CFTimeInterval /* foo */)
+	BeginTime() TimeInterval /* not a class type */
+	SetBeginTime(value TimeInterval /* not a class type */)
 	// methods:
 }
 
@@ -98,7 +98,7 @@ func NewSynchronizedLayer() SynchronizedLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero
-func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() CFTimeInterval /* foo */ {
+func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (s_ SynchronizedLayer) SetPlayerItem(value IAVPlayerItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-func (s_ SynchronizedLayer) BeginTime() CFTimeInterval /* foo */ {
+func (s_ SynchronizedLayer) BeginTime() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("beginTime"))
 	return rv
 }
@@ -137,7 +137,7 @@ func (s_ SynchronizedLayer) BeginTime() CFTimeInterval /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-func (s_ SynchronizedLayer) SetBeginTime(value CFTimeInterval /* foo */) {
+func (s_ SynchronizedLayer) SetBeginTime(value TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBeginTime:"), value)
 }
 

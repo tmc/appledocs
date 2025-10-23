@@ -9,7 +9,7 @@ import (
 )
 
 
-// CoreFoundation Functions (824 total)
+// CoreFoundation Functions (825 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -196,6 +196,7 @@ var (
 	_CFCalendarCopyTimeZone func(unsafe.Pointer) unsafe.Pointer
 	_CFCalendarCreateWithIdentifier func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFCalendarDecomposeAbsoluteTime func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CFCalendarGetComponentDifference func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CFCalendarGetFirstWeekday func(unsafe.Pointer) unsafe.Pointer
 	_CFCalendarGetIdentifier func(unsafe.Pointer) unsafe.Pointer
 	_CFCalendarGetMaximumRangeOfUnit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -1027,6 +1028,7 @@ func init() {
 	tryRegister(&_CFCalendarCopyTimeZone, lib, "CFCalendarCopyTimeZone")
 	tryRegister(&_CFCalendarCreateWithIdentifier, lib, "CFCalendarCreateWithIdentifier")
 	tryRegister(&_CFCalendarDecomposeAbsoluteTime, lib, "CFCalendarDecomposeAbsoluteTime")
+	tryRegister(&_CFCalendarGetComponentDifference, lib, "CFCalendarGetComponentDifference")
 	tryRegister(&_CFCalendarGetFirstWeekday, lib, "CFCalendarGetFirstWeekday")
 	tryRegister(&_CFCalendarGetIdentifier, lib, "CFCalendarGetIdentifier")
 	tryRegister(&_CFCalendarGetMaximumRangeOfUnit, lib, "CFCalendarGetMaximumRangeOfUnit")
@@ -3515,6 +3517,16 @@ func CFCalendarCreateWithIdentifier(allocator unsafe.Pointer, identifier unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarDecomposeAbsoluteTime
 func CFCalendarDecomposeAbsoluteTime(calendar unsafe.Pointer, at unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
 	return _CFCalendarDecomposeAbsoluteTime(calendar, at, componentDesc)
+}
+
+// Computes the difference between the two absolute times, in terms of specified calendrical components.
+
+// Computes the difference between the two absolute times, in terms of specified calendrical components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarGetComponentDifference
+func CFCalendarGetComponentDifference(calendar unsafe.Pointer, startingAT unsafe.Pointer, resultAT unsafe.Pointer, options unsafe.Pointer, componentDesc unsafe.Pointer) unsafe.Pointer {
+	return _CFCalendarGetComponentDifference(calendar, startingAT, resultAT, options, componentDesc)
 }
 
 // Returns the index of first weekday for a specified calendar.

@@ -31,14 +31,14 @@ type _DecimalNumberClass struct {
 type IDecimalNumber interface {
 	INumber
 	// properties:
-	DecimalValue() Decimal /* foo */
+	DecimalValue() Decimal /* not a class type */
 	DoubleValue() float64 /* primitive/slice/pointer */
 	ObjCType() unsafe.Pointer
 	// methods:
 	DecimalNumberByAdding(decimalNumber IDecimalNumber) IDecimalNumber
 	DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
-	Compare(decimalNumber Number /* foo */) ComparisonResult /* foo */
-	DescriptionWithLocale(locale objectivec.IObject) String /* foo */
+	Compare(decimalNumber Number /* not a class type */) ComparisonResult
+	DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */
 	DecimalNumberByDividingBy(decimalNumber IDecimalNumber) IDecimalNumber
 	DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
 	DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumber) IDecimalNumber
@@ -111,7 +111,7 @@ func NewDecimalNumber() DecimalNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
-func NewDecimalNumberWithDecimal(dcm Decimal /* foo */) DecimalNumber {
+func NewDecimalNumberWithDecimal(dcm Decimal /* not a class type */) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
 	rv.Autorelease()
@@ -160,7 +160,7 @@ func NewDecimalNumberWithStringLocale(numberValue string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithDecimal:
-func (dc _DecimalNumberClass) DecimalNumberWithDecimal(dcm Decimal /* foo */) IDecimalNumber {
+func (dc _DecimalNumberClass) DecimalNumberWithDecimal(dcm Decimal /* not a class type */) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithDecimal:"), dcm)
 	return rv
 }
@@ -274,7 +274,7 @@ func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber IDecimal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/compare(_:)
-func (d_ DecimalNumber) Compare(decimalNumber Number /* foo */) ComparisonResult /* foo */ {
+func (d_ DecimalNumber) Compare(decimalNumber Number /* not a class type */) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), decimalNumber)
 	return rv
 }
@@ -284,7 +284,7 @@ func (d_ DecimalNumber) Compare(decimalNumber Number /* foo */) ComparisonResult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/description(withLocale:)
-func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) String /* foo */ {
+func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -404,7 +404,7 @@ func (d_ DecimalNumber) DecimalNumberBySubtractingWithBehavior(decimalNumber IDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalValue
-func (d_ DecimalNumber) DecimalValue() Decimal /* foo */ {
+func (d_ DecimalNumber) DecimalValue() Decimal /* not a class type */ {
 	rv := objc.Send[Decimal](d_.ID, objc.Sel("decimalValue"))
 	return rv
 }

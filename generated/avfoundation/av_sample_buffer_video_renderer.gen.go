@@ -31,16 +31,16 @@ type _SampleBufferVideoRendererClass struct {
 type ISampleBufferVideoRenderer interface {
 	objectivec.IObject
 	// properties:
-	Error() AVError /* enum */
-	SetError(value AVError /* enum */)
+	Error() Error
+	SetError(value Error)
 	PresentationTimeExpectation() unsafe.Pointer
 	SetPresentationTimeExpectation(value unsafe.Pointer)
-	RecommendedPixelBufferAttributes() CVPixelBufferAttributes /* foo */
-	SetRecommendedPixelBufferAttributes(value CVPixelBufferAttributes /* foo */)
+	RecommendedPixelBufferAttributes() PixelBufferAttributes /* not a class type */
+	SetRecommendedPixelBufferAttributes(value PixelBufferAttributes /* not a class type */)
 	RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer */
 	SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer */)
-	Status() AVQueuedSampleBufferRenderingStatus /* foo */
-	SetStatus(value AVQueuedSampleBufferRenderingStatus /* foo */)
+	Status() QueuedSampleBufferRenderingStatus /* not a class type */
+	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
 	// methods:
 }
 
@@ -99,7 +99,7 @@ func NewSampleBufferVideoRenderer() SampleBufferVideoRenderer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) Error() AVError /* enum */ {
+func (s_ SampleBufferVideoRenderer) Error() Error {
 	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (s_ SampleBufferVideoRenderer) Error() AVError /* enum */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) SetError(value AVError /* enum */) {
+func (s_ SampleBufferVideoRenderer) SetError(value Error) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
@@ -133,7 +133,7 @@ func (s_ SampleBufferVideoRenderer) SetPresentationTimeExpectation(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
-func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() CVPixelBufferAttributes /* foo */ {
+func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() PixelBufferAttributes /* not a class type */ {
 	rv := objc.Send[PixelBufferAttributes](s_.ID, objc.Sel("recommendedPixelBufferAttributes"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() CVPixelBu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
-func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value CVPixelBufferAttributes /* foo */) {
+func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value PixelBufferAttributes /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecommendedPixelBufferAttributes:"), value)
 }
 
@@ -171,7 +171,7 @@ func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
-func (s_ SampleBufferVideoRenderer) Status() AVQueuedSampleBufferRenderingStatus /* foo */ {
+func (s_ SampleBufferVideoRenderer) Status() QueuedSampleBufferRenderingStatus /* not a class type */ {
 	rv := objc.Send[QueuedSampleBufferRenderingStatus](s_.ID, objc.Sel("status"))
 	return rv
 }
@@ -181,7 +181,7 @@ func (s_ SampleBufferVideoRenderer) Status() AVQueuedSampleBufferRenderingStatus
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
-func (s_ SampleBufferVideoRenderer) SetStatus(value AVQueuedSampleBufferRenderingStatus /* foo */) {
+func (s_ SampleBufferVideoRenderer) SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStatus:"), value)
 }
 

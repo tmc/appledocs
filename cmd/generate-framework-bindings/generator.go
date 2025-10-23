@@ -260,7 +260,7 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		Debug.TypeMap("NOT a class, returning unchanged", goType, "",
 			"goType", goType,
 			"returning", goType)
-		return goType + " /* foo */"
+		return goType + " /* not a class type */"
 	}
 
 	// Convert to interface type: "Data" -> "IData"

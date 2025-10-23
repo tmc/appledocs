@@ -31,8 +31,8 @@ type _AffineTransformClass struct {
 type IAffineTransform interface {
 	objectivec.IObject
 	// properties:
-	TransformStruct() AffineTransformStruct /* foo */
-	SetTransformStruct(value AffineTransformStruct /* foo */)
+	TransformStruct() AffineTransformStruct /* not a class type */
+	SetTransformStruct(value AffineTransformStruct /* not a class type */)
 	// methods:
 	AppendTransform(transform IAffineTransform)
 	Concat()
@@ -43,9 +43,9 @@ type IAffineTransform interface {
 	ScaleBy(scale float64 /* primitive/slice/pointer */)
 	ScaleXByYBy(scaleX float64 /* primitive/slice/pointer */, scaleY float64 /* primitive/slice/pointer */)
 	Set()
-	TransformPoint(aPoint Point /* foo */) Point /* foo */
-	TransformSize(aSize Size /* foo */) Size /* foo */
-	TransformBezierPath(path BezierPath /* foo */) BezierPath /* foo */
+	TransformPoint(aPoint Point /* not a class type */) Point /* not a class type */
+	TransformSize(aSize Size /* not a class type */) Size /* not a class type */
+	TransformBezierPath(path BezierPath /* not a class type */) BezierPath /* not a class type */
 	TranslateXByYBy(deltaX float64 /* primitive/slice/pointer */, deltaY float64 /* primitive/slice/pointer */)
 }
 
@@ -210,7 +210,7 @@ func (a_ AffineTransform) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
-func (a_ AffineTransform) TransformPoint(aPoint Point /* foo */) Point /* foo */ {
+func (a_ AffineTransform) TransformPoint(aPoint Point /* not a class type */) Point /* not a class type */ {
 	rv := objc.Send[Point](a_.ID, objc.Sel("transformPoint:"), aPoint)
 	return rv
 }
@@ -220,7 +220,7 @@ func (a_ AffineTransform) TransformPoint(aPoint Point /* foo */) Point /* foo */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-5r6ol
-func (a_ AffineTransform) TransformSize(aSize Size /* foo */) Size /* foo */ {
+func (a_ AffineTransform) TransformSize(aSize Size /* not a class type */) Size /* not a class type */ {
 	rv := objc.Send[Size](a_.ID, objc.Sel("transformSize:"), aSize)
 	return rv
 }
@@ -230,7 +230,7 @@ func (a_ AffineTransform) TransformSize(aSize Size /* foo */) Size /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-6z1xo
-func (a_ AffineTransform) TransformBezierPath(path BezierPath /* foo */) BezierPath /* foo */ {
+func (a_ AffineTransform) TransformBezierPath(path BezierPath /* not a class type */) BezierPath /* not a class type */ {
 	rv := objc.Send[BezierPath](a_.ID, objc.Sel("transformBezierPath:"), path)
 	return rv
 }
@@ -249,7 +249,7 @@ func (a_ AffineTransform) TranslateXByYBy(deltaX float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transformStruct
-func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
+func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* not a class type */ {
 	rv := objc.Send[AffineTransformStruct](a_.ID, objc.Sel("transformStruct"))
 	return rv
 }
@@ -259,7 +259,7 @@ func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transformStruct
-func (a_ AffineTransform) SetTransformStruct(value AffineTransformStruct /* foo */) {
+func (a_ AffineTransform) SetTransformStruct(value AffineTransformStruct /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
 }
 

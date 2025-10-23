@@ -37,7 +37,7 @@ type IOrthography interface {
 	DominantScript() string /* primitive/slice/pointer */
 	LanguageMap() IDictionary /* already interface */
 	// methods:
-	DominantLanguageForScript(script string /* primitive/slice/pointer */) String /* foo */
+	DominantLanguageForScript(script string /* primitive/slice/pointer */) String /* not a class type */
 	LanguagesForScript(script string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */
 }
 
@@ -96,7 +96,7 @@ func NewOrthography() Orthography {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(coder:)
-func NewOrthographyWithCoder(coder Coder /* foo */) Orthography {
+func NewOrthographyWithCoder(coder Coder /* not a class type */) Orthography {
 	instance := getOrthographyClass().Alloc()
 	rv := objc.Send[Orthography](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -141,7 +141,7 @@ func (oc _OrthographyClass) OrthographyWithDominantScriptLanguageMap(script stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantLanguage(forScript:)
-func (o_ Orthography) DominantLanguageForScript(script string /* primitive/slice/pointer */) String /* foo */ {
+func (o_ Orthography) DominantLanguageForScript(script string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](o_.ID, objc.Sel("dominantLanguageForScript:"), objc.String(script))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [FragmentedMovieMinder] class.
@@ -29,12 +28,12 @@ type _FragmentedMovieMinderClass struct {
 
 // An interface definition for the [FragmentedMovieMinder] class.
 type IFragmentedMovieMinder interface {
-	objectivec.IObject
+	IFragmentedAssetMinder
 	// properties:
 	MindingInterval() unsafe.Pointer
 	SetMindingInterval(value unsafe.Pointer)
-	Movies() AVFragmentedMovie /* foo */
-	SetMovies(value AVFragmentedMovie /* foo */)
+	Movies() FragmentedMovie /* not a class type */
+	SetMovies(value FragmentedMovie /* not a class type */)
 	// methods:
 }
 
@@ -48,14 +47,16 @@ type IFragmentedMovieMinder interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedMovieMinder
 type FragmentedMovieMinder struct {
-	objectivec.Object
+	FragmentedAssetMinder
 }
 
 // FragmentedMovieMinderFrom constructs a [FragmentedMovieMinder] from an unsafe.Pointer.
 //
 // An object that checks whether a fragmented movie appends additional movie fragments.
 func FragmentedMovieMinderFrom(ptr unsafe.Pointer) FragmentedMovieMinder {
-	return FragmentedMovieMinder{objectivec.Object{objc.ID(ptr)}}
+	return FragmentedMovieMinder{
+		FragmentedAssetMinder: FragmentedAssetMinderFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -114,7 +115,7 @@ func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie /* foo */ {
+func (f_ FragmentedMovieMinder) Movies() FragmentedMovie /* not a class type */ {
 	rv := objc.Send[FragmentedMovie](f_.ID, objc.Sel("movies"))
 	return rv
 }
@@ -124,7 +125,7 @@ func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) SetMovies(value AVFragmentedMovie /* foo */) {
+func (f_ FragmentedMovieMinder) SetMovies(value FragmentedMovie /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMovies:"), value)
 }
 

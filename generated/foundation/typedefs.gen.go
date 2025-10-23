@@ -133,6 +133,16 @@ type TextCheckingTypes uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkFileCreationOptions
 type URLBookmarkFileCreationOptions uint
+// Audio3DVector - A structure that represents a vector in 3D space, in degrees.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DVector
+// AVAudio3DVector has base type: struct AVAudio3DPoint
+type Audio3DVector uintptr
+// CaptureDeviceType - A structure that defines the device types the framework supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct
+// AVCaptureDeviceType is a string typedef
+type CaptureDeviceType = string
 // AXTechnology type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityTechnology
@@ -188,11 +198,35 @@ type AccessibilityRulerUnitValue = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue
 // NSAccessibilitySortDirectionValue is a string typedef
 type AccessibilitySortDirectionValue = string
+// AnimatablePropertyKey type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimatablePropertyKey
+// NSAnimatablePropertyKey is a string typedef
+type AnimatablePropertyKey = string
+// AnimationProgress - The animation progress, as a floating-point number between   and  .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/Progress
+// NSAnimationProgress has base type: float
+type AnimationProgress uintptr
 // AppKitVersion - Constants for determining which version of AppKit is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppKitVersion
 // NSAppKitVersion has base type: double
 type AppKitVersion uintptr
+// ModalResponse - A set of button return values for modal dialogs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/ModalResponse
+type ModalResponse int
+// ColorName - The name of a color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/Name
+// NSColorName is a string typedef
+type ColorName = string
+// ColorListName - The name assigned to a color list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/Name-swift.typealias
+// NSColorListName is a string typedef
+type ColorListName = string
 // ColorSpaceName - Constants that specify color space names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpaceName
@@ -203,6 +237,26 @@ type ColorSpaceName = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDeviceDescriptionKey
 // NSDeviceDescriptionKey is a string typedef
 type DeviceDescriptionKey = string
+// FontTextStyle - Constants that specify the preferred text styles you use with fonts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/TextStyle
+// NSFontTextStyle is a string typedef
+type FontTextStyle = string
+// FontTextStyleOptionKey - The options that you apply when requesting the font or font descriptor of a preferred text style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/TextStyleOptionKey
+// NSFontTextStyleOptionKey is a string typedef
+type FontTextStyleOptionKey = string
+// FontWidth type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/Width
+// NSFontWidth has base type: CGFloat
+type FontWidth uintptr
+// FontFamilyClass - Constants that classify certain stylistic qualities of the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontFamilyClass
+// NSFontFamilyClass has base type: uint32_t
+type FontFamilyClass uintptr
 // FontSymbolicTraits - A symbolic description of stylistic aspects of a font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontSymbolicTraits
@@ -212,6 +266,11 @@ type FontSymbolicTraits uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyph
 type Glyph uint32
+// NibName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/Name
+// NSNibName is a string typedef
+type NibName = string
 // PasteboardName - Constants that represent the standard pasteboard names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/Name-swift.struct
@@ -237,11 +296,26 @@ type PasteboardTypeTextFinderOptionKey = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptionKey
 // NSPasteboardReadingOptionKey is a string typedef
 type PasteboardReadingOptionKey = string
+// PrintInfoAttributeKey - Constants that specify print job attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/AttributeKey
+// NSPrintInfoAttributeKey is a string typedef
+type PrintInfoAttributeKey = string
 // TextCheckingOptionKey - Constants that define options for text checking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/OptionKey
 // NSTextCheckingOptionKey is a string typedef
 type TextCheckingOptionKey = string
+// TextContentType - Constants that identify the semantic meaning for a text-entry area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentType
+// NSTextContentType is a string typedef
+type TextContentType = string
+// UserInterfaceItemIdentifier type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceItemIdentifier
+// NSUserInterfaceItemIdentifier is a string typedef
+type UserInterfaceItemIdentifier = string
 // WindowFrameAutosaveName - The type of a window’s frame autosave name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/FrameAutosaveName-swift.typealias
@@ -271,6 +345,10 @@ type WorkspaceDesktopImageOptionKey = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/LaunchConfigurationKey
 // NSWorkspaceLaunchConfigurationKey is a string typedef
 type WorkspaceLaunchConfigurationKey = string
+// BADownloaderPriority - A type that determines the execution priority of a scheduled asset download.
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/Priority-swift.struct
+type BADownloaderPriority int
 // FontRef - A font object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFont
@@ -291,6 +369,11 @@ type ParagraphStyleRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegate
 // CTRunDelegateRef has base type: const struct __CTRunDelegate *
 type RunDelegateRef uintptr
+// HKClinicalTypeIdentifier - A type identifier for the different categories of clinical records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalTypeIdentifier
+// HKClinicalTypeIdentifier is a string typedef
+type HKClinicalTypeIdentifier = string
 // Integer - Describes an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSInteger
@@ -346,6 +429,16 @@ type objc_uncaught_exception_handler uintptr
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_zone_t
 // objc_zone_t has base type: struct _malloc_zone_t *
 type objc_zone_t uintptr
+// PassLibraryNotificationName - The types of notifications that the pass library posts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/PassKit/PKPassLibraryNotificationName
+// PKPassLibraryNotificationName is a string typedef
+type PassLibraryNotificationName = string
+// AbsoluteTime - Type used to represent a specific point in time relative to the absolute reference date of 1 Jan 2001 00:00:00 GMT.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAbsoluteTime
+// CFAbsoluteTime has base type: CFTimeInterval
+type AbsoluteTime uintptr
 // AllocatorRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocator
@@ -386,6 +479,11 @@ type AllocatorReleaseCallBack uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorRetainCallBack
 // CFAllocatorRetainCallBack has base type: const void *(*)(const void *)
 type AllocatorRetainCallBack uintptr
+// AllocatorTypeID type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorTypeID
+// CFAllocatorTypeID has base type: unsigned long long
+type AllocatorTypeID uintptr
 // ArrayRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArray
@@ -495,6 +593,11 @@ type CalendarRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSet
 // CFCharacterSetRef has base type: const struct __CFCharacterSet *
 type CharacterSetRef uintptr
+// ComparatorFunction - Callback function that compares two values. You provide a pointer to this callback in certain Core Foundation sorting functions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFComparatorFunction
+// CFComparatorFunction has base type: enum CFComparisonResult (*)(const void *, const void *, void *)
+type ComparatorFunction uintptr
 // DataRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFData
@@ -510,6 +613,11 @@ type DateRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatter
 // CFDateFormatterRef has base type: struct __CFDateFormatter *
 type DateFormatterRef uintptr
+// DateFormatterKey type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterKey
+// CFDateFormatterKey has base type: CFStringRef
+type DateFormatterKey uintptr
 // DictionaryRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionary
@@ -555,6 +663,11 @@ type ErrorRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptor
 // CFFileDescriptorRef has base type: struct __CFFileDescriptor *
 type FileDescriptorRef uintptr
+// HashCode - A type for hash codes returned by the   function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFHashCode
+// CFHashCode has base type: unsigned long
+type HashCode uintptr
 // Index - Priority values used for kAXPriorityKey
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFIndex
@@ -565,6 +678,11 @@ type Index uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocale
 // CFLocaleRef has base type: const struct __CFLocale *
 type LocaleRef uintptr
+// LocaleIdentifier type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleIdentifier
+// CFLocaleIdentifier has base type: CFStringRef
+type LocaleIdentifier uintptr
 // MutableArrayRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableArray
@@ -610,21 +728,55 @@ type NullRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumber
 // CFNumberRef has base type: const struct __CFNumber *
 type NumberRef uintptr
+// NumberFormatterKey type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterKey
+// CFNumberFormatterKey has base type: CFStringRef
+type NumberFormatterKey uintptr
 // OptionFlags - A bitfield used for passing special allocation and other requests into Core Foundation functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFOptionFlags
 // CFOptionFlags has base type: unsigned long
 type OptionFlags uintptr
+// PlugInRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugIn
+// CFPlugInRef has base type: struct __CFBundle *
+type PlugInRef uintptr
 // ReadStreamRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStream
 // CFReadStreamRef has base type: struct __CFReadStream *
 type ReadStreamRef uintptr
+// ReadStreamClientCallBack - Callback invoked when certain types of activity takes place on a readable stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamClientCallBack
+// CFReadStreamClientCallBack has base type: void (*)(struct __CFReadStream *, enum CFStreamEventType, void *)
+type ReadStreamClientCallBack uintptr
+// RunLoopRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoop
+// CFRunLoopRef has base type: struct __CFRunLoop *
+type RunLoopRef uintptr
+// RunLoopMode type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopMode
+// CFRunLoopMode has base type: CFStringRef
+type RunLoopMode uintptr
 // SocketRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocket
 // CFSocketRef has base type: struct __CFSocket *
 type SocketRef uintptr
+// SocketNativeHandle - Type for the platform-specific native socket handle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketNativeHandle
+type SocketNativeHandle int32
+// StreamPropertyKey type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamPropertyKey
+// CFStreamPropertyKey has base type: CFStringRef
+type StreamPropertyKey uintptr
 // StringRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFString
@@ -635,6 +787,11 @@ type StringRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringEncoding
 // CFStringEncoding has base type: UInt32
 type StringEncoding uintptr
+// StringTokenizerRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizer
+// CFStringTokenizerRef has base type: struct __CFStringTokenizer *
+type StringTokenizerRef uintptr
 // TimeZoneRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZone
@@ -730,6 +887,11 @@ type unichar uintptr
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachability
 // SCNetworkReachabilityRef has base type: const struct __SCNetworkReachability *
 type NetworkReachabilityRef uintptr
+// AccessibilityAssistiveTechnologyIdentifier - Identifiers for assistive apps.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibility/AssistiveTechnologyIdentifier
+// UIAccessibilityAssistiveTechnologyIdentifier is a string typedef
+type AccessibilityAssistiveTechnologyIdentifier = string
 // AccessibilityPriority - Constants that specify priorities for accessibility announcements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibilityPriority
@@ -740,11 +902,21 @@ type AccessibilityPriority = string
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibilityTextualContext
 // UIAccessibilityTextualContext is a string typedef
 type AccessibilityTextualContext = string
+// AccessibilityTraits - Constants that describe how an accessibility element behaves.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibilityTraits
+// UIAccessibilityTraits has base type: uint64_t
+type AccessibilityTraits uintptr
 // ApplicationOpenExternalURLOptionsKey - Options for opening a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/OpenExternalURLOptionsKey
 // UIApplicationOpenExternalURLOptionsKey is a string typedef
 type ApplicationOpenExternalURLOptionsKey = string
+// ApplicationOpenURLOptionsKey - Keys you use to access values in the options dictionary when opening a URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/OpenURLOptionsKey
+// UIApplicationOpenURLOptionsKey is a string typedef
+type ApplicationOpenURLOptionsKey = string
 // BackgroundTaskIdentifier - A unique token that identifies a request to run in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIBackgroundTaskIdentifier
@@ -759,19 +931,9 @@ type ContentSizeCategory = string
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/CreationIntent
 // UIDocumentCreationIntent is a string typedef
 type DocumentCreationIntent = string
-// FontTextStyle - Constants that describe the preferred styles for fonts.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFont/TextStyle
-// UIFontTextStyle is a string typedef
-type FontTextStyle = string
 // FontWeight - Constants that represent standard typeface styles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFont/Weight
 // UIFontWeight has base type: CGFloat
 type FontWeight uintptr
-// FontWidth type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFont/Width
-// UIFontWidth has base type: CGFloat
-type FontWidth uintptr
 

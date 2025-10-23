@@ -36,38 +36,38 @@ type IMetadataItem interface {
 	SetCommonMetadata(value IAVMetadataItem)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	CommonKey() AVMetadataKey /* foo */
-	SetCommonKey(value AVMetadataKey /* foo */)
+	CommonKey() MetadataKey /* not a class type */
+	SetCommonKey(value MetadataKey /* not a class type */)
 	DataType() string /* primitive/slice/pointer */
 	SetDataType(value string /* primitive/slice/pointer */)
-	DataValue() foundation.Data /* foo */
-	SetDataValue(value foundation.Data /* foo */)
-	DateValue() foundation.Date /* foo */
-	SetDateValue(value foundation.Date /* foo */)
-	Duration() CMTime /* foo */
-	SetDuration(value CMTime /* foo */)
+	DataValue() foundation.Data /* not a class type */
+	SetDataValue(value foundation.Data /* not a class type */)
+	DateValue() foundation.Date /* not a class type */
+	SetDateValue(value foundation.Date /* not a class type */)
+	Duration() Time /* not a class type */
+	SetDuration(value Time /* not a class type */)
 	ExtendedLanguageTag() string /* primitive/slice/pointer */
 	SetExtendedLanguageTag(value string /* primitive/slice/pointer */)
-	ExtraAttributes() AVMetadataExtraAttributeKey /* foo */
-	SetExtraAttributes(value AVMetadataExtraAttributeKey /* foo */)
-	Identifier() AVMetadataIdentifier /* foo */
-	SetIdentifier(value AVMetadataIdentifier /* foo */)
-	Key() NSObjectProtocol /* foo */
-	SetKey(value NSObjectProtocol /* foo */)
-	KeySpace() AVMetadataKeySpace /* foo */
-	SetKeySpace(value AVMetadataKeySpace /* foo */)
-	Locale() foundation.Locale /* foo */
-	SetLocale(value foundation.Locale /* foo */)
-	NumberValue() foundation.Number /* foo */
-	SetNumberValue(value foundation.Number /* foo */)
-	StartDate() foundation.Date /* foo */
-	SetStartDate(value foundation.Date /* foo */)
+	ExtraAttributes() MetadataExtraAttributeKey /* not a class type */
+	SetExtraAttributes(value MetadataExtraAttributeKey /* not a class type */)
+	Identifier() MetadataIdentifier /* not a class type */
+	SetIdentifier(value MetadataIdentifier /* not a class type */)
+	Key() ObjectProtocol /* not a class type */
+	SetKey(value ObjectProtocol /* not a class type */)
+	KeySpace() MetadataKeySpace /* not a class type */
+	SetKeySpace(value MetadataKeySpace /* not a class type */)
+	Locale() foundation.Locale /* not a class type */
+	SetLocale(value foundation.Locale /* not a class type */)
+	NumberValue() foundation.Number /* not a class type */
+	SetNumberValue(value foundation.Number /* not a class type */)
+	StartDate() foundation.Date /* not a class type */
+	SetStartDate(value foundation.Date /* not a class type */)
 	StringValue() string /* primitive/slice/pointer */
 	SetStringValue(value string /* primitive/slice/pointer */)
-	Time() CMTime /* foo */
-	SetTime(value CMTime /* foo */)
-	Value() NSObjectProtocol /* foo */
-	SetValue(value NSObjectProtocol /* foo */)
+	Time() Time /* not a class type */
+	SetTime(value Time /* not a class type */)
+	Value() ObjectProtocol /* not a class type */
+	SetValue(value ObjectProtocol /* not a class type */)
 	// methods:
 }
 
@@ -166,7 +166,7 @@ func (m_ MetadataItem) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/commonkey
-func (m_ MetadataItem) CommonKey() AVMetadataKey /* foo */ {
+func (m_ MetadataItem) CommonKey() MetadataKey /* not a class type */ {
 	rv := objc.Send[MetadataKey](m_.ID, objc.Sel("commonKey"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (m_ MetadataItem) CommonKey() AVMetadataKey /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/commonkey
-func (m_ MetadataItem) SetCommonKey(value AVMetadataKey /* foo */) {
+func (m_ MetadataItem) SetCommonKey(value MetadataKey /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonKey:"), value)
 }
 
@@ -204,7 +204,7 @@ func (m_ MetadataItem) SetDataType(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datavalue
-func (m_ MetadataItem) DataValue() foundation.Data /* foo */ {
+func (m_ MetadataItem) DataValue() foundation.Data /* not a class type */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("dataValue"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (m_ MetadataItem) DataValue() foundation.Data /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datavalue
-func (m_ MetadataItem) SetDataValue(value foundation.Data /* foo */) {
+func (m_ MetadataItem) SetDataValue(value foundation.Data /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataValue:"), value)
 }
 
@@ -223,7 +223,7 @@ func (m_ MetadataItem) SetDataValue(value foundation.Data /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datevalue
-func (m_ MetadataItem) DateValue() foundation.Date /* foo */ {
+func (m_ MetadataItem) DateValue() foundation.Date /* not a class type */ {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("dateValue"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (m_ MetadataItem) DateValue() foundation.Date /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datevalue
-func (m_ MetadataItem) SetDateValue(value foundation.Date /* foo */) {
+func (m_ MetadataItem) SetDateValue(value foundation.Date /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -242,7 +242,7 @@ func (m_ MetadataItem) SetDateValue(value foundation.Date /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/duration
-func (m_ MetadataItem) Duration() CMTime /* foo */ {
+func (m_ MetadataItem) Duration() Time /* not a class type */ {
 	rv := objc.Send[Time](m_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (m_ MetadataItem) Duration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/duration
-func (m_ MetadataItem) SetDuration(value CMTime /* foo */) {
+func (m_ MetadataItem) SetDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -280,7 +280,7 @@ func (m_ MetadataItem) SetExtendedLanguageTag(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extraattributes
-func (m_ MetadataItem) ExtraAttributes() AVMetadataExtraAttributeKey /* foo */ {
+func (m_ MetadataItem) ExtraAttributes() MetadataExtraAttributeKey /* not a class type */ {
 	rv := objc.Send[MetadataExtraAttributeKey](m_.ID, objc.Sel("extraAttributes"))
 	return rv
 }
@@ -290,7 +290,7 @@ func (m_ MetadataItem) ExtraAttributes() AVMetadataExtraAttributeKey /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extraattributes
-func (m_ MetadataItem) SetExtraAttributes(value AVMetadataExtraAttributeKey /* foo */) {
+func (m_ MetadataItem) SetExtraAttributes(value MetadataExtraAttributeKey /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtraAttributes:"), value)
 }
 
@@ -299,7 +299,7 @@ func (m_ MetadataItem) SetExtraAttributes(value AVMetadataExtraAttributeKey /* f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/identifier
-func (m_ MetadataItem) Identifier() AVMetadataIdentifier /* foo */ {
+func (m_ MetadataItem) Identifier() MetadataIdentifier /* not a class type */ {
 	rv := objc.Send[MetadataIdentifier](m_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -309,7 +309,7 @@ func (m_ MetadataItem) Identifier() AVMetadataIdentifier /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/identifier
-func (m_ MetadataItem) SetIdentifier(value AVMetadataIdentifier /* foo */) {
+func (m_ MetadataItem) SetIdentifier(value MetadataIdentifier /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -318,7 +318,7 @@ func (m_ MetadataItem) SetIdentifier(value AVMetadataIdentifier /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/key
-func (m_ MetadataItem) Key() NSObjectProtocol /* foo */ {
+func (m_ MetadataItem) Key() ObjectProtocol /* not a class type */ {
 	rv := objc.Send[ObjectProtocol](m_.ID, objc.Sel("key"))
 	return rv
 }
@@ -328,7 +328,7 @@ func (m_ MetadataItem) Key() NSObjectProtocol /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/key
-func (m_ MetadataItem) SetKey(value NSObjectProtocol /* foo */) {
+func (m_ MetadataItem) SetKey(value ObjectProtocol /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), value)
 }
 
@@ -337,7 +337,7 @@ func (m_ MetadataItem) SetKey(value NSObjectProtocol /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/keyspace
-func (m_ MetadataItem) KeySpace() AVMetadataKeySpace /* foo */ {
+func (m_ MetadataItem) KeySpace() MetadataKeySpace /* not a class type */ {
 	rv := objc.Send[MetadataKeySpace](m_.ID, objc.Sel("keySpace"))
 	return rv
 }
@@ -347,7 +347,7 @@ func (m_ MetadataItem) KeySpace() AVMetadataKeySpace /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/keyspace
-func (m_ MetadataItem) SetKeySpace(value AVMetadataKeySpace /* foo */) {
+func (m_ MetadataItem) SetKeySpace(value MetadataKeySpace /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeySpace:"), value)
 }
 
@@ -356,7 +356,7 @@ func (m_ MetadataItem) SetKeySpace(value AVMetadataKeySpace /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) Locale() foundation.Locale /* foo */ {
+func (m_ MetadataItem) Locale() foundation.Locale /* not a class type */ {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -366,7 +366,7 @@ func (m_ MetadataItem) Locale() foundation.Locale /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) SetLocale(value foundation.Locale /* foo */) {
+func (m_ MetadataItem) SetLocale(value foundation.Locale /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -375,7 +375,7 @@ func (m_ MetadataItem) SetLocale(value foundation.Locale /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/numbervalue
-func (m_ MetadataItem) NumberValue() foundation.Number /* foo */ {
+func (m_ MetadataItem) NumberValue() foundation.Number /* not a class type */ {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberValue"))
 	return rv
 }
@@ -385,7 +385,7 @@ func (m_ MetadataItem) NumberValue() foundation.Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/numbervalue
-func (m_ MetadataItem) SetNumberValue(value foundation.Number /* foo */) {
+func (m_ MetadataItem) SetNumberValue(value foundation.Number /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberValue:"), value)
 }
 
@@ -394,7 +394,7 @@ func (m_ MetadataItem) SetNumberValue(value foundation.Number /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/startdate
-func (m_ MetadataItem) StartDate() foundation.Date /* foo */ {
+func (m_ MetadataItem) StartDate() foundation.Date /* not a class type */ {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -404,7 +404,7 @@ func (m_ MetadataItem) StartDate() foundation.Date /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/startdate
-func (m_ MetadataItem) SetStartDate(value foundation.Date /* foo */) {
+func (m_ MetadataItem) SetStartDate(value foundation.Date /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -432,7 +432,7 @@ func (m_ MetadataItem) SetStringValue(value string /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/time
-func (m_ MetadataItem) Time() CMTime /* foo */ {
+func (m_ MetadataItem) Time() Time /* not a class type */ {
 	rv := objc.Send[Time](m_.ID, objc.Sel("time"))
 	return rv
 }
@@ -442,7 +442,7 @@ func (m_ MetadataItem) Time() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/time
-func (m_ MetadataItem) SetTime(value CMTime /* foo */) {
+func (m_ MetadataItem) SetTime(value Time /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTime:"), value)
 }
 
@@ -451,7 +451,7 @@ func (m_ MetadataItem) SetTime(value CMTime /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/value
-func (m_ MetadataItem) Value() NSObjectProtocol /* foo */ {
+func (m_ MetadataItem) Value() ObjectProtocol /* not a class type */ {
 	rv := objc.Send[ObjectProtocol](m_.ID, objc.Sel("value"))
 	return rv
 }
@@ -461,7 +461,7 @@ func (m_ MetadataItem) Value() NSObjectProtocol /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/value
-func (m_ MetadataItem) SetValue(value NSObjectProtocol /* foo */) {
+func (m_ MetadataItem) SetValue(value ObjectProtocol /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

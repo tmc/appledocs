@@ -33,10 +33,10 @@ type IContinuityDevice interface {
 	objectivec.IObject
 	// properties:
 	VideoDevices() []CaptureDevice /* primitive/slice/pointer */
-	AudioSessionInputs() AVAudioSessionPortDescription /* foo */
-	SetAudioSessionInputs(value AVAudioSessionPortDescription /* foo */)
-	ConnectionID() foundation.UUID /* foo */
-	SetConnectionID(value foundation.UUID /* foo */)
+	AudioSessionInputs() AudioSessionPortDescription /* not a class type */
+	SetAudioSessionInputs(value AudioSessionPortDescription /* not a class type */)
+	ConnectionID() foundation.UUID /* not a class type */
+	SetConnectionID(value foundation.UUID /* not a class type */)
 	IsConnected() bool /* primitive/slice/pointer */
 	SetIsConnected(value bool /* primitive/slice/pointer */)
 	// methods:
@@ -109,7 +109,7 @@ func (c_ ContinuityDevice) VideoDevices() []CaptureDevice /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/audiosessioninputs
-func (c_ ContinuityDevice) AudioSessionInputs() AVAudioSessionPortDescription /* foo */ {
+func (c_ ContinuityDevice) AudioSessionInputs() AudioSessionPortDescription /* not a class type */ {
 	rv := objc.Send[AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (c_ ContinuityDevice) AudioSessionInputs() AVAudioSessionPortDescription /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/audiosessioninputs
-func (c_ ContinuityDevice) SetAudioSessionInputs(value AVAudioSessionPortDescription /* foo */) {
+func (c_ ContinuityDevice) SetAudioSessionInputs(value AudioSessionPortDescription /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSessionInputs:"), value)
 }
 
@@ -128,7 +128,7 @@ func (c_ ContinuityDevice) SetAudioSessionInputs(value AVAudioSessionPortDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/connectionid
-func (c_ ContinuityDevice) ConnectionID() foundation.UUID /* foo */ {
+func (c_ ContinuityDevice) ConnectionID() foundation.UUID /* not a class type */ {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("connectionID"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (c_ ContinuityDevice) ConnectionID() foundation.UUID /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/connectionid
-func (c_ ContinuityDevice) SetConnectionID(value foundation.UUID /* foo */) {
+func (c_ ContinuityDevice) SetConnectionID(value foundation.UUID /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConnectionID:"), value)
 }
 

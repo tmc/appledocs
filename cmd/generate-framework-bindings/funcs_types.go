@@ -607,6 +607,8 @@ func resolveType(framework, typeName string) string {
 		"WindowController":     true, // NSWindowController
 		"Menu":                 true, // NSMenu
 		"MenuItem":             true, // NSMenuItem
+		"BezierPath":           true, // NSBezierPath - used by NSAffineTransform in Foundation
+		"Pasteboard":           true, // NSPasteboard - used by NSURL in Foundation
 	}
 
 	// CoreGraphics types used by other frameworks
@@ -647,6 +649,25 @@ func resolveType(framework, typeName string) string {
 		// fmt.Fprintf(os.Stderr, "DEBUG resolveType: Found '%s' (stripped: '%s') in current framework '%s', returning as-is\n", typeName, strippedTypeName, framework)
 		// It's in the current framework, return as-is
 		return typeName
+	}
+
+	// Check if we know about this type from the cross-framework registry FIRST
+	// This automatically handles ALL cross-framework types without hardcoding
+	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
+		// Don't qualify types with their own framework name (e.g., foundation.NSString in foundation package)
+		if strings.ToLower(framework) == frameworkPkg {
+			return typeName
+		}
+		// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
+		// This prevents errors like "appkit.string" when NSString resolves to "string"
+		if isGoPrimitive(typeName) {
+			return typeName
+		}
+		Debug.TypeMap("cross-framework registry hit", typeName, frameworkPkg,
+			"typeName", typeName,
+			"framework", framework,
+			"targetFramework", frameworkPkg)
+		return frameworkPkg + "." + typeName
 	}
 
 	// If we're in CoreGraphics framework, all types are local
@@ -723,23 +744,16 @@ func resolveType(framework, typeName string) string {
 	}
 
 	// If this is a known AppKit type and we're not in AppKit, qualify it
+	// NOTE: This is now a fallback - registry should handle most cases
 	if appKitTypes[typeName] {
+		Debug.TypeMap("hardcoded appkit fallback", typeName, framework,
+			"typeName", typeName,
+			"framework", framework)
 		return "appkit." + typeName
 	}
 
-	// Check if we know about this type from the cross-framework registry
-	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
-		// Don't qualify types with their own framework name (e.g., foundation.NSString in foundation package)
-		if strings.ToLower(framework) == frameworkPkg {
-			return typeName
-		}
-		// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
-		// This prevents errors like "appkit.string" when NSString resolves to "string"
-		if isGoPrimitive(typeName) {
-			return typeName
-		}
-		return frameworkPkg + "." + typeName
-	}
+	// Registry lookup was already checked above (lines 654-671)
+	// This duplicate check has been removed
 
 	// Before falling back to unsafe.Pointer, check if this type belongs to the current framework
 	// based on naming conventions. For example, in AppKit, types like NSView, NSButton, NSTextCheckingResult

@@ -55,20 +55,20 @@ type IURLComponents interface {
 	SetPercentEncodedQueryItems(value []URLQueryItem /* primitive/slice/pointer */)
 	PercentEncodedUser() string /* primitive/slice/pointer */
 	SetPercentEncodedUser(value string /* primitive/slice/pointer */)
-	Port() Number /* foo */
-	SetPort(value Number /* foo */)
+	Port() Number /* not a class type */
+	SetPort(value Number /* not a class type */)
 	Query() string /* primitive/slice/pointer */
 	SetQuery(value string /* primitive/slice/pointer */)
 	QueryItems() []URLQueryItem /* primitive/slice/pointer */
 	SetQueryItems(value []URLQueryItem /* primitive/slice/pointer */)
-	RangeOfFragment() Range /* foo */
-	RangeOfHost() Range /* foo */
-	RangeOfPassword() Range /* foo */
-	RangeOfPath() Range /* foo */
-	RangeOfPort() Range /* foo */
-	RangeOfQuery() Range /* foo */
-	RangeOfScheme() Range /* foo */
-	RangeOfUser() Range /* foo */
+	RangeOfFragment() Range /* not a class type */
+	RangeOfHost() Range /* not a class type */
+	RangeOfPassword() Range /* not a class type */
+	RangeOfPath() Range /* not a class type */
+	RangeOfPort() Range /* not a class type */
+	RangeOfQuery() Range /* not a class type */
+	RangeOfScheme() Range /* not a class type */
+	RangeOfUser() Range /* not a class type */
 	Scheme() string /* primitive/slice/pointer */
 	SetScheme(value string /* primitive/slice/pointer */)
 	String() string /* primitive/slice/pointer */
@@ -447,7 +447,7 @@ func (u_ URLComponents) SetPercentEncodedUser(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/port
-func (u_ URLComponents) Port() Number /* foo */ {
+func (u_ URLComponents) Port() Number /* not a class type */ {
 	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
 	return rv
 }
@@ -457,7 +457,7 @@ func (u_ URLComponents) Port() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/port
-func (u_ URLComponents) SetPort(value Number /* foo */) {
+func (u_ URLComponents) SetPort(value Number /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
 
@@ -514,7 +514,7 @@ func (u_ URLComponents) SetQueryItems(value []URLQueryItem /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfFragment
-func (u_ URLComponents) RangeOfFragment() Range /* foo */ {
+func (u_ URLComponents) RangeOfFragment() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfFragment"))
 	return rv
 }
@@ -524,7 +524,7 @@ func (u_ URLComponents) RangeOfFragment() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfHost
-func (u_ URLComponents) RangeOfHost() Range /* foo */ {
+func (u_ URLComponents) RangeOfHost() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfHost"))
 	return rv
 }
@@ -534,7 +534,7 @@ func (u_ URLComponents) RangeOfHost() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfPassword
-func (u_ URLComponents) RangeOfPassword() Range /* foo */ {
+func (u_ URLComponents) RangeOfPassword() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPassword"))
 	return rv
 }
@@ -544,7 +544,7 @@ func (u_ URLComponents) RangeOfPassword() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfPath
-func (u_ URLComponents) RangeOfPath() Range /* foo */ {
+func (u_ URLComponents) RangeOfPath() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPath"))
 	return rv
 }
@@ -554,7 +554,7 @@ func (u_ URLComponents) RangeOfPath() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfPort
-func (u_ URLComponents) RangeOfPort() Range /* foo */ {
+func (u_ URLComponents) RangeOfPort() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPort"))
 	return rv
 }
@@ -564,7 +564,7 @@ func (u_ URLComponents) RangeOfPort() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfQuery
-func (u_ URLComponents) RangeOfQuery() Range /* foo */ {
+func (u_ URLComponents) RangeOfQuery() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfQuery"))
 	return rv
 }
@@ -574,7 +574,7 @@ func (u_ URLComponents) RangeOfQuery() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfScheme
-func (u_ URLComponents) RangeOfScheme() Range /* foo */ {
+func (u_ URLComponents) RangeOfScheme() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfScheme"))
 	return rv
 }
@@ -584,7 +584,7 @@ func (u_ URLComponents) RangeOfScheme() Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/rangeOfUser
-func (u_ URLComponents) RangeOfUser() Range /* foo */ {
+func (u_ URLComponents) RangeOfUser() Range /* not a class type */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfUser"))
 	return rv
 }

@@ -33,8 +33,8 @@ type IDecimalNumberHandler interface {
 	// properties:
 	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() Number /* foo */
-	SetRoundingIncrement(value Number /* foo */)
+	RoundingIncrement() Number /* not a class type */
+	SetRoundingIncrement(value Number /* not a class type */)
 	RoundingMode() RoundingMode
 	SetRoundingMode(value RoundingMode)
 	// methods:
@@ -158,7 +158,7 @@ func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) RoundingIncrement() Number /* foo */ {
+func (d_ DecimalNumberHandler) RoundingIncrement() Number /* not a class type */ {
 	rv := objc.Send[Number](d_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (d_ DecimalNumberHandler) RoundingIncrement() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) SetRoundingIncrement(value Number /* foo */) {
+func (d_ DecimalNumberHandler) SetRoundingIncrement(value Number /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 

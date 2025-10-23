@@ -117,7 +117,7 @@ func NewCharacterSetWithCharactersInString(aString string /* primitive/slice/poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(coder:)
-func NewCharacterSetWithCoder(coder Coder /* foo */) CharacterSet {
+func NewCharacterSetWithCoder(coder Coder /* not a class type */) CharacterSet {
 	instance := getCharacterSetClass().Alloc()
 	rv := objc.Send[CharacterSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -139,7 +139,7 @@ func NewCharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(range:)
-func NewCharacterSetWithRange(aRange Range /* foo */) CharacterSet {
+func NewCharacterSetWithRange(aRange Range /* not a class type */) CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -180,7 +180,7 @@ func (cc _CharacterSetClass) CharacterSetWithContentsOfFile(fName string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(range:)
-func (cc _CharacterSetClass) CharacterSetWithRange(aRange Range /* foo */) ICharacterSet {
+func (cc _CharacterSetClass) CharacterSetWithRange(aRange Range /* not a class type */) ICharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }

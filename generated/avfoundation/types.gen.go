@@ -10,171 +10,141 @@ import (
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
-type AVAssetCache = int
+type AssetCache = int
 
-type AVAssetDownloadContentConfiguration = int
+type AssetDownloadContentConfiguration = int
 
-type AVAssetReferenceRestrictions = int
+type AssetReferenceRestrictions = int
 
-type AVAssetResourceLoaderDelegate = int
+type AssetResourceLoaderDelegate = int
 
-type AVAssetTrackGroupOutputHandling = int
+type AssetTrackGroupOutputHandling = int
 
-type AVAssetWriterInputPassDescription = int
+type AssetWriterInputPassDescription = int
 
-type AVAudioSessionPortDescription = int
+type AudioFormatDescription = int
 
-type AVAudioTimePitchAlgorithm = int
+type AudioTimePitchAlgorithm = int
 
-type AVCameraCalibrationData = int
+type CaptionRegion = int
 
-type AVCaptionRegion = int
+type CaptureAspectRatio = int
 
-type AVCaptureAspectRatio = int
+type CaptureAudioDataOutputSampleBufferDelegate = int
 
-type AVCaptureAudioDataOutputSampleBufferDelegate = int
+type CaptureBracketedStillImageSettings = int
 
-type AVCaptureBracketedStillImageSettings = int
+type CaptureCameraLensSmudgeDetectionStatus = int
 
-type AVCaptureCameraLensSmudgeDetectionStatus = int
+type CaptureCinematicVideoFocusMode = int
 
-type AVCaptureCinematicVideoFocusMode = int
+type CaptureColorSpace = int
 
-type AVCaptureColorSpace = int
+type CaptureControl = int
 
-type AVCaptureControl = int
+type CaptureDepthDataOutputDelegate = int
 
-type AVCaptureFileOutputDelegate = int
+type CaptureFileOutputDelegate = int
 
-type AVCaptureFraming = int
+type CaptureMetadataOutputObjectsDelegate = int
 
-type AVCaptureMetadataOutputObjectsDelegate = int
+type CapturePrimaryConstituentDeviceSwitchingBehavior = int
 
-type AVCapturePrimaryConstituentDeviceSwitchingBehavior = int
+type CaptureVideoDataOutputSampleBufferDelegate = int
 
-type AVCaptureSystemPressureState = int
+type CaptureVideoOrientation = int
 
-type AVCaptureVideoOrientation = int
+type CaptureVideoStabilizationMode = int
 
-type AVCaptureVideoStabilizationMode = int
+type Clock = int
 
-type AVCompositionTrack = int
+type ClockRef = int
 
-type AVContentKeySystem = int
+type ContentKeySystem = int
 
-type AVContentProposal = int
+type CoordinatedPlaybackSuspensionReason = int
 
-type AVCoordinatedPlaybackSuspensionReason = int
+type ExternalSyncDevice = int
 
-type AVDisplayCriteria = int
+type FileTypeProfile = int
 
-type AVExternalSyncDevice = int
+type FormatDescription = int
 
-type AVFileTypeProfile = int
+type FragmentMinding = int
 
-type AVFragmentedAssetTrack = int
+type FrameRateRange = int
 
-type AVFragmentedMovie = int
+type LayerVideoGravity = int
 
-type AVFrameRateRange = int
+type MediaCharacteristic = int
 
-type AVLayerVideoGravity = int
+type MediaType = int
 
-type AVMediaCharacteristic = int
+type MetadataExtraAttributeKey = int
 
-type AVMediaDataStorage = int
+type MetadataFormat = int
 
-type AVMediaType = int
+type MetadataIdentifier = int
 
-type AVMetadataExtraAttributeKey = int
+type MetadataItemFilter = int
 
-type AVMetadataFormat = int
+type MetadataKey = int
 
-type AVMetadataIdentifier = int
+type MetadataKeySpace = int
 
-type AVMetadataItemFilter = int
+type MutableCompositionTrack = int
 
-type AVMetadataKey = int
+type ObjectProtocol = int
 
-type AVMetadataKeySpace = int
+type PersistentTrackID = int
 
-type AVMetadataObject = int
+type PixelBuffer = int
 
-type AVMovieTrack = int
+type PixelBufferAttributes = int
 
-type AVMutableCompositionTrack = int
+type PixelBufferPool = int
 
-type AVPlaybackCoordinationMedium = int
+type PlayerItemMediaDataCollector = int
 
-type AVPlayerItemIntegratedTimelineSnapshot = int
+type PlayerItemOutput = int
 
-type AVPlayerItemMediaDataCollector = int
+type PlayerItemRenderedLegibleOutputPushDelegate = int
 
-type AVPlayerItemOutput = int
+type PlayerPlaybackCoordinatorDelegate = int
 
-type AVPlayerItemRenderedLegibleOutputPushDelegate = int
+type PlayerVideoOutput = int
 
-type AVPlayerPlaybackCoordinatorDelegate = int
+type QueuedSampleBufferRendering = int
 
-type AVPlayerVideoOutput = int
+type QueuedSampleBufferRenderingStatus = int
 
-type AVQueuedSampleBufferRendering = int
+type SampleBuffer = int
 
-type AVQueuedSampleBufferRenderingStatus = int
+type SpatialCaptureDiscomfortReason = int
 
-type AVSpatialCaptureDiscomfortReason = int
+type Time = int
 
-type AVVideoCodecType = int
+type TimeMapping = int
 
-type AVVideoCompositing = int
+type TimeRange = int
 
-type AVVideoComposition = int
+type TimeScale = int
 
-type AVVideoFieldMode = int
+type Timebase = int
 
-type CALayer = int
+type TimebaseRef = int
 
-type CASpatialAudioExperience = int
+type VideoCodecType = int
 
-type CFString = int
+type VideoCompositing = int
 
-type CFTimeInterval = int
+type VideoDimensions = int
 
-type CMAudioFormatDescription = int
+type VideoFieldMode = int
 
-type CMClockRef = int
+type VideoFormatDescription = int
 
-type CMFormatDescription = int
-
-type CMPersistentTrackID = int
-
-type CMSampleBuffer = int
-
-type CMTime = int
-
-type CMTimeMapping = int
-
-type CMTimeRange = int
-
-type CMTimeScale = int
-
-type CMTimebase = int
-
-type CMTimebaseRef = int
-
-type CMVideoDimensions = int
-
-type CMVideoFormatDescription = int
-
-type CVPixelBuffer = int
-
-type CVPixelBufferAttributes = int
-
-type CVPixelBufferPool = int
-
-type NSObjectProtocol = int
-
-type NSZone = int
+type Zone = int
 
 
 

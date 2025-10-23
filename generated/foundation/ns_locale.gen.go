@@ -54,17 +54,17 @@ type ILocale interface {
 	Locale() ILocale
 	SetLocale(value ILocale)
 	// methods:
-	DisplayNameForKeyValue(key LocaleKey /* foo */, value objectivec.IObject) String /* foo */
-	LocalizedStringForCalendarIdentifier(calendarIdentifier string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForCollationIdentifier(collationIdentifier string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForCollatorIdentifier(collatorIdentifier string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForCountryCode(countryCode string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForCurrencyCode(currencyCode string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForLanguageCode(languageCode string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForLocaleIdentifier(localeIdentifier string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForScriptCode(scriptCode string /* primitive/slice/pointer */) String /* foo */
-	LocalizedStringForVariantCode(variantCode string /* primitive/slice/pointer */) String /* foo */
-	ObjectForKey(key LocaleKey /* foo */) objc.ID
+	DisplayNameForKeyValue(key LocaleKey /* not a class type */, value objectivec.IObject) String /* not a class type */
+	LocalizedStringForCalendarIdentifier(calendarIdentifier string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForCollationIdentifier(collationIdentifier string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForCollatorIdentifier(collatorIdentifier string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForCountryCode(countryCode string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForCurrencyCode(currencyCode string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForLanguageCode(languageCode string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForLocaleIdentifier(localeIdentifier string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForScriptCode(scriptCode string /* primitive/slice/pointer */) String /* not a class type */
+	LocalizedStringForVariantCode(variantCode string /* primitive/slice/pointer */) String /* not a class type */
+	ObjectForKey(key LocaleKey /* not a class type */) objc.ID
 }
 
 // Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.
@@ -124,7 +124,7 @@ func NewLocale() Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/init(coder:)
-func NewLocaleWithCoder(coder Coder /* foo */) Locale {
+func NewLocaleWithCoder(coder Coder /* not a class type */) Locale {
 	instance := getLocaleClass().Alloc()
 	rv := objc.Send[Locale](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -149,7 +149,7 @@ func NewLocaleWithLocaleIdentifier(string_ string /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/canonicalLanguageIdentifier(from:)
-func (lc _LocaleClass) CanonicalLanguageIdentifierFromString(string_ string /* primitive/slice/pointer */) String /* foo */ {
+func (lc _LocaleClass) CanonicalLanguageIdentifierFromString(string_ string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("canonicalLanguageIdentifierFromString:"), objc.String(string_))
 	return rv
 }
@@ -159,7 +159,7 @@ func (lc _LocaleClass) CanonicalLanguageIdentifierFromString(string_ string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/canonicalLocaleIdentifier(from:)
-func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ string /* primitive/slice/pointer */) String /* foo */ {
+func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("canonicalLocaleIdentifierFromString:"), objc.String(string_))
 	return rv
 }
@@ -209,7 +209,7 @@ func (lc _LocaleClass) LocaleWithLocaleIdentifier(ident string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localeIdentifier(fromComponents:)
-func (lc _LocaleClass) LocaleIdentifierFromComponents(dict IDictionary /* already interface */) String /* foo */ {
+func (lc _LocaleClass) LocaleIdentifierFromComponents(dict IDictionary /* already interface */) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localeIdentifierFromComponents:"), dict)
 	return rv
 }
@@ -219,7 +219,7 @@ func (lc _LocaleClass) LocaleIdentifierFromComponents(dict IDictionary /* alread
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localeIdentifier(fromWindowsLocaleCode:)
-func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid uint32 /* foo */) String /* foo */ {
+func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid uint32 /* not a class type */) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localeIdentifierFromWindowsLocaleCode:"), lcid)
 	return rv
 }
@@ -229,7 +229,7 @@ func (lc _LocaleClass) LocaleIdentifierFromWindowsLocaleCode(lcid uint32 /* foo 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/windowsLocaleCode(fromLocaleIdentifier:)
-func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier string /* primitive/slice/pointer */) uint32 /* foo */ {
+func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier string /* primitive/slice/pointer */) uint32 /* not a class type */ {
 	rv := objc.Send[uint32](objc.ID(lc.class), objc.Sel("windowsLocaleCodeFromLocaleIdentifier:"), objc.String(localeIdentifier))
 	return rv
 }
@@ -320,7 +320,7 @@ func (lc _LocaleClass) SystemLocale() Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/displayName(forKey:value:)
-func (l_ Locale) DisplayNameForKeyValue(key LocaleKey /* foo */, value objectivec.IObject) String /* foo */ {
+func (l_ Locale) DisplayNameForKeyValue(key LocaleKey /* not a class type */, value objectivec.IObject) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("displayNameForKey:value:"), key, value)
 	return rv
 }
@@ -330,7 +330,7 @@ func (l_ Locale) DisplayNameForKeyValue(key LocaleKey /* foo */, value objective
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCalendarIdentifier:)
-func (l_ Locale) LocalizedStringForCalendarIdentifier(calendarIdentifier string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForCalendarIdentifier(calendarIdentifier string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCalendarIdentifier:"), objc.String(calendarIdentifier))
 	return rv
 }
@@ -340,7 +340,7 @@ func (l_ Locale) LocalizedStringForCalendarIdentifier(calendarIdentifier string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCollationIdentifier:)
-func (l_ Locale) LocalizedStringForCollationIdentifier(collationIdentifier string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForCollationIdentifier(collationIdentifier string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCollationIdentifier:"), objc.String(collationIdentifier))
 	return rv
 }
@@ -350,7 +350,7 @@ func (l_ Locale) LocalizedStringForCollationIdentifier(collationIdentifier strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCollatorIdentifier:)
-func (l_ Locale) LocalizedStringForCollatorIdentifier(collatorIdentifier string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForCollatorIdentifier(collatorIdentifier string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCollatorIdentifier:"), objc.String(collatorIdentifier))
 	return rv
 }
@@ -360,7 +360,7 @@ func (l_ Locale) LocalizedStringForCollatorIdentifier(collatorIdentifier string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCountryCode:)
-func (l_ Locale) LocalizedStringForCountryCode(countryCode string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForCountryCode(countryCode string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCountryCode:"), objc.String(countryCode))
 	return rv
 }
@@ -370,7 +370,7 @@ func (l_ Locale) LocalizedStringForCountryCode(countryCode string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forCurrencyCode:)
-func (l_ Locale) LocalizedStringForCurrencyCode(currencyCode string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForCurrencyCode(currencyCode string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForCurrencyCode:"), objc.String(currencyCode))
 	return rv
 }
@@ -380,7 +380,7 @@ func (l_ Locale) LocalizedStringForCurrencyCode(currencyCode string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forLanguageCode:)
-func (l_ Locale) LocalizedStringForLanguageCode(languageCode string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForLanguageCode(languageCode string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLanguageCode:"), objc.String(languageCode))
 	return rv
 }
@@ -390,7 +390,7 @@ func (l_ Locale) LocalizedStringForLanguageCode(languageCode string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forLocaleIdentifier:)
-func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForLocaleIdentifier:"), objc.String(localeIdentifier))
 	return rv
 }
@@ -400,7 +400,7 @@ func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forScriptCode:)
-func (l_ Locale) LocalizedStringForScriptCode(scriptCode string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForScriptCode(scriptCode string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForScriptCode:"), objc.String(scriptCode))
 	return rv
 }
@@ -410,7 +410,7 @@ func (l_ Locale) LocalizedStringForScriptCode(scriptCode string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localizedString(forVariantCode:)
-func (l_ Locale) LocalizedStringForVariantCode(variantCode string /* primitive/slice/pointer */) String /* foo */ {
+func (l_ Locale) LocalizedStringForVariantCode(variantCode string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](l_.ID, objc.Sel("localizedStringForVariantCode:"), objc.String(variantCode))
 	return rv
 }
@@ -420,7 +420,7 @@ func (l_ Locale) LocalizedStringForVariantCode(variantCode string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/object(forKey:)
-func (l_ Locale) ObjectForKey(key LocaleKey /* foo */) objc.ID {
+func (l_ Locale) ObjectForKey(key LocaleKey /* not a class type */) objc.ID {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("objectForKey:"), key)
 	return rv
 }

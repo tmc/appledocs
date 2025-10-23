@@ -31,22 +31,22 @@ type _CaptureFileOutputClass struct {
 type ICaptureFileOutput interface {
 	ICaptureOutput
 	// properties:
-	Delegate() AVCaptureFileOutputDelegate /* foo */
-	SetDelegate(value AVCaptureFileOutputDelegate /* foo */)
+	Delegate() CaptureFileOutputDelegate /* not a class type */
+	SetDelegate(value CaptureFileOutputDelegate /* not a class type */)
 	IsRecording() bool /* primitive/slice/pointer */
 	SetIsRecording(value bool /* primitive/slice/pointer */)
 	IsRecordingPaused() bool /* primitive/slice/pointer */
 	SetIsRecordingPaused(value bool /* primitive/slice/pointer */)
-	MaxRecordedDuration() CMTime /* foo */
-	SetMaxRecordedDuration(value CMTime /* foo */)
+	MaxRecordedDuration() Time /* not a class type */
+	SetMaxRecordedDuration(value Time /* not a class type */)
 	MaxRecordedFileSize() unsafe.Pointer
 	SetMaxRecordedFileSize(value unsafe.Pointer)
 	MinFreeDiskSpaceLimit() unsafe.Pointer
 	SetMinFreeDiskSpaceLimit(value unsafe.Pointer)
-	OutputFileURL() foundation.URL /* foo */
-	SetOutputFileURL(value foundation.URL /* foo */)
-	RecordedDuration() CMTime /* foo */
-	SetRecordedDuration(value CMTime /* foo */)
+	OutputFileURL() foundation.URL /* not a class type */
+	SetOutputFileURL(value foundation.URL /* not a class type */)
+	RecordedDuration() Time /* not a class type */
+	SetRecordedDuration(value Time /* not a class type */)
 	RecordedFileSize() unsafe.Pointer
 	SetRecordedFileSize(value unsafe.Pointer)
 	// methods:
@@ -109,7 +109,7 @@ func NewCaptureFileOutput() CaptureFileOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/delegate
-func (c_ CaptureFileOutput) Delegate() AVCaptureFileOutputDelegate /* foo */ {
+func (c_ CaptureFileOutput) Delegate() CaptureFileOutputDelegate /* not a class type */ {
 	rv := objc.Send[CaptureFileOutputDelegate](c_.ID, objc.Sel("delegate"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (c_ CaptureFileOutput) Delegate() AVCaptureFileOutputDelegate /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/delegate
-func (c_ CaptureFileOutput) SetDelegate(value AVCaptureFileOutputDelegate /* foo */) {
+func (c_ CaptureFileOutput) SetDelegate(value CaptureFileOutputDelegate /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -166,7 +166,7 @@ func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
-func (c_ CaptureFileOutput) MaxRecordedDuration() CMTime /* foo */ {
+func (c_ CaptureFileOutput) MaxRecordedDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("maxRecordedDuration"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (c_ CaptureFileOutput) MaxRecordedDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
-func (c_ CaptureFileOutput) SetMaxRecordedDuration(value CMTime /* foo */) {
+func (c_ CaptureFileOutput) SetMaxRecordedDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRecordedDuration:"), value)
 }
 
@@ -223,7 +223,7 @@ func (c_ CaptureFileOutput) SetMinFreeDiskSpaceLimit(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) OutputFileURL() foundation.URL /* foo */ {
+func (c_ CaptureFileOutput) OutputFileURL() foundation.URL /* not a class type */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("outputFileURL"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (c_ CaptureFileOutput) OutputFileURL() foundation.URL /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL /* foo */) {
+func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputFileURL:"), value)
 }
 
@@ -242,7 +242,7 @@ func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
-func (c_ CaptureFileOutput) RecordedDuration() CMTime /* foo */ {
+func (c_ CaptureFileOutput) RecordedDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("recordedDuration"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (c_ CaptureFileOutput) RecordedDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
-func (c_ CaptureFileOutput) SetRecordedDuration(value CMTime /* foo */) {
+func (c_ CaptureFileOutput) SetRecordedDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordedDuration:"), value)
 }
 

@@ -31,8 +31,8 @@ type _SampleBufferDisplayLayerClass struct {
 type ISampleBufferDisplayLayer interface {
 	quartzcore.ILayer
 	// properties:
-	ControlTimebase() CMTimebase /* foo */
-	SetControlTimebase(value CMTimebase /* foo */)
+	ControlTimebase() Timebase /* not a class type */
+	SetControlTimebase(value Timebase /* not a class type */)
 	IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer */
 	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer */)
 	IsReadyForDisplay() bool /* primitive/slice/pointer */
@@ -45,8 +45,8 @@ type ISampleBufferDisplayLayer interface {
 	SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer */)
 	SampleBufferRenderer() IAVSampleBufferVideoRenderer
 	SetSampleBufferRenderer(value IAVSampleBufferVideoRenderer)
-	VideoGravity() AVLayerVideoGravity /* foo */
-	SetVideoGravity(value AVLayerVideoGravity /* foo */)
+	VideoGravity() LayerVideoGravity /* not a class type */
+	SetVideoGravity(value LayerVideoGravity /* not a class type */)
 	AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() string /* primitive/slice/pointer */
 	// methods:
 }
@@ -108,7 +108,7 @@ func NewSampleBufferDisplayLayer() SampleBufferDisplayLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/controltimebase
-func (s_ SampleBufferDisplayLayer) ControlTimebase() CMTimebase /* foo */ {
+func (s_ SampleBufferDisplayLayer) ControlTimebase() Timebase /* not a class type */ {
 	rv := objc.Send[Timebase](s_.ID, objc.Sel("controlTimebase"))
 	return rv
 }
@@ -118,7 +118,7 @@ func (s_ SampleBufferDisplayLayer) ControlTimebase() CMTimebase /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/controltimebase
-func (s_ SampleBufferDisplayLayer) SetControlTimebase(value CMTimebase /* foo */) {
+func (s_ SampleBufferDisplayLayer) SetControlTimebase(value Timebase /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTimebase:"), value)
 }
 
@@ -241,7 +241,7 @@ func (s_ SampleBufferDisplayLayer) SetSampleBufferRenderer(value IAVSampleBuffer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/videogravity
-func (s_ SampleBufferDisplayLayer) VideoGravity() AVLayerVideoGravity /* foo */ {
+func (s_ SampleBufferDisplayLayer) VideoGravity() LayerVideoGravity /* not a class type */ {
 	rv := objc.Send[LayerVideoGravity](s_.ID, objc.Sel("videoGravity"))
 	return rv
 }
@@ -251,7 +251,7 @@ func (s_ SampleBufferDisplayLayer) VideoGravity() AVLayerVideoGravity /* foo */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/videogravity
-func (s_ SampleBufferDisplayLayer) SetVideoGravity(value AVLayerVideoGravity /* foo */) {
+func (s_ SampleBufferDisplayLayer) SetVideoGravity(value LayerVideoGravity /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

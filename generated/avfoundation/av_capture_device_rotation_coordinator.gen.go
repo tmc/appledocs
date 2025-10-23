@@ -33,8 +33,8 @@ type ICaptureDeviceRotationCoordinator interface {
 	// properties:
 	Device() IAVCaptureDevice
 	SetDevice(value IAVCaptureDevice)
-	PreviewLayer() CALayer /* foo */
-	SetPreviewLayer(value CALayer /* foo */)
+	PreviewLayer() Layer /* not a class type */
+	SetPreviewLayer(value Layer /* not a class type */)
 	VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer */
 	SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer */)
 	VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer */
@@ -118,7 +118,7 @@ func (c_ CaptureDeviceRotationCoordinator) SetDevice(value IAVCaptureDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() CALayer /* foo */ {
+func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() Layer /* not a class type */ {
 	rv := objc.Send[Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() CALayer /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value CALayer /* foo */) {
+func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value Layer /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 

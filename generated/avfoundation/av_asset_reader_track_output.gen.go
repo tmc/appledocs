@@ -30,8 +30,8 @@ type _AssetReaderTrackOutputClass struct {
 type IAssetReaderTrackOutput interface {
 	IAssetReaderOutput
 	// properties:
-	AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */
-	SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */
+	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
 	OutputSettings() string /* primitive/slice/pointer */
 	SetOutputSettings(value string /* primitive/slice/pointer */)
 	Track() IAVAssetTrack
@@ -43,9 +43,9 @@ type IAssetReaderTrackOutput interface {
 	AVSampleRateConverterAudioQualityKey() string /* primitive/slice/pointer */
 	KAudioFormatLinearPCM() unsafe.Pointer
 	SetKAudioFormatLinearPCM(value unsafe.Pointer)
-	KCMFormatDescriptionExtension_Depth() CFString /* foo */
-	KCVPixelBufferHeightKey() CFString /* foo */
-	KCVPixelBufferWidthKey() CFString /* foo */
+	KCMFormatDescriptionExtension_Depth() String /* not a class type */
+	KCVPixelBufferHeightKey() String /* not a class type */
+	KCVPixelBufferWidthKey() String /* not a class type */
 	KCVPixelFormatType_32ARGB() unsafe.Pointer
 	SetKCVPixelFormatType_32ARGB(value unsafe.Pointer)
 	KCVPixelFormatType_32BGRA() unsafe.Pointer
@@ -126,7 +126,7 @@ func NewAssetReaderTrackOutput() AssetReaderTrackOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm
-func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */ {
+func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */ {
 	rv := objc.Send[AudioTimePitchAlgorithm](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() AVAudioTimePitchAlgor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm
-func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */) {
+func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -250,7 +250,7 @@ func (a_ AssetReaderTrackOutput) SetKAudioFormatLinearPCM(value unsafe.Pointer) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth
-func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() CFString /* foo */ {
+func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() String /* not a class type */ {
 	rv := objc.Send[String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
 	return rv
 }
@@ -260,7 +260,7 @@ func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() CFString 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferHeightKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() CFString /* foo */ {
+func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() String /* not a class type */ {
 	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() CFString /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferWidthKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() CFString /* foo */ {
+func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() String /* not a class type */ {
 	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
 	return rv
 }

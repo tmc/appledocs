@@ -41,10 +41,10 @@ type ICaptureOutput interface {
 	IsDeferredStartSupported() bool /* primitive/slice/pointer */
 	SetIsDeferredStartSupported(value bool /* primitive/slice/pointer */)
 	// methods:
-	ConnectionWithMediaType(mediaType AVMediaType /* foo */) IAVCaptureConnection
+	ConnectionWithMediaType(mediaType MediaType /* not a class type */) ICaptureConnection
 	MetadataOutputRectOfInterestForRect(rectInOutputCoordinates coregraphics.CGRect) coregraphics.CGRect
 	RectForMetadataOutputRectOfInterest(rectInMetadataOutputCoordinates coregraphics.CGRect) coregraphics.CGRect
-	TransformedMetadataObjectForMetadataObjectConnection(metadataObject AVMetadataObject /* foo */, connection IAVCaptureConnection) AVMetadataObject /* foo */
+	TransformedMetadataObjectForMetadataObjectConnection(metadataObject MetadataObject /* not a class type */, connection IAVCaptureConnection) MetadataObject /* not a class type */
 }
 
 // An abstract superclass for objects that provide media output destinations for a capture session.
@@ -104,7 +104,7 @@ func NewCaptureOutput() CaptureOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/connection(with:)
-func (c_ CaptureOutput) ConnectionWithMediaType(mediaType AVMediaType /* foo */) IAVCaptureConnection {
+func (c_ CaptureOutput) ConnectionWithMediaType(mediaType MediaType /* not a class type */) ICaptureConnection {
 	rv := objc.Send[CaptureConnection](c_.ID, objc.Sel("connectionWithMediaType:"), mediaType)
 	return rv
 }
@@ -134,7 +134,7 @@ func (c_ CaptureOutput) RectForMetadataOutputRectOfInterest(rectInMetadataOutput
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/transformedMetadataObject(for:connection:)
-func (c_ CaptureOutput) TransformedMetadataObjectForMetadataObjectConnection(metadataObject AVMetadataObject /* foo */, connection IAVCaptureConnection) AVMetadataObject /* foo */ {
+func (c_ CaptureOutput) TransformedMetadataObjectForMetadataObjectConnection(metadataObject MetadataObject /* not a class type */, connection IAVCaptureConnection) MetadataObject /* not a class type */ {
 	rv := objc.Send[MetadataObject](c_.ID, objc.Sel("transformedMetadataObjectForMetadataObject:connection:"), metadataObject, connection)
 	return rv
 }

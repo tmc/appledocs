@@ -31,11 +31,11 @@ type _CaptureDeviceInputClass struct {
 type ICaptureDeviceInput interface {
 	ICaptureInput
 	// properties:
-	ActiveExternalSyncVideoFrameDuration() CMTime /* foo */
-	ActiveLockedVideoFrameDuration() CMTime /* foo */
-	SetActiveLockedVideoFrameDuration(value CMTime /* foo */)
+	ActiveExternalSyncVideoFrameDuration() Time /* not a class type */
+	ActiveLockedVideoFrameDuration() Time /* not a class type */
+	SetActiveLockedVideoFrameDuration(value Time /* not a class type */)
 	Device() IAVCaptureDevice
-	ExternalSyncDevice() AVExternalSyncDevice /* foo */
+	ExternalSyncDevice() ExternalSyncDevice /* not a class type */
 	CinematicVideoCaptureEnabled() bool /* primitive/slice/pointer */
 	SetCinematicVideoCaptureEnabled(value bool /* primitive/slice/pointer */)
 	CinematicVideoCaptureSupported() bool /* primitive/slice/pointer */
@@ -44,14 +44,14 @@ type ICaptureDeviceInput interface {
 	WindNoiseRemovalEnabled() bool /* primitive/slice/pointer */
 	SetWindNoiseRemovalEnabled(value bool /* primitive/slice/pointer */)
 	WindNoiseRemovalSupported() bool /* primitive/slice/pointer */
-	MultichannelAudioMode() AVCaptureMultichannelAudioMode /* enum */
-	SetMultichannelAudioMode(value AVCaptureMultichannelAudioMode /* enum */)
+	MultichannelAudioMode() CaptureMultichannelAudioMode
+	SetMultichannelAudioMode(value CaptureMultichannelAudioMode)
 	SimulatedAperture() float32 /* primitive/slice/pointer */
 	SetSimulatedAperture(value float32 /* primitive/slice/pointer */)
 	UnifiedAutoExposureDefaultsEnabled() bool /* primitive/slice/pointer */
 	SetUnifiedAutoExposureDefaultsEnabled(value bool /* primitive/slice/pointer */)
-	VideoMinFrameDurationOverride() CMTime /* foo */
-	SetVideoMinFrameDurationOverride(value CMTime /* foo */)
+	VideoMinFrameDurationOverride() Time /* not a class type */
+	SetVideoMinFrameDurationOverride(value Time /* not a class type */)
 	IsCinematicVideoCaptureEnabled() bool /* primitive/slice/pointer */
 	SetIsCinematicVideoCaptureEnabled(value bool /* primitive/slice/pointer */)
 	IsCinematicVideoCaptureSupported() bool /* primitive/slice/pointer */
@@ -65,9 +65,9 @@ type ICaptureDeviceInput interface {
 	IsWindNoiseRemovalSupported() bool /* primitive/slice/pointer */
 	SetIsWindNoiseRemovalSupported(value bool /* primitive/slice/pointer */)
 	// methods:
-	FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice AVExternalSyncDevice /* foo */, frameDuration CMTime /* foo */, delegate objectivec.IObject)
-	IsMultichannelAudioModeSupported(multichannelAudioMode AVCaptureMultichannelAudioMode /* enum */) bool /* primitive/slice/pointer */
-	PortsWithMediaTypeSourceDeviceTypeSourceDevicePosition(mediaType AVMediaType /* foo */, sourceDeviceType AVCaptureDeviceType /* typedef */, sourceDevicePosition AVCaptureDevicePosition /* enum */) []CaptureInputPort /* primitive/slice/pointer */
+	FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice ExternalSyncDevice /* not a class type */, frameDuration Time /* not a class type */, delegate objectivec.IObject)
+	IsMultichannelAudioModeSupported(multichannelAudioMode CaptureMultichannelAudioMode) bool /* primitive/slice/pointer */
+	PortsWithMediaTypeSourceDeviceTypeSourceDevicePosition(mediaType MediaType /* not a class type */, sourceDeviceType CaptureDeviceType /* not a class type */, sourceDevicePosition CaptureDevicePosition) []CaptureInputPort /* primitive/slice/pointer */
 	UnfollowExternalSyncDevice()
 }
 
@@ -153,7 +153,7 @@ func (cc _CaptureDeviceInputClass) DeviceInputWithDeviceError(device IAVCaptureD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/follow(_:videoFrameDuration:delegate:)
-func (c_ CaptureDeviceInput) FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice AVExternalSyncDevice /* foo */, frameDuration CMTime /* foo */, delegate objectivec.IObject) {
+func (c_ CaptureDeviceInput) FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice ExternalSyncDevice /* not a class type */, frameDuration Time /* not a class type */, delegate objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("followExternalSyncDevice:videoFrameDuration:delegate:"), externalSyncDevice, frameDuration, delegate)
 }
 
@@ -162,7 +162,7 @@ func (c_ CaptureDeviceInput) FollowExternalSyncDeviceVideoFrameDurationDelegate(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/isMultichannelAudioModeSupported(_:)
-func (c_ CaptureDeviceInput) IsMultichannelAudioModeSupported(multichannelAudioMode AVCaptureMultichannelAudioMode /* enum */) bool /* primitive/slice/pointer */ {
+func (c_ CaptureDeviceInput) IsMultichannelAudioModeSupported(multichannelAudioMode CaptureMultichannelAudioMode) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultichannelAudioModeSupported:"), multichannelAudioMode)
 	return rv
 }
@@ -172,7 +172,7 @@ func (c_ CaptureDeviceInput) IsMultichannelAudioModeSupported(multichannelAudioM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/ports(for:sourceDeviceType:sourceDevicePosition:)
-func (c_ CaptureDeviceInput) PortsWithMediaTypeSourceDeviceTypeSourceDevicePosition(mediaType AVMediaType /* foo */, sourceDeviceType AVCaptureDeviceType /* typedef */, sourceDevicePosition AVCaptureDevicePosition /* enum */) []CaptureInputPort /* primitive/slice/pointer */ {
+func (c_ CaptureDeviceInput) PortsWithMediaTypeSourceDeviceTypeSourceDevicePosition(mediaType MediaType /* not a class type */, sourceDeviceType CaptureDeviceType /* not a class type */, sourceDevicePosition CaptureDevicePosition) []CaptureInputPort /* primitive/slice/pointer */ {
 	rv := objc.Send[[]CaptureInputPort](c_.ID, objc.Sel("portsWithMediaType:sourceDeviceType:sourceDevicePosition:"), mediaType, sourceDeviceType, sourceDevicePosition)
 	return rv
 }
@@ -191,7 +191,7 @@ func (c_ CaptureDeviceInput) UnfollowExternalSyncDevice() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/activeExternalSyncVideoFrameDuration
-func (c_ CaptureDeviceInput) ActiveExternalSyncVideoFrameDuration() CMTime /* foo */ {
+func (c_ CaptureDeviceInput) ActiveExternalSyncVideoFrameDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("activeExternalSyncVideoFrameDuration"))
 	return rv
 }
@@ -201,7 +201,7 @@ func (c_ CaptureDeviceInput) ActiveExternalSyncVideoFrameDuration() CMTime /* fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/activeLockedVideoFrameDuration
-func (c_ CaptureDeviceInput) ActiveLockedVideoFrameDuration() CMTime /* foo */ {
+func (c_ CaptureDeviceInput) ActiveLockedVideoFrameDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("activeLockedVideoFrameDuration"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (c_ CaptureDeviceInput) ActiveLockedVideoFrameDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/activeLockedVideoFrameDuration
-func (c_ CaptureDeviceInput) SetActiveLockedVideoFrameDuration(value CMTime /* foo */) {
+func (c_ CaptureDeviceInput) SetActiveLockedVideoFrameDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveLockedVideoFrameDuration:"), value)
 }
 
@@ -230,7 +230,7 @@ func (c_ CaptureDeviceInput) Device() IAVCaptureDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/externalSyncDevice
-func (c_ CaptureDeviceInput) ExternalSyncDevice() AVExternalSyncDevice /* foo */ {
+func (c_ CaptureDeviceInput) ExternalSyncDevice() ExternalSyncDevice /* not a class type */ {
 	rv := objc.Send[ExternalSyncDevice](c_.ID, objc.Sel("externalSyncDevice"))
 	return rv
 }
@@ -312,8 +312,8 @@ func (c_ CaptureDeviceInput) WindNoiseRemovalSupported() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/multichannelAudioMode
-func (c_ CaptureDeviceInput) MultichannelAudioMode() AVCaptureMultichannelAudioMode /* enum */ {
-	rv := objc.Send[AVCaptureMultichannelAudioMode](c_.ID, objc.Sel("multichannelAudioMode"))
+func (c_ CaptureDeviceInput) MultichannelAudioMode() CaptureMultichannelAudioMode {
+	rv := objc.Send[CaptureMultichannelAudioMode](c_.ID, objc.Sel("multichannelAudioMode"))
 	return rv
 }
 
@@ -322,7 +322,7 @@ func (c_ CaptureDeviceInput) MultichannelAudioMode() AVCaptureMultichannelAudioM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/multichannelAudioMode
-func (c_ CaptureDeviceInput) SetMultichannelAudioMode(value AVCaptureMultichannelAudioMode /* enum */) {
+func (c_ CaptureDeviceInput) SetMultichannelAudioMode(value CaptureMultichannelAudioMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMultichannelAudioMode:"), value)
 }
 
@@ -369,7 +369,7 @@ func (c_ CaptureDeviceInput) SetUnifiedAutoExposureDefaultsEnabled(value bool /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/videoMinFrameDurationOverride
-func (c_ CaptureDeviceInput) VideoMinFrameDurationOverride() CMTime /* foo */ {
+func (c_ CaptureDeviceInput) VideoMinFrameDurationOverride() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("videoMinFrameDurationOverride"))
 	return rv
 }
@@ -379,7 +379,7 @@ func (c_ CaptureDeviceInput) VideoMinFrameDurationOverride() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/videoMinFrameDurationOverride
-func (c_ CaptureDeviceInput) SetVideoMinFrameDurationOverride(value CMTime /* foo */) {
+func (c_ CaptureDeviceInput) SetVideoMinFrameDurationOverride(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMinFrameDurationOverride:"), value)
 }
 

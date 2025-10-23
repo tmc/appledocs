@@ -32,7 +32,7 @@ type IMutableOrderedSet interface {
 	// properties:
 	// methods:
 	AddObject(object unsafe.Pointer)
-	AddObjectsCount(objects []unsafe.Pointer /* foo */, count uint /* primitive/slice/pointer */)
+	AddObjectsCount(objects []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer */)
 	AddObjectsFromArray(array []objc.ID /* already interface */)
 	ApplyDifference(difference unsafe.Pointer)
 	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint /* primitive/slice/pointer */, idx2 uint /* primitive/slice/pointer */)
@@ -49,16 +49,16 @@ type IMutableOrderedSet interface {
 	RemoveObjectAtIndex(idx uint /* primitive/slice/pointer */)
 	RemoveObjectsAtIndexes(indexes IIndexSet)
 	RemoveObjectsInArray(array []objc.ID /* already interface */)
-	RemoveObjectsInRange(range_ Range /* foo */)
+	RemoveObjectsInRange(range_ Range /* not a class type */)
 	ReplaceObjectAtIndexWithObject(idx uint /* primitive/slice/pointer */, object unsafe.Pointer)
 	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID /* already interface */)
-	ReplaceObjectsInRangeWithObjectsCount(range_ Range /* foo */, objects []unsafe.Pointer /* foo */, count uint /* primitive/slice/pointer */)
+	ReplaceObjectsInRangeWithObjectsCount(range_ Range /* not a class type */, objects []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer */)
 	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */)
 	SetObjectAtIndex(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */)
-	SortUsingComparator(cmptr Comparator /* foo */)
-	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */)
+	SortUsingComparator(cmptr Comparator /* not a class type */)
+	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */)
 	SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */)
-	SortRangeOptionsUsingComparator(range_ Range /* foo */, opts SortOptions, cmptr Comparator /* foo */)
+	SortRangeOptionsUsingComparator(range_ Range /* not a class type */, opts SortOptions, cmptr Comparator /* not a class type */)
 	UnionOrderedSet(other unsafe.Pointer)
 	UnionSet(other unsafe.Pointer)
 }
@@ -132,7 +132,7 @@ func NewMutableOrderedSetWithCapacity(numItems uint /* primitive/slice/pointer *
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/init(coder:)
-func NewMutableOrderedSetWithCoder(coder Coder /* foo */) MutableOrderedSet {
+func NewMutableOrderedSetWithCoder(coder Coder /* not a class type */) MutableOrderedSet {
 	instance := getMutableOrderedSetClass().Alloc()
 	rv := objc.Send[MutableOrderedSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -164,7 +164,7 @@ func (m_ MutableOrderedSet) AddObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/add(_:count:)
-func (m_ MutableOrderedSet) AddObjectsCount(objects []unsafe.Pointer /* foo */, count uint /* primitive/slice/pointer */) {
+func (m_ MutableOrderedSet) AddObjectsCount(objects []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjects:count:"), objects, count)
 }
 
@@ -315,7 +315,7 @@ func (m_ MutableOrderedSet) RemoveObjectsInArray(array []objc.ID /* already inte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-9jkis
-func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range /* foo */) {
+func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInRange:"), range_)
 }
 
@@ -342,7 +342,7 @@ func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(in:with:count:)
-func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range /* foo */, objects []unsafe.Pointer /* foo */, count uint /* primitive/slice/pointer */) {
+func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range /* not a class type */, objects []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjects:count:"), range_, objects, count)
 }
 
@@ -369,7 +369,7 @@ func (m_ MutableOrderedSet) SetObjectAtIndex(obj unsafe.Pointer, idx uint /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(comparator:)
-func (m_ MutableOrderedSet) SortUsingComparator(cmptr Comparator /* foo */) {
+func (m_ MutableOrderedSet) SortUsingComparator(cmptr Comparator /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingComparator:"), cmptr)
 }
 
@@ -378,7 +378,7 @@ func (m_ MutableOrderedSet) SortUsingComparator(cmptr Comparator /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(options:usingComparator:)
-func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */) {
+func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortWithOptions:usingComparator:"), opts, cmptr)
 }
 
@@ -396,7 +396,7 @@ func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []SortDescripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sortRange(_:options:usingComparator:)
-func (m_ MutableOrderedSet) SortRangeOptionsUsingComparator(range_ Range /* foo */, opts SortOptions, cmptr Comparator /* foo */) {
+func (m_ MutableOrderedSet) SortRangeOptionsUsingComparator(range_ Range /* not a class type */, opts SortOptions, cmptr Comparator /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortRange:options:usingComparator:"), range_, opts, cmptr)
 }
 

@@ -39,7 +39,7 @@ type IXMLParser interface {
 	ExternalEntityResolvingPolicy() XMLParserExternalEntityResolvingPolicy
 	SetExternalEntityResolvingPolicy(value XMLParserExternalEntityResolvingPolicy)
 	LineNumber() int /* primitive/slice/pointer */
-	ParserError() Error /* foo */
+	ParserError() Error /* not a class type */
 	PublicID() string /* primitive/slice/pointer */
 	ShouldProcessNamespaces() bool /* primitive/slice/pointer */
 	SetShouldProcessNamespaces(value bool /* primitive/slice/pointer */)
@@ -134,7 +134,7 @@ func NewXMLParserWithData(data IData) XMLParser {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(stream:)
-func NewXMLParserWithStream(stream InputStream /* foo */) XMLParser {
+func NewXMLParserWithStream(stream InputStream /* not a class type */) XMLParser {
 	instance := getXMLParserClass().Alloc()
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithStream:"), stream)
 	rv.Autorelease()
@@ -235,7 +235,7 @@ func (x_ XMLParser) LineNumber() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parserError
-func (x_ XMLParser) ParserError() Error /* foo */ {
+func (x_ XMLParser) ParserError() Error /* not a class type */ {
 	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
 	return rv
 }

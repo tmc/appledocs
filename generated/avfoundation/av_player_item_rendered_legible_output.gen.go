@@ -34,8 +34,8 @@ type IPlayerItemRenderedLegibleOutput interface {
 	// properties:
 	AdvanceIntervalForDelegateInvocation() unsafe.Pointer
 	SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer)
-	Delegate() AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */
-	SetDelegate(value AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */)
+	Delegate() PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */
+	SetDelegate(value PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
 	VideoDisplaySize() coregraphics.CGSize
@@ -117,7 +117,7 @@ func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
-func (p_ PlayerItemRenderedLegibleOutput) Delegate() AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */ {
+func (p_ PlayerItemRenderedLegibleOutput) Delegate() PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */ {
 	rv := objc.Send[PlayerItemRenderedLegibleOutputPushDelegate](p_.ID, objc.Sel("delegate"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (p_ PlayerItemRenderedLegibleOutput) Delegate() AVPlayerItemRenderedLegible
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
-func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */) {
+func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 

@@ -37,8 +37,8 @@ type ICaptureMetadataOutput interface {
 	SetMetadataObjectTypes(value unsafe.Pointer)
 	MetadataObjectsCallbackQueue() unsafe.Pointer
 	SetMetadataObjectsCallbackQueue(value unsafe.Pointer)
-	MetadataObjectsDelegate() AVCaptureMetadataOutputObjectsDelegate /* foo */
-	SetMetadataObjectsDelegate(value AVCaptureMetadataOutputObjectsDelegate /* foo */)
+	MetadataObjectsDelegate() CaptureMetadataOutputObjectsDelegate /* not a class type */
+	SetMetadataObjectsDelegate(value CaptureMetadataOutputObjectsDelegate /* not a class type */)
 	RectOfInterest() coregraphics.CGRect
 	SetRectOfInterest(value coregraphics.CGRect)
 	RequiredMetadataObjectTypesForCinematicVideoCapture() unsafe.Pointer
@@ -162,7 +162,7 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectsCallbackQueue(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectsdelegate
-func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() AVCaptureMetadataOutputObjectsDelegate /* foo */ {
+func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() CaptureMetadataOutputObjectsDelegate /* not a class type */ {
 	rv := objc.Send[CaptureMetadataOutputObjectsDelegate](c_.ID, objc.Sel("metadataObjectsDelegate"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() AVCaptureMetadataOutpu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectsdelegate
-func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value AVCaptureMetadataOutputObjectsDelegate /* foo */) {
+func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value CaptureMetadataOutputObjectsDelegate /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectsDelegate:"), value)
 }
 

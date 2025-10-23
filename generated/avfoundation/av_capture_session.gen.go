@@ -42,7 +42,7 @@ type ICaptureSession interface {
 	ConfiguresApplicationAudioSessionToMixWithOthers() bool /* primitive/slice/pointer */
 	SetConfiguresApplicationAudioSessionToMixWithOthers(value bool /* primitive/slice/pointer */)
 	Connections() []CaptureConnection /* primitive/slice/pointer */
-	Controls() []AVCaptureControl /* primitive/slice/pointer */
+	Controls() []CaptureControl /* primitive/slice/pointer */
 	ControlsDelegate() objc.ID
 	ControlsDelegateCallbackQueue() unsafe.Pointer
 	DeferredStartDelegate() objc.ID
@@ -55,13 +55,13 @@ type ICaptureSession interface {
 	SetMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer */)
 	MultitaskingCameraAccessSupported() bool /* primitive/slice/pointer */
 	Running() bool /* primitive/slice/pointer */
-	MasterClock() CMClockRef /* foo */
+	MasterClock() ClockRef /* not a class type */
 	MaxControlsCount() int /* primitive/slice/pointer */
 	Outputs() []CaptureOutput /* primitive/slice/pointer */
-	SessionPreset() AVCaptureSessionPreset /* typedef */
-	SetSessionPreset(value AVCaptureSessionPreset /* typedef */)
+	SessionPreset() CaptureSessionPreset /* not a class type */
+	SetSessionPreset(value CaptureSessionPreset /* not a class type */)
 	SupportsControls() bool /* primitive/slice/pointer */
-	SynchronizationClock() CMClockRef /* foo */
+	SynchronizationClock() ClockRef /* not a class type */
 	UsesApplicationAudioSession() bool /* primitive/slice/pointer */
 	SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer */)
 	IsInterrupted() bool /* primitive/slice/pointer */
@@ -76,20 +76,20 @@ type ICaptureSession interface {
 	SetIsRunning(value bool /* primitive/slice/pointer */)
 	// methods:
 	AddConnection(connection IAVCaptureConnection)
-	AddControl(control AVCaptureControl /* foo */)
+	AddControl(control CaptureControl /* not a class type */)
 	AddInput(input IAVCaptureInput)
 	AddInputWithNoConnections(input IAVCaptureInput)
 	AddOutput(output IAVCaptureOutput)
 	AddOutputWithNoConnections(output IAVCaptureOutput)
 	BeginConfiguration()
 	CanAddConnection(connection IAVCaptureConnection) bool /* primitive/slice/pointer */
-	CanAddControl(control AVCaptureControl /* foo */) bool /* primitive/slice/pointer */
+	CanAddControl(control CaptureControl /* not a class type */) bool /* primitive/slice/pointer */
 	CanAddInput(input IAVCaptureInput) bool /* primitive/slice/pointer */
 	CanAddOutput(output IAVCaptureOutput) bool /* primitive/slice/pointer */
-	CanSetSessionPreset(preset AVCaptureSessionPreset /* typedef */) bool /* primitive/slice/pointer */
+	CanSetSessionPreset(preset CaptureSessionPreset /* not a class type */) bool /* primitive/slice/pointer */
 	CommitConfiguration()
 	RemoveConnection(connection IAVCaptureConnection)
-	RemoveControl(control AVCaptureControl /* foo */)
+	RemoveControl(control CaptureControl /* not a class type */)
 	RemoveInput(input IAVCaptureInput)
 	RemoveOutput(output IAVCaptureOutput)
 	RunDeferredStartWhenNeeded()
@@ -165,7 +165,7 @@ func (c_ CaptureSession) AddConnection(connection IAVCaptureConnection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addControl(_:)
-func (c_ CaptureSession) AddControl(control AVCaptureControl /* foo */) {
+func (c_ CaptureSession) AddControl(control CaptureControl /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addControl:"), control)
 }
 
@@ -229,7 +229,7 @@ func (c_ CaptureSession) CanAddConnection(connection IAVCaptureConnection) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddControl(_:)
-func (c_ CaptureSession) CanAddControl(control AVCaptureControl /* foo */) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanAddControl(control CaptureControl /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddControl:"), control)
 	return rv
 }
@@ -259,7 +259,7 @@ func (c_ CaptureSession) CanAddOutput(output IAVCaptureOutput) bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canSetSessionPreset(_:)
-func (c_ CaptureSession) CanSetSessionPreset(preset AVCaptureSessionPreset /* typedef */) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanSetSessionPreset(preset CaptureSessionPreset /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canSetSessionPreset:"), preset)
 	return rv
 }
@@ -287,7 +287,7 @@ func (c_ CaptureSession) RemoveConnection(connection IAVCaptureConnection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeControl(_:)
-func (c_ CaptureSession) RemoveControl(control AVCaptureControl /* foo */) {
+func (c_ CaptureSession) RemoveControl(control CaptureControl /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeControl:"), control)
 }
 
@@ -464,7 +464,7 @@ func (c_ CaptureSession) Connections() []CaptureConnection /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controls
-func (c_ CaptureSession) Controls() []AVCaptureControl /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Controls() []CaptureControl /* primitive/slice/pointer */ {
 	rv := objc.Send[[]CaptureControl](c_.ID, objc.Sel("controls"))
 	return rv
 }
@@ -593,7 +593,7 @@ func (c_ CaptureSession) Running() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/masterClock
-func (c_ CaptureSession) MasterClock() CMClockRef /* foo */ {
+func (c_ CaptureSession) MasterClock() ClockRef /* not a class type */ {
 	rv := objc.Send[ClockRef](c_.ID, objc.Sel("masterClock"))
 	return rv
 }
@@ -623,7 +623,7 @@ func (c_ CaptureSession) Outputs() []CaptureOutput /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-func (c_ CaptureSession) SessionPreset() AVCaptureSessionPreset /* typedef */ {
+func (c_ CaptureSession) SessionPreset() CaptureSessionPreset /* not a class type */ {
 	rv := objc.Send[CaptureSessionPreset](c_.ID, objc.Sel("sessionPreset"))
 	return rv
 }
@@ -633,7 +633,7 @@ func (c_ CaptureSession) SessionPreset() AVCaptureSessionPreset /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-func (c_ CaptureSession) SetSessionPreset(value AVCaptureSessionPreset /* typedef */) {
+func (c_ CaptureSession) SetSessionPreset(value CaptureSessionPreset /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSessionPreset:"), value)
 }
 
@@ -652,7 +652,7 @@ func (c_ CaptureSession) SupportsControls() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/synchronizationClock
-func (c_ CaptureSession) SynchronizationClock() CMClockRef /* foo */ {
+func (c_ CaptureSession) SynchronizationClock() ClockRef /* not a class type */ {
 	rv := objc.Send[ClockRef](c_.ID, objc.Sel("synchronizationClock"))
 	return rv
 }

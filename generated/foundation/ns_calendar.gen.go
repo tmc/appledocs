@@ -32,7 +32,7 @@ type ICalendar interface {
 	objectivec.IObject
 	// properties:
 	AMSymbol() string /* primitive/slice/pointer */
-	CalendarIdentifier() CalendarIdentifier /* foo */
+	CalendarIdentifier() CalendarIdentifier /* not a class type */
 	EraSymbols() []string /* primitive/slice/pointer */
 	FirstWeekday() uint /* primitive/slice/pointer */
 	SetFirstWeekday(value uint /* primitive/slice/pointer */)
@@ -61,7 +61,7 @@ type ICalendar interface {
 	VeryShortWeekdaySymbols() []string /* primitive/slice/pointer */
 	WeekdaySymbols() []string /* primitive/slice/pointer */
 	// methods:
-	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult /* foo */
+	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult
 	ComponentFromDate(unit CalendarUnit, date IDate) int /* primitive/slice/pointer */
 	ComponentsFromDate(unitFlags CalendarUnit, date IDate) IDateComponents
 	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags CalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options CalendarOptions) IDateComponents
@@ -85,16 +85,16 @@ type ICalendar interface {
 	IsDateInTomorrow(date IDate) bool /* primitive/slice/pointer */
 	IsDateInWeekend(date IDate) bool /* primitive/slice/pointer */
 	IsDateInYesterday(date IDate) bool /* primitive/slice/pointer */
-	MaximumRangeOfUnit(unit CalendarUnit) Range /* foo */
-	MinimumRangeOfUnit(unit CalendarUnit) Range /* foo */
+	MaximumRangeOfUnit(unit CalendarUnit) Range /* not a class type */
+	MinimumRangeOfUnit(unit CalendarUnit) Range /* not a class type */
 	NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options CalendarOptions) IDate
 	NextDateAfterDateMatchingUnitValueOptions(date IDate, unit CalendarUnit, value int /* primitive/slice/pointer */, options CalendarOptions) IDate
 	NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int /* primitive/slice/pointer */, minuteValue int /* primitive/slice/pointer */, secondValue int /* primitive/slice/pointer */, options CalendarOptions) IDate
-	NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip TimeInterval /* foo */, options CalendarOptions, date IDate) bool /* primitive/slice/pointer */
+	NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip TimeInterval /* not a class type */, options CalendarOptions, date IDate) bool /* primitive/slice/pointer */
 	OrdinalityOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) uint /* primitive/slice/pointer */
-	RangeOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) Range /* foo */
-	RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep IDate, tip TimeInterval /* foo */, date IDate) bool /* primitive/slice/pointer */
-	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval /* foo */, date IDate) bool /* primitive/slice/pointer */
+	RangeOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) Range /* not a class type */
+	RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep IDate, tip TimeInterval /* not a class type */, date IDate) bool /* primitive/slice/pointer */
+	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval /* not a class type */, date IDate) bool /* primitive/slice/pointer */
 	StartOfDayForDate(date IDate) IDate
 }
 
@@ -155,7 +155,7 @@ func NewCalendar() Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(calendarIdentifier:)
-func NewCalendarWithCalendarIdentifier(ident CalendarIdentifier /* foo */) Calendar {
+func NewCalendarWithCalendarIdentifier(ident CalendarIdentifier /* not a class type */) Calendar {
 	instance := getCalendarClass().Alloc()
 	rv := objc.Send[Calendar](instance.ID, objc.Sel("initWithCalendarIdentifier:"), ident)
 	rv.Autorelease()
@@ -167,7 +167,7 @@ func NewCalendarWithCalendarIdentifier(ident CalendarIdentifier /* foo */) Calen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(identifier:)
-func NewCalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier /* foo */) Calendar {
+func NewCalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier /* not a class type */) Calendar {
 	rv := objc.Send[Calendar](objc.ID(getCalendarClass().class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
 }
@@ -178,7 +178,7 @@ func NewCalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(identifier:)
-func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier /* foo */) ICalendar {
+func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier /* not a class type */) ICalendar {
 	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
 }
@@ -206,7 +206,7 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/compare(_:to:toUnitGranularity:)
-func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult /* foo */ {
+func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult {
 	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compareDate:toDate:toUnitGranularity:"), date1, date2, unit)
 	return rv
 }
@@ -442,7 +442,7 @@ func (c_ Calendar) IsDateInYesterday(date IDate) bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/maximumRange(of:)
-func (c_ Calendar) MaximumRangeOfUnit(unit CalendarUnit) Range /* foo */ {
+func (c_ Calendar) MaximumRangeOfUnit(unit CalendarUnit) Range /* not a class type */ {
 	rv := objc.Send[Range](c_.ID, objc.Sel("maximumRangeOfUnit:"), unit)
 	return rv
 }
@@ -452,7 +452,7 @@ func (c_ Calendar) MaximumRangeOfUnit(unit CalendarUnit) Range /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/minimumRange(of:)
-func (c_ Calendar) MinimumRangeOfUnit(unit CalendarUnit) Range /* foo */ {
+func (c_ Calendar) MinimumRangeOfUnit(unit CalendarUnit) Range /* not a class type */ {
 	rv := objc.Send[Range](c_.ID, objc.Sel("minimumRangeOfUnit:"), unit)
 	return rv
 }
@@ -492,7 +492,7 @@ func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextWeekendStart(_:interval:options:after:)
-func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip TimeInterval /* foo */, options CalendarOptions, date IDate) bool /* primitive/slice/pointer */ {
+func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip TimeInterval /* not a class type */, options CalendarOptions, date IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("nextWeekendStartDate:interval:options:afterDate:"), datep, tip, options, date)
 	return rv
 }
@@ -512,7 +512,7 @@ func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller CalendarUnit, larger Ca
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(of:in:for:)
-func (c_ Calendar) RangeOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) Range /* foo */ {
+func (c_ Calendar) RangeOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) Range /* not a class type */ {
 	rv := objc.Send[Range](c_.ID, objc.Sel("rangeOfUnit:inUnit:forDate:"), smaller, larger, date)
 	return rv
 }
@@ -522,7 +522,7 @@ func (c_ Calendar) RangeOfUnitInUnitForDate(smaller CalendarUnit, larger Calenda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(of:start:interval:for:)
-func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep IDate, tip TimeInterval /* foo */, date IDate) bool /* primitive/slice/pointer */ {
+func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep IDate, tip TimeInterval /* not a class type */, date IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfUnit:startDate:interval:forDate:"), unit, datep, tip, date)
 	return rv
 }
@@ -532,7 +532,7 @@ func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(ofWeekendStart:interval:containing:)
-func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval /* foo */, date IDate) bool /* primitive/slice/pointer */ {
+func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval /* not a class type */, date IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfWeekendStartDate:interval:containingDate:"), datep, tip, date)
 	return rv
 }
@@ -572,7 +572,7 @@ func (c_ Calendar) AutoupdatingCurrentCalendar() ICalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/calendarIdentifier
-func (c_ Calendar) CalendarIdentifier() CalendarIdentifier /* foo */ {
+func (c_ Calendar) CalendarIdentifier() CalendarIdentifier /* not a class type */ {
 	rv := objc.Send[CalendarIdentifier](c_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }

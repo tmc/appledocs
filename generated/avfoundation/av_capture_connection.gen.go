@@ -31,16 +31,16 @@ type _CaptureConnectionClass struct {
 type ICaptureConnection interface {
 	objectivec.IObject
 	// properties:
-	ActiveVideoStabilizationMode() AVCaptureVideoStabilizationMode /* foo */
-	SetActiveVideoStabilizationMode(value AVCaptureVideoStabilizationMode /* foo */)
+	ActiveVideoStabilizationMode() CaptureVideoStabilizationMode /* not a class type */
+	SetActiveVideoStabilizationMode(value CaptureVideoStabilizationMode /* not a class type */)
 	AudioChannels() IAVCaptureAudioChannel
 	SetAudioChannels(value IAVCaptureAudioChannel)
 	AutomaticallyAdjustsVideoMirroring() bool /* primitive/slice/pointer */
 	SetAutomaticallyAdjustsVideoMirroring(value bool /* primitive/slice/pointer */)
 	EnablesVideoStabilizationWhenAvailable() bool /* primitive/slice/pointer */
 	SetEnablesVideoStabilizationWhenAvailable(value bool /* primitive/slice/pointer */)
-	InputPorts() AVCaptureInputPort /* foo */
-	SetInputPorts(value AVCaptureInputPort /* foo */)
+	InputPorts() IAVCaptureInputPort
+	SetInputPorts(value IAVCaptureInputPort)
 	IsActive() bool /* primitive/slice/pointer */
 	SetIsActive(value bool /* primitive/slice/pointer */)
 	IsCameraIntrinsicMatrixDeliveryEnabled() bool /* primitive/slice/pointer */
@@ -67,18 +67,18 @@ type ICaptureConnection interface {
 	SetIsVideoStabilizationSupported(value bool /* primitive/slice/pointer */)
 	Output() IAVCaptureOutput
 	SetOutput(value IAVCaptureOutput)
-	PreferredVideoStabilizationMode() AVCaptureVideoStabilizationMode /* foo */
-	SetPreferredVideoStabilizationMode(value AVCaptureVideoStabilizationMode /* foo */)
-	VideoFieldMode() AVVideoFieldMode /* foo */
-	SetVideoFieldMode(value AVVideoFieldMode /* foo */)
-	VideoMaxFrameDuration() CMTime /* foo */
-	SetVideoMaxFrameDuration(value CMTime /* foo */)
+	PreferredVideoStabilizationMode() CaptureVideoStabilizationMode /* not a class type */
+	SetPreferredVideoStabilizationMode(value CaptureVideoStabilizationMode /* not a class type */)
+	VideoFieldMode() VideoFieldMode /* not a class type */
+	SetVideoFieldMode(value VideoFieldMode /* not a class type */)
+	VideoMaxFrameDuration() Time /* not a class type */
+	SetVideoMaxFrameDuration(value Time /* not a class type */)
 	VideoMaxScaleAndCropFactor() float64 /* primitive/slice/pointer */
 	SetVideoMaxScaleAndCropFactor(value float64 /* primitive/slice/pointer */)
-	VideoMinFrameDuration() CMTime /* foo */
-	SetVideoMinFrameDuration(value CMTime /* foo */)
-	VideoOrientation() AVCaptureVideoOrientation /* foo */
-	SetVideoOrientation(value AVCaptureVideoOrientation /* foo */)
+	VideoMinFrameDuration() Time /* not a class type */
+	SetVideoMinFrameDuration(value Time /* not a class type */)
+	VideoOrientation() CaptureVideoOrientation /* not a class type */
+	SetVideoOrientation(value CaptureVideoOrientation /* not a class type */)
 	VideoPreviewLayer() IAVCaptureVideoPreviewLayer
 	SetVideoPreviewLayer(value IAVCaptureVideoPreviewLayer)
 	VideoRotationAngle() float64 /* primitive/slice/pointer */
@@ -145,7 +145,7 @@ func NewCaptureConnection() CaptureConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/activevideostabilizationmode
-func (c_ CaptureConnection) ActiveVideoStabilizationMode() AVCaptureVideoStabilizationMode /* foo */ {
+func (c_ CaptureConnection) ActiveVideoStabilizationMode() CaptureVideoStabilizationMode /* not a class type */ {
 	rv := objc.Send[CaptureVideoStabilizationMode](c_.ID, objc.Sel("activeVideoStabilizationMode"))
 	return rv
 }
@@ -155,7 +155,7 @@ func (c_ CaptureConnection) ActiveVideoStabilizationMode() AVCaptureVideoStabili
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/activevideostabilizationmode
-func (c_ CaptureConnection) SetActiveVideoStabilizationMode(value AVCaptureVideoStabilizationMode /* foo */) {
+func (c_ CaptureConnection) SetActiveVideoStabilizationMode(value CaptureVideoStabilizationMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveVideoStabilizationMode:"), value)
 }
 
@@ -221,7 +221,7 @@ func (c_ CaptureConnection) SetEnablesVideoStabilizationWhenAvailable(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/inputports
-func (c_ CaptureConnection) InputPorts() AVCaptureInputPort /* foo */ {
+func (c_ CaptureConnection) InputPorts() IAVCaptureInputPort {
 	rv := objc.Send[CaptureInputPort](c_.ID, objc.Sel("inputPorts"))
 	return rv
 }
@@ -231,7 +231,7 @@ func (c_ CaptureConnection) InputPorts() AVCaptureInputPort /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/inputports
-func (c_ CaptureConnection) SetInputPorts(value AVCaptureInputPort /* foo */) {
+func (c_ CaptureConnection) SetInputPorts(value IAVCaptureInputPort) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputPorts:"), value)
 }
 
@@ -487,7 +487,7 @@ func (c_ CaptureConnection) SetOutput(value IAVCaptureOutput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/preferredvideostabilizationmode
-func (c_ CaptureConnection) PreferredVideoStabilizationMode() AVCaptureVideoStabilizationMode /* foo */ {
+func (c_ CaptureConnection) PreferredVideoStabilizationMode() CaptureVideoStabilizationMode /* not a class type */ {
 	rv := objc.Send[CaptureVideoStabilizationMode](c_.ID, objc.Sel("preferredVideoStabilizationMode"))
 	return rv
 }
@@ -497,7 +497,7 @@ func (c_ CaptureConnection) PreferredVideoStabilizationMode() AVCaptureVideoStab
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/preferredvideostabilizationmode
-func (c_ CaptureConnection) SetPreferredVideoStabilizationMode(value AVCaptureVideoStabilizationMode /* foo */) {
+func (c_ CaptureConnection) SetPreferredVideoStabilizationMode(value CaptureVideoStabilizationMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredVideoStabilizationMode:"), value)
 }
 
@@ -506,7 +506,7 @@ func (c_ CaptureConnection) SetPreferredVideoStabilizationMode(value AVCaptureVi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videofieldmode
-func (c_ CaptureConnection) VideoFieldMode() AVVideoFieldMode /* foo */ {
+func (c_ CaptureConnection) VideoFieldMode() VideoFieldMode /* not a class type */ {
 	rv := objc.Send[VideoFieldMode](c_.ID, objc.Sel("videoFieldMode"))
 	return rv
 }
@@ -516,7 +516,7 @@ func (c_ CaptureConnection) VideoFieldMode() AVVideoFieldMode /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videofieldmode
-func (c_ CaptureConnection) SetVideoFieldMode(value AVVideoFieldMode /* foo */) {
+func (c_ CaptureConnection) SetVideoFieldMode(value VideoFieldMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoFieldMode:"), value)
 }
 
@@ -525,7 +525,7 @@ func (c_ CaptureConnection) SetVideoFieldMode(value AVVideoFieldMode /* foo */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videomaxframeduration
-func (c_ CaptureConnection) VideoMaxFrameDuration() CMTime /* foo */ {
+func (c_ CaptureConnection) VideoMaxFrameDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("videoMaxFrameDuration"))
 	return rv
 }
@@ -535,7 +535,7 @@ func (c_ CaptureConnection) VideoMaxFrameDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videomaxframeduration
-func (c_ CaptureConnection) SetVideoMaxFrameDuration(value CMTime /* foo */) {
+func (c_ CaptureConnection) SetVideoMaxFrameDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMaxFrameDuration:"), value)
 }
 
@@ -563,7 +563,7 @@ func (c_ CaptureConnection) SetVideoMaxScaleAndCropFactor(value float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videominframeduration
-func (c_ CaptureConnection) VideoMinFrameDuration() CMTime /* foo */ {
+func (c_ CaptureConnection) VideoMinFrameDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("videoMinFrameDuration"))
 	return rv
 }
@@ -573,7 +573,7 @@ func (c_ CaptureConnection) VideoMinFrameDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videominframeduration
-func (c_ CaptureConnection) SetVideoMinFrameDuration(value CMTime /* foo */) {
+func (c_ CaptureConnection) SetVideoMinFrameDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMinFrameDuration:"), value)
 }
 
@@ -582,7 +582,7 @@ func (c_ CaptureConnection) SetVideoMinFrameDuration(value CMTime /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videoorientation
-func (c_ CaptureConnection) VideoOrientation() AVCaptureVideoOrientation /* foo */ {
+func (c_ CaptureConnection) VideoOrientation() CaptureVideoOrientation /* not a class type */ {
 	rv := objc.Send[CaptureVideoOrientation](c_.ID, objc.Sel("videoOrientation"))
 	return rv
 }
@@ -592,7 +592,7 @@ func (c_ CaptureConnection) VideoOrientation() AVCaptureVideoOrientation /* foo 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videoorientation
-func (c_ CaptureConnection) SetVideoOrientation(value AVCaptureVideoOrientation /* foo */) {
+func (c_ CaptureConnection) SetVideoOrientation(value CaptureVideoOrientation /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoOrientation:"), value)
 }
 

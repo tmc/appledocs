@@ -33,12 +33,12 @@ type IDepthData interface {
 	// properties:
 	AvailableDepthDataTypes() unsafe.Pointer
 	SetAvailableDepthDataTypes(value unsafe.Pointer)
-	CameraCalibrationData() AVCameraCalibrationData /* foo */
-	SetCameraCalibrationData(value AVCameraCalibrationData /* foo */)
+	CameraCalibrationData() CameraCalibrationData /* not a class type */
+	SetCameraCalibrationData(value CameraCalibrationData /* not a class type */)
 	DepthDataAccuracy() unsafe.Pointer
 	SetDepthDataAccuracy(value unsafe.Pointer)
-	DepthDataMap() CVPixelBuffer /* foo */
-	SetDepthDataMap(value CVPixelBuffer /* foo */)
+	DepthDataMap() PixelBuffer /* not a class type */
+	SetDepthDataMap(value PixelBuffer /* not a class type */)
 	DepthDataQuality() unsafe.Pointer
 	SetDepthDataQuality(value unsafe.Pointer)
 	DepthDataType() unsafe.Pointer
@@ -124,7 +124,7 @@ func (d_ DepthData) SetAvailableDepthDataTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
-func (d_ DepthData) CameraCalibrationData() AVCameraCalibrationData /* foo */ {
+func (d_ DepthData) CameraCalibrationData() CameraCalibrationData /* not a class type */ {
 	rv := objc.Send[CameraCalibrationData](d_.ID, objc.Sel("cameraCalibrationData"))
 	return rv
 }
@@ -134,7 +134,7 @@ func (d_ DepthData) CameraCalibrationData() AVCameraCalibrationData /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
-func (d_ DepthData) SetCameraCalibrationData(value AVCameraCalibrationData /* foo */) {
+func (d_ DepthData) SetCameraCalibrationData(value CameraCalibrationData /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCameraCalibrationData:"), value)
 }
 
@@ -162,7 +162,7 @@ func (d_ DepthData) SetDepthDataAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatamap
-func (d_ DepthData) DepthDataMap() CVPixelBuffer /* foo */ {
+func (d_ DepthData) DepthDataMap() PixelBuffer /* not a class type */ {
 	rv := objc.Send[PixelBuffer](d_.ID, objc.Sel("depthDataMap"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (d_ DepthData) DepthDataMap() CVPixelBuffer /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatamap
-func (d_ DepthData) SetDepthDataMap(value CVPixelBuffer /* foo */) {
+func (d_ DepthData) SetDepthDataMap(value PixelBuffer /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataMap:"), value)
 }
 

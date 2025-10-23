@@ -33,8 +33,8 @@ type IAssetTrackSegment interface {
 	// properties:
 	IsEmpty() bool /* primitive/slice/pointer */
 	SetIsEmpty(value bool /* primitive/slice/pointer */)
-	TimeMapping() CMTimeMapping /* foo */
-	SetTimeMapping(value CMTimeMapping /* foo */)
+	TimeMapping() TimeMapping /* not a class type */
+	SetTimeMapping(value TimeMapping /* not a class type */)
 	// methods:
 }
 
@@ -112,7 +112,7 @@ func (a_ AssetTrackSegment) SetIsEmpty(value bool /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/timemapping
-func (a_ AssetTrackSegment) TimeMapping() CMTimeMapping /* foo */ {
+func (a_ AssetTrackSegment) TimeMapping() TimeMapping /* not a class type */ {
 	rv := objc.Send[TimeMapping](a_.ID, objc.Sel("timeMapping"))
 	return rv
 }
@@ -122,7 +122,7 @@ func (a_ AssetTrackSegment) TimeMapping() CMTimeMapping /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/timemapping
-func (a_ AssetTrackSegment) SetTimeMapping(value CMTimeMapping /* foo */) {
+func (a_ AssetTrackSegment) SetTimeMapping(value TimeMapping /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeMapping:"), value)
 }
 

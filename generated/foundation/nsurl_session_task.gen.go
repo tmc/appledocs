@@ -44,24 +44,24 @@ type IURLSessionTask interface {
 	SetCountOfBytesReceived(value unsafe.Pointer)
 	CountOfBytesSent() unsafe.Pointer
 	SetCountOfBytesSent(value unsafe.Pointer)
-	CurrentRequest() URLRequest /* foo */
-	SetCurrentRequest(value URLRequest /* foo */)
+	CurrentRequest() URLRequest /* not a class type */
+	SetCurrentRequest(value URLRequest /* not a class type */)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	EarliestBeginDate() IDate
 	SetEarliestBeginDate(value IDate)
-	Error() Error /* foo */
-	SetError(value Error /* foo */)
-	OriginalRequest() URLRequest /* foo */
-	SetOriginalRequest(value URLRequest /* foo */)
+	Error() Error /* not a class type */
+	SetError(value Error /* not a class type */)
+	OriginalRequest() URLRequest /* not a class type */
+	SetOriginalRequest(value URLRequest /* not a class type */)
 	PrefersIncrementalDelivery() bool /* primitive/slice/pointer */
 	SetPrefersIncrementalDelivery(value bool /* primitive/slice/pointer */)
 	Priority() float32 /* primitive/slice/pointer */
 	SetPriority(value float32 /* primitive/slice/pointer */)
-	Progress() Progress /* foo */
-	SetProgress(value Progress /* foo */)
-	Response() URLResponse /* foo */
-	SetResponse(value URLResponse /* foo */)
+	Progress() Progress /* not a class type */
+	SetProgress(value Progress /* not a class type */)
+	Response() URLResponse /* not a class type */
+	SetResponse(value URLResponse /* not a class type */)
 	TaskDescription() string /* primitive/slice/pointer */
 	SetTaskDescription(value string /* primitive/slice/pointer */)
 	TaskIdentifier() int /* primitive/slice/pointer */
@@ -260,7 +260,7 @@ func (u_ URLSessionTask) SetCountOfBytesSent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/currentrequest
-func (u_ URLSessionTask) CurrentRequest() URLRequest /* foo */ {
+func (u_ URLSessionTask) CurrentRequest() URLRequest /* not a class type */ {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (u_ URLSessionTask) CurrentRequest() URLRequest /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/currentrequest
-func (u_ URLSessionTask) SetCurrentRequest(value URLRequest /* foo */) {
+func (u_ URLSessionTask) SetCurrentRequest(value URLRequest /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentRequest:"), value)
 }
 
@@ -317,7 +317,7 @@ func (u_ URLSessionTask) SetEarliestBeginDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/error
-func (u_ URLSessionTask) Error() Error /* foo */ {
+func (u_ URLSessionTask) Error() Error /* not a class type */ {
 	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
 	return rv
 }
@@ -327,7 +327,7 @@ func (u_ URLSessionTask) Error() Error /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/error
-func (u_ URLSessionTask) SetError(value Error /* foo */) {
+func (u_ URLSessionTask) SetError(value Error /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
 }
 
@@ -336,7 +336,7 @@ func (u_ URLSessionTask) SetError(value Error /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/originalrequest
-func (u_ URLSessionTask) OriginalRequest() URLRequest /* foo */ {
+func (u_ URLSessionTask) OriginalRequest() URLRequest /* not a class type */ {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
@@ -346,7 +346,7 @@ func (u_ URLSessionTask) OriginalRequest() URLRequest /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/originalrequest
-func (u_ URLSessionTask) SetOriginalRequest(value URLRequest /* foo */) {
+func (u_ URLSessionTask) SetOriginalRequest(value URLRequest /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalRequest:"), value)
 }
 
@@ -393,7 +393,7 @@ func (u_ URLSessionTask) SetPriority(value float32 /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/progress
-func (u_ URLSessionTask) Progress() Progress /* foo */ {
+func (u_ URLSessionTask) Progress() Progress /* not a class type */ {
 	rv := objc.Send[Progress](u_.ID, objc.Sel("progress"))
 	return rv
 }
@@ -403,7 +403,7 @@ func (u_ URLSessionTask) Progress() Progress /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/progress
-func (u_ URLSessionTask) SetProgress(value Progress /* foo */) {
+func (u_ URLSessionTask) SetProgress(value Progress /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProgress:"), value)
 }
 
@@ -412,7 +412,7 @@ func (u_ URLSessionTask) SetProgress(value Progress /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
-func (u_ URLSessionTask) Response() URLResponse /* foo */ {
+func (u_ URLSessionTask) Response() URLResponse /* not a class type */ {
 	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
@@ -422,7 +422,7 @@ func (u_ URLSessionTask) Response() URLResponse /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
-func (u_ URLSessionTask) SetResponse(value URLResponse /* foo */) {
+func (u_ URLSessionTask) SetResponse(value URLResponse /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }
 

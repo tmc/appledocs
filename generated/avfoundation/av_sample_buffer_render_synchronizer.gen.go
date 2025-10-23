@@ -35,17 +35,17 @@ type ISampleBufferRenderSynchronizer interface {
 	// properties:
 	DelaysRateChangeUntilHasSufficientMediaData() bool /* primitive/slice/pointer */
 	SetDelaysRateChangeUntilHasSufficientMediaData(value bool /* primitive/slice/pointer */)
-	IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience /* foo */
-	SetIntendedSpatialAudioExperience(value audiotoolbox.SpatialAudioExperience /* foo */)
+	IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience /* not a class type */
+	SetIntendedSpatialAudioExperience(value audiotoolbox.SpatialAudioExperience /* not a class type */)
 	Rate() float32 /* primitive/slice/pointer */
 	SetRate(value float32 /* primitive/slice/pointer */)
-	Renderers() AVQueuedSampleBufferRendering /* foo */
-	SetRenderers(value AVQueuedSampleBufferRendering /* foo */)
-	Timebase() CMTimebase /* foo */
-	SetTimebase(value CMTimebase /* foo */)
+	Renderers() QueuedSampleBufferRendering /* not a class type */
+	SetRenderers(value QueuedSampleBufferRendering /* not a class type */)
+	Timebase() Timebase /* not a class type */
+	SetTimebase(value Timebase /* not a class type */)
 	// methods:
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value /* foo */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	SetRateTime(rate float32 /* primitive/slice/pointer */, time CMTime /* foo */)
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value /* not a class type */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	SetRateTime(rate float32 /* primitive/slice/pointer */, time Time /* not a class type */)
 }
 
 // An object used to synchronize multiple queued sample buffers to a single timeline.
@@ -105,7 +105,7 @@ func NewSampleBufferRenderSynchronizer() SampleBufferRenderSynchronizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/addBoundaryTimeObserver(forTimes:queue:using:)
-func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value /* foo */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value /* not a class type */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
@@ -115,7 +115,7 @@ func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/setRate(_:time:)
-func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate float32 /* primitive/slice/pointer */, time CMTime /* foo */) {
+func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate float32 /* primitive/slice/pointer */, time Time /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:time:"), rate, time)
 }
 
@@ -143,7 +143,7 @@ func (s_ SampleBufferRenderSynchronizer) SetDelaysRateChangeUntilHasSufficientMe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/intendedspatialaudioexperience-3z7d3
-func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience /* foo */ {
+func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience /* not a class type */ {
 	rv := objc.Send[audiotoolbox.SpatialAudioExperience](s_.ID, objc.Sel("intendedSpatialAudioExperience"))
 	return rv
 }
@@ -153,7 +153,7 @@ func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() audiot
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/intendedspatialaudioexperience-3z7d3
-func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value audiotoolbox.SpatialAudioExperience /* foo */) {
+func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value audiotoolbox.SpatialAudioExperience /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIntendedSpatialAudioExperience:"), value)
 }
 
@@ -181,7 +181,7 @@ func (s_ SampleBufferRenderSynchronizer) SetRate(value float32 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/renderers
-func (s_ SampleBufferRenderSynchronizer) Renderers() AVQueuedSampleBufferRendering /* foo */ {
+func (s_ SampleBufferRenderSynchronizer) Renderers() QueuedSampleBufferRendering /* not a class type */ {
 	rv := objc.Send[QueuedSampleBufferRendering](s_.ID, objc.Sel("renderers"))
 	return rv
 }
@@ -191,7 +191,7 @@ func (s_ SampleBufferRenderSynchronizer) Renderers() AVQueuedSampleBufferRenderi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/renderers
-func (s_ SampleBufferRenderSynchronizer) SetRenderers(value AVQueuedSampleBufferRendering /* foo */) {
+func (s_ SampleBufferRenderSynchronizer) SetRenderers(value QueuedSampleBufferRendering /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRenderers:"), value)
 }
 
@@ -200,7 +200,7 @@ func (s_ SampleBufferRenderSynchronizer) SetRenderers(value AVQueuedSampleBuffer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/timebase
-func (s_ SampleBufferRenderSynchronizer) Timebase() CMTimebase /* foo */ {
+func (s_ SampleBufferRenderSynchronizer) Timebase() Timebase /* not a class type */ {
 	rv := objc.Send[Timebase](s_.ID, objc.Sel("timebase"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (s_ SampleBufferRenderSynchronizer) Timebase() CMTimebase /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/timebase
-func (s_ SampleBufferRenderSynchronizer) SetTimebase(value CMTimebase /* foo */) {
+func (s_ SampleBufferRenderSynchronizer) SetTimebase(value Timebase /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTimebase:"), value)
 }
 

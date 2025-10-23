@@ -31,14 +31,14 @@ type _URLConnectionClass struct {
 type IURLConnection interface {
 	objectivec.IObject
 	// properties:
-	CurrentRequest() URLRequest /* foo */
-	OriginalRequest() URLRequest /* foo */
+	CurrentRequest() URLRequest /* not a class type */
+	OriginalRequest() URLRequest /* not a class type */
 	// methods:
 	Cancel()
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */)
 	SetDelegateQueue(queue IOperationQueue)
 	Start()
-	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */)
+	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */)
 }
 
 // An object that enables you to start and stop URL requests.
@@ -98,7 +98,7 @@ func NewURLConnection() URLConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:)
-func NewURLConnectionWithRequestDelegate(request URLRequest /* foo */, delegate objectivec.IObject) URLConnection {
+func NewURLConnectionWithRequestDelegate(request URLRequest /* not a class type */, delegate objectivec.IObject) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewURLConnectionWithRequestDelegate(request URLRequest /* foo */, delegate 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:startImmediately:)
-func NewURLConnectionWithRequestDelegateStartImmediately(request URLRequest /* foo */, delegate objectivec.IObject, startImmediately bool /* primitive/slice/pointer */) URLConnection {
+func NewURLConnectionWithRequestDelegateStartImmediately(request URLRequest /* not a class type */, delegate objectivec.IObject, startImmediately bool /* primitive/slice/pointer */) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:startImmediately:"), request, delegate, startImmediately)
 	rv.Autorelease()
@@ -123,7 +123,7 @@ func NewURLConnectionWithRequestDelegateStartImmediately(request URLRequest /* f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/canHandle(_:)
-func (uc _URLConnectionClass) CanHandleRequest(request URLRequest /* foo */) bool /* primitive/slice/pointer */ {
+func (uc _URLConnectionClass) CanHandleRequest(request URLRequest /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canHandleRequest:"), request)
 	return rv
 }
@@ -133,7 +133,7 @@ func (uc _URLConnectionClass) CanHandleRequest(request URLRequest /* foo */) boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/connectionWithRequest:delegate:
-func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request URLRequest /* foo */, delegate objectivec.IObject) IURLConnection {
+func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request URLRequest /* not a class type */, delegate objectivec.IObject) IURLConnection {
 	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("connectionWithRequest:delegate:"), request, delegate)
 	return rv
 }
@@ -143,7 +143,7 @@ func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request URLRequest /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendAsynchronousRequest(_:queue:completionHandler:)
-func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(request URLRequest /* foo */, queue IOperationQueue, handler unsafe.Pointer) {
+func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(request URLRequest /* not a class type */, queue IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("sendAsynchronousRequest:queue:completionHandler:"), request, queue, handler)
 }
 
@@ -152,7 +152,7 @@ func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(requ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendSynchronousRequest(_:returning:)
-func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request URLRequest /* foo */, response unsafe.Pointer, error_ unsafe.Pointer) IData {
+func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request URLRequest /* not a class type */, response unsafe.Pointer, error_ unsafe.Pointer) IData {
 	rv := objc.Send[Data](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error_)
 	return rv
 }
@@ -171,7 +171,7 @@ func (u_ URLConnection) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/schedule(in:forMode:)
-func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */) {
+func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -198,7 +198,7 @@ func (u_ URLConnection) Start() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/unschedule(from:forMode:)
-func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */) {
+func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("unscheduleFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -207,7 +207,7 @@ func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode Run
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/currentRequest
-func (u_ URLConnection) CurrentRequest() URLRequest /* foo */ {
+func (u_ URLConnection) CurrentRequest() URLRequest /* not a class type */ {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
@@ -217,7 +217,7 @@ func (u_ URLConnection) CurrentRequest() URLRequest /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/originalRequest
-func (u_ URLConnection) OriginalRequest() URLRequest /* foo */ {
+func (u_ URLConnection) OriginalRequest() URLRequest /* not a class type */ {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }

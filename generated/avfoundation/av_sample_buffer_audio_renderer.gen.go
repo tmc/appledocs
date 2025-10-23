@@ -31,18 +31,18 @@ type _SampleBufferAudioRendererClass struct {
 type ISampleBufferAudioRenderer interface {
 	objectivec.IObject
 	// properties:
-	AllowedAudioSpatializationFormats() AVAudioSpatializationFormats /* enum */
-	SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats /* enum */)
+	AllowedAudioSpatializationFormats() AudioSpatializationFormats
+	SetAllowedAudioSpatializationFormats(value AudioSpatializationFormats)
 	AudioOutputDeviceUniqueID() string /* primitive/slice/pointer */
 	SetAudioOutputDeviceUniqueID(value string /* primitive/slice/pointer */)
-	AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */
-	SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */)
-	Error() AVError /* enum */
-	SetError(value AVError /* enum */)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */
+	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
+	Error() Error
+	SetError(value Error)
 	IsMuted() bool /* primitive/slice/pointer */
 	SetIsMuted(value bool /* primitive/slice/pointer */)
-	Status() AVQueuedSampleBufferRenderingStatus /* foo */
-	SetStatus(value AVQueuedSampleBufferRenderingStatus /* foo */)
+	Status() QueuedSampleBufferRenderingStatus /* not a class type */
+	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
 	Volume() float32 /* primitive/slice/pointer */
 	SetVolume(value float32 /* primitive/slice/pointer */)
 	AVSampleBufferAudioRendererFlushTimeKey() string /* primitive/slice/pointer */
@@ -106,8 +106,8 @@ func NewSampleBufferAudioRenderer() SampleBufferAudioRenderer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/allowedaudiospatializationformats
-func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() AVAudioSpatializationFormats /* enum */ {
-	rv := objc.Send[AVAudioSpatializationFormats](s_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() AudioSpatializationFormats {
+	rv := objc.Send[AudioSpatializationFormats](s_.ID, objc.Sel("allowedAudioSpatializationFormats"))
 	return rv
 }
 
@@ -116,7 +116,7 @@ func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() AVAudioS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/allowedaudiospatializationformats
-func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats /* enum */) {
+func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value AudioSpatializationFormats) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
 
@@ -144,7 +144,7 @@ func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value string /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiotimepitchalgorithm
-func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */ {
+func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */ {
 	rv := objc.Send[AudioTimePitchAlgorithm](s_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() AVAudioTimePitchAl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiotimepitchalgorithm
-func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */) {
+func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -163,7 +163,7 @@ func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value AVAudioTime
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
-func (s_ SampleBufferAudioRenderer) Error() AVError /* enum */ {
+func (s_ SampleBufferAudioRenderer) Error() Error {
 	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (s_ SampleBufferAudioRenderer) Error() AVError /* enum */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
-func (s_ SampleBufferAudioRenderer) SetError(value AVError /* enum */) {
+func (s_ SampleBufferAudioRenderer) SetError(value Error) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
@@ -201,7 +201,7 @@ func (s_ SampleBufferAudioRenderer) SetIsMuted(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/status
-func (s_ SampleBufferAudioRenderer) Status() AVQueuedSampleBufferRenderingStatus /* foo */ {
+func (s_ SampleBufferAudioRenderer) Status() QueuedSampleBufferRenderingStatus /* not a class type */ {
 	rv := objc.Send[QueuedSampleBufferRenderingStatus](s_.ID, objc.Sel("status"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (s_ SampleBufferAudioRenderer) Status() AVQueuedSampleBufferRenderingStatus
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/status
-func (s_ SampleBufferAudioRenderer) SetStatus(value AVQueuedSampleBufferRenderingStatus /* foo */) {
+func (s_ SampleBufferAudioRenderer) SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStatus:"), value)
 }
 

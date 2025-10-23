@@ -37,8 +37,8 @@ type IIndexPath interface {
 	Section() int /* primitive/slice/pointer */
 	// methods:
 	IndexPathByAddingIndex(index uint /* primitive/slice/pointer */) IIndexPath
-	Compare(otherObject IIndexPath) ComparisonResult /* foo */
-	GetIndexesRange(indexes UInteger /* foo */, positionRange Range /* foo */)
+	Compare(otherObject IIndexPath) ComparisonResult
+	GetIndexesRange(indexes UInteger /* not a class type */, positionRange Range /* not a class type */)
 	IndexAtPosition(position uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexPathByRemovingLastIndex() IIndexPath
 }
@@ -195,7 +195,7 @@ func (i_ IndexPath) IndexPathByAddingIndex(index uint /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/compare(_:)
-func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult /* foo */ {
+func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult {
 	rv := objc.Send[ComparisonResult](i_.ID, objc.Sel("compare:"), otherObject)
 	return rv
 }
@@ -205,7 +205,7 @@ func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/getIndexes(_:range:)
-func (i_ IndexPath) GetIndexesRange(indexes UInteger /* foo */, positionRange Range /* foo */) {
+func (i_ IndexPath) GetIndexesRange(indexes UInteger /* not a class type */, positionRange Range /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("getIndexes:range:"), indexes, positionRange)
 }
 

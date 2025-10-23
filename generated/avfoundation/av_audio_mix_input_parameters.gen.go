@@ -33,10 +33,10 @@ type IAudioMixInputParameters interface {
 	// properties:
 	AudioTapProcessor() unsafe.Pointer
 	SetAudioTapProcessor(value unsafe.Pointer)
-	AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */
-	SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */)
-	TrackID() CMPersistentTrackID /* foo */
-	SetTrackID(value CMPersistentTrackID /* foo */)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */
+	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
+	TrackID() PersistentTrackID /* not a class type */
+	SetTrackID(value PersistentTrackID /* not a class type */)
 	// methods:
 }
 
@@ -116,7 +116,7 @@ func (a_ AudioMixInputParameters) SetAudioTapProcessor(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotimepitchalgorithm
-func (a_ AudioMixInputParameters) AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */ {
+func (a_ AudioMixInputParameters) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */ {
 	rv := objc.Send[AudioTimePitchAlgorithm](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (a_ AudioMixInputParameters) AudioTimePitchAlgorithm() AVAudioTimePitchAlgo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/audiotimepitchalgorithm
-func (a_ AudioMixInputParameters) SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */) {
+func (a_ AudioMixInputParameters) SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -135,7 +135,7 @@ func (a_ AudioMixInputParameters) SetAudioTimePitchAlgorithm(value AVAudioTimePi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid
-func (a_ AudioMixInputParameters) TrackID() CMPersistentTrackID /* foo */ {
+func (a_ AudioMixInputParameters) TrackID() PersistentTrackID /* not a class type */ {
 	rv := objc.Send[PersistentTrackID](a_.ID, objc.Sel("trackID"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (a_ AudioMixInputParameters) TrackID() CMPersistentTrackID /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid
-func (a_ AudioMixInputParameters) SetTrackID(value CMPersistentTrackID /* foo */) {
+func (a_ AudioMixInputParameters) SetTrackID(value PersistentTrackID /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
 }
 

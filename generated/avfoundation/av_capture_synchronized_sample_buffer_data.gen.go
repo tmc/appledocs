@@ -32,8 +32,8 @@ type ICaptureSynchronizedSampleBufferData interface {
 	// properties:
 	DroppedReason() unsafe.Pointer
 	SetDroppedReason(value unsafe.Pointer)
-	SampleBuffer() CMSampleBuffer /* foo */
-	SetSampleBuffer(value CMSampleBuffer /* foo */)
+	SampleBuffer() SampleBuffer /* not a class type */
+	SetSampleBuffer(value SampleBuffer /* not a class type */)
 	SampleBufferWasDropped() bool /* primitive/slice/pointer */
 	SetSampleBufferWasDropped(value bool /* primitive/slice/pointer */)
 	// methods:
@@ -115,7 +115,7 @@ func (c_ CaptureSynchronizedSampleBufferData) SetDroppedReason(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() CMSampleBuffer /* foo */ {
+func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() SampleBuffer /* not a class type */ {
 	rv := objc.Send[SampleBuffer](c_.ID, objc.Sel("sampleBuffer"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() CMSampleBuffer /* f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value CMSampleBuffer /* foo */) {
+func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value SampleBuffer /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
 }
 

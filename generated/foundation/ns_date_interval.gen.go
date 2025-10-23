@@ -31,11 +31,11 @@ type _DateIntervalClass struct {
 type IDateInterval interface {
 	objectivec.IObject
 	// properties:
-	Duration() TimeInterval /* foo */
+	Duration() TimeInterval /* not a class type */
 	EndDate() IDate
 	StartDate() IDate
 	// methods:
-	Compare(dateInterval IDateInterval) ComparisonResult /* foo */
+	Compare(dateInterval IDateInterval) ComparisonResult
 	ContainsDate(date IDate) bool /* primitive/slice/pointer */
 	IntersectionWithDateInterval(dateInterval IDateInterval) IDateInterval
 	IntersectsDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer */
@@ -99,7 +99,7 @@ func NewDateInterval() DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(coder:)
-func NewDateIntervalWithCoder(coder Coder /* foo */) DateInterval {
+func NewDateIntervalWithCoder(coder Coder /* not a class type */) DateInterval {
 	instance := getDateIntervalClass().Alloc()
 	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -111,7 +111,7 @@ func NewDateIntervalWithCoder(coder Coder /* foo */) DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
-func NewDateIntervalWithStartDateDuration(startDate IDate, duration TimeInterval /* foo */) DateInterval {
+func NewDateIntervalWithStartDateDuration(startDate IDate, duration TimeInterval /* not a class type */) DateInterval {
 	instance := getDateIntervalClass().Alloc()
 	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:duration:"), startDate, duration)
 	rv.Autorelease()
@@ -136,7 +136,7 @@ func NewDateIntervalWithStartDateEndDate(startDate IDate, endDate IDate) DateInt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/compare(_:)
-func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult /* foo */ {
+func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), dateInterval)
 	return rv
 }
@@ -186,7 +186,7 @@ func (d_ DateInterval) IsEqualToDateInterval(dateInterval IDateInterval) bool /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/duration
-func (d_ DateInterval) Duration() TimeInterval /* foo */ {
+func (d_ DateInterval) Duration() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }

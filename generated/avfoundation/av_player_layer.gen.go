@@ -38,8 +38,8 @@ type IPlayerLayer interface {
 	SetPixelBufferAttributes(value string /* primitive/slice/pointer */)
 	Player() IAVPlayer
 	SetPlayer(value IAVPlayer)
-	VideoGravity() AVLayerVideoGravity /* foo */
-	SetVideoGravity(value AVLayerVideoGravity /* foo */)
+	VideoGravity() LayerVideoGravity /* not a class type */
+	SetVideoGravity(value LayerVideoGravity /* not a class type */)
 	VideoRect() coregraphics.CGRect
 	SetVideoRect(value coregraphics.CGRect)
 	Contents() unsafe.Pointer
@@ -163,7 +163,7 @@ func (p_ PlayerLayer) SetPlayer(value IAVPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videogravity
-func (p_ PlayerLayer) VideoGravity() AVLayerVideoGravity /* foo */ {
+func (p_ PlayerLayer) VideoGravity() LayerVideoGravity /* not a class type */ {
 	rv := objc.Send[LayerVideoGravity](p_.ID, objc.Sel("videoGravity"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (p_ PlayerLayer) VideoGravity() AVLayerVideoGravity /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videogravity
-func (p_ PlayerLayer) SetVideoGravity(value AVLayerVideoGravity /* foo */) {
+func (p_ PlayerLayer) SetVideoGravity(value LayerVideoGravity /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

@@ -31,8 +31,8 @@ type _URLSessionClass struct {
 type IURLSession interface {
 	objectivec.IObject
 	// properties:
-	Configuration() URLSessionConfiguration /* foo */
-	SetConfiguration(value URLSessionConfiguration /* foo */)
+	Configuration() URLSessionConfiguration /* not a class type */
+	SetConfiguration(value URLSessionConfiguration /* not a class type */)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DelegateQueue() IOperationQueue
@@ -99,7 +99,7 @@ func NewURLSession() URLSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSession) Configuration() URLSessionConfiguration /* foo */ {
+func (u_ URLSession) Configuration() URLSessionConfiguration /* not a class type */ {
 	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (u_ URLSession) Configuration() URLSessionConfiguration /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSession) SetConfiguration(value URLSessionConfiguration /* foo */) {
+func (u_ URLSession) SetConfiguration(value URLSessionConfiguration /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfiguration:"), value)
 }
 

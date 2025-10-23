@@ -5,11 +5,11 @@ import (
 	"unsafe"
 )
 
-// CFPlugInRef is a CoreGraphics opaque type.
-type CFPlugInRef unsafe.Pointer
+// CFPropertyListRef is a CoreGraphics opaque type.
+type CFPropertyListRef unsafe.Pointer
 
-// CFRunLoopRef is a CoreGraphics opaque type.
-type CFRunLoopRef unsafe.Pointer
+// CFRunLoopSourceRef is a CoreGraphics opaque type.
+type CFRunLoopSourceRef unsafe.Pointer
 
 
 // Foundation-specific types
@@ -39,11 +39,11 @@ type Range struct {
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
-type AbsoluteTime = int
-
-type AccessibilityAssistiveTechnologyIdentifier = int
-
 type AccessibilityNotifications = int
+
+type AccessibilityRole = int
+
+type AccessibilitySubrole = int
 
 type AccessibilityZoomType = int
 
@@ -67,15 +67,11 @@ type CFString = int
 
 type CFURL = int
 
+type ColorRenderingIntent = int
+
 type Comparator = int
 
-type ComparatorFunction = int
-
-type ComparisonResult = int
-
 type CompositingOperation = int
-
-type DateFormatterKey = int
 
 type Decimal = int
 
@@ -87,11 +83,15 @@ type EdgeInsets = int
 
 type FileDescriptorNativeDescriptor = int
 
+type FontManagerScope = int
+
 type FontTraitMask = int
 
 type FormattingUnitStyle = int
 
-type HashCode = int
+type GregorianDate = int
+
+type GregorianUnits = int
 
 type HashEnumerator = int
 
@@ -101,27 +101,37 @@ type ImageSymbolWeight = int
 
 type KeyValueObservingOptions = int
 
-type LocaleIdentifier = int
-
 type MapEnumerator = int
 
 type MapTableKeyCallBacks = int
 
 type MapTableValueCallBacks = int
 
-type PlugInRef = int
+type MultibyteGlyphPacking = int
 
-type RunLoopMode = int
+type NetworkReachabilityCallBack = int
 
-type RunLoopRef = int
+type NetworkReachabilityContext = int
+
+type Offset = int
+
+type OpenGLGlobalOption = int
+
+type PropertyListRef = int
+
+type RunLoopSourceRef = int
+
+type SocketCallBack = int
+
+type SocketContext = int
+
+type SocketError = int
+
+type SocketSignature = int
 
 type StreamClientContext = int
 
 type StreamError = int
-
-type StreamPropertyKey = int
-
-type StreamStatus = int
 
 type UIEdgeInsets = int
 

@@ -30,12 +30,12 @@ type _XMLElementClass struct {
 type IXMLElement interface {
 	IXMLNode
 	// properties:
-	Attributes() XMLNode /* foo */
-	SetAttributes(value XMLNode /* foo */)
-	Namespaces() XMLNode /* foo */
-	SetNamespaces(value XMLNode /* foo */)
+	Attributes() XMLNode /* not a class type */
+	SetAttributes(value XMLNode /* not a class type */)
+	Namespaces() XMLNode /* not a class type */
+	SetNamespaces(value XMLNode /* not a class type */)
 	// methods:
-	ResolveNamespaceForName(name string /* primitive/slice/pointer */) XMLNode /* foo */
+	ResolveNamespaceForName(name string /* primitive/slice/pointer */) XMLNode /* not a class type */
 }
 
 // The element nodes in an XML tree structure.
@@ -97,7 +97,7 @@ func NewXMLElement() XMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolveNamespace(forName:)
-func (x_ XMLElement) ResolveNamespaceForName(name string /* primitive/slice/pointer */) XMLNode /* foo */ {
+func (x_ XMLElement) ResolveNamespaceForName(name string /* primitive/slice/pointer */) XMLNode /* not a class type */ {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("resolveNamespaceForName:"), objc.String(name))
 	return rv
 }
@@ -107,7 +107,7 @@ func (x_ XMLElement) ResolveNamespaceForName(name string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/attributes
-func (x_ XMLElement) Attributes() XMLNode /* foo */ {
+func (x_ XMLElement) Attributes() XMLNode /* not a class type */ {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributes"))
 	return rv
 }
@@ -117,7 +117,7 @@ func (x_ XMLElement) Attributes() XMLNode /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/attributes
-func (x_ XMLElement) SetAttributes(value XMLNode /* foo */) {
+func (x_ XMLElement) SetAttributes(value XMLNode /* not a class type */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAttributes:"), value)
 }
 
@@ -126,7 +126,7 @@ func (x_ XMLElement) SetAttributes(value XMLNode /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
-func (x_ XMLElement) Namespaces() XMLNode /* foo */ {
+func (x_ XMLElement) Namespaces() XMLNode /* not a class type */ {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("namespaces"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (x_ XMLElement) Namespaces() XMLNode /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
-func (x_ XMLElement) SetNamespaces(value XMLNode /* foo */) {
+func (x_ XMLElement) SetNamespaces(value XMLNode /* not a class type */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNamespaces:"), value)
 }
 

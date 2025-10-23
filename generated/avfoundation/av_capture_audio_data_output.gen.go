@@ -34,8 +34,8 @@ type ICaptureAudioDataOutput interface {
 	SetAudioSettings(value string /* primitive/slice/pointer */)
 	SampleBufferCallbackQueue() unsafe.Pointer
 	SetSampleBufferCallbackQueue(value unsafe.Pointer)
-	SampleBufferDelegate() AVCaptureAudioDataOutputSampleBufferDelegate /* foo */
-	SetSampleBufferDelegate(value AVCaptureAudioDataOutputSampleBufferDelegate /* foo */)
+	SampleBufferDelegate() CaptureAudioDataOutputSampleBufferDelegate /* not a class type */
+	SetSampleBufferDelegate(value CaptureAudioDataOutputSampleBufferDelegate /* not a class type */)
 	SpatialAudioChannelLayoutTag() unsafe.Pointer
 	SetSpatialAudioChannelLayoutTag(value unsafe.Pointer)
 	// methods:
@@ -136,7 +136,7 @@ func (c_ CaptureAudioDataOutput) SetSampleBufferCallbackQueue(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebufferdelegate
-func (c_ CaptureAudioDataOutput) SampleBufferDelegate() AVCaptureAudioDataOutputSampleBufferDelegate /* foo */ {
+func (c_ CaptureAudioDataOutput) SampleBufferDelegate() CaptureAudioDataOutputSampleBufferDelegate /* not a class type */ {
 	rv := objc.Send[CaptureAudioDataOutputSampleBufferDelegate](c_.ID, objc.Sel("sampleBufferDelegate"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (c_ CaptureAudioDataOutput) SampleBufferDelegate() AVCaptureAudioDataOutput
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebufferdelegate
-func (c_ CaptureAudioDataOutput) SetSampleBufferDelegate(value AVCaptureAudioDataOutputSampleBufferDelegate /* foo */) {
+func (c_ CaptureAudioDataOutput) SetSampleBufferDelegate(value CaptureAudioDataOutputSampleBufferDelegate /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:"), value)
 }
 

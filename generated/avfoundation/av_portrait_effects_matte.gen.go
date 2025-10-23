@@ -31,8 +31,8 @@ type _PortraitEffectsMatteClass struct {
 type IPortraitEffectsMatte interface {
 	objectivec.IObject
 	// properties:
-	MattingImage() CVPixelBuffer /* foo */
-	SetMattingImage(value CVPixelBuffer /* foo */)
+	MattingImage() PixelBuffer /* not a class type */
+	SetMattingImage(value PixelBuffer /* not a class type */)
 	PixelFormatType() unsafe.Pointer
 	SetPixelFormatType(value unsafe.Pointer)
 	// methods:
@@ -95,7 +95,7 @@ func NewPortraitEffectsMatte() PortraitEffectsMatte {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
-func (p_ PortraitEffectsMatte) MattingImage() CVPixelBuffer /* foo */ {
+func (p_ PortraitEffectsMatte) MattingImage() PixelBuffer /* not a class type */ {
 	rv := objc.Send[PixelBuffer](p_.ID, objc.Sel("mattingImage"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (p_ PortraitEffectsMatte) MattingImage() CVPixelBuffer /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
-func (p_ PortraitEffectsMatte) SetMattingImage(value CVPixelBuffer /* foo */) {
+func (p_ PortraitEffectsMatte) SetMattingImage(value PixelBuffer /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMattingImage:"), value)
 }
 

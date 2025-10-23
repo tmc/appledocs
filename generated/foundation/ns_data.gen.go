@@ -44,15 +44,15 @@ type IData interface {
 	SetNSDecompressionFailedError(value int /* primitive/slice/pointer */)
 	// methods:
 	Base64EncodedDataWithOptions(options DataBase64EncodingOptions) IData
-	Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String /* foo */
+	Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String /* not a class type */
 	CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) unsafe.Pointer
 	DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
 	GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/slice/pointer */)
-	GetBytesRange(buffer unsafe.Pointer, range_ Range /* foo */)
+	GetBytesRange(buffer unsafe.Pointer, range_ Range /* not a class type */)
 	IsEqualToData(other IData) bool /* primitive/slice/pointer */
-	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range /* foo */) Range /* foo */
-	SubdataWithRange(range_ Range /* foo */) IData
+	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range /* not a class type */) Range /* not a class type */
+	SubdataWithRange(range_ Range /* not a class type */) IData
 	WriteToURLAtomically(url IURL, atomically bool /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr unsafe.Pointer) bool /* primitive/slice/pointer */
 	WriteToFileAtomically(path string /* primitive/slice/pointer */, useAuxiliaryFile bool /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
@@ -383,7 +383,7 @@ func (d_ Data) Base64EncodedDataWithOptions(options DataBase64EncodingOptions) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64EncodedString(options:)
-func (d_ Data) Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String /* foo */ {
+func (d_ Data) Base64EncodedStringWithOptions(options DataBase64EncodingOptions) String /* not a class type */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("base64EncodedStringWithOptions:"), options)
 	return rv
 }
@@ -431,7 +431,7 @@ func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:range:)
-func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ Range /* foo */) {
+func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ Range /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:range:"), buffer, range_)
 }
 
@@ -450,7 +450,7 @@ func (d_ Data) IsEqualToData(other IData) bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/range(of:options:in:)
-func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range /* foo */) Range /* foo */ {
+func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range /* not a class type */) Range /* not a class type */ {
 	rv := objc.Send[Range](d_.ID, objc.Sel("rangeOfData:options:range:"), dataToFind, mask, searchRange)
 	return rv
 }
@@ -460,7 +460,7 @@ func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/subdata(with:)
-func (d_ Data) SubdataWithRange(range_ Range /* foo */) IData {
+func (d_ Data) SubdataWithRange(range_ Range /* not a class type */) IData {
 	rv := objc.Send[Data](d_.ID, objc.Sel("subdataWithRange:"), range_)
 	return rv
 }

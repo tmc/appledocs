@@ -45,7 +45,7 @@ type IArray interface {
 	DifferenceFromArray(other []objc.ID /* already interface */) unsafe.Pointer
 	DifferenceFromArrayWithOptions(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
 	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer */) unsafe.Pointer
-	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* foo */, opts BinarySearchingOptions, cmp Comparator /* foo */) uint /* primitive/slice/pointer */
+	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* not a class type */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer */
 	ReverseObjectEnumerator() unsafe.Pointer
 }
 
@@ -136,7 +136,7 @@ func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:inSortedRange:options:usingComparator:)
-func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* foo */, opts BinarySearchingOptions, cmp Comparator /* foo */) uint /* primitive/slice/pointer */ {
+func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* not a class type */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), obj, r, opts, cmp)
 	return rv
 }

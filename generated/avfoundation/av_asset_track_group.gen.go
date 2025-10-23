@@ -32,8 +32,8 @@ type _AssetTrackGroupClass struct {
 type IAssetTrackGroup interface {
 	objectivec.IObject
 	// properties:
-	TrackIDs() foundation.Number /* foo */
-	SetTrackIDs(value foundation.Number /* foo */)
+	TrackIDs() foundation.Number /* not a class type */
+	SetTrackIDs(value foundation.Number /* not a class type */)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewAssetTrackGroup() AssetTrackGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
-func (a_ AssetTrackGroup) TrackIDs() foundation.Number /* foo */ {
+func (a_ AssetTrackGroup) TrackIDs() foundation.Number /* not a class type */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("trackIDs"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (a_ AssetTrackGroup) TrackIDs() foundation.Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
-func (a_ AssetTrackGroup) SetTrackIDs(value foundation.Number /* foo */) {
+func (a_ AssetTrackGroup) SetTrackIDs(value foundation.Number /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackIDs:"), value)
 }
 

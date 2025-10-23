@@ -43,8 +43,8 @@ type IDateIntervalFormatter interface {
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	// methods:
-	StringFromDateInterval(dateInterval IDateInterval) String /* foo */
-	StringFromDateToDate(fromDate IDate, toDate IDate) String /* foo */
+	StringFromDateInterval(dateInterval IDateInterval) String /* not a class type */
+	StringFromDateToDate(fromDate IDate, toDate IDate) String /* not a class type */
 }
 
 // A formatter that creates string representations of time intervals.
@@ -104,7 +104,7 @@ func NewDateIntervalFormatter() DateIntervalFormatter {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/string(from:)
-func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterval) String /* foo */ {
+func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterval) String /* not a class type */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDateInterval:"), dateInterval)
 	return rv
 }
@@ -114,7 +114,7 @@ func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/string(from:to:)
-func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDate) String /* foo */ {
+func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDate) String /* not a class type */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:toDate:"), fromDate, toDate)
 	return rv
 }

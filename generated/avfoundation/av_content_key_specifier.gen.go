@@ -33,8 +33,8 @@ type IContentKeySpecifier interface {
 	// properties:
 	Identifier() unsafe.Pointer
 	SetIdentifier(value unsafe.Pointer)
-	KeySystem() AVContentKeySystem /* foo */
-	SetKeySystem(value AVContentKeySystem /* foo */)
+	KeySystem() ContentKeySystem /* not a class type */
+	SetKeySystem(value ContentKeySystem /* not a class type */)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
 	// methods:
@@ -114,7 +114,7 @@ func (c_ ContentKeySpecifier) SetIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
-func (c_ ContentKeySpecifier) KeySystem() AVContentKeySystem /* foo */ {
+func (c_ ContentKeySpecifier) KeySystem() ContentKeySystem /* not a class type */ {
 	rv := objc.Send[ContentKeySystem](c_.ID, objc.Sel("keySystem"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (c_ ContentKeySpecifier) KeySystem() AVContentKeySystem /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
-func (c_ ContentKeySpecifier) SetKeySystem(value AVContentKeySystem /* foo */) {
+func (c_ ContentKeySpecifier) SetKeySystem(value ContentKeySystem /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySystem:"), value)
 }
 

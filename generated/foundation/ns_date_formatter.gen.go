@@ -103,9 +103,9 @@ type IDateFormatter interface {
 	SetIsLenient(value bool /* primitive/slice/pointer */)
 	// methods:
 	DateFromString(string_ string /* primitive/slice/pointer */) IDate
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string /* primitive/slice/pointer */)
-	StringFromDate(date IDate) String /* foo */
+	StringFromDate(date IDate) String /* not a class type */
 }
 
 // A formatter that converts between dates and their textual representations.
@@ -180,7 +180,7 @@ func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat(fromTemplate:options:locale:)
-func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string /* primitive/slice/pointer */, opts uint /* primitive/slice/pointer */, locale ILocale) String /* foo */ {
+func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string /* primitive/slice/pointer */, opts uint /* primitive/slice/pointer */, locale ILocale) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("dateFormatFromTemplate:options:locale:"), objc.String(tmplate), opts, locale)
 	return rv
 }
@@ -190,7 +190,7 @@ func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/localizedString(from:dateStyle:timeStyle:)
-func (dc _DateFormatterClass) LocalizedStringFromDateDateStyleTimeStyle(date IDate, dstyle DateFormatterStyle, tstyle DateFormatterStyle) String /* foo */ {
+func (dc _DateFormatterClass) LocalizedStringFromDateDateStyleTimeStyle(date IDate, dstyle DateFormatterStyle, tstyle DateFormatterStyle) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("localizedStringFromDate:dateStyle:timeStyle:"), date, dstyle, tstyle)
 	return rv
 }
@@ -219,7 +219,7 @@ func (d_ DateFormatter) DateFromString(string_ string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/getObjectValue(_:for:range:)
-func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
@@ -238,7 +238,7 @@ func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/string(from:)
-func (d_ DateFormatter) StringFromDate(date IDate) String /* foo */ {
+func (d_ DateFormatter) StringFromDate(date IDate) String /* not a class type */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:"), date)
 	return rv
 }

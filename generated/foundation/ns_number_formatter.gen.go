@@ -79,16 +79,16 @@ type INumberFormatter interface {
 	SetLocale(value ILocale)
 	LocalizesFormat() bool /* primitive/slice/pointer */
 	SetLocalizesFormat(value bool /* primitive/slice/pointer */)
-	Maximum() Number /* foo */
-	SetMaximum(value Number /* foo */)
+	Maximum() Number /* not a class type */
+	SetMaximum(value Number /* not a class type */)
 	MaximumFractionDigits() uint /* primitive/slice/pointer */
 	SetMaximumFractionDigits(value uint /* primitive/slice/pointer */)
 	MaximumIntegerDigits() uint /* primitive/slice/pointer */
 	SetMaximumIntegerDigits(value uint /* primitive/slice/pointer */)
 	MaximumSignificantDigits() uint /* primitive/slice/pointer */
 	SetMaximumSignificantDigits(value uint /* primitive/slice/pointer */)
-	Minimum() Number /* foo */
-	SetMinimum(value Number /* foo */)
+	Minimum() Number /* not a class type */
+	SetMinimum(value Number /* not a class type */)
 	MinimumFractionDigits() uint /* primitive/slice/pointer */
 	SetMinimumFractionDigits(value uint /* primitive/slice/pointer */)
 	MinimumGroupingDigits() int /* primitive/slice/pointer */
@@ -99,8 +99,8 @@ type INumberFormatter interface {
 	SetMinimumSignificantDigits(value uint /* primitive/slice/pointer */)
 	MinusSign() string /* primitive/slice/pointer */
 	SetMinusSign(value string /* primitive/slice/pointer */)
-	Multiplier() Number /* foo */
-	SetMultiplier(value Number /* foo */)
+	Multiplier() Number /* not a class type */
+	SetMultiplier(value Number /* not a class type */)
 	NegativeFormat() string /* primitive/slice/pointer */
 	SetNegativeFormat(value string /* primitive/slice/pointer */)
 	NegativeInfinitySymbol() string /* primitive/slice/pointer */
@@ -135,8 +135,8 @@ type INumberFormatter interface {
 	SetPositiveSuffix(value string /* primitive/slice/pointer */)
 	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() Number /* foo */
-	SetRoundingIncrement(value Number /* foo */)
+	RoundingIncrement() Number /* not a class type */
+	SetRoundingIncrement(value Number /* not a class type */)
 	RoundingMode() NumberFormatterRoundingMode
 	SetRoundingMode(value NumberFormatterRoundingMode)
 	SecondaryGroupingSize() uint /* primitive/slice/pointer */
@@ -168,9 +168,9 @@ type INumberFormatter interface {
 	IsPartialStringValidationEnabled() bool /* primitive/slice/pointer */
 	SetIsPartialStringValidationEnabled(value bool /* primitive/slice/pointer */)
 	// methods:
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	NumberFromString(string_ string /* primitive/slice/pointer */) Number /* foo */
-	StringFromNumber(number Number /* foo */) String /* foo */
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	NumberFromString(string_ string /* primitive/slice/pointer */) Number /* not a class type */
+	StringFromNumber(number Number /* not a class type */) String /* not a class type */
 }
 
 // A formatter that converts between numeric values and their textual representations.
@@ -242,7 +242,7 @@ func (nc _NumberFormatterClass) DefaultFormatterBehavior() NumberFormatterBehavi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizedString(from:number:)
-func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num Number /* foo */, nstyle NumberFormatterStyle) String /* foo */ {
+func (nc _NumberFormatterClass) LocalizedStringFromNumberNumberStyle(num Number /* not a class type */, nstyle NumberFormatterStyle) String /* not a class type */ {
 	rv := objc.Send[String](objc.ID(nc.class), objc.Sel("localizedStringFromNumber:numberStyle:"), num, nstyle)
 	return rv
 }
@@ -261,7 +261,7 @@ func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior NumberForma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/getObjectValue(_:for:range:)
-func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
@@ -271,7 +271,7 @@ func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj objectivec.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/number(from:)
-func (n_ NumberFormatter) NumberFromString(string_ string /* primitive/slice/pointer */) Number /* foo */ {
+func (n_ NumberFormatter) NumberFromString(string_ string /* primitive/slice/pointer */) Number /* not a class type */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("numberFromString:"), objc.String(string_))
 	return rv
 }
@@ -281,7 +281,7 @@ func (n_ NumberFormatter) NumberFromString(string_ string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/string(from:)
-func (n_ NumberFormatter) StringFromNumber(number Number /* foo */) String /* foo */ {
+func (n_ NumberFormatter) StringFromNumber(number Number /* not a class type */) String /* not a class type */ {
 	rv := objc.Send[String](n_.ID, objc.Sel("stringFromNumber:"), number)
 	return rv
 }
@@ -747,7 +747,7 @@ func (n_ NumberFormatter) SetLocalizesFormat(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) Maximum() Number /* foo */ {
+func (n_ NumberFormatter) Maximum() Number /* not a class type */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("maximum"))
 	return rv
 }
@@ -757,7 +757,7 @@ func (n_ NumberFormatter) Maximum() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
-func (n_ NumberFormatter) SetMaximum(value Number /* foo */) {
+func (n_ NumberFormatter) SetMaximum(value Number /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximum:"), value)
 }
 
@@ -823,7 +823,7 @@ func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) Minimum() Number /* foo */ {
+func (n_ NumberFormatter) Minimum() Number /* not a class type */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("minimum"))
 	return rv
 }
@@ -833,7 +833,7 @@ func (n_ NumberFormatter) Minimum() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
-func (n_ NumberFormatter) SetMinimum(value Number /* foo */) {
+func (n_ NumberFormatter) SetMinimum(value Number /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimum:"), value)
 }
 
@@ -933,7 +933,7 @@ func (n_ NumberFormatter) SetMinusSign(value string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) Multiplier() Number /* foo */ {
+func (n_ NumberFormatter) Multiplier() Number /* not a class type */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("multiplier"))
 	return rv
 }
@@ -943,7 +943,7 @@ func (n_ NumberFormatter) Multiplier() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
-func (n_ NumberFormatter) SetMultiplier(value Number /* foo */) {
+func (n_ NumberFormatter) SetMultiplier(value Number /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMultiplier:"), value)
 }
 
@@ -1275,7 +1275,7 @@ func (n_ NumberFormatter) SetRoundingBehavior(value IDecimalNumberHandler) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) RoundingIncrement() Number /* foo */ {
+func (n_ NumberFormatter) RoundingIncrement() Number /* not a class type */ {
 	rv := objc.Send[Number](n_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
@@ -1285,7 +1285,7 @@ func (n_ NumberFormatter) RoundingIncrement() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
-func (n_ NumberFormatter) SetRoundingIncrement(value Number /* foo */) {
+func (n_ NumberFormatter) SetRoundingIncrement(value Number /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 

@@ -41,8 +41,8 @@ type ICaptureVideoPreviewLayer interface {
 	SetIsPreviewing(value bool /* primitive/slice/pointer */)
 	Session() IAVCaptureSession
 	SetSession(value IAVCaptureSession)
-	VideoGravity() AVLayerVideoGravity /* foo */
-	SetVideoGravity(value AVLayerVideoGravity /* foo */)
+	VideoGravity() LayerVideoGravity /* not a class type */
+	SetVideoGravity(value LayerVideoGravity /* not a class type */)
 	// methods:
 }
 
@@ -200,7 +200,7 @@ func (c_ CaptureVideoPreviewLayer) SetSession(value IAVCaptureSession) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
-func (c_ CaptureVideoPreviewLayer) VideoGravity() AVLayerVideoGravity /* foo */ {
+func (c_ CaptureVideoPreviewLayer) VideoGravity() LayerVideoGravity /* not a class type */ {
 	rv := objc.Send[LayerVideoGravity](c_.ID, objc.Sel("videoGravity"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (c_ CaptureVideoPreviewLayer) VideoGravity() AVLayerVideoGravity /* foo */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
-func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value AVLayerVideoGravity /* foo */) {
+func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value LayerVideoGravity /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

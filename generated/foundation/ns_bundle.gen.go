@@ -46,8 +46,8 @@ type IBundle interface {
 	SetBundleURL(value IURL)
 	DevelopmentLocalization() string /* primitive/slice/pointer */
 	SetDevelopmentLocalization(value string /* primitive/slice/pointer */)
-	ExecutableArchitectures() Number /* foo */
-	SetExecutableArchitectures(value Number /* foo */)
+	ExecutableArchitectures() Number /* not a class type */
+	SetExecutableArchitectures(value Number /* not a class type */)
 	ExecutablePath() string /* primitive/slice/pointer */
 	SetExecutablePath(value string /* primitive/slice/pointer */)
 	ExecutableURL() IURL
@@ -95,7 +95,7 @@ type IBundle interface {
 	NSLoadedClasses() string /* primitive/slice/pointer */
 	// methods:
 	LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* foo */
+	LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* not a class type */
 	PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer */, subpath string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */
 }
 
@@ -196,7 +196,7 @@ func (b_ Bundle) LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedString(forKey:value:table:)
-func (b_ Bundle) LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* foo */ {
+func (b_ Bundle) LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* not a class type */ {
 	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
@@ -369,7 +369,7 @@ func (b_ Bundle) SetDevelopmentLocalization(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/executablearchitectures
-func (b_ Bundle) ExecutableArchitectures() Number /* foo */ {
+func (b_ Bundle) ExecutableArchitectures() Number /* not a class type */ {
 	rv := objc.Send[Number](b_.ID, objc.Sel("executableArchitectures"))
 	return rv
 }
@@ -379,7 +379,7 @@ func (b_ Bundle) ExecutableArchitectures() Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/executablearchitectures
-func (b_ Bundle) SetExecutableArchitectures(value Number /* foo */) {
+func (b_ Bundle) SetExecutableArchitectures(value Number /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setExecutableArchitectures:"), value)
 }
 

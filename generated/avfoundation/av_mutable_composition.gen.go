@@ -33,8 +33,8 @@ type IMutableComposition interface {
 	// properties:
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	Tracks() AVMutableCompositionTrack /* foo */
-	SetTracks(value AVMutableCompositionTrack /* foo */)
+	Tracks() MutableCompositionTrack /* not a class type */
+	SetTracks(value MutableCompositionTrack /* not a class type */)
 	// methods:
 }
 
@@ -116,7 +116,7 @@ func (m_ MutableComposition) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
-func (m_ MutableComposition) Tracks() AVMutableCompositionTrack /* foo */ {
+func (m_ MutableComposition) Tracks() MutableCompositionTrack /* not a class type */ {
 	rv := objc.Send[MutableCompositionTrack](m_.ID, objc.Sel("tracks"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (m_ MutableComposition) Tracks() AVMutableCompositionTrack /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
-func (m_ MutableComposition) SetTracks(value AVMutableCompositionTrack /* foo */) {
+func (m_ MutableComposition) SetTracks(value MutableCompositionTrack /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
 

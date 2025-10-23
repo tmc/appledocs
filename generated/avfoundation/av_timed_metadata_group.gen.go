@@ -33,8 +33,8 @@ type ITimedMetadataGroup interface {
 	// properties:
 	Items() IAVMetadataItem
 	SetItems(value IAVMetadataItem)
-	TimeRange() CMTimeRange /* foo */
-	SetTimeRange(value CMTimeRange /* foo */)
+	TimeRange() TimeRange /* not a class type */
+	SetTimeRange(value TimeRange /* not a class type */)
 	// methods:
 }
 
@@ -114,7 +114,7 @@ func (t_ TimedMetadataGroup) SetItems(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/timerange
-func (t_ TimedMetadataGroup) TimeRange() CMTimeRange /* foo */ {
+func (t_ TimedMetadataGroup) TimeRange() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](t_.ID, objc.Sel("timeRange"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (t_ TimedMetadataGroup) TimeRange() CMTimeRange /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/timerange
-func (t_ TimedMetadataGroup) SetTimeRange(value CMTimeRange /* foo */) {
+func (t_ TimedMetadataGroup) SetTimeRange(value TimeRange /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeRange:"), value)
 }
 

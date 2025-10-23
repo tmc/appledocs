@@ -35,12 +35,12 @@ type ITextCheckingResult interface {
 	AlternativeStrings() []string /* primitive/slice/pointer */
 	Components() IDictionary /* already interface */
 	Date() IDate
-	Duration() TimeInterval /* foo */
+	Duration() TimeInterval /* not a class type */
 	GrammarDetails() IDictionary /* already interface */
 	NumberOfRanges() uint /* primitive/slice/pointer */
 	Orthography() IOrthography
 	PhoneNumber() string /* primitive/slice/pointer */
-	Range() Range /* foo */
+	Range() Range /* not a class type */
 	RegularExpression() IRegularExpression
 	ReplacementString() string /* primitive/slice/pointer */
 	ResultType() TextCheckingType
@@ -49,8 +49,8 @@ type ITextCheckingResult interface {
 	NSNotFound() int /* primitive/slice/pointer */
 	// methods:
 	ResultByAdjustingRangesWithOffset(offset int /* primitive/slice/pointer */) ITextCheckingResult
-	RangeAtIndex(idx uint /* primitive/slice/pointer */) Range /* foo */
-	RangeWithName(name string /* primitive/slice/pointer */) Range /* foo */
+	RangeAtIndex(idx uint /* primitive/slice/pointer */) Range /* not a class type */
+	RangeWithName(name string /* primitive/slice/pointer */) Range /* not a class type */
 }
 
 // An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
@@ -110,7 +110,7 @@ func NewTextCheckingResult() TextCheckingResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
-func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range /* foo */, components IDictionary /* already interface */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range /* not a class type */, components IDictionary /* already interface */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
@@ -120,7 +120,7 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/correctionCheckingResult(range:replacementString:)
-func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementString(range_ Range /* foo */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementString(range_ Range /* not a class type */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("correctionCheckingResultWithRange:replacementString:"), range_, objc.String(replacementString))
 	return rv
 }
@@ -128,7 +128,7 @@ func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementS
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/correctionCheckingResult(range:replacementString:alternativeStrings:)
-func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementStringAlternativeStrings(range_ Range /* foo */, replacementString string /* primitive/slice/pointer */, alternativeStrings []string /* primitive/slice/pointer */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementStringAlternativeStrings(range_ Range /* not a class type */, replacementString string /* primitive/slice/pointer */, alternativeStrings []string /* primitive/slice/pointer */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("correctionCheckingResultWithRange:replacementString:alternativeStrings:"), range_, objc.String(replacementString), alternativeStrings)
 	return rv
 }
@@ -138,7 +138,7 @@ func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/dashCheckingResult(range:replacementString:)
-func (tc _TextCheckingResultClass) DashCheckingResultWithRangeReplacementString(range_ Range /* foo */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) DashCheckingResultWithRangeReplacementString(range_ Range /* not a class type */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("dashCheckingResultWithRange:replacementString:"), range_, objc.String(replacementString))
 	return rv
 }
@@ -148,7 +148,7 @@ func (tc _TextCheckingResultClass) DashCheckingResultWithRangeReplacementString(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/dateCheckingResult(range:date:)
-func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDate(range_ Range /* foo */, date IDate) ITextCheckingResult {
+func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDate(range_ Range /* not a class type */, date IDate) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("dateCheckingResultWithRange:date:"), range_, date)
 	return rv
 }
@@ -158,7 +158,7 @@ func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDate(range_ Range 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/dateCheckingResult(range:date:timeZone:duration:)
-func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDateTimeZoneDuration(range_ Range /* foo */, date IDate, timeZone ITimeZone, duration TimeInterval /* foo */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDateTimeZoneDuration(range_ Range /* not a class type */, date IDate, timeZone ITimeZone, duration TimeInterval /* not a class type */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("dateCheckingResultWithRange:date:timeZone:duration:"), range_, date, timeZone, duration)
 	return rv
 }
@@ -168,7 +168,7 @@ func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDateTimeZoneDurati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/grammarCheckingResult(range:details:)
-func (tc _TextCheckingResultClass) GrammarCheckingResultWithRangeDetails(range_ Range /* foo */, details IDictionary /* already interface */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) GrammarCheckingResultWithRangeDetails(range_ Range /* not a class type */, details IDictionary /* already interface */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("grammarCheckingResultWithRange:details:"), range_, details)
 	return rv
 }
@@ -178,7 +178,7 @@ func (tc _TextCheckingResultClass) GrammarCheckingResultWithRangeDetails(range_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/linkCheckingResult(range:url:)
-func (tc _TextCheckingResultClass) LinkCheckingResultWithRangeURL(range_ Range /* foo */, url IURL) ITextCheckingResult {
+func (tc _TextCheckingResultClass) LinkCheckingResultWithRangeURL(range_ Range /* not a class type */, url IURL) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("linkCheckingResultWithRange:URL:"), range_, url)
 	return rv
 }
@@ -188,7 +188,7 @@ func (tc _TextCheckingResultClass) LinkCheckingResultWithRangeURL(range_ Range /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/orthographyCheckingResult(range:orthography:)
-func (tc _TextCheckingResultClass) OrthographyCheckingResultWithRangeOrthography(range_ Range /* foo */, orthography IOrthography) ITextCheckingResult {
+func (tc _TextCheckingResultClass) OrthographyCheckingResultWithRangeOrthography(range_ Range /* not a class type */, orthography IOrthography) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("orthographyCheckingResultWithRange:orthography:"), range_, orthography)
 	return rv
 }
@@ -198,7 +198,7 @@ func (tc _TextCheckingResultClass) OrthographyCheckingResultWithRangeOrthography
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumberCheckingResult(range:phoneNumber:)
-func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ Range /* foo */, phoneNumber string /* primitive/slice/pointer */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ Range /* not a class type */, phoneNumber string /* primitive/slice/pointer */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, objc.String(phoneNumber))
 	return rv
 }
@@ -208,7 +208,7 @@ func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/quoteCheckingResult(range:replacementString:)
-func (tc _TextCheckingResultClass) QuoteCheckingResultWithRangeReplacementString(range_ Range /* foo */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) QuoteCheckingResultWithRangeReplacementString(range_ Range /* not a class type */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("quoteCheckingResultWithRange:replacementString:"), range_, objc.String(replacementString))
 	return rv
 }
@@ -218,7 +218,7 @@ func (tc _TextCheckingResultClass) QuoteCheckingResultWithRangeReplacementString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpressionCheckingResult(ranges:count:regularExpression:)
-func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges RangePointer /* foo */, count uint /* primitive/slice/pointer */, regularExpression IRegularExpression) ITextCheckingResult {
+func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges RangePointer /* not a class type */, count uint /* primitive/slice/pointer */, regularExpression IRegularExpression) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("regularExpressionCheckingResultWithRanges:count:regularExpression:"), ranges, count, regularExpression)
 	return rv
 }
@@ -228,7 +228,7 @@ func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCoun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/replacementCheckingResult(range:replacementString:)
-func (tc _TextCheckingResultClass) ReplacementCheckingResultWithRangeReplacementString(range_ Range /* foo */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) ReplacementCheckingResultWithRangeReplacementString(range_ Range /* not a class type */, replacementString string /* primitive/slice/pointer */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("replacementCheckingResultWithRange:replacementString:"), range_, objc.String(replacementString))
 	return rv
 }
@@ -238,7 +238,7 @@ func (tc _TextCheckingResultClass) ReplacementCheckingResultWithRangeReplacement
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/spellCheckingResult(range:)
-func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range /* foo */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range /* not a class type */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("spellCheckingResultWithRange:"), range_)
 	return rv
 }
@@ -248,7 +248,7 @@ func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/transitInformationCheckingResult(range:components:)
-func (tc _TextCheckingResultClass) TransitInformationCheckingResultWithRangeComponents(range_ Range /* foo */, components IDictionary /* already interface */) ITextCheckingResult {
+func (tc _TextCheckingResultClass) TransitInformationCheckingResultWithRangeComponents(range_ Range /* not a class type */, components IDictionary /* already interface */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("transitInformationCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
@@ -268,7 +268,7 @@ func (t_ TextCheckingResult) ResultByAdjustingRangesWithOffset(offset int /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range(at:)
-func (t_ TextCheckingResult) RangeAtIndex(idx uint /* primitive/slice/pointer */) Range /* foo */ {
+func (t_ TextCheckingResult) RangeAtIndex(idx uint /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](t_.ID, objc.Sel("rangeAtIndex:"), idx)
 	return rv
 }
@@ -276,7 +276,7 @@ func (t_ TextCheckingResult) RangeAtIndex(idx uint /* primitive/slice/pointer */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range(withName:)
-func (t_ TextCheckingResult) RangeWithName(name string /* primitive/slice/pointer */) Range /* foo */ {
+func (t_ TextCheckingResult) RangeWithName(name string /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](t_.ID, objc.Sel("rangeWithName:"), objc.String(name))
 	return rv
 }
@@ -324,7 +324,7 @@ func (t_ TextCheckingResult) Date() IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/duration
-func (t_ TextCheckingResult) Duration() TimeInterval /* foo */ {
+func (t_ TextCheckingResult) Duration() TimeInterval /* not a class type */ {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -374,7 +374,7 @@ func (t_ TextCheckingResult) PhoneNumber() string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range
-func (t_ TextCheckingResult) Range() Range /* foo */ {
+func (t_ TextCheckingResult) Range() Range /* not a class type */ {
 	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
 	return rv
 }

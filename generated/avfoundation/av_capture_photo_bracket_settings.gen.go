@@ -30,8 +30,8 @@ type _CapturePhotoBracketSettingsClass struct {
 type ICapturePhotoBracketSettings interface {
 	ICapturePhotoSettings
 	// properties:
-	BracketedSettings() AVCaptureBracketedStillImageSettings /* foo */
-	SetBracketedSettings(value AVCaptureBracketedStillImageSettings /* foo */)
+	BracketedSettings() CaptureBracketedStillImageSettings /* not a class type */
+	SetBracketedSettings(value CaptureBracketedStillImageSettings /* not a class type */)
 	IsLensStabilizationEnabled() bool /* primitive/slice/pointer */
 	SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer */)
 	IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer */
@@ -100,7 +100,7 @@ func NewCapturePhotoBracketSettings() CapturePhotoBracketSettings {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/bracketedsettings
-func (c_ CapturePhotoBracketSettings) BracketedSettings() AVCaptureBracketedStillImageSettings /* foo */ {
+func (c_ CapturePhotoBracketSettings) BracketedSettings() CaptureBracketedStillImageSettings /* not a class type */ {
 	rv := objc.Send[CaptureBracketedStillImageSettings](c_.ID, objc.Sel("bracketedSettings"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (c_ CapturePhotoBracketSettings) BracketedSettings() AVCaptureBracketedStil
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/bracketedsettings
-func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value AVCaptureBracketedStillImageSettings /* foo */) {
+func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value CaptureBracketedStillImageSettings /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBracketedSettings:"), value)
 }
 

@@ -30,8 +30,8 @@ type _CloneCommandClass struct {
 type ICloneCommand interface {
 	IScriptCommand
 	// properties:
-	KeySpecifier() ScriptObjectSpecifier /* foo */
-	SetKeySpecifier(value ScriptObjectSpecifier /* foo */)
+	KeySpecifier() ScriptObjectSpecifier /* not a class type */
+	SetKeySpecifier(value ScriptObjectSpecifier /* not a class type */)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCloneCommand() CloneCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
-func (c_ CloneCommand) KeySpecifier() ScriptObjectSpecifier /* foo */ {
+func (c_ CloneCommand) KeySpecifier() ScriptObjectSpecifier /* not a class type */ {
 	rv := objc.Send[ScriptObjectSpecifier](c_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (c_ CloneCommand) KeySpecifier() ScriptObjectSpecifier /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
-func (c_ CloneCommand) SetKeySpecifier(value ScriptObjectSpecifier /* foo */) {
+func (c_ CloneCommand) SetKeySpecifier(value ScriptObjectSpecifier /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySpecifier:"), value)
 }
 

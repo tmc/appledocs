@@ -31,8 +31,8 @@ type _PlayerLooperClass struct {
 type IPlayerLooper interface {
 	objectivec.IObject
 	// properties:
-	Error() AVError /* enum */
-	SetError(value AVError /* enum */)
+	Error() Error
+	SetError(value Error)
 	LoopCount() int /* primitive/slice/pointer */
 	SetLoopCount(value int /* primitive/slice/pointer */)
 	LoopingPlayerItems() IAVPlayerItem
@@ -99,7 +99,7 @@ func NewPlayerLooper() PlayerLooper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) Error() AVError /* enum */ {
+func (p_ PlayerLooper) Error() Error {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (p_ PlayerLooper) Error() AVError /* enum */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) SetError(value AVError /* enum */) {
+func (p_ PlayerLooper) SetError(value Error) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
 }
 

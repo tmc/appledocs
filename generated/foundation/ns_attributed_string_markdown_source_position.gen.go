@@ -36,7 +36,7 @@ type IAttributedStringMarkdownSourcePosition interface {
 	StartColumn() int /* primitive/slice/pointer */
 	StartLine() int /* primitive/slice/pointer */
 	// methods:
-	RangeInString(string_ string /* primitive/slice/pointer */) Range /* foo */
+	RangeInString(string_ string /* primitive/slice/pointer */) Range /* not a class type */
 }
 
 // The position of attributed string text in its original Markdown source string.
@@ -107,7 +107,7 @@ func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEnd
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/rangeInString:
-func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeInString:"), objc.String(string_))
 	return rv
 }

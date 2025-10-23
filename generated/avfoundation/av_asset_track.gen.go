@@ -32,12 +32,13 @@ type _AssetTrackClass struct {
 type IAssetTrack interface {
 	objectivec.IObject
 	// properties:
+	AvailableTrackAssociationTypes() []string /* primitive/slice/pointer */
+	Segments() []AssetTrackSegment /* primitive/slice/pointer */
+	TimeRange() TimeRange /* not a class type */
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
-	AvailableMetadataFormats() AVMetadataFormat /* foo */
-	SetAvailableMetadataFormats(value AVMetadataFormat /* foo */)
-	AvailableTrackAssociationTypes() unsafe.Pointer
-	SetAvailableTrackAssociationTypes(value unsafe.Pointer)
+	AvailableMetadataFormats() MetadataFormat /* not a class type */
+	SetAvailableMetadataFormats(value MetadataFormat /* not a class type */)
 	CanProvideSampleCursors() bool /* primitive/slice/pointer */
 	SetCanProvideSampleCursors(value bool /* primitive/slice/pointer */)
 	CommonMetadata() IAVMetadataItem
@@ -60,16 +61,16 @@ type IAssetTrack interface {
 	SetIsSelfContained(value bool /* primitive/slice/pointer */)
 	LanguageCode() string /* primitive/slice/pointer */
 	SetLanguageCode(value string /* primitive/slice/pointer */)
-	MediaType() AVMediaType /* foo */
-	SetMediaType(value AVMediaType /* foo */)
+	MediaType() MediaType /* not a class type */
+	SetMediaType(value MediaType /* not a class type */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	MinFrameDuration() CMTime /* foo */
-	SetMinFrameDuration(value CMTime /* foo */)
+	MinFrameDuration() Time /* not a class type */
+	SetMinFrameDuration(value Time /* not a class type */)
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	NaturalTimeScale() CMTimeScale /* foo */
-	SetNaturalTimeScale(value CMTimeScale /* foo */)
+	NaturalTimeScale() TimeScale /* not a class type */
+	SetNaturalTimeScale(value TimeScale /* not a class type */)
 	NominalFrameRate() float32 /* primitive/slice/pointer */
 	SetNominalFrameRate(value float32 /* primitive/slice/pointer */)
 	PreferredTransform() coregraphics.CGAffineTransform
@@ -78,14 +79,10 @@ type IAssetTrack interface {
 	SetPreferredVolume(value float32 /* primitive/slice/pointer */)
 	RequiresFrameReordering() bool /* primitive/slice/pointer */
 	SetRequiresFrameReordering(value bool /* primitive/slice/pointer */)
-	Segments() IAVAssetTrackSegment
-	SetSegments(value IAVAssetTrackSegment)
-	TimeRange() CMTimeRange /* foo */
-	SetTimeRange(value CMTimeRange /* foo */)
 	TotalSampleDataLength() unsafe.Pointer
 	SetTotalSampleDataLength(value unsafe.Pointer)
-	TrackID() CMPersistentTrackID /* foo */
-	SetTrackID(value CMPersistentTrackID /* foo */)
+	TrackID() PersistentTrackID /* not a class type */
+	SetTrackID(value PersistentTrackID /* not a class type */)
 	// methods:
 }
 
@@ -142,6 +139,36 @@ func NewAssetTrack() AssetTrack {
 
 
 
+// An array of association types that the track uses to associate with other tracks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/availableTrackAssociationTypes
+func (a_ AssetTrack) AvailableTrackAssociationTypes() []string /* primitive/slice/pointer */ {
+	rv := objc.Send[[]string](a_.ID, objc.Sel("availableTrackAssociationTypes"))
+	return rv
+}
+
+
+// The time mappings from the track’s media samples to its timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/segments
+func (a_ AssetTrack) Segments() []AssetTrackSegment /* primitive/slice/pointer */ {
+	rv := objc.Send[[]AssetTrackSegment](a_.ID, objc.Sel("segments"))
+	return rv
+}
+
+
+// The time range of the track within the overall timeline of the asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/timeRange
+func (a_ AssetTrack) TimeRange() TimeRange /* not a class type */ {
+	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
+	return rv
+}
+
+
 // The asset object that contains this track.
 //
 // [Full Topic]
@@ -165,7 +192,7 @@ func (a_ AssetTrack) SetAsset(value IAVAsset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availablemetadataformats
-func (a_ AssetTrack) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
+func (a_ AssetTrack) AvailableMetadataFormats() MetadataFormat /* not a class type */ {
 	rv := objc.Send[MetadataFormat](a_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
@@ -175,27 +202,8 @@ func (a_ AssetTrack) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availablemetadataformats
-func (a_ AssetTrack) SetAvailableMetadataFormats(value AVMetadataFormat /* foo */) {
+func (a_ AssetTrack) SetAvailableMetadataFormats(value MetadataFormat /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
-}
-
-
-// An array of association types that the track uses to associate with other tracks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availabletrackassociationtypes
-func (a_ AssetTrack) AvailableTrackAssociationTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableTrackAssociationTypes"))
-	return rv
-}
-
-
-// An array of association types that the track uses to associate with other tracks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availabletrackassociationtypes
-func (a_ AssetTrack) SetAvailableTrackAssociationTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableTrackAssociationTypes:"), value)
 }
 
 
@@ -412,7 +420,7 @@ func (a_ AssetTrack) SetLanguageCode(value string /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/mediatype
-func (a_ AssetTrack) MediaType() AVMediaType /* foo */ {
+func (a_ AssetTrack) MediaType() MediaType /* not a class type */ {
 	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
@@ -422,7 +430,7 @@ func (a_ AssetTrack) MediaType() AVMediaType /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/mediatype
-func (a_ AssetTrack) SetMediaType(value AVMediaType /* foo */) {
+func (a_ AssetTrack) SetMediaType(value MediaType /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 
@@ -450,7 +458,7 @@ func (a_ AssetTrack) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/minframeduration
-func (a_ AssetTrack) MinFrameDuration() CMTime /* foo */ {
+func (a_ AssetTrack) MinFrameDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](a_.ID, objc.Sel("minFrameDuration"))
 	return rv
 }
@@ -460,7 +468,7 @@ func (a_ AssetTrack) MinFrameDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/minframeduration
-func (a_ AssetTrack) SetMinFrameDuration(value CMTime /* foo */) {
+func (a_ AssetTrack) SetMinFrameDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMinFrameDuration:"), value)
 }
 
@@ -488,7 +496,7 @@ func (a_ AssetTrack) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturaltimescale
-func (a_ AssetTrack) NaturalTimeScale() CMTimeScale /* foo */ {
+func (a_ AssetTrack) NaturalTimeScale() TimeScale /* not a class type */ {
 	rv := objc.Send[TimeScale](a_.ID, objc.Sel("naturalTimeScale"))
 	return rv
 }
@@ -498,7 +506,7 @@ func (a_ AssetTrack) NaturalTimeScale() CMTimeScale /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturaltimescale
-func (a_ AssetTrack) SetNaturalTimeScale(value CMTimeScale /* foo */) {
+func (a_ AssetTrack) SetNaturalTimeScale(value TimeScale /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNaturalTimeScale:"), value)
 }
 
@@ -579,44 +587,6 @@ func (a_ AssetTrack) SetRequiresFrameReordering(value bool /* primitive/slice/po
 }
 
 
-// The time mappings from the track’s media samples to its timeline.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/segments
-func (a_ AssetTrack) Segments() IAVAssetTrackSegment {
-	rv := objc.Send[AssetTrackSegment](a_.ID, objc.Sel("segments"))
-	return rv
-}
-
-
-// The time mappings from the track’s media samples to its timeline.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/segments
-func (a_ AssetTrack) SetSegments(value IAVAssetTrackSegment) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSegments:"), value)
-}
-
-
-// The time range of the track within the overall timeline of the asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/timerange
-func (a_ AssetTrack) TimeRange() CMTimeRange /* foo */ {
-	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
-	return rv
-}
-
-
-// The time range of the track within the overall timeline of the asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/timerange
-func (a_ AssetTrack) SetTimeRange(value CMTimeRange /* foo */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
-}
-
-
 // The total number of bytes of sample data the track requires.
 //
 // [Full Topic]
@@ -640,7 +610,7 @@ func (a_ AssetTrack) SetTotalSampleDataLength(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/trackid
-func (a_ AssetTrack) TrackID() CMPersistentTrackID /* foo */ {
+func (a_ AssetTrack) TrackID() PersistentTrackID /* not a class type */ {
 	rv := objc.Send[PersistentTrackID](a_.ID, objc.Sel("trackID"))
 	return rv
 }
@@ -650,7 +620,7 @@ func (a_ AssetTrack) TrackID() CMPersistentTrackID /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/trackid
-func (a_ AssetTrack) SetTrackID(value CMPersistentTrackID /* foo */) {
+func (a_ AssetTrack) SetTrackID(value PersistentTrackID /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
 }
 

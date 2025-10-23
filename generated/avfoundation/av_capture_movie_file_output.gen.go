@@ -30,8 +30,8 @@ type _CaptureMovieFileOutputClass struct {
 type ICaptureMovieFileOutput interface {
 	ICaptureFileOutput
 	// properties:
-	AvailableVideoCodecTypes() AVVideoCodecType /* foo */
-	SetAvailableVideoCodecTypes(value AVVideoCodecType /* foo */)
+	AvailableVideoCodecTypes() VideoCodecType /* not a class type */
+	SetAvailableVideoCodecTypes(value VideoCodecType /* not a class type */)
 	IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool /* primitive/slice/pointer */
 	SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool /* primitive/slice/pointer */)
 	IsSpatialVideoCaptureEnabled() bool /* primitive/slice/pointer */
@@ -40,8 +40,8 @@ type ICaptureMovieFileOutput interface {
 	SetIsSpatialVideoCaptureSupported(value bool /* primitive/slice/pointer */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	MovieFragmentInterval() CMTime /* foo */
-	SetMovieFragmentInterval(value CMTime /* foo */)
+	MovieFragmentInterval() Time /* not a class type */
+	SetMovieFragmentInterval(value Time /* not a class type */)
 	PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording() unsafe.Pointer
 	SetPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording(value unsafe.Pointer)
 	PrimaryConstituentDeviceSwitchingBehaviorForRecording() unsafe.Pointer
@@ -108,7 +108,7 @@ func NewCaptureMovieFileOutput() CaptureMovieFileOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
-func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() AVVideoCodecType /* foo */ {
+func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() VideoCodecType /* not a class type */ {
 	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableVideoCodecTypes"))
 	return rv
 }
@@ -118,7 +118,7 @@ func (c_ CaptureMovieFileOutput) AvailableVideoCodecTypes() AVVideoCodecType /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/availablevideocodectypes
-func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value AVVideoCodecType /* foo */) {
+func (c_ CaptureMovieFileOutput) SetAvailableVideoCodecTypes(value VideoCodecType /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoCodecTypes:"), value)
 }
 
@@ -203,7 +203,7 @@ func (c_ CaptureMovieFileOutput) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/moviefragmentinterval
-func (c_ CaptureMovieFileOutput) MovieFragmentInterval() CMTime /* foo */ {
+func (c_ CaptureMovieFileOutput) MovieFragmentInterval() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("movieFragmentInterval"))
 	return rv
 }
@@ -213,7 +213,7 @@ func (c_ CaptureMovieFileOutput) MovieFragmentInterval() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/moviefragmentinterval
-func (c_ CaptureMovieFileOutput) SetMovieFragmentInterval(value CMTime /* foo */) {
+func (c_ CaptureMovieFileOutput) SetMovieFragmentInterval(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMovieFragmentInterval:"), value)
 }
 

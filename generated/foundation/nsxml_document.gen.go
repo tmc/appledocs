@@ -34,8 +34,8 @@ type IXMLDocument interface {
 	SetCharacterEncoding(value string /* primitive/slice/pointer */)
 	DocumentContentKind() unsafe.Pointer
 	SetDocumentContentKind(value unsafe.Pointer)
-	Dtd() XMLDTD /* foo */
-	SetDtd(value XMLDTD /* foo */)
+	Dtd() XMLDTD /* not a class type */
+	SetDtd(value XMLDTD /* not a class type */)
 	IsStandalone() bool /* primitive/slice/pointer */
 	SetIsStandalone(value bool /* primitive/slice/pointer */)
 	MimeType() string /* primitive/slice/pointer */
@@ -154,7 +154,7 @@ func (x_ XMLDocument) SetDocumentContentKind(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDocument) Dtd() XMLDTD /* foo */ {
+func (x_ XMLDocument) Dtd() XMLDTD /* not a class type */ {
 	rv := objc.Send[XMLDTD](x_.ID, objc.Sel("dtd"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (x_ XMLDocument) Dtd() XMLDTD /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDocument) SetDtd(value XMLDTD /* foo */) {
+func (x_ XMLDocument) SetDtd(value XMLDTD /* not a class type */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 

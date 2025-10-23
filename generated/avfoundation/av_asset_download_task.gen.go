@@ -31,10 +31,10 @@ type _AssetDownloadTaskClass struct {
 type IAssetDownloadTask interface {
 	foundation.IURLSessionTask
 	// properties:
-	DestinationURL() foundation.URL /* foo */
-	SetDestinationURL(value foundation.URL /* foo */)
-	LoadedTimeRanges() NSValue /* foo */
-	SetLoadedTimeRanges(value NSValue /* foo */)
+	DestinationURL() foundation.URL /* not a class type */
+	SetDestinationURL(value foundation.URL /* not a class type */)
+	LoadedTimeRanges() Value /* not a class type */
+	SetLoadedTimeRanges(value Value /* not a class type */)
 	Options() string /* primitive/slice/pointer */
 	SetOptions(value string /* primitive/slice/pointer */)
 	UrlAsset() IAVURLAsset
@@ -101,7 +101,7 @@ func NewAssetDownloadTask() AssetDownloadTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-func (a_ AssetDownloadTask) DestinationURL() foundation.URL /* foo */ {
+func (a_ AssetDownloadTask) DestinationURL() foundation.URL /* not a class type */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("destinationURL"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (a_ AssetDownloadTask) DestinationURL() foundation.URL /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL /* foo */) {
+func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDestinationURL:"), value)
 }
 
@@ -120,7 +120,7 @@ func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-func (a_ AssetDownloadTask) LoadedTimeRanges() NSValue /* foo */ {
+func (a_ AssetDownloadTask) LoadedTimeRanges() Value /* not a class type */ {
 	rv := objc.Send[Value](a_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (a_ AssetDownloadTask) LoadedTimeRanges() NSValue /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-func (a_ AssetDownloadTask) SetLoadedTimeRanges(value NSValue /* foo */) {
+func (a_ AssetDownloadTask) SetLoadedTimeRanges(value Value /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoadedTimeRanges:"), value)
 }
 

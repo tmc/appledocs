@@ -40,8 +40,8 @@ type IPlaybackCoordinator interface {
 	SuspensionReasonsThatTriggerWaiting() unsafe.Pointer
 	SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer)
 	// methods:
-	ParticipantLimitForWaitingOutSuspensionsWithReason(reason AVCoordinatedPlaybackSuspensionReason /* foo */) int /* primitive/slice/pointer */
-	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int /* primitive/slice/pointer */, reason AVCoordinatedPlaybackSuspensionReason /* foo */)
+	ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* not a class type */) int /* primitive/slice/pointer */
+	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int /* primitive/slice/pointer */, reason CoordinatedPlaybackSuspensionReason /* not a class type */)
 }
 
 // An object that coordinates the playback of players in a connected group.
@@ -101,7 +101,7 @@ func NewPlaybackCoordinator() PlaybackCoordinator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/participantLimitForWaitingOutSuspensions(withReason:)
-func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason AVCoordinatedPlaybackSuspensionReason /* foo */) int /* primitive/slice/pointer */ {
+func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* not a class type */) int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("participantLimitForWaitingOutSuspensionsWithReason:"), reason)
 	return rv
 }
@@ -111,7 +111,7 @@ func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/setParticipantLimit(_:forWaitingOutSuspensionsWithReason:)
-func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int /* primitive/slice/pointer */, reason AVCoordinatedPlaybackSuspensionReason /* foo */) {
+func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int /* primitive/slice/pointer */, reason CoordinatedPlaybackSuspensionReason /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParticipantLimit:forWaitingOutSuspensionsWithReason:"), participantLimit, reason)
 }
 

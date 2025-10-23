@@ -49,7 +49,7 @@ type IURL interface {
 	Path() string /* primitive/slice/pointer */
 	PathComponents() []string /* primitive/slice/pointer */
 	PathExtension() string /* primitive/slice/pointer */
-	Port() Number /* foo */
+	Port() Number /* not a class type */
 	Query() string /* primitive/slice/pointer */
 	RelativePath() string /* primitive/slice/pointer */
 	RelativeString() string /* primitive/slice/pointer */
@@ -84,19 +84,19 @@ type IURL interface {
 	CheckResourceIsReachableAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	FileReferenceURL() IURL
 	GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBufferLength uint /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	IsFileReferenceURL() bool /* primitive/slice/pointer */
 	PromisedItemResourceValuesForKeysError(keys []string /* primitive/slice/pointer */, error_ unsafe.Pointer) IDictionary /* already interface */
 	RemoveAllCachedResourceValues()
-	RemoveCachedResourceValueForKey(key URLResourceKey /* foo */)
+	RemoveCachedResourceValueForKey(key URLResourceKey /* not a class type */)
 	ResourceValuesForKeysError(keys []string /* primitive/slice/pointer */, error_ unsafe.Pointer) IDictionary /* already interface */
-	SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	SetResourceValuesError(keyedValues IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey /* foo */)
+	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey /* not a class type */)
 	StartAccessingSecurityScopedResource() bool /* primitive/slice/pointer */
 	StopAccessingSecurityScopedResource()
-	WriteToPasteboard(pasteBoard Pasteboard /* foo */)
+	WriteToPasteboard(pasteBoard Pasteboard /* not a class type */)
 }
 
 // An object that represents the location of a resource, such as an item on a remote server or the path to a local file.
@@ -244,7 +244,7 @@ func NewURLFileURLWithPathRelativeToURL(path string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func NewURLFromPasteboard(pasteBoard Pasteboard /* foo */) URL {
+func NewURLFromPasteboard(pasteBoard Pasteboard /* not a class type */) URL {
 	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLFromPasteboard:"), pasteBoard)
 	return rv
 }
@@ -435,7 +435,7 @@ func (uc _URLClass) FileURLWithPathComponents(components []string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func (uc _URLClass) URLFromPasteboard(pasteBoard Pasteboard /* foo */) IURL {
+func (uc _URLClass) URLFromPasteboard(pasteBoard Pasteboard /* not a class type */) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("URLFromPasteboard:"), pasteBoard)
 	return rv
 }
@@ -465,7 +465,7 @@ func (uc _URLClass) ResourceValuesForKeysFromBookmarkData(keys []string /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/writeBookmarkData(_:to:options:)
-func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookmarkFileURL IURL, options URLBookmarkFileCreationOptions /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (uc _URLClass) WriteBookmarkDataToURLOptionsError(bookmarkData IData, bookmarkFileURL IURL, options URLBookmarkFileCreationOptions /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("writeBookmarkData:toURL:options:error:"), bookmarkData, bookmarkFileURL, options, error_)
 	return rv
 }
@@ -575,7 +575,7 @@ func (u_ URL) GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBuf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getPromisedItemResourceValue(_:forKey:)
-func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("getPromisedItemResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -585,7 +585,7 @@ func (u_ URL) GetPromisedItemResourceValueForKeyError(value objectivec.IObject, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getResourceValue(_:forKey:)
-func (u_ URL) GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (u_ URL) GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("getResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -624,7 +624,7 @@ func (u_ URL) RemoveAllCachedResourceValues() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/removeCachedResourceValue(forKey:)
-func (u_ URL) RemoveCachedResourceValueForKey(key URLResourceKey /* foo */) {
+func (u_ URL) RemoveCachedResourceValueForKey(key URLResourceKey /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResourceValueForKey:"), key)
 }
 
@@ -643,7 +643,7 @@ func (u_ URL) ResourceValuesForKeysError(keys []string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setResourceValue(_:forKey:)
-func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("setResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -663,7 +663,7 @@ func (u_ URL) SetResourceValuesError(keyedValues IDictionary /* already interfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setTemporaryResourceValue(_:forKey:)
-func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey /* foo */) {
+func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTemporaryResourceValue:forKey:"), value, key)
 }
 
@@ -691,7 +691,7 @@ func (u_ URL) StopAccessingSecurityScopedResource() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/write(to:)
-func (u_ URL) WriteToPasteboard(pasteBoard Pasteboard /* foo */) {
+func (u_ URL) WriteToPasteboard(pasteBoard Pasteboard /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeToPasteboard:"), pasteBoard)
 }
 
@@ -878,7 +878,7 @@ func (u_ URL) PathExtension() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/port
-func (u_ URL) Port() Number /* foo */ {
+func (u_ URL) Port() Number /* not a class type */ {
 	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
 	return rv
 }

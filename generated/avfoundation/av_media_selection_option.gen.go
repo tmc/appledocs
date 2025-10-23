@@ -42,12 +42,12 @@ type IMediaSelectionOption interface {
 	SetExtendedLanguageTag(value string /* primitive/slice/pointer */)
 	IsPlayable() bool /* primitive/slice/pointer */
 	SetIsPlayable(value bool /* primitive/slice/pointer */)
-	Locale() foundation.Locale /* foo */
-	SetLocale(value foundation.Locale /* foo */)
-	MediaSubTypes() foundation.Number /* foo */
-	SetMediaSubTypes(value foundation.Number /* foo */)
-	MediaType() AVMediaType /* foo */
-	SetMediaType(value AVMediaType /* foo */)
+	Locale() foundation.Locale /* not a class type */
+	SetLocale(value foundation.Locale /* not a class type */)
+	MediaSubTypes() foundation.Number /* not a class type */
+	SetMediaSubTypes(value foundation.Number /* not a class type */)
+	MediaType() MediaType /* not a class type */
+	SetMediaType(value MediaType /* not a class type */)
 	// methods:
 }
 
@@ -201,7 +201,7 @@ func (m_ MediaSelectionOption) SetIsPlayable(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) Locale() foundation.Locale /* foo */ {
+func (m_ MediaSelectionOption) Locale() foundation.Locale /* not a class type */ {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (m_ MediaSelectionOption) Locale() foundation.Locale /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) SetLocale(value foundation.Locale /* foo */) {
+func (m_ MediaSelectionOption) SetLocale(value foundation.Locale /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -220,7 +220,7 @@ func (m_ MediaSelectionOption) SetLocale(value foundation.Locale /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number /* foo */ {
+func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number /* not a class type */ {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mediaSubTypes"))
 	return rv
 }
@@ -230,7 +230,7 @@ func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.Number /* foo */) {
+func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.Number /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSubTypes:"), value)
 }
 
@@ -239,7 +239,7 @@ func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.Number /* foo *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
-func (m_ MediaSelectionOption) MediaType() AVMediaType /* foo */ {
+func (m_ MediaSelectionOption) MediaType() MediaType /* not a class type */ {
 	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaType"))
 	return rv
 }
@@ -249,7 +249,7 @@ func (m_ MediaSelectionOption) MediaType() AVMediaType /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
-func (m_ MediaSelectionOption) SetMediaType(value AVMediaType /* foo */) {
+func (m_ MediaSelectionOption) SetMediaType(value MediaType /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
 }
 

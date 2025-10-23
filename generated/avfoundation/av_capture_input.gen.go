@@ -31,8 +31,8 @@ type _CaptureInputClass struct {
 type ICaptureInput interface {
 	objectivec.IObject
 	// properties:
-	Ports() AVCaptureInputPort /* foo */
-	SetPorts(value AVCaptureInputPort /* foo */)
+	Ports() IAVCaptureInputPort
+	SetPorts(value IAVCaptureInputPort)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewCaptureInput() CaptureInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
-func (c_ CaptureInput) Ports() AVCaptureInputPort /* foo */ {
+func (c_ CaptureInput) Ports() IAVCaptureInputPort {
 	rv := objc.Send[CaptureInputPort](c_.ID, objc.Sel("ports"))
 	return rv
 }
@@ -103,7 +103,7 @@ func (c_ CaptureInput) Ports() AVCaptureInputPort /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
-func (c_ CaptureInput) SetPorts(value AVCaptureInputPort /* foo */) {
+func (c_ CaptureInput) SetPorts(value IAVCaptureInputPort) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPorts:"), value)
 }
 

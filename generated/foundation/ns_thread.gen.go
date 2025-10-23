@@ -46,8 +46,8 @@ type IThread interface {
 	SetQualityOfService(value unsafe.Pointer)
 	StackSize() int /* primitive/slice/pointer */
 	SetStackSize(value int /* primitive/slice/pointer */)
-	ThreadDictionary() MutableDictionary /* foo */
-	SetThreadDictionary(value MutableDictionary /* foo */)
+	ThreadDictionary() MutableDictionary /* not a class type */
+	SetThreadDictionary(value MutableDictionary /* not a class type */)
 	ThreadPriority() float64 /* primitive/slice/pointer */
 	SetThreadPriority(value float64 /* primitive/slice/pointer */)
 	// methods:
@@ -259,7 +259,7 @@ func (t_ Thread) SetStackSize(value int /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) ThreadDictionary() MutableDictionary /* foo */ {
+func (t_ Thread) ThreadDictionary() MutableDictionary /* not a class type */ {
 	rv := objc.Send[MutableDictionary](t_.ID, objc.Sel("threadDictionary"))
 	return rv
 }
@@ -269,7 +269,7 @@ func (t_ Thread) ThreadDictionary() MutableDictionary /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) SetThreadDictionary(value MutableDictionary /* foo */) {
+func (t_ Thread) SetThreadDictionary(value MutableDictionary /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }
 

@@ -34,15 +34,15 @@ type ICaptureVideoDataOutput interface {
 	// properties:
 	AlwaysDiscardsLateVideoFrames() bool /* primitive/slice/pointer */
 	SetAlwaysDiscardsLateVideoFrames(value bool /* primitive/slice/pointer */)
-	MinFrameDuration() CMTime /* foo */
-	SetMinFrameDuration(value CMTime /* foo */)
+	MinFrameDuration() Time /* not a class type */
+	SetMinFrameDuration(value Time /* not a class type */)
 	SampleBufferCallbackQueue() unsafe.Pointer
 	VideoSettings() foundation.IDictionary /* already interface */
 	SetVideoSettings(value foundation.IDictionary /* already interface */)
 	AutomaticallyConfiguresOutputBufferDimensions() bool /* primitive/slice/pointer */
 	SetAutomaticallyConfiguresOutputBufferDimensions(value bool /* primitive/slice/pointer */)
-	AvailableVideoCodecTypes() AVVideoCodecType /* foo */
-	SetAvailableVideoCodecTypes(value AVVideoCodecType /* foo */)
+	AvailableVideoCodecTypes() VideoCodecType /* not a class type */
+	SetAvailableVideoCodecTypes(value VideoCodecType /* not a class type */)
 	AvailableVideoPixelFormatTypes() unsafe.Pointer
 	SetAvailableVideoPixelFormatTypes(value unsafe.Pointer)
 	DeliversPreviewSizedOutputBuffers() bool /* primitive/slice/pointer */
@@ -51,12 +51,12 @@ type ICaptureVideoDataOutput interface {
 	SetPreparesCellularRadioForNetworkConnection(value bool /* primitive/slice/pointer */)
 	PreservesDynamicHDRMetadata() bool /* primitive/slice/pointer */
 	SetPreservesDynamicHDRMetadata(value bool /* primitive/slice/pointer */)
-	RecommendedMediaTimeScaleForAssetWriter() CMTimeScale /* foo */
-	SetRecommendedMediaTimeScaleForAssetWriter(value CMTimeScale /* foo */)
-	SampleBufferDelegate() AVCaptureVideoDataOutputSampleBufferDelegate /* foo */
-	SetSampleBufferDelegate(value AVCaptureVideoDataOutputSampleBufferDelegate /* foo */)
+	RecommendedMediaTimeScaleForAssetWriter() TimeScale /* not a class type */
+	SetRecommendedMediaTimeScaleForAssetWriter(value TimeScale /* not a class type */)
+	SampleBufferDelegate() CaptureVideoDataOutputSampleBufferDelegate /* not a class type */
+	SetSampleBufferDelegate(value CaptureVideoDataOutputSampleBufferDelegate /* not a class type */)
 	// methods:
-	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType AVVideoCodecType /* foo */, outputFileType AVFileType /* typedef */) []MetadataItem /* primitive/slice/pointer */
+	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType /* not a class type */, outputFileType FileType /* not a class type */) []MetadataItem /* primitive/slice/pointer */
 	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
 }
 
@@ -119,7 +119,7 @@ func NewCaptureVideoDataOutput() CaptureVideoDataOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedMovieMetadata(forVideoCodecType:assetWriterOutputFileType:)
-func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType AVVideoCodecType /* foo */, outputFileType AVFileType /* typedef */) []MetadataItem /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType /* not a class type */, outputFileType FileType /* not a class type */) []MetadataItem /* primitive/slice/pointer */ {
 	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:"), videoCodecType, outputFileType)
 	return rv
 }
@@ -157,7 +157,7 @@ func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/minFrameDuration
-func (c_ CaptureVideoDataOutput) MinFrameDuration() CMTime /* foo */ {
+func (c_ CaptureVideoDataOutput) MinFrameDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](c_.ID, objc.Sel("minFrameDuration"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (c_ CaptureVideoDataOutput) MinFrameDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/minFrameDuration
-func (c_ CaptureVideoDataOutput) SetMinFrameDuration(value CMTime /* foo */) {
+func (c_ CaptureVideoDataOutput) SetMinFrameDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinFrameDuration:"), value)
 }
 
@@ -224,7 +224,7 @@ func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimension
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideocodectypes
-func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypes() AVVideoCodecType /* foo */ {
+func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypes() VideoCodecType /* not a class type */ {
 	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableVideoCodecTypes"))
 	return rv
 }
@@ -234,7 +234,7 @@ func (c_ CaptureVideoDataOutput) AvailableVideoCodecTypes() AVVideoCodecType /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/availablevideocodectypes
-func (c_ CaptureVideoDataOutput) SetAvailableVideoCodecTypes(value AVVideoCodecType /* foo */) {
+func (c_ CaptureVideoDataOutput) SetAvailableVideoCodecTypes(value VideoCodecType /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableVideoCodecTypes:"), value)
 }
 
@@ -319,7 +319,7 @@ func (c_ CaptureVideoDataOutput) SetPreservesDynamicHDRMetadata(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/recommendedmediatimescaleforassetwriter
-func (c_ CaptureVideoDataOutput) RecommendedMediaTimeScaleForAssetWriter() CMTimeScale /* foo */ {
+func (c_ CaptureVideoDataOutput) RecommendedMediaTimeScaleForAssetWriter() TimeScale /* not a class type */ {
 	rv := objc.Send[TimeScale](c_.ID, objc.Sel("recommendedMediaTimeScaleForAssetWriter"))
 	return rv
 }
@@ -329,7 +329,7 @@ func (c_ CaptureVideoDataOutput) RecommendedMediaTimeScaleForAssetWriter() CMTim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/recommendedmediatimescaleforassetwriter
-func (c_ CaptureVideoDataOutput) SetRecommendedMediaTimeScaleForAssetWriter(value CMTimeScale /* foo */) {
+func (c_ CaptureVideoDataOutput) SetRecommendedMediaTimeScaleForAssetWriter(value TimeScale /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecommendedMediaTimeScaleForAssetWriter:"), value)
 }
 
@@ -338,7 +338,7 @@ func (c_ CaptureVideoDataOutput) SetRecommendedMediaTimeScaleForAssetWriter(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebufferdelegate
-func (c_ CaptureVideoDataOutput) SampleBufferDelegate() AVCaptureVideoDataOutputSampleBufferDelegate /* foo */ {
+func (c_ CaptureVideoDataOutput) SampleBufferDelegate() CaptureVideoDataOutputSampleBufferDelegate /* not a class type */ {
 	rv := objc.Send[CaptureVideoDataOutputSampleBufferDelegate](c_.ID, objc.Sel("sampleBufferDelegate"))
 	return rv
 }
@@ -348,7 +348,7 @@ func (c_ CaptureVideoDataOutput) SampleBufferDelegate() AVCaptureVideoDataOutput
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebufferdelegate
-func (c_ CaptureVideoDataOutput) SetSampleBufferDelegate(value AVCaptureVideoDataOutputSampleBufferDelegate /* foo */) {
+func (c_ CaptureVideoDataOutput) SetSampleBufferDelegate(value CaptureVideoDataOutputSampleBufferDelegate /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:"), value)
 }
 

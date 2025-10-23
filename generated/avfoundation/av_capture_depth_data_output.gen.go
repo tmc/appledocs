@@ -32,8 +32,8 @@ type ICaptureDepthDataOutput interface {
 	// properties:
 	AlwaysDiscardsLateDepthData() bool /* primitive/slice/pointer */
 	SetAlwaysDiscardsLateDepthData(value bool /* primitive/slice/pointer */)
-	Delegate() AVCaptureDepthDataOutputDelegate /* foo */
-	SetDelegate(value AVCaptureDepthDataOutputDelegate /* foo */)
+	Delegate() CaptureDepthDataOutputDelegate /* not a class type */
+	SetDelegate(value CaptureDepthDataOutputDelegate /* not a class type */)
 	DelegateCallbackQueue() unsafe.Pointer
 	SetDelegateCallbackQueue(value unsafe.Pointer)
 	IsFilteringEnabled() bool /* primitive/slice/pointer */
@@ -127,7 +127,7 @@ func (c_ CaptureDepthDataOutput) SetAlwaysDiscardsLateDepthData(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegate
-func (c_ CaptureDepthDataOutput) Delegate() AVCaptureDepthDataOutputDelegate /* foo */ {
+func (c_ CaptureDepthDataOutput) Delegate() CaptureDepthDataOutputDelegate /* not a class type */ {
 	rv := objc.Send[CaptureDepthDataOutputDelegate](c_.ID, objc.Sel("delegate"))
 	return rv
 }
@@ -137,7 +137,7 @@ func (c_ CaptureDepthDataOutput) Delegate() AVCaptureDepthDataOutputDelegate /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegate
-func (c_ CaptureDepthDataOutput) SetDelegate(value AVCaptureDepthDataOutputDelegate /* foo */) {
+func (c_ CaptureDepthDataOutput) SetDelegate(value CaptureDepthDataOutputDelegate /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 

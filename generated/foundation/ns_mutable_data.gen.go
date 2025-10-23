@@ -47,9 +47,9 @@ type IMutableData interface {
 	CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	IncreaseLengthBy(extraLength uint /* primitive/slice/pointer */)
-	ReplaceBytesInRangeWithBytes(range_ Range /* foo */, bytes unsafe.Pointer)
-	ReplaceBytesInRangeWithBytesLength(range_ Range /* foo */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer */)
-	ResetBytesInRange(range_ Range /* foo */)
+	ReplaceBytesInRangeWithBytes(range_ Range /* not a class type */, bytes unsafe.Pointer)
+	ReplaceBytesInRangeWithBytesLength(range_ Range /* not a class type */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer */)
+	ResetBytesInRange(range_ Range /* not a class type */)
 	SetData(data IData)
 }
 
@@ -204,7 +204,7 @@ func (m_ MutableData) IncreaseLengthBy(extraLength uint /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/replaceBytes(in:withBytes:)
-func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ Range /* foo */, bytes unsafe.Pointer) {
+func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ Range /* not a class type */, bytes unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceBytesInRange:withBytes:"), range_, bytes)
 }
 
@@ -213,7 +213,7 @@ func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ Range /* foo */, bytes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/replaceBytes(in:withBytes:length:)
-func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ Range /* foo */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer */) {
+func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ Range /* not a class type */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceBytesInRange:withBytes:length:"), range_, replacementBytes, replacementLength)
 }
 
@@ -222,7 +222,7 @@ func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ Range /* foo */,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/resetBytes(in:)
-func (m_ MutableData) ResetBytesInRange(range_ Range /* foo */) {
+func (m_ MutableData) ResetBytesInRange(range_ Range /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resetBytesInRange:"), range_)
 }
 

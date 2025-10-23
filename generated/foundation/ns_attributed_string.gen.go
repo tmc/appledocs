@@ -36,39 +36,39 @@ type IAttributedString interface {
 	Length() uint /* primitive/slice/pointer */
 	String() string /* primitive/slice/pointer */
 	// methods:
-	AttributeAtIndexEffectiveRange(attrName AttributedStringKey /* foo */, location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) objc.ID
-	AttributeAtIndexLongestEffectiveRangeInRange(attrName AttributedStringKey /* foo */, location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) objc.ID
-	AttributedSubstringFromRange(range_ Range /* foo */) IAttributedString
-	AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) IDictionary /* already interface */
-	AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) IDictionary /* already interface */
-	BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions) Rect /* foo */
-	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* foo */) coregraphics.CGRect
-	ContainsAttachmentsInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
-	DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData
-	DocFormatFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
-	DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* foo */
+	AttributeAtIndexEffectiveRange(attrName AttributedStringKey /* not a class type */, location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */) objc.ID
+	AttributeAtIndexLongestEffectiveRangeInRange(attrName AttributedStringKey /* not a class type */, location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */, rangeLimit Range /* not a class type */) objc.ID
+	AttributedSubstringFromRange(range_ Range /* not a class type */) IAttributedString
+	AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */) IDictionary /* already interface */
+	AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */, rangeLimit Range /* not a class type */) IDictionary /* already interface */
+	BoundingRectWithSizeOptions(size Size /* not a class type */, options StringDrawingOptions) Rect /* not a class type */
+	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* not a class type */) coregraphics.CGRect
+	ContainsAttachmentsInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */
+	DataFromRangeDocumentAttributesError(range_ Range /* not a class type */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData
+	DocFormatFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) IData
+	DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* not a class type */
 	DrawAtPoint(point coregraphics.CGPoint)
 	DrawInRect(rect coregraphics.CGRect)
-	DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions)
-	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* foo */)
-	EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* foo */, enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
-	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */)
-	FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* foo */
-	FontAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */
+	DrawWithRectOptions(rect Rect /* not a class type */, options StringDrawingOptions)
+	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* not a class type */)
+	EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* not a class type */, enumerationRange Range /* not a class type */, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
+	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* not a class type */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */)
+	FileWrapperFromRangeDocumentAttributesError(range_ Range /* not a class type */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* not a class type */
+	FontAttributesInRange(range_ Range /* not a class type */) IDictionary /* already interface */
 	AttributedStringByInflectingString() IAttributedString
 	IsEqualToAttributedString(other IAttributedString) bool /* primitive/slice/pointer */
-	ItemNumberInTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
-	LineBreakBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */
-	LineBreakByHyphenatingBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */
+	ItemNumberInTextListAtIndex(list TextList /* not a class type */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
+	LineBreakBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* not a class type */) uint /* primitive/slice/pointer */
+	LineBreakByHyphenatingBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* not a class type */) uint /* primitive/slice/pointer */
 	NextWordFromIndexForward(location uint /* primitive/slice/pointer */, isForward bool /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
-	PrefersRTFDInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
-	RangeOfTextBlockAtIndex(block TextBlock /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
-	RangeOfTextTableAtIndex(table TextTable /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
-	RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
-	RTFFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
-	RTFDFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
-	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) FileWrapper /* foo */
-	RulerAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */
+	PrefersRTFDInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */
+	RangeOfTextBlockAtIndex(block TextBlock /* not a class type */, location uint /* primitive/slice/pointer */) Range /* not a class type */
+	RangeOfTextTableAtIndex(table TextTable /* not a class type */, location uint /* primitive/slice/pointer */) Range /* not a class type */
+	RangeOfTextListAtIndex(list TextList /* not a class type */, location uint /* primitive/slice/pointer */) Range /* not a class type */
+	RTFFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) IData
+	RTFDFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) IData
+	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) FileWrapper /* not a class type */
+	RulerAttributesInRange(range_ Range /* not a class type */) IDictionary /* already interface */
 	Size() coregraphics.CGSize
 }
 
@@ -129,7 +129,7 @@ func NewAttributedString() AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(adaptiveImageGlyph:attributes:)
-func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* foo */, attributes IDictionary /* already interface */) AttributedString {
+func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* not a class type */, attributes IDictionary /* already interface */) AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAdaptiveImageGlyph:attributes:"), adaptiveImageGlyph, attributes)
 	return rv
 }
@@ -139,7 +139,7 @@ func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph Adap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:)
-func NewAttributedStringWithAttachment(attachment TextAttachment /* foo */) AttributedString {
+func NewAttributedStringWithAttachment(attachment TextAttachment /* not a class type */) AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAttachment:"), attachment)
 	return rv
 }
@@ -149,7 +149,7 @@ func NewAttributedStringWithAttachment(attachment TextAttachment /* foo */) Attr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:attributes:)
-func NewAttributedStringWithAttachmentAttributes(attachment TextAttachment /* foo */, attributes IDictionary /* already interface */) AttributedString {
+func NewAttributedStringWithAttachmentAttributes(attachment TextAttachment /* not a class type */, attributes IDictionary /* already interface */) AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAttachment:attributes:"), attachment, attributes)
 	return rv
 }
@@ -351,7 +351,7 @@ func NewAttributedStringWithRTFDDocumentAttributes(data IData, dict IDictionary 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(RTFDFileWrapper:documentAttributes:)
-func NewAttributedStringWithRTFDFileWrapperDocumentAttributes(wrapper FileWrapper /* foo */, dict IDictionary /* already interface */) AttributedString {
+func NewAttributedStringWithRTFDFileWrapperDocumentAttributes(wrapper FileWrapper /* not a class type */, dict IDictionary /* already interface */) AttributedString {
 	instance := getAttributedStringClass().Alloc()
 	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithRTFDFileWrapper:documentAttributes:"), wrapper, dict)
 	rv.Autorelease()
@@ -424,7 +424,7 @@ func NewAttributedStringWithURLOptionsDocumentAttributesError(url IURL, options 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(adaptiveImageGlyph:attributes:)
-func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* foo */, attributes IDictionary /* already interface */) unsafe.Pointer {
+func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* not a class type */, attributes IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributedStringWithAdaptiveImageGlyph:attributes:"), adaptiveImageGlyph, attributes)
 	return rv
 }
@@ -434,7 +434,7 @@ func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:)
-func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment TextAttachment /* foo */) IAttributedString {
+func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment TextAttachment /* not a class type */) IAttributedString {
 	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("attributedStringWithAttachment:"), attachment)
 	return rv
 }
@@ -444,7 +444,7 @@ func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment TextA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:attributes:)
-func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attachment TextAttachment /* foo */, attributes IDictionary /* already interface */) unsafe.Pointer {
+func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attachment TextAttachment /* not a class type */, attributes IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributedStringWithAttachment:attributes:"), attachment, attributes)
 	return rv
 }
@@ -454,7 +454,7 @@ func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attach
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(data:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(data IData, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(data IData, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithData:options:completionHandler:"), data, options, completionHandler)
 }
 
@@ -463,7 +463,7 @@ func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(da
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(fileURL:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler(fileURL IURL, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler(fileURL IURL, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithFileURL:options:completionHandler:"), fileURL, options, completionHandler)
 }
 
@@ -472,7 +472,7 @@ func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(request:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler(request URLRequest /* foo */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler(request URLRequest /* not a class type */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithRequest:options:completionHandler:"), request, options, completionHandler)
 }
 
@@ -481,7 +481,7 @@ func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(string:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithStringOptionsCompletionHandler(string_ string /* primitive/slice/pointer */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithStringOptionsCompletionHandler(string_ string /* primitive/slice/pointer */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithString:options:completionHandler:"), objc.String(string_), options, completionHandler)
 }
 
@@ -588,7 +588,7 @@ func (ac _AttributedStringClass) TextUnfilteredTypes() []string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attribute(_:at:effectiveRange:)
-func (a_ AttributedString) AttributeAtIndexEffectiveRange(attrName AttributedStringKey /* foo */, location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) objc.ID {
+func (a_ AttributedString) AttributeAtIndexEffectiveRange(attrName AttributedStringKey /* not a class type */, location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("attribute:atIndex:effectiveRange:"), attrName, location, range_)
 	return rv
 }
@@ -598,7 +598,7 @@ func (a_ AttributedString) AttributeAtIndexEffectiveRange(attrName AttributedStr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attribute(_:at:longestEffectiveRange:in:)
-func (a_ AttributedString) AttributeAtIndexLongestEffectiveRangeInRange(attrName AttributedStringKey /* foo */, location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) objc.ID {
+func (a_ AttributedString) AttributeAtIndexLongestEffectiveRangeInRange(attrName AttributedStringKey /* not a class type */, location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */, rangeLimit Range /* not a class type */) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("attribute:atIndex:longestEffectiveRange:inRange:"), attrName, location, range_, rangeLimit)
 	return rv
 }
@@ -608,7 +608,7 @@ func (a_ AttributedString) AttributeAtIndexLongestEffectiveRangeInRange(attrName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attributedSubstring(from:)
-func (a_ AttributedString) AttributedSubstringFromRange(range_ Range /* foo */) IAttributedString {
+func (a_ AttributedString) AttributedSubstringFromRange(range_ Range /* not a class type */) IAttributedString {
 	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedSubstringFromRange:"), range_)
 	return rv
 }
@@ -618,7 +618,7 @@ func (a_ AttributedString) AttributedSubstringFromRange(range_ Range /* foo */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attributes(at:effectiveRange:)
-func (a_ AttributedString) AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) IDictionary /* already interface */ {
+func (a_ AttributedString) AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](a_.ID, objc.Sel("attributesAtIndex:effectiveRange:"), location, range_)
 	return rv
 }
@@ -628,7 +628,7 @@ func (a_ AttributedString) AttributesAtIndexEffectiveRange(location uint /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attributes(at:longestEffectiveRange:in:)
-func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) IDictionary /* already interface */ {
+func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* not a class type */, rangeLimit Range /* not a class type */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](a_.ID, objc.Sel("attributesAtIndex:longestEffectiveRange:inRange:"), location, range_, rangeLimit)
 	return rv
 }
@@ -638,7 +638,7 @@ func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(locatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:)
-func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions) Rect /* foo */ {
+func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* not a class type */, options StringDrawingOptions) Rect /* not a class type */ {
 	rv := objc.Send[Rect](a_.ID, objc.Sel("boundingRectWithSize:options:"), size, options)
 	return rv
 }
@@ -648,7 +648,7 @@ func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* foo */, opti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:context:)
-func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* foo */) coregraphics.CGRect {
+func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* not a class type */) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("boundingRectWithSize:options:context:"), size, options, context)
 	return rv
 }
@@ -658,7 +658,7 @@ func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/containsAttachments(in:)
-func (a_ AttributedString) ContainsAttachmentsInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */ {
+func (a_ AttributedString) ContainsAttachmentsInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("containsAttachmentsInRange:"), range_)
 	return rv
 }
@@ -668,7 +668,7 @@ func (a_ AttributedString) ContainsAttachmentsInRange(range_ Range /* foo */) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/data(from:documentAttributes:)
-func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData {
+func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range /* not a class type */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("dataFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
@@ -678,7 +678,7 @@ func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/docFormat(from:documentAttributes:)
-func (a_ AttributedString) DocFormatFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData {
+func (a_ AttributedString) DocFormatFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("docFormatFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -688,7 +688,7 @@ func (a_ AttributedString) DocFormatFromRangeDocumentAttributes(range_ Range /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/doubleClick(at:)
-func (a_ AttributedString) DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("doubleClickAtIndex:"), location)
 	return rv
 }
@@ -716,7 +716,7 @@ func (a_ AttributedString) DrawInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:)
-func (a_ AttributedString) DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions) {
+func (a_ AttributedString) DrawWithRectOptions(rect Rect /* not a class type */, options StringDrawingOptions) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:"), rect, options)
 }
 
@@ -725,7 +725,7 @@ func (a_ AttributedString) DrawWithRectOptions(rect Rect /* foo */, options Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:context:)
-func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* foo */) {
+func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:context:"), rect, options, context)
 }
 
@@ -734,7 +734,7 @@ func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/enumerateAttribute(_:in:options:using:)
-func (a_ AttributedString) EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* foo */, enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block unsafe.Pointer) {
+func (a_ AttributedString) EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* not a class type */, enumerationRange Range /* not a class type */, opts AttributedStringEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("enumerateAttribute:inRange:options:usingBlock:"), attrName, enumerationRange, opts, block)
 }
 
@@ -743,7 +743,7 @@ func (a_ AttributedString) EnumerateAttributeInRangeOptionsUsingBlock(attrName A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/enumerateAttributes(in:options:using:)
-func (a_ AttributedString) EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */) {
+func (a_ AttributedString) EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* not a class type */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("enumerateAttributesInRange:options:usingBlock:"), enumerationRange, opts, block)
 }
 
@@ -752,7 +752,7 @@ func (a_ AttributedString) EnumerateAttributesInRangeOptionsUsingBlock(enumerati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/fileWrapper(from:documentAttributes:)
-func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* foo */ {
+func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range /* not a class type */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* not a class type */ {
 	rv := objc.Send[FileWrapper](a_.ID, objc.Sel("fileWrapperFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
@@ -762,7 +762,7 @@ func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Ra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/fontAttributes(in:)
-func (a_ AttributedString) FontAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */ {
+func (a_ AttributedString) FontAttributesInRange(range_ Range /* not a class type */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](a_.ID, objc.Sel("fontAttributesInRange:"), range_)
 	return rv
 }
@@ -790,7 +790,7 @@ func (a_ AttributedString) IsEqualToAttributedString(other IAttributedString) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/itemNumber(in:at:)
-func (a_ AttributedString) ItemNumberInTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
+func (a_ AttributedString) ItemNumberInTextListAtIndex(list TextList /* not a class type */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("itemNumberInTextList:atIndex:"), list, location)
 	return rv
 }
@@ -800,7 +800,7 @@ func (a_ AttributedString) ItemNumberInTextListAtIndex(list TextList /* foo */, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/lineBreak(before:within:)
-func (a_ AttributedString) LineBreakBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */ {
+func (a_ AttributedString) LineBreakBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* not a class type */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("lineBreakBeforeIndex:withinRange:"), location, aRange)
 	return rv
 }
@@ -810,7 +810,7 @@ func (a_ AttributedString) LineBreakBeforeIndexWithinRange(location uint /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/lineBreakByHyphenating(before:within:)
-func (a_ AttributedString) LineBreakByHyphenatingBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */ {
+func (a_ AttributedString) LineBreakByHyphenatingBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* not a class type */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("lineBreakByHyphenatingBeforeIndex:withinRange:"), location, aRange)
 	return rv
 }
@@ -830,7 +830,7 @@ func (a_ AttributedString) NextWordFromIndexForward(location uint /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/prefersRTFD(in:)
-func (a_ AttributedString) PrefersRTFDInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */ {
+func (a_ AttributedString) PrefersRTFDInRange(range_ Range /* not a class type */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prefersRTFDInRange:"), range_)
 	return rv
 }
@@ -840,7 +840,7 @@ func (a_ AttributedString) PrefersRTFDInRange(range_ Range /* foo */) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-1wrcp
-func (a_ AttributedString) RangeOfTextBlockAtIndex(block TextBlock /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextBlockAtIndex(block TextBlock /* not a class type */, location uint /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextBlock:atIndex:"), block, location)
 	return rv
 }
@@ -850,7 +850,7 @@ func (a_ AttributedString) RangeOfTextBlockAtIndex(block TextBlock /* foo */, lo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-3fevu
-func (a_ AttributedString) RangeOfTextTableAtIndex(table TextTable /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextTableAtIndex(table TextTable /* not a class type */, location uint /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextTable:atIndex:"), table, location)
 	return rv
 }
@@ -860,7 +860,7 @@ func (a_ AttributedString) RangeOfTextTableAtIndex(table TextTable /* foo */, lo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-6um0x
-func (a_ AttributedString) RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextListAtIndex(list TextList /* not a class type */, location uint /* primitive/slice/pointer */) Range /* not a class type */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextList:atIndex:"), list, location)
 	return rv
 }
@@ -870,7 +870,7 @@ func (a_ AttributedString) RangeOfTextListAtIndex(list TextList /* foo */, locat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtf(from:documentAttributes:)
-func (a_ AttributedString) RTFFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData {
+func (a_ AttributedString) RTFFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("RTFFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -880,7 +880,7 @@ func (a_ AttributedString) RTFFromRangeDocumentAttributes(range_ Range /* foo */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtfd(from:documentAttributes:)
-func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData {
+func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("RTFDFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -890,7 +890,7 @@ func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range /* foo *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtfdFileWrapper(from:documentAttributes:)
-func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) FileWrapper /* foo */ {
+func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* not a class type */, dict IDictionary /* already interface */) FileWrapper /* not a class type */ {
 	rv := objc.Send[FileWrapper](a_.ID, objc.Sel("RTFDFileWrapperFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -900,7 +900,7 @@ func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Ran
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rulerAttributes(in:)
-func (a_ AttributedString) RulerAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */ {
+func (a_ AttributedString) RulerAttributesInRange(range_ Range /* not a class type */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](a_.ID, objc.Sel("rulerAttributesInRange:"), range_)
 	return rv
 }

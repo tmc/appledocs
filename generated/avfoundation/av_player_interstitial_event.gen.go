@@ -43,30 +43,30 @@ type IPlayerInterstitialEvent interface {
 	SetContentMayVary(value bool /* primitive/slice/pointer */)
 	Cue() unsafe.Pointer
 	SetCue(value unsafe.Pointer)
-	Date() foundation.Date /* foo */
-	SetDate(value foundation.Date /* foo */)
+	Date() foundation.Date /* not a class type */
+	SetDate(value foundation.Date /* not a class type */)
 	Identifier() string /* primitive/slice/pointer */
 	SetIdentifier(value string /* primitive/slice/pointer */)
-	PlannedDuration() CMTime /* foo */
-	SetPlannedDuration(value CMTime /* foo */)
-	PlayoutLimit() CMTime /* foo */
-	SetPlayoutLimit(value CMTime /* foo */)
+	PlannedDuration() Time /* not a class type */
+	SetPlannedDuration(value Time /* not a class type */)
+	PlayoutLimit() Time /* not a class type */
+	SetPlayoutLimit(value Time /* not a class type */)
 	PrimaryItem() IAVPlayerItem
 	SetPrimaryItem(value IAVPlayerItem)
 	Restrictions() unsafe.Pointer
 	SetRestrictions(value unsafe.Pointer)
-	ResumptionOffset() CMTime /* foo */
-	SetResumptionOffset(value CMTime /* foo */)
+	ResumptionOffset() Time /* not a class type */
+	SetResumptionOffset(value Time /* not a class type */)
 	SkipControlLocalizedLabelBundleKey() string /* primitive/slice/pointer */
 	SetSkipControlLocalizedLabelBundleKey(value string /* primitive/slice/pointer */)
-	SkipControlTimeRange() CMTimeRange /* foo */
-	SetSkipControlTimeRange(value CMTimeRange /* foo */)
+	SkipControlTimeRange() TimeRange /* not a class type */
+	SetSkipControlTimeRange(value TimeRange /* not a class type */)
 	SupplementsPrimaryContent() bool /* primitive/slice/pointer */
 	SetSupplementsPrimaryContent(value bool /* primitive/slice/pointer */)
 	TemplateItems() IAVPlayerItem
 	SetTemplateItems(value IAVPlayerItem)
-	Time() CMTime /* foo */
-	SetTime(value CMTime /* foo */)
+	Time() Time /* not a class type */
+	SetTime(value Time /* not a class type */)
 	TimelineOccupancy() unsafe.Pointer
 	SetTimelineOccupancy(value unsafe.Pointer)
 	WillPlayOnce() bool /* primitive/slice/pointer */
@@ -236,7 +236,7 @@ func (p_ PlayerInterstitialEvent) SetCue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
-func (p_ PlayerInterstitialEvent) Date() foundation.Date /* foo */ {
+func (p_ PlayerInterstitialEvent) Date() foundation.Date /* not a class type */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("date"))
 	return rv
 }
@@ -246,7 +246,7 @@ func (p_ PlayerInterstitialEvent) Date() foundation.Date /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
-func (p_ PlayerInterstitialEvent) SetDate(value foundation.Date /* foo */) {
+func (p_ PlayerInterstitialEvent) SetDate(value foundation.Date /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDate:"), value)
 }
 
@@ -274,7 +274,7 @@ func (p_ PlayerInterstitialEvent) SetIdentifier(value string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/plannedduration
-func (p_ PlayerInterstitialEvent) PlannedDuration() CMTime /* foo */ {
+func (p_ PlayerInterstitialEvent) PlannedDuration() Time /* not a class type */ {
 	rv := objc.Send[Time](p_.ID, objc.Sel("plannedDuration"))
 	return rv
 }
@@ -284,7 +284,7 @@ func (p_ PlayerInterstitialEvent) PlannedDuration() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/plannedduration
-func (p_ PlayerInterstitialEvent) SetPlannedDuration(value CMTime /* foo */) {
+func (p_ PlayerInterstitialEvent) SetPlannedDuration(value Time /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlannedDuration:"), value)
 }
 
@@ -293,7 +293,7 @@ func (p_ PlayerInterstitialEvent) SetPlannedDuration(value CMTime /* foo */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/playoutlimit
-func (p_ PlayerInterstitialEvent) PlayoutLimit() CMTime /* foo */ {
+func (p_ PlayerInterstitialEvent) PlayoutLimit() Time /* not a class type */ {
 	rv := objc.Send[Time](p_.ID, objc.Sel("playoutLimit"))
 	return rv
 }
@@ -303,7 +303,7 @@ func (p_ PlayerInterstitialEvent) PlayoutLimit() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/playoutlimit
-func (p_ PlayerInterstitialEvent) SetPlayoutLimit(value CMTime /* foo */) {
+func (p_ PlayerInterstitialEvent) SetPlayoutLimit(value Time /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayoutLimit:"), value)
 }
 
@@ -350,7 +350,7 @@ func (p_ PlayerInterstitialEvent) SetRestrictions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/resumptionoffset
-func (p_ PlayerInterstitialEvent) ResumptionOffset() CMTime /* foo */ {
+func (p_ PlayerInterstitialEvent) ResumptionOffset() Time /* not a class type */ {
 	rv := objc.Send[Time](p_.ID, objc.Sel("resumptionOffset"))
 	return rv
 }
@@ -360,7 +360,7 @@ func (p_ PlayerInterstitialEvent) ResumptionOffset() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/resumptionoffset
-func (p_ PlayerInterstitialEvent) SetResumptionOffset(value CMTime /* foo */) {
+func (p_ PlayerInterstitialEvent) SetResumptionOffset(value Time /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResumptionOffset:"), value)
 }
 
@@ -388,7 +388,7 @@ func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontroltimerange
-func (p_ PlayerInterstitialEvent) SkipControlTimeRange() CMTimeRange /* foo */ {
+func (p_ PlayerInterstitialEvent) SkipControlTimeRange() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](p_.ID, objc.Sel("skipControlTimeRange"))
 	return rv
 }
@@ -398,7 +398,7 @@ func (p_ PlayerInterstitialEvent) SkipControlTimeRange() CMTimeRange /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontroltimerange
-func (p_ PlayerInterstitialEvent) SetSkipControlTimeRange(value CMTimeRange /* foo */) {
+func (p_ PlayerInterstitialEvent) SetSkipControlTimeRange(value TimeRange /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlTimeRange:"), value)
 }
 
@@ -445,7 +445,7 @@ func (p_ PlayerInterstitialEvent) SetTemplateItems(value IAVPlayerItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/time
-func (p_ PlayerInterstitialEvent) Time() CMTime /* foo */ {
+func (p_ PlayerInterstitialEvent) Time() Time /* not a class type */ {
 	rv := objc.Send[Time](p_.ID, objc.Sel("time"))
 	return rv
 }
@@ -455,7 +455,7 @@ func (p_ PlayerInterstitialEvent) Time() CMTime /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/time
-func (p_ PlayerInterstitialEvent) SetTime(value CMTime /* foo */) {
+func (p_ PlayerInterstitialEvent) SetTime(value Time /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTime:"), value)
 }
 

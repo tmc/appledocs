@@ -42,8 +42,8 @@ type IScanner interface {
 	SetScanLocation(value uint /* primitive/slice/pointer */)
 	String() string /* primitive/slice/pointer */
 	NSNotFound() int /* primitive/slice/pointer */
-	CurrentIndex() Index /* foo */
-	SetCurrentIndex(value Index /* foo */)
+	CurrentIndex() Index /* not a class type */
+	SetCurrentIndex(value Index /* not a class type */)
 	IsAtEnd() bool /* primitive/slice/pointer */
 	SetIsAtEnd(value bool /* primitive/slice/pointer */)
 	// methods:
@@ -309,7 +309,7 @@ func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) CurrentIndex() Index /* foo */ {
+func (s_ Scanner) CurrentIndex() Index /* not a class type */ {
 	rv := objc.Send[Index](s_.ID, objc.Sel("currentIndex"))
 	return rv
 }
@@ -317,7 +317,7 @@ func (s_ Scanner) CurrentIndex() Index /* foo */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) SetCurrentIndex(value Index /* foo */) {
+func (s_ Scanner) SetCurrentIndex(value Index /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
 }
 
