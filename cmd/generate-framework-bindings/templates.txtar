@@ -1309,7 +1309,12 @@ package {{.PackageName}}
 {{range $typedef := .Typedefs -}}
 {{if ne $typedef.Name "" -}}
 {{$typeName := stripObjCPrefix $typedef.Name -}}
-{{if isValidGoIdentifier $typeName -}}
+{{if not (isValidGoIdentifier $typeName) -}}
+// SKIPPED: {{$typedef.Name}} - invalid Go identifier "{{$typeName}}"
+// Original type: {{$typedef.BaseType}}
+{{else if isTypeDefinedInTypesFile $typeName -}}
+// SKIPPED: {{$typedef.Name}} - already defined in types.gen.go
+{{else -}}
 {{if $typedef.Abstract -}}
 // {{$typeName}} - {{$typedef.Abstract}}
 {{else -}}
@@ -1338,9 +1343,6 @@ type {{$typeName}} uintptr
 // {{$typedef.Name}} has base type: {{$typedef.BaseType}}
 type {{$typeName}} uintptr
 {{end -}}
-{{else -}}
-// SKIPPED: {{$typedef.Name}} - invalid Go identifier "{{$typeName}}"
-// Original type: {{$typedef.BaseType}}
 {{end -}}
 
 {{end -}}
