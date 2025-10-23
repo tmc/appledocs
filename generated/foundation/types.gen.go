@@ -10,7 +10,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AffineTransform = _undefined // referenced in Foundation
 	BaselineAdjustment = _undefined // referenced in Foundation
 	BinarySearchingOptions = _undefined // referenced in Foundation
 	Bool = _undefined // referenced in Foundation
@@ -86,6 +85,8 @@ type NSAffineTransformStruct struct {
 	tX float64 // An element of the transform matrix that contributes translation.
 	tY float64 // An element of the transform matrix that contributes translation.
 }
+// AffineTransformStruct is a type alias for NSAffineTransformStruct for use in objc.Send[T] calls.
+type AffineTransformStruct = NSAffineTransformStruct
 
 
 
