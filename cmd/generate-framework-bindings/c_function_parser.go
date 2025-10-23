@@ -124,6 +124,10 @@ func cTypeToGoType(cType string) string {
 	cType = strings.TrimPrefix(cType, "const ")
 	cType = strings.TrimSpace(cType)
 
+	// Remove struct keyword (e.g., "struct CGScreenUpdateMoveDelta" → "CGScreenUpdateMoveDelta")
+	cType = strings.TrimPrefix(cType, "struct ")
+	cType = strings.TrimSpace(cType)
+
 	// Remove enum keyword (e.g., "enum CFComparisonResult" → "CFComparisonResult")
 	cType = strings.TrimPrefix(cType, "enum ")
 	cType = strings.TrimSpace(cType)
@@ -142,6 +146,8 @@ func cTypeToGoType(cType string) string {
 	switch baseType {
 	case "void":
 		return "unsafe.Pointer"
+	case "_Bool":
+		return "bool"
 	case "char":
 		if isPointer {
 			return "string" // char* → string
@@ -194,12 +200,28 @@ func cTypeToGoType(cType string) string {
 		return name + "Ref"
 	}
 
-	// Strip CF prefix from types (CFComparisonResult → ComparisonResult)
-	if strings.HasPrefix(baseType, "CF") && len(baseType) > 2 {
-		nextChar := baseType[2]
-		if nextChar >= 'A' && nextChar <= 'Z' {
-			// Has CF prefix followed by uppercase - strip it
-			baseType = baseType[2:]
+	// Strip CG/CF/NS/CA prefixes from enum types, but keep them for struct types
+	// Heuristic: Geometry structs (containing Rect, Point, Size, Vector, Color, Transform, Delta, etc.) keep prefix
+	geometryKeywords := []string{"Rect", "Point", "Size", "Vector", "Color", "Transform", "Delta", "Affine", "Path", "Image", "Context", "Layer", "Pattern", "Gradient", "Font", "Glyph"}
+	isLikelyStruct := false
+	for _, keyword := range geometryKeywords {
+		if strings.Contains(baseType, keyword) {
+			isLikelyStruct = true
+			break
+		}
+	}
+
+	if !isLikelyStruct {
+		// Strip CF/CG/NS/CA prefixes from enum/typedef types
+		for _, prefix := range []string{"CF", "CG", "NS", "CA"} {
+			if strings.HasPrefix(baseType, prefix) && len(baseType) > len(prefix) {
+				nextChar := baseType[len(prefix)]
+				if nextChar >= 'A' && nextChar <= 'Z' {
+					// Has prefix followed by uppercase - strip it
+					baseType = baseType[len(prefix):]
+					break
+				}
+			}
 		}
 	}
 
